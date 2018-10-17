@@ -17,8 +17,8 @@
     "prepare": "npm run build",
     "predeploy": "cd playground && npm install && npm run build",
     "deploy": "gh-pages -d playground/build",
-    "storybook": "(npm run test || true) && start-storybook -p 9009",
-    "build-storybook": "build-storybook -c .storybook -o dist-storybook"
+    "storybook": "start-storybook -p 9009",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -57,6 +57,7 @@
   ],
   "dependencies": {
     "@material-ui/core": "^3.1.0",
+    "@storybook/cli": "^3.4.11",
     "babel-plugin-styled-components": "^1.7.1",
     "styled-components": "^3.4.8"
   }
