@@ -1,7 +1,6 @@
 {
     "defaultSeverity": "error",
     "extends": ["tslint:recommended", "tslint-config-prettier"],
-    "jsRules": {},
     "rules": {
         "arrow-parens": [true, "ban-single-arg-parens"],
         "variable-name": [
@@ -19,5 +18,6 @@
             "options": [150]
         }
     },
+    "jsRules": {},
     "rulesDirectory": []
 }
