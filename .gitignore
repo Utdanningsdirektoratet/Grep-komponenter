@@ -8,7 +8,7 @@ node_modules
 # builds
 build
 dist
-.jest-test-results.json
+.rpt2_cache
 
 # misc
 .DS_Store
