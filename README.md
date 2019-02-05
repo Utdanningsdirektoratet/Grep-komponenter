@@ -1,7 +1,7 @@
 # Komponentbibliotek
 
 [![npm package](https://img.shields.io/npm/v/grep-component-lib/latest.svg)](https://www.npmjs.com/package/grep-component-lib) 
-[![Build Status](https://travis-ci.com/kimbouvet/component-library-boilerplate.svg?branch=master)](https://travis-ci.com/kimbouvet/component-library-boilerplate)
+[![Build Status](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter.svg?branch=master)](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter)
 
 Boilerplate for creating a react component library
 
