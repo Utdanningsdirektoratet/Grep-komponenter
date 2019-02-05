@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - stable
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build
+deploy:
+  provider: npm
+  email: kim.oftedal@icloud.com
+  api_key:
+    secure: VEzwKMwUjihKoNKj62MITCcdKwZRCY/EN27Wgbj8xlBWzWEkzo/rCkO6c3BxwSsUKko+PJf6MwV57TUbXVdE+OIZWYmhnRQXR5IPbVljOT3gsKfcrTAZbeyFpn08sGzNIpop0oJWIHjhj0yNQIvsTnZkcTV7eIbKfKD9iFyuiGFnkm1G7N6x7f9HWvjUhPDPAP0JMUbPFLD/KxNSz4zQ4ALu4dvCRvv2BCSsg5xQQTg/vxP9u6GlS1moFOrc1h8gVNDNY929wV8KGUHlpbF4c6HQxFdqXIxFk/iEiNkJQlMQlA+AVNwHQOg28P8/OsujLVNlEXcsz2rgcVgeLPPvkCy+LUQM8l58uhIAlzriJNGKTTQmNqzQNIEmxLi+CxfFAQMu8zAi2ghSffKaCDWZzzY2zi4YDlA3tQpLNhBLzIfjT6iL+OYIt2pCdWjhuMJkhzcIVoW3/yqRp1h01ARPbkQBrDFmixsrMH9rYOhH9DDuNPZsDBpg/qImWJ/PGfOQGIyQBsrQJCMZX0vmQvU5A5XGjkbjnMkXlPavc/lyvRrxq3RVvD9OTp2sLtrwxNtUif8op4in3gdyJtw9AEPIkvPlrse0t3p6WwwF7tjxNmhx4GJjTFrxoG211fuMJ9dLg+I/Iartbs2s99W1INyrP4GM6DX7wU2Mn0d8PKpouhk=
+  on:
+    repo: Utdanningsdirektoratet/Grep-komponenter
+    tags: true
