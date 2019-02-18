@@ -7,3 +7,5 @@ export { default as CssBaseline } from "@material-ui/core/CssBaseline";
 export { default as Grid } from "@material-ui/core/Grid";
 
 export { default as JssProvider } from "./providers";
+
+export { Theme } from "./styling";

@@ -1,23 +1,36 @@
 {
-    "defaultSeverity": "error",
-    "extends": ["tslint:recommended", "tslint-config-prettier"],
-    "rules": {
-        "arrow-parens": [true, "ban-single-arg-parens"],
-        "variable-name": [
-            true,
-            "allow-leading-underscore",
-            "check-format",
-            "allow-pascal-case"
-        ],
-        "curly": [true, "ignore-same-line"],
-        "no-var-requires": false,
-        "ordered-imports": false,
-        "interface-name": false,
-        "object-literal-sort-keys": false,
-        "max-line-length": {
-            "options": [150]
-        }
-    },
-    "jsRules": {},
-    "rulesDirectory": []
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "jsRules": {},
+  "rules": {
+    "arrow-parens": [true, "ban-single-arg-parens"],
+    "variable-name": [
+      true,
+      "allow-leading-underscore",
+      "check-format",
+      "allow-pascal-case"
+    ],
+    "curly": [true, "ignore-same-line"],
+    "no-var-requires": false,
+    "ordered-imports": false,
+    "interface-name": false,
+    "interface-over-type-literal": false, // TODO
+    "jsx-no-lambda": false, // TODO
+    "no-shadowed-variable": false, // TODO
+    "jsx-boolean-value": [true, "never"],
+    "jsx-no-bind": true,
+    "no-unused-expression": [true, "allow-fast-null-checks"],
+    "no-console": true,
+    "object-literal-sort-keys": false,
+    "max-line-length": {
+      "options": [300] // TODO
+    }
+  },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
+  }
 }
