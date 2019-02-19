@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-  - stable
+- stable
 cache:
   directories:
-    - node_modules
+  - node_modules
 script:
-  - npm run build
+- npm run build
 deploy:
   provider: npm
   email: kim.oftedal@icloud.com
   skip_cleanup: true
   api_key:
-    secure: VEzwKMwUjihKoNKj62MITCcdKwZRCY/EN27Wgbj8xlBWzWEkzo/rCkO6c3BxwSsUKko+PJf6MwV57TUbXVdE+OIZWYmhnRQXR5IPbVljOT3gsKfcrTAZbeyFpn08sGzNIpop0oJWIHjhj0yNQIvsTnZkcTV7eIbKfKD9iFyuiGFnkm1G7N6x7f9HWvjUhPDPAP0JMUbPFLD/KxNSz4zQ4ALu4dvCRvv2BCSsg5xQQTg/vxP9u6GlS1moFOrc1h8gVNDNY929wV8KGUHlpbF4c6HQxFdqXIxFk/iEiNkJQlMQlA+AVNwHQOg28P8/OsujLVNlEXcsz2rgcVgeLPPvkCy+LUQM8l58uhIAlzriJNGKTTQmNqzQNIEmxLi+CxfFAQMu8zAi2ghSffKaCDWZzzY2zi4YDlA3tQpLNhBLzIfjT6iL+OYIt2pCdWjhuMJkhzcIVoW3/yqRp1h01ARPbkQBrDFmixsrMH9rYOhH9DDuNPZsDBpg/qImWJ/PGfOQGIyQBsrQJCMZX0vmQvU5A5XGjkbjnMkXlPavc/lyvRrxq3RVvD9OTp2sLtrwxNtUif8op4in3gdyJtw9AEPIkvPlrse0t3p6WwwF7tjxNmhx4GJjTFrxoG211fuMJ9dLg+I/Iartbs2s99W1INyrP4GM6DX7wU2Mn0d8PKpouhk=
+    secure: f18OjREjeb2bqVthYk0Cs5Doia07+PHcD+93W/VQIcj/QrKRVmUfq+0XKHkPNaBtk2pCcbG5cC3BOIXJFzZcjD78Kw+CuHhL5Am9H77Qlh6Z7IsMKowGeGlLDIdfSBBjC4CC23ASYA1MSSqq0KkYJpijouXT92Zf1+pfOGoHRCCuITLvQ2du1ThzQX/T2NePWz8pU78wncnfzmCoNcfVkU2C+m13bc/+/IjeijFJNUo6Av0fcJ70IFitj2LVtD7JrL4eIHWQ20tqn6O6mwrT2oYfn+P6ne78paWHyYJuMRbFY/m46U13uIrIiOrB1UtiDdVt9znMI+5BTrbRiyi/7UYpjozfHwvJ1+H4sBIKHXxaPePTN50VR9FIhc0WgPR5VJNCgQaC0OVZ4cZlvBolkcje659BQAZ42o79jUEoyLWQBxA2Lp8jN43t3K8Ut8crfGB9Uhpk8glNZOMKALMO2hxMzdD3IuNIs8BKcqE7jLSXDrBWsBsQsPvR7rjA7rzxQHnIisu2ZRXpQ2fIPdsLiv8mOZlLHz8ruRaPkEzJw37/b71OZ7X9bADetIdHv/m6Nedq0F2OIDLCyMn095PdDNVwdqms5RQo/xJZm1B1yi2BrHdDRzdVgIDZaF4MRCkDstMIsBTe+49FqcdBSQSMlC16wjhKkQQ2HiUC5zdN/3s=
   on:
     branch: master
     tags: true
