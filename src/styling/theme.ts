@@ -21,6 +21,9 @@ export const Theme = createMuiTheme({
     },
     secondary: {
       main: colors.secondary
+    },
+    background: {
+      default: colors.white
     }
   },
   typography: {
