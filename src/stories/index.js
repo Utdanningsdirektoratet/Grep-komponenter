@@ -6,7 +6,7 @@ import { linkTo } from "@storybook/addon-links";
 
 import { Button, Welcome } from "@storybook/react/demo";
 import AppBar from "../components/AppBar";
-import AppbarNavigationList from "../components/AppbarNavigationList";
+import AppbarNavigationList from "../components/AppBarNavigationList";
 import MainLayout from "../components/MainLayout";
 import CenterLayout from "../components/CenterLayout";
 
