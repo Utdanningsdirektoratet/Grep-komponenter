@@ -3,7 +3,7 @@ import {
   StyledList,
   StyledListItem,
   StyledListItemText
-} from "./appbar-navigation-list-styles";
+} from "./appBar-navigation-list-styles";
 
 interface Page {
   id: number;
