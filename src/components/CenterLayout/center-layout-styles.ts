@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/core";
+import withStyles from "@material-ui/core/styles/withStyles";
 import MUiPaper from "@material-ui/core/Paper";
 
 export const StyledCenterLayout = withStyles({

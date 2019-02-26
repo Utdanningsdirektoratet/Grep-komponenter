@@ -1,6 +1,6 @@
 import MUiAppBar from "@material-ui/core/AppBar";
 import MUiToolbar from "@material-ui/core/Toolbar";
-import { withStyles } from "@material-ui/core";
+import withStyles from "@material-ui/core/styles/withStyles";
 
 export const StyledAppBar = withStyles({})(MUiAppBar);
 

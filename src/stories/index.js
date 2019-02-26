@@ -6,7 +6,7 @@ import { linkTo } from "@storybook/addon-links";
 
 import { Button, Welcome } from "@storybook/react/demo";
 import AppBar from "../components/AppBar";
-import AppbarNavigationList from "../components/AppBarNavigationList";
+import AppBarNavigationList from "../components/AppBarNavigationList";
 import MainLayout from "../components/MainLayout";
 import CenterLayout from "../components/CenterLayout";
 
@@ -51,7 +51,7 @@ const pages = [
 
 storiesOf("AppbarNavigationList", module).add("with theme and appbar", () => (
   <AppBar>
-    <AppbarNavigationList pages={pages} selectedPage={0} />
+    <AppBarNavigationList pages={pages} selectedPage={0} />
   </AppBar>
 ));
 
