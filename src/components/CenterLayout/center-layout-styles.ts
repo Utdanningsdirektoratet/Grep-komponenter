@@ -9,6 +9,7 @@ export const StyledCenterLayout = withStyles({
     marginRight: "auto",
     marginBottom: 0,
     marginLeft: "auto",
-    width: "100%"
+    width: "100%",
+    backgroundColor: "transparent"
   }
 })(MUiPaper);
