@@ -13,4 +13,4 @@ class AppBar extends React.Component<AppBarProps> {
   }
 }
 
-export default AppBar;
+export default AppBar as React.ComponentType<AppBarProps>;

@@ -8,4 +8,4 @@ const BodyLayout: React.SFC<BodyLayoutProps> = props => (
     {props.children}
   </StyledBodyLayout>
 );
-export default BodyLayout;
+export default BodyLayout as React.ComponentType<BodyLayoutProps>;

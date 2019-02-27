@@ -43,4 +43,6 @@ class AppBarNavigationList extends React.Component<
   }
 }
 
-export default AppBarNavigationList;
+export default AppBarNavigationList as React.ComponentType<
+  AppBarNavigationListProps
+>;

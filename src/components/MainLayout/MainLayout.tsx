@@ -8,4 +8,4 @@ const MainLayout: React.SFC<MainLayoutProps> = props => (
     {props.children}
   </StyledMainLayout>
 );
-export default MainLayout;
+export default MainLayout as React.ComponentType<MainLayoutProps>;

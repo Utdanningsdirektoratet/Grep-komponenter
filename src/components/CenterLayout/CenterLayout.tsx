@@ -8,4 +8,4 @@ const CenterLayout: React.SFC<CenterLayoutProps> = props => (
     {props.children}
   </StyledCenterLayout>
 );
-export default CenterLayout;
+export default CenterLayout as React.ComponentType<CenterLayoutProps>;
