@@ -1,7 +1,9 @@
 import * as React from "react";
 import { StyledAppBar, StyledToolbar } from "./appbar-styles";
 
-class AppBar extends React.Component<{}> {
+export interface AppBarProps {}
+
+class AppBar extends React.Component<AppBarProps> {
   public render() {
     return (
       <StyledAppBar color="primary">

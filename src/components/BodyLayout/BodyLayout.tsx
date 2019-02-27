@@ -1,7 +1,9 @@
 import * as React from "react";
 import { StyledBodyLayout } from "./body-layout-styles";
 
-const BodyLayout: React.SFC<{}> = props => (
+export interface BodyLayoutProps {}
+
+const BodyLayout: React.SFC<BodyLayoutProps> = props => (
   <StyledBodyLayout elevation={0} square>
     {props.children}
   </StyledBodyLayout>

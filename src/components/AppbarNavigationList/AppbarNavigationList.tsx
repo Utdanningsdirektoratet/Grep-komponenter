@@ -5,21 +5,24 @@ import {
   StyledListItemText
 } from "./appbar-navigation-list-styles";
 
-interface Page {
+export interface NavigationProps {
   id: number;
   label: string;
   toUrl: string;
   onClick: (url: string) => void;
 }
 
-interface Props {
+export interface AppBarNavigationListProps {
   selectedPage: number;
-  pages: Page[];
+  pages: NavigationProps[];
 }
 
 interface State {}
 
-class AppBarNavigationList extends React.Component<Props, State> {
+class AppBarNavigationList extends React.Component<
+  AppBarNavigationListProps,
+  State
+> {
   public render() {
     const { pages, selectedPage } = this.props;
 
