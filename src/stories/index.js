@@ -52,7 +52,11 @@ const pages = [
 storiesOf("AppbarNavigationList", module).add("with theme and appbar", () => (
   <AppBar>
     <CenterLayout>
-      <AppBarNavigationList pages={pages} selectedPage={0} />
+      <AppBarNavigationList
+        pages={pages}
+        selectedPage={pages[0].id}
+        onChange={number => console.log("index: ", number)}
+      />
     </CenterLayout>
   </AppBar>
 ));
