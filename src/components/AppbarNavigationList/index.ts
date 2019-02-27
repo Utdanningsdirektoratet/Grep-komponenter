@@ -7,6 +7,8 @@ import {
 export interface AppBarNavigationListProps extends ComponentProps {}
 export interface NavigationProps extends PageProps {}
 
-declare const AppBarNavigation: React.ComponentType<AppBarNavigationListProps>;
+declare const AppBarNavigationList: React.ComponentType<
+  AppBarNavigationListProps
+>;
 
-export default AppBarNavigation;
+export default AppBarNavigationList;
