@@ -5,19 +5,19 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, JssProvider } from "../src";
 import { createGlobalStyle } from "styled-components";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
-import colors from "../src/styling/colors";
+import Colors from "../src/styling/Colors";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: colors.primary,
-      contrastText: colors.white
+      main: Colors.cyan,
+      contrastText: Colors.white
     },
     secondary: {
-      main: colors.secondary
+      main: Colors.lightBlue
     },
     background: {
-      default: colors.white
+      default: Colors.white
     }
   },
   typography: {
