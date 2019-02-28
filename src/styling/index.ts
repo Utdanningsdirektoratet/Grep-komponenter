@@ -1,4 +1,5 @@
-export * from "./global-styles";
-export { default as GlobalStyle } from "./global-styles";
-export * from "./colors";
-export { default as Colors } from "./colors";
+export * from "./Colors";
+export * from "./GlobalStyle";
+
+export { default as Colors } from "./Colors";
+export { default as GlobalStyles } from "./GlobalStyle";
