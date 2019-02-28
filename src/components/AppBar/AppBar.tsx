@@ -6,7 +6,7 @@ export interface AppBarProps {}
 class AppBar extends React.Component<AppBarProps> {
   public render() {
     return (
-      <StyledAppBar color="primary">
+      <StyledAppBar color="primary" position="static">
         <StyledToolbar>{this.props.children}</StyledToolbar>
       </StyledAppBar>
     );

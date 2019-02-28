@@ -9,6 +9,7 @@ import AppBar from "../components/AppBar";
 import AppBarNavigationList from "../components/AppBarNavigationList";
 import MainLayout from "../components/MainLayout";
 import CenterLayout from "../components/CenterLayout";
+import { BodyLayout } from "..";
 
 storiesOf("Welcome", module).add("to Storybook", () => (
   <Welcome showApp={linkTo("Button")} />
@@ -50,15 +51,17 @@ const pages = [
 ];
 
 storiesOf("AppbarNavigationList", module).add("with theme and appbar", () => (
-  <AppBar>
-    <CenterLayout>
-      <AppBarNavigationList
-        pages={pages}
-        selectedPage={pages[0].id}
-        onChange={number => console.log("index: ", number)}
-      />
-    </CenterLayout>
-  </AppBar>
+  <MainLayout>
+    <AppBar>
+      <CenterLayout>
+        <AppBarNavigationList
+          pages={pages}
+          selectedPage={pages[0].id}
+          onChange={number => console.log("index: ", number)}
+        />
+      </CenterLayout>
+    </AppBar>
+  </MainLayout>
 ));
 
 storiesOf("MainLayout", module).add("MainLayout with content", () => (
