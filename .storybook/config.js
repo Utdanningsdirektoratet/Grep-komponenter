@@ -2,8 +2,47 @@ import React from "react";
 import { configure } from "@storybook/react";
 import { addDecorator } from "@storybook/react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider, Theme, JssProvider } from "../src";
+import { ThemeProvider, JssProvider } from "../src";
 import { createGlobalStyle } from "styled-components";
+import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
+import colors from "../src/styling/colors";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: colors.primary,
+      contrastText: colors.white
+    },
+    secondary: {
+      main: colors.secondary
+    },
+    background: {
+      default: colors.white
+    }
+  },
+  typography: {
+    useNextVariants: true,
+    fontSize: 16,
+    fontFamily: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"].join(",")
+  },
+  overrides: {
+    MuiTooltip: {
+      tooltip: {
+        fontSize: "inherit"
+      }
+    },
+    MuiChip: {
+      avatar: {
+        fontSize: 14
+      }
+    },
+    MuiDialog: {
+      paper: {
+        minWidth: "45rem"
+      }
+    }
+  }
+});
 
 const GlobalStyle = createGlobalStyle`
   html, body {
@@ -20,7 +59,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Decorator = story => (
   <JssProvider>
-    <ThemeProvider theme={Theme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <GlobalStyle />
       <div
