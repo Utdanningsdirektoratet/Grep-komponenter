@@ -8,7 +8,7 @@ export { default as Grid } from "@material-ui/core/Grid";
 
 export { default as JssProvider } from "./providers";
 
-export * from "./styling";
+export { default as Colors } from "./styling/Colors";
 
 export { default as AppBar } from "./components/AppBar";
 export {
