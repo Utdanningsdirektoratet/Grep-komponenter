@@ -8,40 +8,42 @@ import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Colors from "../src/styling/Colors";
 
 const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: Colors.cyan,
-      contrastText: Colors.white
+    palette: {
+        primary: {
+            main: Colors.cyan,
+            contrastText: Colors.white
+        },
+        secondary: {
+            main: Colors.lightBlue
+        },
+        background: {
+            default: Colors.white
+        }
     },
-    secondary: {
-      main: Colors.lightBlue
+    typography: {
+        useNextVariants: true,
+        fontSize: 16,
+        fontFamily: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"].join(
+            ","
+        )
     },
-    background: {
-      default: Colors.white
+    overrides: {
+        MuiTooltip: {
+            tooltip: {
+                fontSize: "inherit"
+            }
+        },
+        MuiChip: {
+            avatar: {
+                fontSize: 14
+            }
+        },
+        MuiDialog: {
+            paper: {
+                minWidth: "45rem"
+            }
+        }
     }
-  },
-  typography: {
-    useNextVariants: true,
-    fontSize: 16,
-    fontFamily: ["Helvetica Neue", "Helvetica", "Arial", "sans-serif"].join(",")
-  },
-  overrides: {
-    MuiTooltip: {
-      tooltip: {
-        fontSize: "inherit"
-      }
-    },
-    MuiChip: {
-      avatar: {
-        fontSize: 14
-      }
-    },
-    MuiDialog: {
-      paper: {
-        minWidth: "45rem"
-      }
-    }
-  }
 });
 
 const GlobalStyle = createGlobalStyle`
@@ -58,26 +60,29 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const Decorator = story => (
-  <JssProvider>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <GlobalStyle />
-      <div
-        style={{
-          display: "flex",
-          flex: "1 1 0%"
-        }}
-      >
-        {story()}
-      </div>
-    </ThemeProvider>
-  </JssProvider>
+    <JssProvider>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <GlobalStyle />
+            <div
+                style={{
+                    display: "flex",
+                    flex: "1 1 0%"
+                }}
+            >
+                {story()}
+            </div>
+        </ThemeProvider>
+    </JssProvider>
 );
 
 addDecorator(Decorator);
 
+const req = require.context("../src/stories", true, /.tsx$/);
+
 function loadStories() {
-  require("../src/stories");
+    // require("../src/stories");
+    req.keys().forEach(req);
 }
 
 configure(loadStories, module);
