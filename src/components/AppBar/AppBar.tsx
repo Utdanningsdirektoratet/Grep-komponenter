@@ -1,16 +1,12 @@
 import * as React from "react";
-import { StyledAppBar, StyledToolbar } from "./appbar-styles";
+import { StyledAppBar } from "./appBarStyles";
 
 export interface AppBarProps {}
 
-class AppBar extends React.Component<AppBarProps> {
-  public render() {
-    return (
-      <StyledAppBar color="primary" position="static">
-        <StyledToolbar>{this.props.children}</StyledToolbar>
-      </StyledAppBar>
-    );
-  }
-}
+const AppBar: React.FC<AppBarProps> = props => (
+    <StyledAppBar color="primary" elevation={0}>
+        {props.children}
+    </StyledAppBar>
+);
 
 export default AppBar as React.ComponentType<AppBarProps>;
