@@ -1,11 +1,10 @@
 import * as React from "react";
-import { StyledMainLayout } from "./main-layout-styles";
+import { StyledMainLayout } from "./mainLayoutStyles";
 
 export interface MainLayoutProps {}
 
-const MainLayout: React.SFC<MainLayoutProps> = props => (
-  <StyledMainLayout elevation={0} square>
-    {props.children}
-  </StyledMainLayout>
+const MainLayout: React.FC<MainLayoutProps> = props => (
+    <StyledMainLayout>{props.children}</StyledMainLayout>
 );
+
 export default MainLayout as React.ComponentType<MainLayoutProps>;
