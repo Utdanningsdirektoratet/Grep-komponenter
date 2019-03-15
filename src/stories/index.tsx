@@ -66,6 +66,9 @@ storiesOf("AppBar", module).add("with content", () => (
                 />
             </CenterLayout>
         </AppBar>
+        <CenterLayout>
+            <p>Some content</p>
+        </CenterLayout>
     </MainLayout>
 ));
 

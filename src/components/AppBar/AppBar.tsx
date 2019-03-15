@@ -4,7 +4,7 @@ import { StyledAppBar } from "./appBarStyles";
 export interface AppBarProps {}
 
 const AppBar: React.FC<AppBarProps> = props => (
-    <StyledAppBar color="primary" elevation={0}>
+    <StyledAppBar color="primary" position="static" elevation={0}>
         {props.children}
     </StyledAppBar>
 );
