@@ -33,7 +33,8 @@ export default {
     }),
     resolve(),
     typescript({
-      rollupCommonJSResolveHack: true
+      rollupCommonJSResolveHack: true,
+      tsconfig: "tsconfig.rollup.json"
     }),
     commonjs()
   ]
