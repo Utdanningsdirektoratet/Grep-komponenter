@@ -2,21 +2,18 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import {
     MainLayout,
-    AppBar,
     AppBarTop,
     CenterLayout,
     AppBarLogo,
     AppBarProfile,
     DropdownMenu,
     AppBarNavList,
-    Footer,
-    FooterItems
+    AppBar
 } from "..";
-import { menuItems } from "../components/DropdownMenu/DropDownMenu.stories";
-import { navbarPages } from "../components/AppBarNavList/AppBarNavList.stories";
-import { footerItems } from "../components/Footer/Footer.stories";
+import { menuItems } from "../DropdownMenu/DropDownMenu.stories";
+import { navbarPages } from "../AppBarNavList/AppBarNavList.stories";
 
-storiesOf("Full dashboard", module).add("with content", () => (
+storiesOf("AppBar", module).add("with content", () => (
     <MainLayout>
         <AppBar>
             <AppBarTop>
@@ -48,13 +45,5 @@ storiesOf("Full dashboard", module).add("with content", () => (
                 />
             </CenterLayout>
         </AppBar>
-        <CenterLayout>
-            <p>Some content</p>
-        </CenterLayout>
-        <Footer>
-            <CenterLayout>
-                <FooterItems items={footerItems} />
-            </CenterLayout>
-        </Footer>
     </MainLayout>
 ));

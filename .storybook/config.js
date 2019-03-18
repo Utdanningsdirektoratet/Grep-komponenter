@@ -78,10 +78,10 @@ const Decorator = story => (
 
 addDecorator(Decorator);
 
-const req = require.context("../src/stories", true, /.tsx$/);
+const req = require.context("../src/components", true, /\.stories\.tsx$/);
 
 function loadStories() {
-    // require("../src/stories");
+    require("../src/stories");
     req.keys().forEach(req);
 }
 
