@@ -15,6 +15,8 @@ import AppBarTop from "../components/AppBarTop/AppBarTop";
 import DropdownMenu, {
     IMenuItem
 } from "../components/DropdownMenu/DropdownMenu";
+import Footer from "../components/Footer/Footer";
+import FooterItems, { FooterItem } from "../components/FooterItems/FooterItems";
 
 // import logo from "../../playground/public/logo.png";
 
@@ -173,5 +175,32 @@ storiesOf("CenterLayout", module).add("CenterLayout with content", () => (
                 }}
             />
         </CenterLayout>
+    </MainLayout>
+));
+
+const footerItems: FooterItem[] = [
+    {
+        label: "© 2018 Utdanningsdirektoratet. Alle rettigheter forbeholdt."
+    },
+    {
+        label: "Versjon 0.0.35"
+    },
+    {
+        label: "Personvern",
+        onClickItem: () => console.log("test")
+    },
+    {
+        label: "Kontakt",
+        onClickItem: () => console.log("test")
+    }
+];
+
+storiesOf("Footer", module).add("Footer with content", () => (
+    <MainLayout>
+        <Footer>
+            <CenterLayout>
+                <FooterItems items={footerItems} />
+            </CenterLayout>
+        </Footer>
     </MainLayout>
 ));

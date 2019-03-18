@@ -8,6 +8,8 @@ export * from "./CenterLayout";
 export * from "./MainLayout";
 export * from "./CleanPaper";
 export * from "./DropdownMenu";
+export * from "./Footer";
+export * from "./FooterItems";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -19,3 +21,5 @@ export { default as CenterLayout } from "./CenterLayout";
 export { default as MainLayout } from "./MainLayout";
 export { default as CleanPaper } from "./CleanPaper";
 export { default as DropdownMenu } from "./DropdownMenu";
+export { default as Footer } from "./Footer";
+export { default as FooterItems } from "./FooterItems";
