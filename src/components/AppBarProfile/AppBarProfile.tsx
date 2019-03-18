@@ -13,7 +13,7 @@ import IconButton from "@material-ui/core/IconButton/IconButton";
 export interface AppBarProfileProps {
     role: string;
     fullName: string;
-    onButtonClick: () => void;
+    onButtonClick: (args?: any) => void;
 }
 
 const AppBarProfile: React.FC<AppBarProfileProps> = props => (

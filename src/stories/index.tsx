@@ -24,7 +24,7 @@ storiesOf("Full dashboard", module).add("with content", () => (
                     <AppBarLogo
                         title="Grepadmin"
                         environment="Test"
-                        imageSrc="../../playground/public/logo.png"
+                        imageSrc="./logo.png"
                         imageAlt={""}
                     />
                     <AppBarProfile

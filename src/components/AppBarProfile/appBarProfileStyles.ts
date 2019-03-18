@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 export const Container = withStyles({
     root: {
         display: "flex",
-        padding: 14,
+        padding: "16px 8px",
         width: "fit-content",
         height: "fit-content",
         alignItems: "center",
