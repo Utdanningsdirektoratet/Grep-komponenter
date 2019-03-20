@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-    // AppLogo,
-    AppTitle,
-    AppEnvironment,
-    AppBarContainer
-} from "./appBarLogoStyles";
+import { AppTitle, AppEnvironment, AppBarContainer } from "./appBarLogoStyles";
 
 export interface AppBarLogoProps {
     title: string;

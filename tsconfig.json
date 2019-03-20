@@ -1,23 +1,16 @@
 {
-  "extends": "./tsconfig.rollup.json",
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "preserve"
-  },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules",
-    "build",
-    "dist",
-    "example",
-    "rollup.config.js"
-  ]
+    "extends": "./tsconfig.rollup.json",
+    "compilerOptions": {
+        "declaration": false,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "preserve"
+    },
+    "include": ["src"],
+    "exclude": ["node_modules", "build", "dist", "example", "rollup.config.js"]
 }

@@ -22,7 +22,7 @@ interface State {
 }
 
 class AppBarNavList extends React.Component<AppBarNavListProps, State> {
-    state: Readonly<State> = {
+    public state: Readonly<State> = {
         selectedPage: 0
     };
 
