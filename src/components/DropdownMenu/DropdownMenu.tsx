@@ -20,8 +20,10 @@ const DropdownMenu: React.FC<DropdownMenuProps> = props => (
         anchorEl={props.menuAnchor}
         onClose={props.onMenuClose}
     >
-        {props.menuItems.map(item => (
-            <MenuItem onClick={item.handleClick}>{item.label}</MenuItem>
+        {props.menuItems.map((item, index) => (
+            <MenuItem key={index} onClick={item.handleClick}>
+                {item.label}
+            </MenuItem>
         ))}
     </Menu>
 );

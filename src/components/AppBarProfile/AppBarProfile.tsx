@@ -20,8 +20,8 @@ const AppBarProfile: React.FC<AppBarProfileProps> = props => (
     <Container>
         <AccountCircle color="primary" />
         <UserContainer>
-            <UserName>{props.fullName}</UserName>
-            <UserRole>{props.role}</UserRole>
+            <UserName>{props.fullName || "ukjent navn"}</UserName>
+            <UserRole>{props.role || "ukjent rolle"}</UserRole>
         </UserContainer>
         <IconButton color="primary" onClick={props.onButtonClick}>
             <ArrowDropdown />

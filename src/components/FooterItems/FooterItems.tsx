@@ -18,7 +18,6 @@ const FooterItems: React.FC<FooterItemsProps> = props => (
         {props.items.map((item, index) => (
             <StyledFooterItem
                 key={index}
-                disableRipple
                 onClick={item.onClickItem}
                 button={typeof item.onClickItem === "function"}
             >

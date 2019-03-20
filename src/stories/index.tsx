@@ -10,11 +10,19 @@ import {
     DropdownMenu,
     AppBarNavList,
     Footer,
-    FooterItems
+    FooterItems,
+    BodyLayout
 } from "..";
 import { menuItems } from "../components/DropdownMenu/DropDownMenu.stories";
 import { navbarPages } from "../components/AppBarNavList/AppBarNavList.stories";
 import { footerItems } from "../components/Footer/Footer.stories";
+import LinkList from "../components/LinkList";
+import CurriculumList from "../components/CurriculumList";
+import { myPages } from "../components/LinkList/LinkList.stories";
+import {
+    curriculums,
+    statuses
+} from "../components/CurriculumList/CurriculumList.stories";
 
 storiesOf("Full dashboard", module).add("with content", () => (
     <MainLayout>
@@ -49,7 +57,19 @@ storiesOf("Full dashboard", module).add("with content", () => (
             </CenterLayout>
         </AppBar>
         <CenterLayout>
-            <p>Some content</p>
+            <BodyLayout>
+                <LinkList
+                    title={"Mine tilganger"}
+                    pages={myPages}
+                    onPageClick={url => console.log("clicked on ", url)}
+                />
+                <CurriculumList
+                    title={"Mine læreplaner"}
+                    statuses={statuses}
+                    curriculums={curriculums}
+                    onCurriculumClick={id => console.log("clicked on ", id)}
+                />
+            </BodyLayout>
         </CenterLayout>
         <Footer>
             <CenterLayout>

@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-    AppLogo,
-    AppTitle,
-    AppEnvironment,
-    AppBarContainer
-} from "./appBarLogoStyles";
+import { AppTitle, AppEnvironment, AppBarContainer } from "./appBarLogoStyles";
 
 export interface AppBarLogoProps {
     title: string;
@@ -15,7 +10,11 @@ export interface AppBarLogoProps {
 
 const AppBarLogo: React.FC<AppBarLogoProps> = props => (
     <AppBarContainer>
-        <AppLogo src={props.imageSrc} alt={props.imageAlt} />
+        <img
+            style={{ height: 50, width: 50 }}
+            src={props.imageSrc}
+            alt={props.imageAlt}
+        />
         <AppTitle>{props.title}</AppTitle>
         <AppEnvironment>{props.environment}</AppEnvironment>
     </AppBarContainer>
