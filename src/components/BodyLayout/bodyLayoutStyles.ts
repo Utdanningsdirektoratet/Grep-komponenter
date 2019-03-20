@@ -4,6 +4,8 @@ import CleanPaper from "../CleanPaper";
 export const StyledBodyLayout = withStyles({
     root: {
         width: "100%",
-        flex: "1 1 0%"
+        paddingTop: 20,
+        display: "flex",
+        justifyContent: "space-between"
     }
 })(CleanPaper);

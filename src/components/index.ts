@@ -10,6 +10,8 @@ export * from "./CleanPaper";
 export * from "./DropdownMenu";
 export * from "./Footer";
 export * from "./FooterItems";
+export * from "./LinkList";
+export * from "./CurriculumList";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -23,3 +25,5 @@ export { default as CleanPaper } from "./CleanPaper";
 export { default as DropdownMenu } from "./DropdownMenu";
 export { default as Footer } from "./Footer";
 export { default as FooterItems } from "./FooterItems";
+export { default as LinkList } from "./LinkList";
+export { default as CurriculumList } from "./CurriculumList";

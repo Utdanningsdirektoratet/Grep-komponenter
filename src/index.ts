@@ -22,5 +22,7 @@ export { default as CleanPaper } from "./components/CleanPaper";
 export { default as DropdownMenu } from "./components/DropdownMenu";
 export { default as Footer } from "./components/Footer";
 export { default as FooterItems } from "./components/FooterItems";
+export { default as LinkList } from "./components/LinkList";
+export { default as CurriculumList } from "./components/CurriculumList";
 
 export * from "./components";
