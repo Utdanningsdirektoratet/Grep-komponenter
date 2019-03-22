@@ -16,4 +16,9 @@ describe("CurriculumList", () => {
 
         expect(component).toMatchSnapshot();
     });
+
+    it("it renders without props", () => {
+        const component = shallow(<CurriculumList />);
+        component.render();
+    });
 });

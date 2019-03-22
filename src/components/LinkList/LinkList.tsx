@@ -2,34 +2,29 @@ import * as React from "react";
 import { Container, Title, StyledListItem, StyledList } from "./linkListStyles";
 import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText/ListItemText";
-
-export interface IPageLink {
-    name: string;
-    redirectUrl?: string;
-    getLinkIcon?: () => any;
-}
+import { NavigationProps } from "..";
 
 interface LinkListProps {
     title: string;
-    pages: IPageLink[];
-    onPageClick: (redirectUrl?: string) => any;
+    pages: NavigationProps[];
+    onPageClick: (page: NavigationProps) => any;
 }
 
 const LinkList: React.FC<LinkListProps> = props => (
     <Container>
         <Title>{props.title}</Title>
         <StyledList>
-            {props.pages.map((page, index) => (
+            {props.pages.map(page => (
                 <StyledListItem
                     button
                     divider
-                    key={index}
-                    onClick={() => props.onPageClick(page.redirectUrl)}
+                    key={page.id}
+                    onClick={() => props.onPageClick(page)}
                 >
-                    {page.getLinkIcon && (
-                        <ListItemIcon>{page.getLinkIcon()}</ListItemIcon>
+                    {page.linkIcon && (
+                        <ListItemIcon>{page.linkIcon}</ListItemIcon>
                     )}
-                    <ListItemText primary={page.name} />
+                    <ListItemText primary={page.label} />
                 </StyledListItem>
             ))}
         </StyledList>
