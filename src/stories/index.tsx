@@ -61,7 +61,7 @@ storiesOf("Full dashboard", module).add("with content", () => (
                 <LinkList
                     title={"Mine tilganger"}
                     pages={myPages}
-                    onPageClick={url => console.log("clicked on ", url)}
+                    onPageClick={page => console.log("clicked on ", page.label)}
                 />
                 <CurriculumList
                     title={"Mine læreplaner"}

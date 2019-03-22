@@ -1,23 +1,29 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import LinkList, { IPageLink } from "./LinkList";
+import LinkList from "./LinkList";
 import Inbox from "@material-ui/icons/Inbox";
 import Settings from "@material-ui/icons/Settings";
 import Description from "@material-ui/icons/Description";
+import { NavigationProps } from "../AppBarNavList";
 
-export const myPages: IPageLink[] = [
+export const myPages: NavigationProps[] = [
     {
-        name: "Læreplaner",
-        getLinkIcon: () => <Inbox color="primary" />
+        id: 1,
+        label: "Læreplaner",
+        toUrl: "/curriculums",
+        linkIcon: <Inbox color="primary" />
     },
     {
-        name: "Metadata",
-        redirectUrl: "test",
-        getLinkIcon: () => <Description color="primary" />
+        id: 2,
+        label: "Metadata",
+        toUrl: "/meta",
+        linkIcon: <Description color="primary" />
     },
     {
-        name: "Systemadministrasjon",
-        getLinkIcon: () => <Settings color="primary" />
+        id: 3,
+        label: "Systemadministrasjon",
+        toUrl: "/admin",
+        linkIcon: <Settings color="primary" />
     }
 ];
 
@@ -25,6 +31,6 @@ storiesOf("LinkList", module).add("standard", () => (
     <LinkList
         title={"Mine tilganger"}
         pages={myPages}
-        onPageClick={url => console.log("clicked on ", url)}
+        onPageClick={page => console.log("clicked on ", page.label)}
     />
 ));
