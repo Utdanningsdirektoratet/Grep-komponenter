@@ -1,5 +1,5 @@
 import withStyles from "@material-ui/core/styles/withStyles";
-import CleanPaper from "../CleanPaper";
+import CleanPaper from "../CleanPaper/CleanPaper";
 import withTheme from "@material-ui/core/styles/withTheme";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import createStyles from "@material-ui/core/styles/createStyles";

@@ -23,6 +23,7 @@ export { default as DropdownMenu } from "./components/DropdownMenu";
 export { default as Footer } from "./components/Footer";
 export { default as FooterItems } from "./components/FooterItems";
 export { default as LinkList } from "./components/LinkList";
-export { default as CurriculumList } from "./components/CurriculumList";
+export { default as CurriculumTable } from "./components/CurriculumTable";
+export { default as GrepTable } from "./components/GrepTable";
 
 export * from "./components";

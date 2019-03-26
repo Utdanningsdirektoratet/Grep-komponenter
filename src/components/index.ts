@@ -11,7 +11,8 @@ export * from "./DropdownMenu";
 export * from "./Footer";
 export * from "./FooterItems";
 export * from "./LinkList";
-export * from "./CurriculumList";
+export * from "./CurriculumTable";
+export * from "./GrepTable";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -26,4 +27,5 @@ export { default as DropdownMenu } from "./DropdownMenu";
 export { default as Footer } from "./Footer";
 export { default as FooterItems } from "./FooterItems";
 export { default as LinkList } from "./LinkList";
-export { default as CurriculumList } from "./CurriculumList";
+export { default as CurriculumList } from "./CurriculumTable";
+export { default as GrepTable } from "./GrepTable";

@@ -1,12 +1,12 @@
 import * as React from "react";
 import { shallow } from "enzyme";
 
-import CurriculumList from "./CurriculumList";
+import CurriculumTable from "./CurriculumTable";
 
-describe("CurriculumList", () => {
+describe("CurriculumTable", () => {
     it("should render correctly", () => {
         const component = shallow(
-            <CurriculumList
+            <CurriculumTable
                 title=""
                 curriculums={[]}
                 onCurriculumClick={() => void 0}
@@ -18,7 +18,7 @@ describe("CurriculumList", () => {
     });
 
     it("it renders without props", () => {
-        const component = shallow(<CurriculumList />);
+        const component = shallow(<CurriculumTable />);
         component.render();
     });
 });

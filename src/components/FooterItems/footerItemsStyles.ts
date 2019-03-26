@@ -2,7 +2,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import MUiList from "@material-ui/core/List";
 import MUiListItem from "@material-ui/core/ListItem";
 import MUiListItemText from "@material-ui/core/ListItemText";
-import { Colors } from "../..";
+import Colors from "../../styling/Colors";
 
 export const StyledFooter = withStyles({
     root: {
