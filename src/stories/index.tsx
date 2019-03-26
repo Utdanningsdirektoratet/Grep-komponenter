@@ -19,10 +19,8 @@ import { footerItems } from "../components/Footer/Footer.stories";
 import LinkList from "../components/LinkList";
 import CurriculumList from "../components/CurriculumList";
 import { myPages } from "../components/LinkList/LinkList.stories";
-import {
-    curriculums,
-    statuses
-} from "../components/CurriculumList/CurriculumList.stories";
+import { curriculums } from "../components/CurriculumList/CurriculumList.stories";
+import { tableColumns } from "../components/GrepTable/GrepTable.stories";
 
 storiesOf("Full dashboard", module).add("with content", () => (
     <MainLayout>
@@ -65,7 +63,7 @@ storiesOf("Full dashboard", module).add("with content", () => (
                 />
                 <CurriculumList
                     title={"Mine læreplaner"}
-                    statuses={statuses}
+                    columns={tableColumns}
                     curriculums={curriculums}
                     onCurriculumClick={id => console.log("clicked on ", id)}
                 />

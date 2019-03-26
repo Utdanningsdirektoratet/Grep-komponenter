@@ -39,6 +39,7 @@ const Colors = {
     brown: brown[500],
     grey: grey[500],
     lightGrey: grey[300],
+    hoverGrey: "rgba(0, 0, 0, 0.08)",
     blueGrey: blueGrey[500],
     black: "black",
     white: "#fff"
