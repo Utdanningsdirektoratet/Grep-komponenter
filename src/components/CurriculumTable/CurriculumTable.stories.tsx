@@ -1,6 +1,6 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import CurriculumList, { ICurriculum } from "./CurriculumList";
+import CurriculumList, { ICurriculum } from "./CurriculumTable";
 import { tableColumns } from "../GrepTable/GrepTable.stories";
 
 export const curriculums: ICurriculum[] = [

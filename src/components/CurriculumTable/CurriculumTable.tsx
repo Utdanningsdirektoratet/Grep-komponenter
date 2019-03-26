@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Container, Title } from "./curriculumListStyles";
+import { Container, Title } from "./curriculumTableStyles";
 import GrepTable, { ITableColumn } from "../GrepTable/GrepTable";
 
 export interface ICurriculum {

@@ -8,8 +8,8 @@ import createStyles from "@material-ui/core/styles/createStyles";
 import TableFooter from "@material-ui/core/TableFooter/TableFooter";
 import TablePagination from "@material-ui/core/TablePagination/TablePagination";
 import Button from "@material-ui/core/Button/Button";
-import { CleanPaper } from "..";
-import { Colors } from "../../styling";
+import CleanPaper from "../CleanPaper";
+import Colors from "../../styling/Colors";
 import withTheme from "@material-ui/core/styles/withTheme";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
