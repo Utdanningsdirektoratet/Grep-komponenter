@@ -25,26 +25,50 @@ export type PaginationActionsProps = {
 type Props = WithStylesProps & PaginationActionsProps;
 
 class PaginationActions extends React.Component<Props> {
-    public handleBackButtonClick = (
+    public render() {
+        const { count, page, rowsPerPage } = this.props;
+
+        return (
+            <div style={{ gridArea: "right", justifySelf: "end" }}>
+                <PaginationTextButton
+                    onClick={this.handleBackButtonClick}
+                    disabled={page === 0}
+                    aria-label="Previous Page"
+                >
+                    Forrige
+                </PaginationTextButton>
+                {this.getPageNumbers(count, page, rowsPerPage)}
+                <PaginationTextButton
+                    onClick={this.handleNextButtonClick}
+                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
+                    aria-label="Next Page"
+                >
+                    Neste
+                </PaginationTextButton>
+            </div>
+        );
+    }
+
+    private handleBackButtonClick = (
         event: React.MouseEvent<HTMLElement> | null
     ) => {
         this.props.onChangePage(event, this.props.page - 1);
     };
 
-    public handleNextButtonClick = (
+    private handleNextButtonClick = (
         event: React.MouseEvent<HTMLElement> | null
     ) => {
         this.props.onChangePage(event, this.props.page + 1);
     };
 
-    public handlePageButtonClick = (
+    private handlePageButtonClick = (
         event: React.MouseEvent<HTMLElement> | null,
         page: number
     ) => {
         this.props.onChangePage(event, page);
     };
 
-    public getPageNumbers = (
+    private getPageNumbers = (
         count: number,
         currentPage: number,
         rowsPerPage: number
@@ -81,30 +105,6 @@ class PaginationActions extends React.Component<Props> {
             ? pageNumbers.slice(0, 5)
             : pageNumbers.slice(pageCount - 5, pageCount);
     };
-
-    public render() {
-        const { count, page, rowsPerPage } = this.props;
-
-        return (
-            <div style={{ gridArea: "right", justifySelf: "end" }}>
-                <PaginationTextButton
-                    onClick={this.handleBackButtonClick}
-                    disabled={page === 0}
-                    aria-label="Previous Page"
-                >
-                    Forrige
-                </PaginationTextButton>
-                {this.getPageNumbers(count, page, rowsPerPage)}
-                <PaginationTextButton
-                    onClick={this.handleNextButtonClick}
-                    disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                    aria-label="Next Page"
-                >
-                    Neste
-                </PaginationTextButton>
-            </div>
-        );
-    }
 }
 
 export const PaginationActionsWrapped = withStyles(actionsStyles, {
