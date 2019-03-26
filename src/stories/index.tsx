@@ -17,9 +17,9 @@ import { menuItems } from "../components/DropdownMenu/DropDownMenu.stories";
 import { navbarPages } from "../components/AppBarNavList/AppBarNavList.stories";
 import { footerItems } from "../components/Footer/Footer.stories";
 import LinkList from "../components/LinkList";
-import CurriculumList from "../components/CurriculumList";
+import CurriculumTable from "../components/CurriculumTable";
 import { myPages } from "../components/LinkList/LinkList.stories";
-import { curriculums } from "../components/CurriculumList/CurriculumList.stories";
+import { curriculums } from "../components/CurriculumTable/CurriculumTable.stories";
 import { tableColumns } from "../components/GrepTable/GrepTable.stories";
 
 storiesOf("Full dashboard", module).add("with content", () => (
@@ -61,7 +61,7 @@ storiesOf("Full dashboard", module).add("with content", () => (
                     pages={myPages}
                     onPageClick={page => console.log("clicked on ", page.label)}
                 />
-                <CurriculumList
+                <CurriculumTable
                     title={"Mine læreplaner"}
                     columns={tableColumns}
                     curriculums={curriculums}
