@@ -18,7 +18,7 @@ import {
 export interface ITableColumn<T> {
     label: string;
     width?: number;
-    getCell: (row: T) => string;
+    getCell: (row: T) => string | number | JSX.Element;
 }
 
 export interface ITableData {
@@ -31,7 +31,7 @@ interface Props {
     columns: Array<ITableColumn<any>>;
     rowsPerPage?: number;
     pagination?: boolean;
-    rowIdPropName?: string;
+    // rowIdPropName?: string;
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
@@ -116,13 +116,13 @@ class GrepTable extends React.Component<Props, LocalState> {
     };
 
     private _renderClickableRow = (row: ITableData) => {
-        const { rowIdPropName } = this.props;
-        const rowId = rowIdPropName ? row[rowIdPropName] : row.id;
+        // const { rowIdPropName } = this.props;
+        // const rowId = rowIdPropName ? row[rowIdPropName] : row.id;
 
         return (
             <ClickableTableRow
-                key={rowId}
-                onClick={() => this._handleRowClick(Number(rowId))}
+                key={row.id}
+                onClick={() => this._handleRowClick(row.id)}
             >
                 {this._renderCells(row)}
             </ClickableTableRow>

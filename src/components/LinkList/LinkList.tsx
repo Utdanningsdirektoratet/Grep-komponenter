@@ -1,34 +1,31 @@
 import * as React from "react";
-import { Container, Title, StyledListItem, StyledList } from "./linkListStyles";
-import ListItemIcon from "@material-ui/core/ListItemIcon/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText/ListItemText";
+import {
+    Title,
+    PageLink,
+    StyledLink,
+    StyledArrow,
+    Container
+} from "./linkListStyles";
 import { NavigationProps } from "..";
 
-interface LinkListProps {
+interface Props {
     title: string;
     pages: NavigationProps[];
     onPageClick: (page: NavigationProps) => any;
 }
 
-const LinkList: React.FC<LinkListProps> = props => (
+const LinkList: React.FC<Props> = props => (
     <Container>
         <Title>{props.title}</Title>
-        <StyledList>
+        <React.Fragment>
             {props.pages.map(page => (
-                <StyledListItem
-                    button
-                    divider
-                    key={page.id}
-                    onClick={() => props.onPageClick(page)}
-                >
-                    {page.linkIcon && (
-                        <ListItemIcon>{page.linkIcon}</ListItemIcon>
-                    )}
-                    <ListItemText primary={page.label} />
-                </StyledListItem>
+                <PageLink key={page.id} onClick={() => props.onPageClick(page)}>
+                    <StyledLink>{page.label}</StyledLink>
+                    <StyledArrow />
+                </PageLink>
             ))}
-        </StyledList>
+        </React.Fragment>
     </Container>
 );
 
-export default LinkList as React.ComponentType<LinkListProps>;
+export default LinkList as React.ComponentType<Props>;

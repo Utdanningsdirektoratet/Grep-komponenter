@@ -1,7 +1,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import GrepTable, { ITableColumn } from "./GrepTable";
-import { ICurriculum } from "../CurriculumList";
+import { ICurriculum } from "../CurriculumTable";
 
 export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     {
@@ -11,15 +11,15 @@ export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     },
     {
         label: "Navn",
-        getCell: (row: ICurriculum) => row.title
+        getCell: row => row.title
     },
     {
         label: "Status",
-        getCell: (row: ICurriculum) => row.statusText
+        getCell: row => row.statusText
     },
     {
         label: "Publisert",
-        getCell: (row: ICurriculum) => row.lastModified
+        getCell: row => row.lastModified
     }
 ];
 

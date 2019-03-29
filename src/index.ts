@@ -23,7 +23,11 @@ export { default as DropdownMenu } from "./components/DropdownMenu";
 export { default as Footer } from "./components/Footer";
 export { default as FooterItems } from "./components/FooterItems";
 export { default as LinkList } from "./components/LinkList";
+export { default as ContainedLinkList } from "./components/ContainedLinkList";
 export { default as CurriculumTable } from "./components/CurriculumTable";
 export { default as GrepTable } from "./components/GrepTable";
+export { default as LoadingOverlay } from "./components/LoadingOverlay";
+export { default as GrepCrumbs } from "./components/GrepCrumbs";
+export { default as SearchBar } from "./components/SearchBar";
 
 export * from "./components";
