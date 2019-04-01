@@ -7,7 +7,6 @@ import {
     StyledTableCell,
     StyledTableBody,
     ClickableTableRow,
-    StyledTableFooter,
     StyledPagination
 } from "./grepTableStyles";
 import {
@@ -29,9 +28,9 @@ export interface ITableData {
 interface Props {
     data: ITableData[];
     columns: Array<ITableColumn<any>>;
+    outlined?: boolean;
     rowsPerPage?: number;
     pagination?: boolean;
-    // rowIdPropName?: string;
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
@@ -49,13 +48,17 @@ class GrepTable extends React.Component<Props, LocalState> {
     }
 
     public render() {
+        const { outlined } = this.props;
+
         return (
             <Container>
-                <StyledTable>
+                <StyledTable
+                    style={{ borderCollapse: outlined ? "collapse" : "unset" }}
+                >
                     {this._renderHeader()}
                     {this._renderBody()}
-                    {this._renderFooter()}
                 </StyledTable>
+                {this._renderPagination()}
             </Container>
         );
     }
@@ -116,9 +119,6 @@ class GrepTable extends React.Component<Props, LocalState> {
     };
 
     private _renderClickableRow = (row: ITableData) => {
-        // const { rowIdPropName } = this.props;
-        // const rowId = rowIdPropName ? row[rowIdPropName] : row.id;
-
         return (
             <ClickableTableRow
                 key={row.id}
@@ -146,32 +146,29 @@ class GrepTable extends React.Component<Props, LocalState> {
         ));
     };
 
-    private _renderFooter = () => {
+    private _renderPagination = () => {
         const { pagination, data } = this.props;
         const { currentPage, rowsPerPage } = this.state;
 
         if (pagination) {
             return (
-                <StyledTableFooter>
-                    <StyledTableRow>
-                        <StyledPagination
-                            count={data.length}
-                            page={currentPage}
-                            rowsPerPage={rowsPerPage}
-                            onChangePage={this._handlePageChange}
-                            onChangeRowsPerPage={this._handleChangeRowsPerPage}
-                            labelRowsPerPage={""}
-                            labelDisplayedRows={({ from, to, count }) =>
-                                `Viser ${from}-${to} av ${count}`
-                            }
-                            ActionsComponent={props => (
-                                <PaginationActionsWrapped
-                                    {...props as PaginationActionsProps}
-                                />
-                            )}
+                <StyledPagination
+                    component="div"
+                    page={currentPage}
+                    count={data.length}
+                    rowsPerPage={rowsPerPage}
+                    onChangePage={this._handlePageChange}
+                    onChangeRowsPerPage={this._handleChangeRowsPerPage}
+                    labelRowsPerPage={""}
+                    labelDisplayedRows={({ from, to, count }) =>
+                        `Viser ${from}-${to} av ${count}`
+                    }
+                    ActionsComponent={props => (
+                        <PaginationActionsWrapped
+                            {...props as PaginationActionsProps}
                         />
-                    </StyledTableRow>
-                </StyledTableFooter>
+                    )}
+                />
             );
         } else {
             return;

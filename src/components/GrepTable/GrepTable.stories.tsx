@@ -69,8 +69,12 @@ export const tableData: ICurriculum[] = [
 ];
 
 storiesOf("Grep table", module)
+    .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
     .add("standard", () => (
         <GrepTable columns={tableColumns} data={tableData} />
+    ))
+    .add("outlined", () => (
+        <GrepTable columns={tableColumns} data={tableData} outlined />
     ))
     .add("clickable", () => (
         <GrepTable columns={tableColumns} data={tableData} clickableRows />
