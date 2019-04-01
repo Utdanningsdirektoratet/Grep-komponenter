@@ -17,13 +17,29 @@ export const Container = withStyles({
     root: {}
 })(CleanPaper);
 
-export const StyledTable = withStyles({})(Table);
+export const StyledTable = withStyles({
+    root: {
+        tableLayout: "fixed"
+    }
+})(Table);
 
-export const StyledTableHeader = withStyles({})(TableHead);
+export const StyledTableBody = withStyles({
+    root: {}
+})(TableBody);
 
-export const StyledTableBody = withStyles({})(TableBody);
+const tableRowStyles = createStyles({
+    root: {
+        height: 50,
+        border: `1px solid ${Colors.lightGrey}`,
+        whiteSpace: "nowrap"
+    }
+});
 
-const tableRowStyles = createStyles({ root: { height: 50 } });
+export const StyledTableHeader = withStyles({
+    root: {
+        ...tableRowStyles.root
+    }
+})(TableHead);
 
 export const StyledTableRow = withStyles(tableRowStyles)(TableRow);
 
@@ -58,13 +74,11 @@ export const StyledPagination = withStyles({
     },
     input: {
         gridArea: "left",
-        justifySelf: "start",
-        fontSize: 12
+        justifySelf: "start"
     },
     caption: {
         gridArea: "left",
-        paddingLeft: "60px",
-        fontSize: 12
+        paddingLeft: "60px"
     },
     spacer: {
         display: "none"

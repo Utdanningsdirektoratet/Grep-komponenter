@@ -1,25 +1,28 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import GrepTable, { ITableColumn } from "./GrepTable";
-import { ICurriculum } from "../CurriculumList";
+import { ICurriculum } from "../CurriculumTable";
 
 export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     {
         label: "Kode",
-        width: 10,
+        width: 7,
         getCell: row => row.code
     },
     {
         label: "Navn",
-        getCell: (row: ICurriculum) => row.title
+        width: 13,
+        getCell: row => row.title
     },
     {
         label: "Status",
-        getCell: (row: ICurriculum) => row.statusText
+        width: 8,
+        getCell: row => row.statusText
     },
     {
         label: "Publisert",
-        getCell: (row: ICurriculum) => row.lastModified
+        width: 10,
+        getCell: row => row.lastModified
     }
 ];
 
@@ -69,8 +72,12 @@ export const tableData: ICurriculum[] = [
 ];
 
 storiesOf("Grep table", module)
+    .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
     .add("standard", () => (
         <GrepTable columns={tableColumns} data={tableData} />
+    ))
+    .add("outlined", () => (
+        <GrepTable columns={tableColumns} data={tableData} outlined />
     ))
     .add("clickable", () => (
         <GrepTable columns={tableColumns} data={tableData} clickableRows />

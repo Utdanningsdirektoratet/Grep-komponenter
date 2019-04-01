@@ -1,36 +1,25 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import LinkList from "./LinkList";
-import Inbox from "@material-ui/icons/Inbox";
-import Settings from "@material-ui/icons/Settings";
-import Description from "@material-ui/icons/Description";
 import { NavigationProps } from "../AppBarNavList";
 
-export const myPages: NavigationProps[] = [
+export const adminPages: NavigationProps[] = [
     {
         id: 1,
-        label: "Læreplaner",
-        toUrl: "/curriculums",
-        linkIcon: <Inbox color="primary" />
+        label: "Driftsmeldinger",
+        toUrl: "/service-messages"
     },
     {
         id: 2,
-        label: "Metadata",
-        toUrl: "/meta",
-        linkIcon: <Description color="primary" />
-    },
-    {
-        id: 3,
-        label: "Systemadministrasjon",
-        toUrl: "/admin",
-        linkIcon: <Settings color="primary" />
+        label: "Administrer brukere",
+        toUrl: "/manage-users"
     }
 ];
 
 storiesOf("LinkList", module).add("standard", () => (
     <LinkList
-        title={"Mine tilganger"}
-        pages={myPages}
+        pages={adminPages}
+        title={"Systemadministrasjon"}
         onPageClick={page => console.log("clicked on ", page.label)}
     />
 ));

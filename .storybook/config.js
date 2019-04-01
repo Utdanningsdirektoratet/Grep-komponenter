@@ -50,6 +50,8 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     height: 100%;
     padding: 0;
+    font-size: 14px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   }
 
   #root {
