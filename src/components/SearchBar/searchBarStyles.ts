@@ -1,5 +1,5 @@
 import CleanPaper from "../CleanPaper";
-import { Colors } from "../..";
+import { Colors } from "../../styling";
 import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from "@material-ui/core/TextField/TextField";
 import Typography from "@material-ui/core/Typography/Typography";

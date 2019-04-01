@@ -14,7 +14,7 @@ export interface Breadcrumb {
 
 interface Props {
     breadcrumbs: Breadcrumb[];
-    onClick: (crumb: Breadcrumb) => any;
+    onClick: (crumb: Breadcrumb) => void;
 }
 
 const GrepCrumbs: React.FC<Props> = props => {
@@ -22,7 +22,7 @@ const GrepCrumbs: React.FC<Props> = props => {
         <Container>
             {props.breadcrumbs.map((crumb, index) =>
                 index === props.breadcrumbs.length - 1 ? (
-                    <Current>{crumb.label}</Current>
+                    <Current key={crumb.path}>{crumb.label}</Current>
                 ) : (
                     <PreviousContainer key={crumb.path}>
                         <Previous onClick={() => props.onClick(crumb)}>

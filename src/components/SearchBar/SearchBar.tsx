@@ -2,7 +2,7 @@ import * as React from "react";
 import Close from "@material-ui/icons/Close";
 import Search from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
-import { Colors } from "../..";
+import { Colors } from "../../styling";
 
 import { IconBox, HelpText, Outer, StyledInput } from "./searchBarStyles";
 

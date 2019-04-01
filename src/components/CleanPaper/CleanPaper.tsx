@@ -2,7 +2,7 @@ import * as React from "react";
 import { CleanedPaper } from "./cleanPaperStyles";
 
 export interface CleanPaperProps {
-    onClick?: (args: any) => any;
+    onClick?: () => void;
     style?: React.CSSProperties;
     elevation?: number;
     classes: {

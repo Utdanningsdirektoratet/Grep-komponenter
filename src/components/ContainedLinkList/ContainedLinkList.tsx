@@ -12,7 +12,7 @@ import { NavigationProps } from "..";
 interface Props {
     title: string;
     pages: NavigationProps[];
-    onPageClick: (page: NavigationProps) => any;
+    onPageClick: (page: NavigationProps) => void;
 }
 
 const ContainedLinkList: React.FC<Props> = props => (

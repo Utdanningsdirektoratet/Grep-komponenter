@@ -17,7 +17,11 @@ export const Container = withStyles({
     root: {}
 })(CleanPaper);
 
-export const StyledTable = withStyles({})(Table);
+export const StyledTable = withStyles({
+    root: {
+        tableLayout: "fixed"
+    }
+})(Table);
 
 export const StyledTableBody = withStyles({
     root: {}

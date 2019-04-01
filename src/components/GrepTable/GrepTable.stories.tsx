@@ -6,19 +6,22 @@ import { ICurriculum } from "../CurriculumTable";
 export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     {
         label: "Kode",
-        width: 10,
+        width: 7,
         getCell: row => row.code
     },
     {
         label: "Navn",
+        width: 13,
         getCell: row => row.title
     },
     {
         label: "Status",
+        width: 8,
         getCell: row => row.statusText
     },
     {
         label: "Publisert",
+        width: 10,
         getCell: row => row.lastModified
     }
 ];
