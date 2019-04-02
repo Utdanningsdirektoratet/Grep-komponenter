@@ -2,6 +2,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import GrepTable, { ITableColumn } from "./GrepTable";
 import { ICurriculum } from "../CurriculumTable";
+import { IMenuItem } from "../DropdownMenu";
 
 export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     {
@@ -71,6 +72,13 @@ export const tableData: ICurriculum[] = [
     }
 ];
 
+const menuItems: IMenuItem[] = [
+    {
+        label: "Test",
+        handleClick: id => console.log("clicked on rowId ", id)
+    }
+];
+
 storiesOf("Grep table", module)
     .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
     .add("standard", () => (
@@ -83,6 +91,13 @@ storiesOf("Grep table", module)
         <GrepTable columns={tableColumns} data={tableData} clickableRows />
     ))
     .add("without data", () => <GrepTable columns={tableColumns} data={[]} />)
+    .add("with dropdown-menu", () => (
+        <GrepTable
+            columns={tableColumns}
+            data={tableData}
+            dropdownItems={menuItems}
+        />
+    ))
     .add("with pagination", () => (
         <GrepTable
             columns={tableColumns}

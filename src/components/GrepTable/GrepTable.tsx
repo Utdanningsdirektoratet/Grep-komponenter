@@ -13,6 +13,9 @@ import {
     PaginationActionsWrapped,
     PaginationActionsProps
 } from "./GrepPaginationActions";
+import DropdownMenu, { IMenuItem } from "../DropdownMenu";
+import IconButton from "@material-ui/core/IconButton/IconButton";
+import MoreVert from "@material-ui/icons/MoreVert";
 
 export interface ITableColumn<T> {
     label: string;
@@ -31,6 +34,7 @@ interface Props {
     outlined?: boolean;
     rowsPerPage?: number;
     pagination?: boolean;
+    dropdownItems?: IMenuItem[];
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
@@ -39,16 +43,25 @@ interface Props {
 interface LocalState {
     currentPage: number;
     rowsPerPage: number;
+    menuOpen: boolean;
+    menuAnchor: HTMLElement | null;
+    selectedRow: number | null;
 }
 
 class GrepTable extends React.Component<Props, LocalState> {
     constructor(props: Props) {
         super(props);
-        this.state = { currentPage: 0, rowsPerPage: props.rowsPerPage || 10 };
+        this.state = {
+            currentPage: 0,
+            rowsPerPage: props.rowsPerPage || 10,
+            menuOpen: false,
+            menuAnchor: null,
+            selectedRow: null
+        };
     }
 
     public render() {
-        const { outlined } = this.props;
+        const { outlined, dropdownItems } = this.props;
 
         return (
             <Container>
@@ -59,12 +72,23 @@ class GrepTable extends React.Component<Props, LocalState> {
                     {this._renderBody()}
                 </StyledTable>
                 {this._renderPagination()}
+                {dropdownItems && (
+                    <DropdownMenu
+                        contextId={this.state.selectedRow}
+                        menuOpen={this.state.menuOpen}
+                        menuItems={dropdownItems}
+                        menuAnchor={this.state.menuAnchor}
+                        onMenuClose={() =>
+                            this.setState({ menuOpen: false, menuAnchor: null })
+                        }
+                    />
+                )}
             </Container>
         );
     }
 
     private _renderHeader = () => {
-        const { columns } = this.props;
+        const { columns, dropdownItems } = this.props;
 
         return (
             <StyledTableHeader>
@@ -77,6 +101,9 @@ class GrepTable extends React.Component<Props, LocalState> {
                             {col.label}
                         </StyledTableCell>
                     ))}
+                    {dropdownItems && (
+                        <StyledTableCell style={{ width: "5%" }} />
+                    )}
                 </StyledTableRow>
             </StyledTableHeader>
         );
@@ -114,6 +141,7 @@ class GrepTable extends React.Component<Props, LocalState> {
         return (
             <StyledTableRow key={index}>
                 {this._renderCells(row)}
+                {this.props.dropdownItems && this._renderCellButton(row)}
             </StyledTableRow>
         );
     };
@@ -127,6 +155,30 @@ class GrepTable extends React.Component<Props, LocalState> {
                 {this._renderCells(row)}
             </ClickableTableRow>
         );
+    };
+
+    private _renderCellButton = (row: ITableData) => {
+        return (
+            <StyledTableCell style={{ width: "5%", padding: 0 }}>
+                <IconButton
+                    style={{ float: "right" }}
+                    onClick={e => this._openDropdown(e, row)}
+                >
+                    <MoreVert />
+                </IconButton>
+            </StyledTableCell>
+        );
+    };
+
+    private _openDropdown = (
+        e: React.MouseEvent<HTMLElement>,
+        row: ITableData
+    ) => {
+        this.setState({
+            menuAnchor: e.currentTarget,
+            menuOpen: true,
+            selectedRow: row.id
+        });
     };
 
     private _handleRowClick = (id: number) => {
@@ -176,8 +228,8 @@ class GrepTable extends React.Component<Props, LocalState> {
     };
 
     private _renderPlaceholder = () => {
-        const { columns, placeholderText } = this.props;
-        const columnCount = columns.length;
+        const { columns, placeholderText, dropdownItems } = this.props;
+        const columnCount = columns.length + (dropdownItems ? 1 : 0);
 
         return (
             <StyledTableBody>
