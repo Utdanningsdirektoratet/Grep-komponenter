@@ -8,9 +8,9 @@ const styles = ({ palette }: Theme) =>
     createStyles({
         root: {
             bottom: 0,
-            height: 50,
+            minHeight: 50,
             width: "100%",
-            position: "absolute",
+            marginTop: "auto",
             display: "flex",
             alignItems: "center",
             backgroundColor: palette.primary.main
