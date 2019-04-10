@@ -15,21 +15,29 @@ export interface DropdownMenuProps {
     onMenuClose: () => void;
 }
 
-const DropdownMenu: React.FC<DropdownMenuProps> = props => (
-    <Menu
-        open={props.menuOpen}
-        anchorEl={props.menuAnchor}
-        onClose={props.onMenuClose}
-    >
-        {props.menuItems.map((item, index) => (
-            <MenuItem
-                key={index}
-                onClick={() => item.handleClick(props.contextId)}
-            >
-                {item.label}
-            </MenuItem>
-        ))}
-    </Menu>
-);
+class DropdownMenu extends React.Component<DropdownMenuProps> {
+    public render() {
+        const { menuAnchor, menuItems, menuOpen, onMenuClose } = this.props;
+
+        return (
+            <Menu open={menuOpen} anchorEl={menuAnchor} onClose={onMenuClose}>
+                {menuItems.map((item, index) => (
+                    <MenuItem
+                        key={index}
+                        onClick={() => this._onItemClicked(index)}
+                    >
+                        {item.label}
+                    </MenuItem>
+                ))}
+            </Menu>
+        );
+    }
+
+    private _onItemClicked = (index: number) => {
+        const { onMenuClose, menuItems, contextId } = this.props;
+        onMenuClose();
+        menuItems[index].handleClick(contextId);
+    };
+}
 
 export default DropdownMenu as React.ComponentType<DropdownMenuProps>;
