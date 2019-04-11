@@ -20,7 +20,7 @@ import MoreVert from "@material-ui/icons/MoreVert";
 export interface ITableColumn<T> {
     label: string;
     width?: number;
-    getCell: (row: T) => string | number | JSX.Element;
+    getCell: (row: T) => string | number | boolean | JSX.Element;
 }
 
 export interface ITableData {
