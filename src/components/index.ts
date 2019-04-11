@@ -17,6 +17,7 @@ export * from "./GrepTable";
 export * from "./LoadingOverlay";
 export * from "./GrepCrumbs";
 export * from "./SearchBar";
+export * from "./GreyCover";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -37,3 +38,4 @@ export { default as GrepTable } from "./GrepTable";
 export { default as LoadingOverlay } from "./LoadingOverlay";
 export { default as GrepCrumbs } from "./GrepCrumbs";
 export { default as SearchBar } from "./SearchBar";
+export { default as GreyCover } from "./GreyCover";
