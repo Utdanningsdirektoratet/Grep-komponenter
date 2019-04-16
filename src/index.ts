@@ -30,5 +30,6 @@ export { default as LoadingOverlay } from "./components/LoadingOverlay";
 export { default as GrepCrumbs } from "./components/GrepCrumbs";
 export { default as SearchBar } from "./components/SearchBar";
 export { default as GreyCover } from "./components/GreyCover";
+export { default as CircularLoading } from "./components/CircularLoading";
 
 export * from "./components";
