@@ -19,6 +19,8 @@ export * from "./GrepCrumbs";
 export * from "./SearchBar";
 export * from "./GreyCover";
 export * from "./CircularLoading";
+export * from "./ProfileInfo";
+export * from "./GDPR";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -41,3 +43,5 @@ export { default as GrepCrumbs } from "./GrepCrumbs";
 export { default as SearchBar } from "./SearchBar";
 export { default as GreyCover } from "./GreyCover";
 export { default as CircularLoading } from "./CircularLoading";
+export { default as ProfileInfo } from "./ProfileInfo";
+export { default as GDPR } from "./GDPR";

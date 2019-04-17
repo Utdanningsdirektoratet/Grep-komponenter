@@ -6,6 +6,7 @@ export const StyledBodyLayout = withStyles({
         width: "100%",
         paddingTop: 20,
         display: "flex",
+        marginBottom: 20,
         justifyContent: "space-between"
     }
 })(CleanPaper);
