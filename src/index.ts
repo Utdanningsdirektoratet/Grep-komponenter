@@ -31,5 +31,7 @@ export { default as GrepCrumbs } from "./components/GrepCrumbs";
 export { default as SearchBar } from "./components/SearchBar";
 export { default as GreyCover } from "./components/GreyCover";
 export { default as CircularLoading } from "./components/CircularLoading";
+export { default as ProfileInfo } from "./components/ProfileInfo";
+export { default as GDPR } from "./components/GDPR";
 
 export * from "./components";
