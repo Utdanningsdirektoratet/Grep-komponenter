@@ -1,6 +1,7 @@
 import * as React from "react";
-import { TextField } from "@material-ui/core";
-import { BaseTextFieldProps } from "@material-ui/core/TextField/TextField";
+import TextField, {
+    BaseTextFieldProps
+} from "@material-ui/core/TextField/TextField";
 
 export interface GrepInputProps extends BaseTextFieldProps {
     variant?: any;

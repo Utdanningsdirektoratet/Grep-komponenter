@@ -1,7 +1,9 @@
 import * as React from "react";
-import { TextField, InputAdornment } from "@material-ui/core";
-import { BaseTextFieldProps } from "@material-ui/core/TextField/TextField";
+import TextField, {
+    BaseTextFieldProps
+} from "@material-ui/core/TextField/TextField";
 import Event from "@material-ui/icons/Event";
+import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
 
 export interface GrepDatePickerProps extends BaseTextFieldProps {
     variant?: any;

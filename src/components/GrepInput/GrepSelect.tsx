@@ -1,14 +1,12 @@
 import * as React from "react";
+import Input from "@material-ui/core/Input/Input";
+import RootRef from "@material-ui/core/RootRef/RootRef";
+import MenuItem from "@material-ui/core/MenuItem/MenuItem";
+import InputLabel from "@material-ui/core/InputLabel/InputLabel";
 import FormControl from "@material-ui/core/FormControl/FormControl";
-import {
-    MenuItem,
-    InputLabel,
-    FormHelperText,
-    Input,
-    OutlinedInput,
-    RootRef
-} from "@material-ui/core";
 import Select, { SelectProps } from "@material-ui/core/Select/Select";
+import OutlinedInput from "@material-ui/core/OutlinedInput/OutlinedInput";
+import FormHelperText from "@material-ui/core/FormHelperText/FormHelperText";
 
 export interface ISelectItem {
     label: string;
