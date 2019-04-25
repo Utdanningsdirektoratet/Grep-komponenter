@@ -11,7 +11,7 @@ const Inner = withStyles({
         display: "flex",
         justifyContent: "center",
         left: 0,
-        position: "absolute",
+        position: "fixed",
         right: 0,
         top: 0,
         zIndex: 99
