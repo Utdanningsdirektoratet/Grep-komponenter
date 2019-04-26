@@ -35,8 +35,7 @@ storiesOf("GrepSelect", module)
                 selectItems={selectItems}
             />
             <GrepSelect
-                label="Med placeholder"
-                placeholder="Placeholder"
+                label="Med kjempelang label bla bla bla"
                 selectItems={selectItems}
             />
         </React.Fragment>
@@ -57,8 +56,7 @@ storiesOf("GrepSelect", module)
             />
             <GrepSelect
                 outlined
-                label="Med placeholder"
-                placeholder="Placeholder"
+                label="Med kjempelang label bla bla bla"
                 selectItems={selectItems}
             />
         </React.Fragment>

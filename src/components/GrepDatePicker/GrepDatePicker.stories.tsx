@@ -31,17 +31,17 @@ storiesOf("GrepDatePicker", module)
     .add("Outlined", () => (
         <React.Fragment>
             <GrepDatePicker
-                outlined
+                variant="outlined"
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
             />
             <GrepDatePicker
-                outlined
+                variant="outlined"
                 label="Med hjelpetekst"
                 helperText="Hjelpetekst"
             />
             <GrepDatePicker
-                outlined
+                variant="outlined"
                 label="Med default verdi"
                 defaultValue="2019-04-25"
             />

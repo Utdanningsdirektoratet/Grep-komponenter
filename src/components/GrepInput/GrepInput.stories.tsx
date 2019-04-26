@@ -31,22 +31,26 @@ storiesOf("GrepInput", module)
     .add("InputOutlined", () => (
         <React.Fragment>
             <GrepInput
-                outlined
+                shrink
+                variant="outlined"
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
             />
             <GrepInput
-                outlined
+                shrink
+                variant="outlined"
                 label="Med hjelpetekst"
                 helperText="Hjelpetekst"
             />
             <GrepInput
-                outlined
+                shrink
+                variant="outlined"
                 label="Med placeholder"
                 placeholder="Placeholder"
             />
             <GrepInput
-                outlined
+                shrink
+                variant="outlined"
                 label="Multiline"
                 placeholder="Placeholder"
                 multiline
