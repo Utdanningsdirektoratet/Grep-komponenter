@@ -1,9 +1,16 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import CenterLayout from "../CenterLayout/CenterLayout";
-import GrepInput from "./GrepInput";
+import GrepSelect, { ISelectItem } from "../GrepSelect/GrepSelect";
 
-storiesOf("GrepInput", module)
+const selectItems: ISelectItem[] = [
+    {
+        label: "Test",
+        value: 1
+    }
+];
+
+storiesOf("GrepSelect", module)
     .addDecorator(storyFn => (
         <CenterLayout
             style={{
@@ -15,42 +22,44 @@ storiesOf("GrepInput", module)
             {storyFn()}
         </CenterLayout>
     ))
-    .add("Input", () => (
+    .add("Standard", () => (
         <React.Fragment>
-            <GrepInput label="Med feilmelding" errorMessage="Feilmelding" />
-            <GrepInput label="Med hjelpetekst" helperText="Hjelpetekst" />
-            <GrepInput label="Med placeholder" placeholder="Placeholder" />
-            <GrepInput
-                label="Multiline"
+            <GrepSelect
+                label="Med feilmelding"
+                errorMessage="Feilmelding"
+                selectItems={selectItems}
+            />
+            <GrepSelect
+                label="Med hjelpetekst"
+                helperText="Hjelpetekst"
+                selectItems={selectItems}
+            />
+            <GrepSelect
+                label="Med placeholder"
                 placeholder="Placeholder"
-                multiline
-                rows="4"
+                selectItems={selectItems}
             />
         </React.Fragment>
     ))
-    .add("InputOutlined", () => (
+    .add("Outlined", () => (
         <React.Fragment>
-            <GrepInput
+            <GrepSelect
                 outlined
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
+                selectItems={selectItems}
             />
-            <GrepInput
+            <GrepSelect
                 outlined
                 label="Med hjelpetekst"
                 helperText="Hjelpetekst"
+                selectItems={selectItems}
             />
-            <GrepInput
+            <GrepSelect
                 outlined
                 label="Med placeholder"
                 placeholder="Placeholder"
-            />
-            <GrepInput
-                outlined
-                label="Multiline"
-                placeholder="Placeholder"
-                multiline
-                rows="4"
+                selectItems={selectItems}
             />
         </React.Fragment>
     ));
