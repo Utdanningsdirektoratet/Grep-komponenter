@@ -25,6 +25,10 @@ import { tableColumns } from "../components/GrepTable/GrepTable.stories";
 import { myPages } from "../components/ContainedLinkList/ContainedLinkList.stories";
 import GrepCrumbs from "../components/GrepCrumbs";
 import { breadcrumbs } from "../components/GrepCrumbs/GrepCrumbs.stories";
+import { renderGDPRText } from "../components/GDPR/GDPR.stories";
+import GDPR from "../components/GDPR";
+import ProfileInfo from "../components/ProfileInfo";
+import { user } from "../components/ProfileInfo/ProfileInfo.stories";
 
 storiesOf("Pages", module)
     .addDecorator(storyFn => (
@@ -96,4 +100,10 @@ storiesOf("Pages", module)
                 />
             </BodyLayout>
         </React.Fragment>
+    ))
+    .add("My profile", () => (
+        <BodyLayout>
+            <ProfileInfo {...user} />
+            <GDPR>{renderGDPRText()}</GDPR>
+        </BodyLayout>
     ));

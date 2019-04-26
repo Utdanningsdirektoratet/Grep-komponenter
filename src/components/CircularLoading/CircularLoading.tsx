@@ -5,23 +5,21 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 const Inner = withStyles({
     root: {
-        alignItems: "center",
-        background: "rgba(255, 255, 255, 0.5)",
-        bottom: 0,
+        width: "100%",
         display: "flex",
-        justifyContent: "center",
-        left: 0,
-        position: "fixed",
-        right: 0,
-        top: 0,
-        zIndex: 99
+        alignItems: "center",
+        justifyContent: "center"
     }
 })(CleanPaper);
 
-const LoadingOverlay: React.FC = () => (
-    <Inner>
+interface Props {
+    height?: number;
+}
+
+const CircularLoading: React.FC<Props> = props => (
+    <Inner style={{ height: props.height }}>
         <CircularProgress />
     </Inner>
 );
 
-export default LoadingOverlay as React.ComponentType;
+export default CircularLoading as React.ComponentType<Props>;
