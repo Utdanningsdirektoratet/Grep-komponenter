@@ -1,43 +1,32 @@
 import * as React from "react";
 import TextField, {
-    BaseTextFieldProps
+    TextFieldProps
 } from "@material-ui/core/TextField/TextField";
 import Event from "@material-ui/icons/Event";
 import InputAdornment from "@material-ui/core/InputAdornment/InputAdornment";
 
-export interface GrepDatePickerProps extends BaseTextFieldProps {
-    outlined?: boolean;
+export type GrepDatePickerProps = TextFieldProps & {
     errorMessage?: string;
-}
-
-const Adornment: React.FC<{}> = () => (
-    <InputAdornment position="end">
-        <Event />
-    </InputAdornment>
-);
+};
 
 const GrepDatePicker: React.FC<GrepDatePickerProps> = props => {
-    const { errorMessage, helperText, outlined, ...rest } = props;
+    const { errorMessage, helperText, ...rest } = props;
+    const error = errorMessage ? errorMessage.length > 0 : false;
 
-    return outlined ? (
+    return (
         <TextField
             {...rest}
             type="date"
-            variant="outlined"
+            error={error}
             helperText={errorMessage || helperText}
-            error={typeof errorMessage !== "undefined"}
-            InputProps={{ endAdornment: <Adornment /> }}
             InputLabelProps={{ shrink: true }}
-        />
-    ) : (
-        <TextField
-            {...rest}
-            type="date"
-            variant="standard"
-            helperText={errorMessage || helperText}
-            error={typeof errorMessage !== "undefined"}
-            InputProps={{ endAdornment: <Adornment /> }}
-            InputLabelProps={{ shrink: true }}
+            InputProps={{
+                endAdornment: (
+                    <InputAdornment position="end">
+                        <Event />
+                    </InputAdornment>
+                )
+            }}
         />
     );
 };

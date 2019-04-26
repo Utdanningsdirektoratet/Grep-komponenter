@@ -40,18 +40,22 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
 
     public render() {
         const {
-            outlined,
             errorMessage,
             selectItems,
-            label,
             helperText,
+            fullWidth,
+            outlined,
+            label,
             ...rest
         } = this.props;
+
+        const error = errorMessage ? errorMessage.length > 0 : false;
 
         return (
             <FormControl
                 variant={outlined ? "outlined" : "standard"}
-                error={typeof errorMessage !== "undefined"}
+                fullWidth={fullWidth}
+                error={error}
             >
                 <RootRef rootRef={this.InputLabelRef}>
                     <InputLabel style={{ width: "max-content" }}>
@@ -61,8 +65,10 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 <Select
                     {...rest}
                     disabled={!selectItems}
-                    value={this.props.value || 0}
-                    style={{ minWidth: this.state.labelWidth }}
+                    value={this.props.value}
+                    style={{
+                        minWidth: this.state.labelWidth + (outlined ? 35 : 25)
+                    }}
                     input={
                         outlined ? (
                             <OutlinedInput labelWidth={this.state.labelWidth} />
@@ -71,9 +77,6 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                         )
                     }
                 >
-                    <MenuItem value={0} disabled>
-                        {this.props.placeholder}
-                    </MenuItem>
                     {selectItems.map((item, index) => (
                         <MenuItem key={index} value={item.value}>
                             {item.label}

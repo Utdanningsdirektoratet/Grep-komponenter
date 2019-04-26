@@ -1,31 +1,24 @@
 import * as React from "react";
 import TextField, {
-    BaseTextFieldProps
+    TextFieldProps
 } from "@material-ui/core/TextField/TextField";
 
-export interface GrepInputProps extends BaseTextFieldProps {
-    outlined?: boolean;
+export type GrepInputProps = TextFieldProps & {
+    shrink?: boolean;
     errorMessage?: string;
-}
+};
 
 const GrepInput: React.FC<GrepInputProps> = props => {
-    const { errorMessage, helperText, outlined, ...rest } = props;
+    const { errorMessage, helperText, shrink, value, ...rest } = props;
+    const error = errorMessage ? errorMessage.length > 0 : false;
 
-    return outlined ? (
+    return (
         <TextField
             {...rest}
-            variant="outlined"
             helperText={errorMessage || helperText}
-            error={typeof errorMessage !== "undefined"}
-            InputLabelProps={{ shrink: true }}
-        />
-    ) : (
-        <TextField
-            {...rest}
-            variant="standard"
-            helperText={errorMessage || helperText}
-            error={typeof errorMessage !== "undefined"}
-            InputLabelProps={{ shrink: true }}
+            value={value === null ? "" : value}
+            InputLabelProps={{ shrink }}
+            error={error}
         />
     );
 };
