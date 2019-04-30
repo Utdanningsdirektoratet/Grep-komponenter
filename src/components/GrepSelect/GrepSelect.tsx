@@ -46,6 +46,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
             fullWidth,
             outlined,
             label,
+            margin,
             ...rest
         } = this.props;
 
@@ -56,6 +57,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 variant={outlined ? "outlined" : "standard"}
                 fullWidth={fullWidth}
                 error={error}
+                margin={margin}
             >
                 <RootRef rootRef={this.InputLabelRef}>
                     <InputLabel style={{ width: "max-content" }}>
