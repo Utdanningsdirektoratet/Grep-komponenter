@@ -45,6 +45,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
             selectItems,
             label,
             helperText,
+            margin,
             ...rest
         } = this.props;
 
@@ -52,6 +53,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
             <FormControl
                 variant={outlined ? "outlined" : "standard"}
                 error={typeof errorMessage !== "undefined"}
+                margin={margin}
             >
                 <RootRef rootRef={this.InputLabelRef}>
                     <InputLabel style={{ width: "max-content" }}>
