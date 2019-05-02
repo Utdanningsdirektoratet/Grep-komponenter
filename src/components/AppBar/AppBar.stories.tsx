@@ -25,7 +25,7 @@ storiesOf("AppBar", module).add("with content", () => (
                         imageAlt={""}
                     />
                     <AppBarProfile
-                        role={"Superbruker"}
+                        userRole={"Superbruker"}
                         fullName={"Grep Fagansvarlig"}
                         onButtonClick={() => console.log("Button clicked")}
                     />

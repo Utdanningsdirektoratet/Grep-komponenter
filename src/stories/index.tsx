@@ -43,7 +43,7 @@ storiesOf("Pages", module)
                             imageAlt={""}
                         />
                         <AppBarProfile
-                            role={"Superbruker"}
+                            userRole={"Superbruker"}
                             fullName={"Grep Fagansvarlig"}
                             onButtonClick={() => console.log("Button clicked")}
                         />

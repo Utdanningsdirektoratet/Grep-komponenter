@@ -4,7 +4,7 @@ import { AppBarProfile } from "..";
 
 storiesOf("AppBarProfile", module).add("standard", () => (
     <AppBarProfile
-        role={"Superbruker"}
+        userRole={"Superbruker"}
         fullName={"Grep Fagansvarlig"}
         onButtonClick={() => console.log("Button clicked")}
     />

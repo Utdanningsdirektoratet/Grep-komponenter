@@ -11,7 +11,7 @@ import ArrowDropdown from "@material-ui/icons/ArrowDropDown";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 
 export interface AppBarProfileProps {
-    role: string;
+    userRole: string;
     fullName: string;
     onButtonClick: (args?: any) => void;
 }
@@ -21,7 +21,7 @@ const AppBarProfile: React.FC<AppBarProfileProps> = props => (
         <AccountCircle color="primary" />
         <UserContainer>
             <UserName>{props.fullName || "ukjent navn"}</UserName>
-            <UserRole>{props.role || "ukjent rolle"}</UserRole>
+            <UserRole>{props.userRole || "ukjent rolle"}</UserRole>
         </UserContainer>
         <IconButton color="primary" onClick={props.onButtonClick}>
             <ArrowDropdown />

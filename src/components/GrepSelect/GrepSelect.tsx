@@ -60,7 +60,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 fullWidth={fullWidth}
                 error={error}
                 margin={formMargin ? formMargin : "normal"}
-                // margin={margin}
+                style={this.props.style}
             >
                 <RootRef rootRef={this.InputLabelRef}>
                     <InputLabel style={{ width: "max-content" }}>
