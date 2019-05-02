@@ -7,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl/FormControl";
 import Select, { SelectProps } from "@material-ui/core/Select/Select";
 import OutlinedInput from "@material-ui/core/OutlinedInput/OutlinedInput";
 import FormHelperText from "@material-ui/core/FormHelperText/FormHelperText";
+import { PropTypes } from "@material-ui/core";
 
 export interface ISelectItem {
     label: string;
@@ -18,6 +19,7 @@ export interface GrepSelectProps extends SelectProps {
     helperText?: string;
     errorMessage?: string;
     selectItems: ISelectItem[];
+    formMargin?: PropTypes.Margin;
 }
 
 interface LocalState {
@@ -46,7 +48,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
             fullWidth,
             outlined,
             label,
-            margin,
+            formMargin,
             ...rest
         } = this.props;
 
@@ -57,7 +59,8 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 variant={outlined ? "outlined" : "standard"}
                 fullWidth={fullWidth}
                 error={error}
-                margin={margin}
+                margin={formMargin ? formMargin : "normal"}
+                // margin={margin}
             >
                 <RootRef rootRef={this.InputLabelRef}>
                     <InputLabel style={{ width: "max-content" }}>
