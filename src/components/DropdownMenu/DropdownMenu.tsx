@@ -24,6 +24,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps> {
                 {menuItems.map((item, index) => (
                     <MenuItem
                         key={index}
+                        disabled={item.disabled}
                         onClick={() => this._onItemClicked(index)}
                     >
                         {item.label}
