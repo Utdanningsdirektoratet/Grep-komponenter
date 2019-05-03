@@ -16,6 +16,7 @@ import {
 import DropdownMenu, { IMenuItem } from "../DropdownMenu";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import MoreVert from "@material-ui/icons/MoreVert";
+import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 
 export interface ITableColumn<T> {
     label: string;
@@ -28,7 +29,7 @@ export interface ITableData {
     [key: string]: any;
 }
 
-interface Props {
+export interface IGrepTableProps {
     data: ITableData[];
     columns: Array<ITableColumn<any>>;
     outlined?: boolean;
@@ -38,6 +39,8 @@ interface Props {
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
+    getTooltip?: (id: number) => string;
+    onContextIdChanged?: (id: number) => void;
 }
 
 interface LocalState {
@@ -48,8 +51,8 @@ interface LocalState {
     selectedRow: number | null;
 }
 
-class GrepTable extends React.Component<Props, LocalState> {
-    constructor(props: Props) {
+class GrepTable extends React.Component<IGrepTableProps, LocalState> {
+    constructor(props: IGrepTableProps) {
         super(props);
         this.state = {
             currentPage: 0,
@@ -110,7 +113,7 @@ class GrepTable extends React.Component<Props, LocalState> {
     };
 
     private _renderBody = () => {
-        const { data, clickableRows, pagination } = this.props;
+        const { data, clickableRows, pagination, getTooltip } = this.props;
         const { currentPage, rowsPerPage } = this.state;
 
         if (data.length === 0) {
@@ -128,11 +131,23 @@ class GrepTable extends React.Component<Props, LocalState> {
 
         return (
             <StyledTableBody>
-                {rows.map((row, index) =>
-                    clickableRows
-                        ? this._renderClickableRow(row)
-                        : this._renderRow(row, index)
-                )}
+                {rows.map((row, index) => {
+                    const tooltip = getTooltip ? getTooltip(row.id) : "";
+
+                    if (tooltip) {
+                        return (
+                            <Tooltip key={index} title={tooltip}>
+                                {clickableRows
+                                    ? this._renderClickableRow(row)
+                                    : this._renderRow(row, index)}
+                            </Tooltip>
+                        );
+                    } else {
+                        return clickableRows
+                            ? this._renderClickableRow(row)
+                            : this._renderRow(row, index);
+                    }
+                })}
             </StyledTableBody>
         );
     };
@@ -174,11 +189,20 @@ class GrepTable extends React.Component<Props, LocalState> {
         e: React.MouseEvent<HTMLElement>,
         row: ITableData
     ) => {
-        this.setState({
-            menuAnchor: e.currentTarget,
-            menuOpen: true,
-            selectedRow: row.id
-        });
+        const { onContextIdChanged } = this.props;
+
+        this.setState(
+            {
+                menuAnchor: e.currentTarget,
+                menuOpen: true,
+                selectedRow: row.id
+            },
+            () => {
+                if (onContextIdChanged) {
+                    onContextIdChanged(row.id);
+                }
+            }
+        );
     };
 
     private _handleRowClick = (id: number) => {
@@ -257,4 +281,4 @@ class GrepTable extends React.Component<Props, LocalState> {
     };
 }
 
-export default GrepTable as React.ComponentType<Props>;
+export default GrepTable as React.ComponentType<IGrepTableProps>;
