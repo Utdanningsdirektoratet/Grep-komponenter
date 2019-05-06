@@ -21,6 +21,7 @@ import Tooltip from "@material-ui/core/Tooltip/Tooltip";
 export interface ITableColumn<T> {
     label: string;
     width?: number;
+    colDef?: string;
     getCell: (row: T) => string | number | boolean | JSX.Element;
 }
 
