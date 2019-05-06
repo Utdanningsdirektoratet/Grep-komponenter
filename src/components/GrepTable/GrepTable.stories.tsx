@@ -1,8 +1,15 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import GrepTable, { ITableColumn } from "./GrepTable";
-import { ICurriculum } from "../CurriculumTable";
 import { IMenuItem } from "../DropdownMenu";
+
+interface ICurriculum {
+    id: number;
+    code: string;
+    title: string;
+    statusText: string;
+    lastModified: string;
+}
 
 export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     {
@@ -104,5 +111,12 @@ storiesOf("Grep table", module)
             data={tableData}
             pagination
             rowsPerPage={5}
+        />
+    ))
+    .add("with tooltip", () => (
+        <GrepTable
+            columns={tableColumns}
+            data={tableData}
+            getTooltip={(id: number) => `Tooltip for row #${id}`}
         />
     ));
