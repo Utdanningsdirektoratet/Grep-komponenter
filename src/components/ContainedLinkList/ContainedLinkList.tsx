@@ -12,11 +12,12 @@ import { NavigationProps } from "..";
 interface Props {
     title: string;
     pages: NavigationProps[];
+    style?: React.CSSProperties;
     onPageClick: (page: NavigationProps) => void;
 }
 
 const ContainedLinkList: React.FC<Props> = props => (
-    <Container>
+    <Container style={props.style}>
         <Title>{props.title}</Title>
         <StyledList>
             {props.pages.map(page => (
