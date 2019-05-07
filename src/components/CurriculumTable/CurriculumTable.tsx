@@ -4,10 +4,11 @@ import GrepTable, { IGrepTableProps } from "../GrepTable/GrepTable";
 
 interface CurriculumListProps extends IGrepTableProps {
     title: string;
+    style?: React.CSSProperties;
 }
 
 const CurriculumList: React.FC<CurriculumListProps> = props => (
-    <Container>
+    <Container style={props.style}>
         <Title>{props.title}</Title>
         <GrepTable
             data={props.data}

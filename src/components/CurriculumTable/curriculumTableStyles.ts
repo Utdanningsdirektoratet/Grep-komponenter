@@ -6,8 +6,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 export const Container = withStyles({
     root: {
         border: `1px solid ${Colors.lightGrey}`,
-        height: "fit-content",
-        width: "48%"
+        height: "fit-content"
     }
 })(CleanPaper);
 
