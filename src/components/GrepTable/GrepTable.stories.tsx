@@ -34,6 +34,52 @@ export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     }
 ];
 
+const CURRICULUM_COLUMNS: Array<ITableColumn<any>> = [
+    {
+        label: "Kode",
+        width: 8,
+        getCell: row => "Kode"
+    },
+    {
+        label: "Tittel",
+        getCell: row => "Tittel"
+    },
+    {
+        label: "Status",
+        getCell: row => "Status"
+    },
+    {
+        label: "Sist endret",
+        width: 9,
+        getCell: row => "10. desember"
+    },
+    {
+        label: "Ansvarlig",
+        width: 9,
+        getCell: row => row.grepAdminResponsibleUsername
+    },
+    {
+        label: "Importert",
+        width: 8,
+        getCell: row => <div style={{ textAlign: "center" }}>{"\u2714"}</div>
+    },
+    {
+        label: "Klar",
+        width: 7,
+        getCell: row => <div style={{ textAlign: "center" }}>{"\u2714"}</div>
+    },
+    {
+        label: "Tanket",
+        width: 8,
+        getCell: row => null
+    },
+    {
+        label: "Låst",
+        width: 7,
+        getCell: row => null
+    }
+];
+
 export const tableData: ICurriculum[] = [
     {
         id: 1,
@@ -95,12 +141,24 @@ storiesOf("Grep table", module)
         <GrepTable columns={tableColumns} data={tableData} outlined />
     ))
     .add("clickable", () => (
-        <GrepTable columns={tableColumns} data={tableData} clickableRows />
+        <GrepTable
+            columns={tableColumns}
+            data={tableData.map(c => {
+                if (c.id % 2 === 0) {
+                    return {
+                        ...c,
+                        rowDisabled: true
+                    };
+                }
+                return c;
+            })}
+            clickableRows
+        />
     ))
     .add("without data", () => <GrepTable columns={tableColumns} data={[]} />)
     .add("with dropdown-menu", () => (
         <GrepTable
-            columns={tableColumns}
+            columns={CURRICULUM_COLUMNS}
             data={tableData}
             dropdownItems={menuItems}
         />

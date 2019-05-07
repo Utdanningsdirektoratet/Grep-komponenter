@@ -26,6 +26,7 @@ export interface ITableColumn<T> {
 
 export interface ITableData {
     id: number;
+    rowDisabled?: boolean;
     [key: string]: any;
 }
 
@@ -162,6 +163,8 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
     };
 
     private _renderClickableRow = (row: ITableData) => {
+        if (row.rowDisabled) return this._renderRow(row, row.id);
+
         return (
             <ClickableTableRow
                 key={row.id}

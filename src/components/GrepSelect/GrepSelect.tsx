@@ -10,8 +10,7 @@ import FormHelperText from "@material-ui/core/FormHelperText/FormHelperText";
 import { PropTypes } from "@material-ui/core";
 
 export interface ISelectItem {
-    label: string;
-    value?: string | string[] | number;
+    value: string;
 }
 export interface GrepSelectProps extends SelectProps {
     label: string;
@@ -49,6 +48,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
             outlined,
             label,
             formMargin,
+            value,
             ...rest
         } = this.props;
 
@@ -70,7 +70,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 <Select
                     {...rest}
                     disabled={!selectItems}
-                    value={this.props.value}
+                    value={value === null ? "" : value}
                     style={{
                         minWidth: this.state.labelWidth + (outlined ? 35 : 25)
                     }}
@@ -84,7 +84,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 >
                     {selectItems.map((item, index) => (
                         <MenuItem key={index} value={item.value}>
-                            {item.label}
+                            {item.value}
                         </MenuItem>
                     ))}
                 </Select>
