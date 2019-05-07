@@ -169,8 +169,19 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
                 onClick={() => this._handleRowClick(row.id)}
             >
                 {this._renderCells(row)}
+                {this.props.dropdownItems && this._renderCellButton(row)}
             </ClickableTableRow>
         );
+    };
+
+    private _renderCells = (row: ITableData) => {
+        const { columns } = this.props;
+
+        return columns.map((col, index) => (
+            <StyledTableCell key={index} style={{ width: `${col.width}%` }}>
+                {col.getCell(row)}
+            </StyledTableCell>
+        ));
     };
 
     private _renderCellButton = (row: ITableData) => {
@@ -178,12 +189,20 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
             <StyledTableCell style={{ width: "5%", padding: 0 }}>
                 <IconButton
                     style={{ float: "right" }}
-                    onClick={e => this._openDropdown(e, row)}
+                    onClick={e => this._handleButtonClick(e, row)}
                 >
                     <MoreVert />
                 </IconButton>
             </StyledTableCell>
         );
+    };
+
+    private _handleButtonClick = (
+        event: React.MouseEvent<HTMLElement>,
+        row: ITableData
+    ) => {
+        event.stopPropagation();
+        this._openDropdown(event, row);
     };
 
     private _openDropdown = (
@@ -211,16 +230,6 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
         if (onRowClick) {
             onRowClick(id);
         }
-    };
-
-    private _renderCells = (row: ITableData) => {
-        const { columns } = this.props;
-
-        return columns.map((col, index) => (
-            <StyledTableCell key={index} style={{ width: `${col.width}%` }}>
-                {col.getCell(row)}
-            </StyledTableCell>
-        ));
     };
 
     private _renderPagination = () => {
