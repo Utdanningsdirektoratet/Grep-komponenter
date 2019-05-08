@@ -6,6 +6,6 @@ storiesOf("AppBarProfile", module).add("standard", () => (
     <AppBarProfile
         userRole={"Superbruker"}
         fullName={"Grep Fagansvarlig"}
-        onButtonClick={() => console.log("Button clicked")}
+        onButtonClick={() => console.log("Button clicked!")}
     />
 ));
