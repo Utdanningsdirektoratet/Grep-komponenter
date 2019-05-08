@@ -128,7 +128,7 @@ export const tableData: ICurriculum[] = [
 const menuItems: IMenuItem[] = [
     {
         label: "Test",
-        handleClick: id => console.log("clicked on rowId ", id)
+        handleClick: id => console.log("clicked on rowId! ", id)
     }
 ];
 
