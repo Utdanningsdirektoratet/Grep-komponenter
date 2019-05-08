@@ -11,6 +11,7 @@ import { PropTypes } from "@material-ui/core";
 
 export interface ISelectItem {
     value: string;
+    label?: string;
 }
 export interface GrepSelectProps extends SelectProps {
     label: string;
@@ -84,7 +85,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 >
                     {selectItems.map((item, index) => (
                         <MenuItem key={index} value={item.value}>
-                            {item.value}
+                            {item.label ? item.label : item.value}
                         </MenuItem>
                     ))}
                 </Select>

@@ -9,7 +9,8 @@ const selectItems: ISelectItem[] = [
         value: "Test"
     },
     {
-        value: "Best"
+        value: "Best",
+        label: "Custom label (value is Best)"
     }
 ];
 
@@ -42,7 +43,7 @@ storiesOf("GrepSelect", module)
             <GrepSelect
                 label="Med kjempelang label bla bla bla"
                 selectItems={selectItems}
-                onChange={action("select med feilmelding change")}
+                onChange={action("select med lang-label change")}
             />
         </React.Fragment>
     ))
