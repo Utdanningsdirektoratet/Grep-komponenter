@@ -24,6 +24,8 @@ export * from "./GDPR";
 export * from "./GrepInput";
 export * from "./GrepSelect";
 export * from "./GrepDatePicker";
+export * from "./NavigateBack";
+export * from "./InfoContainer";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -51,3 +53,5 @@ export { default as GDPR } from "./GDPR";
 export { default as GrepInput } from "./GrepInput";
 export { default as GrepSelect } from "./GrepSelect";
 export { default as GrepDatePicker } from "./GrepDatePicker";
+export { default as NavigateBack } from "./NavigateBack";
+export { default as InfoContainer } from "./InfoContainer";
