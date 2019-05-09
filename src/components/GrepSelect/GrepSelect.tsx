@@ -47,6 +47,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
             helperText,
             fullWidth,
             outlined,
+            disabled,
             label,
             formMargin,
             value,
@@ -70,7 +71,7 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                 </RootRef>
                 <Select
                     {...rest}
-                    disabled={!selectItems}
+                    disabled={!selectItems || disabled}
                     value={value === null ? "" : value}
                     style={{
                         minWidth: this.state.labelWidth + (outlined ? 35 : 25)
