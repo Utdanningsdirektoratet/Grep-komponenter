@@ -38,5 +38,6 @@ export { default as GrepSelect } from "./components/GrepSelect";
 export { default as GrepDatePicker } from "./components/GrepDatePicker";
 export { default as NavigateBack } from "./components/NavigateBack";
 export { default as InfoContainer } from "./components/InfoContainer";
+export { default as OverflowTooltip } from "./components/OverflowTooltip";
 
 export * from "./components";

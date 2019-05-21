@@ -56,7 +56,8 @@ export const ClickableTableRow = withStyles({
 
 export const StyledTableCell = withStyles({
     root: {
-        padding: "4px 20px",
+        padding: "4px 0px",
+        paddingLeft: 15,
         textOverflow: "ellipsis",
         overflow: "hidden",
         fontSize: 14

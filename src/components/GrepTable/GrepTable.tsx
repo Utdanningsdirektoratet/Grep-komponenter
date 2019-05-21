@@ -16,12 +16,14 @@ import {
 import DropdownMenu, { IMenuItem } from "../DropdownMenu";
 import IconButton from "@material-ui/core/IconButton/IconButton";
 import MoreVert from "@material-ui/icons/MoreVert";
-import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import OverflowTooltip from "../OverflowTooltip";
 
 export interface ITableColumn<T> {
     label: string;
     width?: number;
     colDef?: string;
+    forceTooltip?: boolean;
+    getTooltip?: (row: T) => string;
     getCell: (row: T) => string | number | boolean | JSX.Element;
 }
 
@@ -41,7 +43,6 @@ export interface IGrepTableProps {
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
-    getTooltip?: (id: number) => string;
     onContextIdChanged?: (id: number) => void;
 }
 
@@ -115,7 +116,7 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
     };
 
     private _renderBody = () => {
-        const { data, clickableRows, pagination, getTooltip } = this.props;
+        const { data, clickableRows, pagination } = this.props;
         const { currentPage, rowsPerPage } = this.state;
 
         if (data.length === 0) {
@@ -133,23 +134,11 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
 
         return (
             <StyledTableBody>
-                {rows.map((row, index) => {
-                    const tooltip = getTooltip ? getTooltip(row.id) : "";
-
-                    if (tooltip) {
-                        return (
-                            <Tooltip key={index} title={tooltip}>
-                                {clickableRows
-                                    ? this._renderClickableRow(row)
-                                    : this._renderRow(row, index)}
-                            </Tooltip>
-                        );
-                    } else {
-                        return clickableRows
-                            ? this._renderClickableRow(row)
-                            : this._renderRow(row, index);
-                    }
-                })}
+                {rows.map((row, index) =>
+                    clickableRows
+                        ? this._renderClickableRow(row)
+                        : this._renderRow(row, index)
+                )}
             </StyledTableBody>
         );
     };
@@ -180,11 +169,34 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
     private _renderCells = (row: ITableData) => {
         const { columns } = this.props;
 
-        return columns.map((col, index) => (
-            <StyledTableCell key={index} style={{ width: `${col.width}%` }}>
-                {col.getCell(row)}
-            </StyledTableCell>
-        ));
+        return columns.map((col, index) => {
+            const { forceTooltip, getTooltip, getCell } = col;
+
+            if (forceTooltip || getTooltip) {
+                return (
+                    <StyledTableCell
+                        key={index}
+                        style={{ width: `${col.width}%` }}
+                    >
+                        <OverflowTooltip
+                            force={forceTooltip}
+                            title={getTooltip ? getTooltip(row) : getCell(row)}
+                        >
+                            {getCell(row)}
+                        </OverflowTooltip>
+                    </StyledTableCell>
+                );
+            } else {
+                return (
+                    <StyledTableCell
+                        key={index}
+                        style={{ width: `${col.width}%` }}
+                    >
+                        {col.getCell(row)}
+                    </StyledTableCell>
+                );
+            }
+        });
     };
 
     private _renderCellButton = (row: ITableData) => {
