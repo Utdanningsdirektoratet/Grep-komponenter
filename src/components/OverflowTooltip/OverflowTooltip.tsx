@@ -33,7 +33,7 @@ class OverflowTooltip extends React.Component<
     public render() {
         if (this.state.overflow || this.props.force) {
             return (
-                <Tooltip placement="left" title={this.props.title}>
+                <Tooltip placement="left" title={this.props.title || ""}>
                     <div style={{ display: "unset" }} ref={this.nodeRef}>
                         {this.props.children}
                     </div>
