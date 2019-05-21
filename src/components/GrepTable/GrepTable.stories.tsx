@@ -25,11 +25,13 @@ export const tableColumns: Array<ITableColumn<ICurriculum>> = [
     {
         label: "Status",
         width: 8,
+        getTooltip: row => row.statusText,
         getCell: row => row.statusText
     },
     {
         label: "Publisert",
         width: 10,
+        forceTooltip: true,
         getCell: row => row.lastModified
     }
 ];
@@ -120,7 +122,8 @@ export const tableData: ICurriculum[] = [
         id: 6,
         code: "1001",
         title: "Testplanen",
-        statusText: "Under arbeid",
+        statusText:
+            "Kjempelang status bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla",
         lastModified: "10. desember"
     }
 ];
@@ -169,12 +172,5 @@ storiesOf("Grep table", module)
             data={tableData}
             pagination
             rowsPerPage={5}
-        />
-    ))
-    .add("with tooltip", () => (
-        <GrepTable
-            columns={tableColumns}
-            data={tableData}
-            getTooltip={(id: number) => `Tooltip for row #${id}`}
         />
     ));
