@@ -5,7 +5,6 @@ export const StyledGreyCover = withStyles({
     root: {
         background: "#f1f1f1",
         marginBottom: 12,
-        paddingBottom: 12,
-        paddingTop: 27
+        padding: "10px 0"
     }
 })(CleanPaper);
