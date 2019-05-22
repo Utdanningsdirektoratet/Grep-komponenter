@@ -39,7 +39,7 @@ const renderVertical = (infoFields: InfoField[]) =>
     infoFields.map((field: InfoField) => renderField(field));
 
 const renderField = (field: InfoField) => (
-    <InfoField>
+    <InfoField key={field.key}>
         <InfoKey>{field.key}:</InfoKey>
         <InfoValue>{field.value}</InfoValue>
     </InfoField>
