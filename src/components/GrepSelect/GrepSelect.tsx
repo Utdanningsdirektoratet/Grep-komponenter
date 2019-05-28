@@ -84,6 +84,9 @@ class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
                         )
                     }
                 >
+                    <MenuItem value="">
+                        <em>Fjern valgt</em>
+                    </MenuItem>
                     {selectItems.map((item, index) => (
                         <MenuItem key={index} value={item.value}>
                             {item.label ? item.label : item.value}
