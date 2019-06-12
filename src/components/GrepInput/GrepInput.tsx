@@ -18,7 +18,7 @@ const GrepInput: React.FC<GrepInputProps> = props => {
             helperText={errorMessage || helperText}
             value={value === null ? "" : value}
             InputLabelProps={{ shrink }}
-            error={error}
+            error={error || rest.error}
         />
     );
 };
