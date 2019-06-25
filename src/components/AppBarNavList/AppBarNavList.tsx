@@ -8,7 +8,7 @@ import {
 export interface NavigationProps {
     id: number;
     label: string;
-    toUrl: string;
+    toUrl?: string;
     linkIcon?: React.ReactElement<any>;
 }
 

@@ -27,6 +27,8 @@ export * from "./GrepDatePicker";
 export * from "./NavigateBack";
 export * from "./InfoContainer";
 export * from "./OverflowTooltip";
+export * from "./Sidebar";
+export * from "./SidebarWrapper";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";
@@ -57,3 +59,5 @@ export { default as GrepDatePicker } from "./GrepDatePicker";
 export { default as NavigateBack } from "./NavigateBack";
 export { default as InfoContainer } from "./InfoContainer";
 export { default as OverflowTooltip } from "./OverflowTooltip";
+export { default as Sidebar } from "./Sidebar";
+export { default as SidebarWrapper } from "./SidebarWrapper";
