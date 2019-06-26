@@ -14,8 +14,6 @@ export const Container = withStyles({
 const whiteSpaceStyle = ({ breakpoints }: Theme) =>
     createStyles({
         root: {
-            width: 208,
-
             [breakpoints.down(1140)]: {
                 display: "none"
             }
