@@ -29,6 +29,7 @@ import { renderGDPRText } from "../components/GDPR/GDPR.stories";
 import GDPR from "../components/GDPR";
 import ProfileInfo from "../components/ProfileInfo";
 import { user } from "../components/ProfileInfo/ProfileInfo.stories";
+import Sidebar from "../components/Sidebar";
 
 storiesOf("Pages", module)
     .addDecorator(storyFn => (
@@ -106,4 +107,7 @@ storiesOf("Pages", module)
             <ProfileInfo {...user} />
             <GDPR>{renderGDPRText()}</GDPR>
         </BodyLayout>
+    ))
+    .add("Læreplaner", () => (
+        <Sidebar pages={adminPages} onPageClick={() => console.log("")} />
     ));
