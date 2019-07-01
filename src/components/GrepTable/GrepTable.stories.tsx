@@ -138,10 +138,10 @@ const menuItems: IMenuItem[] = [
 storiesOf("Grep table", module)
     .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
     .add("standard", () => (
-        <GrepTable columns={tableColumns} data={tableData} />
+        <GrepTable header columns={tableColumns} data={tableData} />
     ))
     .add("outlined", () => (
-        <GrepTable columns={tableColumns} data={tableData} outlined />
+        <GrepTable header columns={tableColumns} data={tableData} outlined />
     ))
     .add("clickable", () => (
         <GrepTable
@@ -156,11 +156,15 @@ storiesOf("Grep table", module)
                 return c;
             })}
             clickableRows
+            header
         />
     ))
-    .add("without data", () => <GrepTable columns={tableColumns} data={[]} />)
+    .add("without data", () => (
+        <GrepTable header columns={tableColumns} data={[]} />
+    ))
     .add("with dropdown-menu", () => (
         <GrepTable
+            header
             columns={CURRICULUM_COLUMNS}
             data={tableData}
             dropdownItems={menuItems}
@@ -168,9 +172,13 @@ storiesOf("Grep table", module)
     ))
     .add("with pagination", () => (
         <GrepTable
+            header
             columns={tableColumns}
             data={tableData}
             pagination
             rowsPerPage={5}
         />
+    ))
+    .add("without header", () => (
+        <GrepTable columns={tableColumns} data={tableData} />
     ));

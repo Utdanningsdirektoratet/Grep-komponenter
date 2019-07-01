@@ -36,6 +36,7 @@ export interface ITableData {
 export interface IGrepTableProps {
     data: ITableData[];
     columns: Array<ITableColumn<any>>;
+    header?: boolean;
     outlined?: boolean;
     rowsPerPage?: number;
     pagination?: boolean;
@@ -67,14 +68,14 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
     }
 
     public render() {
-        const { outlined, dropdownItems } = this.props;
+        const { outlined, header, dropdownItems } = this.props;
 
         return (
             <Container>
                 <StyledTable
                     style={{ borderCollapse: outlined ? "collapse" : "unset" }}
                 >
-                    {this._renderHeader()}
+                    {header && this._renderHeader()}
                     {this._renderBody()}
                 </StyledTable>
                 {this._renderPagination()}
