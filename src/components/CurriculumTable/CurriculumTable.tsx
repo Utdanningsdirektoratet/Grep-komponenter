@@ -12,6 +12,7 @@ const CurriculumList: React.FC<CurriculumListProps> = props => (
         <Title>{props.title}</Title>
         <GrepTable
             data={props.data}
+            header
             columns={props.columns}
             clickableRows
             placeholderText={"Finner ingen læreplaner."}
