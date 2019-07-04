@@ -9,6 +9,7 @@ export const Container = withStyles({
     root: {
         border: `1px solid ${Colors.lightGrey}`,
         height: "fit-content",
+        width: "fit-content"
     }
 })(CleanPaper);
 
@@ -16,7 +17,8 @@ export const Title = withStyles({
     root: {
         fontSize: 24,
         padding: 20,
-        color: Colors.black
+        color: Colors.black,
+        whiteSpace: "nowrap"
     }
 })(Typography);
 
