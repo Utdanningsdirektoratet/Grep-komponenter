@@ -7,8 +7,9 @@ import {
     StyledTableCell,
     StyledTableBody,
     ClickableTableRow,
-    StyledPagination
+    paginationStyles
 } from "./grepTableStyles";
+import TablePagination from "@material-ui/core/TablePagination";
 import {
     PaginationActionsWrapped,
     PaginationActionsProps
@@ -47,56 +48,27 @@ export interface IGrepTableProps {
     onContextIdChanged?: (id: number) => void;
 }
 
-interface LocalState {
-    currentPage: number;
-    rowsPerPage: number;
-    menuOpen: boolean;
-    menuAnchor: HTMLElement | null;
-    selectedRow: number | null;
-}
+const GrepTable: React.FC<IGrepTableProps> = props => {
+    const [currentPage, setCurrentPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(
+        props.rowsPerPage || 10
+    );
+    const [menuOpen, setMenuOpen] = React.useState(false);
+    const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
+        null
+    );
+    const [selectedRow, setSelectedRow] = React.useState(null);
+    const {
+        outlined,
+        header,
+        dropdownItems,
+        data,
+        clickableRows,
+        pagination,
+        columns
+    } = props;
 
-class GrepTable extends React.Component<IGrepTableProps, LocalState> {
-    constructor(props: IGrepTableProps) {
-        super(props);
-        this.state = {
-            currentPage: 0,
-            rowsPerPage: props.rowsPerPage || 10,
-            menuOpen: false,
-            menuAnchor: null,
-            selectedRow: null
-        };
-    }
-
-    public render() {
-        const { outlined, header, dropdownItems } = this.props;
-
-        return (
-            <Container>
-                <StyledTable
-                    style={{ borderCollapse: outlined ? "collapse" : "unset" }}
-                >
-                    {header && this._renderHeader()}
-                    {this._renderBody()}
-                </StyledTable>
-                {this._renderPagination()}
-                {dropdownItems && (
-                    <DropdownMenu
-                        contextId={this.state.selectedRow}
-                        menuOpen={this.state.menuOpen}
-                        menuItems={dropdownItems}
-                        menuAnchor={this.state.menuAnchor}
-                        onMenuClose={() =>
-                            this.setState({ menuOpen: false, menuAnchor: null })
-                        }
-                    />
-                )}
-            </Container>
-        );
-    }
-
-    private _renderHeader = () => {
-        const { columns, dropdownItems } = this.props;
-
+    const _renderHeader = () => {
         return (
             <StyledTableHeader>
                 <StyledTableRow>
@@ -116,12 +88,9 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
         );
     };
 
-    private _renderBody = () => {
-        const { data, clickableRows, pagination } = this.props;
-        const { currentPage, rowsPerPage } = this.state;
-
+    const _renderBody = () => {
         if (data.length === 0) {
-            return this._renderPlaceholder();
+            return _renderPlaceholder();
         }
 
         let rows: ITableData[] = data;
@@ -137,38 +106,38 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
             <StyledTableBody>
                 {rows.map((row, index) =>
                     clickableRows
-                        ? this._renderClickableRow(row)
-                        : this._renderRow(row, index)
+                        ? _renderClickableRow(row)
+                        : _renderRow(row, index)
                 )}
             </StyledTableBody>
         );
     };
 
-    private _renderRow = (row: ITableData, index: number) => {
+    const _renderRow = (row: ITableData, index: number) => {
         return (
             <StyledTableRow key={index}>
-                {this._renderCells(row)}
-                {this.props.dropdownItems && this._renderCellButton(row)}
+                {_renderCells(row)}
+                {dropdownItems && _renderCellButton(row)}
             </StyledTableRow>
         );
     };
 
-    private _renderClickableRow = (row: ITableData) => {
-        if (row.rowDisabled) return this._renderRow(row, row.id);
+    const _renderClickableRow = (row: ITableData) => {
+        if (row.rowDisabled) return _renderRow(row, row.id);
 
         return (
             <ClickableTableRow
                 key={row.id}
-                onClick={() => this._handleRowClick(row.id)}
+                onClick={() => _handleRowClick(row.id)}
             >
-                {this._renderCells(row)}
-                {this.props.dropdownItems && this._renderCellButton(row)}
+                {_renderCells(row)}
+                {dropdownItems && _renderCellButton(row)}
             </ClickableTableRow>
         );
     };
 
-    private _renderCells = (row: ITableData) => {
-        const { columns } = this.props;
+    const _renderCells = (row: ITableData) => {
+        const { columns } = props;
 
         return columns.map((col, index) => {
             const { forceTooltip, getTooltip, getCell } = col;
@@ -200,12 +169,12 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
         });
     };
 
-    private _renderCellButton = (row: ITableData) => {
+    const _renderCellButton = (row: ITableData) => {
         return (
             <StyledTableCell style={{ width: "5%", padding: 0 }}>
                 <IconButton
                     style={{ float: "right" }}
-                    onClick={e => this._handleButtonClick(e, row)}
+                    onClick={e => _handleButtonClick(e, row)}
                 >
                     <MoreVert />
                 </IconButton>
@@ -213,54 +182,48 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
         );
     };
 
-    private _handleButtonClick = (
+    const _handleButtonClick = (
         event: React.MouseEvent<HTMLElement>,
         row: ITableData
     ) => {
         event.stopPropagation();
-        this._openDropdown(event, row);
+        _openDropdown(event, row);
     };
 
-    private _openDropdown = (
+    const _openDropdown = (
         e: React.MouseEvent<HTMLElement>,
         row: ITableData
     ) => {
-        const { onContextIdChanged } = this.props;
-
-        this.setState(
-            {
-                menuAnchor: e.currentTarget,
-                menuOpen: true,
-                selectedRow: row.id
-            },
-            () => {
-                if (onContextIdChanged) {
-                    onContextIdChanged(row.id);
-                }
-            }
-        );
+        const { onContextIdChanged } = props;
+        setMenuAnchor(e.currentTarget);
+        setMenuOpen(true);
+        setSelectedRow(row.id);
+        if (onContextIdChanged) {
+            onContextIdChanged(row.id);
+        }
     };
 
-    private _handleRowClick = (id: number) => {
-        const { onRowClick } = this.props;
+    const _handleRowClick = (id: number) => {
+        const { onRowClick } = props;
         if (onRowClick) {
             onRowClick(id);
         }
     };
 
-    private _renderPagination = () => {
-        const { pagination, data } = this.props;
-        const { currentPage, rowsPerPage } = this.state;
+    const _renderPagination = () => {
+        const { pagination, data } = props;
+        const classes = paginationStyles();
 
         if (pagination) {
             return (
-                <StyledPagination
+                <TablePagination
+                    classes={{ ...classes }}
                     component="div"
                     page={currentPage}
                     count={data.length}
                     rowsPerPage={rowsPerPage}
-                    onChangePage={this._handlePageChange}
-                    onChangeRowsPerPage={this._handleChangeRowsPerPage}
+                    onChangePage={_handlePageChange}
+                    onChangeRowsPerPage={_handleChangeRowsPerPage}
                     labelRowsPerPage={""}
                     labelDisplayedRows={({ from, to, count }) =>
                         `Viser ${from}-${to} av ${count}`
@@ -277,8 +240,8 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
         }
     };
 
-    private _renderPlaceholder = () => {
-        const { columns, placeholderText, dropdownItems } = this.props;
+    const _renderPlaceholder = () => {
+        const { columns, placeholderText, dropdownItems } = props;
         const columnCount = columns.length + (dropdownItems ? 1 : 0);
 
         return (
@@ -292,19 +255,45 @@ class GrepTable extends React.Component<IGrepTableProps, LocalState> {
         );
     };
 
-    private _handlePageChange = (
+    const _handlePageChange = (
         event: React.MouseEvent<HTMLButtonElement> | null,
         newPage: number
     ) => {
         event && event.preventDefault();
-        this.setState({ currentPage: newPage });
+        setCurrentPage(newPage);
     };
 
-    private _handleChangeRowsPerPage = (
+    const _handleChangeRowsPerPage = (
         event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
     ) => {
-        this.setState({ rowsPerPage: Number(event.target.value) });
+        setRowsPerPage(Number(event.target.value));
     };
-}
+
+    const _handleMenuClose = () => {
+        setMenuOpen(false);
+        setMenuAnchor(null);
+    };
+
+    return (
+        <Container>
+            <StyledTable
+                style={{ borderCollapse: outlined ? "collapse" : "unset" }}
+            >
+                {header && _renderHeader()}
+                {_renderBody()}
+            </StyledTable>
+            {_renderPagination()}
+            {dropdownItems && (
+                <DropdownMenu
+                    contextId={selectedRow}
+                    menuOpen={menuOpen}
+                    menuItems={dropdownItems}
+                    menuAnchor={menuAnchor}
+                    onMenuClose={_handleMenuClose}
+                />
+            )}
+        </Container>
+    );
+};
 
 export default GrepTable as React.ComponentType<IGrepTableProps>;

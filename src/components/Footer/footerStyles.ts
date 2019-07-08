@@ -17,4 +17,4 @@ const styles = ({ palette }: Theme) =>
         }
     });
 
-export const StyledFooter = withTheme()(withStyles(styles)(CleanPaper));
+export const StyledFooter = withTheme(withStyles(styles)(CleanPaper));
