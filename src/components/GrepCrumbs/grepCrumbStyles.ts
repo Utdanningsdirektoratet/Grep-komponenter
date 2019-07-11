@@ -36,7 +36,7 @@ const prevStyles = ({ palette }: Theme) =>
         }
     });
 
-export const Previous = withTheme()(withStyles(prevStyles)(CleanPaper));
+export const Previous = withTheme(withStyles(prevStyles)(CleanPaper));
 
 export const Current = withStyles({
     root: {

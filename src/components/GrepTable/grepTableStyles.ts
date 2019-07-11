@@ -1,17 +1,16 @@
 import withStyles from "@material-ui/core/styles/withStyles";
-import Table from "@material-ui/core/Table/Table";
-import TableHead from "@material-ui/core/TableHead/TableHead";
-import TableBody from "@material-ui/core/TableBody/TableBody";
-import TableRow from "@material-ui/core/TableRow/TableRow";
-import TableCell from "@material-ui/core/TableCell/TableCell";
-import createStyles from "@material-ui/core/styles/createStyles";
-import TableFooter from "@material-ui/core/TableFooter/TableFooter";
-import TablePagination from "@material-ui/core/TablePagination/TablePagination";
-import Button from "@material-ui/core/Button/Button";
-import CleanPaper from "../CleanPaper";
-import Colors from "../../styling/Colors";
 import withTheme from "@material-ui/core/styles/withTheme";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
+import { makeStyles, createStyles } from "@material-ui/core/styles";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import TableFooter from "@material-ui/core/TableFooter";
+import Button from "@material-ui/core/Button";
+import CleanPaper from "../CleanPaper";
+import Colors from "../../styling/Colors";
 
 export const Container = withStyles({
     root: {}
@@ -66,25 +65,27 @@ export const StyledTableCell = withStyles({
 
 export const StyledTableFooter = withStyles({})(TableFooter);
 
-export const StyledPagination = withStyles({
-    toolbar: {
-        padding: 0,
-        width: "100%",
-        display: "grid",
-        gridTemplateAreas: "'left right'"
-    },
-    input: {
-        gridArea: "left",
-        justifySelf: "start"
-    },
-    caption: {
-        gridArea: "left",
-        paddingLeft: "60px"
-    },
-    spacer: {
-        display: "none"
-    }
-})(TablePagination);
+export const paginationStyles = makeStyles(
+    createStyles({
+        toolbar: {
+            padding: 0,
+            width: "100%",
+            display: "grid",
+            gridTemplateAreas: "'left right'"
+        },
+        input: {
+            gridArea: "left",
+            justifySelf: "start"
+        },
+        caption: {
+            gridArea: "left",
+            paddingLeft: "60px"
+        },
+        spacer: {
+            display: "none"
+        }
+    })
+);
 
 export const PaginationTextButton = withStyles({
     root: {
@@ -107,4 +108,4 @@ const buttonStyles = ({ palette }: Theme) =>
         }
     });
 
-export const PaginationButton = withTheme()(withStyles(buttonStyles)(Button));
+export const PaginationButton = withTheme(withStyles(buttonStyles)(Button));

@@ -1,7 +1,8 @@
 import * as React from "react";
+import ListItem from "@material-ui/core/ListItem";
 import {
     StyledFooter,
-    StyledFooterItem,
+    listItemStyles,
     StyledFooterItemText
 } from "./footerItemsStyles";
 
@@ -13,18 +14,29 @@ export interface FooterItemsProps {
     items: FooterItem[];
 }
 
-const FooterItems: React.FC<FooterItemsProps> = props => (
-    <StyledFooter>
-        {props.items.map((item, index) => (
-            <StyledFooterItem
-                key={index}
-                onClick={item.onClickItem}
-                button={typeof item.onClickItem === "function"}
-            >
-                <StyledFooterItemText primary={item.label} />
-            </StyledFooterItem>
-        ))}
-    </StyledFooter>
-);
+const FooterItems: React.FC<FooterItemsProps> = props => {
+    const classes = listItemStyles();
+
+    return (
+        <StyledFooter>
+            {props.items.map((item, index) =>
+                typeof item.onClickItem === "function" ? (
+                    <ListItem
+                        classes={{ root: classes.root, button: classes.button }}
+                        key={index}
+                        onClick={item.onClickItem}
+                        button
+                    >
+                        <StyledFooterItemText primary={item.label} />
+                    </ListItem>
+                ) : (
+                    <ListItem classes={{ root: classes.root }} key={index}>
+                        <StyledFooterItemText primary={item.label} />
+                    </ListItem>
+                )
+            )}
+        </StyledFooter>
+    );
+};
 
 export default FooterItems as React.ComponentType<FooterItemsProps>;

@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-    StyledList,
-    StyledListItem,
-    StyledListItemText
-} from "./appBarNavListStyles";
+import { StyledTabs, StyledTab } from "./appBarNavListStyles";
 
 export interface NavigationProps {
     id: number;
@@ -18,42 +14,25 @@ export interface AppBarNavListProps {
     onChange: (selectedPage: number) => void;
 }
 
-interface State {
-    selectedPage: number;
-}
+const AppBarNavList: React.FC<AppBarNavListProps> = ({
+    selectedPage,
+    pages,
+    onChange
+}) => {
+    const [value, setValue] = React.useState(selectedPage);
 
-class AppBarNavList extends React.Component<AppBarNavListProps, State> {
-    public state: Readonly<State> = {
-        selectedPage: 0
+    const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
+        setValue(newValue);
+        onChange(newValue);
     };
 
-    public componentDidMount() {
-        this.setState({ selectedPage: this.props.selectedPage });
-    }
-
-    public render() {
-        const { pages } = this.props;
-
-        return (
-            <StyledList>
-                {pages.map(page => (
-                    <StyledListItem
-                        key={page.id}
-                        button
-                        onClick={() => this._onClick(page)}
-                        selected={page.id === this.state.selectedPage}
-                    >
-                        <StyledListItemText primary={page.label} />
-                    </StyledListItem>
-                ))}
-            </StyledList>
-        );
-    }
-
-    private _onClick = (page: NavigationProps) => {
-        this.setState({ selectedPage: page.id });
-        this.props.onChange(page.id);
-    };
-}
+    return (
+        <StyledTabs value={value} onChange={handleChange}>
+            {pages.map(page => (
+                <StyledTab key={page.id} label={page.label} />
+            ))}
+        </StyledTabs>
+    );
+};
 
 export default AppBarNavList as React.ComponentType<AppBarNavListProps>;

@@ -50,6 +50,6 @@ const iconStyles = ({ palette }: Theme) =>
         }
     });
 
-export const StyledLink = withTheme()(withStyles(linkStyles)(CleanPaper));
+export const StyledLink = withTheme(withStyles(linkStyles)(CleanPaper));
 
-export const StyledArrow = withTheme()(withStyles(iconStyles)(ArrowForward));
+export const StyledArrow = withTheme(withStyles(iconStyles)(ArrowForward));
