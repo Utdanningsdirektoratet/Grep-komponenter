@@ -23,12 +23,12 @@ export const UserContainer = withStyles({
 
 export const UserName = withStyles({
     root: {
-        fontSize: 18
+        fontSize: 16
     }
 })(Typography);
 
 export const UserRole = withStyles({
     root: {
-        fontSize: 14
+        fontSize: 12
     }
 })(Typography);
