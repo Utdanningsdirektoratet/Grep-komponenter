@@ -8,6 +8,7 @@ export const StyledAppBar = withStyles({
         flexDirection: "row"
     },
     positionFixed: {
-        position: "unset"
+        left: "unset",
+        right: "unset"
     }
 })(AppBar);

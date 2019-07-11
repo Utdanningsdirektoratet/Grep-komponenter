@@ -25,11 +25,14 @@ const HideOnScroll: React.FC<IHideOnScrollProps> = ({ children }) => {
 };
 
 const AppBar: React.FC<AppBarProps> = props => (
-    <HideOnScroll {...props}>
-        <StyledAppBar position="fixed" color="inherit" elevation={0}>
-            <Toolbar>{props.children}</Toolbar>
-        </StyledAppBar>
-    </HideOnScroll>
+    <React.Fragment>
+        <HideOnScroll {...props}>
+            <StyledAppBar color="inherit" elevation={0}>
+                <Toolbar>{props.children}</Toolbar>
+            </StyledAppBar>
+        </HideOnScroll>
+        <Toolbar />
+    </React.Fragment>
 );
 
 export default AppBar as React.ComponentType<AppBarProps>;
