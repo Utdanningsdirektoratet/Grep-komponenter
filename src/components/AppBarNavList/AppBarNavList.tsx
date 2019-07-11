@@ -21,7 +21,7 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
 }) => {
     const [value, setValue] = React.useState(selectedPage);
 
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+    const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
         setValue(newValue);
         onChange(newValue);
     };

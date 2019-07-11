@@ -2,15 +2,12 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import {
     MainLayout,
-    AppBarTop,
     CenterLayout,
-    AppBarLogo,
     AppBarProfile,
     DropdownMenu,
     AppBarNavList,
     AppBar
 } from "..";
-import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { menuItems } from "../DropdownMenu/DropDownMenu.stories";

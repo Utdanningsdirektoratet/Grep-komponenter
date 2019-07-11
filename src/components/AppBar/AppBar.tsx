@@ -17,7 +17,6 @@ const HideOnScroll: React.FC<IHideOnScrollProps> = ({ children }) => {
     // This is only being set here because the demo is in an iframe.
     // const trigger = useScrollTrigger({ target: window ? window() : undefined });
     const trigger = useScrollTrigger();
-
     return (
         <Slide appear={false} direction="down" in={!trigger}>
             {children}
@@ -26,11 +25,14 @@ const HideOnScroll: React.FC<IHideOnScrollProps> = ({ children }) => {
 };
 
 const AppBar: React.FC<AppBarProps> = props => (
-    <HideOnScroll {...props}>
-        <StyledAppBar position="static" color="inherit" elevation={0}>
-            <Toolbar>{props.children}</Toolbar>
-        </StyledAppBar>
-    </HideOnScroll>
+    <React.Fragment>
+        <HideOnScroll {...props}>
+            <StyledAppBar color="inherit" elevation={0}>
+                <Toolbar>{props.children}</Toolbar>
+            </StyledAppBar>
+        </HideOnScroll>
+        <Toolbar />
+    </React.Fragment>
 );
 
 export default AppBar as React.ComponentType<AppBarProps>;

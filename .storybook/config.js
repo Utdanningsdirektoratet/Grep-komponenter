@@ -14,7 +14,7 @@ const theme = createMuiTheme({
             contrastText: Colors.white
         },
         secondary: {
-            main: Colors.lightBlue
+            main: Colors.orange
         },
         background: {
             default: Colors.white

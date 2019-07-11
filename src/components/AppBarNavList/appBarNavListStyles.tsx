@@ -2,7 +2,6 @@ import * as React from "react";
 import { withStyles, Theme, createStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
 import Tabs from "@material-ui/core/Tabs";
-import Colors from "../../styling/Colors";
 
 interface StyledTabsProps {
     value: number;
@@ -21,7 +20,7 @@ export const StyledTabs = withStyles((theme: Theme) =>
             "& > div": {
                 maxWidth: 40,
                 width: "100%",
-                backgroundColor: Colors.orange
+                backgroundColor: theme.palette.secondary.main
             }
         }
     })
