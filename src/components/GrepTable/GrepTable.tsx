@@ -57,7 +57,9 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
     const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
         null
     );
-    const [selectedRow, setSelectedRow] = React.useState(null);
+    const [selectedRow, setSelectedRow] = React.useState<number | null>(
+        null
+    );
     const {
         outlined,
         header,
