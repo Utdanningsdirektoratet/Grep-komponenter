@@ -31,14 +31,14 @@ export const navbarPages = [
 
 storiesOf("AppbarNavigationList", module).add("with theme and appbar", () => (
     <MainLayout>
-        <AppBar>
-            <CenterLayout>
+        <CenterLayout>
+            <AppBar>
                 <AppBarNavList
                     pages={navbarPages}
                     selectedPage={navbarPages[0].id}
                     onChange={number => console.log("index: ", number)}
                 />
-            </CenterLayout>
-        </AppBar>
+            </AppBar>
+        </CenterLayout>
     </MainLayout>
 ));

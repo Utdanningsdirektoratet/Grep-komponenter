@@ -6,5 +6,8 @@ export const StyledAppBar = withStyles({
         backgroundColor: "transparant",
         display: "flex",
         flexDirection: "row"
+    },
+    positionFixed: {
+        position: "unset"
     }
 })(AppBar);

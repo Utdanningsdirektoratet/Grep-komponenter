@@ -38,7 +38,7 @@ storiesOf("AppBar", module).add("with content", () => (
     </MainLayout>
 ));
 
-storiesOf("AppBar", module).add("hide on scroll", () => (
+storiesOf("AppBar", module).add("hide/show on scroll", () => (
     <MainLayout>
         <CenterLayout>
             <div style={{ maxWidth: 900 }}>
