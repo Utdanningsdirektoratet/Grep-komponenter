@@ -24,7 +24,7 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
 ## Publishing using Travis CI
 
-    npm version patch -m "Bumping to %s" && git push --tags
+    npm version patch -m "Bumping to %s" && git push --tags && git push
     
 ## Publishing locally
 
