@@ -31,6 +31,4 @@ export { default as InfoContainer } from "./components/InfoContainer";
 export { default as OverflowTooltip } from "./components/OverflowTooltip";
 export { default as Sidebar } from "./components/Sidebar";
 export { default as SidebarWrapper } from "./components/SidebarWrapper";
-
 export * from "./components";
-export * from "@material-ui/core";
