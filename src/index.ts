@@ -1,8 +1,3 @@
-export {
-    default as ThemeProvider
-} from "@material-ui/core/styles/MuiThemeProvider";
-export { default as CssBaseline } from "@material-ui/core/CssBaseline";
-
 export { default as Grid } from "@material-ui/core/Grid";
 export { default as Colors } from "./styling/Colors";
 export { default as AppBar } from "./components/AppBar";
@@ -36,5 +31,4 @@ export { default as InfoContainer } from "./components/InfoContainer";
 export { default as OverflowTooltip } from "./components/OverflowTooltip";
 export { default as Sidebar } from "./components/Sidebar";
 export { default as SidebarWrapper } from "./components/SidebarWrapper";
-
 export * from "./components";
