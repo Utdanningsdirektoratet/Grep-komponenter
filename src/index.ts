@@ -1,17 +1,10 @@
 export {
     default as ThemeProvider
 } from "@material-ui/core/styles/MuiThemeProvider";
-export {
-    default as createMuiTheme
-} from "@material-ui/core/styles/createMuiTheme";
 export { default as CssBaseline } from "@material-ui/core/CssBaseline";
 
 export { default as Grid } from "@material-ui/core/Grid";
-
-// export { default as StylesProvider } from "./providers";
-
 export { default as Colors } from "./styling/Colors";
-
 export { default as AppBar } from "./components/AppBar";
 export { default as AppBarTop } from "./components/AppBarTop";
 export { default as AppBarLogo } from "./components/AppBarLogo";
