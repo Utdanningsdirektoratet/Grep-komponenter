@@ -2,7 +2,8 @@ import React from "react";
 import { configure } from "@storybook/react";
 import { addDecorator } from "@storybook/react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { ThemeProvider, StylesProvider } from "../src";
+import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import { StylesProvider } from "../src";
 import { createGlobalStyle } from "styled-components";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Colors from "../src/styling/Colors";
@@ -63,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Decorator = story => (
     <StylesProvider>
-        <ThemeProvider theme={theme}>
+        <MuiThemeProvider theme={theme}>
             <CssBaseline />
             <GlobalStyle />
             <div
@@ -74,7 +75,7 @@ const Decorator = story => (
             >
                 {story()}
             </div>
-        </ThemeProvider>
+        </MuiThemeProvider>
     </StylesProvider>
 );
 

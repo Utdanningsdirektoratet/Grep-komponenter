@@ -29,18 +29,21 @@ storiesOf("GrepSelect", module)
     .add("Standard", () => (
         <React.Fragment>
             <GrepSelect
+                value={"Test"}
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
                 selectItems={selectItems}
                 onChange={action("select med feilmelding change")}
             />
             <GrepSelect
+                value={"Test"}
                 label="Med hjelpetekst"
                 helperText="Hjelpetekst"
                 selectItems={selectItems}
                 onChange={action("select med hjelpetekst change")}
             />
             <GrepSelect
+                value={"Test"}
                 label="Med kjempelang label bla bla bla"
                 selectItems={selectItems}
                 onChange={action("select med lang-label change")}
@@ -50,6 +53,7 @@ storiesOf("GrepSelect", module)
     .add("Outlined", () => (
         <React.Fragment>
             <GrepSelect
+                value={"Test"}
                 outlined
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
@@ -57,6 +61,7 @@ storiesOf("GrepSelect", module)
                 onChange={action("outlined-select med feilmelding change")}
             />
             <GrepSelect
+                value={"Test"}
                 outlined
                 label="Med hjelpetekst"
                 helperText="Hjelpetekst"
@@ -64,6 +69,7 @@ storiesOf("GrepSelect", module)
                 onChange={action("outlined-select med hjelpetekst change")}
             />
             <GrepSelect
+                value={"Test"}
                 outlined
                 label="Med kjempelang label bla bla bla"
                 selectItems={selectItems}
