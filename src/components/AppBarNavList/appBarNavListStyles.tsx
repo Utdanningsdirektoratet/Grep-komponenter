@@ -35,7 +35,7 @@ interface StyledTabProps {
 export const StyledTab = withStyles((theme: Theme) =>
     createStyles({
         root: {
-            textTransform: "none",
+            textTransform: "uppercase",
             color: theme.palette.primary.main,
             fontWeight: theme.typography.fontWeightBold,
             fontSize: theme.typography.subtitle1.fontSize,
