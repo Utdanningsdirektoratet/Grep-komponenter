@@ -37,8 +37,8 @@ export const StyledTab = withStyles((theme: Theme) =>
         root: {
             textTransform: "none",
             color: theme.palette.primary.main,
-            fontWeight: theme.typography.fontWeightRegular,
-            fontSize: theme.typography.pxToRem(15),
+            fontWeight: theme.typography.fontWeightBold,
+            fontSize: theme.typography.subtitle1.fontSize,
             marginRight: theme.spacing(1),
             "&:focus": {
                 opacity: 1
