@@ -1,4 +1,9 @@
 import * as React from "react";
+import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import { storiesOf } from "@storybook/react";
 import {
     MainLayout,
@@ -15,26 +20,33 @@ import { navbarPages } from "../AppBarNavList/AppBarNavList.stories";
 
 storiesOf("AppBar", module).add("with content", () => (
     <MainLayout>
-        <CenterLayout>
+        {/* <CenterLayout> */}
+        <div>
             <AppBar>
-                <AppBarNavList
-                    pages={navbarPages}
-                    selectedPage={navbarPages[0].id}
-                    onChange={number => console.log("index: ", number)}
-                />
-                <AppBarProfile
-                    userRole={"Superbruker"}
-                    fullName={"Grep Fagansvarlig"}
-                    onButtonClick={() => console.log("Button clicked")}
-                />
-                <DropdownMenu
-                    menuOpen={false}
-                    menuAnchor={null}
-                    menuItems={menuItems}
-                    onMenuClose={() => console.log("closing menu")}
-                />
+                <div style={{ display: "flex" }}>
+                    <AppBarNavList
+                        pages={navbarPages}
+                        selectedPage={navbarPages[0].id}
+                        onChange={number => console.log("index: ", number)}
+                    />
+                </div>
+                <div style={{ display: "flex", marginLeft: "auto" }}>
+                    <AppBarProfile
+                        userRole={"Superbruker"}
+                        fullName={"Grep Fagansvarlig"}
+                        onButtonClick={() => console.log("Button clicked")}
+                    />
+                    <DropdownMenu
+                        menuOpen={false}
+                        menuAnchor={null}
+                        menuItems={menuItems}
+                        onMenuClose={() => console.log("closing menu")}
+                    />
+                </div>
             </AppBar>
-        </CenterLayout>
+        </div>
+
+        {/* </CenterLayout> */}
     </MainLayout>
 ));
 
