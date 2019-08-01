@@ -4,9 +4,9 @@ import { addDecorator } from "@storybook/react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import { StylesProvider } from "../src";
-import { createGlobalStyle } from "styled-components";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Colors from "../src/styling/Colors";
+import "../src/styling/globalStyles.css";
 
 const theme = createMuiTheme({
     palette: {
@@ -47,34 +47,11 @@ const theme = createMuiTheme({
     }
 });
 
-const GlobalStyle = createGlobalStyle`
-  html, body {
-    height: 100%;
-    padding: 0;
-    font-size: 14px;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  }
-
-  #root {
-    display: flex;
-    flex: 1 1 0%;
-    height: 100%;
-  }
-`;
-
 const Decorator = story => (
     <StylesProvider>
         <MuiThemeProvider theme={theme}>
             <CssBaseline />
-            <GlobalStyle />
-            <div
-                style={{
-                    display: "flex",
-                    flex: "1 1 0%"
-                }}
-            >
-                {story()}
-            </div>
+            {story()}
         </MuiThemeProvider>
     </StylesProvider>
 );

@@ -1,12 +1,6 @@
-import styled from "styled-components";
 import CleanPaper from "../CleanPaper";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Typography from "@material-ui/core/Typography/Typography";
-
-export const AppLogo = styled.img`
-    height: 50px;
-    width: 50px;
-`;
 
 export const AppTitle = withStyles({
     root: {
