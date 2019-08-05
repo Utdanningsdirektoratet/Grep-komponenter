@@ -45,7 +45,7 @@ export interface IGrepTableProps {
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
-    onContextIdChanged?: (id: number) => void;
+    onContextIdChanged?: (row: any) => void;
 }
 
 const GrepTable: React.FC<IGrepTableProps> = props => {
@@ -57,9 +57,7 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
     const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
         null
     );
-    const [selectedRow, setSelectedRow] = React.useState<number | null>(
-        null
-    );
+    const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
     const {
         outlined,
         header,
@@ -201,7 +199,7 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         setMenuOpen(true);
         setSelectedRow(row.id);
         if (onContextIdChanged) {
-            onContextIdChanged(row.id);
+            onContextIdChanged(row);
         }
     };
 

@@ -6,6 +6,7 @@ export interface IMenuItem {
     label: string;
     disabled?: boolean;
     handleClick: (id?: number | null) => void;
+    customRender?: (key: number, onMenuClose: () => void) => JSX.Element;
 }
 export interface DropdownMenuProps {
     menuOpen: boolean;
@@ -21,15 +22,19 @@ class DropdownMenu extends React.Component<DropdownMenuProps> {
 
         return (
             <Menu open={menuOpen} anchorEl={menuAnchor} onClose={onMenuClose}>
-                {menuItems.map((item, index) => (
-                    <MenuItem
-                        key={index}
-                        disabled={item.disabled}
-                        onClick={() => this._onItemClicked(index)}
-                    >
-                        {item.label}
-                    </MenuItem>
-                ))}
+                {menuItems.map((item, index) =>
+                    item.customRender ? (
+                        item.customRender(index, onMenuClose)
+                    ) : (
+                        <MenuItem
+                            key={index}
+                            disabled={item.disabled}
+                            onClick={() => this._onItemClicked(index)}
+                        >
+                            {item.label}
+                        </MenuItem>
+                    )
+                )}
             </Menu>
         );
     }
