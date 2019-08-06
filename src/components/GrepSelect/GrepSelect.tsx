@@ -1,13 +1,10 @@
 import * as React from "react";
-import Input from "@material-ui/core/Input/Input";
-import RootRef from "@material-ui/core/RootRef/RootRef";
-import MenuItem from "@material-ui/core/MenuItem/MenuItem";
-import InputLabel from "@material-ui/core/InputLabel/InputLabel";
-import FormControl from "@material-ui/core/FormControl/FormControl";
-import Select, { SelectProps } from "@material-ui/core/Select/Select";
-import OutlinedInput from "@material-ui/core/OutlinedInput/OutlinedInput";
-import FormHelperText from "@material-ui/core/FormHelperText/FormHelperText";
-import { PropTypes } from "@material-ui/core";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select, { SelectProps } from "@material-ui/core/Select";
+import { Input, FormHelperText, PropTypes } from "@material-ui/core";
 
 export interface ISelectItem {
     value: string;
@@ -22,81 +19,65 @@ export interface GrepSelectProps extends SelectProps {
     formMargin?: PropTypes.Margin;
 }
 
-interface LocalState {
-    labelWidth: number;
-}
+const GrepSelect: React.FC<GrepSelectProps> = props => {
+    const inputLabel = React.useRef<HTMLLabelElement>(null);
+    const [labelWidth, setLabelWidth] = React.useState(0);
 
-class GrepSelect extends React.Component<GrepSelectProps, LocalState> {
-    private InputLabelRef = React.createRef<HTMLElement>();
+    React.useEffect(() => {
+        setLabelWidth(inputLabel.current!.offsetWidth);
+    }, []);
 
-    constructor(props: GrepSelectProps) {
-        super(props);
-        this.state = { labelWidth: 0 };
-    }
+    const {
+        errorMessage,
+        selectItems,
+        helperText,
+        fullWidth,
+        outlined,
+        disabled,
+        label,
+        formMargin,
+        value,
+        ...rest
+    } = props;
 
-    public componentDidMount() {
-        this.setState({
-            labelWidth: this.InputLabelRef.current!.offsetWidth
-        });
-    }
+    const error = errorMessage ? errorMessage.length > 0 : false;
 
-    public render() {
-        const {
-            errorMessage,
-            selectItems,
-            helperText,
-            fullWidth,
-            outlined,
-            disabled,
-            label,
-            formMargin,
-            value,
-            ...rest
-        } = this.props;
-
-        const error = errorMessage ? errorMessage.length > 0 : false;
-
-        return (
-            <FormControl
-                variant={outlined ? "outlined" : "standard"}
-                fullWidth={fullWidth}
-                error={error}
-                margin={formMargin ? formMargin : "normal"}
-                style={this.props.style}
+    return (
+        <FormControl
+            variant={outlined ? "outlined" : "standard"}
+            fullWidth={fullWidth}
+            error={error}
+            margin={formMargin ? formMargin : "normal"}
+            style={props.style}
+        >
+            <InputLabel ref={inputLabel} style={{ width: "max-content" }}>
+                {props.label}
+            </InputLabel>
+            <Select
+                {...rest}
+                disabled={!selectItems || disabled}
+                value={value === null ? "" : value}
+                style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
+                input={
+                    outlined ? (
+                        <OutlinedInput labelWidth={labelWidth} />
+                    ) : (
+                        <Input />
+                    )
+                }
             >
-                <RootRef rootRef={this.InputLabelRef}>
-                    <InputLabel style={{ width: "max-content" }}>
-                        {label}
-                    </InputLabel>
-                </RootRef>
-                <Select
-                    {...rest}
-                    disabled={!selectItems || disabled}
-                    value={value === null ? "" : value}
-                    style={{
-                        minWidth: this.state.labelWidth + (outlined ? 35 : 25)
-                    }}
-                    input={
-                        outlined ? (
-                            <OutlinedInput labelWidth={this.state.labelWidth} />
-                        ) : (
-                            <Input />
-                        )
-                    }
-                >
-                    <MenuItem value="">
-                        <em>Fjern valgt</em>
+                <MenuItem value="">
+                    <em>Fjern valgt</em>
+                </MenuItem>
+                {selectItems.map((item, index) => (
+                    <MenuItem key={index} value={item.value}>
+                        {item.label ? item.label : item.value}
                     </MenuItem>
-                    {selectItems.map((item, index) => (
-                        <MenuItem key={index} value={item.value}>
-                            {item.label ? item.label : item.value}
-                        </MenuItem>
-                    ))}
-                </Select>
-                <FormHelperText>{errorMessage || helperText}</FormHelperText>
-            </FormControl>
-        );
-    }
-}
+                ))}
+            </Select>
+            <FormHelperText>{errorMessage || helperText}</FormHelperText>
+        </FormControl>
+    );
+};
 
 export default GrepSelect as React.ComponentType<GrepSelectProps>;
