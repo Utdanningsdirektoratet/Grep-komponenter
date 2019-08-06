@@ -29,6 +29,7 @@ storiesOf("GrepSelect", module)
     .add("Standard", () => (
         <React.Fragment>
             <GrepSelect
+                value={"Test"}
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
                 selectItems={selectItems}
@@ -50,6 +51,7 @@ storiesOf("GrepSelect", module)
     .add("Outlined", () => (
         <React.Fragment>
             <GrepSelect
+                value={"Test"}
                 outlined
                 label="Med feilmelding"
                 errorMessage="Feilmelding"
