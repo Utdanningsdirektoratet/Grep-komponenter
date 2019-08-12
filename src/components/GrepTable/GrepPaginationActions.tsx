@@ -1,8 +1,7 @@
 import * as React from "react";
 import { PaginationButton, PaginationTextButton } from "./grepTableStyles";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
-import withStyles, { WithStyles } from "@material-ui/core/styles/withStyles";
 import { Colors } from "../../styling";
+import { WithStyles, Theme, withStyles } from "@material-ui/core";
 
 const actionsStyles = () => ({
     root: {
@@ -107,6 +106,6 @@ class PaginationActions extends React.Component<Props> {
     };
 }
 
-export const PaginationActionsWrapped = withStyles(actionsStyles, {
-    withTheme: true
-})(PaginationActions);
+export const PaginationActionsWrapped = withStyles(actionsStyles)(
+    PaginationActions
+);

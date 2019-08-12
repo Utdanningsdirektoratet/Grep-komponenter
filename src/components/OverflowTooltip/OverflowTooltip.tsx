@@ -1,5 +1,5 @@
 import * as React from "react";
-import Tooltip from "@material-ui/core/Tooltip/Tooltip";
+import { Tooltip } from "@material-ui/core";
 
 export interface OverflowTooltipProps {
     title: any;
