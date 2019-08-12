@@ -1,16 +1,19 @@
-import withStyles from "@material-ui/core/styles/withStyles";
-import withTheme from "@material-ui/core/styles/withTheme";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
-import { makeStyles, createStyles } from "@material-ui/core/styles";
-import Table from "@material-ui/core/Table";
-import TableHead from "@material-ui/core/TableHead";
-import TableBody from "@material-ui/core/TableBody";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import TableFooter from "@material-ui/core/TableFooter";
-import Button from "@material-ui/core/Button";
 import CleanPaper from "../CleanPaper";
 import Colors from "../../styling/Colors";
+import { createStyles } from "@material-ui/styles";
+import {
+    Table,
+    TableBody,
+    TableHead,
+    TableRow,
+    TableCell,
+    TableFooter,
+    Button,
+    withStyles,
+    withTheme,
+    Theme,
+    makeStyles
+} from "@material-ui/core";
 
 export const Container = withStyles({
     root: {}

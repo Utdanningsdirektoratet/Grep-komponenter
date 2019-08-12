@@ -165,9 +165,11 @@ storiesOf("Grep table", module)
     .add("with dropdown-menu", () => (
         <GrepTable
             header
-            columns={CURRICULUM_COLUMNS}
             data={tableData}
             dropdownItems={menuItems}
+            columns={CURRICULUM_COLUMNS}
+            menuTooltip={row => "Tooltip"}
+            menuDisabled={row => row.id === 3}
         />
     ))
     .add("with pagination", () => (

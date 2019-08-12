@@ -9,15 +9,14 @@ import {
     ClickableTableRow,
     paginationStyles
 } from "./grepTableStyles";
-import TablePagination from "@material-ui/core/TablePagination";
 import {
     PaginationActionsWrapped,
     PaginationActionsProps
 } from "./GrepPaginationActions";
 import DropdownMenu, { IMenuItem } from "../DropdownMenu";
-import IconButton from "@material-ui/core/IconButton/IconButton";
 import MoreVert from "@material-ui/icons/MoreVert";
 import OverflowTooltip from "../OverflowTooltip";
+import { IconButton, TablePagination, Tooltip } from "@material-ui/core";
 
 export interface ITableColumn<T> {
     label: string;
@@ -45,7 +44,9 @@ export interface IGrepTableProps {
     clickableRows?: boolean;
     placeholderText?: string;
     onRowClick?: (id: number) => any;
-    onContextIdChanged?: (id: number) => void;
+    menuTooltip?: (row: any) => string;
+    menuDisabled?: (row: any) => boolean; // TODO: Remove any type from row-parameter
+    onContextIdChanged?: (row: any) => void;
 }
 
 const GrepTable: React.FC<IGrepTableProps> = props => {
@@ -57,9 +58,7 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
     const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
         null
     );
-    const [selectedRow, setSelectedRow] = React.useState<number | null>(
-        null
-    );
+    const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
     const {
         outlined,
         header,
@@ -172,15 +171,22 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
     };
 
     const _renderCellButton = (row: ITableData) => {
+        const { menuDisabled, menuTooltip } = props;
+        const disabled = menuDisabled && menuDisabled(row);
+        const tooltip = menuTooltip ? menuTooltip(row) : "";
+
         return (
-            <StyledTableCell style={{ width: "5%", padding: 0 }}>
-                <IconButton
-                    style={{ float: "right" }}
-                    onClick={e => _handleButtonClick(e, row)}
-                >
-                    <MoreVert />
-                </IconButton>
-            </StyledTableCell>
+            <Tooltip title={tooltip}>
+                <StyledTableCell style={{ width: "5%", padding: 0 }}>
+                    <IconButton
+                        disabled={disabled}
+                        style={{ float: "right" }}
+                        onClick={e => _handleButtonClick(e, row)}
+                    >
+                        <MoreVert />
+                    </IconButton>
+                </StyledTableCell>
+            </Tooltip>
         );
     };
 
@@ -201,7 +207,7 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         setMenuOpen(true);
         setSelectedRow(row.id);
         if (onContextIdChanged) {
-            onContextIdChanged(row.id);
+            onContextIdChanged(row);
         }
     };
 
