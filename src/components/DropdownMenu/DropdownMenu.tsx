@@ -40,7 +40,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, ILocalState> {
         return (
             <Menu open={menuOpen} anchorEl={menuAnchor} onClose={this._onClose}>
                 {menuItems.map((item, index) => {
-                    const { children, button, ...rest } = item;
+                    const { children, button, handleClick, ...rest } = item;
 
                     return (
                         <div key={index}>
@@ -72,7 +72,7 @@ class DropdownMenu extends React.Component<DropdownMenuProps, ILocalState> {
             >
                 <List disablePadding>
                     {children.map((child, cIndex) => {
-                        const { style, button, ...rest } = child;
+                        const { style, button, handleClick, ...rest } = child;
 
                         return (
                             <MenuItem
