@@ -16,12 +16,18 @@ import {
 import DropdownMenu, { IMenuItem } from "../DropdownMenu";
 import MoreVert from "@material-ui/icons/MoreVert";
 import OverflowTooltip from "../OverflowTooltip";
-import { IconButton, TablePagination, Tooltip } from "@material-ui/core";
+import {
+    IconButton,
+    TablePagination,
+    Tooltip,
+    TableSortLabel
+} from "@material-ui/core";
 
 export interface ITableColumn<T> {
     label: string;
     width?: number;
     colDef?: string;
+    sortable?: boolean;
     forceTooltip?: boolean;
     getTooltip?: (row: T) => string;
     getCell: (row: T) => string | number | boolean | JSX.Element;
@@ -36,17 +42,20 @@ export interface ITableData {
 export interface IGrepTableProps {
     data: ITableData[];
     columns: Array<ITableColumn<any>>;
+    sortBy?: string;
     header?: boolean;
     outlined?: boolean;
     rowsPerPage?: number;
     pagination?: boolean;
-    dropdownItems?: IMenuItem[];
     clickableRows?: boolean;
     placeholderText?: string;
+    dropdownItems?: IMenuItem[];
+    sortDirection?: "desc" | "asc";
     onRowClick?: (id: number) => any;
     menuTooltip?: (row: any) => string;
     menuDisabled?: (row: any) => boolean; // TODO: Remove any type from row-parameter
     onContextIdChanged?: (row: any) => void;
+    onSortBy?: (col: ITableColumn<any>) => any;
 }
 
 const GrepTable: React.FC<IGrepTableProps> = props => {
@@ -69,25 +78,33 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         columns
     } = props;
 
-    const _renderHeader = () => {
-        return (
-            <StyledTableHeader>
-                <StyledTableRow>
-                    {columns.map((col, columnIndex) => (
-                        <StyledTableCell
-                            key={columnIndex}
-                            style={{ width: `${col.width}%` }}
-                        >
-                            {col.label}
-                        </StyledTableCell>
-                    ))}
-                    {dropdownItems && (
-                        <StyledTableCell style={{ width: "5%" }} />
-                    )}
-                </StyledTableRow>
-            </StyledTableHeader>
-        );
-    };
+    const _renderHeader = () => (
+        <StyledTableHeader>
+            <StyledTableRow>
+                {columns.map((col, columnIndex) => (
+                    <StyledTableCell
+                        key={columnIndex}
+                        style={{ width: `${col.width}%` }}
+                    >
+                        {props.onSortBy && col.sortable
+                            ? _renderSortLabel(col)
+                            : col.label}
+                    </StyledTableCell>
+                ))}
+                {dropdownItems && <StyledTableCell style={{ width: "5%" }} />}
+            </StyledTableRow>
+        </StyledTableHeader>
+    );
+
+    const _renderSortLabel = (col: ITableColumn<any>) => (
+        <TableSortLabel
+            direction={props.sortDirection}
+            active={props.sortBy === col.colDef}
+            onClick={() => props.onSortBy!(col)}
+        >
+            {col.label}
+        </TableSortLabel>
+    );
 
     const _renderBody = () => {
         if (data.length === 0) {
@@ -114,14 +131,12 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         );
     };
 
-    const _renderRow = (row: ITableData, index: number) => {
-        return (
-            <StyledTableRow key={index}>
-                {_renderCells(row)}
-                {dropdownItems && _renderCellButton(row)}
-            </StyledTableRow>
-        );
-    };
+    const _renderRow = (row: ITableData, index: number) => (
+        <StyledTableRow key={index}>
+            {_renderCells(row)}
+            {dropdownItems && _renderCellButton(row)}
+        </StyledTableRow>
+    );
 
     const _renderClickableRow = (row: ITableData) => {
         if (row.rowDisabled) return _renderRow(row, row.id);
