@@ -9,6 +9,7 @@ import { IconBox, HelpText, Outer, StyledInput } from "./searchBarStyles";
 interface SearchBarProps {
     helpText?: string;
     outlined?: boolean;
+    autoFocus?: boolean;
     initValue?: string;
     placeholder?: string;
     searchAllText?: string;
@@ -17,79 +18,64 @@ interface SearchBarProps {
     onInputChange: (value: string) => void;
 }
 
-interface SearchBarState {
-    value: string;
-}
+const SearchBar: React.FC<SearchBarProps> = props => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
 
-class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
-    public clearButtonStyle = {
-        cursor: "pointer"
-    };
+    const [value, setValue] = React.useState(props.initValue || "");
 
-    constructor(props: SearchBarProps) {
-        super(props);
-        this.state = { value: props.initValue || "" };
-    }
+    React.useEffect(() => {
+        if (props.autoFocus && inputRef.current) {
+            inputRef.current.focus();
+        }
+    });
 
-    public render() {
-        const {
-            helpText,
-            placeholder,
-            onSearchAll,
-            searchAllText,
-            outlined
-        } = this.props;
-
-        const { value } = this.state;
-
-        return (
-            <React.Fragment>
-                <Outer
-                    style={{
-                        border: outlined ? `1px solid ${Colors.lightGrey}` : 0
-                    }}
-                >
-                    <IconBox>
-                        <Search />
-                    </IconBox>
-                    <StyledInput
-                        value={value}
-                        onChange={this._handleChange}
-                        placeholder={placeholder}
-                        InputProps={{ disableUnderline: true, fullWidth: true }}
-                    />
-                    <IconBox style={this.clearButtonStyle}>
-                        {!!value.length && (
-                            <Close onClick={this._handleClear} />
-                        )}
-                    </IconBox>
-                </Outer>
-                <div style={{ display: "flex", alignItems: "center" }}>
-                    {helpText && <HelpText>{helpText}</HelpText>}
-                    {searchAllText && onSearchAll && (
-                        <Button color="primary" onClick={onSearchAll}>
-                            {searchAllText}
-                        </Button>
-                    )}
-                </div>
-            </React.Fragment>
-        );
-    }
-
-    private _handleChange = (
+    const _handleChange = (
         event: React.ChangeEvent<
             HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
         >
     ) => {
         const newVal = event.target.value;
-        this.setState({ value: newVal });
-        this.props.onInputChange(newVal);
+        setValue(newVal);
+        props.onInputChange(newVal);
     };
 
-    private _handleClear = () => {
-        this.setState({ value: "" });
-        this.props.onClear();
+    const _handleClear = () => {
+        setValue("");
+        props.onClear();
     };
-}
+
+    return (
+        <React.Fragment>
+            <Outer
+                style={{
+                    border: props.outlined ? `1px solid ${Colors.lightGrey}` : 0
+                }}
+            >
+                <IconBox>
+                    <Search />
+                </IconBox>
+                <StyledInput
+                    value={value}
+                    inputRef={inputRef}
+                    onChange={_handleChange}
+                    autoFocus={props.autoFocus}
+                    placeholder={props.placeholder}
+                    InputProps={{ disableUnderline: true, fullWidth: true }}
+                />
+                <IconBox style={{ cursor: "pointer" }}>
+                    {!!value.length && <Close onClick={_handleClear} />}
+                </IconBox>
+            </Outer>
+            <div style={{ display: "flex", alignItems: "center" }}>
+                {props.helpText && <HelpText>{props.helpText}</HelpText>}
+                {props.searchAllText && props.onSearchAll && (
+                    <Button color="primary" onClick={props.onSearchAll}>
+                        {props.searchAllText}
+                    </Button>
+                )}
+            </div>
+        </React.Fragment>
+    );
+};
 
 export default SearchBar as React.ComponentType<SearchBarProps>;
