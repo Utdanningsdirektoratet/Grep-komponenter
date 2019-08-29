@@ -45,11 +45,13 @@ export interface IGrepTableProps {
     sortBy?: string;
     header?: boolean;
     outlined?: boolean;
+    rowHeight?: number;
     rowsPerPage?: number;
     pagination?: boolean;
     clickableRows?: boolean;
     placeholderText?: string;
     dropdownItems?: IMenuItem[];
+    style?: React.CSSProperties;
     sortDirection?: "desc" | "asc";
     onRowClick?: (id: number) => any;
     menuTooltip?: (row: any) => string;
@@ -58,29 +60,31 @@ export interface IGrepTableProps {
     onSortBy?: (col: ITableColumn<any>) => any;
 }
 
-const GrepTable: React.FC<IGrepTableProps> = props => {
+const GrepTable: React.FC<IGrepTableProps> = ({
+    placeholderText,
+    dropdownItems,
+    clickableRows,
+    pagination,
+    rowHeight,
+    outlined,
+    columns,
+    header,
+    data,
+    ...props
+}) => {
     const [currentPage, setCurrentPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(
         props.rowsPerPage || 10
     );
     const [menuOpen, setMenuOpen] = React.useState(false);
+    const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
     const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
         null
     );
-    const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
-    const {
-        outlined,
-        header,
-        dropdownItems,
-        data,
-        clickableRows,
-        pagination,
-        columns
-    } = props;
 
     const _renderHeader = () => (
         <StyledTableHeader>
-            <StyledTableRow>
+            <StyledTableRow style={{ height: rowHeight ? rowHeight : 50 }}>
                 {columns.map((col, columnIndex) => (
                     <StyledTableCell
                         key={columnIndex}
@@ -132,7 +136,10 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
     };
 
     const _renderRow = (row: ITableData, index: number) => (
-        <StyledTableRow key={index}>
+        <StyledTableRow
+            key={index}
+            style={{ height: rowHeight ? rowHeight : 50 }}
+        >
             {_renderCells(row)}
             {dropdownItems && _renderCellButton(row)}
         </StyledTableRow>
@@ -144,6 +151,7 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         return (
             <ClickableTableRow
                 key={row.id}
+                style={{ height: rowHeight ? rowHeight : 50 }}
                 onClick={() => _handleRowClick(row.id)}
             >
                 {_renderCells(row)}
@@ -152,10 +160,8 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         );
     };
 
-    const _renderCells = (row: ITableData) => {
-        const { columns } = props;
-
-        return columns.map((col, index) => {
+    const _renderCells = (row: ITableData) =>
+        columns.map((col, index) => {
             const { forceTooltip, getTooltip, getCell } = col;
 
             if (forceTooltip || getTooltip) {
@@ -183,7 +189,6 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
                 );
             }
         });
-    };
 
     const _renderCellButton = (row: ITableData) => {
         const { menuDisabled, menuTooltip } = props;
@@ -233,50 +238,41 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
         }
     };
 
-    const _renderPagination = () => {
-        const { pagination, data } = props;
-        const classes = paginationStyles();
+    const classes = paginationStyles();
 
-        if (pagination) {
-            return (
-                <TablePagination
-                    classes={{ ...classes }}
-                    component="div"
-                    page={currentPage}
-                    count={data.length}
-                    rowsPerPage={rowsPerPage}
-                    onChangePage={_handlePageChange}
-                    onChangeRowsPerPage={_handleChangeRowsPerPage}
-                    labelRowsPerPage={""}
-                    labelDisplayedRows={({ from, to, count }) =>
-                        `Viser ${from}-${to} av ${count}`
-                    }
-                    ActionsComponent={props => (
-                        <PaginationActionsWrapped
-                            {...props as PaginationActionsProps}
-                        />
-                    )}
-                />
-            );
-        } else {
-            return;
-        }
-    };
-
-    const _renderPlaceholder = () => {
-        const { columns, placeholderText, dropdownItems } = props;
-        const columnCount = columns.length + (dropdownItems ? 1 : 0);
-
-        return (
-            <StyledTableBody>
-                <StyledTableRow>
-                    <StyledTableCell colSpan={columnCount}>
-                        {placeholderText ? placeholderText : "Tabellen er tom."}
-                    </StyledTableCell>
-                </StyledTableRow>
-            </StyledTableBody>
+    const _renderPagination = () =>
+        pagination && (
+            <TablePagination
+                classes={{ ...classes }}
+                component="div"
+                page={currentPage}
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                onChangePage={_handlePageChange}
+                onChangeRowsPerPage={_handleChangeRowsPerPage}
+                labelRowsPerPage={""}
+                labelDisplayedRows={({ from, to, count }) =>
+                    `Viser ${from}-${to} av ${count}`
+                }
+                ActionsComponent={props => (
+                    <PaginationActionsWrapped
+                        {...(props as PaginationActionsProps)}
+                    />
+                )}
+            />
         );
-    };
+
+    const columnCount = columns.length + (dropdownItems ? 1 : 0);
+
+    const _renderPlaceholder = () => (
+        <StyledTableBody>
+            <StyledTableRow style={{ height: rowHeight ? rowHeight : 50 }}>
+                <StyledTableCell colSpan={columnCount}>
+                    {placeholderText ? placeholderText : "Tabellen er tom."}
+                </StyledTableCell>
+            </StyledTableRow>
+        </StyledTableBody>
+    );
 
     const _handlePageChange = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -298,7 +294,7 @@ const GrepTable: React.FC<IGrepTableProps> = props => {
     };
 
     return (
-        <Container>
+        <Container style={props.style}>
             <StyledTable
                 style={{ borderCollapse: outlined ? "collapse" : "unset" }}
             >

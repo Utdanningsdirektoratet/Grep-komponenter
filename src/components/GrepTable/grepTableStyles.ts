@@ -31,7 +31,6 @@ export const StyledTableBody = withStyles({
 
 const tableRowStyles = createStyles({
     root: {
-        height: 50,
         border: `1px solid ${Colors.lightGrey}`,
         whiteSpace: "nowrap"
     }
