@@ -13,11 +13,11 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 export interface IMenuItem extends MenuItemProps {
     label: string;
     children?: IMenuItem[];
-    handleClick: (id?: number | null) => void;
+    handleClick: (id?: number | string | null) => void;
 }
 export interface DropdownMenuProps {
     menuOpen: boolean;
-    contextId?: number | null;
+    contextId?: number | string | null;
     menuItems: IMenuItem[];
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;

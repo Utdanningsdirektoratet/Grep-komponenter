@@ -34,14 +34,13 @@ export interface ITableColumn<T> {
 }
 
 export interface ITableData {
-    id: number;
+    id: number | string;
     rowDisabled?: boolean;
-    [key: string]: any;
 }
 
-export interface IGrepTableProps {
-    data: ITableData[];
-    columns: Array<ITableColumn<any>>;
+export interface IGrepTableProps<T extends ITableData> {
+    data: T[];
+    columns: Array<ITableColumn<T>>;
     sortBy?: string;
     header?: boolean;
     outlined?: boolean;
@@ -53,14 +52,14 @@ export interface IGrepTableProps {
     dropdownItems?: IMenuItem[];
     style?: React.CSSProperties;
     sortDirection?: "desc" | "asc";
-    onRowClick?: (id: number) => any;
-    menuTooltip?: (row: any) => string;
-    menuDisabled?: (row: any) => boolean; // TODO: Remove any type from row-parameter
-    onContextIdChanged?: (row: any) => void;
-    onSortBy?: (col: ITableColumn<any>) => any;
+    onRowClick?: (row: T) => any;
+    menuTooltip?: (row: T) => string;
+    menuDisabled?: (row: T) => boolean;
+    onContextIdChanged?: (row: T) => void;
+    onSortBy?: (col: ITableColumn<T>) => any;
 }
 
-const GrepTable: React.FC<IGrepTableProps> = ({
+export default <T extends ITableData>({
     placeholderText,
     dropdownItems,
     clickableRows,
@@ -71,13 +70,15 @@ const GrepTable: React.FC<IGrepTableProps> = ({
     header,
     data,
     ...props
-}) => {
+}: IGrepTableProps<T>) => {
+    const [menuOpen, setMenuOpen] = React.useState(false);
     const [currentPage, setCurrentPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(
         props.rowsPerPage || 10
     );
-    const [menuOpen, setMenuOpen] = React.useState(false);
-    const [selectedRow, setSelectedRow] = React.useState<number | null>(null);
+    const [selectedRow, setSelectedRow] = React.useState<
+        number | string | null
+    >(null);
     const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
         null
     );
@@ -115,7 +116,7 @@ const GrepTable: React.FC<IGrepTableProps> = ({
             return _renderPlaceholder();
         }
 
-        let rows: ITableData[] = data;
+        let rows: T[] = data;
 
         if (pagination) {
             rows = data.slice(
@@ -135,7 +136,7 @@ const GrepTable: React.FC<IGrepTableProps> = ({
         );
     };
 
-    const _renderRow = (row: ITableData, index: number) => (
+    const _renderRow = (row: T, index: number | string) => (
         <StyledTableRow
             key={index}
             style={{ height: rowHeight ? rowHeight : 50 }}
@@ -145,14 +146,14 @@ const GrepTable: React.FC<IGrepTableProps> = ({
         </StyledTableRow>
     );
 
-    const _renderClickableRow = (row: ITableData) => {
+    const _renderClickableRow = (row: T) => {
         if (row.rowDisabled) return _renderRow(row, row.id);
 
         return (
             <ClickableTableRow
                 key={row.id}
                 style={{ height: rowHeight ? rowHeight : 50 }}
-                onClick={() => _handleRowClick(row.id)}
+                onClick={() => _handleRowClick(row)}
             >
                 {_renderCells(row)}
                 {dropdownItems && _renderCellButton(row)}
@@ -160,7 +161,7 @@ const GrepTable: React.FC<IGrepTableProps> = ({
         );
     };
 
-    const _renderCells = (row: ITableData) =>
+    const _renderCells = (row: T) =>
         columns.map((col, index) => {
             const { forceTooltip, getTooltip, getCell } = col;
 
@@ -190,7 +191,7 @@ const GrepTable: React.FC<IGrepTableProps> = ({
             }
         });
 
-    const _renderCellButton = (row: ITableData) => {
+    const _renderCellButton = (row: T) => {
         const { menuDisabled, menuTooltip } = props;
         const disabled = menuDisabled && menuDisabled(row);
         const tooltip = menuTooltip ? menuTooltip(row) : "";
@@ -212,16 +213,13 @@ const GrepTable: React.FC<IGrepTableProps> = ({
 
     const _handleButtonClick = (
         event: React.MouseEvent<HTMLElement>,
-        row: ITableData
+        row: T
     ) => {
         event.stopPropagation();
         _openDropdown(event, row);
     };
 
-    const _openDropdown = (
-        e: React.MouseEvent<HTMLElement>,
-        row: ITableData
-    ) => {
+    const _openDropdown = (e: React.MouseEvent<HTMLElement>, row: T) => {
         const { onContextIdChanged } = props;
         setMenuAnchor(e.currentTarget);
         setMenuOpen(true);
@@ -231,10 +229,10 @@ const GrepTable: React.FC<IGrepTableProps> = ({
         }
     };
 
-    const _handleRowClick = (id: number) => {
+    const _handleRowClick = (row: T) => {
         const { onRowClick } = props;
         if (onRowClick) {
-            onRowClick(id);
+            onRowClick(row);
         }
     };
 
@@ -314,5 +312,3 @@ const GrepTable: React.FC<IGrepTableProps> = ({
         </Container>
     );
 };
-
-export default GrepTable as React.ComponentType<IGrepTableProps>;
