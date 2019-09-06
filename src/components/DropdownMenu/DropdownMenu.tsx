@@ -10,117 +10,96 @@ import { MenuItemProps } from "@material-ui/core/MenuItem";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
-export interface IMenuItem extends MenuItemProps {
+export interface IMenuItem<T extends object> extends MenuItemProps {
     label: string;
-    children?: IMenuItem[];
-    handleClick: (id?: number | string | null) => void;
+    children?: Array<IMenuItem<T>>;
+    handleClick: (context?: T) => void;
 }
-export interface DropdownMenuProps {
+export interface DropdownMenuProps<T extends object> {
+    context?: T;
     menuOpen: boolean;
-    contextId?: number | string | null;
-    menuItems: IMenuItem[];
+    menuItems: Array<IMenuItem<T>>;
     menuAnchor: HTMLElement | null;
     onMenuClose: () => void;
 }
 
-interface ILocalState {
-    expandedItem: number | null;
-}
+export default <T extends object>({
+    menuAnchor,
+    menuItems,
+    menuOpen,
+    context,
+    ...props
+}: DropdownMenuProps<T>) => {
+    const [expandedItem, setExpandedItem] = React.useState<number | null>(null);
 
-class DropdownMenu extends React.Component<DropdownMenuProps, ILocalState> {
-    constructor(props: DropdownMenuProps) {
-        super(props);
-
-        this.state = { expandedItem: null };
-    }
-
-    public render() {
-        const { menuAnchor, menuItems, menuOpen } = this.props;
-
-        return (
-            <Menu open={menuOpen} anchorEl={menuAnchor} onClose={this._onClose}>
-                {menuItems.map((item, index) => {
-                    const { children, button, handleClick, ...rest } = item;
+    const _renderChildren = (children: Array<IMenuItem<T>>, index: number) => (
+        <Collapse in={expandedItem === index} timeout="auto" unmountOnExit>
+            <List disablePadding>
+                {children.map((child, cIndex) => {
+                    const { style, button, handleClick, ...rest } = child;
 
                     return (
-                        <div key={index}>
-                            <MenuItem
-                                {...rest}
-                                onClick={
-                                    children
-                                        ? () => this._onExpandItem(index)
-                                        : () => this._onItemClicked(index)
-                                }
-                            >
-                                <ListItemText>{item.label}</ListItemText>
-                                {children && this._renderExpandIcon(index)}
-                            </MenuItem>
-                            {children && this._renderChildren(children, index)}
-                        </div>
+                        <MenuItem
+                            {...rest}
+                            key={cIndex}
+                            style={{ paddingLeft: "50px" }}
+                            onClick={() => _onItemClicked(index, cIndex)}
+                        >
+                            <ListItemText>{child.label}</ListItemText>
+                        </MenuItem>
                     );
                 })}
-            </Menu>
-        );
-    }
+            </List>
+        </Collapse>
+    );
 
-    private _renderChildren = (children: IMenuItem[], index: number) => {
-        return (
-            <Collapse
-                in={this.state.expandedItem === index}
-                timeout="auto"
-                unmountOnExit
-            >
-                <List disablePadding>
-                    {children.map((child, cIndex) => {
-                        const { style, button, handleClick, ...rest } = child;
-
-                        return (
-                            <MenuItem
-                                {...rest}
-                                key={cIndex}
-                                style={{ paddingLeft: "50px" }}
-                                onClick={() =>
-                                    this._onItemClicked(index, cIndex)
-                                }
-                            >
-                                <ListItemText>{child.label}</ListItemText>
-                            </MenuItem>
-                        );
-                    })}
-                </List>
-            </Collapse>
-        );
+    const _renderExpandIcon = (index: number) => {
+        return expandedItem === index ? <ExpandLess /> : <ExpandMore />;
     };
 
-    private _renderExpandIcon = (index: number) => {
-        return this.state.expandedItem === index ? (
-            <ExpandLess />
-        ) : (
-            <ExpandMore />
-        );
+    const _onExpandItem = (index: number) => {
+        const expanded = expandedItem === index;
+        setExpandedItem(expanded ? null : index);
     };
 
-    private _onExpandItem = (index: number) => {
-        const expanded = this.state.expandedItem === index;
-        this.setState({ expandedItem: expanded ? null : index });
-    };
-
-    private _onItemClicked = (index: number, cIndex?: number) => {
-        const { onMenuClose, menuItems, contextId } = this.props;
-        this.setState({ expandedItem: null });
-        onMenuClose();
+    const _onItemClicked = (index: number, cIndex?: number) => {
+        setExpandedItem(null);
+        props.onMenuClose();
 
         if (cIndex != null) {
-            menuItems[index].children![cIndex].handleClick(contextId);
+            menuItems[index].children![cIndex].handleClick(context);
         } else {
-            menuItems[index].handleClick(contextId);
+            menuItems[index].handleClick(context);
         }
     };
 
-    private _onClose = () => {
-        this.setState({ expandedItem: null });
-        this.props.onMenuClose();
+    const _onClose = () => {
+        setExpandedItem(null);
+        props.onMenuClose();
     };
-}
 
-export default DropdownMenu as React.ComponentType<DropdownMenuProps>;
+    return (
+        <Menu open={menuOpen} anchorEl={menuAnchor} onClose={_onClose}>
+            {menuItems.map((item, index) => {
+                const { children, button, handleClick, ...rest } = item;
+
+                return (
+                    <div key={index}>
+                        <MenuItem
+                            {...rest}
+                            onClick={
+                                children
+                                    ? () => _onExpandItem(index)
+                                    : () => _onItemClicked(index)
+                            }
+                        >
+                            <ListItemText>{item.label}</ListItemText>
+                            {children && _renderExpandIcon(index)}
+                        </MenuItem>
+                        {children && _renderChildren(children, index)}
+                    </div>
+                );
+            })}
+        </Menu>
+    );
+};

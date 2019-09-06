@@ -49,7 +49,7 @@ export interface IGrepTableProps<T extends ITableData> {
     pagination?: boolean;
     clickableRows?: boolean;
     placeholderText?: string;
-    dropdownItems?: IMenuItem[];
+    dropdownItems?: Array<IMenuItem<T>>;
     style?: React.CSSProperties;
     sortDirection?: "desc" | "asc";
     onRowClick?: (row: T) => any;
@@ -76,9 +76,7 @@ export default <T extends ITableData>({
     const [rowsPerPage, setRowsPerPage] = React.useState(
         props.rowsPerPage || 10
     );
-    const [selectedRow, setSelectedRow] = React.useState<
-        number | string | null
-    >(null);
+    const [selectedRow, setSelectedRow] = React.useState<T | null>(null);
     const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(
         null
     );
@@ -223,7 +221,7 @@ export default <T extends ITableData>({
         const { onContextIdChanged } = props;
         setMenuAnchor(e.currentTarget);
         setMenuOpen(true);
-        setSelectedRow(row.id);
+        setSelectedRow(row);
         if (onContextIdChanged) {
             onContextIdChanged(row);
         }
@@ -300,12 +298,12 @@ export default <T extends ITableData>({
                 {_renderBody()}
             </StyledTable>
             {_renderPagination()}
-            {dropdownItems && (
+            {dropdownItems && selectedRow && (
                 <DropdownMenu
-                    contextId={selectedRow}
                     menuOpen={menuOpen}
-                    menuItems={dropdownItems}
+                    context={selectedRow}
                     menuAnchor={menuAnchor}
+                    menuItems={dropdownItems}
                     onMenuClose={_handleMenuClose}
                 />
             )}
