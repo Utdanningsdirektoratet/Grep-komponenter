@@ -24,7 +24,7 @@ import {
 } from "@material-ui/core";
 
 export interface ITableColumn<T> {
-    label: string;
+    label: string | JSX.Element;
     width?: number;
     colDef?: string;
     sortable?: boolean;
