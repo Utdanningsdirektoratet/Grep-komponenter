@@ -1,13 +1,13 @@
 import * as React from "react";
 import { Container, Title } from "./curriculumTableStyles";
-import GrepTable, { IGrepTableProps, ITableData } from "../GrepTable/GrepTable";
+import GrepTable, { IGrepTableProps } from "../GrepTable/GrepTable";
 
-interface CurriculumListProps<T extends ITableData> extends IGrepTableProps<T> {
+interface CurriculumListProps<T extends Object> extends IGrepTableProps<T> {
     title: string;
     style?: React.CSSProperties;
 }
 
-export default <T extends ITableData>(props: CurriculumListProps<T>) => {
+export default <T extends Object>(props: CurriculumListProps<T>) => {
     return (
         <Container style={props.style}>
             <Title>{props.title}</Title>

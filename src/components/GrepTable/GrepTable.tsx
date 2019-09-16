@@ -33,12 +33,7 @@ export interface ITableColumn<T> {
     getCell: (row: T) => string | number | boolean | JSX.Element;
 }
 
-export interface ITableData {
-    id: number | string;
-    rowDisabled?: boolean;
-}
-
-export interface IGrepTableProps<T extends ITableData> {
+export interface IGrepTableProps<T extends Object> {
     data: T[];
     columns: Array<ITableColumn<T>>;
     sortBy?: string;
@@ -52,6 +47,7 @@ export interface IGrepTableProps<T extends ITableData> {
     dropdownItems?: Array<IMenuItem<T>>;
     style?: React.CSSProperties;
     sortDirection?: "desc" | "asc";
+    isRowDisabled?: (row: T) => boolean;
     onRowClick?: (row: T) => any;
     menuTooltip?: (row: T) => string;
     menuDisabled?: (row: T) => boolean;
@@ -59,10 +55,11 @@ export interface IGrepTableProps<T extends ITableData> {
     onSortBy?: (col: ITableColumn<T>) => any;
 }
 
-export default <T extends ITableData>({
+export default <T extends Object>({
     placeholderText,
     dropdownItems,
     clickableRows,
+    isRowDisabled,
     pagination,
     rowHeight,
     outlined,
@@ -99,7 +96,7 @@ export default <T extends ITableData>({
         </StyledTableHeader>
     );
 
-    const _renderSortLabel = (col: ITableColumn<any>) => (
+    const _renderSortLabel = (col: ITableColumn<T>) => (
         <TableSortLabel
             direction={props.sortDirection}
             active={props.sortBy === col.colDef}
@@ -127,14 +124,14 @@ export default <T extends ITableData>({
             <StyledTableBody>
                 {rows.map((row, index) =>
                     clickableRows
-                        ? _renderClickableRow(row)
+                        ? _renderClickableRow(row, index)
                         : _renderRow(row, index)
                 )}
             </StyledTableBody>
         );
     };
 
-    const _renderRow = (row: T, index: number | string) => (
+    const _renderRow = (row: T, index: number) => (
         <StyledTableRow
             key={index}
             style={{ height: rowHeight ? rowHeight : 50 }}
@@ -144,12 +141,12 @@ export default <T extends ITableData>({
         </StyledTableRow>
     );
 
-    const _renderClickableRow = (row: T) => {
-        if (row.rowDisabled) return _renderRow(row, row.id);
+    const _renderClickableRow = (row: T, index: number) => {
+        if (isRowDisabled && isRowDisabled(row)) return _renderRow(row, index);
 
         return (
             <ClickableTableRow
-                key={row.id}
+                key={index}
                 style={{ height: rowHeight ? rowHeight : 50 }}
                 onClick={() => _handleRowClick(row)}
             >
