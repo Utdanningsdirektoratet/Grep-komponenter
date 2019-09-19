@@ -78,6 +78,10 @@ export default <T extends Object>({
         null
     );
 
+    React.useMemo(() => {
+        setCurrentPage(0);
+    }, [data.length]);
+
     const _renderHeader = () => (
         <StyledTableHeader>
             <StyledTableRow style={{ height: rowHeight ? rowHeight : 50 }}>

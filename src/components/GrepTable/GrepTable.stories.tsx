@@ -2,6 +2,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import GrepTable, { ITableColumn } from "./GrepTable";
 import { IMenuItem } from "../DropdownMenu";
+import { Button } from "@material-ui/core";
 
 interface ICurriculum {
     id: number;
@@ -172,15 +173,35 @@ storiesOf("Grep table", module)
             menuDisabled={row => row.id === 3}
         />
     ))
-    .add("with pagination", () => (
-        <GrepTable
-            header
-            columns={tableColumns}
-            data={tableData}
-            pagination
-            rowsPerPage={5}
-        />
-    ))
+    .add("with pagination", () => {
+        function Parent({ children, ...props }) {
+            const [state, setState] = React.useState(tableData);
+            return <div>{children(state, setState)}</div>;
+        }
+
+        return (
+            <Parent>
+                {(state, setState) => (
+                    <div>
+                        <GrepTable
+                            header
+                            columns={tableColumns}
+                            data={state}
+                            pagination
+                            rowsPerPage={5}
+                        />
+                        <Button
+                            onClick={() =>
+                                setState(tableData.slice(0, state.length - 1))
+                            }
+                        >
+                            Remove one row
+                        </Button>
+                    </div>
+                )}
+            </Parent>
+        );
+    })
     .add("without header", () => (
         <GrepTable columns={tableColumns} data={tableData} />
     ));
