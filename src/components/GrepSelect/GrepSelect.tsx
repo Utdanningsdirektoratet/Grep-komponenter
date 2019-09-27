@@ -9,6 +9,7 @@ import { Input, FormHelperText, PropTypes } from "@material-ui/core";
 export interface ISelectItem {
     value: string;
     label?: string;
+    disabled?: boolean;
 }
 export interface GrepSelectProps extends SelectProps {
     label: string;
@@ -69,9 +70,9 @@ const GrepSelect: React.FC<GrepSelectProps> = props => {
                 <MenuItem value="">
                     <em>Fjern valgt</em>
                 </MenuItem>
-                {selectItems.map((item, index) => (
-                    <MenuItem key={index} value={item.value}>
-                        {item.label ? item.label : item.value}
+                {selectItems.map(({ label, value, disabled }, i) => (
+                    <MenuItem key={i} value={value} disabled={disabled}>
+                        {label ? label : value}
                     </MenuItem>
                 ))}
             </Select>
