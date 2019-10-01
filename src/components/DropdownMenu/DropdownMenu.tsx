@@ -60,6 +60,10 @@ export default <T extends object>({
     const _onExpandItem = (index: number) => {
         const expanded = expandedItem === index;
         setExpandedItem(expanded ? null : index);
+
+        window.requestAnimationFrame(() =>
+            window.dispatchEvent(new Event("resize"))
+        );
     };
 
     const _onItemClicked = (index: number, cIndex?: number) => {
