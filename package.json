@@ -18,7 +18,9 @@
         "start": "rollup -c -w",
         "prepare": "npm run build",
         "storybook": "start-storybook -p 9009",
-        "build-storybook": "build-storybook"
+        "build-storybook": "build-storybook",
+        "yalc:init": "yalc add && yalc push",
+        "yalc:push": "npm run build && yalc push"
     },
     "peerDependencies": {
         "@material-ui/core": "^4.2.0",
