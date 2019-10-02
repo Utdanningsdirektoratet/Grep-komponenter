@@ -31,6 +31,9 @@ import ProfileInfo from "../components/ProfileInfo";
 import { user } from "../components/ProfileInfo/ProfileInfo.stories";
 import Sidebar from "../components/Sidebar";
 
+import "../components/NavGuard/stories";
+
+
 storiesOf("Pages", module)
     .addDecorator(storyFn => (
         <MainLayout>
@@ -110,4 +113,4 @@ storiesOf("Pages", module)
     ))
     .add("Læreplaner", () => (
         <Sidebar pages={adminPages} onPageClick={() => console.log("")} />
-    ));
+    ))
