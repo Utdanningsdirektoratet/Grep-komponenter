@@ -41,20 +41,20 @@ const CURRICULUM_COLUMNS: Array<ITableColumn<any>> = [
     {
         label: "Kode",
         width: 8,
-        getCell: row => "Kode"
+        getCell: () => "Kode"
     },
     {
         label: "Tittel",
-        getCell: row => "Tittel"
+        getCell: () => "Tittel"
     },
     {
         label: "Status",
-        getCell: row => "Status"
+        getCell: () => "Status"
     },
     {
         label: "Sist endret",
         width: 9,
-        getCell: row => "10. desember"
+        getCell: () => "10. desember"
     },
     {
         label: "Ansvarlig",
@@ -64,22 +64,22 @@ const CURRICULUM_COLUMNS: Array<ITableColumn<any>> = [
     {
         label: "Importert",
         width: 8,
-        getCell: row => <div style={{ textAlign: "center" }}>{"\u2714"}</div>
+        getCell: () => <div style={{ textAlign: "center" }}>{"\u2714"}</div>
     },
     {
         label: "Klar",
         width: 7,
-        getCell: row => <div style={{ textAlign: "center" }}>{"\u2714"}</div>
+        getCell: () => <div style={{ textAlign: "center" }}>{"\u2714"}</div>
     },
     {
         label: "Tanket",
         width: 8,
-        getCell: row => null
+        getCell: () => null
     },
     {
         label: "Låst",
         width: 7,
-        getCell: row => null
+        getCell: () => null
     }
 ];
 
@@ -129,10 +129,10 @@ export const tableData: ICurriculum[] = [
     }
 ];
 
-const menuItems: IMenuItem[] = [
+const menuItems: IMenuItem<ICurriculum>[] = [
     {
         label: "Test",
-        handleClick: id => console.log("clicked on rowId! ", id)
+        handleClick: obj => console.log("clicked on", obj)
     }
 ];
 
@@ -169,12 +169,12 @@ storiesOf("Grep table", module)
             data={tableData}
             dropdownItems={menuItems}
             columns={CURRICULUM_COLUMNS}
-            menuTooltip={row => "Tooltip"}
+            menuTooltip={() => "Tooltip"}
             menuDisabled={row => row.id === 3}
         />
     ))
     .add("with pagination", () => {
-        function Parent({ children, ...props }) {
+        function Parent({ children }: {children: any}) {
             const [state, setState] = React.useState(tableData);
             return <div>{children(state, setState)}</div>;
         }

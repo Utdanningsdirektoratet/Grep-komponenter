@@ -29,6 +29,7 @@ export * from "./InfoContainer";
 export * from "./OverflowTooltip";
 export * from "./Sidebar";
 export * from "./SidebarWrapper";
+export * from "./NavGuard";
 
 export { default as AppBar } from "./AppBar";
 export { default as AppBarTop } from "./AppBarTop";

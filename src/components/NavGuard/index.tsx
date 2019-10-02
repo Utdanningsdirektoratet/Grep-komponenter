@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Prompt } from 'react-router-dom';
@@ -14,7 +14,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import Button from '@material-ui/core/Button';
 
-interface Properties {
+export interface NavGuardProperties {
     when: boolean;
     title: string;
     txt: string;
@@ -32,10 +32,10 @@ export default ({
     txtConfirm,
     onCancel,
     onConfirm
-}: Properties) => {
-    const [open, setOpen] = useState(false);
-    const [leave, setLeave] = useState(false);
-    const [lastLocation, setLastLocation] = useState<Location>();
+}: NavGuardProperties) => {
+    const [open, setOpen] = React.useState(false);
+    const [leave, setLeave] = React.useState(false);
+    const [lastLocation, setLastLocation] = React.useState<Location>();
 
     const dispatch = useDispatch();
 
