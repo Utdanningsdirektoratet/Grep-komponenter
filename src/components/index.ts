@@ -61,3 +61,4 @@ export { default as InfoContainer } from "./InfoContainer";
 export { default as OverflowTooltip } from "./OverflowTooltip";
 export { default as Sidebar } from "./Sidebar";
 export { default as SidebarWrapper } from "./SidebarWrapper";
+export { default as NavGuard } from "./NavGuard";
