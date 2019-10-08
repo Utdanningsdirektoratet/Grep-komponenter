@@ -57,7 +57,7 @@
         "@types/react-redux": "^7.1.4",
         "@types/react-router-dom": "^4.3.1",
         "@types/storybook__addon-actions": "^3.4.2",
-        "@types/storybook__addon-links": "^3.3.4",
+        "@types/storybook__addon-links": "^5.2.0",
         "@types/storybook__react": "^4.0.1",
         "babel-core": "^6.26.3",
         "babel-loader": "^8.0.5",
