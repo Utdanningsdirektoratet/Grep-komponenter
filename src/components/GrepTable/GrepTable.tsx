@@ -235,7 +235,7 @@ export default <T extends Object>({
         }
     };
 
-    const classes = paginationStyles();
+    const classes = paginationStyles({});
 
     const _renderPagination = () =>
         pagination && (

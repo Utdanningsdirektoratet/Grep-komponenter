@@ -15,7 +15,7 @@ export interface FooterItemsProps {
 }
 
 const FooterItems: React.FC<FooterItemsProps> = props => {
-    const classes = listItemStyles();
+    const classes = listItemStyles({});
 
     return (
         <StyledFooter>

@@ -1,5 +1,4 @@
 export { default as StylesProvider } from "./providers/stylesProvider";
-
 export { default as Grid } from "@material-ui/core/Grid";
 export { default as Colors } from "./styling/Colors";
 export { default as AppBar } from "./components/AppBar";
@@ -27,6 +26,7 @@ export { default as ProfileInfo } from "./components/ProfileInfo";
 export { default as GDPR } from "./components/GDPR";
 export { default as GrepInput } from "./components/GrepInput";
 export { default as GrepSelect } from "./components/GrepSelect";
+export { default as DatePicker } from "./components/DatePicker";
 export { default as GrepDatePicker } from "./components/GrepDatePicker";
 export { default as NavigateBack } from "./components/NavigateBack";
 export { default as InfoContainer } from "./components/InfoContainer";
