@@ -6,25 +6,31 @@ import { getDateString } from "../../utils/dateHelper";
 export type GrepDate = {
     valid: boolean;
     value: string;
-    value2?: string;
 };
 
 interface Props extends Omit<DatePickerProps, "value" | "onChange"> {
     initialDate?: moment.MomentInput;
+    override?: moment.MomentInput;
     onChange?: (date: GrepDate) => void;
     validate?: (date: Moment) => boolean;
 }
 
 export default ({
-    label,
+    maxDate,
+    minDate,
+    override,
     onChange,
     initialDate,
     validate = (d: Moment) => (d ? d.isValid() : true),
     ...props
 }: Props) => {
-    const [date, setDate] = React.useState<Moment>(
-        initialDate ? moment(initialDate) : null
-    );
+    const [date, setDate] = React.useState<Moment>();
+
+    React.useEffect(() => {
+        if (initialDate) {
+            handleDate(moment(initialDate));
+        }
+    }, []);
 
     const handleDate = (d: Moment) => {
         setDate(d);
@@ -36,12 +42,16 @@ export default ({
             });
     };
 
+    React.useMemo(() => {
+        handleDate(override ? moment(override) : null);
+    }, [override]);
+
     return (
         <DatePicker
             {...props}
-            label={label}
             value={date}
             onChange={handleDate}
+            {...{ maxDate, minDate }}
         />
     );
 };
