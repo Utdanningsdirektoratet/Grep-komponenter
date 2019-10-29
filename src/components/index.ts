@@ -67,3 +67,4 @@ export { default as NavGuard } from "./NavGuard";
 export { default as DatePicker } from "./DatePicker";
 export { default as GrepDatePicker } from "./GrepDatePicker";
 export { default as GrepDateRange } from "./GrepDateRange";
+export { default as ServiceMessage } from "./ServiceMessage";
