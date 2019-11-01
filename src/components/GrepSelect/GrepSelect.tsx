@@ -50,6 +50,7 @@ const GrepSelect: React.FC<GrepSelectProps> = props => {
             error={error}
             margin={formMargin ? formMargin : "normal"}
             style={props.style}
+            className={props.className}
         >
             <InputLabel ref={inputLabel} style={{ width: "max-content" }}>
                 {props.label}
