@@ -32,11 +32,12 @@ const GrepSelect: React.FC<GrepSelectProps> = props => {
         errorMessage,
         selectItems,
         helperText,
+        formMargin,
         fullWidth,
         outlined,
         disabled,
+        required,
         label,
-        formMargin,
         value,
         ...rest
     } = props;
@@ -46,11 +47,12 @@ const GrepSelect: React.FC<GrepSelectProps> = props => {
     return (
         <FormControl
             variant={outlined ? "outlined" : "standard"}
-            fullWidth={fullWidth}
-            error={error}
             margin={formMargin ? formMargin : "normal"}
-            style={props.style}
             className={props.className}
+            fullWidth={fullWidth}
+            required={required}
+            style={props.style}
+            error={error}
         >
             <InputLabel ref={inputLabel} style={{ width: "max-content" }}>
                 {props.label}
