@@ -1,43 +1,46 @@
-import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import * as React from "react";
+import { useDispatch } from "react-redux";
+import { Prompt } from "react-router-dom";
+import { push } from "connected-react-router";
+import { Location } from "history";
 
-import { Prompt } from 'react-router-dom';
-import { push } from 'connected-react-router';
-
-import { Location } from 'history';
-
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-
-import Button from '@material-ui/core/Button';
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { useStyles } from "./styles";
 
 export interface NavGuardProperties {
     when: boolean;
     title: string;
     txt: string;
+    txtSave: string;
     txtCancel: string;
-    txtConfirm: string;
-    onConfirm?: () => void;
+    txtDiscard: string;
+    onDiscard?: () => void;
     onCancel?: () => void;
+    onSave?: () => void;
 }
 
 export default ({
     when,
     title,
     txt,
+    txtSave,
     txtCancel,
-    txtConfirm,
+    txtDiscard,
+    onSave,
     onCancel,
-    onConfirm
+    onDiscard
 }: NavGuardProperties) => {
     const [open, setOpen] = React.useState(false);
     const [leave, setLeave] = React.useState(false);
     const [lastLocation, setLastLocation] = React.useState<Location>();
 
     const dispatch = useDispatch();
+    const classes = useStyles({});
 
     const handleCancel = () => {
         setLeave(false);
@@ -45,10 +48,18 @@ export default ({
         onCancel && onCancel();
     };
 
-    const handleConfirm = () => {
+    const handleDiscard = () => {
         setLeave(true);
         setOpen(false);
-        onConfirm && onConfirm();
+        onDiscard && onDiscard();
+        lastLocation &&
+            window.requestAnimationFrame(() => dispatch(push(lastLocation)));
+    };
+
+    const handleSave = () => {
+        onSave();
+        setLeave(true);
+        setOpen(false);
         lastLocation &&
             window.requestAnimationFrame(() => dispatch(push(lastLocation)));
     };
@@ -74,16 +85,17 @@ export default ({
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCancel} color="primary" autoFocus>
+                    <Button onClick={handleCancel} autoFocus>
                         {txtCancel}
                     </Button>
-                    <Button
-                        onClick={handleConfirm}
-                        color="primary"
-                        variant="outlined"
-                    >
-                        {txtConfirm}
+                    <Button onClick={handleDiscard} className={classes.discard}>
+                        {txtDiscard}
                     </Button>
+                    {onSave && (
+                        <Button onClick={handleSave} color="primary">
+                            {txtSave}
+                        </Button>
+                    )}
                 </DialogActions>
             </Dialog>
         </React.Fragment>

@@ -36,3 +36,4 @@ export { default as Sidebar } from "./components/Sidebar";
 export { default as SidebarWrapper } from "./components/SidebarWrapper";
 export { default as ServiceMessage } from "./components/ServiceMessage";
 export * from "./components";
+export * from "./styling";
