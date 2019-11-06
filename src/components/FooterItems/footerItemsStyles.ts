@@ -26,7 +26,8 @@ export const listItemStyles = makeStyles(
 
 export const StyledFooter = withStyles({
     root: {
-        display: "flex"
+        display: "flex",
+        justifyContent: "center"
     }
 })(MUiList);
 
