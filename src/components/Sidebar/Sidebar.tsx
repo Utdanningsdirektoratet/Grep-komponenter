@@ -1,47 +1,41 @@
 import * as React from "react";
-import {
-    Container,
-    BackButton,
-    StyledBackIcon,
-    StyledButtonText,
-    StyledListText
-} from "./sidebarStyles";
 import { NavigationProps } from "..";
+import Box from "@material-ui/core/Box";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import { useStyles } from "./sidebarStyles";
 
 export interface SidebarProps {
     currentPageId?: number;
     pages: NavigationProps[];
-    onNavigateBack?: (path?: string) => void;
     onPageClick: (page: NavigationProps) => any;
 }
 
-const Sidebar: React.FC<SidebarProps> = props => (
-    <Container>
-        {props.onNavigateBack && (
-            <BackButton
-                size="small"
-                variant="contained"
-                onClick={() => props.onNavigateBack!()}
-            >
-                <StyledBackIcon />
-                <StyledButtonText>Tilbake</StyledButtonText>
-            </BackButton>
-        )}
-        <List>
-            {props.pages.map(page => (
-                <ListItem
-                    button
-                    key={page.id}
-                    selected={page.id === props.currentPageId}
-                    onClick={() => props.onPageClick(page)}
-                >
-                    <StyledListText primary={page.label} />
-                </ListItem>
-            ))}
-        </List>
-    </Container>
-);
+export default (props: SidebarProps) => {
+    const classes = useStyles({});
 
-export default Sidebar as React.ComponentType<SidebarProps>;
+    return (
+        <Box className={classes.container}>
+            <List>
+                {props.pages.map(page => (
+                    <ListItem
+                        key={page.id}
+                        className={classes.item}
+                        onClick={() => props.onPageClick(page)}
+                    >
+                        <ListItemText
+                            disableTypography
+                            primary={page.label}
+                            className={
+                                page.id === props.currentPageId
+                                    ? classes.selected
+                                    : classes.text
+                            }
+                        />
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+};
