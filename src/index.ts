@@ -26,7 +26,6 @@ export { default as ProfileInfo } from "./components/ProfileInfo";
 export { default as GDPR } from "./components/GDPR";
 export { default as GrepInput } from "./components/GrepInput";
 export { default as GrepSelect } from "./components/GrepSelect";
-export { default as DatePicker } from "./components/DatePicker";
 export { default as GrepDateRange } from "./components/GrepDateRange";
 export { default as GrepDatePicker } from "./components/GrepDatePicker";
 export { default as NavigateBack } from "./components/NavigateBack";

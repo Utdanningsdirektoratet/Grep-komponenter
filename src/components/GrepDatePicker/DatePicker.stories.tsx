@@ -8,6 +8,7 @@ import 'dayjs/locale/nb';
 import DateUtils from '@date-io/dayjs';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { Button, Box } from '@material-ui/core';
+import { ParseableDate } from '../../utils';
 
 const TestDatePicker = () => {
     const [value, setValue] = React.useState<ParseableDate | null>('2019-12-12');

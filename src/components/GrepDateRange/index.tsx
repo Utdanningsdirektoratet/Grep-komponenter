@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 
-import DatePicker, { DatePickerProps } from '../DatePicker';
+import DatePicker, { DatePickerProps } from '../GrepDatePicker';
 import { useDate, DateState } from '../../hooks';
 
 import { GridSpacing } from '@material-ui/core/Grid';
