@@ -88,8 +88,8 @@ storiesOf("Pages", module)
             <CurriculumTable
                 title={"Mine læreplaner"}
                 columns={tableColumns}
-                curriculums={curriculums}
-                onCurriculumClick={(id: number) => console.log("clicked on ", id)}
+                data={curriculums}
+                onRowClick={id => console.log("clicked on ", id)}
             />
         </BodyLayout>
     ))

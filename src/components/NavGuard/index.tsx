@@ -57,7 +57,7 @@ export default ({
     };
 
     const handleSave = () => {
-        onSave();
+        onSave && onSave();
         setLeave(true);
         setOpen(false);
         lastLocation &&

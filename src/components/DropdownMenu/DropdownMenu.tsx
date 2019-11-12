@@ -10,12 +10,12 @@ import { MenuItemProps } from "@material-ui/core/MenuItem";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 
-export interface IMenuItem<T extends object> extends MenuItemProps {
+export interface IMenuItem<T> extends MenuItemProps {
     label: string;
     children?: Array<IMenuItem<T>>;
     handleClick: (context?: T) => void;
 }
-export interface DropdownMenuProps<T extends object> {
+export interface DropdownMenuProps<T> {
     context?: T;
     menuOpen: boolean;
     menuItems: Array<IMenuItem<T>>;
@@ -23,7 +23,7 @@ export interface DropdownMenuProps<T extends object> {
     onMenuClose: () => void;
 }
 
-export default <T extends object>({
+export default <T extends any>({
     menuAnchor,
     menuItems,
     menuOpen,

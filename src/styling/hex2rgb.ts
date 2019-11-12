@@ -6,7 +6,7 @@ const convertHex2rgb = (hex: string): number[] => {
         .replace(hexPatternShorthand, (_m, r, g, b) => r + r + g + g + b + b)
         .match(hexPattern);
     match && match.shift();
-    return match && match.map((i: string) => parseInt(i, 16));
+    return match ? match.map((i: string) => parseInt(i, 16)): [];
 };
 
 export const hex2rgb = (hex: string) => {
