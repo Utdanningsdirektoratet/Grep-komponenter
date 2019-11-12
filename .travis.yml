@@ -17,5 +17,5 @@ deploy:
     tags: true
   on:
     branch: dev
-    tags: false
+    tags: true
     tag: next
