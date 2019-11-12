@@ -30,7 +30,6 @@ export * from "./NavigateBack";
 export * from "./InfoContainer";
 export * from "./OverflowTooltip";
 export * from "./Sidebar";
-export * from "./SidebarWrapper";
 export * from "./NavGuard";
 
 export { default as AppBar } from "./AppBar";
@@ -62,7 +61,6 @@ export { default as NavigateBack } from "./NavigateBack";
 export { default as InfoContainer } from "./InfoContainer";
 export { default as OverflowTooltip } from "./OverflowTooltip";
 export { default as Sidebar } from "./Sidebar";
-export { default as SidebarWrapper } from "./SidebarWrapper";
 export { default as NavGuard } from "./NavGuard";
 export { default as DatePicker } from "./DatePicker";
 export { default as GrepDatePicker } from "./GrepDatePicker";
