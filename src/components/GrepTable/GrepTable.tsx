@@ -33,7 +33,7 @@ export interface ITableColumn<T> {
     getCell: (row: T) => string | number | boolean | JSX.Element;
 }
 
-export interface IGrepTableProps<T extends Object> {
+export interface IGrepTableProps<T> {
     data: T[];
     columns: Array<ITableColumn<T>>;
     sortBy?: string;
@@ -55,7 +55,7 @@ export interface IGrepTableProps<T extends Object> {
     onSortBy?: (col: ITableColumn<T>) => any;
 }
 
-export default <T extends Object>({
+export default <T extends any>({
     placeholderText,
     dropdownItems,
     clickableRows,

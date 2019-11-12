@@ -12,7 +12,7 @@ interface ICurriculum {
     lastModified: string;
 }
 
-export const tableColumns: Array<ITableColumn<ICurriculum>> = [
+export const tableColumns: ITableColumn<ICurriculum>[] = [
     {
         label: "Kode",
         width: 7,
@@ -35,7 +35,7 @@ export const tableColumns: Array<ITableColumn<ICurriculum>> = [
         forceTooltip: true,
         getCell: row => row.lastModified
     }
-];
+] as ITableColumn<ICurriculum>[];
 
 const CURRICULUM_COLUMNS: Array<ITableColumn<any>> = [
     {
@@ -181,7 +181,7 @@ storiesOf("Grep table", module)
 
         return (
             <Parent>
-                {(state, setState) => (
+                {(state: ICurriculum[], setState: (s: ICurriculum[]) => void) => (
                     <div>
                         <GrepTable
                             header
