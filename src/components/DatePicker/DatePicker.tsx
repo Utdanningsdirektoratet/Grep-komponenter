@@ -19,7 +19,7 @@ export default ({ locale, ...props }: DatePickerProps) => {
                 {...props}
                 clearable
                 format="DD/MM/YYYY"
-                style={{ width: 195, ...props.style }}
+                style={{ ...props.style }}
                 margin={props.margin || "normal"}
                 inputVariant={props.inputVariant || "outlined"}
                 invalidDateMessage={props.invalidDateMessage || "Ugyldig dato"}
