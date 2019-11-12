@@ -23,9 +23,11 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 - [Greenkeeper](https://greenkeeper.io) for dependency management
 
 ## Publishing using Travis CI
+When pushing to master or dev git hooks will tag and bump version
 
-    npm version patch -m "Bumping to %s" && git push --tags && git push
+    git push
     
 ## Publishing locally
+When testing beta feature, the feature/${NAME} is published as prerelease
 
-    npm publish
+    npm beta
