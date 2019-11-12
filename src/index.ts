@@ -33,5 +33,9 @@ export { default as InfoContainer } from "./components/InfoContainer";
 export { default as OverflowTooltip } from "./components/OverflowTooltip";
 export { default as Sidebar } from "./components/Sidebar";
 export { default as ServiceMessage } from "./components/ServiceMessage";
+
+export { default as Utils } from "./utils";
+
 export * from "./components";
+export * from "./hooks";
 export * from "./styling";
