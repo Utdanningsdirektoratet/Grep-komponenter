@@ -1,10 +1,23 @@
-import moment, { Moment } from "moment";
+import dayjs, { Dayjs } from 'dayjs';
+import isBetweenPlugin from 'dayjs/plugin/isBetween';
 
-export const getDateString = (date: Moment) => {
-    if (date) {
-        const utcOffset = moment().utcOffset();
-        date.set("hours", 0);
-        return date.add(utcOffset, "minutes").toISOString();
+export type ParseableDate = string | number | Date | Dayjs;
+export type DateInput = ParseableDate | null;
+
+dayjs.extend(isBetweenPlugin);
+
+export const hasDateChanged = (a: DateInput, b: DateInput) => {
+    if (a === null || b === null) {
+        return a !== b;
     }
-    return null;
+    const date = dayjs(a);
+    return date.isValid() && !date.isSame(b);
 };
+
+export const isDateValid = (date: DateInput, allowNull?: boolean) =>
+    !date ? allowNull : dayjs(date).isValid();
+
+export const getShortDate = (datetime: string) => dayjs(datetime).format('L');
+export const getTime = (datetime: string) => dayjs(datetime).format('[kl.] LT');
+export const getFullDate = (datetime: string) => dayjs(datetime).format('LLL');
+export const getExcelDateTime = (datetime: string) => dayjs(datetime).format('L HH:mm');

@@ -1,29 +1,40 @@
-import * as React from "react";
+import React, { useEffect } from 'react';
 import {
     KeyboardDatePicker,
-    KeyboardDatePickerProps,
-    MuiPickersUtilsProvider
-} from "@material-ui/pickers";
-import MomentUtils from "@date-io/moment";
-import { Locale } from "moment";
-import "moment/locale/nb";
+    KeyboardDatePickerProps
+} from '@material-ui/pickers';
+import { useDate, DateInput } from '../../hooks';
 
-export interface DatePickerProps extends KeyboardDatePickerProps {
-    locale?: Locale;
+export interface DatePickerProps
+    extends Omit<KeyboardDatePickerProps, 'value'> {
+    value?: DateInput;
+    errorMessage?: string;
 }
 
-export default ({ locale, ...props }: DatePickerProps) => {
+export default ({
+    value,
+    onChange,
+    errorMessage,
+    ...props
+}: DatePickerProps) => {
+    const [date, setDate] = useDate(value);
+    useEffect(() => onChange(date), [date]);
+    const { error, ...overridden } = props;
+    const helperText = errorMessage || props.helperText;
     return (
-        <MuiPickersUtilsProvider utils={MomentUtils} locale={locale || "nb"}>
-            <KeyboardDatePicker
-                {...props}
-                clearable
-                format="DD/MM/YYYY"
-                style={{ width: 195, ...props.style }}
-                margin={props.margin || "normal"}
-                inputVariant={props.inputVariant || "outlined"}
-                invalidDateMessage={props.invalidDateMessage || "Ugyldig dato"}
-            />
-        </MuiPickersUtilsProvider>
+        <KeyboardDatePicker
+            // default
+            clearable
+            format={'DD/MM/YYYY'}
+            invalidDateMessage={'Ugyldig dato'}
+            margin="normal"
+            // logic
+            {...overridden}
+            {...(error && error)}
+            {...(helperText && helperText)}
+            // helperText={errorMessage || props.helperText}
+            value={date}
+            onChange={setDate}
+        />
     );
 };

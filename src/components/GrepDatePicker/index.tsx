@@ -1,57 +1,52 @@
-import * as React from "react";
-import moment, { Moment } from "moment";
-import DatePicker, { DatePickerProps } from "../DatePicker";
-import { getDateString } from "../../utils/dateHelper";
+import React, { useMemo } from 'react';
+
+import dayjs, { Dayjs } from 'dayjs';
+import {
+    KeyboardDatePicker,
+    KeyboardDatePickerProps
+} from '@material-ui/pickers/DatePicker';
 
 export type GrepDate = {
     valid: boolean;
-    value: string;
+    value: Dayjs|null;
 };
 
-interface Props extends Omit<DatePickerProps, "value" | "onChange"> {
-    initialDate?: moment.MomentInput;
-    override?: moment.MomentInput;
+interface Props extends Omit<KeyboardDatePickerProps, 'value' | 'onChange'> {
+    initialDate?: string | number | Date | Dayjs;
+    // override?: string | number | Date | Dayjs;
     onChange?: (date: GrepDate) => void;
-    validate?: (date: Moment) => boolean;
+    validate?: (date: Dayjs|null) => boolean;
 }
 
 export default ({
     maxDate,
     minDate,
-    override,
+    // override,
     onChange,
     initialDate,
-    validate = (d: Moment) => (d ? d.isValid() : true),
+    validate = (date: Dayjs|null) =>  !!(date && date.isValid()),
     ...props
 }: Props) => {
-    const [date, setDate] = React.useState<Moment>();
+    const [_date, _setDate] = React.useState<Dayjs|null>(initialDate ? dayjs(initialDate) : null);
+    useMemo(() => onChange && onChange({
+        valid: validate(_date),
+        value: _date
+    }), [_date]);
 
-    React.useEffect(() => {
-        if (initialDate) {
-            handleDate(moment(initialDate));
-        }
-    }, []);
-
-    const handleDate = (d: Moment) => {
-        setDate(d);
-
-        onChange &&
-            onChange({
-                valid: validate(d),
-                value: getDateString(d)
-            });
-    };
-
-    React.useMemo(() => {
-        handleDate(override ? moment(override) : null);
-    }, [override]);
+    // React.useMemo(() => {
+    //     _setDate(dayjs(override));
+    // }, [override]);
 
     return (
-        <DatePicker
+        <KeyboardDatePicker
             {...props}
-            value={date}
-            onChange={handleDate}
-            {...{ maxDate, minDate }}
+            clearable
+            value={_date}
+            format="DD/MM/YYYY"
+            margin={props.margin || 'normal'}
+            inputVariant={props.inputVariant || 'outlined'}
+            invalidDateMessage={props.invalidDateMessage || 'Ugyldig dato'}
+            onChange={_setDate}
         />
     );
 };

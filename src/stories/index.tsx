@@ -32,6 +32,9 @@ import { user } from "../components/ProfileInfo/ProfileInfo.stories";
 import Sidebar from "../components/Sidebar";
 
 import "../components/NavGuard/stories";
+// import "../components/SortableList/stories";
+
+import "../components/GrepDateRange/stories";
 
 
 storiesOf("Pages", module)
@@ -86,7 +89,7 @@ storiesOf("Pages", module)
                 title={"Mine læreplaner"}
                 columns={tableColumns}
                 curriculums={curriculums}
-                onCurriculumClick={id => console.log("clicked on ", id)}
+                onCurriculumClick={(id: number) => console.log("clicked on ", id)}
             />
         </BodyLayout>
     ))
