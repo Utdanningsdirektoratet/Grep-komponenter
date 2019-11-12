@@ -6,12 +6,12 @@ import { NavigationProps } from "../AppBarNavList";
 export const adminPages: NavigationProps[] = [
     {
         id: 1,
-        label: "Driftsmeldinger",
+        label: "Informasjon om læreplan",
         toUrl: "/service-messages"
     },
     {
         id: 2,
-        label: "Administrer brukere",
+        label: "Kompetansemålsett",
         toUrl: "/manage-users"
     }
 ];
@@ -19,6 +19,7 @@ export const adminPages: NavigationProps[] = [
 storiesOf("Sidebar", module).add("standard", () => (
     <Sidebar
         pages={adminPages}
+        currentPageId={1}
         onPageClick={page => console.log("clicked on ", page.label)}
     />
 ));

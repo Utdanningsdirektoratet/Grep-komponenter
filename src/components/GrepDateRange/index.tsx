@@ -1,13 +1,15 @@
 import React from "react";
-import { Box } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import moment from "moment";
 import { DatePickerProps } from "../DatePicker";
 import GrepDatePicker, { GrepDate } from "../GrepDatePicker";
+import { GridSpacing } from "@material-ui/core/Grid";
 
 interface Props extends Omit<DatePickerProps, "value" | "onChange"> {
     fromLabel: string;
     toLabel: string;
     override?: DateRange;
+    spacing?: GridSpacing;
     onChange: (date: DateRange) => void;
 }
 
@@ -22,6 +24,7 @@ export default ({
     toLabel,
     onChange,
     override,
+    spacing,
     ...props
 }: Props) => {
     const [fromDate, setFromDate] = React.useState("");
@@ -59,24 +62,27 @@ export default ({
     }, [fromDate, toDate]);
 
     return (
-        <Box>
-            <GrepDatePicker
-                {...props}
-                label={fromLabel}
-                onChange={handleFromDate}
-                override={override && override.fromDate}
-                maxDateMessage={`Dato må være før "${toLabel}"`}
-                maxDate={maxDate}
-                style={{ marginRight: 25 }}
-            />
-            <GrepDatePicker
-                {...props}
-                label={toLabel}
-                onChange={handleToDate}
-                override={override && override.toDate}
-                minDateMessage={`Dato må være etter "${fromLabel}"`}
-                minDate={minDate}
-            />
-        </Box>
+        <Grid container spacing={spacing}>
+            <Grid item xs={12} sm={6}>
+                <GrepDatePicker
+                    {...props}
+                    label={fromLabel}
+                    onChange={handleFromDate}
+                    override={override && override.fromDate}
+                    maxDateMessage={`Dato må være før "${toLabel}"`}
+                    maxDate={maxDate}
+                />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+                <GrepDatePicker
+                    {...props}
+                    label={toLabel}
+                    onChange={handleToDate}
+                    override={override && override.toDate}
+                    minDateMessage={`Dato må være etter "${fromLabel}"`}
+                    minDate={minDate}
+                />
+            </Grid>
+        </Grid>
     );
 };

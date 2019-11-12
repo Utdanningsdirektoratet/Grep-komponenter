@@ -1,6 +1,6 @@
 {
     "name": "grep-components",
-    "version": "0.0.110",
+    "version": "0.0.111",
     "description": "Grep komponentbibliotek",
     "main": "dist/index.js",
     "module": "dist/index.es.js",
@@ -14,7 +14,8 @@
     "scripts": {
         "build": "rollup -c",
         "start": "rollup -c -w",
-        "version": "npm run build",
+        "release": "bash release.sh",
+        "preversion": "git pull && npm run build",
         "postversion": "git push --tags && git push",
         "storybook": "start-storybook -p 9009",
         "build-storybook": "build-storybook",
