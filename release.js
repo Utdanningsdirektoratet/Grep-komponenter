@@ -19,14 +19,14 @@ async function execute(cmd, args) {
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'minor', '-m', 'Bumping to %s']);
+      return execute('npm', ['version', 'minor', '-m', 'build: Bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',
         'patch',
         '-no-git-tag-version',
         '-m',
-        'Bumping to %s',
+        'build: Bumping to %s',
       ]);
     default:
       return execute('npm', [
@@ -35,7 +35,7 @@ async function build() {
         `--preid=${branch}`,
         '--no-git-tag-version',
         '-m',
-        'prerelease of %s',
+        'build: prerelease of %s',
       ]);
   }
 }
