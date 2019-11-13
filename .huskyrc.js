@@ -1,5 +1,6 @@
 module.exports = {
     hooks: {
-        'pre-commit': 'tsc && lint-staged'
+        'pre-push': 'tsc --noEmit',
+        'pre-commit': 'lint-staged'
     }
 };
