@@ -1,5 +1,5 @@
 module.exports = {
     hooks: {
-        'pre-commit': 'tsc'
+        // 'pre-commit': 'tsc'
     }
 };
