@@ -14,9 +14,9 @@
     "scripts": {
         "build": "rollup -c",
         "start": "rollup -c -w",
-        "beta": "node prerelease.js",
+        "release": "node release.js",
         "preversion": "git pull && npm run build",
-        "postversion": "git push --tags --no-verify",
+        "postversion": "git push --tags && git push",
         "storybook": "start-storybook -p 9009",
         "build-storybook": "build-storybook",
         "yalc:init": "yalc add && yalc push",

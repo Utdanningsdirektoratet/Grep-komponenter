@@ -22,14 +22,9 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 - [Travic CI](https://travis-ci.org) for test and deploy
 - [Greenkeeper](https://greenkeeper.io) for dependency management
 
-## Publishing using Travis CI
-When pushing to master or dev git hooks will tag and bump version
+## Publishing
+When publishing from master Travis CI will publish to NPM
+When publishing from dev or feature deploy will be from local (user need access) and tagged next|feature/${TAG}
 
-    git push
-    <!-- skip hooks  -->
-    git push --no-verify 
-    
-## Publishing locally
-When testing beta feature, the feature/${NAME} is published as prerelease
+    npm run release
 
-    npm beta
