@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import GrepTable, { ITableColumn } from './GrepTable';
-import { IMenuItem } from '../DropdownMenu';
+import GrepTable, { TableColumn } from './GrepTable';
+import { MenuItem } from '../DropdownMenu';
 import { Button } from '@material-ui/core';
 
 interface ICurriculum {
@@ -12,7 +12,7 @@ interface ICurriculum {
   lastModified: string;
 }
 
-export const tableColumns: ITableColumn<ICurriculum>[] = [
+export const tableColumns: TableColumn<ICurriculum>[] = [
   {
     label: 'Kode',
     width: 7,
@@ -35,9 +35,9 @@ export const tableColumns: ITableColumn<ICurriculum>[] = [
     forceTooltip: true,
     getCell: row => row.lastModified,
   },
-] as ITableColumn<ICurriculum>[];
+] as TableColumn<ICurriculum>[];
 
-const CURRICULUM_COLUMNS: Array<ITableColumn<any>> = [
+const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   {
     label: 'Kode',
     width: 8,
@@ -129,7 +129,7 @@ export const tableData: ICurriculum[] = [
   },
 ];
 
-const menuItems: IMenuItem<ICurriculum>[] = [
+const menuItems: MenuItem<ICurriculum>[] = [
   {
     label: 'Test',
     handleClick: obj => console.log('clicked on', obj),

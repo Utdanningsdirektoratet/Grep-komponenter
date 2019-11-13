@@ -10,15 +10,15 @@ import { MenuItemProps } from '@material-ui/core/MenuItem';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-export interface IMenuItem<T> extends MenuItemProps {
+export interface MenuItem<T> extends MenuItemProps {
   label: string;
-  children?: Array<IMenuItem<T>>;
+  children?: Array<MenuItem<T>>;
   handleClick: (context?: T) => void;
 }
 export interface DropdownMenuProps<T> {
   context?: T;
   menuOpen: boolean;
-  menuItems: Array<IMenuItem<T>>;
+  menuItems: Array<MenuItem<T>>;
   menuAnchor: HTMLElement | null;
   onMenuClose: () => void;
 }
@@ -31,31 +31,6 @@ export default <T extends any>({
   ...props
 }: DropdownMenuProps<T>) => {
   const [expandedItem, setExpandedItem] = React.useState<number | null>(null);
-
-  const _renderChildren = (children: Array<IMenuItem<T>>, index: number) => (
-    <Collapse in={expandedItem === index} timeout="auto" unmountOnExit>
-      <List disablePadding>
-        {children.map((child, cIndex) => {
-          const { style, button, handleClick, ...rest } = child;
-
-          return (
-            <MenuItem
-              {...rest}
-              key={cIndex}
-              style={{ paddingLeft: '50px' }}
-              onClick={() => _onItemClicked(index, cIndex)}
-            >
-              <ListItemText>{child.label}</ListItemText>
-            </MenuItem>
-          );
-        })}
-      </List>
-    </Collapse>
-  );
-
-  const _renderExpandIcon = (index: number) => {
-    return expandedItem === index ? <ExpandLess /> : <ExpandMore />;
-  };
 
   const _onExpandItem = (index: number) => {
     const expanded = expandedItem === index;
@@ -80,6 +55,31 @@ export default <T extends any>({
   const _onClose = () => {
     setExpandedItem(null);
     props.onMenuClose();
+  };
+
+  const _renderChildren = (children: Array<MenuItem<T>>, index: number) => (
+    <Collapse in={expandedItem === index} timeout="auto" unmountOnExit>
+      <List disablePadding>
+        {children.map((child, cIndex) => {
+          const { style, button, handleClick, ...rest } = child;
+
+          return (
+            <MenuItem
+              {...rest}
+              key={cIndex}
+              style={{ paddingLeft: '50px' }}
+              onClick={() => _onItemClicked(index, cIndex)}
+            >
+              <ListItemText>{child.label}</ListItemText>
+            </MenuItem>
+          );
+        })}
+      </List>
+    </Collapse>
+  );
+
+  const _renderExpandIcon = (index: number) => {
+    return expandedItem === index ? <ExpandLess /> : <ExpandMore />;
   };
 
   return (

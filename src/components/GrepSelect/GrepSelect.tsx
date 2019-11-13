@@ -6,7 +6,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select, { SelectProps } from '@material-ui/core/Select';
 import { Input, FormHelperText, PropTypes } from '@material-ui/core';
 
-export interface ISelectItem {
+export interface SelectItem {
   value: string;
   label?: string;
   disabled?: boolean;
@@ -16,7 +16,7 @@ export interface GrepSelectProps extends SelectProps {
   outlined?: boolean;
   helperText?: string;
   errorMessage?: string;
-  selectItems: ISelectItem[];
+  selectItems: SelectItem[];
   formMargin?: PropTypes.Margin;
 }
 

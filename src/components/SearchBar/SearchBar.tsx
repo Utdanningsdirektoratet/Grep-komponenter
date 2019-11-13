@@ -18,7 +18,7 @@ interface SearchBarProps {
   onInputChange: (value: string) => void;
 }
 
-const SearchBar: React.FC<SearchBarProps> = props => {
+const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [value, setValue] = React.useState(props.initValue || '');

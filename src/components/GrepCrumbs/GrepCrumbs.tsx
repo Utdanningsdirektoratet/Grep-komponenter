@@ -28,7 +28,7 @@ const GrepCrumbs: React.FC<Props> = props => {
             <Previous onClick={() => props.onClick(crumb)}>
               {crumb.label}
             </Previous>
-            <CrumbSign>></CrumbSign>
+            <CrumbSign>&gt;</CrumbSign>
           </PreviousContainer>
         ),
       )}

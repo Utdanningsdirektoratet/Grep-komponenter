@@ -2,9 +2,9 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import CenterLayout from '../CenterLayout/CenterLayout';
-import GrepSelect, { ISelectItem } from '../GrepSelect/GrepSelect';
+import GrepSelect, { SelectItem } from '../GrepSelect/GrepSelect';
 
-const selectItems: ISelectItem[] = [
+const selectItems: SelectItem[] = [
   {
     value: 'Test',
   },

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Container, Title } from './curriculumTableStyles';
-import GrepTable, { IGrepTableProps } from '../GrepTable/GrepTable';
+import GrepTable, { GrepTableProps } from '../GrepTable/GrepTable';
 
-interface CurriculumListProps<T> extends IGrepTableProps<T> {
+interface CurriculumListProps<T> extends GrepTableProps<T> {
   title: string;
   style?: React.CSSProperties;
 }

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { IMenuItem, DropdownMenu } from '..';
+import { MenuItem, DropdownMenu } from '..';
 
 interface MenuItem {
   label: string;
   handleClick: VoidFunction;
 }
-export const menuItems: IMenuItem<MenuItem>[] = [
+export const menuItems: MenuItem<MenuItem>[] = [
   {
     label: 'Test 1',
     handleClick: () => console.log('clicked '),

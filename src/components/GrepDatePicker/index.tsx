@@ -15,7 +15,7 @@ interface Props extends Omit<DatePickerProps, 'value' | 'onChange'> {
   validate?: (date: Moment) => boolean;
 }
 
-export default ({
+export const GrepDatePicker: React.FC<Props> = ({
   maxDate,
   minDate,
   override,
@@ -26,12 +26,6 @@ export default ({
 }: Props) => {
   const [date, setDate] = React.useState<Moment>();
 
-  React.useEffect(() => {
-    if (initialDate) {
-      handleDate(moment(initialDate));
-    }
-  }, []);
-
   const handleDate = (d: Moment) => {
     setDate(d);
 
@@ -41,6 +35,12 @@ export default ({
         value: getDateString(d),
       });
   };
+
+  React.useEffect(() => {
+    if (initialDate) {
+      handleDate(moment(initialDate));
+    }
+  }, []);
 
   React.useMemo(() => {
     handleDate(override ? moment(override) : null);
@@ -55,3 +55,5 @@ export default ({
     />
   );
 };
+
+export default GrepDatePicker;

@@ -4,14 +4,12 @@ import { StyledAppBar } from './appBarStyles';
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
-export interface AppBarProps {}
-
-interface IHideOnScrollProps {
+interface HideOnScrollProps {
   window?: () => Window;
   children: React.ReactElement;
 }
 
-const HideOnScroll: React.FC<IHideOnScrollProps> = ({ children }) => {
+const HideOnScroll: React.FC<HideOnScrollProps> = ({ children }) => {
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
@@ -24,7 +22,7 @@ const HideOnScroll: React.FC<IHideOnScrollProps> = ({ children }) => {
   );
 };
 
-const AppBar: React.FC<AppBarProps> = props => (
+const AppBar: React.FC = (props: { children?: React.ReactNode }) => (
   <React.Fragment>
     <HideOnScroll {...props}>
       <StyledAppBar color="inherit" elevation={0}>
@@ -35,4 +33,4 @@ const AppBar: React.FC<AppBarProps> = props => (
   </React.Fragment>
 );
 
-export default AppBar as React.ComponentType<AppBarProps>;
+export default AppBar as React.ComponentType;

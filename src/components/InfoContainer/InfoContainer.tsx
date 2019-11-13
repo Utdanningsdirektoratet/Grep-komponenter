@@ -20,13 +20,11 @@ interface InfoProps {
   style?: React.CSSProperties;
 }
 
-const InfoContainer: React.FC<InfoProps> = props => (
-  <Container style={props.style}>
-    {props.header && <InfoHeader>{props.header}</InfoHeader>}
-    {props.inline
-      ? renderHorizontal(props.infoFields)
-      : renderVertical(props.infoFields)}
-  </Container>
+const renderField = (field: InfoField) => (
+  <InfoField key={field.key}>
+    <InfoKey>{field.key}:</InfoKey>
+    <InfoValue>{field.value}</InfoValue>
+  </InfoField>
 );
 
 const renderHorizontal = (infoFields: InfoField[]) => (
@@ -38,11 +36,13 @@ const renderHorizontal = (infoFields: InfoField[]) => (
 const renderVertical = (infoFields: InfoField[]) =>
   infoFields.map((field: InfoField) => renderField(field));
 
-const renderField = (field: InfoField) => (
-  <InfoField key={field.key}>
-    <InfoKey>{field.key}:</InfoKey>
-    <InfoValue>{field.value}</InfoValue>
-  </InfoField>
+const InfoContainer: React.FC<InfoProps> = props => (
+  <Container style={props.style}>
+    {props.header && <InfoHeader>{props.header}</InfoHeader>}
+    {props.inline
+      ? renderHorizontal(props.infoFields)
+      : renderVertical(props.infoFields)}
+  </Container>
 );
 
 export default InfoContainer as React.ComponentType<InfoProps>;

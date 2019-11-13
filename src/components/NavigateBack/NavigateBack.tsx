@@ -2,13 +2,13 @@ import * as React from 'react';
 import Button from '@material-ui/core/Button';
 import NavigateBackIcon from '@material-ui/icons/NavigateBefore';
 
-interface INavigateBackProps {
+interface NavigateBackProps {
   label: string;
   style?: React.CSSProperties;
   onClick: () => void;
 }
 
-const NavigateBack: React.FC<INavigateBackProps> = props => (
+const NavigateBack: React.FC<NavigateBackProps> = props => (
   <Button
     color="primary"
     style={{ marginTop: 10, ...props.style }}
@@ -19,4 +19,4 @@ const NavigateBack: React.FC<INavigateBackProps> = props => (
   </Button>
 );
 
-export default NavigateBack as React.ComponentType<INavigateBackProps>;
+export default NavigateBack as React.ComponentType<NavigateBackProps>;
