@@ -1,2 +1,2 @@
-export { default } from "./CenterLayout";
-export * from "./CenterLayout";
+export { default } from './CenterLayout';
+export * from './CenterLayout';

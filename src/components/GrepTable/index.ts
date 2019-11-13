@@ -1,2 +1,2 @@
-export { default } from "./GrepTable";
-export * from "./GrepTable";
+export { default } from './GrepTable';
+export * from './GrepTable';

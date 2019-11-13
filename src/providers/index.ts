@@ -1,1 +1,1 @@
-export { default } from "./stylesProvider";
+export { default } from './stylesProvider';

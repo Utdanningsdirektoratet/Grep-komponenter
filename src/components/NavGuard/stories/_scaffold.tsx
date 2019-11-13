@@ -10,17 +10,17 @@ import { routerMiddleware } from 'connected-react-router';
 const history = createBrowserHistory();
 
 const store = createStore(
-    combineReducers({
-        router: connectRouter(history)
-    }),
-    {},
-    compose(applyMiddleware(routerMiddleware(history)))
+  combineReducers({
+    router: connectRouter(history),
+  }),
+  {},
+  compose(applyMiddleware(routerMiddleware(history))),
 );
 
 export default ({ children }: { children: React.ReactNode }) => {
-    return (
-        <Provider store={store}>
-            <ConnectedRouter history={history}>{children}</ConnectedRouter>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <ConnectedRouter history={history}>{children}</ConnectedRouter>
+    </Provider>
+  );
 };

@@ -1,2 +1,2 @@
-export { default } from "./CurriculumTable";
-export * from "./CurriculumTable";
+export { default } from './CurriculumTable';
+export * from './CurriculumTable';

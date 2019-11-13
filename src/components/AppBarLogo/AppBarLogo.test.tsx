@@ -1,14 +1,14 @@
-import * as React from "react";
-import { shallow } from "enzyme";
+import * as React from 'react';
+import { shallow } from 'enzyme';
 
-import AppBarLogo from "./AppBarLogo";
+import AppBarLogo from './AppBarLogo';
 
-describe("AppBarLogo", () => {
-    it("should render correctly", () => {
-        const component = shallow(
-            <AppBarLogo title="" imageAlt="" environment="" imageSrc="" />
-        );
+describe('AppBarLogo', () => {
+  it('should render correctly', () => {
+    const component = shallow(
+      <AppBarLogo title="" imageAlt="" environment="" imageSrc="" />,
+    );
 
-        expect(component).toMatchSnapshot();
-    });
+    expect(component).toMatchSnapshot();
+  });
 });

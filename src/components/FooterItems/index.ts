@@ -1,2 +1,2 @@
-export { default } from "./FooterItems";
-export * from "./FooterItems";
+export { default } from './FooterItems';
+export * from './FooterItems';
