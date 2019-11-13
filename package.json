@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.0.111",
+  "version": "0.0.114",
   "description": "Grep komponentbibliotek",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -17,7 +17,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "release": "node release.js",
     "preversion": "git pull && npm run build",
-    "postversion": "git push --tags && git push",
+    "postversion": "git push --tags --no-verify && git push --no-verify",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
     "yalc:init": "yalc add && yalc push",

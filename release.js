@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import { spawn } from 'child_process';
-import GitBranch from 'git-branch';
-
-const branch = GitBranch.sync();
+const spawn = require('child_process').spawn;
+const branch = require('git-branch').sync();
 
 async function execute(cmd, args) {
   return new Promise((resolve, reject) => {
