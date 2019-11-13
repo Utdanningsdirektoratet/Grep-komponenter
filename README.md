@@ -26,6 +26,8 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 When pushing to master or dev git hooks will tag and bump version
 
     git push
+    <!-- skip hooks  -->
+    git push --no-verify 
     
 ## Publishing locally
 When testing beta feature, the feature/${NAME} is published as prerelease
