@@ -1,2 +1,2 @@
-export { default } from "./AppBarLogo";
-export * from "./AppBarLogo";
+export { default } from './AppBarLogo';
+export * from './AppBarLogo';

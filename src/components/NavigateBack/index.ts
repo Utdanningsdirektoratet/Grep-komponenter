@@ -1,2 +1,2 @@
-export { default } from "./NavigateBack";
-export * from "./NavigateBack";
+export { default } from './NavigateBack';
+export * from './NavigateBack';

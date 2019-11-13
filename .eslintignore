@@ -1,0 +1,4 @@
+playground/*
+dist/*
+*.test.*
+*.stories.tsx

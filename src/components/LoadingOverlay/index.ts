@@ -1,2 +1,2 @@
-export { default } from "./LoadingOverlay";
-export * from "./LoadingOverlay";
+export { default } from './LoadingOverlay';
+export * from './LoadingOverlay';

@@ -1,2 +1,2 @@
-export { default } from "./LinkList";
-export * from "./LinkList";
+export { default } from './LinkList';
+export * from './LinkList';
