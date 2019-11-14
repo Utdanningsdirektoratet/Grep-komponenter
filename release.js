@@ -2,6 +2,7 @@
 
 const spawn = require('child_process').spawn;
 const branch = require('git-branch').sync();
+const [_, tag] = branch.match(/feature[\/|-](.*)/);
 
 async function execute(cmd, args) {
   return new Promise((resolve, reject) => {
@@ -27,10 +28,13 @@ async function build() {
         'build: Bumping to %s',
       ]);
     default:
+      if (tag.length === 0) {
+        throw Error(`invalid branch [${branch}]`);
+      }
       return execute('npm', [
         'version',
         'prerelease',
-        `--preid=${branch}`,
+        `--preid=${tag}`,
         '--no-git-tag-version',
         '-m',
         'build: prerelease of %s',
@@ -39,8 +43,7 @@ async function build() {
 }
 
 async function publish() {
-  const tag = branch === 'dev' ? 'next' : branch;
-  return execute('npm', ['publish', '--tag', tag]);
+  return execute('npm', ['publish', '--tag', branch === 'dev' ? 'next' : tag]);
 }
 
 (async () => {
