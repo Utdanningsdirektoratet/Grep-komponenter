@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import dayjs from 'dayjs';
-import 'dayjs/locale/nb';
+import '../../utils/dateHelper';
 import DayjsIo from '@date-io/dayjs';
 import {
   KeyboardDatePicker,
@@ -17,8 +16,6 @@ export interface DatePickerProps
   value?: DateInput;
   errorMessage?: string;
 }
-
-dayjs.locale('nb');
 
 export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
   value,

@@ -1,2 +1,1 @@
-import * as DateUtils from './dateHelper';
-export default {...DateUtils};
+export * from './dateHelper';

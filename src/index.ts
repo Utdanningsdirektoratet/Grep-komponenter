@@ -34,8 +34,9 @@ export { default as OverflowTooltip } from './components/OverflowTooltip';
 export { default as Sidebar } from './components/Sidebar';
 export { default as ServiceMessage } from './components/ServiceMessage';
 
+import * as Utils from './utils';
 export { ParseableDate } from './utils/dateHelper';
-export { default as Utils } from './utils';
+export { Utils };
 
 export * from './components';
 export * from './hooks';
