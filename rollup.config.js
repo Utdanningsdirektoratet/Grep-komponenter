@@ -3,7 +3,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
-import json from 'rollup-plugin-json';
+import json from '@rollup/plugin-json';
 
 import pkg from './package.json';
 
@@ -33,8 +33,10 @@ export default {
     }),
     resolve(),
     typescript({
-      rollupCommonJSResolveHack: true,
+      typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
+      rollupCommonJSResolveHack: true,
+      objectHashIgnoreUnknownHack: true,
     }),
     commonjs({
       include: 'node_modules/**',
