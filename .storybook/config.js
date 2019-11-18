@@ -2,7 +2,7 @@ import React from "react";
 import { configure } from "@storybook/react";
 import { addDecorator } from "@storybook/react";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import {ThemeProvider as MuiThemeProvider} from "@material-ui/core/styles";
 import { StylesProvider } from "../src";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import Colors from "../src/styling/Colors";
