@@ -113,6 +113,8 @@
   ],
   "dependencies": {
     "@rollup/plugin-json": "^4.0.0",
-    "core-js": "^3.4.1"
+    "@types/react-beautiful-dnd": "^11.0.3",
+    "core-js": "^3.4.1",
+    "react-beautiful-dnd": "^12.1.1"
   }
 }

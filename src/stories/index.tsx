@@ -32,6 +32,7 @@ import { user } from '../components/ProfileInfo/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
 
 import '../components/NavGuard/stories';
+import '../components/SortableList/stories';
 
 storiesOf('Pages', module)
   .addDecorator(storyFn => (
