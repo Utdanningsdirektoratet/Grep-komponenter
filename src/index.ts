@@ -1,3 +1,5 @@
+import * as Utils from './utils';
+
 export { default as StylesProvider } from './providers/stylesProvider';
 export { default as Grid } from '@material-ui/core/Grid';
 export { default as Colors } from './styling/Colors';
@@ -34,7 +36,6 @@ export { default as OverflowTooltip } from './components/OverflowTooltip';
 export { default as Sidebar } from './components/Sidebar';
 export { default as ServiceMessage } from './components/ServiceMessage';
 
-import * as Utils from './utils';
 export { ParseableDate } from './utils/dateHelper';
 export { Utils };
 

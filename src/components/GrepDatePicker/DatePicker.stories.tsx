@@ -11,7 +11,7 @@ import { Button, Box } from '@material-ui/core';
 import { ParseableDate } from '../../utils';
 
 const TestDatePicker = () => {
-    const [value, setValue] = React.useState<ParseableDate | null>('2019-12-12');
+    const [value, setValue] = React.useState<ParseableDate | null>('12/12/1980');
     return (
             <Box display="flex" flexDirection="column">
                 <DatePicker

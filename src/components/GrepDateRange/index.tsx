@@ -2,14 +2,28 @@ import React, { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
 
 import DatePicker, { DatePickerProps } from '../GrepDatePicker';
-import { useDate, DateState } from '../../hooks/use-date';
+import { useDate } from '../../hooks/use-date';
 
 import { GridSpacing } from '@material-ui/core/Grid';
+import { DateRangeValue } from '../../utils/dateHelper';
 
-interface Props extends Pick<DatePickerProps, 'inputVariant'> {
+type CommonProperties = Pick<
+  DatePickerProps,
+  | 'variant'
+  | 'inputVariant'
+  | 'format'
+  | 'clearable'
+  | 'disabled'
+  | 'invalidDateMessage'
+  | 'emptyLabel'
+>;
+
+type ReferenceProperties = Pick<DatePickerProps, 'minDate' | 'maxDate'>;
+
+interface Props extends CommonProperties, ReferenceProperties {
   from: Omit<DatePickerProps, 'onChange'>;
   to: Omit<DatePickerProps, 'onChange'>;
-  onChange: (date: { from: DateState; to: DateState }) => void;
+  onChange: (date: DateRangeValue) => void;
   // container
   spacing?: GridSpacing;
   disabled?: boolean;
@@ -18,25 +32,25 @@ interface Props extends Pick<DatePickerProps, 'inputVariant'> {
 export const GrepDateRange: React.FunctionComponent<Props> = ({
   onChange,
   spacing,
-  inputVariant,
-  disabled,
-  ...props
+  from: fromProperties,
+  to: toProperties,
+  ...properties
 }: Props) => {
-  const [from, setFrom] = useDate(props.from.value);
-  const [to, setTo] = useDate(props.to.value);
-  useEffect(() => onChange({ from, to }), [from, to]);
+  const [from, setFrom] = useDate(fromProperties.value);
+  const [to, setTo] = useDate(toProperties.value);
+  const { minDate, maxDate, ...commonProperties } = properties;
+  useEffect(() => onChange(new DateRangeValue(from,to)), [String(from), String(to)]);
   return (
     <Grid container spacing={spacing || 3}>
       <Grid item xs={12} sm={6}>
         <DatePicker
           // default
           fullWidth
-          disabled={disabled}
-          label={props.from.label}
-          inputVariant={inputVariant}
-          maxDateMessage={`Dato må være først "${props.to.label}"`}
+          minDate={minDate}
+          maxDateMessage={`Dato må være først "${fromProperties.label}"`}
           // logic
-          {...props.from}
+          {...commonProperties}
+          {...fromProperties}
           value={from}
           maxDate={to || undefined}
           onChange={setFrom}
@@ -46,12 +60,11 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
         <DatePicker
           // default
           fullWidth
-          disabled={disabled}
-          label={props.to.label}
-          inputVariant={inputVariant}
-          minDateMessage={`Dato må være først "${props.from.label}"`}
+          maxDate={maxDate}
+          minDateMessage={`Dato må være først "${toProperties.label}"`}
           // logic
-          {...props.to}
+          {...commonProperties}
+          {...toProperties}
           value={to}
           minDate={from || undefined}
           onChange={setTo}

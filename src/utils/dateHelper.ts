@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import dayjs, { OpUnitType } from 'dayjs';
 import 'dayjs/locale/nb';
 import LocalizedFormatPlugin from 'dayjs/plugin/localizedFormat';
 import isBetweenPlugin from 'dayjs/plugin/isBetween';
@@ -13,6 +13,38 @@ dayjs.locale('nb');
 export interface ParserOptions {
   utc?: boolean;
   format?: string;
+}
+
+export class DateRangeValue {
+  constructor(public readonly from: DateInput, public readonly to: DateInput) {}
+  get valid() {
+    return this.isValid();
+  }
+
+  isValid(
+    allow_null: boolean = true,
+    allow_same: boolean = true,
+    unit: OpUnitType = 'day',
+  ) {
+    if (this.from === null || this.to === null) {
+      return allow_null;
+    }
+    const dateFrom = dayjs(this.from);
+    const dateTo = dayjs(this.to);
+    if (dateFrom.isValid() && dateTo.isValid()) {
+      return dateFrom.isSame(dateTo, unit)
+        ? allow_same
+        : dateTo.isAfter(dateFrom, unit);
+    }
+    return false;
+  }
+
+  compare({ from, to }: DateRangeValue, unit: OpUnitType = 'day') {
+    return (
+      dayjs(this.from || '').isSame(dayjs(from || ''), unit) &&
+      dayjs(this.to || '').isSame(dayjs(to || ''), unit)
+    );
+  }
 }
 
 export const parseDate = (
@@ -39,6 +71,16 @@ export const hasDateChanged = (a: DateInput, b: DateInput): boolean => {
 
 export const isDateValid = (date: DateInput, allowNull?: boolean): boolean =>
   !date ? !!allowNull : dayjs(date).isValid();
+
+export const isSameOrBefore = (point: ParseableDate, match: ParseableDate, unit: OpUnitType = 'day'): boolean => {
+  const date = dayjs(point);
+  return date.isValid() && date.isSame(match, unit) || date.isBefore(match, unit);
+}
+
+export const isSameOrAfter = (point: ParseableDate, match: ParseableDate, unit: OpUnitType = 'day'): boolean => {
+  const date = dayjs(point);
+  return date.isValid() && date.isSame(match, unit) || date.isAfter(match, unit);
+}
 
 export const getShortDate = (
   datetime: string,
