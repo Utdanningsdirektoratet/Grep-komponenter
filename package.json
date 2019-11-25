@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.0.116-datepicker-dayjs.3",
+  "version": "0.0.116",
   "description": "Grep komponentbibliotek",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
