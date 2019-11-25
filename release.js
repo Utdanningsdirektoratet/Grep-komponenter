@@ -2,7 +2,13 @@
 
 const spawn = require('child_process').spawn;
 const branch = require('git-branch').sync();
-const [_, tag] = branch.match(/feature[\/|-](.*)/);
+const tag = (function(){
+  if(branch.match(/feature/)){
+    const [_, tag] = branch.match(/feature[\/|-](.*)/);
+    return tag;
+  }
+  return branch;
+})();
 
 async function execute(cmd, args) {
   return new Promise((resolve, reject) => {
@@ -18,7 +24,7 @@ async function execute(cmd, args) {
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'minor', '-m', 'build: Bumping to %s']);
+      return execute('npm', ['version', 'minor', '-m', 'build: bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',

@@ -33,6 +33,7 @@ import Sidebar from '../components/Sidebar';
 
 import '../components/NavGuard/stories';
 import '../components/SortableList/stories';
+import '../components/GrepDateRange/stories';
 
 storiesOf('Pages', module)
   .addDecorator(storyFn => (
