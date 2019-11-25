@@ -16,6 +16,8 @@
     "build": "rollup -c",
     "start": "rollup -c -w",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "pretest": "tsc --noEmit",
+    "test": "jest",
     "release": "node release.js",
     "preversion": "git pull && npm run build",
     "version": "git add package*.json",
@@ -90,7 +92,7 @@
     "git-branch": "^2.0.1",
     "history": "^4.7.2",
     "husky": "^3.1.0",
-    "jest": "^25.0.0",
+    "jest": "^24.0.0",
     "lint-staged": "^10.0.0-1",
     "prettier": "^1.19.1",
     "react": "^16.12.0",
@@ -117,5 +119,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "babel-jest": "^24.9.0"
+  }
 }

@@ -35,8 +35,10 @@ export default {
         }),
         resolve(),
         typescript({
+            clean: true,
+            typescript: require('typescript'),
+            tsconfig: 'tsconfig.rollup.json',
             rollupCommonJSResolveHack: true,
-            tsconfig: 'tsconfig.rollup.json'
         }),
         commonjs({
             sourceMap: false,
