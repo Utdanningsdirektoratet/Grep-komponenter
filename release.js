@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const spawn = require('child_process').spawn;
+const branch = require('git-branch').sync();
 const tag = (function(){
-  const branch = require('git-branch').sync();
   if(branch.match(/feature/)){
     const [_, tag] = branch.match(/feature[\/|-](.*)/);
     return tag;
