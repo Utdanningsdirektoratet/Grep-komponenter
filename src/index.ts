@@ -1,3 +1,5 @@
+import * as Utils from './utils';
+
 export { default as StylesProvider } from './providers/stylesProvider';
 export { default as Grid } from '@material-ui/core/Grid';
 export { default as Colors } from './styling/Colors';
@@ -26,7 +28,6 @@ export { default as ProfileInfo } from './components/ProfileInfo';
 export { default as GDPR } from './components/GDPR';
 export { default as GrepInput } from './components/GrepInput';
 export { default as GrepSelect } from './components/GrepSelect';
-export { default as DatePicker } from './components/DatePicker';
 export { default as GrepDateRange } from './components/GrepDateRange';
 export { default as GrepDatePicker } from './components/GrepDatePicker';
 export { default as NavigateBack } from './components/NavigateBack';
@@ -34,5 +35,10 @@ export { default as InfoContainer } from './components/InfoContainer';
 export { default as OverflowTooltip } from './components/OverflowTooltip';
 export { default as Sidebar } from './components/Sidebar';
 export { default as ServiceMessage } from './components/ServiceMessage';
+
+export { ParseableDate } from './utils/dateHelper';
+export { Utils };
+
 export * from './components';
+export * from './hooks';
 export * from './styling';

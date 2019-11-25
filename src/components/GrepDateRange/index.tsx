@@ -1,88 +1,80 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
-import moment from 'moment';
-import { DatePickerProps } from '../DatePicker';
-import GrepDatePicker, { GrepDate } from '../GrepDatePicker';
-import { GridSpacing } from '@material-ui/core/Grid';
 
-interface Props extends Omit<DatePickerProps, 'value' | 'onChange'> {
-  fromLabel: string;
-  toLabel: string;
-  override?: DateRange;
+import DatePicker, { DatePickerProps } from '../GrepDatePicker';
+import { useDate } from '../../hooks/use-date';
+
+import { GridSpacing } from '@material-ui/core/Grid';
+import { DateRangeValue } from '../../utils/dateHelper';
+
+type CommonProperties = Pick<
+  DatePickerProps,
+  | 'variant'
+  | 'inputVariant'
+  | 'format'
+  | 'clearable'
+  | 'disabled'
+  | 'invalidDateMessage'
+  | 'emptyLabel'
+>;
+
+type ReferenceProperties = Pick<DatePickerProps, 'minDate' | 'maxDate'>;
+
+interface Props extends CommonProperties, ReferenceProperties {
+  from: Omit<DatePickerProps, 'onChange'>;
+  to: Omit<DatePickerProps, 'onChange'>;
+  onChange: (date: DateRangeValue) => void;
+  // container
   spacing?: GridSpacing;
-  onChange: (date: DateRange) => void;
+  disabled?: boolean;
 }
 
-export type DateRange = {
-  fromDate: string;
-  toDate: string;
-  valid?: boolean;
-};
-
-export default ({
-  fromLabel,
-  toLabel,
+export const GrepDateRange: React.FunctionComponent<Props> = ({
   onChange,
-  override,
   spacing,
-  ...props
+  from: fromProperties,
+  to: toProperties,
+  ...properties
 }: Props) => {
-  const [fromDate, setFromDate] = React.useState('');
-  const [toDate, setToDate] = React.useState('');
-  const [fromDateValid, setFromDateValid] = React.useState(true);
-  const [toDateValid, setToDateValid] = React.useState(true);
-
-  const maxDate = toDate ? moment(toDate) : new Date('01/01/2200');
-  const minDate = fromDate ? moment(fromDate) : new Date('01/01/1900');
-
-  const handleFromDate = ({ value, valid }: GrepDate) => {
-    setFromDate(value);
-    setFromDateValid(valid);
-  };
-
-  const handleToDate = ({ value, valid }: GrepDate) => {
-    setToDate(value);
-    setToDateValid(valid);
-  };
-
-  React.useMemo(() => {
-    let valid = fromDateValid && toDateValid;
-
-    if (valid) {
-      const from = fromDate ? moment(fromDate) : null;
-      const to = toDate ? moment(toDate) : null;
-
-      const fromValid = from ? from.diff(maxDate, 'days') < 1 : true;
-      const toValid = to ? to.diff(minDate, 'days') > -1 : true;
-
-      valid = fromValid && toValid;
-    }
-
-    onChange({ fromDate, toDate, valid });
-  }, [fromDate, toDate]);
-
+  const [from, setFrom] = useDate(fromProperties.value);
+  const [to, setTo] = useDate(toProperties.value);
+  const { minDate, maxDate, ...commonProperties } = properties;
+  useEffect(() => onChange(new DateRangeValue(from, to)), [
+    String(from),
+    String(to),
+  ]);
   return (
-    <Grid container spacing={spacing}>
+    <Grid container spacing={spacing || 3}>
       <Grid item xs={12} sm={6}>
-        <GrepDatePicker
-          {...props}
-          label={fromLabel}
-          onChange={handleFromDate}
-          override={override && override.fromDate}
-          maxDateMessage={`Dato må være før "${toLabel}"`}
-          maxDate={maxDate}
+        <DatePicker
+          // default
+          fullWidth
+          minDate={minDate}
+          maxDateMessage={`Dato må være først "${fromProperties.label}"`}
+          // logic
+          {...commonProperties}
+          {...fromProperties}
+          value={from}
+          maxDate={to || undefined}
+          onChange={setFrom}
         />
       </Grid>
       <Grid item xs={12} sm={6}>
-        <GrepDatePicker
-          {...props}
-          label={toLabel}
-          onChange={handleToDate}
-          override={override && override.toDate}
-          minDateMessage={`Dato må være etter "${fromLabel}"`}
-          minDate={minDate}
+        <DatePicker
+          // default
+          fullWidth
+          maxDate={maxDate}
+          minDateMessage={`Dato må være først "${toProperties.label}"`}
+          // logic
+          {...commonProperties}
+          {...toProperties}
+          value={to}
+          minDate={from || undefined}
+          onChange={setTo}
         />
       </Grid>
     </Grid>
   );
 };
+
+export default GrepDateRange;
