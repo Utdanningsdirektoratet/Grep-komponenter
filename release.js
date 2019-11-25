@@ -24,7 +24,7 @@ async function execute(cmd, args) {
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'minor', '-m', 'build: Bumping to %s']);
+      return execute('npm', ['version', 'minor', '-m', 'build: bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',
