@@ -6,9 +6,9 @@ import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import DragIndicator from '@material-ui/icons/DragIndicator';
 
-import SortableTableCell from './table-cell';
+import SortableTableCell from './cell';
 
-import makeStyle from './table-row.style';
+import makeStyle from './row.style';
 import { CellNode } from './table';
 
 interface Properties<T> {

@@ -9,11 +9,11 @@ import {
 import TableBody from '@material-ui/core/TableBody';
 import Table from '@material-ui/core/Table';
 
-import MyRow from './table-row';
+import MyRow from './row';
 import { TableHead, TableRow } from '@material-ui/core';
 import { TableCellProps } from '@material-ui/core/TableCell';
 
-import TableCell from './table-cell';
+import TableCell from './cell';
 
 export interface CellNode {
   value: ReactNode;

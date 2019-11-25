@@ -40,7 +40,7 @@ storiesOf('SortableList', module).add('standard', () => {
         Disabled
       </Checkbox>
       <SortableList
-        columns={['name', 'calories', 'fat']}
+        columns={['name', 'calories', 'fat', 'carbs']}
         items={rows}
         identify={(item: TestData) => String(item.id)}
         disabled={disabled}
