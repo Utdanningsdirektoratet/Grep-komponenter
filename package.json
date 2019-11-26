@@ -121,8 +121,8 @@
     "dist"
   ],
   "dependencies": {
-    "babel-jest": "^24.9.0",
     "@types/react-beautiful-dnd": "^11.0.3",
+    "babel-jest": "^24.9.0",
     "react-beautiful-dnd": "^12.1.1"
   }
 }

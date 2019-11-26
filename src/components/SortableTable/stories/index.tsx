@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useState } from '@storybook/addons';
 
-import SortableList from '../table';
+import SortableTable from '../table';
 import { Checkbox, Box } from '@material-ui/core';
 
 interface TestData {
@@ -39,12 +39,12 @@ storiesOf('SortableList', module).add('standard', () => {
       <Checkbox value={disabled} onClick={(): void => setDisabled(!disabled)}>
         Disabled
       </Checkbox>
-      <SortableList
+      <SortableTable
         columns={['name', 'calories', 'fat', 'carbs']}
         items={rows}
         identify={(item: TestData) => String(item.id)}
         disabled={disabled}
-      ></SortableList>
+      ></SortableTable>
     </Box>
   );
 });

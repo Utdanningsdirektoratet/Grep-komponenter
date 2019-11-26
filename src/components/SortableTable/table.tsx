@@ -20,7 +20,7 @@ export interface CellNode {
   properties?: TableCellProps;
 }
 
-interface Properties<T> {
+interface Properties<T = unknown> {
   columns: Array<keyof T>;
   items: T[];
   disabled?: boolean;
@@ -41,14 +41,14 @@ function castCellNode(value: CellNode | ReactNode): CellNode {
     : { value };
 }
 
-export function SortableList<T>({
+export const SortableTable = <T extends any>({
   columns,
   items,
   identify,
   headerValue,
   cellValue,
   disabled,
-}: Properties<T>): JSX.Element {
+}: Properties<T>): JSX.Element => {
   const [records, setRecords] = useState<T[]>(items);
   const [isDragging, setIsDragging] = useState<boolean>(false);
 
@@ -122,6 +122,8 @@ export function SortableList<T>({
       </DragDropContext>
     </Table>
   );
-}
+};
 
-export default SortableList as React.FunctionComponent;
+// export const FormDefault = memo(SortableTable) as typeof SortableTable;
+
+export default SortableTable;
