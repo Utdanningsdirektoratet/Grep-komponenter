@@ -61,8 +61,7 @@ export const hasDateChanged = (a: DateInput, b: DateInput): boolean => {
   if (a === null || b === null) {
     return a !== b;
   }
-  const date = dayjs(a);
-  return date.isValid() && !date.isSame(b, 'day');
+  return dayjs(a).format('L') !== dayjs(b).format('L');
 };
 
 export const isDateValid = (date: DateInput, allowNull?: boolean): boolean =>
