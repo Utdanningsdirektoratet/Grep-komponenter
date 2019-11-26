@@ -50,7 +50,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
           // default
           fullWidth
           minDate={minDate}
-          maxDateMessage={`Dato må være først "${fromProperties.label}"`}
+          maxDateMessage={`Dato må være før "${toProperties.label}"`}
           // logic
           {...commonProperties}
           {...fromProperties}
@@ -64,7 +64,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
           // default
           fullWidth
           maxDate={maxDate}
-          minDateMessage={`Dato må være først "${toProperties.label}"`}
+          minDateMessage={`Dato må være etter "${fromProperties.label}"`}
           // logic
           {...commonProperties}
           {...toProperties}
