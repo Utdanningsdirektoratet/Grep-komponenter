@@ -12,7 +12,7 @@ import makeStyle from './row.style';
 import { CellNode } from './table';
 
 interface Properties<T> {
-  id: string;
+  id: string|number;
   item: T;
   index: number;
   disabled?: boolean;
@@ -54,14 +54,12 @@ export function SortableTableRow<T>({
             ref={provided.innerRef}
             {...provided.draggableProps}
           >
-            {!disabled && (
-              <TableCell
-                style={{ width: '45px', padding: '5px 10px' }}
-                {...provided.dragHandleProps}
-              >
-                <DragIndicator></DragIndicator>
-              </TableCell>
-            )}
+            <TableCell
+              style={{ width: '45px', padding: '5px 10px' }}
+              {...provided.dragHandleProps}
+            >
+              <DragIndicator></DragIndicator>
+            </TableCell>
             {renderRow(isDragging)}
           </TableRow>
         );

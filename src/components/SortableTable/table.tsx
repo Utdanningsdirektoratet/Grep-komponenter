@@ -9,7 +9,7 @@ import {
 import TableBody from '@material-ui/core/TableBody';
 import Table from '@material-ui/core/Table';
 
-import MyRow from './row';
+import SortableTableRow from './row';
 import { TableHead, TableRow } from '@material-ui/core';
 import { TableCellProps } from '@material-ui/core/TableCell';
 
@@ -24,9 +24,10 @@ interface Properties<T = unknown> {
   columns: Array<keyof T>;
   items: T[];
   disabled?: boolean;
-  identify: (item: T) => string;
+  identify: (item: T) => string|number;
   headerValue?: (column: keyof T) => CellNode | ReactNode;
   cellValue?: (column: keyof T, item: T) => CellNode | ReactNode;
+  onChange?: (order: {id: string|number, index: number}[]) => void;
 }
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
@@ -48,9 +49,14 @@ export const SortableTable = <T extends any>({
   headerValue,
   cellValue,
   disabled,
+  onChange
 }: Properties<T>): JSX.Element => {
   const [records, setRecords] = useState<T[]>(items);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  useMemo(() => {
+    return setRecords(items);
+  }, [items]);
 
   const onDragStart = (): void => {
     setIsDragging(true);
@@ -59,9 +65,12 @@ export const SortableTable = <T extends any>({
   const onDragEnd = (result: DropResult): void => {
     setIsDragging(false);
     if (result.destination) {
-      setRecords(
-        reorder(records, result.source.index, result.destination.index),
-      );
+      const newOrder = reorder(records, result.source.index, result.destination.index);
+      setRecords(newOrder);
+      onChange && onChange(newOrder.map((record, index: number) => ({
+        id: identify(record),
+        index
+      })));
     }
   };
 
@@ -87,7 +96,7 @@ export const SortableTable = <T extends any>({
     <Table>
       <TableHead>
         <TableRow>
-          {!disabled && <TableCell locked={isDragging} />}
+          <TableCell locked={isDragging} />
           {headers.map(({ value, properties }, index) => {
             return (
               <TableCell
@@ -113,7 +122,7 @@ export const SortableTable = <T extends any>({
                   render,
                   disabled,
                 };
-                return <MyRow<T> key={`item-${props.id}`} {...props} />;
+                return <SortableTableRow<T> key={`item-${props.id}`} {...props} />;
               })}
               {provided.placeholder}
             </TableBody>
