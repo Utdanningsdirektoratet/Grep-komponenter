@@ -20,7 +20,6 @@
     "test": "jest",
     "release": "node release.js",
     "preversion": "git pull && npm run build && npm run test",
-    "version": "git add package*.json",
     "postversion": "git push --tags --no-verify && git push --no-verify",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
