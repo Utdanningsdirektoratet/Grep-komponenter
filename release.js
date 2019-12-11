@@ -2,8 +2,8 @@
 
 const spawn = require('child_process').spawn;
 const branch = require('git-branch').sync();
-const tag = (function(){
-  if(branch.match(/feature/)){
+const tag = (function() {
+  if (branch.match(/feature/)) {
     const [_, tag] = branch.match(/feature[\/|-](.*)/);
     return tag;
   }
@@ -21,10 +21,31 @@ async function execute(cmd, args) {
   });
 }
 
+async function getVersionType(){
+  const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  
+  return new Promise((resolve) => {
+    function _getVersion() {
+      readline.question(`What type of release? [major|minor|patch]`, (version) => {
+        if(version === 'minor' || version === 'patch'){
+          readline.close();
+          resolve(version);
+        }
+        _getVersion();
+      })
+    }
+    _getVersion();
+  })
+}
+
+
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'minor', '-m', 'build: bumping to %s']);
+      return execute('npm', ['version', await getVersionType(), '-m', 'build: bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',
