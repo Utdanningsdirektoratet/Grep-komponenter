@@ -28,10 +28,11 @@ async function build() {
     case 'dev':
       return execute('npm', [
         'version',
-        'patch',
+        'prerelease',
+        `--preid=next`,
         '-no-git-tag-version',
         '-m',
-        'build: Bumping to %s',
+        'build: Bumping next to %s',
       ]);
     default:
       if (tag.length === 0) {

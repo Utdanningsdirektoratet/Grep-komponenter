@@ -114,12 +114,10 @@
     "ts-jest": "^24.2.0",
     "tslib": "^1.10.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.7.3"
+    "typescript": "^3.7.3",
+    "babel-jest": "^24.9.0"
   },
   "files": [
     "dist"
-  ],
-  "dependencies": {
-    "babel-jest": "^24.9.0"
-  }
+  ]
 }
