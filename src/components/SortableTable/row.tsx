@@ -12,7 +12,7 @@ import makeStyle from './row.style';
 import { CellNode } from './table';
 
 interface Properties<T> {
-  id: string|number;
+  id: string | number;
   item: T;
   index: number;
   disabled?: boolean;
