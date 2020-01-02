@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import GrepTable, { TableColumn } from './GrepTable';
-import { MenuItem } from '../DropdownMenu';
+import { DropdownMenuItem } from '../DropdownMenu';
 import { Button } from '@material-ui/core';
 
 interface ICurriculum {
@@ -129,11 +129,37 @@ export const tableData: ICurriculum[] = [
   },
 ];
 
-const menuItems: MenuItem<ICurriculum>[] = [
+const menuItems: DropdownMenuItem<ICurriculum>[] = [
   {
-    label: 'Test',
+    label: 'Test 1',
     handleClick: obj => console.log('clicked on', obj),
+    children: [
+      {
+        label: 'Test child',
+        handleClick: obj => console.log('clicked on', obj),
+      },
+      {
+        label: 'Test child',
+        disabled: true,
+        handleClick: obj => console.log('clicked on', obj),
+      },
+    ],
   },
+  {
+    label: 'Test 2',
+    handleClick: obj => console.log('clicked on', obj),
+    children: [
+      {
+        label: 'Test child',
+        handleClick: obj => console.log('clicked on', obj),
+      },
+      {
+        label: 'Test child',
+        disabled: true,
+        handleClick: obj => console.log('clicked on', obj),
+      },
+    ],
+  }
 ];
 
 storiesOf('Grep table', module)

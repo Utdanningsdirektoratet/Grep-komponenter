@@ -24,10 +24,10 @@ interface Properties<T = unknown> {
   columns: Array<keyof T>;
   items: T[];
   disabled?: boolean;
-  identify: (item: T) => string|number;
+  identify: (item: T) => string | number;
   headerValue?: (column: keyof T) => CellNode | ReactNode;
   cellValue?: (column: keyof T, item: T) => CellNode | ReactNode;
-  onChange?: (order: {id: string|number, index: number}[]) => void;
+  onChange?: (order: { id: string | number; index: number }[]) => void;
 }
 
 function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
@@ -49,7 +49,7 @@ export const SortableTable = <T extends any>({
   headerValue,
   cellValue,
   disabled,
-  onChange
+  onChange,
 }: Properties<T>): JSX.Element => {
   const [records, setRecords] = useState<T[]>(items);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -65,12 +65,19 @@ export const SortableTable = <T extends any>({
   const onDragEnd = (result: DropResult): void => {
     setIsDragging(false);
     if (result.destination) {
-      const newOrder = reorder(records, result.source.index, result.destination.index);
+      const newOrder = reorder(
+        records,
+        result.source.index,
+        result.destination.index,
+      );
       setRecords(newOrder);
-      onChange && onChange(newOrder.map((record, index: number) => ({
-        id: identify(record),
-        index
-      })));
+      onChange &&
+        onChange(
+          newOrder.map((record, index: number) => ({
+            id: identify(record),
+            index,
+          })),
+        );
     }
   };
 
@@ -122,7 +129,9 @@ export const SortableTable = <T extends any>({
                   render,
                   disabled,
                 };
-                return <SortableTableRow<T> key={`item-${props.id}`} {...props} />;
+                return (
+                  <SortableTableRow<T> key={`item-${props.id}`} {...props} />
+                );
               })}
               {provided.placeholder}
             </TableBody>

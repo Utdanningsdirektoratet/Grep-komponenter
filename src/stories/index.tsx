@@ -53,10 +53,10 @@ storiesOf('Pages', module)
               onButtonClick={() => console.log('Button clicked')}
             />
             <DropdownMenu
-              menuOpen={false}
-              menuAnchor={null}
+              open={false}
+              anchorEl={null}
               menuItems={menuItems}
-              onMenuClose={() => console.log('closing menu')}
+              onClose={() => console.log('closing menu')}
             />
           </CenterLayout>
         </AppBarTop>
