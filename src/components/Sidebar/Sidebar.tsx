@@ -5,6 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { useStyles } from './sidebarStyles';
+import { keyboard } from '../../utils';
 
 export interface SidebarProps {
   currentPageId?: number;
@@ -12,25 +13,26 @@ export interface SidebarProps {
   onPageClick: (page: NavigationProps) => any;
 }
 
-export default (props: SidebarProps) => {
+export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
   const classes = useStyles({});
 
   return (
     <Box className={classes.container}>
       <List>
-        {props.pages.map(page => (
+        {pages.map(page => (
           <ListItem
             key={page.id}
+            tabIndex={0}
             className={classes.item}
-            onClick={() => props.onPageClick(page)}
+            onClick={() => onPageClick(page)}
+            onKeyPress={keyboard.onActivation(() => onPageClick(page))}
           >
             <ListItemText
+              tabIndex={-1}
               disableTypography
               primary={page.label}
               className={
-                page.id === props.currentPageId
-                  ? classes.selected
-                  : classes.text
+                page.id === currentPageId ? classes.selected : classes.text
               }
             />
           </ListItem>

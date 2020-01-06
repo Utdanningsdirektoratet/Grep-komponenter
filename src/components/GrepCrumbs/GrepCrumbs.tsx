@@ -1,11 +1,6 @@
 import * as React from 'react';
-import {
-  Container,
-  PreviousContainer,
-  Previous,
-  CrumbSign,
-  Current,
-} from './grepCrumbStyles';
+import { Container, Current } from './grepCrumbStyles';
+import { Link, Box } from '@material-ui/core';
 
 export interface Breadcrumb {
   path: string;
@@ -17,23 +12,26 @@ interface Props {
   onClick: (crumb: Breadcrumb) => void;
 }
 
-const GrepCrumbs: React.FC<Props> = props => {
-  return (
-    <Container>
-      {props.breadcrumbs.map((crumb, index) =>
-        index === props.breadcrumbs.length - 1 ? (
-          <Current key={crumb.path}>{crumb.label}</Current>
-        ) : (
-          <PreviousContainer key={crumb.path}>
-            <Previous onClick={() => props.onClick(crumb)}>
-              {crumb.label}
-            </Previous>
-            <CrumbSign>&gt;</CrumbSign>
-          </PreviousContainer>
-        ),
-      )}
-    </Container>
-  );
-};
+const GrepCrumbs: React.FC<Props> = ({ breadcrumbs, onClick }) => (
+  <Container>
+    {breadcrumbs.map((crumb, index) =>
+      index === breadcrumbs.length - 1 ? (
+        <Current key={index}>{crumb.label}</Current>
+      ) : (
+        <Box key={index} display="flex">
+          <Link
+            style={{ fontSize: 16 }}
+            tabIndex={0}
+            component="button"
+            onClick={() => onClick(crumb)}
+          >
+            {crumb.label}
+          </Link>
+          <Box margin="0 8px">&gt;</Box>
+        </Box>
+      ),
+    )}
+  </Container>
+);
 
-export default GrepCrumbs as React.ComponentType<Props>;
+export default GrepCrumbs;

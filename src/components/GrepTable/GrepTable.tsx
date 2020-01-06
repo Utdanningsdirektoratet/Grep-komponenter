@@ -22,6 +22,7 @@ import {
   Tooltip,
   TableSortLabel,
 } from '@material-ui/core';
+import { keyboard } from '../../utils';
 
 export interface TableColumn<T> {
   label: string | JSX.Element;
@@ -212,8 +213,10 @@ export default <T extends any>({
     return (
       <ClickableTableRow
         key={index}
+        tabIndex={0}
         style={{ height: rowHeight ? rowHeight : 50 }}
         onClick={() => _handleRowClick(row)}
+        onKeyPress={keyboard.onActivation(() => _handleRowClick(row))}
       >
         {_renderCells(row)}
         {dropdownItems && _renderCellButton(row)}
