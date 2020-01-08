@@ -20,7 +20,7 @@ export const useDate = (
     },
     [date],
   );
-  useMemo(() => setDate(value ? DateTime(value, { utc }) : null), [value, utc, setDate]);
+  useMemo(() => setDate(value ? DateTime(value, { utc }) : null), [value, utc]);
   return [date, setDate];
 };
 

@@ -42,8 +42,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
 
   useEffect(
     () => onChange(new DateRangeValue(from, to)),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [String(from), String(to), onChange],
+    [String(from), String(to)],
   );
 
   return (

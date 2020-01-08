@@ -27,8 +27,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
   const error = !!errorMessage || props.error;
   const helperText = errorMessage || props.helperText;
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => onChange(date), [String(date), onChange]);
+  useEffect(() => onChange(date), [String(date)]);
   return (
     <MuiPickersUtilsProvider utils={DayjsIo} locale={'nb'}>
       <KeyboardDatePicker
