@@ -76,6 +76,7 @@ export default <T extends any>({
 
   React.useMemo(() => {
     setCurrentPage(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.length]);
 
   const columnCount = columns.length + (dropdownItems ? 1 : 0);

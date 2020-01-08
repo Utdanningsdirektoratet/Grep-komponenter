@@ -59,14 +59,14 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
       [listItemRef],
     );
 
-    const expand = () => {
+    const expand = useCallback(() => {
       const event = onStatusChange('expand');
       onToggle && onToggle(event);
       !event.defaultPrevented && setOpen(true);
       return !event.defaultPrevented;
-    };
+    }, [onToggle, onStatusChange, setOpen]);
 
-    const collapse = () => {
+    const collapse = useCallback(() => {
       const event = onStatusChange('collapse');
       onToggle && onToggle(event);
       if (!event.defaultPrevented) {
@@ -74,7 +74,7 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
         requestAnimationFrame(() => listItemRef.current?.focus());
       }
       return !event.defaultPrevented;
-    };
+    }, [onToggle, onStatusChange, setOpen, listItemRef]);
 
     const handleKey = (e: React.KeyboardEvent) => {
       if (items) {
@@ -95,7 +95,7 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
         e.stopPropagation();
         open ? collapse() : expand();
       },
-      [open],
+      [open, collapse, expand],
     );
 
     const onScrimClick = useCallback(
@@ -103,7 +103,7 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
         const scrimClick = !listItemRef.current?.contains(e.target as Node);
         scrimClick && collapse();
       },
-      [listItemRef],
+      [listItemRef, collapse],
     );
 
     const handleClick = items ? onToggleClick : onClick;
@@ -111,7 +111,7 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
     useEffect(() => {
       document.addEventListener('click', onScrimClick);
       return () => document.removeEventListener('click', onScrimClick);
-    }, [listItemRef]);
+    }, [listItemRef, onScrimClick]);
 
     const styles = useStyle({ open, indent: level });
 

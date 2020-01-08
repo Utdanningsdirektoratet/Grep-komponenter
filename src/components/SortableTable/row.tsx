@@ -26,7 +26,7 @@ export function SortableTableRow<T>({
   render,
   disabled,
 }: Properties<T>): JSX.Element {
-  const cells = useMemo(() => render(item), [item]);
+  const cells = useMemo(() => render(item), [item, render]);
   const renderRow = useCallback(
     (isDragging: boolean) =>
       cells.map(({ value, properties }, index) => (
@@ -38,7 +38,7 @@ export function SortableTableRow<T>({
           {value}
         </SortableTableCell>
       )),
-    [cells],
+    [cells, id],
   );
   return (
     <Draggable

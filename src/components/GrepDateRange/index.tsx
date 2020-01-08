@@ -39,10 +39,13 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
   const [from, setFrom] = useDate(fromProperties.value);
   const [to, setTo] = useDate(toProperties.value);
   const { minDate, maxDate, ...commonProperties } = properties;
-  useEffect(() => onChange(new DateRangeValue(from, to)), [
-    String(from),
-    String(to),
-  ]);
+
+  useEffect(
+    () => onChange(new DateRangeValue(from, to)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [String(from), String(to), onChange],
+  );
+
   return (
     <Grid container spacing={spacing || 3}>
       <Grid item xs={12} sm={6}>

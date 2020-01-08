@@ -85,7 +85,7 @@ export const SortableTable = <T extends any>({
     return columns.map(column =>
       castCellNode(headerValue ? headerValue(column) : column),
     );
-  }, [columns]);
+  }, [columns, headerValue]);
 
   const getCellValue = useCallback(
     (column: keyof T, item: T) => {
@@ -96,7 +96,7 @@ export const SortableTable = <T extends any>({
 
   const render = useCallback(
     (item: T): CellNode[] => columns.map(column => getCellValue(column, item)),
-    [columns],
+    [columns, getCellValue],
   );
 
   return (
