@@ -13,7 +13,7 @@ import {
   PaginationActionsWrapped,
   PaginationActionsProps,
 } from './GrepPaginationActions';
-import DropdownMenu, { MenuItem } from '../DropdownMenu';
+import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
 import MoreVert from '@material-ui/icons/MoreVert';
 import OverflowTooltip from '../OverflowTooltip';
 import {
@@ -45,7 +45,7 @@ export interface GrepTableProps<T> {
   pagination?: boolean;
   clickableRows?: boolean;
   placeholderText?: string;
-  dropdownItems?: Array<MenuItem<T>>;
+  dropdownItems?: Array<DropdownMenuItem<T>>;
   style?: React.CSSProperties;
   sortDirection?: 'desc' | 'asc';
   isRowDisabled?: (row: T) => boolean;
@@ -77,6 +77,7 @@ export default <T extends any>({
 
   React.useMemo(() => {
     setCurrentPage(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.length]);
 
   const columnCount = columns.length + (dropdownItems ? 1 : 0);
@@ -278,11 +279,11 @@ export default <T extends any>({
       {_renderPagination()}
       {dropdownItems && selectedRow && (
         <DropdownMenu
-          menuOpen={menuOpen}
+          open={menuOpen}
           context={selectedRow}
-          menuAnchor={menuAnchor}
+          anchorEl={menuAnchor}
           menuItems={dropdownItems}
-          onMenuClose={_handleMenuClose}
+          onClose={_handleMenuClose}
         />
       )}
     </Container>
