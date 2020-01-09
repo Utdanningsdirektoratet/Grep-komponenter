@@ -90,7 +90,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "git-branch": "^2.0.1",
     "history": "^4.7.2",
-    "husky": "^3.1.0",
+    "husky": "^4.0.2",
     "jest": "^24.9.0",
     "lint-staged": "^10.0.0-1",
     "prettier": "^1.19.1",
