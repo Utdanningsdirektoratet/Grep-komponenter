@@ -52,7 +52,7 @@ async function build() {
         'prerelease',
         `--preid=next`,
         '-m',
-        'build: Bumping next to %s',
+        'build: bumping next to %s',
       ]);
     default:
       if (tag.length === 0) {
