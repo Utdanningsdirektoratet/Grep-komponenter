@@ -12,9 +12,9 @@ const tag = (function() {
 
 async function execute(cmd, args) {
   return new Promise((resolve, reject) => {
-    const job = spawn(cmd, args);
-    job.stdout.on('data', e => console.log(String(e)));
-    job.stderr.on('data', e => console.error(String(e)));
+    const job = spawn(cmd, args, {
+      stdio: 'inherit'
+    });
     job.on('exit', (code, signal) => {
       code === 0 ? resolve() : reject({ code, signal });
     });
