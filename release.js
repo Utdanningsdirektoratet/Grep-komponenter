@@ -51,7 +51,6 @@ async function build() {
         'version',
         'prerelease',
         `--preid=next`,
-        '-no-git-tag-version',
         '-m',
         'build: Bumping next to %s',
       ]);
