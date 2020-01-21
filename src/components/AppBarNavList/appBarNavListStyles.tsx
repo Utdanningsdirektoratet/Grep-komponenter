@@ -45,4 +45,4 @@ export const StyledTab = withStyles((theme: Theme) =>
       },
     },
   }),
-)((props: StyledTabProps) => <Tab disableRipple {...props} />);
+)((props: StyledTabProps) => <Tab disableTouchRipple {...props} />);

@@ -12,12 +12,11 @@ export default <T extends any>(props: CurriculumListProps<T>) => {
     <Container style={props.style}>
       <Title>{props.title}</Title>
       <GrepTable<T>
-        data={props.data}
         header
-        columns={props.columns}
         clickableRows
         placeholderText={'Finner ingen læreplaner.'}
         onRowClick={id => props.onRowClick && props.onRowClick(id)}
+        {...props}
       />
     </Container>
   );
