@@ -62,7 +62,6 @@ async function build() {
         'version',
         'prerelease',
         `--preid=${tag}`,
-        '--no-git-tag-version',
         '-m',
         'build: prerelease of %s',
       ]);
