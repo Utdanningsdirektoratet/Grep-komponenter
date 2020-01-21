@@ -49,7 +49,7 @@ export const ClickableTableRow = withStyles({
     ...tableRowStyles.root,
     cursor: 'pointer',
 
-    '&:hover': {
+    '&:hover, &:focus, &:active': {
       background: `${Colors.hoverGrey}`,
     },
   },

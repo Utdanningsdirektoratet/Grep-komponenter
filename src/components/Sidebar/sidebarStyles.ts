@@ -1,5 +1,13 @@
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { CSSProperties } from '@material-ui/styles';
+
+const textStyles: CSSProperties = {
+  userSelect: 'none',
+  whiteSpace: 'nowrap',
+  outline: 'none',
+  fontSize: 16,
+};
 
 export const useStyles = makeStyles(({ palette }: Theme) =>
   createStyles({
@@ -10,25 +18,26 @@ export const useStyles = makeStyles(({ palette }: Theme) =>
     },
     item: {
       cursor: 'pointer',
-
-      '&:hover': {
-        background: 'unset',
-      },
-    },
-    text: {
       color: palette.text.hint,
-      whiteSpace: 'nowrap',
-      fontWeight: 400,
-      fontSize: 16,
+      outline: 'none',
 
       '&:hover': {
         color: palette.primary.main,
       },
+
+      '&:focus > $text': {
+        color: palette.primary.main,
+        outline: 'auto',
+      },
+    },
+    text: {
+      ...textStyles,
+      color: 'inherit',
+      fontWeight: 400,
     },
     selected: {
+      ...textStyles,
       color: palette.primary.main,
-      whiteSpace: 'nowrap',
-      fontSize: 16,
       fontWeight: 500,
     },
   }),

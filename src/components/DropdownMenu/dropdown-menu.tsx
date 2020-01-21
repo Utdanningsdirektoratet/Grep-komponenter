@@ -6,11 +6,14 @@ import { MenuItemProps } from '@material-ui/core/MenuItem/MenuItem';
 import CollapsableMenuItem from './collapsable-menu-item';
 import useStyles from './dropdown-menu.style';
 
-export interface DropdownMenuItem<T> extends MenuItemProps {
+type BooleanFunction<T> = (context?: T) => boolean;
+
+export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   label: string;
+  disabled?: BooleanFunction<T> | boolean;
   children?: Array<DropdownMenuItem<T>>;
   handleClick: (context?: T) => void;
-}
+};
 export interface DropdownMenuProps<T> extends MenuProps {
   context?: T;
   menuItems: Array<DropdownMenuItem<T>>;
@@ -27,8 +30,8 @@ export default <T extends any>({
     item: DropdownMenuItem<T>,
     index: number,
   ): React.ReactNode => {
-    const { label, children, handleClick, ...props } = item;
-    
+    const { label, children, handleClick, disabled, ...props } = item;
+
     props.key = `child-item-${index}`;
     props.classes = { selected: styles.selected };
     // ninja way, since rewriting existing code on lpu and admin is daunting
@@ -40,6 +43,7 @@ export default <T extends any>({
     return (
       <CollapsableMenuItem
         level={level}
+        disabled={typeof disabled === 'function' ? disabled(context) : disabled}
         items={children?.map(renderChild(level + 1))}
         {...props}
       >

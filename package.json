@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.1.3-next.6",
+  "version": "0.1.3-next.7",
   "description": "Grep komponentbibliotek",
   "main": "dist/index.js",
   "engines": {
@@ -18,7 +18,7 @@
     "test": "jest",
     "release": "node release.js",
     "preversion": "git pull && npm run build && npm run test",
-    "postversion": "git push --tags --no-verify && git push --no-verify",
+    "postversion": "git add package*.json && git commit --amend --no-edit && git push --tags --no-verify && git push --no-verify",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
     "yalc:init": "yalc add && yalc push",
