@@ -55,7 +55,8 @@ export const parseDate = (
           .replace(/(^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3})(\d*)$/, '$1')
       : datetime;
   // dirty hack to not provide utc flag
-  return dayjs(dayjs(datetime, { utc, format }).toISOString());
+  const parsed = dayjs(datetime, { utc, format });
+  return parsed.isValid() ? dayjs(parsed.toISOString()) : parsed;
 };
 
 export const hasDateChanged = (a: DateInput, b: DateInput): boolean => {
