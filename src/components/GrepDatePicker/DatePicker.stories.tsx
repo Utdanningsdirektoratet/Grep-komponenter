@@ -3,15 +3,15 @@ import { storiesOf } from '@storybook/react';
 import CenterLayout from '../CenterLayout/CenterLayout';
 import DatePicker from './DatePicker';
 
-import dayjs from 'dayjs';
-import 'dayjs/locale/nb';
 import DateUtils from '@date-io/dayjs';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { Button, Box } from '@material-ui/core';
-import { ParseableDate } from '../../utils';
+import { ParseableDate, DateTime } from '../../utils';
 
 const TestDatePicker = () => {
-  const [value, setValue] = React.useState<ParseableDate | null>('12/12/1980');
+  const [value, setValue] = React.useState<ParseableDate | null>(
+    '1993-12-12T23:00:00',
+  );
   return (
     <Box display="flex" flexDirection="column">
       <DatePicker
@@ -21,11 +21,9 @@ const TestDatePicker = () => {
         value={value}
         onChange={date => {
           setValue(date);
-          console.log(date);
-          console.log(date && date.format());
         }}
       />
-      <Button onClick={() => setValue(dayjs('1980-12-17'))}>
+      <Button onClick={() => setValue(DateTime('1980-12-17'))}>
         set to 17.12.1980
       </Button>
       <Button onClick={() => setValue(null)}>clear</Button>
@@ -39,7 +37,7 @@ storiesOf('DatePicker', module)
       style={{
         marginTop: 40,
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
       }}
     >
       <MuiPickersUtilsProvider utils={DateUtils} locale={'nb'}>
@@ -66,6 +64,7 @@ storiesOf('DatePicker', module)
       </React.Fragment>
     );
   })
+  .add('Test', () => <TestDatePicker />)
   .add('Outlined', () => (
     <React.Fragment>
       <DatePicker
