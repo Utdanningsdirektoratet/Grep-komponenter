@@ -36,6 +36,7 @@ export { default as OverflowTooltip } from './components/OverflowTooltip';
 export { default as Sidebar } from './components/Sidebar';
 export { default as ServiceMessage } from './components/ServiceMessage';
 export { default as SortableTable } from './components/SortableTable';
+export { default as GrepEditor } from './components/GrepEditor';
 
 export { ParseableDate } from './utils/dateHelper';
 export { Utils };

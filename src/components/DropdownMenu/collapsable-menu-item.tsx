@@ -10,9 +10,7 @@ import React, {
 import { Key } from 'ts-keycode-enum';
 
 import Box from '@material-ui/core/Box';
-import MenuItem, {
-  MenuItemProps,
-} from '@material-ui/core/MenuItem';
+import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
 import IconExpand from '@material-ui/icons/ExpandMore';
 
 import { CollapsableMenu } from './collapsable-menu';
@@ -80,7 +78,7 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
       if (items) {
         switch (e.keyCode) {
           case Key.RightArrow:
-            if(expand()){
+            if (expand()) {
               e.preventDefault();
               e.stopPropagation();
             }
