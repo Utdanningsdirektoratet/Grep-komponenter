@@ -24,6 +24,6 @@ export const convertToRgba = (color: string, alpha: number) => {
   if (color.match(/^#/)) {
     return hex2rgba(color, alpha);
   }
-  const [ , value] = color.match(/[(](.*)[)]/) || [];
+  const [, value] = color.match(/[(](.*)[)]/) || [];
   return value ? `rgba(${value}, ${alpha})` : color;
 };
