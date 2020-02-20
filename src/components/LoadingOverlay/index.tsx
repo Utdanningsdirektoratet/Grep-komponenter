@@ -17,14 +17,12 @@ export const LoadingOverlay: React.FC<Properties> = ({
   ...box
 }: Properties) => {
   const [enabled, setEnabled] = useState(show);
+
   useEffect(() => {
-    setTimeout(
-      () => {
-        setEnabled && setEnabled(show);
-      },
-      show ? 0 : minTime,
-    );
+    const timeout = setTimeout(() => setEnabled(show), show ? 0 : minTime);
+    return (): void => clearTimeout(timeout);
   }, [show, minTime, setEnabled]);
+
   return (
     <Box position="relative" display="block" overflow={show ? 'hidden' : ''}>
       {children}
