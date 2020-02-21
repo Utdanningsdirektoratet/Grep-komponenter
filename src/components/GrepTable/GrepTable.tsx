@@ -1,32 +1,26 @@
 import React from 'react';
-
-import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
-
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-
-import MoreVert from '@material-ui/icons/MoreVert';
-
-import Table, { TableProps } from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import { TableCellProps } from '@material-ui/core/TableCell';
-
-import GrpeTableHeader from './grep-table-header';
-import GrepTableRow from './grep-table-row';
-import GrepTablePagination from './grep-table-pagination';
-import Placeholder from './grep-table-placeholder';
-
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
-
 import { Key } from 'ts-keycode-enum';
+
 import {
   Theme,
   TableFooter,
   TableRow,
   TableContainer,
 } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
+import MoreVert from '@material-ui/icons/MoreVert';
+import IconButton from '@material-ui/core/IconButton';
+import TableBody from '@material-ui/core/TableBody';
+import Table, { TableProps } from '@material-ui/core/Table';
+import { TableCellProps } from '@material-ui/core/TableCell';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import createStyles from '@material-ui/core/styles/createStyles';
+
+import GrepTableRow from './grep-table-row';
+import GrpeTableHeader from './grep-table-header';
+import GrepTablePagination from './grep-table-pagination';
+import Placeholder from './grep-table-placeholder';
+import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
 
 export interface TableColumn<T> extends Pick<TableCellProps, 'padding'> {
   label?: string | JSX.Element;
@@ -226,6 +220,7 @@ export const GrepTable = <T extends any>({
     return (
       <GrepTableRow
         key={index}
+        hover={clickableRows}
         selected={selectedRow === row}
         clickable={clickableRows}
         onClick={() => {
@@ -303,67 +298,61 @@ export const GrepTable = <T extends any>({
   const classes = useStyles({ outlined, showHeader: header });
 
   return (
-    <ClickAwayListener onClickAway={() => setSelectedRow(null)}>
-      <TableContainer style={props.style}>
-        <Table
-          className={classes.table}
-          size={size}
-          stickyHeader={stickyHeader}
-        >
-          {caption && <caption>{caption}</caption>}
-          {
-            <GrpeTableHeader
-              className={classes.header}
-              columns={columns}
-              sortBy={sortBy}
-              sortDirection={sortDirection}
-              onSortBy={onSortBy}
-              dropdownItems={dropdownItems}
-            />
-          }
-          <TableBody
-            ref={tableRef}
-            className={classes.body}
-            tabIndex={selectedRow ? -1 : 0}
-            onKeyDown={onKey}
-            onFocus={() => setSelectedRow(data[selectedRowIndex])}
-          >
-            {data.length ? (
-              rows.map(_renderRow)
-            ) : (
-              <Placeholder columns={columns} text={placeholderText} />
-            )}
-          </TableBody>
-          <TableFooter>
-            {pagination && (
-              <TableRow>
-                <GrepTablePagination
-                  page={currentPage}
-                  count={data.length}
-                  rowsPerPage={rowsPerPage}
-                  onChangePage={_handlePageChange}
-                  onChangeRowsPerPage={_handleChangeRowsPerPage}
-                  labelRowsPerPage={''}
-                  labelDisplayedRows={({ from, to, count }) =>
-                    `Viser ${from}-${to} av ${count}`
-                  }
-                />
-              </TableRow>
-            )}
-          </TableFooter>
-        </Table>
-
-        {dropdownItems && selectedRow && (
-          <DropdownMenu
-            open={!!menuAnchor}
-            context={selectedRow}
-            anchorEl={menuAnchor}
-            menuItems={dropdownItems}
-            onClose={_handleMenuClose}
+    <TableContainer style={props.style}>
+      <Table className={classes.table} size={size} stickyHeader={stickyHeader}>
+        {caption && <caption>{caption}</caption>}
+        {
+          <GrpeTableHeader
+            className={classes.header}
+            columns={columns}
+            sortBy={sortBy}
+            sortDirection={sortDirection}
+            onSortBy={onSortBy}
+            dropdownItems={dropdownItems}
           />
-        )}
-      </TableContainer>
-    </ClickAwayListener>
+        }
+        <TableBody
+          ref={tableRef}
+          className={classes.body}
+          tabIndex={selectedRow ? -1 : 0}
+          onKeyDown={onKey}
+          onFocus={() => setSelectedRow(data[selectedRowIndex])}
+        >
+          {data.length ? (
+            rows.map(_renderRow)
+          ) : (
+            <Placeholder columns={columns} text={placeholderText} />
+          )}
+        </TableBody>
+        <TableFooter>
+          {pagination && (
+            <TableRow>
+              <GrepTablePagination
+                page={currentPage}
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                onChangePage={_handlePageChange}
+                onChangeRowsPerPage={_handleChangeRowsPerPage}
+                labelRowsPerPage={''}
+                labelDisplayedRows={({ from, to, count }) =>
+                  `Viser ${from}-${to} av ${count}`
+                }
+              />
+            </TableRow>
+          )}
+        </TableFooter>
+      </Table>
+
+      {dropdownItems && selectedRow && (
+        <DropdownMenu
+          open={!!menuAnchor}
+          context={selectedRow}
+          anchorEl={menuAnchor}
+          menuItems={dropdownItems}
+          onClose={_handleMenuClose}
+        />
+      )}
+    </TableContainer>
   );
 };
 
