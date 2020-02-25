@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import GrepTable, { TableColumn } from './GrepTable';
 import { DropdownMenuItem } from '../DropdownMenu';
-import { Button } from '@material-ui/core';
+import { Button, Box } from '@material-ui/core';
 
 interface ICurriculum {
   id: number;
@@ -15,23 +15,22 @@ interface ICurriculum {
 export const tableColumns: TableColumn<ICurriculum>[] = [
   {
     label: 'Kode',
-    width: 7,
+    width: '20px',
     getCell: row => row.code,
   },
   {
     label: 'Navn',
-    width: 13,
     getCell: row => row.title,
   },
   {
     label: 'Status',
-    width: 8,
+    width: '100px',
     getTooltip: row => row.statusText,
     getCell: row => row.statusText,
   },
   {
     label: 'Publisert',
-    width: 10,
+    width: '200px',
     forceTooltip: true,
     getCell: row => row.lastModified,
   },
@@ -45,7 +44,7 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   },
   {
     label: 'Tittel',
-    getCell: () => 'Tittel',
+    getCell: () => 'Tittel TittelTittelTittel TittelTittelTittelTittel TittelTittel',
   },
   {
     label: 'Status',
@@ -83,51 +82,16 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   },
 ];
 
-export const tableData: ICurriculum[] = [
-  {
-    id: 1,
+export const tableData = (
+  samples: number = 5,
+): ICurriculum[] =>
+  new Array(samples).fill(null).map((_, id) => ({
+    id,
     code: '1001',
-    title: 'Testplanen',
+    title: `Testplanen ${id}`,
     statusText: 'Under arbeid',
     lastModified: '10. desember',
-  },
-  {
-    id: 2,
-    code: '1001',
-    title: 'Testplanen',
-    statusText: 'Under arbeid',
-    lastModified: '10. desember',
-  },
-  {
-    id: 3,
-    code: '1001',
-    title: 'Testplanen',
-    statusText: 'Under arbeid',
-    lastModified: '10. desember',
-  },
-  {
-    id: 4,
-    code: '1001',
-    title: 'Testplanen',
-    statusText: 'Under arbeid',
-    lastModified: '10. desember',
-  },
-  {
-    id: 5,
-    code: '1001',
-    title: 'Testplanen',
-    statusText: 'Under arbeid',
-    lastModified: '10. desember',
-  },
-  {
-    id: 6,
-    code: '1001',
-    title: 'Testplanen',
-    statusText:
-      'Kjempelang status bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
-    lastModified: '10. desember',
-  },
-];
+  }));
 
 const menuItems: DropdownMenuItem<ICurriculum>[] = [
   {
@@ -159,21 +123,21 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
         handleClick: obj => console.log('clicked on', obj),
       },
     ],
-  }
+  },
 ];
 
 storiesOf('Grep table', module)
   .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
   .add('standard', () => (
-    <GrepTable header columns={tableColumns} data={tableData} />
+    <GrepTable header columns={tableColumns} data={tableData()} />
   ))
   .add('outlined', () => (
-    <GrepTable header columns={tableColumns} data={tableData} outlined />
+    <GrepTable header columns={tableColumns} data={tableData()} outlined />
   ))
   .add('clickable', () => (
     <GrepTable
       columns={tableColumns}
-      data={tableData.map(c => {
+      data={tableData().map(c => {
         if (c.id % 2 === 0) {
           return {
             ...c,
@@ -190,42 +154,41 @@ storiesOf('Grep table', module)
     <GrepTable header columns={tableColumns} data={[]} />
   ))
   .add('with dropdown-menu', () => (
-    <GrepTable
-      header
-      data={tableData}
-      dropdownItems={menuItems}
-      columns={CURRICULUM_COLUMNS}
-      menuTooltip={() => 'Tooltip'}
-      menuDisabled={row => row.id === 3}
-    />
+    <Box>
+      <Button>Test</Button>
+      <GrepTable
+        header
+        data={tableData()}
+        dropdownItems={menuItems}
+        columns={CURRICULUM_COLUMNS}
+        menuTooltip={() => 'Tooltip'}
+        menuDisabled={row => row.id === 3}
+      />
+      <Button>Test</Button>
+    </Box>
   ))
   .add('with pagination', () => {
     function Parent({ children }: { children: any }) {
-      const [state, setState] = React.useState(tableData);
+      const [state, setState] = React.useState(tableData(50));
       return <div>{children(state, setState)}</div>;
     }
 
     return (
       <Parent>
-        {(state: ICurriculum[], setState: (s: ICurriculum[]) => void) => (
+        {(state: ICurriculum[]) => (
           <div>
             <GrepTable
               header
               columns={tableColumns}
               data={state}
               pagination
-              rowsPerPage={5}
+              rowsPerPage={4}
             />
-            <Button
-              onClick={() => setState(tableData.slice(0, state.length - 1))}
-            >
-              Remove one row
-            </Button>
           </div>
         )}
       </Parent>
     );
   })
   .add('without header', () => (
-    <GrepTable columns={tableColumns} data={tableData} />
+    <GrepTable columns={tableColumns} data={tableData()} />
   ));

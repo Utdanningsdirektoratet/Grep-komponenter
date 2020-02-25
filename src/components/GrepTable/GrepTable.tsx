@@ -1,44 +1,46 @@
-import * as React from 'react';
-import {
-  Container,
-  StyledTable,
-  StyledTableHeader,
-  StyledTableRow,
-  StyledTableCell,
-  StyledTableBody,
-  ClickableTableRow,
-  paginationStyles,
-} from './grepTableStyles';
-import {
-  PaginationActionsWrapped,
-  PaginationActionsProps,
-} from './GrepPaginationActions';
-import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
-import MoreVert from '@material-ui/icons/MoreVert';
-import OverflowTooltip from '../OverflowTooltip';
-import {
-  IconButton,
-  TablePagination,
-  Tooltip,
-  TableSortLabel,
-} from '@material-ui/core';
+import React from 'react';
+import { Key } from 'ts-keycode-enum';
 
-export interface TableColumn<T> {
-  label: string | JSX.Element;
-  width?: number;
+import {
+  Theme,
+  TableFooter,
+  TableRow,
+  TableContainer,
+} from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
+import MoreVert from '@material-ui/icons/MoreVert';
+import IconButton from '@material-ui/core/IconButton';
+import TableBody from '@material-ui/core/TableBody';
+import Table, { TableProps } from '@material-ui/core/Table';
+import { TableCellProps } from '@material-ui/core/TableCell';
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import createStyles from '@material-ui/core/styles/createStyles';
+
+import GrepTableRow from './grep-table-row';
+import GrpeTableHeader from './grep-table-header';
+import GrepTablePagination from './grep-table-pagination';
+import Placeholder from './grep-table-placeholder';
+import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
+
+export interface TableColumn<T> extends Pick<TableCellProps, 'padding'> {
+  label?: string | JSX.Element;
+  width?: number | string;
   colDef?: string;
   sortable?: boolean;
   forceTooltip?: boolean;
   getTooltip?: (row: T) => string;
   getCell: (row: T) => string | number | boolean | JSX.Element;
+  lines?: (row: T) => number;
 }
 
-export interface GrepTableProps<T> {
+export interface GrepTableProps<T>
+  extends Pick<TableProps, 'size' | 'stickyHeader'> {
   data: T[];
   columns: Array<TableColumn<T>>;
   sortBy?: string;
   header?: boolean;
   outlined?: boolean;
+  // @depricated
   rowHeight?: number;
   rowsPerPage?: number;
   pagination?: boolean;
@@ -48,60 +50,112 @@ export interface GrepTableProps<T> {
   style?: React.CSSProperties;
   sortDirection?: 'desc' | 'asc';
   isRowDisabled?: (row: T) => boolean;
+  onSelectedRowChange?: (row: T | null) => void;
   onRowClick?: (row: T) => any;
   menuTooltip?: (row: T) => string;
   menuDisabled?: (row: T) => boolean;
   onContextIdChanged?: (row: T) => void;
   onSortBy?: (col: TableColumn<T>) => any;
+  caption?: React.ReactNode;
 }
 
-export default <T extends any>({
+interface StyleProperties {
+  outlined?: boolean;
+  showHeader?: boolean;
+}
+
+export const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    table: ({ outlined }: StyleProperties) => ({
+      border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
+      borderCollapse: outlined ? 'separate' : 'collapse',
+      tableLayout: 'auto',
+    }),
+    header: ({ showHeader }: StyleProperties) => ({
+      visibility: showHeader ? 'visible' : 'collapse',
+    }),
+    body: {
+      '&:focus': {
+        outline: 'none',
+      },
+    },
+  }),
+);
+
+/**
+ * Since Grep-Table is so tightly intregrated into LPU and Admin some core logic could not be fixed
+ * Still works but still messy
+ */
+export const GrepTable = <T extends any>({
   placeholderText,
   dropdownItems,
-  clickableRows,
   isRowDisabled,
   pagination,
-  rowHeight,
   outlined,
   columns,
   header,
   data,
+  onSelectedRowChange,
+  sortBy,
+  sortDirection,
+  onSortBy,
+  onRowClick,
+  size,
+  caption,
+  stickyHeader,
   ...props
 }: GrepTableProps<T>) => {
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [currentPage, setCurrentPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
-  const [selectedRow, setSelectedRow] = React.useState<T | null>(null);
-  const [menuAnchor, setMenuAnchor] = React.useState<HTMLElement | null>(null);
+  const [menuAnchor, setMenuAnchor] = React.useState<Element | null>(null);
+  const [currentPage, _setCurrentPage] = React.useState<number>(0);
+  const [selectedRow, _setSelectedRow] = React.useState<T | null>(null);
+  const [selectedRowIndex, _setSelectedRowIndex] = React.useState<number>(0);
+
+  const setCurrentPage = (index: number, rowIndex?: number) => {
+    _setCurrentPage(index);
+    _setSelectedRowIndex(rowIndex || index * rowsPerPage);
+  };
+
+  const setSelectedRow = (row: T | null) => {
+    _setSelectedRow(row);
+    if (row) {
+      const rowIndex = data.indexOf(row);
+      row &&
+        setCurrentPage(Math.floor(rowIndex / rowsPerPage), data.indexOf(row));
+    }
+    onSelectedRowChange && onSelectedRowChange(row);
+  };
+
+  const tableRef = React.useRef<HTMLElement | null>(null);
+  React.useEffect(() => {
+    if (selectedRow) {
+      const rowTab = tableRef.current?.querySelector('[tabindex="0"]');
+      ((rowTab || tableRef.current) as HTMLElement)?.focus();
+    }
+  }, [tableRef, selectedRow]);
 
   React.useMemo(() => {
     setCurrentPage(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data.length]);
 
-  const columnCount = columns.length + (dropdownItems ? 1 : 0);
-  const classes = paginationStyles({});
-
-  const _openDropdown = (e: React.MouseEvent<HTMLElement>, row: T) => {
+  const _openDropdown = (e: React.SyntheticEvent<Element>, row: T) => {
     const { onContextIdChanged } = props;
-    setMenuAnchor(e.currentTarget);
-    setMenuOpen(true);
     setSelectedRow(row);
     if (onContextIdChanged) {
       onContextIdChanged(row);
     }
+    setMenuAnchor(e.currentTarget);
   };
 
-  const _handleButtonClick = (event: React.MouseEvent<HTMLElement>, row: T) => {
+  const _handleButtonClick = (event: React.SyntheticEvent<Element>, row: T) => {
+    event.preventDefault();
     event.stopPropagation();
     _openDropdown(event, row);
   };
 
   const _handleRowClick = (row: T) => {
-    const { onRowClick } = props;
-    if (onRowClick) {
-      onRowClick(row);
-    }
+    setSelectedRow(row);
+    onRowClick && onRowClick(row);
   };
 
   const _handlePageChange = (
@@ -119,170 +173,187 @@ export default <T extends any>({
   };
 
   const _handleMenuClose = () => {
-    setMenuOpen(false);
     setMenuAnchor(null);
   };
 
-  const _renderSortLabel = (col: TableColumn<T>) => (
-    <TableSortLabel
-      direction={props.sortDirection}
-      active={props.sortBy === col.colDef}
-      onClick={() => props.onSortBy!(col)}
-    >
-      {col.label}
-    </TableSortLabel>
-  );
-
-  const _renderHeader = () => (
-    <StyledTableHeader>
-      <StyledTableRow style={{ height: rowHeight ? rowHeight : 50 }}>
-        {columns.map((col, columnIndex) => (
-          <StyledTableCell key={columnIndex} style={{ width: `${col.width}%` }}>
-            {props.onSortBy && col.sortable ? _renderSortLabel(col) : col.label}
-          </StyledTableCell>
-        ))}
-        {dropdownItems && <StyledTableCell style={{ width: '5%' }} />}
-      </StyledTableRow>
-    </StyledTableHeader>
-  );
-
-  const _renderPlaceholder = () => (
-    <StyledTableBody>
-      <StyledTableRow style={{ height: rowHeight ? rowHeight : 50 }}>
-        <StyledTableCell colSpan={columnCount}>
-          {placeholderText ? placeholderText : 'Tabellen er tom.'}
-        </StyledTableCell>
-      </StyledTableRow>
-    </StyledTableBody>
-  );
-
-  const _renderCells = (row: T) =>
-    columns.map((col, index) => {
-      const { forceTooltip, getTooltip, getCell } = col;
-
-      if (forceTooltip || getTooltip) {
-        return (
-          <StyledTableCell key={index} style={{ width: `${col.width}%` }}>
-            <OverflowTooltip
-              force={forceTooltip}
-              title={getTooltip ? getTooltip(row) : getCell(row)}
-            >
-              {getCell(row)}
-            </OverflowTooltip>
-          </StyledTableCell>
-        );
-      } else {
-        return (
-          <StyledTableCell key={index} style={{ width: `${col.width}%` }}>
-            {col.getCell(row)}
-          </StyledTableCell>
-        );
-      }
-    });
-
   const _renderCellButton = (row: T) => {
     const { menuDisabled, menuTooltip } = props;
+
     const disabled = menuDisabled && menuDisabled(row);
     const tooltip = menuTooltip ? menuTooltip(row) : '';
-
+    const tabindex = row === selectedRow || !selectedRow ? 0 : -1;
     return (
       <Tooltip title={tooltip}>
-        <StyledTableCell style={{ width: '5%', padding: 0 }}>
+        <div>
           <IconButton
+            disableTouchRipple={true}
             disabled={disabled}
             style={{ float: 'right' }}
             onClick={e => _handleButtonClick(e, row)}
+            onKeyDown={e => {
+              switch (e.which) {
+                case Key.Enter:
+                  // dont show dropdown
+                  e.preventDefault();
+                  break;
+                default:
+                  break;
+              }
+            }}
+            onFocus={() => {
+              setSelectedRow(row);
+            }}
+            tabIndex={tabindex}
           >
             <MoreVert />
           </IconButton>
-        </StyledTableCell>
+        </div>
       </Tooltip>
     );
   };
 
-  const _renderRow = (row: T, index: number) => (
-    <StyledTableRow key={index} style={{ height: rowHeight ? rowHeight : 50 }}>
-      {_renderCells(row)}
-      {dropdownItems && _renderCellButton(row)}
-    </StyledTableRow>
-  );
-
-  const _renderClickableRow = (row: T, index: number) => {
-    if (isRowDisabled && isRowDisabled(row)) return _renderRow(row, index);
-
+  const _renderRow = (row: T, index: number) => {
+    const rowColumns = dropdownItems
+      ? columns.concat([{ getCell: _renderCellButton, padding: 'none' }])
+      : columns;
+    const clickableRows = !!onRowClick;
     return (
-      <ClickableTableRow
+      <GrepTableRow
         key={index}
-        style={{ height: rowHeight ? rowHeight : 50 }}
-        onClick={() => _handleRowClick(row)}
-      >
-        {_renderCells(row)}
-        {dropdownItems && _renderCellButton(row)}
-      </ClickableTableRow>
-    );
-  };
-
-  const _renderBody = () => {
-    if (data.length === 0) {
-      return _renderPlaceholder();
-    }
-
-    let rows: T[] = data;
-
-    if (pagination) {
-      rows = data.slice(
-        currentPage * rowsPerPage,
-        currentPage * rowsPerPage + rowsPerPage,
-      );
-    }
-
-    return (
-      <StyledTableBody>
-        {rows.map((row, index) =>
-          clickableRows
-            ? _renderClickableRow(row, index)
-            : _renderRow(row, index),
-        )}
-      </StyledTableBody>
-    );
-  };
-
-  const _renderPagination = () =>
-    pagination && (
-      <TablePagination
-        classes={{ ...classes }}
-        component="div"
-        page={currentPage}
-        count={data.length}
-        rowsPerPage={rowsPerPage}
-        onChangePage={_handlePageChange}
-        onChangeRowsPerPage={_handleChangeRowsPerPage}
-        labelRowsPerPage={''}
-        labelDisplayedRows={({ from, to, count }) =>
-          `Viser ${from}-${to} av ${count}`
-        }
-        ActionsComponent={props => (
-          <PaginationActionsWrapped {...(props as PaginationActionsProps)} />
-        )}
+        hover={clickableRows}
+        selected={selectedRow === row}
+        clickable={clickableRows}
+        onClick={() => {
+          return _handleRowClick(row);
+        }}
+        columns={rowColumns}
+        row={row}
+        style={{ cursor: clickableRows ? 'pointer' : '' }}
       />
     );
+  };
+
+  const onKey = (e: React.KeyboardEvent) => {
+    if (!selectedRow) {
+      return;
+    }
+
+    const rowIndex = data.indexOf(selectedRow);
+    const moveSelectedRow = (steps: number) => {
+      const i = rowIndex + steps;
+      const max = data.length - 1;
+      const nextRow = data[i < 0 ? 0 : i > max ? max : i];
+      nextRow && setSelectedRow(nextRow);
+    };
+
+    switch (e.keyCode) {
+      case Key.DownArrow:
+        moveSelectedRow(1);
+        break;
+
+      case Key.UpArrow:
+        moveSelectedRow(-1);
+        break;
+
+      case Key.LeftArrow:
+      case Key.PageUp:
+        moveSelectedRow(-rowsPerPage);
+        break;
+
+      case Key.RightArrow:
+      case Key.PageDown:
+        moveSelectedRow(rowsPerPage);
+        break;
+
+      case Key.Home:
+        setSelectedRow(data[0]);
+        break;
+
+      case Key.End:
+        setSelectedRow(data[data.length - 1]);
+        break;
+
+      case Key.Tab:
+        requestAnimationFrame(() => {
+          // check is any children still has focus
+          ![...(tableRef.current?.getElementsByTagName('*') || [])].some(
+            el => el === document.activeElement,
+          ) && setSelectedRow(null);
+        });
+        break;
+
+      case Key.Enter:
+        _handleRowClick(selectedRow);
+        break;
+    }
+  };
+
+  const rows = pagination
+    ? data.slice(
+        currentPage * rowsPerPage,
+        currentPage * rowsPerPage + rowsPerPage,
+      )
+    : data;
+
+  const classes = useStyles({ outlined, showHeader: header });
 
   return (
-    <Container style={props.style}>
-      <StyledTable style={{ borderCollapse: outlined ? 'collapse' : 'unset' }}>
-        {header && _renderHeader()}
-        {_renderBody()}
-      </StyledTable>
-      {_renderPagination()}
+    <TableContainer style={props.style}>
+      <Table className={classes.table} size={size} stickyHeader={stickyHeader}>
+        {caption && <caption>{caption}</caption>}
+        {
+          <GrpeTableHeader
+            className={classes.header}
+            columns={columns}
+            sortBy={sortBy}
+            sortDirection={sortDirection}
+            onSortBy={onSortBy}
+            dropdownItems={dropdownItems}
+          />
+        }
+        <TableBody
+          ref={tableRef}
+          className={classes.body}
+          tabIndex={selectedRow ? -1 : 0}
+          onKeyDown={onKey}
+          onFocus={() => setSelectedRow(data[selectedRowIndex])}
+        >
+          {data.length ? (
+            rows.map(_renderRow)
+          ) : (
+            <Placeholder columns={columns} text={placeholderText} />
+          )}
+        </TableBody>
+        <TableFooter>
+          {pagination && (
+            <TableRow>
+              <GrepTablePagination
+                page={currentPage}
+                count={data.length}
+                rowsPerPage={rowsPerPage}
+                onChangePage={_handlePageChange}
+                onChangeRowsPerPage={_handleChangeRowsPerPage}
+                labelRowsPerPage={''}
+                labelDisplayedRows={({ from, to, count }) =>
+                  `Viser ${from}-${to} av ${count}`
+                }
+              />
+            </TableRow>
+          )}
+        </TableFooter>
+      </Table>
+
       {dropdownItems && selectedRow && (
         <DropdownMenu
-          open={menuOpen}
+          open={!!menuAnchor}
           context={selectedRow}
           anchorEl={menuAnchor}
           menuItems={dropdownItems}
           onClose={_handleMenuClose}
         />
       )}
-    </Container>
+    </TableContainer>
   );
 };
+
+export default GrepTable;
