@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Grep komponentbibliotek",
   "main": "dist/index.js",
   "engines": {
