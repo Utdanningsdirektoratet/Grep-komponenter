@@ -84,7 +84,11 @@ export const EditorComponent: Component = ({
   };
 
   const onChange = (nextState: EditorState): void => {
-    onContentChange &&
+    const currentContentState = state.getCurrentContent();
+    const newContentState = nextState.getCurrentContent();
+
+    currentContentState !== newContentState &&
+      onContentChange &&
       // defer change event
       new Promise(resolve =>
         resolve(onContentChange(nextState.getCurrentContent())),
