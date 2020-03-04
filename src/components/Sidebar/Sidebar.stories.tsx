@@ -25,26 +25,6 @@ export const adminPages: NavigationProps[] = [
       {
         id: 5,
         label: "Child 1-2",
-        children: [
-          {
-            id: 6,
-            label: "Child 2-1"
-          },
-          {
-            id: 7,
-            label: "Child 2-2",
-            children: [
-              {
-                id: 8,
-                label: "Child 3-1",
-              },
-              {
-                id: 9,
-                label: "Child 3-2"
-              }
-            ]
-          }
-        ]
       }
     ]
   },

@@ -56,11 +56,11 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               <List disablePadding>
                 {page.children?.map(child => (
                   <ListItem
-                  style={{paddingLeft: "20px"}}
-                    key={page.id}
+                  style={{paddingLeft: "30px"}}
+                    key={child.id}
                     tabIndex={0}
                     className={classes.item}
-                    onClick={() => handleClick(page)}
+                    onClick={() => handleClick(child)}
                     onKeyPress={keyboard.onActivation(() => onPageClick(child))}>
                     <ListItemText
                       tabIndex={-1}
