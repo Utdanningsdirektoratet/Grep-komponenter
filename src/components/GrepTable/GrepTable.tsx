@@ -217,6 +217,7 @@ export const GrepTable = <T extends any>({
       ? columns.concat([{ getCell: _renderCellButton, padding: 'none' }])
       : columns;
     const clickableRows = !!onRowClick;
+    const disabled = isRowDisabled && isRowDisabled(row);
     return (
       <GrepTableRow
         key={index}
@@ -224,11 +225,11 @@ export const GrepTable = <T extends any>({
         selected={selectedRow === row}
         clickable={clickableRows}
         onClick={() => {
-          return _handleRowClick(row);
+          return !disabled && _handleRowClick(row);
         }}
         columns={rowColumns}
         row={row}
-        style={{ cursor: clickableRows ? 'pointer' : '' }}
+        style={{ cursor: clickableRows && !disabled ? 'pointer' : '' }}
       />
     );
   };
