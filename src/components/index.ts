@@ -31,6 +31,7 @@ export * from './OverflowTooltip';
 export * from './Sidebar';
 export * from './NavGuard';
 export * from './GrepEditor';
+export * from './ConfirmationDialog';
 
 export { default as AppBar } from './AppBar';
 export { default as AppBarTop } from './AppBarTop';
