@@ -126,11 +126,12 @@ export const GrepTable = <T extends any>({
       _setSelectedRow(row);
       if (row) {
         const rowIndex = data.indexOf(row);
-        setCurrentPage(Math.floor(rowIndex / rowsPerPage), rowIndex);
+        const pageIndex = Math.floor(rowIndex / rowsPerPage);
+        pageIndex >= 0 && setCurrentPage(pageIndex, rowIndex);
       }
       onSelectedRowChange && onSelectedRowChange(row);
     },
-    [_setSelectedRow, setCurrentPage, onSelectedRowChange],
+    [_setSelectedRow, setCurrentPage, onSelectedRowChange, rowsPerPage, data],
   );
 
   const setSelectedRowIndex = (index: number) => setSelectedRow(data[index]);
@@ -143,7 +144,6 @@ export const GrepTable = <T extends any>({
       `[data-index="${selectedRowIndex}"]`,
     ) as HTMLElement;
     if (!rowTab) return;
-    // rowTab.scrollIntoView();
     const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;
     tabableItem && tabableItem.focus();
   }, [tableRef, selectedRowIndex]);
