@@ -1,3 +1,11 @@
+<a name="0.5.4"></a>
+
+## [0.5.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.3...v0.5.4) (2020-03-06)
+
+### Bug Fixes
+
+- add tab order to table row ([c2bc4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/c2bc4f4))
+
 <a name="0.5.3"></a>
 
 ## [0.5.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.2...v0.5.3) (2020-03-06)
