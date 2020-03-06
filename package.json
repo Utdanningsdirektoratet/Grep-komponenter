@@ -124,6 +124,7 @@
     "dist"
   ],
   "dependencies": {
+    "lodash": "^4.17.15",
     "rollup-plugin-eslint": "^7.0.0"
   }
 }
