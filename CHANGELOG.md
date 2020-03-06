@@ -1,3 +1,11 @@
+<a name="0.5.3"></a>
+
+## [0.5.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.2...v0.5.3) (2020-03-06)
+
+### Bug Fixes
+
+- add missing hook depency for grep table ([6c13e7a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6c13e7a))
+
 <a name="0.5.2"></a>
 
 ## [0.5.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.2) (2020-03-06)
