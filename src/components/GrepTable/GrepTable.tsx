@@ -238,6 +238,7 @@ export const GrepTable = <T extends any>({
       <GrepTableRow
         key={rowIndex}
         data-index={rowIndex}
+        tabIndex={0}
         hover={clickableRows}
         selected={selectedRow === row}
         clickable={clickableRows}
