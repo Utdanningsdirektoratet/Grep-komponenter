@@ -1,3 +1,17 @@
+<a name="0.6.0"></a>
+
+# [0.6.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.6.0) (2020-03-06)
+
+### Bug Fixes
+
+- fix logic for selected row and focus ([6ff0cef](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6ff0cef))
+- reposition dropwdown when out of bounds ([ef0ac4d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ef0ac4d))
+
+### Features
+
+- add change log ([083b0a9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/083b0a9))
+- add debounce hook ([093827d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/093827d))
+
 <a name="0.5.1"></a>
 
 ## [0.5.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1) (2020-03-02)
