@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Key } from 'ts-keycode-enum';
 
 import {
@@ -111,32 +111,46 @@ export const GrepTable = <T extends any>({
   const [selectedRow, _setSelectedRow] = React.useState<T | null>(null);
   const [selectedRowIndex, _setSelectedRowIndex] = React.useState<number>(0);
 
-  const setCurrentPage = (index: number, rowIndex?: number) => {
-    _setCurrentPage(index);
-    _setSelectedRowIndex(rowIndex || index * rowsPerPage);
-  };
+  const setCurrentPage = useCallback(
+    (index: number, rowIndex?: number) => {
+      _setCurrentPage(index);
+      _setSelectedRowIndex(
+        rowIndex !== undefined ? rowIndex : (index + 1) * rowsPerPage,
+      );
+    },
+    [_setCurrentPage, _setSelectedRowIndex, rowsPerPage],
+  );
 
-  const setSelectedRow = (row: T | null) => {
-    _setSelectedRow(row);
-    if (row) {
-      const rowIndex = data.indexOf(row);
-      row &&
-        setCurrentPage(Math.floor(rowIndex / rowsPerPage), data.indexOf(row));
-    }
-    onSelectedRowChange && onSelectedRowChange(row);
-  };
+  const setSelectedRow = useCallback(
+    (row: T | null) => {
+      _setSelectedRow(row);
+      if (row) {
+        const rowIndex = data.indexOf(row);
+        setCurrentPage(Math.floor(rowIndex / rowsPerPage), rowIndex);
+      }
+      onSelectedRowChange && onSelectedRowChange(row);
+    },
+    [_setSelectedRow, setCurrentPage, onSelectedRowChange],
+  );
+
+  const setSelectedRowIndex = (index: number) => setSelectedRow(data[index]);
 
   const tableRef = React.useRef<HTMLElement | null>(null);
+
+  // focus selected row first tabable item
   React.useEffect(() => {
-    if (selectedRow) {
-      const rowTab = tableRef.current?.querySelector('[tabindex="0"]');
-      ((rowTab || tableRef.current) as HTMLElement)?.focus();
-    }
-  }, [tableRef, selectedRow]);
+    const rowTab = tableRef.current?.querySelector(
+      `[data-index="${selectedRowIndex}"]`,
+    ) as HTMLElement;
+    if (!rowTab) return;
+    // rowTab.scrollIntoView();
+    const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;
+    tabableItem && tabableItem.focus();
+  }, [tableRef, selectedRowIndex]);
 
   React.useMemo(() => {
     setCurrentPage(0);
-  }, [data.length]);
+  }, [data.length, setCurrentPage]);
 
   const _openDropdown = (e: React.SyntheticEvent<Element>, row: T) => {
     const { onContextIdChanged } = props;
@@ -153,10 +167,14 @@ export const GrepTable = <T extends any>({
     _openDropdown(event, row);
   };
 
-  const _handleRowClick = (row: T) => {
-    setSelectedRow(row);
-    onRowClick && onRowClick(row);
-  };
+  const _handleRowClick = useCallback(
+    (row: T) => {
+      const disabled = isRowDisabled && isRowDisabled(row);
+      setSelectedRow(row);
+      !disabled && onRowClick && onRowClick(row);
+    },
+    [setSelectedRow, onRowClick],
+  );
 
   const _handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -200,9 +218,6 @@ export const GrepTable = <T extends any>({
                   break;
               }
             }}
-            onFocus={() => {
-              setSelectedRow(row);
-            }}
             tabIndex={tabindex}
           >
             <MoreVert />
@@ -218,18 +233,21 @@ export const GrepTable = <T extends any>({
       : columns;
     const clickableRows = !!onRowClick;
     const disabled = isRowDisabled && isRowDisabled(row);
+    const rowIndex = index + currentPage * rowsPerPage;
     return (
       <GrepTableRow
-        key={index}
+        key={rowIndex}
+        data-index={rowIndex}
         hover={clickableRows}
         selected={selectedRow === row}
         clickable={clickableRows}
-        onClick={() => {
-          return !disabled && _handleRowClick(row);
-        }}
+        onClick={() => _handleRowClick(row)}
         columns={rowColumns}
         row={row}
         style={{ cursor: clickableRows && !disabled ? 'pointer' : '' }}
+        onFocus={({ currentTarget }) => {
+          setSelectedRowIndex(Number(currentTarget.getAttribute('data-index')));
+        }}
       />
     );
   };
@@ -315,9 +333,7 @@ export const GrepTable = <T extends any>({
         <TableBody
           ref={tableRef}
           className={classes.body}
-          tabIndex={selectedRow ? -1 : 0}
           onKeyDown={onKey}
-          onFocus={() => setSelectedRow(data[selectedRowIndex])}
         >
           {data.length ? (
             rows.map(_renderRow)
