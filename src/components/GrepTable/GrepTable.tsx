@@ -34,7 +34,7 @@ export interface TableColumn<T> extends Pick<TableCellProps, 'padding'> {
 }
 
 export interface GrepTableProps<T>
-  extends Pick<TableProps, 'size' | 'stickyHeader'> {
+  extends Pick<TableProps, 'size' | 'stickyHeader' | 'padding'> {
   data: T[];
   columns: Array<TableColumn<T>>;
   sortBy?: string;
@@ -103,6 +103,7 @@ export const GrepTable = <T extends any>({
   size,
   caption,
   stickyHeader,
+  padding,
   ...props
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
@@ -319,7 +320,7 @@ export const GrepTable = <T extends any>({
 
   return (
     <TableContainer style={props.style}>
-      <Table className={classes.table} size={size} stickyHeader={stickyHeader}>
+      <Table className={classes.table} size={size} stickyHeader={stickyHeader} padding={padding}>
         {caption && <caption>{caption}</caption>}
         {
           <GrpeTableHeader
