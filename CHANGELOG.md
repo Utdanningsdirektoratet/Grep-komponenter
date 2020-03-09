@@ -1,3 +1,11 @@
+<a name="0.5.5"></a>
+
+## [0.5.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.5) (2020-03-09)
+
+### Features
+
+- allow default padding of tables ([45fbd9e](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/45fbd9e))
+
 <a name="0.5.4"></a>
 
 ## [0.5.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.3...v0.5.4) (2020-03-06)
