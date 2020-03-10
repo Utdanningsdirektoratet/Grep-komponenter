@@ -1,3 +1,11 @@
+<a name="0.5.8"></a>
+
+## [0.5.8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.7...v0.5.8) (2020-03-10)
+
+### Bug Fixes
+
+- focus on click ([d00ff3b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d00ff3b))
+
 <a name="0.5.7"></a>
 
 ## [0.5.7](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.6...v0.5.7) (2020-03-10)
