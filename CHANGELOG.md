@@ -1,3 +1,11 @@
+<a name="0.5.7"></a>
+
+## [0.5.7](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.6...v0.5.7) (2020-03-10)
+
+### Bug Fixes
+
+- selected row on index 0 ([4719906](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4719906))
+
 <a name="0.5.6"></a>
 
 ## [0.5.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.5...v0.5.6) (2020-03-10)
