@@ -1,3 +1,7 @@
+<a name="0.5.9"></a>
+
+## [0.5.9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.8...v0.5.9) (2020-03-10)
+
 <a name="0.5.8"></a>
 
 ## [0.5.8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.7...v0.5.8) (2020-03-10)
