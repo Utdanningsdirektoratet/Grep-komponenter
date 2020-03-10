@@ -82,9 +82,19 @@ export const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+const containsFocus = (el: HTMLElement, tag: string = '*') =>
+  Array.from(el.getElementsByTagName(tag)).some(
+    el => el === document.activeElement,
+  );
+
+const getElementIndex = (el: Element): number =>
+  Number(el.getAttribute('data-index') || -1);
 /**
  * Since Grep-Table is so tightly intregrated into LPU and Admin some core logic could not be fixed
  * Still works but still messy
+ *
+ * @todo enhance page handling
+ *
  */
 export const GrepTable = <T extends any>({
   placeholderText,
@@ -109,33 +119,32 @@ export const GrepTable = <T extends any>({
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
   const [menuAnchor, setMenuAnchor] = React.useState<Element | null>(null);
   const [currentPage, _setCurrentPage] = React.useState<number>(0);
-  const [selectedRow, _setSelectedRow] = React.useState<T | null>(null);
-  const [selectedRowIndex, _setSelectedRowIndex] = React.useState<number>(0);
+  const [selectedRowIndex, _setSelectedRowIndex] = React.useState<
+    number | undefined
+  >();
+
+  const selectedRow = selectedRowIndex ? data[selectedRowIndex] : null;
 
   const setCurrentPage = useCallback(
     (index: number, rowIndex?: number) => {
+      index = pagination && index >= 0 ? index : 0;
       _setCurrentPage(index);
-      _setSelectedRowIndex(
-        rowIndex !== undefined ? rowIndex : (index + 1) * rowsPerPage,
-      );
+      _setSelectedRowIndex(rowIndex);
     },
-    [_setCurrentPage, _setSelectedRowIndex, rowsPerPage],
+    [_setCurrentPage, _setSelectedRowIndex, rowsPerPage, pagination],
   );
 
-  const setSelectedRow = useCallback(
-    (row: T | null) => {
-      _setSelectedRow(row);
-      if (row) {
-        const rowIndex = data.indexOf(row);
-        const pageIndex = Math.floor(rowIndex / rowsPerPage);
-        pageIndex >= 0 && setCurrentPage(pageIndex, rowIndex);
-      }
-      onSelectedRowChange && onSelectedRowChange(row);
-    },
-    [_setSelectedRow, setCurrentPage, onSelectedRowChange, rowsPerPage, data],
-  );
+  const setSelectedRowIndex = (index: number) => {
+    const hasIndexChanged = index === selectedRowIndex;
+    const pageIndex = Math.floor(index / rowsPerPage);
+    setCurrentPage(pageIndex, index);
+    if (hasIndexChanged && onSelectedRowChange) {
+      onSelectedRowChange(data[index]);
+    }
+  };
 
-  const setSelectedRowIndex = (index: number) => setSelectedRow(data[index]);
+  const setSelectedElement = (el: Element) =>
+    setSelectedRowIndex(getElementIndex(el));
 
   const tableRef = React.useRef<HTMLElement | null>(null);
 
@@ -145,8 +154,10 @@ export const GrepTable = <T extends any>({
       `[data-index="${selectedRowIndex}"]`,
     ) as HTMLElement;
     if (!rowTab) return;
-    const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;
-    tabableItem && tabableItem.focus();
+    if (!containsFocus(rowTab)) {
+      const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;
+      tabableItem && tabableItem.focus();
+    }
   }, [tableRef, selectedRowIndex]);
 
   React.useMemo(() => {
@@ -155,7 +166,6 @@ export const GrepTable = <T extends any>({
 
   const _openDropdown = (e: React.SyntheticEvent<Element>, row: T) => {
     const { onContextIdChanged } = props;
-    setSelectedRow(row);
     if (onContextIdChanged) {
       onContextIdChanged(row);
     }
@@ -171,10 +181,9 @@ export const GrepTable = <T extends any>({
   const _handleRowClick = useCallback(
     (row: T) => {
       const disabled = isRowDisabled && isRowDisabled(row);
-      setSelectedRow(row);
       !disabled && onRowClick && onRowClick(row);
     },
-    [setSelectedRow, onRowClick],
+    [onRowClick],
   );
 
   const _handlePageChange = (
@@ -197,10 +206,8 @@ export const GrepTable = <T extends any>({
 
   const _renderCellButton = (row: T) => {
     const { menuDisabled, menuTooltip } = props;
-
     const disabled = menuDisabled && menuDisabled(row);
     const tooltip = menuTooltip ? menuTooltip(row) : '';
-    const tabindex = row === selectedRow || !selectedRow ? 0 : -1;
     return (
       <Tooltip title={tooltip}>
         <div>
@@ -219,7 +226,7 @@ export const GrepTable = <T extends any>({
                   break;
               }
             }}
-            tabIndex={tabindex}
+            tabIndex={0}
           >
             <MoreVert />
           </IconButton>
@@ -241,30 +248,27 @@ export const GrepTable = <T extends any>({
         data-index={rowIndex}
         tabIndex={0}
         hover={clickableRows}
-        selected={selectedRow === row}
+        selected={rowIndex === selectedRowIndex}
         clickable={clickableRows}
-        onClick={() => _handleRowClick(row)}
+        onClick={({ currentTarget }) => {
+          setSelectedElement(currentTarget);
+          _handleRowClick(row);
+        }}
         columns={rowColumns}
         row={row}
         style={{ cursor: clickableRows && !disabled ? 'pointer' : '' }}
-        onFocus={({ currentTarget }) => {
-          setSelectedRowIndex(Number(currentTarget.getAttribute('data-index')));
-        }}
+        onFocus={({ currentTarget }) => setSelectedElement(currentTarget)}
       />
     );
   };
 
   const onKey = (e: React.KeyboardEvent) => {
-    if (!selectedRow) {
-      return;
-    }
-
-    const rowIndex = data.indexOf(selectedRow);
+    const maxIndex = data.length - 1;
     const moveSelectedRow = (steps: number) => {
-      const i = rowIndex + steps;
-      const max = data.length - 1;
-      const nextRow = data[i < 0 ? 0 : i > max ? max : i];
-      nextRow && setSelectedRow(nextRow);
+      const i = (selectedRowIndex || 0) + steps;
+      if (i >= 0 && i <= maxIndex) {
+        setSelectedRowIndex(i);
+      }
     };
 
     switch (e.keyCode) {
@@ -287,24 +291,22 @@ export const GrepTable = <T extends any>({
         break;
 
       case Key.Home:
-        setSelectedRow(data[0]);
+        setSelectedRowIndex(0);
         break;
 
       case Key.End:
-        setSelectedRow(data[data.length - 1]);
+        setSelectedRowIndex(maxIndex);
         break;
 
       case Key.Tab:
         requestAnimationFrame(() => {
           // check is any children still has focus
-          ![...(tableRef.current?.getElementsByTagName('*') || [])].some(
-            el => el === document.activeElement,
-          ) && setSelectedRow(null);
+          !containsFocus(tableRef.current!) && setSelectedRowIndex(-1);
         });
         break;
 
       case Key.Enter:
-        _handleRowClick(selectedRow);
+        selectedRow && _handleRowClick(selectedRow);
         break;
     }
   };
@@ -320,7 +322,12 @@ export const GrepTable = <T extends any>({
 
   return (
     <TableContainer style={props.style}>
-      <Table className={classes.table} size={size} stickyHeader={stickyHeader} padding={padding}>
+      <Table
+        className={classes.table}
+        size={size}
+        stickyHeader={stickyHeader}
+        padding={padding}
+      >
         {caption && <caption>{caption}</caption>}
         {
           <GrpeTableHeader
@@ -332,11 +339,7 @@ export const GrepTable = <T extends any>({
             dropdownItems={dropdownItems}
           />
         }
-        <TableBody
-          ref={tableRef}
-          className={classes.body}
-          onKeyDown={onKey}
-        >
+        <TableBody ref={tableRef} className={classes.body} onKeyDown={onKey}>
           {data.length ? (
             rows.map(_renderRow)
           ) : (
