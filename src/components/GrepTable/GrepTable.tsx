@@ -176,7 +176,6 @@ export const GrepTable = <T extends any>({
     if (onContextIdChanged) {
       onContextIdChanged(row);
     }
-    console.log(e);
     setMenuAnchor(e.currentTarget);
   };
 
@@ -328,7 +327,6 @@ export const GrepTable = <T extends any>({
 
   const classes = useStyles({ outlined, showHeader: header });
 
-  console.log(selectedRow);
   return (
     <TableContainer style={props.style}>
       <Table
