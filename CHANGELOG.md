@@ -1,3 +1,11 @@
+<a name="0.5.6"></a>
+
+## [0.5.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.5...v0.5.6) (2020-03-10)
+
+### Bug Fixes
+
+- focus of rows on grep table ([4ba40a5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ba40a5))
+
 <a name="0.5.5"></a>
 
 ## [0.5.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.5) (2020-03-09)
