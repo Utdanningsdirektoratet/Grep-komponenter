@@ -44,7 +44,8 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   },
   {
     label: 'Tittel',
-    getCell: row => `Tittel ${row.id}`,
+    width: '100px',
+    getCell: row => `Tittel ${row.id} dsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsas`,
   },
   {
     label: 'Status',

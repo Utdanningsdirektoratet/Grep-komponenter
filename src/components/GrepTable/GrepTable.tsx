@@ -123,6 +123,13 @@ export const GrepTable = <T extends any>({
     number | undefined
   >();
 
+  const [focusedRow, setFocusedRow] = React.useState<number|undefined>(undefined);
+
+  // quick workaround, since focus steals click
+  React.useMemo(() => {
+    setTimeout(() => setFocusedRow(selectedRowIndex), 150);
+  }, [selectedRowIndex, setFocusedRow]);
+
   const selectedRow = selectedRowIndex !== undefined ? data[selectedRowIndex] : null;
 
   const setCurrentPage = useCallback(
@@ -249,7 +256,7 @@ export const GrepTable = <T extends any>({
         data-index={rowIndex}
         tabIndex={0}
         hover={clickableRows}
-        selected={rowIndex === selectedRowIndex}
+        selected={rowIndex === focusedRow}
         clickable={clickableRows}
         onClick={({ currentTarget }) => {
           setSelectedElement(currentTarget);
