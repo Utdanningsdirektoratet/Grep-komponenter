@@ -1,3 +1,27 @@
+<a name="0.5.9-new-loading-overlay.1"></a>
+
+## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+
+<a name="0.5.1-new-loading-overlay.0"></a>
+
+## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
 <a name="0.5.9"></a>
 
 ## [0.5.9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.8...v0.5.9) (2020-03-10)
