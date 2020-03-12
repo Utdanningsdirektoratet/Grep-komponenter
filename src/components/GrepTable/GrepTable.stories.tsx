@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import GrepTable, { TableColumn } from './GrepTable';
 import { DropdownMenuItem } from '../DropdownMenu';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, FormControlLabel, Checkbox } from '@material-ui/core';
 
 interface ICurriculum {
   id: number;
@@ -44,11 +44,12 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   },
   {
     label: 'Tittel',
-    getCell: () => 'Tittel TittelTittelTittel TittelTittelTittelTittel TittelTittel',
+    width: '100px',
+    getCell: row => `Tittel ${row.id} dsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsas`,
   },
   {
     label: 'Status',
-    getCell: () => 'Status',
+    getCell: () => <FormControlLabel control={<Checkbox />} label="status" />,
   },
   {
     label: 'Sist endret',
@@ -82,9 +83,7 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   },
 ];
 
-export const tableData = (
-  samples: number = 5,
-): ICurriculum[] =>
+export const tableData = (samples: number = 5): ICurriculum[] =>
   new Array(samples).fill(null).map((_, id) => ({
     id,
     code: '1001',
@@ -129,7 +128,11 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
 storiesOf('Grep table', module)
   .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
   .add('standard', () => (
-    <GrepTable header columns={tableColumns} data={tableData()} />
+    <Box>
+      <Button>Test</Button>
+      <GrepTable header columns={tableColumns} data={tableData()} />
+      <Button>Test</Button>
+    </Box>
   ))
   .add('outlined', () => (
     <GrepTable header columns={tableColumns} data={tableData()} outlined />
@@ -158,11 +161,14 @@ storiesOf('Grep table', module)
       <Button>Test</Button>
       <GrepTable
         header
-        data={tableData()}
+        data={tableData(100)}
         dropdownItems={menuItems}
         columns={CURRICULUM_COLUMNS}
         menuTooltip={() => 'Tooltip'}
         menuDisabled={row => row.id === 3}
+        isRowDisabled={row => !!(row.id % 2)}
+        pagination
+        rowsPerPage={10}
       />
       <Button>Test</Button>
     </Box>

@@ -138,6 +138,11 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
               className={styles.subMenu}
               in={open}
               onMenuClose={collapse}
+              onEntered={() =>
+                requestAnimationFrame(() =>
+                  window.dispatchEvent(new Event('resize')),
+                )
+              }
             >
               {items}
             </CollapsableMenu>
