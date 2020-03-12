@@ -1,3 +1,47 @@
+<a name="0.5.9-grepf-635.5"></a>
+
+## [0.5.9-grepf-635.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-grepf-635.5) (2020-03-12)
+
+### Bug Fixes
+
+- removed duplicate file ([7e51182](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7e51182))
+
+<a name="0.5.0-grepf-635.4"></a>
+
+# [0.5.0-grepf-635.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.0-grepf-635.4) (2020-03-06)
+
+### Features
+
+- use enter to call onActivation-callback ([61b5011](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/61b5011))
+
+<a name="0.5.0-grepf-635.3"></a>
+
+# [0.5.0-grepf-635.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.2...v0.5.0-grepf-635.3) (2020-03-04)
+
+### Features
+
+- add confirmationDialog ([2965478](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2965478))
+
+<a name="0.5.0-grepf-635.2"></a>
+
+# [0.5.0-grepf-635.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.0-grepf-635.2) (2020-03-03)
+
+### Bug Fixes
+
+- skip onChange on editor focus/blur ([717d4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717d4f4))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
 <a name="0.5.9"></a>
 
 ## [0.5.9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.8...v0.5.9) (2020-03-10)
