@@ -4,6 +4,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import resolve from 'rollup-plugin-node-resolve';
 import url from 'rollup-plugin-url';
 import json from '@rollup/plugin-json';
+// import { eslint } from "rollup-plugin-eslint";
 
 import yalc from './rollup-plugin-yalc';
 
@@ -14,12 +15,6 @@ export default {
     output: [
         {
             file: pkg.main,
-            format: 'cjs',
-            exports: 'named',
-            sourcemap: true
-        },
-        {
-            file: pkg.module,
             format: 'es',
             exports: 'named',
             sourcemap: true
@@ -35,9 +30,10 @@ export default {
         }),
         resolve(),
         typescript({
-            clean: true,
-            typescript: require('typescript'),
+            check: false,
+            typescript: require("typescript"),
             tsconfig: 'tsconfig.rollup.json',
+            objectHashIgnoreUnknownHack: true,
             rollupCommonJSResolveHack: true,
         }),
         commonjs({

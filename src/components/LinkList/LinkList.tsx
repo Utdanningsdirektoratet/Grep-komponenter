@@ -1,12 +1,16 @@
 import * as React from 'react';
-import {
-  Title,
-  PageLink,
-  StyledLink,
-  StyledArrow,
-  Container,
-} from './linkListStyles';
+import { Title } from './linkListStyles';
 import { NavigationProps } from '..';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  Divider,
+  Box,
+} from '@material-ui/core';
+
+import { ArrowForward } from '@material-ui/icons';
 
 interface Props {
   title: string;
@@ -15,17 +19,32 @@ interface Props {
 }
 
 const LinkList: React.FC<Props> = props => (
-  <Container>
+  <Box width="100%" flexDirection="column">
     <Title>{props.title}</Title>
-    <React.Fragment>
+    <List>
       {props.pages.map(page => (
-        <PageLink key={page.id} onClick={() => props.onPageClick(page)}>
-          <StyledLink>{page.label}</StyledLink>
-          <StyledArrow />
-        </PageLink>
+        <Box key={page.id}>
+          <ListItem
+            button
+            onClick={() => props.onPageClick(page)}
+            style={{ padding: '12px 4px' }}
+          >
+            <ListItemText
+              primary={page.label}
+              primaryTypographyProps={{
+                color: 'primary',
+                style: { fontSize: 18 },
+              }}
+            />
+            <ListItemIcon style={{ justifyContent: 'flex-end' }}>
+              <ArrowForward color="primary" />
+            </ListItemIcon>
+          </ListItem>
+          <Divider />
+        </Box>
       ))}
-    </React.Fragment>
-  </Container>
+    </List>
+  </Box>
 );
 
 export default LinkList as React.ComponentType<Props>;
