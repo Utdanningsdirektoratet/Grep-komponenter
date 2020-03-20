@@ -1,35 +1,68 @@
-<a name="0.5.2-grepf-836.0"></a>
+<a name="0.5.9"></a>
 
-## [0.5.2-grepf-836.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.2-grepf-836.0) (2020-03-05)
+## [0.5.9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.8...v0.5.9) (2020-03-10)
+
+<a name="0.5.8"></a>
+
+## [0.5.8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.7...v0.5.8) (2020-03-10)
 
 ### Bug Fixes
 
-- clicking on child wont minimize menu ([4ee7cb8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ee7cb8))
+- focus on click ([d00ff3b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d00ff3b))
+
+<a name="0.5.7"></a>
+
+## [0.5.7](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.6...v0.5.7) (2020-03-10)
+
+### Bug Fixes
+
+- selected row on index 0 ([4719906](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4719906))
+
+<a name="0.5.6"></a>
+
+## [0.5.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.5...v0.5.6) (2020-03-10)
+
+### Bug Fixes
+
+- focus of rows on grep table ([4ba40a5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ba40a5))
+
+<a name="0.5.5"></a>
+
+## [0.5.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.5) (2020-03-09)
+
+### Features
+
+- allow default padding of tables ([45fbd9e](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/45fbd9e))
+
+<a name="0.5.4"></a>
+
+## [0.5.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.3...v0.5.4) (2020-03-06)
+
+### Bug Fixes
+
+- add tab order to table row ([c2bc4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/c2bc4f4))
+
+<a name="0.5.3"></a>
+
+## [0.5.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.2...v0.5.3) (2020-03-06)
+
+### Bug Fixes
+
+- add missing hook depency for grep table ([6c13e7a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6c13e7a))
+
+<a name="0.5.2"></a>
+
+## [0.5.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.2) (2020-03-06)
+
+### Bug Fixes
+
+- fix logic for selected row and focus ([6ff0cef](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6ff0cef))
+- reposition dropwdown when out of bounds ([ef0ac4d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ef0ac4d))
 
 ### Features
 
 - add change log ([083b0a9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/083b0a9))
-- Sidebar now supports children ([5a3c337](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5a3c337))
-
-<a name="0.5.1-new-loading-overlay.0"></a>
-
-## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
-
-<a name="0.2.1-new-loading-overlay.1"></a>
-
-## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
-
-### Bug Fixes
-
-- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
-
-<a name="0.2.1-new-loading-overlay.0"></a>
-
-## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-new-loading-overlay.0) (2020-02-13)
-
-### Features
-
-- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+- add debounce hook ([093827d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/093827d))
 
 <a name="0.5.1"></a>
 
