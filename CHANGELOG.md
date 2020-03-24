@@ -1,3 +1,11 @@
+<a name="0.6.0"></a>
+
+# [0.6.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.10...v0.6.0) (2020-03-24)
+
+<a name="0.5.9-new-loading-overlay.1"></a>
+
+## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+
 <a name="0.5.10"></a>
 
 ## [0.5.10](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.10) (2020-03-20)
