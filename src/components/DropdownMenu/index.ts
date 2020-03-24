@@ -1,2 +1,2 @@
-export { default } from './DropdownMenu';
-export * from './DropdownMenu';
+export { default } from './dropdown-menu';
+export * from './dropdown-menu';
