@@ -17,7 +17,7 @@ export const listItemStyles = makeStyles(
       },
     },
     button: {
-      '&:hover, &:focus': {
+      '&:hover': {
         backgroundColor: 'unset',
       },
     },
