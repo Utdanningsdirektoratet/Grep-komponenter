@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import DropdownMenu from './DropdownMenu';
+import DropdownMenu from './dropdown-menu';
 
 describe('DropdownMenu', () => {
   it('should render correctly', () => {
     const component = shallow(
       <DropdownMenu
-        menuAnchor={null}
+        anchorEl={null}
+        open={false}
         menuItems={[]}
-        menuOpen={false}
-        onMenuClose={() => void 1}
+        onClose={() => void 1}
       />,
     );
 
