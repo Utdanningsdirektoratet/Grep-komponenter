@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { Colors } from '../../styling';
 
 import { IconBox, HelpText, Outer, StyledInput } from './searchBarStyles';
+import { keyboard } from '../../utils';
 
 interface SearchBarProps {
   helpText?: string;
@@ -63,7 +64,13 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           InputProps={{ disableUnderline: true, fullWidth: true }}
         />
         <IconBox style={{ cursor: 'pointer' }}>
-          {!!value.length && <Close onClick={_handleClear} />}
+          {!!value.length && (
+            <Close
+              tabIndex={0}
+              onClick={_handleClear}
+              onKeyPress={keyboard.onActivation(_handleClear)}
+            />
+          )}
         </IconBox>
       </Outer>
       <div style={{ display: 'flex', alignItems: 'center' }}>
