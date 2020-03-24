@@ -1,3 +1,7 @@
+<a name="0.6.1-gref-910-dev.0"></a>
+
+## [0.6.1-gref-910-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.0...v0.6.1-gref-910-dev.0) (2020-03-24)
+
 <a name="0.6.0"></a>
 
 # [0.6.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.10...v0.6.0) (2020-03-24)
