@@ -2,8 +2,8 @@
 
 const spawn = require('child_process').spawn;
 const branch = require('git-branch').sync();
-const tag = (function(){
-  if(branch.match(/feature/)){
+const tag = (function() {
+  if (branch.match(/feature/)) {
     const [_, tag] = branch.match(/feature[\/|-](.*)/);
     return tag;
   }
@@ -12,9 +12,9 @@ const tag = (function(){
 
 async function execute(cmd, args) {
   return new Promise((resolve, reject) => {
-    const job = spawn(cmd, args);
-    job.stdout.on('data', e => console.log(String(e)));
-    job.stderr.on('data', e => console.error(String(e)));
+    const job = spawn(cmd, args, {
+      stdio: 'inherit',
+    });
     job.on('exit', (code, signal) => {
       code === 0 ? resolve() : reject({ code, signal });
     });
@@ -24,14 +24,13 @@ async function execute(cmd, args) {
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'minor', '-m', 'build: bumping to %s']);
+      return execute('npm', ['version', 'major', '-m', 'build: bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',
-        'patch',
-        '-no-git-tag-version',
+        'minor',
         '-m',
-        'build: Bumping to %s',
+        'build: bumping next to %s',
       ]);
     default:
       if (tag.length === 0) {
@@ -41,7 +40,6 @@ async function build() {
         'version',
         'prerelease',
         `--preid=${tag}`,
-        '--no-git-tag-version',
         '-m',
         'build: prerelease of %s',
       ]);

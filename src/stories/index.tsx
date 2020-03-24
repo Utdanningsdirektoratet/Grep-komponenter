@@ -32,8 +32,7 @@ import { user } from '../components/ProfileInfo/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
 
 import '../components/NavGuard/stories';
-// import "../components/SortableList/stories";
-
+import '../components/SortableTable/stories';
 import '../components/GrepDateRange/stories';
 
 storiesOf('Pages', module)
@@ -54,10 +53,10 @@ storiesOf('Pages', module)
               onButtonClick={() => console.log('Button clicked')}
             />
             <DropdownMenu
-              menuOpen={false}
-              menuAnchor={null}
+              open={false}
+              anchorEl={null}
               menuItems={menuItems}
-              onMenuClose={() => console.log('closing menu')}
+              onClose={() => console.log('closing menu')}
             />
           </CenterLayout>
         </AppBarTop>

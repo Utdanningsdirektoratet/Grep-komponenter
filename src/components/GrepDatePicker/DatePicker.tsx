@@ -24,7 +24,7 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
   ...props
 }: DatePickerProps) => {
   const [date, setDate] = useDate(value);
-  const { error, ...overridden } = props;
+  const error = !!errorMessage || props.error;
   const helperText = errorMessage || props.helperText;
 
   useEffect(() => onChange(date), [String(date)]);
@@ -41,9 +41,9 @@ export const DatePicker: React.FunctionComponent<DatePickerProps> = ({
           'aria-label': 'change date',
         }}
         // logic
-        {...overridden}
-        {...(error && error)}
-        {...(helperText && helperText)}
+        {...props}
+        {...(error && { error })}
+        {...(helperText && { helperText })}
         value={date}
         onChange={setDate}
       />
