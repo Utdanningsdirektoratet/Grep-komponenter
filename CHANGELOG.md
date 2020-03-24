@@ -1,6 +1,18 @@
-<a name="0.5.9-new-loading-overlay.1"></a>
+<a name="0.5.10"></a>
 
-## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+## [0.5.10](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.10) (2020-03-20)
+
+<a name="0.5.2-grepf-836.0"></a>
+
+## [0.5.2-grepf-836.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.2-grepf-836.0) (2020-03-05)
+
+### Bug Fixes
+
+- clicking on child wont minimize menu ([4ee7cb8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ee7cb8))
+
+### Features
+
+- Sidebar now supports children ([5a3c337](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5a3c337))
 
 <a name="0.5.1-new-loading-overlay.0"></a>
 
@@ -21,6 +33,10 @@
 ### Features
 
 - added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
+<a name="0.1.3"></a>
+
+## [0.1.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.2...v0.1.3) (2020-01-07)
 
 <a name="0.5.9"></a>
 
