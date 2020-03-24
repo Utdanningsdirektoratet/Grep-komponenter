@@ -31,6 +31,7 @@ module.exports = {
       rules: {
         'react/prop-types': 'warn',
         'react/display-name': 'warn',
+        'no-unused-vars': ['warn', { 'varsIgnorePattern': '^_' }],
       },
     },
   ],

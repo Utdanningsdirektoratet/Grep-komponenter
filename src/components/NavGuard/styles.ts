@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core';
 import { hex2rgba } from '../../styling/hex2rgb';
-import { makeStyles, createStyles } from '@material-ui/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(({ palette }: Theme) =>
   createStyles({

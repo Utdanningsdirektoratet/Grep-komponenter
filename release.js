@@ -12,48 +12,25 @@ const tag = (function() {
 
 async function execute(cmd, args) {
   return new Promise((resolve, reject) => {
-    const job = spawn(cmd, args);
-    job.stdout.on('data', e => console.log(String(e)));
-    job.stderr.on('data', e => console.error(String(e)));
+    const job = spawn(cmd, args, {
+      stdio: 'inherit',
+    });
     job.on('exit', (code, signal) => {
       code === 0 ? resolve() : reject({ code, signal });
     });
   });
 }
 
-async function getVersionType(){
-  const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-  
-  return new Promise((resolve) => {
-    function _getVersion() {
-      readline.question(`What type of release? [major|minor|patch]`, (version) => {
-        if(version === 'minor' || version === 'patch'){
-          readline.close();
-          resolve(version);
-        }
-        _getVersion();
-      })
-    }
-    _getVersion();
-  })
-}
-
-
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', await getVersionType(), '-m', 'build: bumping to %s']);
+      return execute('npm', ['version', 'major', '-m', 'build: bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',
-        'prerelease',
-        `--preid=next`,
-        '-no-git-tag-version',
+        'minor',
         '-m',
-        'build: Bumping next to %s',
+        'build: bumping next to %s',
       ]);
     default:
       if (tag.length === 0) {
@@ -63,7 +40,6 @@ async function build() {
         'version',
         'prerelease',
         `--preid=${tag}`,
-        '--no-git-tag-version',
         '-m',
         'build: prerelease of %s',
       ]);

@@ -54,15 +54,16 @@ export const parseDate = (
           // remove last digits, js only parse milliseconds
           .replace(/(^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3})(\d*)$/, '$1')
       : datetime;
-  return dayjs(datetime, { utc, format });
+  // dirty hack to not provide utc flag
+  const parsed = dayjs(datetime, { utc, format });
+  return parsed.isValid() ? dayjs(parsed.toISOString()) : parsed;
 };
 
 export const hasDateChanged = (a: DateInput, b: DateInput): boolean => {
   if (a === null || b === null) {
     return a !== b;
   }
-  const date = dayjs(a);
-  return date.isValid() && !date.isSame(b, 'day');
+  return dayjs(a).format('L') !== dayjs(b).format('L');
 };
 
 export const isDateValid = (date: DateInput, allowNull?: boolean): boolean =>
