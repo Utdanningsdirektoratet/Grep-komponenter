@@ -1,5 +1,7 @@
 import * as React from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import CircularProgress, {
+  CircularProgressProps,
+} from '@material-ui/core/CircularProgress';
 import CleanPaper from '../CleanPaper';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -12,13 +14,13 @@ const Inner = withStyles({
   },
 })(CleanPaper);
 
-interface Props {
-  height?: number;
+interface Props extends CircularProgressProps {
+  height?: number | string;
 }
 
-const CircularLoading: React.FC<Props> = props => (
-  <Inner style={{ height: props.height }}>
-    <CircularProgress />
+const CircularLoading: React.FC<Props> = ({ height, ...props }) => (
+  <Inner style={{ height }}>
+    <CircularProgress {...props} />
   </Inner>
 );
 
