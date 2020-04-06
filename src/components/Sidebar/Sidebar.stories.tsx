@@ -14,6 +14,20 @@ export const adminPages: NavigationProps[] = [
     label: 'Kompetansemålsett',
     toUrl: '/manage-users',
   },
+  {
+    id: 3,
+    label: "Oversettelser",
+    children: [
+      {
+        id: 4,
+        label: "Child 1-1"
+      },
+      {
+        id: 5,
+        label: "Child 1-2",
+      }
+    ]
+  },
 ];
 
 storiesOf('Sidebar', module).add('standard', () => (
