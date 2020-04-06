@@ -5,6 +5,7 @@ export interface NavigationProps {
   id: number;
   label: string;
   toUrl?: string;
+  children?: NavigationProps[];
   linkIcon?: React.ReactElement<any>;
 }
 
