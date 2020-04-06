@@ -2,7 +2,7 @@
 
 const spawn = require('child_process').spawn;
 const branch = require('git-branch').sync();
-const tag = (function() {
+const tag = (function () {
   if (branch.match(/feature/)) {
     const [_, tag] = branch.match(/feature[\/|-](.*)/);
     return tag;
@@ -24,11 +24,15 @@ async function execute(cmd, args) {
 async function build() {
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'major', '-m', 'build: bumping to %s']);
+      return execute('npm', ['version', 'patch', '-m', 'build: bumping to %s']);
     case 'dev':
+      const version = process.argv.slice(2)[0];
+      if (version.length === 0) {
+        throw Error(`invalid version, provide version`);
+      }
       return execute('npm', [
         'version',
-        'minor',
+        version,
         '-m',
         'build: bumping next to %s',
       ]);
@@ -38,7 +42,8 @@ async function build() {
       }
       return execute('npm', [
         'version',
-        'prerelease',
+        '--no-git-tag-version',
+        'preminor',
         `--preid=${tag}`,
         '-m',
         'build: prerelease of %s',
@@ -46,11 +51,13 @@ async function build() {
   }
 }
 
-async function publish() {
-  return execute('npm', ['publish', '--tag', branch === 'dev' ? 'next' : tag]);
-}
-
 (async () => {
   await build();
-  branch !== 'master' && (await publish());
+  branch === 'master'
+    ? await execute('npm', ['publish'])
+    : await execute('npm', [
+        'publish',
+        '--tag',
+        branch === 'dev' ? 'next' : tag,
+      ]);
 })();
