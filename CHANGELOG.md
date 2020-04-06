@@ -1,3 +1,7 @@
+<a name="0.6.2"></a>
+
+## [0.6.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.0...v0.6.2) (2020-04-06)
+
 <a name="0.6.1"></a>
 
 ## [0.6.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.0...v0.6.1) (2020-04-06)
