@@ -8,7 +8,7 @@ interface NavigateBackProps {
   onClick: () => void;
 }
 
-const NavigateBack: React.FC<NavigateBackProps> = props => (
+const NavigateBack: React.FC<NavigateBackProps> = (props) => (
   <Button
     color="primary"
     style={{ marginTop: 10, ...props.style }}

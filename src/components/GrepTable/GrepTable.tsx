@@ -82,9 +82,9 @@ export const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const containsFocus = (el: HTMLElement, tag: string = '*') =>
+const containsFocus = (el: HTMLElement, tag = '*') =>
   Array.from(el.getElementsByTagName(tag)).some(
-    el => el === document.activeElement,
+    (el) => el === document.activeElement,
   );
 
 const getElementIndex = (el: Element): number =>
@@ -123,14 +123,17 @@ export const GrepTable = <T extends any>({
     number | undefined
   >();
 
-  const [focusedRow, setFocusedRow] = React.useState<number|undefined>(undefined);
+  const [focusedRow, setFocusedRow] = React.useState<number | undefined>(
+    undefined,
+  );
 
   // quick workaround, since focus steals click
   React.useMemo(() => {
     setTimeout(() => setFocusedRow(selectedRowIndex), 150);
   }, [selectedRowIndex, setFocusedRow]);
 
-  const selectedRow = selectedRowIndex !== undefined ? data[selectedRowIndex] : null;
+  const selectedRow =
+    selectedRowIndex !== undefined ? data[selectedRowIndex] : null;
 
   const setCurrentPage = useCallback(
     (index: number, rowIndex?: number) => {
@@ -157,9 +160,9 @@ export const GrepTable = <T extends any>({
 
   // focus selected row first tabable item
   React.useEffect(() => {
-    const rowTab = tableRef.current?.querySelector(
-      `[data-index="${selectedRowIndex}"]`,
-    ) as HTMLElement;
+    const rowTab =
+      tableRef.current?.querySelector(`[data-index="${selectedRowIndex}"]`) as
+      HTMLElement;
     if (!rowTab) return;
     if (!containsFocus(rowTab)) {
       const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;
@@ -222,8 +225,8 @@ export const GrepTable = <T extends any>({
             disableTouchRipple={true}
             disabled={disabled}
             style={{ float: 'right' }}
-            onClick={e => _handleButtonClick(e, row)}
-            onKeyDown={e => {
+            onClick={(e) => _handleButtonClick(e, row)}
+            onKeyDown={(e) => {
               switch (e.which) {
                 case Key.Enter:
                   // dont show dropdown

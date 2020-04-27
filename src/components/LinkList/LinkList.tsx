@@ -18,11 +18,11 @@ interface Props {
   onPageClick: (page: NavigationProps) => any;
 }
 
-const LinkList: React.FC<Props> = props => (
+const LinkList: React.FC<Props> = (props) => (
   <Box width="100%" flexDirection="column">
     <Title>{props.title}</Title>
     <List>
-      {props.pages.map(page => (
+      {props.pages.map((page) => (
         <Box key={page.id}>
           <ListItem
             button

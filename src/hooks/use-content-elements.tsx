@@ -43,7 +43,7 @@ export const useContentElements = (
       },
       {},
     );
-  }, [container, selector, identify ,filter]);
+  }, [container, selector, identify, filter]);
 
   useEffect(() => {
     // early exit, nothing to observe

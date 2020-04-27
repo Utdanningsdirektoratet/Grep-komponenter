@@ -5,7 +5,7 @@ export interface BodyLayoutProps {
   children?: React.ReactNode;
 }
 
-const BodyLayout: React.FC<BodyLayoutProps> = props => (
+const BodyLayout: React.FC<BodyLayoutProps> = (props) => (
   <StyledBodyLayout>{props.children}</StyledBodyLayout>
 );
 

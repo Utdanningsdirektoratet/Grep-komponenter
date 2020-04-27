@@ -5,7 +5,7 @@ interface FooterProps {
   children: React.ReactNode;
 }
 
-const Footer: React.FC<FooterProps> = props => (
+const Footer: React.FC<FooterProps> = (props) => (
   <StyledFooter>{props.children}</StyledFooter>
 );
 

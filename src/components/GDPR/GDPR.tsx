@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Container, Title, Body, Content, StyledIcon } from './gdprStyles';
 
-const GDPR: React.FC = props => (
+const GDPR: React.FC = (props) => (
   <Container>
     <StyledIcon />
     <Content>

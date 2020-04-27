@@ -19,17 +19,14 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const classes = useStyles({});
 
-
   const handleClick = (page: NavigationProps) => {
-    page.children ?
-      setIsOpen(!isOpen)
-      : onPageClick(page)
-  }
+    page.children ? setIsOpen(!isOpen) : onPageClick(page);
+  };
 
   return (
     <Box className={classes.container}>
       <List>
-        {pages.map(page => (
+        {pages.map((page) => (
           <div key={page.id}>
             <ListItem
               key={page.id}
@@ -46,28 +43,28 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
                   page.id === currentPageId ? classes.selected : classes.text
                 }
               />
-              {page.children
-                ? isOpen
-                  ? <ExpandMore /> : <ExpandLess />
-                : null}
+              {page.children ? isOpen ? <ExpandMore /> : <ExpandLess /> : null}
             </ListItem>
 
             <Collapse in={isOpen} timeout="auto" unmountOnExit>
               <List disablePadding>
-                {page.children?.map(child => (
+                {page.children?.map((child) => (
                   <ListItem
-                  style={{paddingLeft: "30px"}}
+                    style={{ paddingLeft: '30px' }}
                     key={child.id}
                     tabIndex={0}
                     className={classes.item}
                     onClick={() => handleClick(child)}
-                    onKeyPress={keyboard.onActivation(() => onPageClick(child))}>
+                    onKeyPress={keyboard.onActivation(() => onPageClick(child))}
+                  >
                     <ListItemText
                       tabIndex={-1}
                       disableTypography
                       primary={child.label}
                       className={
-                        child.id === currentPageId ? classes.selected : classes.text
+                        child.id === currentPageId
+                          ? classes.selected
+                          : classes.text
                       }
                     />
                   </ListItem>

@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from "react";
-import _ from "lodash";
+import { useEffect, useMemo } from 'react';
+import _ from 'lodash';
 
 interface Options extends _.DebounceSettings {
   wait: number;
@@ -24,12 +24,11 @@ type Debounce<T> = T & _.Cancelable;
 export const useDebounce = <T extends (...args: any) => any>(
   func: T,
   opt: Options,
-  deps?: any[]
+  deps?: any[],
 ): Debounce<T> => {
   const debounce = useMemo(() => {
     const { wait, ...settings } = opt;
     return _.debounce(func, wait, settings);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps || []);
   useEffect(() => debounce.cancel, [debounce]);
   return debounce;

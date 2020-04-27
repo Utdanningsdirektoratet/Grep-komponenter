@@ -21,10 +21,10 @@ type Component<T> = React.FunctionComponent<Properties<T>>;
 export const GrepTableRow: Component<any> = <T extends any>({
   row,
   columns,
-  clickable,
   selected,
   variant,
-  height,
+  clickable: _clickable,
+  height: _height,
   ...props
 }: Properties<T>) => {
   const render = (column: TableColumn<T>, index: number) => (
