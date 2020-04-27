@@ -28,10 +28,11 @@ module.exports = {
         project: './tsconfig.json',
       },
       settings: { react: { version: 'detect' } },
+      ecmaFeatures: { destructuring: true },
       rules: {
         'react/prop-types': 'warn',
         'react/display-name': 'warn',
-        'no-unused-vars': ['warn', { 'varsIgnorePattern': '^_' }],
+        'no-unused-vars': ['error', { vars: 'all', varsIgnorePattern: '^_' }],
       },
     },
   ],
