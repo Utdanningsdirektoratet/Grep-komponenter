@@ -91,7 +91,6 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
     if (index > 0) {
       const rect = records[index].getBoundingClientRect();
       const offset = Math.floor(rect.top - offsetTop);
-      console.log(offset);
       const within = offset < rect.height + 20;
       return records[within ? index : index - 1];
     }
@@ -135,7 +134,6 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
 
   // set selected element on initial load
   if (!initialized) {
-    console.log(hash);
     const element = getBrowserElement();
     if (element) {
       setSelected(element, true);

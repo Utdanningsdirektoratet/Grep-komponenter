@@ -1,3 +1,13 @@
+<a name="0.8.0-table-of-content.0"></a>
+
+# [0.8.0-table-of-content.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.8.0-table-of-content.0) (2020-04-27)
+
+### Features
+
+- add hook for observing element ([46324a9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/46324a9))
+- add stories for ToC ([5d775ca](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5d775ca))
+- create ToC component ([152db7f](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/152db7f))
+
 <a name="0.7.2"></a>
 
 ## [0.7.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.1...v0.7.2) (2020-04-06)
