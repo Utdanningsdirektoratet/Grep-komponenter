@@ -22,17 +22,18 @@ async function execute(cmd, args) {
 }
 
 async function build() {
+  const version = process.argv.slice(2)[0];
+  if (version.length === 0) {
+    throw Error(`invalid version, provide version`);
+  }
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'patch', '-m', 'build: bumping to %s']);
+      return execute('npm', ['version', version, '-m', 'build: bumping to %s']);
     case 'dev':
-      const version = process.argv.slice(2)[0];
-      if (version.length === 0) {
-        throw Error(`invalid version, provide version`);
-      }
       return execute('npm', [
         'version',
-        version,
+        `pre${version}`,
+        '--preid=dev',
         '-m',
         'build: bumping next to %s',
       ]);
@@ -43,7 +44,7 @@ async function build() {
       return execute('npm', [
         'version',
         '--no-git-tag-version',
-        'preminor',
+        'prerelease',
         `--preid=${tag}`,
         '-m',
         'build: prerelease of %s',
