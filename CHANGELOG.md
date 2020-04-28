@@ -1,3 +1,11 @@
+<a name="0.5.10-grepf-799.0"></a>
+
+## [0.5.10-grepf-799.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.10-grepf-799.0) (2020-04-28)
+
+### Bug Fixes
+
+- **grepf-799:** check if non-empty date is valid ([b05f451](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b05f451))
+
 <a name="0.5.9"></a>
 
 ## [0.5.9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.8...v0.5.9) (2020-03-10)
