@@ -47,8 +47,8 @@ async function build() {
         'prerelease',
         `--preid=${tag}`,
       ]);
-      await execute('git', ['add', 'package.json', 'package-lock.json']);
-      await execute('git', ['commit', '-m', `chore(${branch}): npm release`]);
+      await execute('git', ['add', 'package.json', 'package-lock.json', '--no-verify']);
+      await execute('git', ['commit', '-m', `chore(${branch}): npm release`, '--no-verify']);
       return execute('git', ['push']);
   }
 }
