@@ -41,14 +41,15 @@ async function build() {
       if (tag.length === 0) {
         throw Error(`invalid branch [${branch}]`);
       }
-      return execute('npm', [
+      await execute('npm', [
         'version',
         '--no-git-tag-version',
         'prerelease',
         `--preid=${tag}`,
-        '-m',
-        'build: prerelease of %s',
       ]);
+      await execute('git', ['add', 'package.json', 'package-lock.json']);
+      await execute('git', ['commit', '-m', `chore(${branch}): npm release`, '--no-verify']);
+      return execute('git', ['push', '--no-verify']);
   }
 }
 
