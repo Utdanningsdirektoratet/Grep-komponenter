@@ -1,3 +1,13 @@
+<a name="0.7.3-grepf-860.1"></a>
+
+## [0.7.3-grepf-860.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.7.3-grepf-860.1) (2020-04-29)
+
+### Bug Fixes
+
+- git add/push on feature release ([6a21de9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6a21de9))
+- strip time from date ([fce0a99](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fce0a99))
+- update release script ([fc076f9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc076f9))
+
 <a name="0.7.3-grepf-860.0"></a>
 
 ## [0.7.3-grepf-860.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.7.3-grepf-860.0) (2020-04-29)
