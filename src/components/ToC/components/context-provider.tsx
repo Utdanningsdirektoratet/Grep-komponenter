@@ -97,10 +97,6 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
     return records[index];
   }, [elements, offsetTop]);
 
-  const getBrowserElement = useCallback(() => {
-    return elements[hash] || getViewportElement();
-  }, [elements, hash, getViewportElement]);
-
   // attach observer to elements
   useEffect(() => {
     const target = scrollTarget || window;
@@ -133,12 +129,9 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
   }, [hash, setSelected]);
 
   // set selected element on initial load
-  if (!initialized) {
-    const element = getBrowserElement();
-    if (element) {
-      setSelected(element, true);
-      setInitialized(true);
-    }
+  if (!initialized && elements && elements[hash]) {
+    setSelected(elements[hash], true);
+    setInitialized(true);
   }
 
   return (
