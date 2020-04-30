@@ -1,3 +1,23 @@
+<a name="0.8.0-table-of-content.2"></a>
+# [0.8.0-table-of-content.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.8.0-table-of-content.2) (2020-04-30)
+
+
+### Bug Fixes
+
+* release script ([53d75f2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/53d75f2))
+* remove scroll to first element on initial ([c4e1837](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/c4e1837))
+* update release script ([fc076f9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc076f9))
+* update release script ([86957f9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/86957f9))
+
+
+### Features
+
+* add hook for observing element ([46324a9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/46324a9))
+* add stories for ToC ([5d775ca](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5d775ca))
+* create ToC component ([152db7f](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/152db7f))
+
+
+
 <a name="0.8.0-table-of-content.1"></a>
 
 # [0.8.0-table-of-content.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.8.0-table-of-content.1) (2020-04-28)
