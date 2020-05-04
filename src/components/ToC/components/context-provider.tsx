@@ -70,16 +70,13 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
   const setSelected = useCallback(
     _.throttle(
       (element: HTMLElement, scroll?: boolean) => {
-        if (element && !Object.values(elements).includes(element)) {
-          throw Error('Invalid element');
-        }
         element && scroll && scrollToElement(element);
         _setSelected(element);
       },
       50,
       { trailing: false },
     ),
-    [_setSelected, elements, scrollToElement],
+    [_setSelected, scrollToElement],
   );
 
   const getViewportElement = useCallback(() => {
@@ -124,12 +121,14 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
   // observe changes in hash
   useEffect(() => {
     if (hash && elements[hash]) {
+      console.debug('anchor change, setting selected element');
       setSelected(elements[hash], true);
     }
   }, [hash, setSelected]);
 
   // set selected element on initial load
   if (!initialized && elements && elements[hash]) {
+    console.debug('setting initial selected element');
     setSelected(elements[hash], true);
     setInitialized(true);
   }
