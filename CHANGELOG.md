@@ -2,13 +2,331 @@
 
 ## [0.7.2-grepf-799.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.10-grepf-799.0...v0.7.2-grepf-799.0) (2020-05-04)
 
+### Bug Fixes
+
+- release script ([53d75f2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/53d75f2))
+- update release script ([fc076f9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc076f9))
+
+<a name="0.7.2"></a>
+
+## [0.7.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.1...v0.7.2) (2020-04-06)
+
+<a name="0.7.1"></a>
+
+## [0.7.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.0...v0.7.1) (2020-04-06)
+
+<a name="0.7.0"></a>
+
+# [0.7.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.1-gref-910-dev.0...v0.7.0) (2020-04-03)
+
+<a name="0.6.1-gref-910-dev.0"></a>
+
+## [0.6.1-gref-910-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.0...v0.6.1-gref-910-dev.0) (2020-03-24)
+
+<a name="0.6.0"></a>
+
+# [0.6.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.10...v0.6.0) (2020-03-24)
+
+<a name="0.5.10"></a>
+
+## [0.5.10](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-grepf-635.6...v0.5.10) (2020-03-20)
+
+<a name="0.5.9-grepf-635.6"></a>
+
+## [0.5.9-grepf-635.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-grepf-635.5...v0.5.9-grepf-635.6) (2020-03-17)
+
+### Bug Fixes
+
+- allow height prop as string and number ([fb22e1b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fb22e1b))
+
+<a name="0.5.9-grepf-635.5"></a>
+
+## [0.5.9-grepf-635.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-new-loading-overlay.1...v0.5.9-grepf-635.5) (2020-03-12)
+
+### Bug Fixes
+
+- removed duplicate file ([7e51182](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7e51182))
+
+<a name="0.5.9-new-loading-overlay.1"></a>
+
+## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+
+<a name="0.5.0-grepf-635.4"></a>
+
+# [0.5.0-grepf-635.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.0-grepf-635.4) (2020-03-06)
+
+### Features
+
+- use enter to call onActivation-callback ([61b5011](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/61b5011))
+
+<a name="0.5.2-grepf-836.0"></a>
+
+## [0.5.2-grepf-836.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.3...v0.5.2-grepf-836.0) (2020-03-05)
+
+<a name="0.5.0-grepf-635.3"></a>
+
+# [0.5.0-grepf-635.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.2...v0.5.0-grepf-635.3) (2020-03-04)
+
+### Bug Fixes
+
+- clicking on child wont minimize menu ([4ee7cb8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ee7cb8))
+
+### Features
+
+- add confirmationDialog ([2965478](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2965478))
+- Sidebar now supports children ([5a3c337](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5a3c337))
+
+<a name="0.5.0-grepf-635.2"></a>
+
+# [0.5.0-grepf-635.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.0-grepf-635.2) (2020-03-03)
+
+### Bug Fixes
+
+- skip onChange on editor focus/blur ([717d4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717d4f4))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1-new-loading-overlay.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.5.1-new-loading-overlay.0"></a>
+
+## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
+<a name="0.1.3"></a>
+
+## [0.1.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.2...v0.1.3) (2020-01-07)
+
 <a name="0.5.10-grepf-799.0"></a>
 
-## [0.5.10-grepf-799.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.10-grepf-799.0) (2020-04-28)
+## [0.5.10-grepf-799.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.5.10-grepf-799.0) (2020-04-28)
 
 ### Bug Fixes
 
 - **grepf-799:** check if non-empty date is valid ([b05f451](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b05f451))
+
+<a name="0.7.2"></a>
+
+## [0.7.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.1...v0.7.2) (2020-04-06)
+
+<a name="0.7.1"></a>
+
+## [0.7.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.0...v0.7.1) (2020-04-06)
+
+<a name="0.6.1-gref-910-dev.0"></a>
+
+## [0.6.1-gref-910-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.0...v0.6.1-gref-910-dev.0) (2020-03-24)
+
+<a name="0.7.0"></a>
+
+# [0.7.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.1-gref-910-dev.0...v0.7.0) (2020-04-03)
+
+<a name="0.5.9-grepf-635.6"></a>
+
+## [0.5.9-grepf-635.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-grepf-635.5...v0.5.9-grepf-635.6) (2020-03-17)
+
+### Bug Fixes
+
+- allow height prop as string and number ([fb22e1b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fb22e1b))
+
+<a name="0.5.9-grepf-635.5"></a>
+
+## [0.5.9-grepf-635.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-new-loading-overlay.1...v0.5.9-grepf-635.5) (2020-03-12)
+
+### Bug Fixes
+
+- removed duplicate file ([7e51182](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7e51182))
+
+<a name="0.5.0-grepf-635.4"></a>
+
+# [0.5.0-grepf-635.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.0-grepf-635.4) (2020-03-06)
+
+### Features
+
+- use enter to call onActivation-callback ([61b5011](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/61b5011))
+
+<a name="0.5.0-grepf-635.3"></a>
+
+# [0.5.0-grepf-635.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.2...v0.5.0-grepf-635.3) (2020-03-04)
+
+### Features
+
+- add confirmationDialog ([2965478](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2965478))
+
+<a name="0.5.0-grepf-635.2"></a>
+
+# [0.5.0-grepf-635.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.0-grepf-635.2) (2020-03-03)
+
+### Bug Fixes
+
+- skip onChange on editor focus/blur ([717d4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717d4f4))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1-new-loading-overlay.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
+<a name="0.6.1-gref-910-dev.0"></a>
+
+## [0.6.1-gref-910-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.0...v0.6.1-gref-910-dev.0) (2020-03-24)
+
+<a name="0.6.0"></a>
+
+# [0.6.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.10...v0.6.0) (2020-03-24)
+
+<a name="0.5.9-new-loading-overlay.1"></a>
+
+## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+
+<a name="0.5.10"></a>
+
+## [0.5.10](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-grepf-635.6...v0.5.10) (2020-03-20)
+
+<a name="0.5.2-grepf-836.0"></a>
+
+## [0.5.2-grepf-836.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.3...v0.5.2-grepf-836.0) (2020-03-05)
+
+### Bug Fixes
+
+- clicking on child wont minimize menu ([4ee7cb8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ee7cb8))
+
+### Features
+
+- Sidebar now supports children ([5a3c337](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5a3c337))
+
+<a name="0.1.3"></a>
+
+## [0.1.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.2...v0.1.3) (2020-01-07)
+
+<a name="0.5.9-grepf-635.6"></a>
+
+## [0.5.9-grepf-635.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-grepf-635.5...v0.5.9-grepf-635.6) (2020-03-17)
+
+### Bug Fixes
+
+- allow height prop as string and number ([fb22e1b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fb22e1b))
+
+<a name="0.5.9-new-loading-overlay.1"></a>
+
+## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+
+<a name="0.5.1-new-loading-overlay.0"></a>
+
+## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
+<a name="0.5.9-grepf-635.5"></a>
+
+## [0.5.9-grepf-635.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9-new-loading-overlay.1...v0.5.9-grepf-635.5) (2020-03-12)
+
+### Bug Fixes
+
+- removed duplicate file ([7e51182](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7e51182))
+
+<a name="0.5.0-grepf-635.4"></a>
+
+# [0.5.0-grepf-635.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.0-grepf-635.4) (2020-03-06)
+
+### Features
+
+- use enter to call onActivation-callback ([61b5011](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/61b5011))
+
+<a name="0.5.0-grepf-635.3"></a>
+
+# [0.5.0-grepf-635.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.2...v0.5.0-grepf-635.3) (2020-03-04)
+
+### Features
+
+- add confirmationDialog ([2965478](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2965478))
+
+<a name="0.5.0-grepf-635.2"></a>
+
+# [0.5.0-grepf-635.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.0-grepf-635.2) (2020-03-03)
+
+### Bug Fixes
+
+- skip onChange on editor focus/blur ([717d4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717d4f4))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1-new-loading-overlay.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
+<a name="0.5.9-new-loading-overlay.1"></a>
+
+## [0.5.9-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.9-new-loading-overlay.1) (2020-03-12)
+
+<a name="0.5.1-new-loading-overlay.0"></a>
+
+## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
 
 <a name="0.5.9"></a>
 
@@ -40,7 +358,7 @@
 
 <a name="0.5.5"></a>
 
-## [0.5.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.5) (2020-03-09)
+## [0.5.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.4...v0.5.5) (2020-03-09)
 
 ### Features
 
@@ -64,7 +382,7 @@
 
 <a name="0.5.2"></a>
 
-## [0.5.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.2) (2020-03-06)
+## [0.5.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.2-grepf-836.0...v0.5.2) (2020-03-06)
 
 ### Bug Fixes
 
@@ -78,12 +396,188 @@
 
 <a name="0.5.1"></a>
 
-## [0.5.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1) (2020-03-02)
+## [0.5.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.1...v0.5.1) (2020-03-02)
 
 ### Bug Fixes
 
 - check if row is disabled ([90c0804](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/90c0804))
 - check if row is disabled ([d450494](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d450494))
+
+<a name="0.5.0-grepf-635.4"></a>
+
+# [0.5.0-grepf-635.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.4...v0.5.0-grepf-635.4) (2020-03-06)
+
+### Features
+
+- use enter to call onActivation-callback ([61b5011](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/61b5011))
+
+<a name="0.5.0-grepf-635.3"></a>
+
+# [0.5.0-grepf-635.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.2...v0.5.0-grepf-635.3) (2020-03-04)
+
+### Features
+
+- add confirmationDialog ([2965478](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2965478))
+
+<a name="0.5.0-grepf-635.2"></a>
+
+# [0.5.0-grepf-635.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.0-grepf-635.2) (2020-03-03)
+
+### Bug Fixes
+
+- skip onChange on editor focus/blur ([717d4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717d4f4))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1-new-loading-overlay.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
+<a name="0.5.4"></a>
+
+## [0.5.4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.3...v0.5.4) (2020-03-06)
+
+### Bug Fixes
+
+- add tab order to table row ([c2bc4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/c2bc4f4))
+
+<a name="0.5.3"></a>
+
+## [0.5.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.2...v0.5.3) (2020-03-06)
+
+### Bug Fixes
+
+- add missing hook depency for grep table ([6c13e7a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6c13e7a))
+
+<a name="0.5.2"></a>
+
+## [0.5.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.2-grepf-836.0...v0.5.2) (2020-03-06)
+
+### Bug Fixes
+
+- fix logic for selected row and focus ([6ff0cef](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6ff0cef))
+- reposition dropwdown when out of bounds ([ef0ac4d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ef0ac4d))
+
+### Features
+
+- add debounce hook ([093827d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/093827d))
+
+<a name="0.5.2-grepf-836.0"></a>
+
+## [0.5.2-grepf-836.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.3...v0.5.2-grepf-836.0) (2020-03-05)
+
+### Bug Fixes
+
+- clicking on child wont minimize menu ([4ee7cb8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ee7cb8))
+
+### Features
+
+- add change log ([083b0a9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/083b0a9))
+- Sidebar now supports children ([5a3c337](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5a3c337))
+
+<a name="0.5.1"></a>
+
+## [0.5.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.1...v0.5.1) (2020-03-02)
+
+### Bug Fixes
+
+- check if row is disabled ([90c0804](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/90c0804))
+- check if row is disabled ([d450494](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d450494))
+
+<a name="0.5.1-new-loading-overlay.0"></a>
+
+## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
+<a name="0.5.0-grepf-635.3"></a>
+
+# [0.5.0-grepf-635.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.2...v0.5.0-grepf-635.3) (2020-03-04)
+
+### Features
+
+- add confirmationDialog ([2965478](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2965478))
+
+<a name="0.5.0-grepf-635.2"></a>
+
+# [0.5.0-grepf-635.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1...v0.5.0-grepf-635.2) (2020-03-03)
+
+### Bug Fixes
+
+- skip onChange on editor focus/blur ([717d4f4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717d4f4))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1-new-loading-overlay.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
+<a name="0.5.1"></a>
+
+## [0.5.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0-grepf-635.1...v0.5.1) (2020-03-02)
+
+### Bug Fixes
+
+- check if row is disabled ([90c0804](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/90c0804))
+- check if row is disabled ([d450494](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d450494))
+
+<a name="0.5.0-grepf-635.1"></a>
+
+# [0.5.0-grepf-635.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.1-new-loading-overlay.0...v0.5.0-grepf-635.1) (2020-02-25)
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
+
+<a name="0.5.1-new-loading-overlay.0"></a>
+
+## [0.5.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.0...v0.5.1-new-loading-overlay.0) (2020-02-25)
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
 
 <a name="0.5.0"></a>
 
@@ -95,7 +589,7 @@
 
 <a name="0.4.0"></a>
 
-# [0.4.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.4.0) (2020-02-20)
+# [0.4.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-new-loading-overlay.1...v0.4.0) (2020-02-20)
 
 <a name="0.3.1-grep-crumbs.0"></a>
 
@@ -107,7 +601,83 @@
 
 <a name="0.3.0"></a>
 
-# [0.3.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.3.0) (2020-02-18)
+# [0.3.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-new-loading-overlay.0...v0.3.0) (2020-02-18)
+
+<a name="0.2.0-grep-table.1"></a>
+
+# [0.2.0-grep-table.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.3-grep-table.0...v0.2.0-grep-table.1) (2020-02-04)
+
+<a name="0.1.3-grep-table.0"></a>
+
+## [0.1.3-grep-table.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0...v0.1.3-grep-table.0) (2020-02-04)
+
+### Bug Fixes
+
+- allow array spread ([8e27a86](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/8e27a86))
+
+### Features
+
+- add keyboard support on grep table ([fc465f2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc465f2))
+
+<a name="0.2.1-new-loading-overlay.1"></a>
+
+## [0.2.1-new-loading-overlay.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.1-grep-crumbs.0...v0.2.1-new-loading-overlay.1) (2020-02-20)
+
+### Bug Fixes
+
+- clear timeout function on unmount ([2306618](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2306618))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
+<a name="0.3.1-grep-crumbs.0"></a>
+
+## [0.3.1-grep-crumbs.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.3.0...v0.3.1-grep-crumbs.0) (2020-02-18)
+
+### Features
+
+- make grepCrumbs path and onClick optional ([4ee8c80](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4ee8c80))
+
+<a name="0.3.0"></a>
+
+# [0.3.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-new-loading-overlay.0...v0.3.0) (2020-02-18)
+
+<a name="0.2.0-grep-table.1"></a>
+
+# [0.2.0-grep-table.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.3-grep-table.0...v0.2.0-grep-table.1) (2020-02-04)
+
+<a name="0.1.3-grep-table.0"></a>
+
+## [0.1.3-grep-table.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0...v0.1.3-grep-table.0) (2020-02-04)
+
+### Bug Fixes
+
+- allow array spread ([8e27a86](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/8e27a86))
+
+### Features
+
+- add keyboard support on grep table ([fc465f2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc465f2))
+
+<a name="0.2.1-new-loading-overlay.0"></a>
+
+## [0.2.1-new-loading-overlay.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.1-grepf-635.0...v0.2.1-new-loading-overlay.0) (2020-02-13)
+
+### Features
+
+- added better loading overlay ([f580b7d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f580b7d))
+
+<a name="0.2.1-grepf-635.0"></a>
+
+## [0.2.1-grepf-635.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.2.0-grep-table.1...v0.2.1-grepf-635.0) (2020-02-11)
+
+### Features
+
+- **grepf-635:** add GrepEditor (draftjs) ([cc915d6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cc915d6))
 
 <a name="0.2.0-grep-table.1"></a>
 
@@ -153,7 +723,7 @@
 
 <a name="0.1.3-next.8"></a>
 
-## [0.1.3-next.8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.2...v0.1.3-next.8) (2020-01-21)
+## [0.1.3-next.8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.3...v0.1.3-next.8) (2020-01-21)
 
 ### Bug Fixes
 
@@ -165,7 +735,6 @@
 - fix typo in daterange ([7accdff](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7accdff))
 - fixed private import error ([ddc1326](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ddc1326))
 - no longer able to select same from/to date ([6902d38](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6902d38))
-- release script ([9932ac0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9932ac0))
 - stdio of relealse script ([b8f9afb](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b8f9afb))
 - subject of dev release ([6909d32](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6909d32))
 - tweakz to release 2.1 ([f7e542e](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f7e542e))
@@ -182,6 +751,14 @@
 - allow function as disabled-property ([07ae34d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/07ae34d))
 - removed commonjs ([7dfb612](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7dfb612))
 - **sortable-list:** make a sortable list ([1bcb77a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/1bcb77a))
+
+<a name="0.1.3"></a>
+
+## [0.1.3](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.1.2...v0.1.3) (2020-01-07)
+
+### Bug Fixes
+
+- release script ([9932ac0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9932ac0))
 
 <a name="0.1.2"></a>
 
