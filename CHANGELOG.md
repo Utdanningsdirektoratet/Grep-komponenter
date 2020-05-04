@@ -1,3 +1,7 @@
+<a name="0.7.2-grepf-799.0"></a>
+
+## [0.7.2-grepf-799.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.10-grepf-799.0...v0.7.2-grepf-799.0) (2020-05-04)
+
 <a name="0.5.10-grepf-799.0"></a>
 
 ## [0.5.10-grepf-799.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.5.9...v0.5.10-grepf-799.0) (2020-04-28)
@@ -153,8 +157,6 @@
 
 ### Bug Fixes
 
-- tweakz to release 2.1 ([f7e542e](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f7e542e))
-- **material-ui:** update provider loader ([4a73835](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4a73835))
 - add tag to release ([f324406](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f324406))
 - added support for dropdownItems ([e4b55a6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/e4b55a6))
 - better UI when navigating with keyboard ([57c315a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/57c315a))
@@ -166,18 +168,20 @@
 - release script ([9932ac0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9932ac0))
 - stdio of relealse script ([b8f9afb](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b8f9afb))
 - subject of dev release ([6909d32](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6909d32))
+- tweakz to release 2.1 ([f7e542e](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f7e542e))
 - update code after update of packages ([aa7070d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/aa7070d))
 - update package ([a5962df](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/a5962df))
+- **material-ui:** update provider loader ([4a73835](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4a73835))
 
 ### Features
 
-- **sortable-list:** make a sortable list ([1bcb77a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/1bcb77a))
 - add keyboard input to dropdown menus ([d2987a4](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d2987a4))
 - add on change for sortable table ([d1c3b3f](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d1c3b3f))
 - added keyboard util ([409de83](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/409de83))
 - added support for keyboard navigating ([4a8ac53](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/4a8ac53))
 - allow function as disabled-property ([07ae34d](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/07ae34d))
 - removed commonjs ([7dfb612](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7dfb612))
+- **sortable-list:** make a sortable list ([1bcb77a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/1bcb77a))
 
 <a name="0.1.2"></a>
 

@@ -10,46 +10,51 @@ import yalc from './rollup-plugin-yalc';
 
 import pkg from './package.json';
 
+//hack
+import * as draftJs from 'draft-js';
+
 export default {
-    input: 'src/index.ts',
-    output: [
-        {
-            file: pkg.main,
-            format: 'es',
-            exports: 'named',
-            sourcemap: true
-        }
-    ],
-    external: ['styled-components'],
-    globals: { 'styled-components': 'styled' },
-    plugins: [
-        external(),
-        url(),
-        json({
-            exclude: ['node_modules/**']
-        }),
-        resolve(),
-        typescript({
-            check: false,
-            typescript: require("typescript"),
-            tsconfig: 'tsconfig.rollup.json',
-            objectHashIgnoreUnknownHack: true,
-            rollupCommonJSResolveHack: true,
-        }),
-        commonjs({
-            sourceMap: false,
-            include: 'node_modules/**',
-            namedExports: {
-                'node_modules/react/react.js': [
-                    'Children',
-                    'Component',
-                    'PropTypes',
-                    'createElement'
-                ],
-                'node_modules/react-dom/index.js': ['render'],
-                'node_modules/react-is/index.js': ['ForwardRef']
-            }
-        }),
-        yalc(process.env.yalc)
-    ]
+  input: 'src/index.ts',
+  output: [
+    {
+      file: pkg.main,
+      format: 'es',
+      exports: 'named',
+      sourcemap: true,
+    },
+  ],
+  external: ['styled-components'],
+  globals: { 'styled-components': 'styled' },
+  plugins: [
+    external(),
+    url(),
+    json({
+      exclude: ['node_modules/**'],
+    }),
+    resolve(),
+    typescript({
+      check: false,
+      typescript: require('typescript'),
+      tsconfig: 'tsconfig.rollup.json',
+      objectHashIgnoreUnknownHack: true,
+      rollupCommonJSResolveHack: true,
+    }),
+    commonjs({
+      sourceMap: false,
+      include: 'node_modules/**',
+      namedExports: {
+        'node_modules/react/react.js': [
+          'Children',
+          'Component',
+          'PropTypes',
+          'createElement',
+        ],
+        'node_modules/react-dom/index.js': ['render'],
+        'node_modules/react-is/index.js': ['isFragment', 'ForwardRef'],
+        // draft
+        'node_modules/draft-js/lib/Draft.js': Object.keys(draftJs),
+      },
+    }),
+    yalc(process.env.yalc),
+  ],
 };
