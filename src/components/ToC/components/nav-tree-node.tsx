@@ -57,6 +57,8 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
     isSelected && ref.current && ref.current.scrollIntoViewIfNeeded();
   }, [isSelected, ref]);
 
+  const tabIndex = isSelected ? 0 : -1;
+
   return (
     <li
       key={index}
@@ -68,6 +70,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
       <Link
         className={clsx(styles.link, isSelected && `${styles.link}--selected`)}
         href={url}
+        tabIndex={tabIndex}
         onClick={(event: React.MouseEvent) => {
           console.debug('node click', node);
           event.preventDefault();

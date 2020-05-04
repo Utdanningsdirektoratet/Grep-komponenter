@@ -1,15 +1,16 @@
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { hex2rgba } from '../../../styling';
+import { convertToRgba } from '../../../styling';
 
 export interface StyleProps {
   lvl: number;
 }
 
 export const useStyles = makeStyles(({ palette }: Theme) => {
-  const defaultColor = hex2rgba(palette.primary.main, 0.75);
+  const defaultColor = convertToRgba(palette.primary.main, 0.75);
   const linkcolor = `var(--grep-toc-link-color, ${defaultColor})`;
   const selectedColor = `var(--grep-toc-selected-color, ${palette.primary.main})`;
+  const focusBackground = `var(--grep-toc-focused-background, ${convertToRgba(palette.primary.main, .1)})`;
   return createStyles({
     root: {
       color: linkcolor,
@@ -28,6 +29,10 @@ export const useStyles = makeStyles(({ palette }: Theme) => {
         color: selectedColor,
         borderLeft: `5px solid ${selectedColor}`,
       },
+      '&:focus': {
+        outline: 'none',
+        background: focusBackground,
+      }
     }),
   });
 });
