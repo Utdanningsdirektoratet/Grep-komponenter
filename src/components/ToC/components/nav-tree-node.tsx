@@ -32,7 +32,7 @@ export interface GrepTableOfContentNavTreeNodeProps {
 export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> = (
   props,
 ) => {
-  const ref = useRef<HTMLLIElement>(null);
+  const linkRef = useRef<HTMLLIElement>(null);
 
   const dispatch = useDispatch();
 
@@ -54,20 +54,20 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
   const url = `${location.pathname}${location.search}#${node.id}`;
 
   useEffect(() => {
-    isSelected && ref.current && ref.current.scrollIntoViewIfNeeded();
-  }, [isSelected, ref]);
+    const link = linkRef.current;
+    if (isSelected) {
+      link?.scrollIntoViewIfNeeded();
+    } else if (link === document.activeElement) {
+      link?.blur();
+    }
+  }, [isSelected, linkRef]);
 
   const tabIndex = isSelected ? 0 : -1;
 
   return (
-    <li
-      key={index}
-      data-lvl={lvl}
-      className={className}
-      style={style}
-      ref={ref}
-    >
+    <li key={index} data-lvl={lvl} className={className} style={style}>
       <Link
+        ref={linkRef}
         className={clsx(styles.link, isSelected && `${styles.link}--selected`)}
         href={url}
         tabIndex={tabIndex}
