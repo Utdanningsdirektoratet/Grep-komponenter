@@ -10,7 +10,10 @@ export const useStyles = makeStyles(({ palette }: Theme) => {
   const defaultColor = convertToRgba(palette.primary.main, 0.75);
   const linkcolor = `var(--grep-toc-link-color, ${defaultColor})`;
   const selectedColor = `var(--grep-toc-selected-color, ${palette.primary.main})`;
-  const focusBackground = `var(--grep-toc-focused-background, ${convertToRgba(palette.primary.main, .1)})`;
+  const focusBackground = `var(--grep-toc-focused-background, ${convertToRgba(
+    palette.primary.main,
+    0.1,
+  )})`;
   return createStyles({
     root: {
       color: linkcolor,
@@ -22,7 +25,6 @@ export const useStyles = makeStyles(({ palette }: Theme) => {
       minHeight: '1rem',
       borderLeft: '5px solid transparent',
       paddingLeft: lvl * 5,
-      whiteSpace: 'nowrap',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
       '&--selected': {
@@ -32,7 +34,7 @@ export const useStyles = makeStyles(({ palette }: Theme) => {
       '&:focus': {
         outline: 'none',
         background: focusBackground,
-      }
+      },
     }),
   });
 });
