@@ -44,7 +44,7 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
   const [selected, _setSelected] = useState<HTMLElement>();
   const [initialized, setInitialized] = useState<boolean>();
 
-  const hash = useSelector((s) => decodeURI(getHash(s as any))).substring(1);
+  const hash = useSelector(s => decodeURI(getHash(s as any))).substring(1);
 
   const scrollToElement = useCallback(
     (element: HTMLElement) => {
@@ -83,7 +83,7 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
     const records = Object.values(elements);
     if (!records.length) return;
     const index = records.findIndex(
-      (e) => e.getBoundingClientRect().bottom > offsetTop,
+      e => e.getBoundingClientRect().bottom > offsetTop,
     );
     if (index > 0) {
       const rect = records[index].getBoundingClientRect();

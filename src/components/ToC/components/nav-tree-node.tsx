@@ -1,7 +1,7 @@
 import React, { useContext, ReactElement, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { replace, getLocation } from 'connected-react-router';
+import { getLocation } from 'connected-react-router';
 
 import context from '../context';
 import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
@@ -29,12 +29,8 @@ export interface GrepTableOfContentNavTreeNodeProps {
   renderChilds: (children: ContextTree) => ReactElement;
 }
 
-export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> = (
-  props,
-) => {
+export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> = props => {
   const linkRef = useRef<HTMLLIElement>(null);
-
-  const dispatch = useDispatch();
 
   const { node, style, renderChilds } = props;
   const { lvl, el, index, children } = node;
@@ -50,7 +46,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
   );
 
   const txt = el.innerText;
-  const location = useSelector((s) => getLocation(s as any));
+  const location = useSelector(s => getLocation(s as any));
   const url = `${location.pathname}${location.search}#${node.id}`;
 
   useEffect(() => {
@@ -75,7 +71,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
           console.debug('node click', node);
           event.preventDefault();
           event.stopPropagation();
-          dispatch(replace(url));
+          history.replaceState({}, txt, url);
           setSelected(el, true);
         }}
         color="inherit"

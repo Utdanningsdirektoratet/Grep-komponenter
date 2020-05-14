@@ -1,24 +1,25 @@
-import React, { useContext, useMemo, useRef, useCallback, useEffect, useState } from 'react';
-
-import context from '../context';
-
-import NavTree from './nav-tree';
-
-import { buildTree } from '../utils/tree-builder';
-
+import React, {
+  useContext,
+  useMemo,
+  useRef,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+import clsx from 'clsx';
 import { Key } from 'ts-keycode-enum';
 
-import clsx from 'clsx';
+import context from '../context';
+import NavTree from './nav-tree';
 import useStyles from './nav.style';
+import { buildTree } from '../utils/tree-builder';
 
 export interface GrepTableOfContentNavProps {
   className?: string;
   style?: React.CSSProperties;
 }
 
-export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
-  props,
-) => {
+export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = props => {
   const [showKeyboardHint, setShowKeyboardHint] = useState<boolean>(false);
   const ref = useRef<HTMLElement>(null);
   const { elements, classes, selected, setSelected } = useContext(context);
@@ -59,31 +60,23 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
     }
   };
 
-  const onFocus = () => {
-    const focused = selected || Object.values(elements).shift();
-    if (focused instanceof HTMLElement) {
-      setSelected(focused, true);
-      focusSelected();
-    }
-  };
-
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       e.keyCode === Key.Alt && setShowKeyboardHint(true);
-      if(e.altKey) {
+      if (e.altKey) {
         e.keyCode === Key.I && focusSelected();
       }
-    }
+    };
     const onKeyUp = (e: KeyboardEvent) => {
       e.keyCode === Key.Alt && setShowKeyboardHint(false);
-    }
+    };
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
     return () => {
       window.removeEventListener('keydown', onKeyDown);
       window.removeEventListener('keyup', onKeyUp);
     };
-  }, [focusSelected])
+  }, [focusSelected]);
 
   const style = useStyles({});
   const className = clsx(
@@ -91,7 +84,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
     style.root,
     classes?.nav,
     props.className,
-    showKeyboardHint && style.keyboardHint
+    showKeyboardHint && style.keyboardHint,
   );
 
   return (
@@ -100,10 +93,9 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
       style={props.style}
       tabIndex={selected ? -1 : 0}
       onKeyDown={onKeyDown}
-      onFocus={onFocus}
       ref={ref}
     >
-      <NavTree elements={tree} ></NavTree>
+      <NavTree elements={tree}></NavTree>
     </nav>
   );
 };
