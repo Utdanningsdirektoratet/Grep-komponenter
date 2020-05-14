@@ -1,3 +1,28 @@
+<a name="0.8.0-table-of-content.6"></a>
+# [0.8.0-table-of-content.6](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.8.0-table-of-content.6) (2020-05-14)
+
+
+### Bug Fixes
+
+* **grepf-775:** add line break ([a85f83c](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/a85f83c))
+* **grepf-775:** improve ToC ([c3c3a5c](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/c3c3a5c))
+* add blur on node when not active ([f496e7b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f496e7b))
+* release script ([53d75f2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/53d75f2))
+* remove scroll to first element on initial ([c4e1837](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/c4e1837))
+* scroll when content changes ([981f1aa](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/981f1aa))
+* update release script ([fc076f9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc076f9))
+* update release script ([86957f9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/86957f9))
+
+
+### Features
+
+* add hook for observing element ([46324a9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/46324a9))
+* add keyboard navigation ([096fd23](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/096fd23))
+* add stories for ToC ([5d775ca](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5d775ca))
+* create ToC component ([152db7f](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/152db7f))
+
+
+
 <a name="0.8.0-table-of-content.5"></a>
 # [0.8.0-table-of-content.5](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.8.0-table-of-content.5) (2020-05-11)
 
