@@ -1,3 +1,14 @@
+<a name="0.8.0-dev.0"></a>
+
+# [0.8.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.3-dev.0...v0.8.0-dev.0) (2020-05-18)
+
+### Bug Fixes
+
+- git add/push on feature release ([6a21de9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/6a21de9))
+- skip verify from release ([f02e2b9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/f02e2b9))
+- skip verify from release ([a8f1a4f](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/a8f1a4f))
+- strip time from date ([fce0a99](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fce0a99))
+
 <a name="0.7.3-grepf-860.2"></a>
 
 ## [0.7.3-grepf-860.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.2...v0.7.3-grepf-860.2) (2020-04-29)
