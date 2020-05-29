@@ -1,3 +1,11 @@
+<a name="0.9.0-dev.0"></a>
+
+# [0.9.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.8.0-dev.0...v0.9.0-dev.0) (2020-05-29)
+
+### Features
+
+- **GrepDateRange:** add style and fullWidth props ([57d15cf](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/57d15cf))
+
 <a name="0.8.0-dev.0"></a>
 
 # [0.8.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.3-dev.0...v0.8.0-dev.0) (2020-05-18)
