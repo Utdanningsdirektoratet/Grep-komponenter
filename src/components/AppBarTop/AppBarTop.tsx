@@ -5,7 +5,7 @@ export interface AppBarTopProps {
   children?: React.ReactNode;
 }
 
-const AppBarTop: React.FC<AppBarTopProps> = props => (
+const AppBarTop: React.FC<AppBarTopProps> = (props) => (
   <StyledAppBarTop>{props.children}</StyledAppBarTop>
 );
 

@@ -34,9 +34,10 @@ import Sidebar from '../components/Sidebar';
 import '../components/NavGuard/stories';
 import '../components/SortableTable/stories';
 import '../components/GrepDateRange/stories';
+import '../components/ToC/stories';
 
 storiesOf('Pages', module)
-  .addDecorator(storyFn => (
+  .addDecorator((storyFn) => (
     <MainLayout>
       <AppBar>
         <AppBarTop>
@@ -64,7 +65,7 @@ storiesOf('Pages', module)
           <AppBarNavList
             pages={navbarPages}
             selectedPage={navbarPages[0].id}
-            onChange={number => console.log('index: ', number)}
+            onChange={(number) => console.log('index: ', number)}
           />
         </CenterLayout>
       </AppBar>
@@ -81,13 +82,13 @@ storiesOf('Pages', module)
       <ContainedLinkList
         title={'Mine tilganger'}
         pages={myPages}
-        onPageClick={page => console.log('clicked on ', page.label)}
+        onPageClick={(page) => console.log('clicked on ', page.label)}
       />
       <CurriculumTable
         title={'Mine læreplaner'}
         columns={tableColumns}
         data={curriculums}
-        onRowClick={id => console.log('clicked on ', id)}
+        onRowClick={(id) => console.log('clicked on ', id)}
       />
     </BodyLayout>
   ))
@@ -95,13 +96,13 @@ storiesOf('Pages', module)
     <React.Fragment>
       <GrepCrumbs
         breadcrumbs={breadcrumbs}
-        onClick={page => console.log('clicked on ', page.label)}
+        onClick={(page) => console.log('clicked on ', page.label)}
       />
       <BodyLayout>
         <LinkList
           title={'Systemadministrasjon'}
           pages={adminPages}
-          onPageClick={page => console.log('clicked on ', page.label)}
+          onPageClick={(page) => console.log('clicked on ', page.label)}
         />
       </BodyLayout>
     </React.Fragment>

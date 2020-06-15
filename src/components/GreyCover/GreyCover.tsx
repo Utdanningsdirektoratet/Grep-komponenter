@@ -5,7 +5,7 @@ export interface GreyCoverProps {
   elevation?: number;
 }
 
-const GreyCover: React.FC<GreyCoverProps> = props => (
+const GreyCover: React.FC<GreyCoverProps> = (props) => (
   <StyledGreyCover elevation={props.elevation}>
     {props.children}
   </StyledGreyCover>

@@ -16,11 +16,11 @@ interface Props {
   onPageClick: (page: NavigationProps) => void;
 }
 
-const ContainedLinkList: React.FC<Props> = props => (
+const ContainedLinkList: React.FC<Props> = (props) => (
   <Container style={props.style}>
     <Title>{props.title}</Title>
     <StyledList>
-      {props.pages.map(page => (
+      {props.pages.map((page) => (
         <StyledListItem
           button
           divider

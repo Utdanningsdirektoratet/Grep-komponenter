@@ -29,7 +29,7 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
 
   return (
     <StyledTabs value={value} onChange={handleChange}>
-      {pages.map(page => (
+      {pages.map((page) => (
         <StyledTab key={page.id} label={page.label} />
       ))}
     </StyledTabs>

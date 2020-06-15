@@ -16,7 +16,7 @@ type Component = React.FunctionComponent<React.PropsWithChildren<Properties>>;
 
 const InlineButton: Component = ({
   type,
-  editor,
+  editor: _editor,
   children,
   ...props
 }: React.PropsWithChildren<Properties>) => {

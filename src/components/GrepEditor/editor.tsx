@@ -90,7 +90,7 @@ export const EditorComponent: Component = ({
     currentContentState !== newContentState &&
       onContentChange &&
       // defer change event
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve(onContentChange(nextState.getCurrentContent())),
       );
     setState(nextState);

@@ -10,7 +10,7 @@ export interface CleanPaperProps {
   };
 }
 
-const CleanPaper: React.FC<CleanPaperProps> = props => (
+const CleanPaper: React.FC<CleanPaperProps> = (props) => (
   <CleanedPaper
     elevation={props.elevation ? props.elevation : 0}
     square
