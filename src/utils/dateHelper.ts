@@ -22,11 +22,14 @@ export class DateRangeValue {
   }
 
   isValid(allowNull = true, allowSame = true, unit: OpUnitType = 'day') {
-    if (this.from === null || this.to === null) {
-      return allowNull;
-    }
-    const dateFrom = dayjs(this.from);
-    const dateTo = dayjs(this.to);
+    if (!this.from && !this.to) return allowNull;
+
+    const dateFrom = dayjs(this.from || undefined);
+    const dateTo = dayjs(this.to || undefined);
+
+    if (!this.from) return allowNull && dateTo.isValid();
+    if (!this.to) return allowNull && dateFrom.isValid();
+
     if (dateFrom.isValid() && dateTo.isValid()) {
       return dateFrom.isSame(dateTo, unit)
         ? allowSame
