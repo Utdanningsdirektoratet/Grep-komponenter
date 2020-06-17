@@ -1,3 +1,18 @@
+<a name="0.10.0-sidebar-icons.0"></a>
+# [0.10.0-sidebar-icons.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.10.0-dev.0...v0.10.0-sidebar-icons.0) (2020-06-17)
+
+
+### Bug Fixes
+
+* no restricted globals ([0d044ec](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/0d044ec))
+
+
+### Features
+
+* add support for sidebar icons ([7938e82](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/7938e82))
+
+
+
 <a name="0.10.0-dev.0"></a>
 
 # [0.10.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.9.0-dev.0...v0.10.0-dev.0) (2020-06-15)
