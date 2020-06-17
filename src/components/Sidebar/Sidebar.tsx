@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { useStyles } from './sidebarStyles';
 import { keyboard } from '../../utils';
 import { ExpandMore, ExpandLess } from '@material-ui/icons';
-import { Collapse } from '@material-ui/core';
+import { Collapse, ListItemIcon } from '@material-ui/core';
 
 export interface SidebarProps {
   currentPageId?: number;
@@ -23,6 +23,20 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
     page.children ? setIsOpen(!isOpen) : onPageClick(page);
   };
 
+  const renderItem = (page: NavigationProps) => (
+    <React.Fragment>
+      {page.linkIcon && (
+        <ListItemIcon className={classes.icon}>{page.linkIcon}</ListItemIcon>
+      )}
+      <ListItemText
+        tabIndex={-1}
+        disableTypography
+        primary={page.label}
+        className={page.id === currentPageId ? classes.selected : classes.text}
+      />
+    </React.Fragment>
+  );
+
   return (
     <Box className={classes.container}>
       <List>
@@ -35,14 +49,7 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               onClick={() => handleClick(page)}
               onKeyPress={keyboard.onActivation(() => onPageClick(page))}
             >
-              <ListItemText
-                tabIndex={-1}
-                disableTypography
-                primary={page.label}
-                className={
-                  page.id === currentPageId ? classes.selected : classes.text
-                }
-              />
+              {renderItem(page)}
               {page.children ? isOpen ? <ExpandMore /> : <ExpandLess /> : null}
             </ListItem>
 
@@ -50,23 +57,14 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               <List disablePadding>
                 {page.children?.map((child) => (
                   <ListItem
-                    style={{ paddingLeft: '30px' }}
                     key={child.id}
+                    style={{ paddingLeft: '30px' }}
                     tabIndex={0}
                     className={classes.item}
                     onClick={() => handleClick(child)}
                     onKeyPress={keyboard.onActivation(() => onPageClick(child))}
                   >
-                    <ListItemText
-                      tabIndex={-1}
-                      disableTypography
-                      primary={child.label}
-                      className={
-                        child.id === currentPageId
-                          ? classes.selected
-                          : classes.text
-                      }
-                    />
+                    {renderItem(child)}
                   </ListItem>
                 ))}
               </List>
