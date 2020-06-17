@@ -29,7 +29,9 @@ export interface GrepTableOfContentNavTreeNodeProps {
   renderChilds: (children: ContextTree) => ReactElement;
 }
 
-export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> = props => {
+export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> = (
+  props,
+) => {
   const linkRef = useRef<HTMLLIElement>(null);
 
   const { node, style, renderChilds } = props;
@@ -46,7 +48,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
   );
 
   const txt = el.innerText;
-  const location = useSelector(s => getLocation(s as any));
+  const location = useSelector((s) => getLocation(s as any));
   const url = `${location.pathname}${location.search}#${node.id}`;
 
   useEffect(() => {
@@ -71,7 +73,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
           console.debug('node click', node);
           event.preventDefault();
           event.stopPropagation();
-          history.replaceState({}, txt, url);
+          window.history.replaceState({}, txt, url);
           setSelected(el, true);
         }}
         color="inherit"
