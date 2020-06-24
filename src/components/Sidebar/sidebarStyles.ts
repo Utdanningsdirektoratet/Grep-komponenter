@@ -40,5 +40,9 @@ export const useStyles = makeStyles(({ palette }: Theme) =>
       color: palette.primary.main,
       fontWeight: 500,
     },
+    icon: {
+      minWidth: 'fit-content',
+      marginRight: 2,
+    },
   }),
 );
