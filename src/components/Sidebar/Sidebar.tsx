@@ -47,7 +47,7 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               tabIndex={0}
               className={classes.item}
               onClick={() => handleClick(page)}
-              onKeyPress={keyboard.onActivation(() => onPageClick(page))}
+              onKeyPress={keyboard.onActivation(() => handleClick(page))}
             >
               {renderItem(page)}
               {page.children ? isOpen ? <ExpandMore /> : <ExpandLess /> : null}
@@ -62,7 +62,7 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
                     tabIndex={0}
                     className={classes.item}
                     onClick={() => handleClick(child)}
-                    onKeyPress={keyboard.onActivation(() => onPageClick(child))}
+                    onKeyPress={keyboard.onActivation(() => handleClick(child))}
                   >
                     {renderItem(child)}
                   </ListItem>
