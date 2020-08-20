@@ -72,5 +72,17 @@ export default makeStyles((theme: Theme) =>
       backgroundColor: 'white',
       padding: '2px 10px',
     }),
+    helpertext: ({ hasFocus }) => ({
+      margin: '.5rem',
+      opacity: hasFocus ? 1 : 0,
+      transition: theme.transitions.create(['opacity'], {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      fontSize: 'small',
+      // hack @todo when time
+      backgroundColor: 'white',
+      padding: '2px 10px',
+    }),
   }),
 );

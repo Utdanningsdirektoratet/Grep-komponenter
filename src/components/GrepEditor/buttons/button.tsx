@@ -14,16 +14,18 @@ export enum ButtonType {
   italic = 'ITALIC',
 }
 
-export const createButton = (type: ButtonType): Button => {
-  switch (type) {
-    case ButtonType.bold:
+export type Style = keyof typeof ButtonType;
+
+export const createButton = (style: Style): Button => {
+  switch (style) {
+    case 'bold':
       return {
-        type,
+        type: ButtonType[style],
         children: <FormatBold />,
       };
-    case ButtonType.italic:
+    case 'italic':
       return {
-        type,
+        type: ButtonType[style],
         children: <FormatItalic />,
       };
   }

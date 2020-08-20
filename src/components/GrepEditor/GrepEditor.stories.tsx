@@ -6,6 +6,7 @@ import GrepEditor from '.';
 import { ToolbarPropperties } from './toolbars';
 import { InlineButton } from './buttons';
 import { makeStyles, createStyles } from '@material-ui/styles';
+import { convert2html, convert2txt } from './utils';
 
 const useStyles = makeStyles(
   createStyles({
@@ -31,7 +32,7 @@ const myToolbar: React.FunctionComponent<ToolbarPropperties> = ({
 };
 
 storiesOf('GrepEditor', module)
-  .addDecorator(storyFn => (
+  .addDecorator((storyFn) => (
     <CenterLayout
       style={{
         marginTop: 40,
@@ -49,6 +50,16 @@ storiesOf('GrepEditor', module)
     return <GrepEditor classes={classes} />;
   })
   .add('Custom toolbar', () => <GrepEditor Toolbar={myToolbar} />)
+  .add('Custom buttons', () => (
+    <GrepEditor
+      allowedStyles={['bold']}
+      helperText="Some help text"
+      onContentChange={(c) => {
+        console.log(convert2txt(c));
+        console.log(convert2html(c));
+      }}
+    />
+  ))
   .add('Paste stripping and blocked inline styles', () => (
-    <GrepEditor stripPastedStyles canInlineStyle={false} />
+    <GrepEditor stripPastedStyles allowedStyles={[]} />
   ));
