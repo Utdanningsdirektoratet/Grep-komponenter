@@ -1,3 +1,15 @@
+<a name="0.12.0-dev.0"></a>
+
+# [0.12.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.11.0-dev.0...v0.12.0-dev.0) (2020-09-09)
+
+### Bug Fixes
+
+- **grepf-1030:** fix grepTable dropdown-menu ([942d50c](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/942d50c))
+
+### Features
+
+- **grepf-1062:** add support for specifying which inlinestyles to allow ([ae22b4b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ae22b4b))
+
 <a name="0.11.0-grepf-1030.0"></a>
 
 # [0.11.0-grepf-1030.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.11.0-dev.0...v0.11.0-grepf-1030.0) (2020-08-10)
