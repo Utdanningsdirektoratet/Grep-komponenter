@@ -1,3 +1,13 @@
+<a name="0.11.0-grepf-1062.0"></a>
+# [0.11.0-grepf-1062.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.11.0-dev.0...v0.11.0-grepf-1062.0) (2020-08-20)
+
+
+### Features
+
+* **grepf-1062:** add support for specifying which inlinestyles to allow ([ae22b4b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ae22b4b))
+
+
+
 <a name="0.11.0-dev.0"></a>
 
 # [0.11.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.10.0-dev.0...v0.11.0-dev.0) (2020-06-24)
