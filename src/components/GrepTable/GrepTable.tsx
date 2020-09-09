@@ -40,8 +40,6 @@ export interface GrepTableProps<T>
   sortBy?: string;
   header?: boolean;
   outlined?: boolean;
-  // @depricated
-  rowHeight?: number;
   rowsPerPage?: number;
   pagination?: boolean;
   clickableRows?: boolean;
@@ -57,6 +55,10 @@ export interface GrepTableProps<T>
   onContextIdChanged?: (row: T) => void;
   onSortBy?: (col: TableColumn<T>) => any;
   caption?: React.ReactNode;
+  /**
+   * @deprecated No longer in use.
+   */
+  rowHeight?: number;
 }
 
 interface StyleProperties {

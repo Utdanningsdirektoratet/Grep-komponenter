@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 
 import clsx from 'clsx';
-import { Box } from '@material-ui/core';
+import { Box, FormHelperText } from '@material-ui/core';
 import {
   Editor,
   ContentState,
@@ -10,7 +10,7 @@ import {
   DraftBlockRenderMap,
 } from 'draft-js';
 
-import { createButton, ButtonType, Button } from './buttons';
+import { createButton, Button, Style } from './buttons';
 import FloatingToolbar from './toolbars/floating-toolbar';
 import { ToolbarPropperties } from './toolbars';
 import keyHandler from './handlers/key';
@@ -18,6 +18,7 @@ import EditorContext from './context';
 import useStyles from './style';
 
 import { useDebounce } from '../../hooks';
+import { convert2html } from './utils';
 
 export type ContentChanged = (content: ContentState) => void;
 
@@ -28,15 +29,25 @@ export interface GrepEditor extends Editor {
 
 export interface Properties {
   label?: string;
-  onContentChange?: ContentChanged;
   readOnly?: boolean;
   autoFocus?: boolean;
-  canInlineStyle?: boolean;
-  Toolbar?: React.FunctionComponent<ToolbarPropperties>;
+  helperText?: string;
   buttons?: Array<Button>;
-  classes?: Partial<Record<'root' | 'editor' | 'legend' | 'label', string>>;
-  blockRenderMap?: DraftBlockRenderMap;
   stripPastedStyles?: boolean;
+  /**
+   * Undefined: allow all styles.
+   * Empty array: disable all styles.
+   * Not empty array: allow only specified styles.
+   */
+  allowedStyles?: Array<Style>;
+  blockRenderMap?: DraftBlockRenderMap;
+  Toolbar?: React.FunctionComponent<ToolbarPropperties>;
+  classes?: Partial<Record<'root' | 'editor' | 'legend' | 'label', string>>;
+  onContentChange?: ContentChanged;
+  /**
+   * @deprecated No longer in use. Instead, pass allowedStyles as an empty array to disable styling
+   */
+  canInlineStyle?: boolean;
 }
 
 type Component = React.FunctionComponent<Properties>;
@@ -44,26 +55,34 @@ type Component = React.FunctionComponent<Properties>;
 const blockStyleFn = (block: ContentBlock): string => block.getType();
 
 const createDefaultButtons = (): Array<Button> => [
-  createButton(ButtonType.bold),
-  createButton(ButtonType.italic),
+  createButton('bold'),
+  createButton('italic'),
 ];
 
 export const EditorComponent: Component = ({
   label,
   classes,
   autoFocus,
+  helperText,
+  allowedStyles,
   onContentChange,
-  canInlineStyle = true,
   Toolbar = FloatingToolbar,
-  buttons = createDefaultButtons(),
   ...props
 }: Properties) => {
   const { state, setState, setSelection } = useContext(EditorContext);
 
   const ref = useRef<Editor>();
 
+  const canStyle = allowedStyles === undefined || allowedStyles.length > 0;
+
+  const buttons = !allowedStyles
+    ? createDefaultButtons()
+    : allowedStyles.map(createButton);
+
   // TODO: make prop
-  const handleKeyCommand = canInlineStyle ? keyHandler(setState) : undefined;
+  const handleKeyCommand = canStyle
+    ? keyHandler(setState, allowedStyles)
+    : undefined;
 
   const [hasFocus, setFocused] = useState(false);
 
@@ -84,15 +103,6 @@ export const EditorComponent: Component = ({
   };
 
   const onChange = (nextState: EditorState): void => {
-    const currentContentState = state.getCurrentContent();
-    const newContentState = nextState.getCurrentContent();
-
-    currentContentState !== newContentState &&
-      onContentChange &&
-      // defer change event
-      new Promise((resolve) =>
-        resolve(onContentChange(nextState.getCurrentContent())),
-      );
     setState(nextState);
     setSelection(nextState.getSelection());
   };
@@ -100,6 +110,16 @@ export const EditorComponent: Component = ({
   useEffect(() => {
     autoFocus && ref.current && ref.current.focus();
   }, [autoFocus]);
+
+  // hacky workaround?
+  const oldContent = useRef(state.getCurrentContent());
+  const currentContent = state.getCurrentContent();
+
+  React.useMemo(() => {
+    if (oldContent.current !== currentContent) {
+      onContentChange && onContentChange(currentContent);
+    }
+  }, [convert2html(currentContent)]);
 
   const hasContent = state.getCurrentContent().hasText();
 
@@ -113,7 +133,7 @@ export const EditorComponent: Component = ({
       {label && (
         <label className={clsx(styles.label, classes?.label)}>{label}</label>
       )}
-      {canInlineStyle && (
+      {canStyle && (
         <Toolbar
           editor={ref as React.MutableRefObject<Editor>}
           buttons={buttons}
@@ -133,6 +153,11 @@ export const EditorComponent: Component = ({
           }}
         />
       </Box>
+      {helperText && (
+        <FormHelperText className={styles.helpertext}>
+          {helperText}
+        </FormHelperText>
+      )}
     </Box>
   );
 };
