@@ -1,7 +1,7 @@
 # Komponentbibliotek
 
 [![npm package](https://img.shields.io/npm/v/grep-components/latest.svg)](https://www.npmjs.com/package/grep-components)
-[![Build Status](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter.svg?branch=master)](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter) [![Greenkeeper badge](https://badges.greenkeeper.io/Utdanningsdirektoratet/Grep-komponenter.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter.svg?branch=master)](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter)
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 

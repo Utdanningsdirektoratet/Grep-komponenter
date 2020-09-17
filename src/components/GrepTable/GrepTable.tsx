@@ -147,13 +147,13 @@ export const GrepTable = <T extends any>({
   const setSelectedElement = (el: Element) =>
     setSelectedRowIndex(getElementIndex(el));
 
-  const tableRef = React.useRef<HTMLElement | null>(null);
+  const tableRef = React.useRef<HTMLTableSectionElement | null>(null);
 
   // focus selected row first tabable item
   React.useEffect(() => {
-    const rowTab =
-      tableRef.current?.querySelector(`[data-index="${selectedRowIndex}"]`) as
-      HTMLElement;
+    const rowTab = tableRef.current?.querySelector(
+      `[data-index="${selectedRowIndex}"]`,
+    ) as HTMLElement;
     if (!rowTab) return;
     if (!containsFocus(rowTab)) {
       const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;

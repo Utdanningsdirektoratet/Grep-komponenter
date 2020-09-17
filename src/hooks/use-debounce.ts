@@ -5,7 +5,8 @@ interface Options extends _.DebounceSettings {
   wait: number;
 }
 
-type Debounce<T> = T & _.Cancelable;
+// type Debounce<T> = T & _.Cancelable;
+type Debounce<T extends (...args: any) => any> = _.DebouncedFunc<T>;
 
 /**
  * Custom hook for debouncing functions inside components

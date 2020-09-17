@@ -16,23 +16,23 @@ export const tableColumns: TableColumn<ICurriculum>[] = [
   {
     label: 'Kode',
     width: '20px',
-    getCell: row => row.code,
+    getCell: (row) => row.code,
   },
   {
     label: 'Navn',
-    getCell: row => row.title,
+    getCell: (row) => row.title,
   },
   {
     label: 'Status',
     width: '100px',
-    getTooltip: row => row.statusText,
-    getCell: row => row.statusText,
+    getTooltip: (row) => row.statusText,
+    getCell: (row) => row.statusText,
   },
   {
     label: 'Publisert',
     width: '200px',
     forceTooltip: true,
-    getCell: row => row.lastModified,
+    getCell: (row) => row.lastModified,
   },
 ] as TableColumn<ICurriculum>[];
 
@@ -45,7 +45,8 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   {
     label: 'Tittel',
     width: '100px',
-    getCell: row => `Tittel ${row.id} dsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsas`,
+    getCell: (row) =>
+      `Tittel ${row.id} dsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsas`,
   },
   {
     label: 'Status',
@@ -59,7 +60,7 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   {
     label: 'Ansvarlig',
     width: 9,
-    getCell: row => row.grepAdminResponsibleUsername,
+    getCell: (row) => row.grepAdminResponsibleUsername,
   },
   {
     label: 'Importert',
@@ -74,12 +75,12 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   {
     label: 'Tanket',
     width: 8,
-    getCell: () => null,
+    getCell: () => <div style={{ textAlign: 'center' }}>{'\u2714'}</div>,
   },
   {
     label: 'Låst',
     width: 7,
-    getCell: () => null,
+    getCell: () => <div style={{ textAlign: 'center' }}>{'\u2714'}</div>,
   },
 ];
 
@@ -95,38 +96,38 @@ export const tableData = (samples: number = 5): ICurriculum[] =>
 const menuItems: DropdownMenuItem<ICurriculum>[] = [
   {
     label: 'Test 1',
-    handleClick: obj => console.log('clicked on', obj),
+    handleClick: (obj) => console.log('clicked on', obj),
     children: [
       {
         label: 'Test child',
-        handleClick: obj => console.log('clicked on', obj),
+        handleClick: (obj) => console.log('clicked on', obj),
       },
       {
         label: 'Test child',
         disabled: true,
-        handleClick: obj => console.log('clicked on', obj),
+        handleClick: (obj) => console.log('clicked on', obj),
       },
     ],
   },
   {
     label: 'Test 2',
-    handleClick: obj => console.log('clicked on', obj),
+    handleClick: (obj) => console.log('clicked on', obj),
     children: [
       {
         label: 'Test child',
-        handleClick: obj => console.log('clicked on', obj),
+        handleClick: (obj) => console.log('clicked on', obj),
       },
       {
         label: 'Test child',
         disabled: true,
-        handleClick: obj => console.log('clicked on', obj),
+        handleClick: (obj) => console.log('clicked on', obj),
       },
     ],
   },
 ];
 
 storiesOf('Grep table', module)
-  .addDecorator(storyFn => <div style={{ margin: 10 }}>{storyFn()}</div>)
+  .addDecorator((storyFn) => <div style={{ margin: 10 }}>{storyFn()}</div>)
   .add('standard', () => (
     <Box>
       <Button>Test</Button>
@@ -140,7 +141,7 @@ storiesOf('Grep table', module)
   .add('clickable', () => (
     <GrepTable
       columns={tableColumns}
-      data={tableData().map(c => {
+      data={tableData().map((c) => {
         if (c.id % 2 === 0) {
           return {
             ...c,
@@ -165,8 +166,8 @@ storiesOf('Grep table', module)
         dropdownItems={menuItems}
         columns={CURRICULUM_COLUMNS}
         menuTooltip={() => 'Tooltip'}
-        menuDisabled={row => row.id === 3}
-        isRowDisabled={row => !!(row.id % 2)}
+        menuDisabled={(row) => row.id === 3}
+        isRowDisabled={(row) => !!(row.id % 2)}
         pagination
         rowsPerPage={10}
       />
