@@ -14,6 +14,12 @@
 
 - **grepf-1062:** add support for specifying which inlinestyles to allow ([ae22b4b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ae22b4bf9ee343fa269ce0c33a7844c26f57f796))
 
+# [0.11.0-grepf-952.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.11.0-dev.0...v0.11.0-grepf-952.0) (2020-07-16)
+
+### Bug Fixes
+
+- **grepf-952:** fix sidebar keypress handling ([ad21969](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ad21969))
+
 # [0.11.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.10.0-dev.0...v0.11.0-dev.0) (2020-06-24)
 
 ### Bug Fixes
