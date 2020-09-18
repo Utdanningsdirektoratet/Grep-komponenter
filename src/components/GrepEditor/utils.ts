@@ -32,7 +32,7 @@ export const convert2html = (
   content: ContentState,
   options: Convert2htmlOptions = {
     inlineStyles: {
-      BOLD: { element: 'b' },
+      BOLD: { element: 'strong' },
       ITALIC: { element: 'i' },
       UNSTYLED: { element: 'p' },
     },

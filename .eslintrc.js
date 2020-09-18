@@ -30,6 +30,7 @@ module.exports = {
       settings: { react: { version: 'detect' } },
       ecmaFeatures: { destructuring: true },
       rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
         'react/prop-types': 'warn',
         'react/display-name': 'warn',
         'no-unused-vars': ['error', { vars: 'all', varsIgnorePattern: '^_' }],

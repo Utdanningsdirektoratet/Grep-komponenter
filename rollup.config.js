@@ -50,7 +50,7 @@ export default {
           'createElement',
         ],
         'node_modules/react-dom/index.js': ['render'],
-        'node_modules/react-is/index.js': ['isFragment', 'ForwardRef'],
+        'node_modules/react-is/index.js': ['isFragment', 'ForwardRef', 'Memo'],
         // draft
         'node_modules/draft-js/lib/Draft.js': Object.keys(draftJs),
       },
