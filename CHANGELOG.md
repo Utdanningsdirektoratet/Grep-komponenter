@@ -1,3 +1,11 @@
+<a name="0.11.1-dev.0"></a>
+
+## [0.11.1-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.0-dev.0...v0.11.1-dev.0) (2020-09-18)
+
+### Bug Fixes
+
+- **grepf-952:** fix sidebar keypress handling ([ad21969](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ad21969))
+
 <a name="0.13.0-dev.0"></a>
 
 # [0.13.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.12.0-dev.0...v0.13.0-dev.0) (2020-09-17)
