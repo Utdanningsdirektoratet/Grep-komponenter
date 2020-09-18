@@ -8,7 +8,7 @@ export interface AppBarLogoProps {
   imageAlt: string;
 }
 
-const AppBarLogo: React.FC<AppBarLogoProps> = props => (
+const AppBarLogo: React.FC<AppBarLogoProps> = (props) => (
   <AppBarContainer>
     <img
       style={{ height: 50, width: 50 }}

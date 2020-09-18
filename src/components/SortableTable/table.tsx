@@ -82,7 +82,7 @@ export const SortableTable = <T extends any>({
   };
 
   const headers = useMemo(() => {
-    return columns.map(column =>
+    return columns.map((column) =>
       castCellNode(headerValue ? headerValue(column) : column),
     );
   }, [columns, headerValue]);
@@ -95,7 +95,8 @@ export const SortableTable = <T extends any>({
   );
 
   const render = useCallback(
-    (item: T): CellNode[] => columns.map(column => getCellValue(column, item)),
+    (item: T): CellNode[] =>
+      columns.map((column) => getCellValue(column, item)),
     [columns, getCellValue],
   );
 

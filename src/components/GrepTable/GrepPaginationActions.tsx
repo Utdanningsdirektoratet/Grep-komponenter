@@ -88,7 +88,7 @@ class PaginationActions extends React.Component<Props> {
                   backgroundColor: Colors.white,
                 }
           }
-          onClick={e => this.handlePageButtonClick(e, i)}
+          onClick={(e) => this.handlePageButtonClick(e, i)}
           disabled={currentPage === i}
         >
           {i + 1}

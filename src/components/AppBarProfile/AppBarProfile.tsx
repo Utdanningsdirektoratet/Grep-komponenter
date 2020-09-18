@@ -16,7 +16,7 @@ export interface AppBarProfileProps {
   onButtonClick: (args?: any) => void;
 }
 
-const AppBarProfile: React.FC<AppBarProfileProps> = props => (
+const AppBarProfile: React.FC<AppBarProfileProps> = (props) => (
   <Container>
     <AccountCircle color="primary" />
     <UserContainer>

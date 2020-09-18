@@ -15,7 +15,7 @@ export default <T extends any>(props: CurriculumListProps<T>) => {
         header
         clickableRows
         placeholderText={'Finner ingen læreplaner.'}
-        onRowClick={id => props.onRowClick && props.onRowClick(id)}
+        onRowClick={(id) => props.onRowClick && props.onRowClick(id)}
         {...props}
       />
     </Container>

@@ -22,13 +22,18 @@ async function execute(cmd, args) {
 }
 
 async function build() {
+  const version = process.argv.slice(2)[0];
+  if (!version || version.length === 0) {
+    throw Error(`invalid version, provide version`);
+  }
   switch (branch) {
     case 'master':
-      return execute('npm', ['version', 'major', '-m', 'build: bumping to %s']);
+      return execute('npm', ['version', version, '-m', 'build: bumping to %s']);
     case 'dev':
       return execute('npm', [
         'version',
-        'minor',
+        `pre${version}`,
+        '--preid=dev',
         '-m',
         'build: bumping next to %s',
       ]);
@@ -36,21 +41,30 @@ async function build() {
       if (tag.length === 0) {
         throw Error(`invalid branch [${branch}]`);
       }
-      return execute('npm', [
+      await execute('npm', [
         'version',
+        '--no-git-tag-version',
         'prerelease',
         `--preid=${tag}`,
-        '-m',
-        'build: prerelease of %s',
       ]);
+      await execute('git', ['add', 'package.json', 'package-lock.json']);
+      await execute('git', [
+        'commit',
+        '-m',
+        `chore(${branch}): npm release`,
+        '--no-verify',
+      ]);
+      return execute('git', ['push', '--no-verify']);
   }
-}
-
-async function publish() {
-  return execute('npm', ['publish', '--tag', branch === 'dev' ? 'next' : tag]);
 }
 
 (async () => {
   await build();
-  branch !== 'master' && (await publish());
+  branch === 'master'
+    ? await execute('npm', ['publish'])
+    : await execute('npm', [
+        'publish',
+        '--tag',
+        branch === 'dev' ? 'next' : tag,
+      ]);
 })();

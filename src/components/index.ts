@@ -30,6 +30,9 @@ export * from './InfoContainer';
 export * from './OverflowTooltip';
 export * from './Sidebar';
 export * from './NavGuard';
+export * from './GrepEditor';
+export * from './ConfirmationDialog';
+export * from './ToC';
 
 export { default as AppBar } from './AppBar';
 export { default as AppBarTop } from './AppBarTop';
@@ -65,3 +68,4 @@ export { default as DatePicker } from './GrepDatePicker';
 export { default as GrepDatePicker } from './GrepDatePicker';
 export { default as GrepDateRange } from './GrepDateRange';
 export { default as ServiceMessage } from './ServiceMessage';
+export { default as GrepEditor } from './GrepEditor';

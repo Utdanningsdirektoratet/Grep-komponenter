@@ -27,11 +27,15 @@ interface Props extends CommonProperties, ReferenceProperties {
   // container
   spacing?: GridSpacing;
   disabled?: boolean;
+  style?: React.CSSProperties;
+  fullWidth?: boolean;
 }
 
 export const GrepDateRange: React.FunctionComponent<Props> = ({
   onChange,
-  spacing,
+  spacing = 3,
+  style,
+  fullWidth,
   from: fromProperties,
   to: toProperties,
   ...properties
@@ -46,8 +50,8 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
   ]);
 
   return (
-    <Grid container spacing={spacing || 3}>
-      <Grid item xs={12} sm={6}>
+    <Grid container spacing={spacing} style={style}>
+      <Grid item xs={12} sm={fullWidth ? 12 : 6}>
         <DatePicker
           // default
           fullWidth
@@ -61,7 +65,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
           onChange={setFrom}
         />
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={fullWidth ? 12 : 6}>
         <DatePicker
           // default
           fullWidth

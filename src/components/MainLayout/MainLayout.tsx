@@ -5,7 +5,7 @@ export interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = props => (
+const MainLayout: React.FC<MainLayoutProps> = (props) => (
   <StyledMainLayout>{props.children}</StyledMainLayout>
 );
 

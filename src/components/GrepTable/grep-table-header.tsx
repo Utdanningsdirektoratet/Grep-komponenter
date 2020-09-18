@@ -1,7 +1,7 @@
 import React from 'react';
 
 import TableRow from '@material-ui/core/TableRow';
-import TableHead, {TableHeadProps} from '@material-ui/core/TableHead';
+import TableHead, { TableHeadProps } from '@material-ui/core/TableHead';
 
 import { TableColumn } from './GrepTable';
 import TableHeaderCell from './grep-table-header-cell';
@@ -43,7 +43,7 @@ export const TableHeader: Component<any> = <T extends any>({
               direction={sortDirection}
               active={sortable ? sortBy === colDef : undefined}
               onClick={() => sortable && onSortBy!(column)}
-              onKeyDown={onActivation(e => {
+              onKeyDown={onActivation((e) => {
                 if (sortable) {
                   e.preventDefault();
                   onSortBy!(column);

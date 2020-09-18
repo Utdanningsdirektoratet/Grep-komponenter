@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { useState } from '@storybook/addons';
 
 import SortableTable from '../table';
-import { Checkbox, Box } from '@material-ui/core';
+import { Checkbox, Box, FormControlLabel } from '@material-ui/core';
 
 interface TestData {
   id: number;
@@ -36,9 +36,12 @@ storiesOf('SortableList', module).add('standard', () => {
   ];
   return (
     <Box flex="auto">
-      <Checkbox value={disabled} onClick={(): void => setDisabled(!disabled)}>
-        Disabled
-      </Checkbox>
+      <FormControlLabel
+        control={
+          <Checkbox value={disabled} onClick={() => setDisabled(!disabled)} />
+        }
+        label="Disable drag"
+      />
       <SortableTable
         columns={['name', 'calories', 'fat', 'carbs']}
         items={rows}

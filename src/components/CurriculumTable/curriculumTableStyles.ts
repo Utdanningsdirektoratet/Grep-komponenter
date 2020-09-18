@@ -7,7 +7,7 @@ export const Container = withStyles({
   root: {
     border: `1px solid ${Colors.lightGrey}`,
     height: 'fit-content',
-    flex: 'auto'
+    flex: 'auto',
   },
 })(CleanPaper);
 

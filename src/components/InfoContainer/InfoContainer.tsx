@@ -36,7 +36,7 @@ const renderHorizontal = (infoFields: InfoField[]) => (
 const renderVertical = (infoFields: InfoField[]) =>
   infoFields.map((field: InfoField) => renderField(field));
 
-const InfoContainer: React.FC<InfoProps> = props => (
+const InfoContainer: React.FC<InfoProps> = (props) => (
   <Container style={props.style}>
     {props.header && <InfoHeader>{props.header}</InfoHeader>}
     {props.inline

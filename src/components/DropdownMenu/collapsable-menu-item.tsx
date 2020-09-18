@@ -48,7 +48,7 @@ export interface Properties extends Omit<MenuItemProps, 'button'> {
 export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
   Properties
 >> = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
-  ({ items, onClick, children, onClose, onToggle, level, ...props }, ref) => {
+  ({ items, onClick, children, onClose: _onclose, onToggle, level, ...props }, ref) => {
     const listItemRef = useRef<HTMLElement>();
     const [open, setOpen] = useState<boolean>(false);
 

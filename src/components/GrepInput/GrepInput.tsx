@@ -8,7 +8,7 @@ export type GrepInputProps = TextFieldProps & {
   errorMessage?: string;
 };
 
-const GrepInput: React.FC<GrepInputProps> = props => {
+const GrepInput: React.FC<GrepInputProps> = (props) => {
   const { errorMessage, helperText, shrink, value, ...rest } = props;
   const error = errorMessage ? errorMessage.length > 0 : false;
 

@@ -20,7 +20,7 @@ export interface GrepSelectProps extends SelectProps {
   formMargin?: PropTypes.Margin;
 }
 
-const GrepSelect: React.FC<GrepSelectProps> = props => {
+const GrepSelect: React.FC<GrepSelectProps> = (props) => {
   const inputLabel = React.useRef<HTMLLabelElement>(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
 
@@ -55,7 +55,7 @@ const GrepSelect: React.FC<GrepSelectProps> = props => {
       error={error}
     >
       <InputLabel ref={inputLabel} style={{ width: 'max-content' }}>
-        {props.label}
+        {label}
       </InputLabel>
       <Select
         {...rest}

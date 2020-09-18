@@ -40,8 +40,6 @@ export interface GrepTableProps<T>
   sortBy?: string;
   header?: boolean;
   outlined?: boolean;
-  // @depricated
-  rowHeight?: number;
   rowsPerPage?: number;
   pagination?: boolean;
   clickableRows?: boolean;
@@ -57,6 +55,10 @@ export interface GrepTableProps<T>
   onContextIdChanged?: (row: T) => void;
   onSortBy?: (col: TableColumn<T>) => any;
   caption?: React.ReactNode;
+  /**
+   * @deprecated No longer in use.
+   */
+  rowHeight?: number;
 }
 
 interface StyleProperties {
@@ -82,9 +84,9 @@ export const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const containsFocus = (el: HTMLElement, tag: string = '*') =>
+const containsFocus = (el: HTMLElement, tag = '*') =>
   Array.from(el.getElementsByTagName(tag)).some(
-    el => el === document.activeElement,
+    (el) => el === document.activeElement,
   );
 
 const getElementIndex = (el: Element): number =>
@@ -119,18 +121,10 @@ export const GrepTable = <T extends any>({
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
   const [menuAnchor, setMenuAnchor] = React.useState<Element | null>(null);
   const [currentPage, _setCurrentPage] = React.useState<number>(0);
-  const [selectedRowIndex, _setSelectedRowIndex] = React.useState<
-    number | undefined
-  >();
+  const [selectedRowIndex, _setSelectedRowIndex] = React.useState<number>();
+  const [dropdownContext, setDropdownContext] = React.useState<T>();
 
-  const [focusedRow, setFocusedRow] = React.useState<number|undefined>(undefined);
-
-  // quick workaround, since focus steals click
-  React.useMemo(() => {
-    setTimeout(() => setFocusedRow(selectedRowIndex), 150);
-  }, [selectedRowIndex, setFocusedRow]);
-
-  const selectedRow = selectedRowIndex !== undefined ? data[selectedRowIndex] : null;
+  const selectedRow = data[selectedRowIndex!] || null;
 
   const setCurrentPage = useCallback(
     (index: number, rowIndex?: number) => {
@@ -153,7 +147,7 @@ export const GrepTable = <T extends any>({
   const setSelectedElement = (el: Element) =>
     setSelectedRowIndex(getElementIndex(el));
 
-  const tableRef = React.useRef<HTMLElement | null>(null);
+  const tableRef = React.useRef<HTMLTableSectionElement | null>(null);
 
   // focus selected row first tabable item
   React.useEffect(() => {
@@ -176,13 +170,8 @@ export const GrepTable = <T extends any>({
     if (onContextIdChanged) {
       onContextIdChanged(row);
     }
+    setDropdownContext(row);
     setMenuAnchor(e.currentTarget);
-  };
-
-  const _handleButtonClick = (event: React.SyntheticEvent<Element>, row: T) => {
-    event.preventDefault();
-    event.stopPropagation();
-    _openDropdown(event, row);
   };
 
   const _handleRowClick = useCallback(
@@ -222,8 +211,14 @@ export const GrepTable = <T extends any>({
             disableTouchRipple={true}
             disabled={disabled}
             style={{ float: 'right' }}
-            onClick={e => _handleButtonClick(e, row)}
-            onKeyDown={e => {
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onClick={(e) => {
+              _openDropdown(e, row);
+            }}
+            onKeyDown={(e) => {
               switch (e.which) {
                 case Key.Enter:
                   // dont show dropdown
@@ -255,9 +250,9 @@ export const GrepTable = <T extends any>({
         data-index={rowIndex}
         tabIndex={0}
         hover={clickableRows}
-        selected={rowIndex === focusedRow}
+        selected={rowIndex === selectedRowIndex}
         clickable={clickableRows}
-        onClick={({ currentTarget }) => {
+        onMouseDown={({ currentTarget }) => {
           setSelectedElement(currentTarget);
           _handleRowClick(row);
         }}
@@ -372,10 +367,10 @@ export const GrepTable = <T extends any>({
         </TableFooter>
       </Table>
 
-      {dropdownItems && selectedRow && (
+      {dropdownItems && dropdownContext && (
         <DropdownMenu
           open={!!menuAnchor}
-          context={selectedRow}
+          context={dropdownContext}
           anchorEl={menuAnchor}
           menuItems={dropdownItems}
           onClose={_handleMenuClose}

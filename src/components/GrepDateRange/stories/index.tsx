@@ -8,7 +8,7 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { TextField, Box } from '@material-ui/core';
 
 storiesOf('DateRangePicker', module)
-  .addDecorator(storyFn => (
+  .addDecorator((storyFn) => (
     <MuiPickersUtilsProvider utils={DateUtils} locale={'nb'}>
       {storyFn()}
     </MuiPickersUtilsProvider>

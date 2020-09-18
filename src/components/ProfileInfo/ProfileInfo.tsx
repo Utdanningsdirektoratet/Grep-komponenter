@@ -19,7 +19,7 @@ const renderField = (label: string, value: string) => (
   />
 );
 
-const ProfileInfo: React.FC<Props> = props => (
+const ProfileInfo: React.FC<Props> = (props) => (
   <Container>
     {renderField('Fornavn', props.firstName)}
     {renderField('Etternavn', props.lastName)}
