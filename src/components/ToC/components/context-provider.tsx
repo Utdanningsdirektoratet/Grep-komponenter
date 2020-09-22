@@ -6,7 +6,11 @@ import _ from 'lodash';
 
 import { useContentElements } from '../../../hooks/use-content-elements';
 
-import { identifyElement, IdentifyElement } from '../utils/identity-element';
+import {
+  generateElementId,
+  identifyElement,
+  IdentifyElement,
+} from '../utils/identity-element';
 
 import Context from '../context';
 import { useSelector } from 'react-redux';
@@ -21,6 +25,9 @@ export type GrepTableOfContentProviderProps = React.PropsWithChildren<{
   className?: string;
   style?: React.CSSProperties;
   identifier?: IdentifyElement;
+  identifyElementFn?: (
+    identifier: IdentifyElement,
+  ) => (el: HTMLElement) => string;
   onSelected?: (el: HTMLElement) => void;
   classes?: Record<'nav' | 'tree' | 'node' | 'link', string>;
   selector?: string;
@@ -39,12 +46,13 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
     scrollTarget,
     children,
     offsetTop = -10,
+    identifyElementFn = identifyElement,
   } = props;
 
   const [selected, _setSelected] = useState<HTMLElement>();
   const [initialized, setInitialized] = useState<boolean>();
 
-  const hash = useSelector(s => decodeURI(getHash(s as any))).substring(1);
+  const hash = useSelector((s) => decodeURI(getHash(s as any))).substring(1);
 
   const scrollToElement = useCallback(
     (element: HTMLElement) => {
@@ -58,8 +66,8 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
   );
 
   const identify = useMemo(() => {
-    return identifyElement(identifier);
-  }, [identifier]);
+    return identifyElementFn(identifier || generateElementId);
+  }, [identifier, identifyElementFn]);
 
   const elements = useContentElements(
     container,
@@ -83,7 +91,7 @@ export const GrepTableOfContentProvider: React.FC<GrepTableOfContentProviderProp
     const records = Object.values(elements);
     if (!records.length) return;
     const index = records.findIndex(
-      e => e.getBoundingClientRect().bottom > offsetTop,
+      (e) => e.getBoundingClientRect().bottom > offsetTop,
     );
     if (index > 0) {
       const rect = records[index].getBoundingClientRect();
