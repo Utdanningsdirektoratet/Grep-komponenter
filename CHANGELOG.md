@@ -1,12 +1,18 @@
-<a name="0.13.1-grepf-1104.0"></a>
-## [0.13.1-grepf-1104.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.1-dev.0...v0.13.1-grepf-1104.0) (2020-09-22)
+<a name="0.13.2-dev.0"></a>
 
+## [0.13.2-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.1-dev.0...v0.13.2-dev.0) (2020-11-09)
 
 ### Bug Fixes
 
-* **grepf-1104:** add identifyElementFn prop to ToC component ([5f5a333](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5f5a333))
+- **grepf-1104:** add identifyElementFn prop to ToC component ([5f5a333](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5f5a333))
 
+<a name="0.13.1-grepf-1104.0"></a>
 
+## [0.13.1-grepf-1104.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.1-dev.0...v0.13.1-grepf-1104.0) (2020-09-22)
+
+### Bug Fixes
+
+- **grepf-1104:** add identifyElementFn prop to ToC component ([5f5a333](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5f5a333))
 
 <a name="0.13.1-dev.0"></a>
 
