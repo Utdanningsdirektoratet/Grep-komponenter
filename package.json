@@ -36,7 +36,6 @@
     "@material-ui/core": "^4.x",
     "@material-ui/icons": "^4.x",
     "@material-ui/pickers": "^3.x",
-    "@material-ui/styles": "^4.x",
     "connected-react-router": "6.x",
     "dayjs": "^1.x",
     "history": "4.x",
