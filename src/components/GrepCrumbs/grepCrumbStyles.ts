@@ -1,21 +1,19 @@
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { createStyles, makeStyles } from '@material-ui/styles';
 
-export const Container = withStyles({
-  root: {
-    display: 'flex',
-    marginTop: 30,
-    marginBottom: 10,
-    alignItems: 'center',
-    fontSize: 16,
-  },
-})(CleanPaper);
-
-export const Current = withStyles({
-  root: {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-    fontWeight: 'bold',
-  },
-})(CleanPaper);
+export const useStyles = makeStyles(
+  createStyles({
+    container: {
+      display: 'flex',
+      marginTop: 30,
+      marginBottom: 10,
+      alignItems: 'center',
+      fontSize: 16,
+    },
+    current: {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+      fontWeight: 'bold',
+    },
+  }),
+);
