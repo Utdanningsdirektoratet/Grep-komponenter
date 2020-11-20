@@ -1,3 +1,7 @@
+<a name="0.13.4-dev.0"></a>
+
+## [0.13.4-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.3-dev.0...v0.13.4-dev.0) (2020-11-20)
+
 <a name="0.13.3-dev.0"></a>
 
 ## [0.13.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.2-dev.0...v0.13.3-dev.0) (2020-11-10)
