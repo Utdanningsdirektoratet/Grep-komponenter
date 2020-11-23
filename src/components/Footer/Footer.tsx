@@ -16,6 +16,14 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ items }) => {
   const classes = useFooterStyles({});
 
+  const renderItem = (text: string) => (
+    <ListItemText
+      className={classes.itemText}
+      primary={text}
+      primaryTypographyProps={{ style: { fontSize: 14 } }}
+    />
+  );
+
   return (
     <div className={classes.footer}>
       <CenterLayout>
@@ -30,13 +38,7 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
               onClick={onClickItem}
               button={!!onClickItem as any}
             >
-              {render ? (
-                render(() => (
-                  <ListItemText className={classes.itemText} primary={label} />
-                ))
-              ) : (
-                <ListItemText className={classes.itemText} primary={label} />
-              )}
+              {render ? render(() => renderItem(label)) : renderItem(label)}
             </ListItem>
           ))}
         </List>
