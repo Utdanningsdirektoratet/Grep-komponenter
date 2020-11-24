@@ -10,12 +10,7 @@ interface Properties extends GrepEditorProps {
   html?: string;
 }
 
-export {
-  convert2html,
-  convert2txt,
-  parseContent,
-  parseContentState,
-} from './utils';
+export * from './utils';
 export { ContentState };
 
 type Component = React.FunctionComponent<Properties>;
