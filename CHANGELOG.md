@@ -1,14 +1,46 @@
-<a name="0.13.0"></a>
+<a name="0.13.5-dev.0"></a>
 
-# [0.13.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.0-dev.0...v0.13.0) (2020-09-18)
+## [0.13.5-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.5-dev.0) (2020-11-24)
 
-<a name="0.6.2"></a>
+### Bug Fixes
 
-## [0.6.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.1...v0.6.2) (2020-04-06)
+- improve and fix GrepEditor ([e9d5954](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/e9d5954))
 
-<a name="0.6.1"></a>
+<a name="0.13.4-dev.0"></a>
 
-## [0.6.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.1...v0.6.1) (2020-04-06)
+## [0.13.4-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.3-dev.0...v0.13.4-dev.0) (2020-11-20)
+
+<a name="0.13.3-dev.0"></a>
+
+## [0.13.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.2-dev.0...v0.13.3-dev.0) (2020-11-10)
+
+<a name="0.13.2-dev.0"></a>
+
+## [0.13.2-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.1-dev.0...v0.13.2-dev.0) (2020-11-09)
+
+### Bug Fixes
+
+- **grepf-1104:** add identifyElementFn prop to ToC component ([5f5a333](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5f5a333))
+
+<a name="0.13.1-grepf-1104.0"></a>
+
+## [0.13.1-grepf-1104.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.1-dev.0...v0.13.1-grepf-1104.0) (2020-09-22)
+
+### Bug Fixes
+
+- **grepf-1104:** add identifyElementFn prop to ToC component ([5f5a333](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/5f5a333))
+
+<a name="0.13.1-dev.0"></a>
+
+## [0.13.1-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.11.1-dev.0...v0.13.1-dev.0) (2020-09-18)
+
+<a name="0.11.1-dev.0"></a>
+
+## [0.11.1-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.0-dev.0...v0.11.1-dev.0) (2020-09-18)
+
+### Bug Fixes
+
+- **grepf-952:** fix sidebar keypress handling ([ad21969](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ad21969))
 
 <a name="0.13.0-dev.0"></a>
 
@@ -25,6 +57,12 @@
 ### Features
 
 - **grepf-1062:** add support for specifying which inlinestyles to allow ([ae22b4b](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ae22b4bf9ee343fa269ce0c33a7844c26f57f796))
+
+# [0.11.0-grepf-952.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.11.0-dev.0...v0.11.0-grepf-952.0) (2020-07-16)
+
+### Bug Fixes
+
+- **grepf-952:** fix sidebar keypress handling ([ad21969](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ad21969))
 
 # [0.11.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.10.0-dev.0...v0.11.0-dev.0) (2020-06-24)
 

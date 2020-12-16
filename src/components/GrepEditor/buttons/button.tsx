@@ -21,12 +21,12 @@ export const createButton = (style: Style): Button => {
     case 'bold':
       return {
         type: ButtonType[style],
-        children: <FormatBold />,
+        children: <FormatBold fontSize="small" />,
       };
     case 'italic':
       return {
         type: ButtonType[style],
-        children: <FormatItalic />,
+        children: <FormatItalic fontSize="small" />,
       };
   }
 };

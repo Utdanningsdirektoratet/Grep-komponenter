@@ -1,12 +1,13 @@
 import React from 'react';
 import { configure } from '@storybook/react';
 import { addDecorator } from '@storybook/react';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { StylesProvider } from '../src';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { CssBaseline, StylesProvider } from '@material-ui/core';
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 const theme = createMuiTheme({
   palette: {
@@ -47,13 +48,17 @@ const theme = createMuiTheme({
   },
 });
 
-const Decorator = story => (
-  <StylesProvider>
-    <MuiThemeProvider theme={theme}>
-      <CssBaseline />
-      {story()}
-    </MuiThemeProvider>
-  </StylesProvider>
+const store = createStore(() => {});
+
+const Decorator = (story) => (
+  <Provider store={store}>
+    <StylesProvider>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        {story()}
+      </MuiThemeProvider>
+    </StylesProvider>
+  </Provider>
 );
 
 addDecorator(Decorator);

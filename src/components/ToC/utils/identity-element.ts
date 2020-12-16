@@ -2,7 +2,7 @@ export interface IdentifyElement {
   (element: HTMLElement): string;
 }
 
-const generateId: IdentifyElement = (element: HTMLElement) => {
+export const generateElementId: IdentifyElement = (element: HTMLElement) => {
   const tmpId = element.innerText.replace(/\s/g, '-').toLowerCase();
   let id = tmpId,
     index = 1;
@@ -13,7 +13,7 @@ const generateId: IdentifyElement = (element: HTMLElement) => {
 };
 
 export const identifyElement = (identify?: IdentifyElement) => {
-  identify = identify || generateId;
+  identify = identify || generateElementId;
   return (element: HTMLElement) => {
     !element.id && (element.id = identify!(element));
     return element.id;
@@ -22,7 +22,7 @@ export const identifyElement = (identify?: IdentifyElement) => {
 
 export const identifyElements = (
   elements: Array<HTMLElement>,
-  identify: IdentifyElement = generateId,
+  identify: IdentifyElement = generateElementId,
 ) => {
   const indetifier = identifyElement(identify);
   elements.forEach(indetifier);
@@ -30,7 +30,7 @@ export const identifyElements = (
 
 export const useIdentifiedElements = (
   elements: Array<HTMLElement>,
-  identify: IdentifyElement = generateId,
+  identify: IdentifyElement = generateElementId,
 ): Record<string, HTMLElement> => {
   identifyElements(elements, identify);
   return elements.reduce(

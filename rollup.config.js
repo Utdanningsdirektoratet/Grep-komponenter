@@ -1,17 +1,13 @@
 import typescript from 'rollup-plugin-typescript2';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
-import url from 'rollup-plugin-url';
+import resolve from '@rollup/plugin-node-resolve';
+import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
-// import { eslint } from "rollup-plugin-eslint";
 
 import yalc from './rollup-plugin-yalc';
 
 import pkg from './package.json';
-
-//hack
-import * as draftJs from 'draft-js';
 
 export default {
   input: 'src/index.ts',
@@ -23,8 +19,6 @@ export default {
       sourcemap: true,
     },
   ],
-  external: ['styled-components'],
-  globals: { 'styled-components': 'styled' },
   plugins: [
     external(),
     url(),
@@ -42,18 +36,6 @@ export default {
     commonjs({
       sourceMap: false,
       include: 'node_modules/**',
-      namedExports: {
-        'node_modules/react/react.js': [
-          'Children',
-          'Component',
-          'PropTypes',
-          'createElement',
-        ],
-        'node_modules/react-dom/index.js': ['render'],
-        'node_modules/react-is/index.js': ['isFragment', 'ForwardRef', 'Memo'],
-        // draft
-        'node_modules/draft-js/lib/Draft.js': Object.keys(draftJs),
-      },
     }),
     yalc(process.env.yalc),
   ],
