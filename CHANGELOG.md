@@ -1,3 +1,13 @@
+<a name="0.13.5-grepf-1231.0"></a>
+## [0.13.5-grepf-1231.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.5-dev.0...v0.13.5-grepf-1231.0) (2021-01-07)
+
+
+### Features
+
+* **grepf-1231:** add char count to GrepEditor ([630d8e1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/630d8e1))
+
+
+
 <a name="0.13.5-dev.0"></a>
 
 ## [0.13.5-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.5-dev.0) (2020-11-24)
