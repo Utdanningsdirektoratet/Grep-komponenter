@@ -130,7 +130,11 @@ export const EditorComponent: Component = ({
 
   const hasContent = state.getCurrentContent().hasText();
 
-  const styles = useStyles({ hasFocus, hasContent, readOnly: props.readOnly });
+  const styles = useStyles({
+    hasFocus,
+    hasContent,
+    readOnly: props.readOnly,
+  });
 
   return (
     <Box className={clsx(styles.root, classes?.root)} onClick={requestFocus}>
@@ -160,12 +164,21 @@ export const EditorComponent: Component = ({
           }}
         />
       </Box>
-      {(helperText || showCharCount) && (
-        <FormHelperText className={styles.helpertext}>
-          {showCharCount ? `Antall tegn: ${charCount}` : ''}
-          {helperText && showCharCount && <br />}
-          {helperText ? helperText : ''}
-        </FormHelperText>
+
+      {(showCharCount || helperText) && (
+        <Box margin=".5rem">
+          {showCharCount && (
+            <FormHelperText className={styles.charcount}>
+              {`Antall tegn: ${charCount}`}
+            </FormHelperText>
+          )}
+
+          {helperText && (
+            <FormHelperText className={styles.helpertext}>
+              {helperText}
+            </FormHelperText>
+          )}
+        </Box>
       )}
     </Box>
   );
