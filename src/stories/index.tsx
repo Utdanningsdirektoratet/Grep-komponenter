@@ -10,7 +10,6 @@ import {
   DropdownMenu,
   AppBarNavList,
   Footer,
-  FooterItems,
   BodyLayout,
   ContainedLinkList,
 } from '..';
@@ -70,11 +69,7 @@ storiesOf('Pages', module)
         </CenterLayout>
       </AppBar>
       <CenterLayout>{storyFn()}</CenterLayout>
-      <Footer>
-        <CenterLayout>
-          <FooterItems items={footerItems} />
-        </CenterLayout>
-      </Footer>
+      <Footer items={footerItems} />
     </MainLayout>
   ))
   .add('Dashboard', () => (
