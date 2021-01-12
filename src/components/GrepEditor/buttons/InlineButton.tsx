@@ -6,6 +6,7 @@ import ToggleButton, { ToggleButtonProps } from '@material-ui/lab/ToggleButton';
 import EditorContext from '../context';
 import { UpdateStyle } from '../utils';
 import { InlineStyle } from '.';
+import { useStyles } from './styles';
 
 interface Properties extends Omit<ToggleButtonProps, 'value' | 'type'> {
   editor: React.MutableRefObject<Editor>;
@@ -20,6 +21,7 @@ const InlineButton: Component = ({
   children,
   ...props
 }: React.PropsWithChildren<Properties>) => {
+  const classes = useStyles({});
   const { state, setState } = useContext(EditorContext);
 
   const onClick = (
@@ -34,10 +36,11 @@ const InlineButton: Component = ({
   return (
     <ToggleButton
       {...props}
+      classes={{ root: classes.btn, selected: classes.btnSelected }}
       selected={selected}
       onClick={onClick}
       value={type}
-      style={{ height: 'auto' }}
+      size="small"
     >
       {children}
     </ToggleButton>

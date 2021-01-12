@@ -1,6 +1,5 @@
 import * as Utils from './utils';
 
-export { default as StylesProvider } from './providers/stylesProvider';
 export { default as Grid } from '@material-ui/core/Grid';
 export { default as Colors } from './styling/Colors';
 export { default as AppBar } from './components/AppBar';
