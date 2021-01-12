@@ -1,5 +1,10 @@
-import { createStyles } from '@material-ui/styles';
-import { Button, withStyles, withTheme, Theme } from '@material-ui/core';
+import {
+  Button,
+  withStyles,
+  withTheme,
+  Theme,
+  createStyles,
+} from '@material-ui/core';
 
 export const PaginationTextButton = withStyles({
   root: {

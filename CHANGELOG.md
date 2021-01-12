@@ -6,6 +6,26 @@
 
 - improve and fix GrepEditor ([e9d5954](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/e9d5954))
 
+<a name="0.13.4-grepf-1178.1"></a>
+
+## [0.13.4-grepf-1178.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.4-grepf-1178.1) (2020-12-14)
+
+### Bug Fixes
+
+- **grepf-1178:** replace [@material-ui](https://github.com/material-ui)/styles with [@material-ui](https://github.com/material-ui)/core ([9e9f088](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9e9f088))
+
+### Features
+
+- **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
+
+<a name="0.13.4-grepf-1178.0"></a>
+
+## [0.13.4-grepf-1178.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.4-grepf-1178.0) (2020-11-20)
+
+### Features
+
+- **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
+
 <a name="0.13.4-dev.0"></a>
 
 ## [0.13.4-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.3-dev.0...v0.13.4-dev.0) (2020-11-20)
