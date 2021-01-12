@@ -1,3 +1,17 @@
+<a name="0.14.0-dev.0"></a>
+
+# [0.14.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.5-dev.0...v0.14.0-dev.0) (2021-01-12)
+
+### Bug Fixes
+
+- **grepf-1178:** replace [@material-ui](https://github.com/material-ui)/styles with [@material-ui](https://github.com/material-ui)/core ([9e9f088](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9e9f088))
+- **grepf-985:** set footer text size ([717b527](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717b527))
+
+### Features
+
+- **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
+- **grepf-985:** refactor footer-component + add custom render-prop ([ee59a37](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ee59a37))
+
 <a name="0.13.5-dev.0"></a>
 
 ## [0.13.5-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.5-dev.0) (2020-11-24)
