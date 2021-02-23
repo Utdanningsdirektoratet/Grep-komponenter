@@ -7,7 +7,7 @@ import Select, { SelectProps } from '@material-ui/core/Select';
 import { Input, FormHelperText, PropTypes } from '@material-ui/core';
 
 export interface SelectItem {
-  value: string;
+  value: string | number;
   label?: string;
   disabled?: boolean;
 }
@@ -53,6 +53,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       required={required}
       style={props.style}
       error={error}
+      disabled={disabled}
     >
       <InputLabel ref={inputLabel} style={{ width: 'max-content' }}>
         {label}
