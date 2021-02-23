@@ -1,3 +1,14 @@
+<a name="0.14.1-grepf-1262.0"></a>
+## [0.14.1-grepf-1262.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.1-dev.0...v0.14.1-grepf-1262.0) (2021-02-23)
+
+
+### Bug Fixes
+
+* **grepf-1262:** add default rowsPerPageOptions ([fc0ada9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc0ada9))
+* **grepf-1262:** change value type and fix disabled prop ([cee320a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cee320a))
+
+
+
 <a name="0.14.1-dev.0"></a>
 
 ## [0.14.1-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.0-dev.0...v0.14.1-dev.0) (2021-01-12)
