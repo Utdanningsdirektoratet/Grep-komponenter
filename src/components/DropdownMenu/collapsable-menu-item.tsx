@@ -14,6 +14,7 @@ import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
 import IconExpand from '@material-ui/icons/ExpandMore';
 
 import { CollapsableMenu } from './collapsable-menu';
+import { TooltipMenuItem } from './tooltip-menu-item';
 
 import useStyle from './collapsable-menu-item.style';
 
@@ -40,6 +41,7 @@ export type ToggleState = 'collapse' | 'expand';
 
 export interface Properties extends Omit<MenuItemProps, 'button'> {
   items?: React.ReactNode;
+  tooltipText?: string;
   onToggle?: (event: CollapsableMenuStatusEvent) => void;
   onClose?: (event: CollapsableMenuStatusEvent) => void;
   level: number;
@@ -48,7 +50,19 @@ export interface Properties extends Omit<MenuItemProps, 'button'> {
 export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
   Properties
 >> = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
-  ({ items, onClick, children, onClose: _onclose, onToggle, level, ...props }, ref) => {
+  (
+    {
+      items,
+      onClick,
+      children,
+      onClose: _onclose,
+      onToggle,
+      level,
+      tooltipText,
+      ...props
+    },
+    ref,
+  ) => {
     const listItemRef = useRef<HTMLElement>();
     const [open, setOpen] = useState<boolean>(false);
 
@@ -113,7 +127,43 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
 
     const styles = useStyle({ open, indent: level });
 
-    return (
+    const renderInner = () => (
+      <Box display="flex" flexDirection="column" width="100%">
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          minHeight={48}
+        >
+          {children}
+          {items && <IconExpand className={styles.expander} />}
+        </Box>
+        {items && (
+          <CollapsableMenu
+            className={styles.subMenu}
+            in={open}
+            onMenuClose={collapse}
+            onEntered={() =>
+              requestAnimationFrame(() =>
+                window.dispatchEvent(new Event('resize')),
+              )
+            }
+          >
+            {items}
+          </CollapsableMenu>
+        )}
+      </Box>
+    );
+
+    return !!tooltipText && props.disabled ? (
+      <TooltipMenuItem
+        className={styles.root}
+        tooltipText={tooltipText}
+        onMouseOver={(e) => e.currentTarget.focus()}
+      >
+        {renderInner()}
+      </TooltipMenuItem>
+    ) : (
       <MenuItem
         className={styles.root}
         innerRef={listItemRef}
@@ -123,31 +173,7 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
         onKeyDown={handleKey}
         {...props}
       >
-        <Box display="flex" flexDirection="column" width="100%">
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            minHeight={48}
-          >
-            {children}
-            {items && <IconExpand className={styles.expander} />}
-          </Box>
-          {items && (
-            <CollapsableMenu
-              className={styles.subMenu}
-              in={open}
-              onMenuClose={collapse}
-              onEntered={() =>
-                requestAnimationFrame(() =>
-                  window.dispatchEvent(new Event('resize')),
-                )
-              }
-            >
-              {items}
-            </CollapsableMenu>
-          )}
-        </Box>
+        {renderInner()}
       </MenuItem>
     );
   },
