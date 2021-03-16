@@ -8,12 +8,16 @@ import {
   EditorState,
   ContentBlock,
   DraftBlockRenderMap,
+  getDefaultKeyBinding,
 } from 'draft-js';
 
 import { createButton, Button, Style } from './buttons';
 import FloatingToolbar from './toolbars/floating-toolbar';
 import { ToolbarPropperties } from './toolbars';
-import keyHandler from './handlers/key';
+import keyHandler, {
+  CustomDraftCommand,
+  customKeyHandler,
+} from './handlers/key';
 import EditorContext from './context';
 import useStyles from './style';
 
@@ -82,7 +86,7 @@ export const EditorComponent: Component = ({
   // TODO: make prop
   const handleKeyCommand = canStyle
     ? keyHandler(setState, allowedStyles)
-    : undefined;
+    : customKeyHandler(setState);
 
   const [hasFocus, setFocused] = useState(false);
 
@@ -125,6 +129,16 @@ export const EditorComponent: Component = ({
 
   const styles = useStyles({ hasFocus, hasContent, readOnly: props.readOnly });
 
+  const keyBindingFn = (
+    e: React.KeyboardEvent<{}>,
+  ): CustomDraftCommand | null => {
+    if (e.key === 'Enter' && e.shiftKey) {
+      return 'shift-split-block';
+    } else {
+      return getDefaultKeyBinding(e);
+    }
+  };
+
   return (
     <Box className={clsx(styles.root, classes?.root)} onClick={requestFocus}>
       <legend className={clsx(styles.legend, classes?.legend)}>
@@ -149,6 +163,7 @@ export const EditorComponent: Component = ({
             onBlur,
             blockStyleFn,
             handleKeyCommand,
+            keyBindingFn,
             ...props,
           }}
         />
