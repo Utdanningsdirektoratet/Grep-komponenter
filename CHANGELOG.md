@@ -1,18 +1,43 @@
-<a name="0.14.0"></a>
+<a name="0.14.3-dev.0"></a>
 
-# [0.14.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.5-dev.0...v0.14.0) (2020-12-16)
+## [0.14.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.3-dev.0) (2021-03-30)
 
-<a name="0.13.0"></a>
+<a name="0.14.2-dev.0"></a>
 
-# [0.13.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.0-dev.0...v0.13.0) (2020-09-18)
+## [0.14.2-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.1-dev.0...v0.14.2-dev.0) (2021-03-04)
 
-<a name="0.6.2"></a>
+### Bug Fixes
 
-## [0.6.2](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.6.1...v0.6.2) (2020-04-06)
+- rename .prettier config file ([b7ca966](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b7ca966))
+- **grepf-1262:** add default rowsPerPageOptions ([fc0ada9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc0ada9))
+- **grepf-1262:** change value type and fix disabled prop ([cee320a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cee320a))
 
-<a name="0.6.1"></a>
+<a name="0.14.1-grepf-1262.0"></a>
 
-## [0.6.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.7.1...v0.6.1) (2020-04-06)
+## [0.14.1-grepf-1262.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.1-dev.0...v0.14.1-grepf-1262.0) (2021-02-23)
+
+### Bug Fixes
+
+- **grepf-1262:** add default rowsPerPageOptions ([fc0ada9](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/fc0ada9))
+- **grepf-1262:** change value type and fix disabled prop ([cee320a](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/cee320a))
+
+<a name="0.14.1-dev.0"></a>
+
+## [0.14.1-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.0-dev.0...v0.14.1-dev.0) (2021-01-12)
+
+<a name="0.14.0-dev.0"></a>
+
+# [0.14.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.5-dev.0...v0.14.0-dev.0) (2021-01-12)
+
+### Bug Fixes
+
+- **grepf-1178:** replace [@material-ui](https://github.com/material-ui)/styles with [@material-ui](https://github.com/material-ui)/core ([9e9f088](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9e9f088))
+- **grepf-985:** set footer text size ([717b527](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717b527))
+
+### Features
+
+- **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
+- **grepf-985:** refactor footer-component + add custom render-prop ([ee59a37](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ee59a37))
 
 <a name="0.13.5-dev.0"></a>
 
@@ -22,9 +47,49 @@
 
 - improve and fix GrepEditor ([e9d5954](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/e9d5954))
 
+<a name="0.13.4-grepf-1178.1"></a>
+
+## [0.13.4-grepf-1178.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.4-grepf-1178.1) (2020-12-14)
+
+### Bug Fixes
+
+- **grepf-1178:** replace [@material-ui](https://github.com/material-ui)/styles with [@material-ui](https://github.com/material-ui)/core ([9e9f088](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/9e9f088))
+
+### Features
+
+- **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
+
+<a name="0.13.4-grepf-1178.0"></a>
+
+## [0.13.4-grepf-1178.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.4-dev.0...v0.13.4-grepf-1178.0) (2020-11-20)
+
+### Features
+
+- **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
+
 <a name="0.13.4-dev.0"></a>
 
 ## [0.13.4-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.3-dev.0...v0.13.4-dev.0) (2020-11-20)
+
+<a name="0.13.3-grepf-985.1"></a>
+
+## [0.13.3-grepf-985.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.3-dev.0...v0.13.3-grepf-985.1) (2020-11-23)
+
+### Bug Fixes
+
+- **grepf-985:** set footer text size ([717b527](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/717b527))
+
+### Features
+
+- **grepf-985:** refactor footer-component + add custom render-prop ([ee59a37](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ee59a37))
+
+<a name="0.13.3-grepf-985.0"></a>
+
+## [0.13.3-grepf-985.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.3-dev.0...v0.13.3-grepf-985.0) (2020-11-10)
+
+### Features
+
+- **grepf-985:** refactor footer-component + add custom render-prop ([ee59a37](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ee59a37))
 
 <a name="0.13.3-dev.0"></a>
 

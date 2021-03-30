@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { FooterItem, MainLayout, Footer, CenterLayout, FooterItems } from '..';
+import { MainLayout, Footer } from '..';
+import { Switch } from '@material-ui/core';
+import { FooterItem } from './Footer';
 
 export const footerItems: FooterItem[] = [
   {
@@ -17,14 +19,19 @@ export const footerItems: FooterItem[] = [
     label: 'Kontakt',
     onClickItem: () => console.log('test'),
   },
+  {
+    label: 'Custom',
+    render: (renderLabel) => (
+      <React.Fragment>
+        <Switch />
+        {renderLabel()}
+      </React.Fragment>
+    ),
+  },
 ];
 
 storiesOf('Footer', module).add('Footer with content', () => (
   <MainLayout>
-    <Footer>
-      <CenterLayout>
-        <FooterItems items={footerItems} />
-      </CenterLayout>
-    </Footer>
+    <Footer items={footerItems} />
   </MainLayout>
 ));
