@@ -1,3 +1,15 @@
+<a name="0.15.0-dev.0"></a>
+
+# [0.15.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.3-dev.0...v0.15.0-dev.0) (2021-04-06)
+
+### Bug Fixes
+
+- **grepf-1231:** always display charcount (if toggled) ([d5f9360](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d5f9360))
+
+### Features
+
+- **grepf-1231:** add char count to GrepEditor ([630d8e1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/630d8e1))
+
 <a name="0.14.3-dev.0"></a>
 
 ## [0.14.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.3-dev.0) (2021-03-30)
