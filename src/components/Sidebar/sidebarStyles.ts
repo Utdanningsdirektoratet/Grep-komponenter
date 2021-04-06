@@ -1,6 +1,6 @@
 import { Theme } from '@material-ui/core/styles/createMuiTheme';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { CSSProperties } from '@material-ui/styles';
+import { CSSProperties } from '@material-ui/core/styles/withStyles';
 
 const textStyles: CSSProperties = {
   userSelect: 'none',

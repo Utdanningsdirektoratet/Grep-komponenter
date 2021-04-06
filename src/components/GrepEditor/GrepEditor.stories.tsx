@@ -5,8 +5,8 @@ import GrepEditor from '.';
 
 import { ToolbarPropperties } from './toolbars';
 import { InlineButton } from './buttons';
-import { makeStyles, createStyles } from '@material-ui/styles';
 import { convert2html, convert2txt } from './utils';
+import { createStyles, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(
   createStyles({

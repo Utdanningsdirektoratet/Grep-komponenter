@@ -13,7 +13,6 @@ export { default as MainLayout } from './components/MainLayout';
 export { default as CleanPaper } from './components/CleanPaper';
 export { default as DropdownMenu } from './components/DropdownMenu';
 export { default as Footer } from './components/Footer';
-export { default as FooterItems } from './components/FooterItems';
 export { default as LinkList } from './components/LinkList';
 export { default as ContainedLinkList } from './components/ContainedLinkList';
 export { default as CurriculumTable } from './components/CurriculumTable';
