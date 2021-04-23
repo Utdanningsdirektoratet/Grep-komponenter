@@ -14,6 +14,14 @@
 
 ## [0.14.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.3-dev.0) (2021-03-30)
 
+<a name="0.14.2-grepf-1290.0"></a>
+
+## [0.14.2-grepf-1290.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.2-grepf-1290.0) (2021-03-16)
+
+### Features
+
+- **grepf-1290:** add support for soft newline ([1b7a1a8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/1b7a1a8))
+
 <a name="0.14.2-grepf-1276.0"></a>
 
 ## [0.14.2-grepf-1276.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.2-grepf-1276.0) (2021-03-04)
