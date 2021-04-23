@@ -31,6 +31,7 @@ export interface Properties {
   label?: string;
   readOnly?: boolean;
   autoFocus?: boolean;
+  showCharCount?: boolean;
   helperText?: string;
   buttons?: Array<Button>;
   stripPastedStyles?: boolean;
@@ -59,11 +60,15 @@ const createDefaultButtons = (): Array<Button> => [
   createButton('italic'),
 ];
 
+const getCharCount = (editorState: EditorState) =>
+  editorState.getCurrentContent().getPlainText('').length;
+
 export const EditorComponent: Component = ({
   label,
   classes,
   autoFocus,
   helperText,
+  showCharCount,
   allowedStyles,
   onContentChange,
   Toolbar = FloatingToolbar,
@@ -85,6 +90,7 @@ export const EditorComponent: Component = ({
     : undefined;
 
   const [hasFocus, setFocused] = useState(false);
+  const [charCount, setCharCount] = useState(0);
 
   // defer focus until next tick
   const requestFocus = (): void => {
@@ -105,6 +111,7 @@ export const EditorComponent: Component = ({
   const onChange = (nextState: EditorState): void => {
     setState(nextState);
     setSelection(nextState.getSelection());
+    setCharCount(getCharCount(nextState));
   };
 
   useEffect(() => {
@@ -123,7 +130,11 @@ export const EditorComponent: Component = ({
 
   const hasContent = state.getCurrentContent().hasText();
 
-  const styles = useStyles({ hasFocus, hasContent, readOnly: props.readOnly });
+  const styles = useStyles({
+    hasFocus,
+    hasContent,
+    readOnly: props.readOnly,
+  });
 
   return (
     <Box className={clsx(styles.root, classes?.root)} onClick={requestFocus}>
@@ -153,10 +164,21 @@ export const EditorComponent: Component = ({
           }}
         />
       </Box>
-      {helperText && (
-        <FormHelperText className={styles.helpertext}>
-          {helperText}
-        </FormHelperText>
+
+      {(showCharCount || helperText) && (
+        <Box margin=".5rem">
+          {showCharCount && (
+            <FormHelperText className={styles.charcount}>
+              {`Antall tegn: ${charCount}`}
+            </FormHelperText>
+          )}
+
+          {helperText && (
+            <FormHelperText className={styles.helpertext}>
+              {helperText}
+            </FormHelperText>
+          )}
+        </Box>
       )}
     </Box>
   );

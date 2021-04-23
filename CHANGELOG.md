@@ -1,12 +1,26 @@
-<a name="0.14.2-grepf-1276.0"></a>
-## [0.14.2-grepf-1276.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.2-grepf-1276.0) (2021-03-04)
+<a name="0.15.0-dev.0"></a>
 
+# [0.15.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.3-dev.0...v0.15.0-dev.0) (2021-04-06)
+
+### Bug Fixes
+
+- **grepf-1231:** always display charcount (if toggled) ([d5f9360](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d5f9360))
 
 ### Features
 
-* **grepf-1276:** add support for tooltip in dropdownmenu ([2e899ad](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2e899ad))
+- **grepf-1231:** add char count to GrepEditor ([630d8e1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/630d8e1))
 
+<a name="0.14.3-dev.0"></a>
 
+## [0.14.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.3-dev.0) (2021-03-30)
+
+<a name="0.14.2-grepf-1276.0"></a>
+
+## [0.14.2-grepf-1276.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.2-grepf-1276.0) (2021-03-04)
+
+### Features
+
+- **grepf-1276:** add support for tooltip in dropdownmenu ([2e899ad](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2e899ad))
 
 <a name="0.14.2-dev.0"></a>
 
@@ -44,6 +58,26 @@
 
 - **grepf-1178:** show tooltip when breadcrumb is overflowing ([b35c9dd](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/b35c9dd))
 - **grepf-985:** refactor footer-component + add custom render-prop ([ee59a37](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/ee59a37))
+
+<a name="0.13.5-grepf-1231.1"></a>
+
+## [0.13.5-grepf-1231.1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.5-dev.0...v0.13.5-grepf-1231.1) (2021-01-11)
+
+### Bug Fixes
+
+- **grepf-1231:** always display charcount (if toggled) ([d5f9360](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/d5f9360))
+
+### Features
+
+- **grepf-1231:** add char count to GrepEditor ([630d8e1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/630d8e1))
+
+<a name="0.13.5-grepf-1231.0"></a>
+
+## [0.13.5-grepf-1231.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.13.5-dev.0...v0.13.5-grepf-1231.0) (2021-01-07)
+
+### Features
+
+- **grepf-1231:** add char count to GrepEditor ([630d8e1](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/630d8e1))
 
 <a name="0.13.5-dev.0"></a>
 

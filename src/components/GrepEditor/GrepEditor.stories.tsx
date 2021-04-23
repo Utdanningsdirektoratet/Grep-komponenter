@@ -62,4 +62,7 @@ storiesOf('GrepEditor', module)
   ))
   .add('Paste stripping and blocked inline styles', () => (
     <GrepEditor stripPastedStyles allowedStyles={[]} />
+  ))
+  .add('With character count', () => (
+    <GrepEditor showCharCount helperText="Marker tekst for formatering" />
   ));
