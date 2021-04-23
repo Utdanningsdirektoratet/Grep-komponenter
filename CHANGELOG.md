@@ -14,6 +14,14 @@
 
 ## [0.14.3-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.3-dev.0) (2021-03-30)
 
+<a name="0.14.2-grepf-1276.0"></a>
+
+## [0.14.2-grepf-1276.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.2-dev.0...v0.14.2-grepf-1276.0) (2021-03-04)
+
+### Features
+
+- **grepf-1276:** add support for tooltip in dropdownmenu ([2e899ad](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2e899ad))
+
 <a name="0.14.2-dev.0"></a>
 
 ## [0.14.2-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.1-dev.0...v0.14.2-dev.0) (2021-03-04)
