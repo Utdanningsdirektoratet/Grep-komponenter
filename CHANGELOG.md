@@ -1,3 +1,12 @@
+<a name="0.16.0-dev.0"></a>
+
+# [0.16.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.15.0-dev.0...v0.16.0-dev.0) (2021-04-23)
+
+### Features
+
+- **grepf-1276:** add support for tooltip in dropdownmenu ([2e899ad](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/2e899ad))
+- **grepf-1290:** add support for soft newline ([1b7a1a8](https://github.com/Utdanningsdirektoratet/Grep-komponenter/commit/1b7a1a8))
+
 <a name="0.15.0-dev.0"></a>
 
 # [0.15.0-dev.0](https://github.com/Utdanningsdirektoratet/Grep-komponenter/compare/v0.14.3-dev.0...v0.15.0-dev.0) (2021-04-06)
