@@ -10,9 +10,10 @@ type BooleanFunction<T> = (context?: T) => boolean;
 
 export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   label: string;
+  tooltipText?: string;
   disabled?: BooleanFunction<T> | boolean;
   children?: Array<DropdownMenuItem<T>>;
-  handleClick: (context?: T) => void;
+  handleClick?: (context?: T) => void;
 };
 export interface DropdownMenuProps<T> extends MenuProps {
   context?: T;
@@ -37,7 +38,7 @@ export default <T extends any>({
     // ninja way, since rewriting existing code on lpu and admin is daunting
     props.onClick = (e: React.MouseEvent) => {
       menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-      handleClick(context);
+      handleClick && handleClick(context);
     };
 
     return (
