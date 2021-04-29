@@ -25,6 +25,7 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 ## Publishing
 
 When publishing from master Github Actions will publish to NPM
+
 When publishing from dev or feature deploy will be from local (user need access) and tagged next|feature/\${TAG}
 
     npm run release
