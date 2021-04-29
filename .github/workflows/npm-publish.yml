@@ -4,12 +4,15 @@
 name: Node.js Package
 
 on:
-  push:
-    branches: 
+  pull_request:
+    types: [ closed ]
+    branches:
     - master
 
 jobs:
   publish-npm:
+    # this job will only run if the PR has been merged
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
