@@ -19,7 +19,7 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 - Typescript
 - Sourcemap creation
 - [Storybook](https://storybook.js.org) for easy development of components
-- [Travic CI](https://travis-ci.org) for test and deploy
+- [Github Actions](https://docs.github.com/en/actions) for test and deploy
 - [Greenkeeper](https://greenkeeper.io) for dependency management
 
 ## Publishing
