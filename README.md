@@ -2,6 +2,7 @@
 
 [![npm package](https://img.shields.io/npm/v/grep-components/latest.svg)](https://www.npmjs.com/package/grep-components)
 [![Build Status](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter.svg?branch=master)](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter) 
+[![Node.js CI](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/node.js.yml/badge.svg?branch=master&event=push)](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/node.js.yml)
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
