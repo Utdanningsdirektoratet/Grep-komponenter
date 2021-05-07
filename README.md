@@ -1,7 +1,7 @@
 # Komponentbibliotek
 
 [![npm package](https://img.shields.io/npm/v/grep-components/latest.svg)](https://www.npmjs.com/package/grep-components)
-[![Build Status](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter.svg?branch=master)](https://travis-ci.com/Utdanningsdirektoratet/Grep-komponenter)
+[![Build](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/build.yml/badge.svg)](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/build.yml)
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
@@ -19,12 +19,13 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 - Typescript
 - Sourcemap creation
 - [Storybook](https://storybook.js.org) for easy development of components
-- [Travic CI](https://travis-ci.org) for test and deploy
+- [Github Actions](https://docs.github.com/en/actions) for test and deploy
 - [Greenkeeper](https://greenkeeper.io) for dependency management
 
 ## Publishing
 
-When publishing from master Travis CI will publish to NPM
+When publishing from master Github Actions will publish to NPM
+
 When publishing from dev or feature deploy will be from local (user need access) and tagged next|feature/\${TAG}
 
     npm run release
