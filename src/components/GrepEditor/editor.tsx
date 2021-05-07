@@ -8,12 +8,16 @@ import {
   EditorState,
   ContentBlock,
   DraftBlockRenderMap,
+  getDefaultKeyBinding,
 } from 'draft-js';
 
 import { createButton, Button, Style } from './buttons';
 import FloatingToolbar from './toolbars/floating-toolbar';
 import { ToolbarPropperties } from './toolbars';
-import keyHandler from './handlers/key';
+import keyHandler, {
+  CustomDraftCommand,
+  customKeyHandler,
+} from './handlers/key';
 import EditorContext from './context';
 import useStyles from './style';
 
@@ -31,6 +35,7 @@ export interface Properties {
   label?: string;
   readOnly?: boolean;
   autoFocus?: boolean;
+  showCharCount?: boolean;
   helperText?: string;
   buttons?: Array<Button>;
   stripPastedStyles?: boolean;
@@ -59,11 +64,15 @@ const createDefaultButtons = (): Array<Button> => [
   createButton('italic'),
 ];
 
+const getCharCount = (editorState: EditorState) =>
+  editorState.getCurrentContent().getPlainText('').length;
+
 export const EditorComponent: Component = ({
   label,
   classes,
   autoFocus,
   helperText,
+  showCharCount,
   allowedStyles,
   onContentChange,
   Toolbar = FloatingToolbar,
@@ -82,9 +91,10 @@ export const EditorComponent: Component = ({
   // TODO: make prop
   const handleKeyCommand = canStyle
     ? keyHandler(setState, allowedStyles)
-    : undefined;
+    : customKeyHandler(setState);
 
   const [hasFocus, setFocused] = useState(false);
+  const [charCount, setCharCount] = useState(0);
 
   // defer focus until next tick
   const requestFocus = (): void => {
@@ -105,6 +115,7 @@ export const EditorComponent: Component = ({
   const onChange = (nextState: EditorState): void => {
     setState(nextState);
     setSelection(nextState.getSelection());
+    setCharCount(getCharCount(nextState));
   };
 
   useEffect(() => {
@@ -123,7 +134,21 @@ export const EditorComponent: Component = ({
 
   const hasContent = state.getCurrentContent().hasText();
 
-  const styles = useStyles({ hasFocus, hasContent, readOnly: props.readOnly });
+  const styles = useStyles({
+    hasFocus,
+    hasContent,
+    readOnly: props.readOnly,
+  });
+
+  const keyBindingFn = (
+    e: React.KeyboardEvent<{}>,
+  ): CustomDraftCommand | null => {
+    if (e.key === 'Enter' && e.shiftKey) {
+      return 'shift-split-block';
+    } else {
+      return getDefaultKeyBinding(e);
+    }
+  };
 
   return (
     <Box className={clsx(styles.root, classes?.root)} onClick={requestFocus}>
@@ -149,14 +174,26 @@ export const EditorComponent: Component = ({
             onBlur,
             blockStyleFn,
             handleKeyCommand,
+            keyBindingFn,
             ...props,
           }}
         />
       </Box>
-      {helperText && (
-        <FormHelperText className={styles.helpertext}>
-          {helperText}
-        </FormHelperText>
+
+      {(showCharCount || helperText) && (
+        <Box margin=".5rem">
+          {showCharCount && (
+            <FormHelperText className={styles.charcount}>
+              {`Antall tegn: ${charCount}`}
+            </FormHelperText>
+          )}
+
+          {helperText && (
+            <FormHelperText className={styles.helpertext}>
+              {helperText}
+            </FormHelperText>
+          )}
+        </Box>
       )}
     </Box>
   );

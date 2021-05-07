@@ -18,11 +18,12 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
         label: 'Test 3-1',
         handleClick: () => console.log('clicked '),
       },
-    ]
+    ],
   },
   {
     label: 'Test 2',
     disabled: true,
+    tooltipText: 'This is a tooltip',
     handleClick: () => console.log('clicked '),
   },
   {
@@ -57,25 +58,29 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
                 label: 'Test 3-2',
                 handleClick: () => console.log('clicked '),
               },
-            ]
+            ],
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
 ];
 
 storiesOf('DropdownMenu', module).add('standard', () => {
   const [open, setOpen] = useState(false);
   const menuAnchor = useRef(null);
-  const classes = makeStyles(createStyles({
-    paper: {
-      width: '200px'
-    }
-  }))({});
+  const classes = makeStyles(
+    createStyles({
+      paper: {
+        width: '200px',
+      },
+    }),
+  )({});
   return (
     <div>
-      <Button ref={menuAnchor} onClick={() => setOpen(!open)}>menu</Button>
+      <Button ref={menuAnchor} onClick={() => setOpen(!open)}>
+        menu
+      </Button>
       <DropdownMenu
         open={open}
         anchorEl={menuAnchor.current}

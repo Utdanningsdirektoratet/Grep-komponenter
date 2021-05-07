@@ -73,7 +73,7 @@ export default makeStyles((theme: Theme) =>
       padding: '2px 10px',
     }),
     helpertext: ({ hasFocus }) => ({
-      margin: '.5rem',
+      margin: 0,
       opacity: hasFocus ? 1 : 0,
       transition: theme.transitions.create(['opacity'], {
         duration: theme.transitions.duration.shorter,
@@ -84,5 +84,16 @@ export default makeStyles((theme: Theme) =>
       backgroundColor: 'white',
       padding: '2px 10px',
     }),
-  }),
+    charcount: {
+      margin: 0,
+      transition: theme.transitions.create(['opacity'], {
+        duration: theme.transitions.duration.shorter,
+        easing: theme.transitions.easing.easeOut,
+      }),
+      fontSize: 'small',
+      // hack @todo when time
+      backgroundColor: 'white',
+      padding: '2px 10px',
+    },
+  })
 );
