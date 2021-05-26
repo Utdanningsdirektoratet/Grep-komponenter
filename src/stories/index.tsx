@@ -109,5 +109,5 @@ storiesOf('Pages', module)
     </BodyLayout>
   ))
   .add('Læreplaner', () => (
-    <Sidebar pages={adminPages} onPageClick={() => console.log('')} />
+    <Sidebar pages={adminPages} onPageClick={() => console.log('test')} />
   ));
