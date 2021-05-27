@@ -5,6 +5,8 @@
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
+Test
+
 # Installation
 
     npm i grep-components
