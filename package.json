@@ -39,7 +39,8 @@
         "name": "master"
       },
       {
-        "name": "feature/*"
+        "name": "feature/*",
+        "channel": "<%= name.split(\"/\")[1] %>"
       }
     ]
   },
