@@ -2,7 +2,12 @@ name: Release
 
 on:
   workflow_dispatch:
-  
+    inputs:
+      args:
+        description: 'CLI arguments'
+        required: false
+        default: ''
+      
 jobs:
   release:
     name: Release
@@ -22,4 +27,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+        run: npx semantic-release ${{ github.event.inputs.args }}
