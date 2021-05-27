@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "Grep komponentbibliotek",
   "repository": {
     "type": "git",
