@@ -5,7 +5,7 @@
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
-Test
+Test 2
 
 # Installation
 
