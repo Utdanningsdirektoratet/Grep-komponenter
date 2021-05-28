@@ -40,8 +40,8 @@
       },
       {
         "name": "feature/*",
-        "channel": "<%= name.split(\"/\")[1] %>",
-        "prerelease": true
+        "channel": "${name.replace(/^feature\\//g, \"\")}",
+        "prerelease": "${name.replace(/^feature\\//g, \"\")}"
       }
     ]
   },
