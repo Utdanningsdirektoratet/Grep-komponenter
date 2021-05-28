@@ -40,7 +40,8 @@
       },
       {
         "name": "feature/*",
-        "channel": "<%= name.split(\"/\")[1] %>"
+        "channel": "<%= name.split(\"/\")[1] %>",
+        "prerelease": true
       }
     ]
   },
