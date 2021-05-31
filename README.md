@@ -19,13 +19,28 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 - Typescript
 - Sourcemap creation
 - [Storybook](https://storybook.js.org) for easy development of components
-- [Github Actions](https://docs.github.com/en/actions) for test and deploy
-- [Greenkeeper](https://greenkeeper.io) for dependency management
+- [commitlint](https://github.com/conventional-changelog/commitlint) to enforce the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/)
+- [semantic-release](https://github.com/semantic-release/semantic-release) for version management and package publishing
+- [Github Actions](https://docs.github.com/en/actions) for running build, test and release jobs
+- [Dependabot](https://dependabot.com/) for dependency management
 
 ## Publishing
 
-When publishing from master Github Actions will publish to NPM
+Pushing to `master` or any feature-branch (`feature/some-feature`) will automatically run the [release-workflow](https://github.com/Utdanningsdirektoratet/Grep-komponenter/blob/master/.github/workflows/release.yml). This will build the package, analyze the commits to determine next version number and publish the new version to [NPM](https://www.npmjs.com/package/grep-components) and [Github](https://github.com/Utdanningsdirektoratet/Grep-komponenter/releases). Current and previous runs can be seen [here](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/release.yml).
 
-When publishing from dev or feature deploy will be from local (user need access) and tagged next|feature/\${TAG}
+[Semantic-release](https://github.com/semantic-release/semantic-release) will determine the next version number by looking at the commit message prefix:
 
-    npm run release
+| Prefix | Release type     | Example commit message             |
+| :----- | :--------------- | :------------------ |
+| BREAKING CHANGE | Major release | BREAKING CHANGE: Some breaking changes |
+| feat | Minor release | feat: Some minor changes |
+| fix, perf, revert, refactor, build(deps) | Patch release | fix: Some fixes |
+
+If a commit contains none of these, then no release will be created / published.
+
+The release-workflow can also be manually triggered from [here](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/release.yml), but will still only release if there is a commit with a valid prefix.
+
+### Important
+- Commits with the `chore` prefix will skip the release-workflow job
+- Feature-branches have to start with `feature/` to be included in the release-workflow. **Example:** `feature/some-feature`
+- Published versions from a valid feature-branch will get the branch-name, excluding the `feature/` part, as a dist-tag in NPM. **Example:** `feature/some-feature` on version 0.18.0 will become `0.18.0-some-feature.1` and can be installed by running `npm i grep-components@some-feature`
