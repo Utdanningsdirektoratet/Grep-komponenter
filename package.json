@@ -87,7 +87,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.49",
     "@material-ui/pickers": "^3.2.8",
-    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-commonjs": "^18.1.0",
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^10.0.0",
     "@rollup/plugin-url": "^5.0.1",
