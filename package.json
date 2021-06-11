@@ -138,7 +138,7 @@
     "husky": "^6.0.0",
     "immutable": "^3.8.2",
     "jest": "^25.1.0",
-    "lint-staged": "^10.0.0-1",
+    "lint-staged": "^11.0.0",
     "lodash": "^4.17.15",
     "prettier": "^2.0.3",
     "react": "^16.12.0",
