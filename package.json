@@ -24,7 +24,8 @@
     "build-storybook": "build-storybook",
     "yalc:init": "yalc add && yalc push",
     "yalc:build": "rollup -c --no-treeshake --no-sourcemap --environment yalc",
-    "yalc:watch": "npm run yalc:build -- -w"
+    "yalc:watch": "npm run yalc:build -- -w",
+    "prepare": "husky install"
   },
   "release": {
     "plugins": [
