@@ -42,7 +42,7 @@ export const GrepTablePagination: Component = (props: Properties) => {
   return (
     <TablePagination
       classes={classes}
-      rowsPerPageOptions={props.rowsPerPageOptions || [5, 10, 25, 50]}
+      rowsPerPageOptions={props.rowsPerPageOptions || [5, 10, 25, 50]}
       ActionsComponent={(actions) => (
         <PaginationActionsWrapped {...(actions as PaginationActionsProps)} />
       )}
