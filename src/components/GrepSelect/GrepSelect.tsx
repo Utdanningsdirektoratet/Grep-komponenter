@@ -7,7 +7,7 @@ import Select, { SelectProps } from '@material-ui/core/Select';
 import { Input, FormHelperText, PropTypes } from '@material-ui/core';
 
 export interface SelectItem {
-  value: string | number;
+  value: string | number;
   label?: string;
   disabled?: boolean;
 }

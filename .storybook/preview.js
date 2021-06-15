@@ -63,11 +63,11 @@ const Decorator = (story) => (
 
 addDecorator(Decorator);
 
-const req = require.context('../src/components', true, /\.stories\.tsx$/);
+// const req = require.context('../src/components', true, /\.stories\.tsx$/);
 
-function loadStories() {
-  require('../src/stories');
-  req.keys().forEach(req);
-}
+// function loadStories() {
+//   require('../src/stories');
+//   req.keys().forEach(req);
+// }
 
-configure(loadStories, module);
+// configure(loadStories, module);

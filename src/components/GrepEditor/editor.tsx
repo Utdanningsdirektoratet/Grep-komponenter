@@ -140,9 +140,7 @@ export const EditorComponent: Component = ({
     readOnly: props.readOnly,
   });
 
-  const keyBindingFn = (
-    e: React.KeyboardEvent<{}>,
-  ): CustomDraftCommand | null => {
+  const keyBindingFn = (e: React.KeyboardEvent): CustomDraftCommand | null => {
     if (e.key === 'Enter' && e.shiftKey) {
       return 'shift-split-block';
     } else {
