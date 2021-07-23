@@ -126,7 +126,7 @@ export const EditorComponent: Component = ({
   const oldContent = useRef(state.getCurrentContent());
   const currentContent = state.getCurrentContent();
 
-  React.useMemo(() => {
+  useEffect(() => {
     if (oldContent.current !== currentContent) {
       onContentChange && onContentChange(currentContent);
     }
