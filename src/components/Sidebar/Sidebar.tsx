@@ -16,11 +16,29 @@ export interface SidebarProps {
 }
 
 export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [expanded, setExpanded] = React.useState<number[]>([]);
   const classes = useStyles({});
 
+  React.useEffect(() => {
+    if (!!currentPageId) {
+      const pageId = pages.find((p) =>
+        p.children?.some((c) => c.id === currentPageId),
+      )?.id;
+
+      !!pageId && setExpanded([...expanded, pageId]);
+    }
+  }, [pages]);
+
+  const toggleExpand = (id: number) => {
+    if (expanded.includes(id)) {
+      setExpanded([...expanded.filter((_id) => _id !== id)]);
+    } else {
+      setExpanded([...expanded, id]);
+    }
+  };
+
   const handleClick = (page: NavigationProps) => {
-    page.children ? setIsOpen(!isOpen) : onPageClick(page);
+    page.children ? toggleExpand(page.id) : onPageClick(page);
   };
 
   const renderItem = (page: NavigationProps) => (
@@ -50,10 +68,20 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               onKeyPress={keyboard.onActivation(() => handleClick(page))}
             >
               {renderItem(page)}
-              {page.children ? isOpen ? <ExpandMore /> : <ExpandLess /> : null}
+              {page.children ? (
+                expanded.includes(page.id) ? (
+                  <ExpandMore />
+                ) : (
+                  <ExpandLess />
+                )
+              ) : null}
             </ListItem>
 
-            <Collapse in={isOpen} timeout="auto" unmountOnExit>
+            <Collapse
+              in={expanded.includes(page.id)}
+              timeout="auto"
+              unmountOnExit
+            >
               <List disablePadding>
                 {page.children?.map((child) => (
                   <ListItem
