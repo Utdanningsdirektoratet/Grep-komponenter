@@ -345,7 +345,11 @@ export const GrepTable = <T extends any>({
           {data.length ? (
             rows.map(_renderRow)
           ) : (
-            <Placeholder columns={columns} text={placeholderText} />
+            <Placeholder
+              padding={padding}
+              columns={columns}
+              text={placeholderText}
+            />
           )}
         </TableBody>
         <TableFooter>
