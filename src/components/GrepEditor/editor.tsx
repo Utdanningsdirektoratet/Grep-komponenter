@@ -126,7 +126,7 @@ export const EditorComponent: Component = ({
   const oldContent = useRef(state.getCurrentContent());
   const currentContent = state.getCurrentContent();
 
-  React.useMemo(() => {
+  useEffect(() => {
     if (oldContent.current !== currentContent) {
       onContentChange && onContentChange(currentContent);
     }
@@ -140,9 +140,7 @@ export const EditorComponent: Component = ({
     readOnly: props.readOnly,
   });
 
-  const keyBindingFn = (
-    e: React.KeyboardEvent<{}>,
-  ): CustomDraftCommand | null => {
+  const keyBindingFn = (e: React.KeyboardEvent): CustomDraftCommand | null => {
     if (e.key === 'Enter' && e.shiftKey) {
       return 'shift-split-block';
     } else {

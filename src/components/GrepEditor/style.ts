@@ -16,7 +16,7 @@ export default makeStyles((theme: Theme) =>
       minWidth: '100%', // TODO
     },
     legend: ({ hasFocus }: Properties) => ({
-      position: 'absolute' as 'absolute',
+      position: 'absolute' as const,
       top: -5,
       left: 0,
       right: 0,
@@ -42,14 +42,14 @@ export default makeStyles((theme: Theme) =>
     }),
     editor: ({ hasFocus, readOnly }: Properties) => ({
       padding: '.8rem 1rem',
-      position: 'relative' as 'relative',
+      position: 'relative' as const,
       zIndex: hasFocus || readOnly ? 1 : 0,
       '& .unstyled': {
         margin: '.5rem 0',
       },
     }),
     label: ({ hasFocus, hasContent }: Properties) => ({
-      position: 'absolute' as 'absolute',
+      position: 'absolute' as const,
       top: 0,
       left: 0,
       zIndex: 1,
@@ -95,5 +95,5 @@ export default makeStyles((theme: Theme) =>
       backgroundColor: 'white',
       padding: '2px 10px',
     },
-  })
+  }),
 );
