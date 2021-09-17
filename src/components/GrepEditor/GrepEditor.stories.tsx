@@ -65,4 +65,13 @@ storiesOf('GrepEditor', module)
   ))
   .add('With character count', () => (
     <GrepEditor showCharCount helperText="Marker tekst for formatering" />
+  ))
+  .add('Disable and strip newlines', () => (
+    <GrepEditor
+      disableNewlines
+      onContentChange={(c) => {
+        console.log(convert2txt(c));
+        console.log(convert2html(c));
+      }}
+    />
   ));
