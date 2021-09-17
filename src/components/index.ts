@@ -31,6 +31,7 @@ export * from './Sidebar';
 export * from './NavGuard';
 export * from './GrepEditor';
 export * from './ConfirmationDialog';
+export * from './GrepDialog';
 export * from './ToC';
 
 export { default as AppBar } from './AppBar';
