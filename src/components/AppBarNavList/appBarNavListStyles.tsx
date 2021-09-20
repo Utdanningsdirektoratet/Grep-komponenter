@@ -5,7 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 
 interface StyledTabsProps {
   value: number;
-  onChange: (event: React.ChangeEvent<{}>, newValue: number) => void;
+  onChange: (event: React.ChangeEvent<unknown>, newValue: number) => void;
 }
 
 export const StyledTabs = withStyles((theme: Theme) =>
