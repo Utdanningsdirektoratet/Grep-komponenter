@@ -1,12 +1,13 @@
 name: Dependabot auto-merge
 
 on: 
-  pull_request_target:
   workflow_dispatch:
     inputs:
       custom_url:
         description: 'PR URL'
         required: true
+        
+  pull_request_target:
 
 permissions:
   pull-requests: write
