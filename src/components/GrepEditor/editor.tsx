@@ -9,6 +9,8 @@ import {
   ContentBlock,
   DraftBlockRenderMap,
   getDefaultKeyBinding,
+  Modifier,
+  DraftHandleValue,
 } from 'draft-js';
 
 import { createButton, Button, Style } from './buttons';
@@ -38,6 +40,7 @@ export interface Properties {
   showCharCount?: boolean;
   helperText?: string;
   buttons?: Array<Button>;
+  disableNewlines?: boolean;
   stripPastedStyles?: boolean;
   /**
    * Undefined: allow all styles.
@@ -74,6 +77,7 @@ export const EditorComponent: Component = ({
   helperText,
   showCharCount,
   allowedStyles,
+  disableNewlines,
   onContentChange,
   Toolbar = FloatingToolbar,
   ...props
@@ -126,7 +130,7 @@ export const EditorComponent: Component = ({
   const oldContent = useRef(state.getCurrentContent());
   const currentContent = state.getCurrentContent();
 
-  React.useMemo(() => {
+  useEffect(() => {
     if (oldContent.current !== currentContent) {
       onContentChange && onContentChange(currentContent);
     }
@@ -141,11 +145,34 @@ export const EditorComponent: Component = ({
   });
 
   const keyBindingFn = (e: React.KeyboardEvent): CustomDraftCommand | null => {
+    if (disableNewlines && e.key === 'Enter') return null;
     if (e.key === 'Enter' && e.shiftKey) {
       return 'shift-split-block';
     } else {
       return getDefaultKeyBinding(e);
     }
+  };
+
+  const handlePastedText = (
+    text: string,
+    _html: string | undefined,
+    editorState: EditorState,
+  ): DraftHandleValue => {
+    if (disableNewlines) {
+      onChange(
+        EditorState.push(
+          editorState,
+          Modifier.replaceText(
+            editorState.getCurrentContent(),
+            editorState.getSelection(),
+            text.replace(/\n/g, ' '),
+          ),
+          'remove-range',
+        ),
+      );
+    }
+
+    return 'handled';
   };
 
   return (
@@ -173,6 +200,7 @@ export const EditorComponent: Component = ({
             blockStyleFn,
             handleKeyCommand,
             keyBindingFn,
+            handlePastedText,
             ...props,
           }}
         />

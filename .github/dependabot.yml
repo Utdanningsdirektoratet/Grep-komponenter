@@ -5,6 +5,5 @@ updates:
   schedule:
     interval: daily
     time: "04:00"
-  open-pull-requests-limit: 10
-  assignees:
-  - ferdinandforgaard
+  target-branch: "dependabot/updates"
+  open-pull-requests-limit: 25

@@ -11,6 +11,16 @@ export const adminPages: NavigationProps[] = [
     toUrl: '/service-messages',
   },
   {
+    id: 6,
+    label: 'Test',
+    children: [
+      {
+        id: 7,
+        label: 'Hmm',
+      },
+    ],
+  },
+  {
     id: 2,
     label: 'Kompetansemålsett',
     toUrl: '/manage-users',
@@ -33,10 +43,13 @@ export const adminPages: NavigationProps[] = [
   },
 ];
 
-storiesOf('Sidebar', module).add('standard', () => (
-  <Sidebar
-    pages={adminPages}
-    currentPageId={1}
-    onPageClick={(page) => console.log('clicked on ', page.label)}
-  />
-));
+storiesOf('Sidebar', module).add('standard', () => {
+  const [pageId, setPageId] = React.useState(4);
+  return (
+    <Sidebar
+      pages={adminPages}
+      currentPageId={pageId}
+      onPageClick={(page) => setPageId(page.id)}
+    />
+  );
+});

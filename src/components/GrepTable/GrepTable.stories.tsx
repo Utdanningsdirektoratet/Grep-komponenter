@@ -15,22 +15,23 @@ interface ICurriculum {
 export const tableColumns: TableColumn<ICurriculum>[] = [
   {
     label: 'Kode',
-    width: '20px',
+    width: 10,
     getCell: (row) => row.code,
   },
   {
     label: 'Navn',
+    width: 20,
     getCell: (row) => row.title,
   },
   {
     label: 'Status',
-    width: '100px',
+    width: 20,
     getTooltip: (row) => row.statusText,
     getCell: (row) => row.statusText,
   },
   {
     label: 'Publisert',
-    width: '200px',
+    width: 20,
     forceTooltip: true,
     getCell: (row) => row.lastModified,
   },
@@ -198,4 +199,23 @@ storiesOf('Grep table', module)
   })
   .add('without header', () => (
     <GrepTable columns={tableColumns} data={tableData()} />
+  ))
+  .add('without padding', () => (
+    <div>
+      <GrepTable
+        header
+        style={{ border: '1px solid black' }}
+        columns={tableColumns}
+        data={tableData()}
+        padding="none"
+      />
+      <br />
+      <GrepTable
+        header
+        style={{ border: '1px solid black' }}
+        columns={tableColumns}
+        data={[]}
+        padding="none"
+      />
+    </div>
   ));
