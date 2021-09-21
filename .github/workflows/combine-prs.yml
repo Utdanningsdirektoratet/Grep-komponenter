@@ -13,7 +13,7 @@ jobs:
         with:
           branchPrefix: "dependabot/npm_and_yarn"
           mustBeGreen: false
-          combineBranchName: "dependabot/combined-prs"
+          combineBranchName: "combined-prs"
           ignoreLabel: "nocombine"
-          baseBranch: "dependabot/updates"
+          baseBranch: "master"
           openPR: true
