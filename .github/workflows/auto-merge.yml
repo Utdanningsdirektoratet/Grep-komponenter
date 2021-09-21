@@ -1,4 +1,4 @@
-name: Dependabot auto-merge
+name: Auto-merge
 
 on: 
   workflow_dispatch:
@@ -16,7 +16,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' && github.base_ref == 'dependabot/updates' }}
+    if: ${{ github.event_name == 'workflow_dispatch' || (github.actor == 'dependabot[bot]' && github.base_ref == 'dependabot/updates') }}
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
