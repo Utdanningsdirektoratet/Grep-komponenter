@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PaginationButton, PaginationTextButton } from './grepTableStyles';
 import { Colors } from '../../styling';
-import { WithStyles, Theme, withStyles } from '@material-ui/core';
+import { WithStyles, withStyles } from '@material-ui/core';
 
 const actionsStyles = () => ({
   root: {
@@ -12,13 +12,12 @@ type WithStylesProps = WithStyles<typeof actionsStyles>;
 
 export type PaginationActionsProps = {
   count: number;
-  onChangePage: (
+  onPageChange: (
     event: React.MouseEvent<HTMLElement> | null,
     page: number,
   ) => void;
   page: number;
   rowsPerPage: number;
-  theme: Theme;
 };
 
 type Props = WithStylesProps & PaginationActionsProps;
@@ -51,20 +50,20 @@ class PaginationActions extends React.Component<Props> {
   private handleBackButtonClick = (
     event: React.MouseEvent<HTMLElement> | null,
   ) => {
-    this.props.onChangePage(event, this.props.page - 1);
+    this.props.onPageChange(event, this.props.page - 1);
   };
 
   private handleNextButtonClick = (
     event: React.MouseEvent<HTMLElement> | null,
   ) => {
-    this.props.onChangePage(event, this.props.page + 1);
+    this.props.onPageChange(event, this.props.page + 1);
   };
 
   private handlePageButtonClick = (
     event: React.MouseEvent<HTMLElement> | null,
     page: number,
   ) => {
-    this.props.onChangePage(event, page);
+    this.props.onPageChange(event, page);
   };
 
   private getPageNumbers = (
@@ -106,6 +105,5 @@ class PaginationActions extends React.Component<Props> {
   };
 }
 
-export const PaginationActionsWrapped = withStyles(actionsStyles)(
-  PaginationActions,
-);
+export const PaginationActionsWrapped =
+  withStyles(actionsStyles)(PaginationActions);
