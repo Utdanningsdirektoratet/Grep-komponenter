@@ -1,5 +1,4 @@
 export * from './AppBar';
-export * from './AppBarTop';
 export * from './AppBarLogo';
 export * from './AppBarProfile';
 export * from './AppBarNavList';
@@ -34,7 +33,6 @@ export * from './ConfirmationDialog';
 export * from './ToC';
 
 export { default as AppBar } from './AppBar';
-export { default as AppBarTop } from './AppBarTop';
 export { default as AppBarLogo } from './AppBarLogo';
 export { default as AppBarProfile } from './AppBarProfile';
 export { default as AppBarNavList } from './AppBarNavList';
