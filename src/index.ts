@@ -3,7 +3,6 @@ import * as Utils from './utils';
 export { default as Grid } from '@material-ui/core/Grid';
 export { default as Colors } from './styling/Colors';
 export { default as AppBar } from './components/AppBar';
-export { default as AppBarLogo } from './components/AppBarLogo';
 export { default as AppBarProfile } from './components/AppBarProfile';
 export { default as AppBarNavList } from './components/AppBarNavList';
 export { default as BodyLayout } from './components/BodyLayout';
