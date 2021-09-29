@@ -31,8 +31,8 @@ Pushing to `master` or any feature-branch (`feature/some-feature`) will automati
 [Semantic-release](https://github.com/semantic-release/semantic-release) will determine the next version number by looking at the commit message prefix:
 
 | Prefix | Release type     | Example commit message             |
-| :----- | :--------------- | :------------------ |
-| BREAKING CHANGE | Major release | BREAKING CHANGE: Some breaking changes |
+| :----- | :--------------- | :--------------------------------- |
+| 'BREAKING CHANGE: ' in commit message footer | Major release | revert: Reverting some changes <br /><br /> BREAKING CHANGE: this revert will break something|
 | feat | Minor release | feat: Some minor changes |
 | fix, perf, revert, refactor, build(deps) | Patch release | fix: Some fixes |
 

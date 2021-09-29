@@ -42,13 +42,12 @@
             {
               "type": "refactor",
               "release": "patch"
+            },
+            {
+              "breaking": true,
+              "release": "major"
             }
-          ],
-          "parserOpts": {
-            "noteKeywords": [
-              "BREAKING CHANGE"
-            ]
-          }
+          ]
         }
       ],
       "@semantic-release/release-notes-generator",
