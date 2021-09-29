@@ -43,7 +43,12 @@
               "type": "refactor",
               "release": "patch"
             }
-          ]
+          ],
+          "parserOpts": {
+            "noteKeywords": [
+              "BREAKING CHANGE"
+            ]
+          }
         }
       ],
       "@semantic-release/release-notes-generator",
