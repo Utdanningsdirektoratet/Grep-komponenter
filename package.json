@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.18.9",
+  "version": "0.18.10-grepf-1460.1",
   "description": "Grep komponentbibliotek",
   "repository": {
     "type": "git",
