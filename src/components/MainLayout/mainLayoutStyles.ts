@@ -1,5 +1,4 @@
-import withStyles from '@material-ui/core/styles/withStyles';
-import CleanPaper from '../CleanPaper';
+import { Box, withStyles } from '@material-ui/core';
 
 export const StyledMainLayout = withStyles({
   root: {
@@ -7,4 +6,4 @@ export const StyledMainLayout = withStyles({
     flex: 1,
     flexDirection: 'column',
   },
-})(CleanPaper);
+})(Box);

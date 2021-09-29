@@ -7,7 +7,6 @@ export { default as AppBarProfile } from './components/AppBarProfile';
 export { default as AppBarNavList } from './components/AppBarNavList';
 export { default as BodyLayout } from './components/BodyLayout';
 export { default as MainLayout } from './components/MainLayout';
-export { default as CleanPaper } from './components/CleanPaper';
 export { default as DropdownMenu } from './components/DropdownMenu';
 export { default as Footer } from './components/Footer';
 export { default as LinkList } from './components/LinkList';

@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 
 storiesOf('GreyCover', module).add('GreyCover with content', () => (
   <MainLayout>
-    <GreyCover>
+    <GreyCover elevation>
       <Container>
         <SearchBar onClear={() => void 0} onInputChange={() => void 0} />
       </Container>

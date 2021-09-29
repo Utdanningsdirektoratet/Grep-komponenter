@@ -1,8 +1,6 @@
 import * as React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { withStyles, Typography, Box } from '@material-ui/core';
 import { Colors } from '../../styling';
-import CleanPaper from '../CleanPaper';
-import Typography from '@material-ui/core/Typography';
 
 const StyledInfoKey = withStyles({
   root: {
@@ -53,13 +51,13 @@ export const InfoField = withStyles({
     display: 'flex',
     marginRight: 20,
   },
-})(CleanPaper);
+})(Box);
 
 export const Container = withStyles({
   root: {
     paddingTop: 20,
   },
-})(CleanPaper);
+})(Box);
 
 export const HorizontalContainer = withStyles({
   root: {
@@ -67,4 +65,4 @@ export const HorizontalContainer = withStyles({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-})(CleanPaper);
+})(Box);

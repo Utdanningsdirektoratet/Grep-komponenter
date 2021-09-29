@@ -2,8 +2,7 @@ import * as React from 'react';
 import CircularProgress, {
   CircularProgressProps,
 } from '@material-ui/core/CircularProgress';
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { Box, withStyles } from '@material-ui/core';
 
 const Inner = withStyles({
   root: {
@@ -12,7 +11,7 @@ const Inner = withStyles({
     alignItems: 'center',
     justifyContent: 'center',
   },
-})(CleanPaper);
+})(Box);
 
 interface Props extends CircularProgressProps {
   height?: number | string;
