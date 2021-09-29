@@ -24,7 +24,6 @@ export { default as GrepInput } from './components/GrepInput';
 export { default as GrepSelect } from './components/GrepSelect';
 export { default as GrepDateRange } from './components/GrepDateRange';
 export { default as GrepDatePicker } from './components/GrepDatePicker';
-export { default as NavigateBack } from './components/NavigateBack';
 export { default as InfoContainer } from './components/InfoContainer';
 export { default as OverflowTooltip } from './components/OverflowTooltip';
 export { default as Sidebar } from './components/Sidebar';
