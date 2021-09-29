@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import CenterLayout from '../CenterLayout/CenterLayout';
 import GrepEditor from '.';
 
 import { ToolbarPropperties } from './toolbars';
 import { InlineButton } from './buttons';
 import { convert2html, convert2txt } from './utils';
-import { createStyles, makeStyles } from '@material-ui/core';
+import { Container, createStyles, makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(
   createStyles({
@@ -33,7 +32,7 @@ const myToolbar: React.FunctionComponent<ToolbarPropperties> = ({
 
 storiesOf('GrepEditor', module)
   .addDecorator((storyFn) => (
-    <CenterLayout
+    <Container
       style={{
         marginTop: 40,
         display: 'flex',
@@ -41,7 +40,7 @@ storiesOf('GrepEditor', module)
       }}
     >
       {storyFn()}
-    </CenterLayout>
+    </Container>
   ))
   .add('Standard', () => <GrepEditor />)
   .add('Custom styles', () => {
