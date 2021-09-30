@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import CurriculumList from './CurriculumTable';
-import { tableColumns } from '../GrepTable/GrepTable.stories';
+import GrepTableCard from './GrepTableCard';
+import { ICurriculum, tableColumns } from '../GrepTable/GrepTable.stories';
 
-export const curriculums = [
+export const data: ICurriculum[] = [
   {
     id: 1,
     code: '1001',
@@ -35,10 +35,10 @@ export const curriculums = [
 ];
 
 storiesOf('CurriculumList', module).add('standard', () => (
-  <CurriculumList
-    data={curriculums}
+  <GrepTableCard
+    data={data}
     columns={tableColumns}
     title={'Mine læreplaner'}
-    onRowClick={id => console.log('clicked on ', id)}
+    onRowClick={(id) => console.log('clicked on ', id)}
   />
 ));

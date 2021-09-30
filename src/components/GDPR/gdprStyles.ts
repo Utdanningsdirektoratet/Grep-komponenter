@@ -1,7 +1,5 @@
 import Info from '@material-ui/icons/Info';
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography/Typography';
+import { Box, Typography, withStyles } from '@material-ui/core';
 
 export const Container = withStyles({
   root: {
@@ -10,14 +8,14 @@ export const Container = withStyles({
     display: 'flex',
     maxWidth: 500,
   },
-})(CleanPaper);
+})(Box);
 
 export const Content = withStyles({
   root: {
     backgroundColor: 'unset',
     marginRight: 20,
   },
-})(CleanPaper);
+})(Box);
 
 export const Title = withStyles({
   root: {

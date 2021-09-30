@@ -20,7 +20,7 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
   const classes = useStyles({});
 
   React.useEffect(() => {
-    if (!!currentPageId) {
+    if (currentPageId) {
       const pageId = pages.find((p) =>
         p.children?.some((c) => c.id === currentPageId),
       )?.id;

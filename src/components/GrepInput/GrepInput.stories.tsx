@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import CenterLayout from '../CenterLayout/CenterLayout';
 import GrepInput from './GrepInput';
+import { Container } from '@material-ui/core';
 
 storiesOf('GrepInput', module)
-  .addDecorator(storyFn => (
-    <CenterLayout
+  .addDecorator((storyFn) => (
+    <Container
       style={{
         marginTop: 40,
         display: 'flex',
@@ -13,7 +13,7 @@ storiesOf('GrepInput', module)
       }}
     >
       {storyFn()}
-    </CenterLayout>
+    </Container>
   ))
   .add('Input', () => (
     <React.Fragment>

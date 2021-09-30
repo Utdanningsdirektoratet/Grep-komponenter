@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import CenterLayout from '../CenterLayout/CenterLayout';
 import DatePicker from './DatePicker';
 
 import DateUtils from '@date-io/dayjs';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { Button, Box } from '@material-ui/core';
+import { Button, Box, Container } from '@material-ui/core';
 import { ParseableDate, DateTime } from '../../utils';
 
 const TestDatePicker = () => {
@@ -19,7 +18,7 @@ const TestDatePicker = () => {
         inputVariant="standard"
         errorMessage="Feilmelding"
         value={value}
-        onChange={date => {
+        onChange={(date) => {
           setValue(date);
         }}
       />
@@ -32,8 +31,8 @@ const TestDatePicker = () => {
 };
 
 storiesOf('DatePicker', module)
-  .addDecorator(storyFn => (
-    <CenterLayout
+  .addDecorator((storyFn) => (
+    <Container
       style={{
         marginTop: 40,
         display: 'flex',
@@ -43,7 +42,7 @@ storiesOf('DatePicker', module)
       <MuiPickersUtilsProvider utils={DateUtils} locale={'nb'}>
         {storyFn()}
       </MuiPickersUtilsProvider>
-    </CenterLayout>
+    </Container>
   ))
   .add('Standard', () => {
     return (
@@ -53,13 +52,13 @@ storiesOf('DatePicker', module)
           label="Med hjelpetekst"
           inputVariant="standard"
           helperText="Hjelpetekst"
-          onChange={date => console.log(date)}
+          onChange={(date) => console.log(date)}
         />
         <DatePicker
           label="Med placeholder"
           inputVariant="standard"
           placeholder="25/04/2019"
-          onChange={date => console.log(date)}
+          onChange={(date) => console.log(date)}
         />
       </React.Fragment>
     );
@@ -70,19 +69,19 @@ storiesOf('DatePicker', module)
       <DatePicker
         label="Med feilmelding"
         value={'32.01.2019'}
-        onChange={date => console.log(date)}
+        onChange={(date) => console.log(date)}
       />
       <DatePicker
         label="Med hjelpetekst"
         helperText="Hjelpetekst"
         value={null}
-        onChange={date => console.log(date)}
+        onChange={(date) => console.log(date)}
       />
       <DatePicker
         label="Med placeholder"
         placeholder="25/04/2019"
         value={null}
-        onChange={date => console.log(date)}
+        onChange={(date) => console.log(date)}
       />
     </React.Fragment>
   ));

@@ -1,9 +1,5 @@
 import { Colors } from '../../styling';
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography/Typography';
-import ListItem from '@material-ui/core/ListItem/ListItem';
-import List from '@material-ui/core/List/List';
+import { Box, List, ListItem, Typography, withStyles } from '@material-ui/core';
 
 export const Container = withStyles({
   root: {
@@ -11,7 +7,7 @@ export const Container = withStyles({
     height: 'fit-content',
     width: 'fit-content',
   },
-})(CleanPaper);
+})(Box);
 
 export const Title = withStyles({
   root: {
