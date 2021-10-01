@@ -46,17 +46,15 @@ describe('GrepDatePicker', () => {
   });
 
   it('should handle open/close', async () => {
-    const { getByText, getByRole } = render(<Component />);
+    const { findByText, getByRole } = render(<Component />);
 
     expect(screen.queryByRole('dialog')).toBeFalsy();
 
     userEvent.click(getByRole('button'));
 
-    await waitFor(() => {
-      expect(getByText('Clear')).toBeInTheDocument();
-      expect(getByText('Cancel')).toBeInTheDocument();
-      expect(getByText('OK')).toBeInTheDocument();
-    });
+    expect(await findByText('Clear')).toBeInTheDocument();
+    expect(await findByText('Cancel')).toBeInTheDocument();
+    expect(await findByText('OK')).toBeInTheDocument();
 
     userEvent.click(getByRole('button', { name: 'Cancel' }));
 
