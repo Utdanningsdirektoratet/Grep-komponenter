@@ -30,7 +30,7 @@ const TestDatePicker = () => {
   );
 };
 
-storiesOf('DatePicker', module)
+storiesOf('GrepDatePicker', module)
   .addDecorator((storyFn) => (
     <Container
       style={{
