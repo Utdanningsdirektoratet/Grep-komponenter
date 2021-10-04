@@ -39,6 +39,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     required,
     label,
     value,
+    id,
     ...rest
   } = props;
 
@@ -55,11 +56,16 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       error={error}
       disabled={disabled}
     >
-      <InputLabel ref={inputLabel} style={{ width: 'max-content' }}>
+      <InputLabel
+        htmlFor={id}
+        ref={inputLabel}
+        style={{ width: 'max-content' }}
+      >
         {label}
       </InputLabel>
       <Select
         {...rest}
+        inputProps={{ id }}
         disabled={!selectItems || disabled}
         value={value === null ? '' : value}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
