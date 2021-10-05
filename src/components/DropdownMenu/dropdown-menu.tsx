@@ -27,31 +27,50 @@ export default <T extends any>({
 }: DropdownMenuProps<T>) => {
   const styles = useStyles({});
 
-  const renderChild = (level = 0) => (
-    item: DropdownMenuItem<T>,
-    index: number,
-  ): React.ReactNode => {
-    const { label, children, handleClick, disabled, ...props } = item;
+  const renderChild =
+    (level = 0) =>
+    (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
+      const { label, children, handleClick, disabled, ...props } = item;
 
-    props.key = `child-item-${index}`;
-    props.classes = { selected: styles.selected };
-    // ninja way, since rewriting existing code on lpu and admin is daunting
-    props.onClick = (e: React.MouseEvent) => {
-      menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-      handleClick && handleClick(context);
+      props.key = `child-item-${index}`;
+      props.classes = { selected: styles.selected };
+      // ninja way, since rewriting existing code on lpu and admin is daunting
+      props.onClick = (e: React.MouseEvent) => {
+        menuProps.onClose && menuProps.onClose(e, 'backdropClick');
+        handleClick && handleClick(context);
+      };
+
+      return (
+        <CollapsableMenuItem
+          level={level}
+          disabled={
+            typeof disabled === 'function' ? disabled(context) : disabled
+          }
+          items={children?.map(renderChild(level + 1))}
+          {...props}
+        >
+          <span style={{ paddingLeft: `${level * 0.5}rem` }}>{label}</span>
+        </CollapsableMenuItem>
+      );
     };
 
-    return (
-      <CollapsableMenuItem
-        level={level}
-        disabled={typeof disabled === 'function' ? disabled(context) : disabled}
-        items={children?.map(renderChild(level + 1))}
-        {...props}
-      >
-        <span style={{ paddingLeft: `${level * 0.5}rem` }}>{label}</span>
-      </CollapsableMenuItem>
-    );
-  };
-
-  return <Menu {...menuProps}>{menuItems.map(renderChild())}</Menu>;
+  return (
+    <Menu
+      {...menuProps}
+      anchorOrigin={
+        menuProps?.anchorOrigin || {
+          vertical: 'bottom',
+          horizontal: 'center',
+        }
+      }
+      transformOrigin={
+        menuProps.transformOrigin || {
+          vertical: 'top',
+          horizontal: 'center',
+        }
+      }
+    >
+      {menuItems.map(renderChild())}
+    </Menu>
+  );
 };
