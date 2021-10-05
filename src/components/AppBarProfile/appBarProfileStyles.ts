@@ -18,6 +18,9 @@ export const UserContainer = withStyles({
     margin: '0 10px',
     marginLeft: 20,
     height: 'fit-content',
+    textAlign: 'left',
+    backgroundColor: 'inherit',
+    textTransform: 'none',
   },
 })(CleanPaper);
 
