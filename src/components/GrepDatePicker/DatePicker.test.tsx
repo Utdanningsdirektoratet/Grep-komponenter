@@ -2,7 +2,6 @@ import * as React from 'react';
 import {
   render,
   screen,
-  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -76,26 +75,28 @@ describe('GrepDatePicker', () => {
   });
 
   it('should handle picking a date', async () => {
-    const { getByRole } = render(<Component />);
+    const { getByRole, getByText } = render(<Component />);
+    
     const date = dayjs().set('date', 13);
     const dateToSelect = date.format('DD/MM/YYYY');
 
     userEvent.click(getByRole('button'));
-    userEvent.click(getByRole('button', { name: date.format('D') }));
-    userEvent.click(getByRole('button', { name: 'OK' }));
+
+    userEvent.click(getByText(date.format('D')));
+    userEvent.click(getByText('OK'));
 
     await waitForElementToBeRemoved(() => screen.queryAllByRole('dialog'));
 
-    expect(screen.getByDisplayValue(dateToSelect)).toBeInTheDocument();
+    expect(getByRole('textbox')).toHaveValue(dateToSelect);
   });
 
   it('should handle keyboard input', () => {
-    render(<Component />);
+    const { getByRole } = render(<Component />);
 
     userEvent.tab();
     userEvent.keyboard('qwerty');
     userEvent.keyboard('13121993');
 
-    expect(screen.getByDisplayValue('13/12/1993')).toBeInTheDocument();
+    expect(getByRole('textbox')).toHaveValue('13/12/1993');
   });
 });
