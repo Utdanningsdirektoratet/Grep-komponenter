@@ -64,6 +64,17 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
         value={value === null ? '' : value}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
         input={outlined ? <OutlinedInput labelWidth={labelWidth} /> : <Input />}
+        MenuProps={{
+          anchorOrigin: {
+            vertical: 'bottom',
+            horizontal: 'center',
+          },
+          transformOrigin: {
+            vertical: 'top',
+            horizontal: 'center',
+          },
+          getContentAnchorEl: null,
+        }}
       >
         <MenuItem value="">
           <em>Fjern valgt</em>
