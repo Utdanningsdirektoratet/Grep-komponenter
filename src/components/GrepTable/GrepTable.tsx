@@ -205,34 +205,32 @@ export const GrepTable = <T extends any>({
     const disabled = menuDisabled && menuDisabled(row);
     const tooltip = menuTooltip ? menuTooltip(row) : '';
     return (
-      <Tooltip title={tooltip}>
-        <div>
-          <IconButton
-            disableTouchRipple={true}
-            disabled={disabled}
-            style={{ float: 'right' }}
-            onMouseDown={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            onClick={(e) => {
-              _openDropdown(e, row);
-            }}
-            onKeyDown={(e) => {
-              switch (e.which) {
-                case Key.Enter:
-                  // dont show dropdown
-                  e.preventDefault();
-                  break;
-                default:
-                  break;
-              }
-            }}
-            tabIndex={0}
-          >
-            <MoreVert />
-          </IconButton>
-        </div>
+      <Tooltip title={tooltip} placement="bottom">
+        <IconButton
+          disableTouchRipple={true}
+          disabled={disabled}
+          style={{ float: 'right' }}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            _openDropdown(e, row);
+          }}
+          onKeyDown={(e) => {
+            switch (e.which) {
+              case Key.Enter:
+                // dont show dropdown
+                e.preventDefault();
+                break;
+              default:
+                break;
+            }
+          }}
+          tabIndex={0}
+        >
+          <MoreVert />
+        </IconButton>
       </Tooltip>
     );
   };
