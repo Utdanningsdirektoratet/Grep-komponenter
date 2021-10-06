@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import { FormControlLabel, Checkbox } from '@material-ui/core';
+
 import GrepTable, { TableColumn } from './GrepTable';
 import { DropdownMenuItem } from '../DropdownMenu';
-import { Button, Box, FormControlLabel, Checkbox } from '@material-ui/core';
 
 export interface ICurriculum {
   id: number;
@@ -130,11 +131,7 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
 storiesOf('Grep table', module)
   .addDecorator((storyFn) => <div style={{ margin: 10 }}>{storyFn()}</div>)
   .add('standard', () => (
-    <Box>
-      <Button>Test</Button>
-      <GrepTable header columns={tableColumns} data={tableData()} />
-      <Button>Test</Button>
-    </Box>
+    <GrepTable header columns={tableColumns} data={tableData()} />
   ))
   .add('outlined', () => (
     <GrepTable header columns={tableColumns} data={tableData()} outlined />
@@ -159,21 +156,17 @@ storiesOf('Grep table', module)
     <GrepTable header columns={tableColumns} data={[]} />
   ))
   .add('with dropdown-menu', () => (
-    <Box>
-      <Button>Test</Button>
-      <GrepTable
-        header
-        data={tableData(100)}
-        dropdownItems={menuItems}
-        columns={CURRICULUM_COLUMNS}
-        menuTooltip={() => 'Tooltip'}
-        menuDisabled={(row) => row.id === 3}
-        isRowDisabled={(row) => !!(row.id % 2)}
-        pagination
-        rowsPerPage={10}
-      />
-      <Button>Test</Button>
-    </Box>
+    <GrepTable
+      header
+      data={tableData(100)}
+      dropdownItems={menuItems}
+      columns={CURRICULUM_COLUMNS}
+      menuTooltip={() => 'Tooltip'}
+      menuDisabled={(row) => row.id === 3}
+      isRowDisabled={(row) => !!(row.id % 2)}
+      pagination
+      rowsPerPage={10}
+    />
   ))
   .add('with pagination', () => {
     function Parent({ children }: { children: any }) {

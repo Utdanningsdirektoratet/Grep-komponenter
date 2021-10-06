@@ -156,8 +156,9 @@ export const GrepTable = <T extends any>({
     ) as HTMLElement;
     if (!rowTab) return;
     if (!containsFocus(rowTab)) {
-      const tabableItem = rowTab.querySelector('[tabindex="0"]') as HTMLElement;
-      tabableItem && tabableItem.focus();
+      if (rowTab.getAttribute('tabindex') === '0') {
+        rowTab.focus();
+      }
     }
   }, [tableRef, selectedRowIndex]);
 
