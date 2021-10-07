@@ -13,7 +13,11 @@ jobs:
     name: Deploy storybook
     runs-on: ubuntu-latest
     steps:
-      - name: Run deploy-storybook
-        env: 
-          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        run: npm run deploy-storybook -- --ci
+      - uses: actions/checkout@v2
+      - name: Install and Build 🔧
+        # This needs an Acces Token stored as "GH_TOKEN" 👇
+        run: |
+          npm install
+          npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
