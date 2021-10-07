@@ -12,7 +12,7 @@
     "npm": ">=5"
   },
   "type": "module",
-  "homepage": "https://github.com/Utdanningsdirektoratet/Grep-komponenter",
+  "homepage": "https://Utdanningsdirektoratet.github.io/Grep-komponenter",
   "author": "Udir",
   "scripts": {
     "build": "rollup -c",
@@ -25,7 +25,8 @@
     "yalc:init": "yalc add && yalc push",
     "yalc:build": "rollup -c --no-treeshake --no-sourcemap --environment yalc",
     "yalc:watch": "npm run yalc:build -- -w",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "release": {
     "plugins": [
@@ -102,6 +103,7 @@
     "@storybook/cli": "^6.0.28",
     "@storybook/preset-create-react-app": "^3.1.7",
     "@storybook/react": "^6.0.28",
+    "@storybook/storybook-deployer": "^2.8.10",
     "@types/draft-js": "^0.11.3",
     "@types/enzyme": "^3.10.4",
     "@types/enzyme-adapter-react-16": "^1.0.5",
