@@ -131,7 +131,12 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
 storiesOf('Grep table', module)
   .addDecorator((storyFn) => <div style={{ margin: 10 }}>{storyFn()}</div>)
   .add('standard', () => (
-    <GrepTable header columns={tableColumns} data={tableData()} />
+    <GrepTable
+      caption="Some caption text"
+      header
+      columns={tableColumns}
+      data={tableData()}
+    />
   ))
   .add('outlined', () => (
     <GrepTable header columns={tableColumns} data={tableData()} outlined />
