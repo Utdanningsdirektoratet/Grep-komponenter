@@ -34,7 +34,7 @@ export const data: ICurriculum[] = [
   },
 ];
 
-storiesOf('CurriculumList', module).add('standard', () => (
+storiesOf('GrepTableCard', module).add('standard', () => (
   <GrepTableCard
     data={data}
     columns={tableColumns}
