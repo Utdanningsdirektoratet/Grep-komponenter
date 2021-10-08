@@ -20,4 +20,4 @@ jobs:
           npm install
           npm run deploy-storybook -- --ci
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GH_TOKEN }}
