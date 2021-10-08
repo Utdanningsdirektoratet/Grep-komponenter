@@ -42,21 +42,19 @@ export type ToggleState = 'collapse' | 'expand';
 export interface Properties extends Omit<MenuItemProps, 'button'> {
   items?: React.ReactNode;
   tooltipText?: string;
-  onToggle?: (event: CollapsableMenuStatusEvent) => void;
   onClose?: (event: CollapsableMenuStatusEvent) => void;
   level: number;
 }
 
-export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
-  Properties
->> = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
+export const CollapsableMenuItem: FunctionComponent<
+  PropsWithChildren<Properties>
+> = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
   (
     {
       items,
       onClick,
       children,
       onClose: _onclose,
-      onToggle,
       level,
       tooltipText,
       ...props
@@ -73,20 +71,18 @@ export const CollapsableMenuItem: FunctionComponent<PropsWithChildren<
 
     const expand = useCallback(() => {
       const event = onStatusChange('expand');
-      onToggle && onToggle(event);
       !event.defaultPrevented && setOpen(true);
       return !event.defaultPrevented;
-    }, [onToggle, onStatusChange, setOpen]);
+    }, [onStatusChange, setOpen]);
 
     const collapse = useCallback(() => {
       const event = onStatusChange('collapse');
-      onToggle && onToggle(event);
       if (!event.defaultPrevented) {
         setOpen(false);
         requestAnimationFrame(() => listItemRef.current?.focus());
       }
       return !event.defaultPrevented;
-    }, [onToggle, onStatusChange, setOpen, listItemRef]);
+    }, [onStatusChange, setOpen, listItemRef]);
 
     const handleKey = (e: React.KeyboardEvent) => {
       if (items) {
