@@ -5,6 +5,9 @@
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
+# Storybook
+[Storybook](https://utdanningsdirektoratet.github.io/Grep-komponenter)
+
 # Installation
 
     npm i grep-components
