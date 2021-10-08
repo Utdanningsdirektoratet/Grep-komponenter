@@ -42,6 +42,9 @@ export interface GrepTableProps<T>
   outlined?: boolean;
   rowsPerPage?: number;
   pagination?: boolean;
+  /**
+   * @deprecated No longer in use.
+   */
   clickableRows?: boolean;
   placeholderText?: string;
   dropdownItems?: Array<DropdownMenuItem<T>>;
