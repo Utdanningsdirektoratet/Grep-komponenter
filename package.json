@@ -125,7 +125,6 @@
     "commitlint": "^12.1.4",
     "connected-react-router": "^6.6.1",
     "conventional-changelog-cli": "^2.0.31",
-    "core-js": "^3.6.2",
     "cross-env": "^7.0.3",
     "dayjs": "^1.8.19",
     "draft-js-export-html": "^1.4.1",
