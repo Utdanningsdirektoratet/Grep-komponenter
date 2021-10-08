@@ -20,4 +20,4 @@ jobs:
           npm install
           npm run deploy-storybook -- --ci
         env:
-          GH_TOKEN: Utdanningsdirektoratet:${{ secrets.GH_TOKEN }}
+          GH_TOKEN: Utdanningsdirektoratet:${{ secrets.GITHUB_TOKEN }}
