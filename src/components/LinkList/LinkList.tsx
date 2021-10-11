@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Title } from './linkListStyles';
-import { NavigationProps } from '..';
 import {
   List,
   ListItem,
@@ -9,8 +7,10 @@ import {
   Divider,
   Box,
 } from '@material-ui/core';
-
 import { ArrowForward } from '@material-ui/icons';
+
+import { Title } from './linkListStyles';
+import { NavigationProps } from '../AppBarNavList';
 
 interface Props {
   title: string;
