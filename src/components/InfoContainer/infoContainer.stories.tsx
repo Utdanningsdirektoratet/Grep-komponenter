@@ -31,16 +31,8 @@ const infoFields: InfoField[] = [
 
 storiesOf('InfoContainer', module)
   .add('Horizontal fields', () => (
-    <React.Fragment>
-      <InfoContainer
-        inline
-        header="Horizontal fields"
-        infoFields={infoFields}
-      />
-    </React.Fragment>
+    <InfoContainer inline header="Horizontal fields" infoFields={infoFields} />
   ))
   .add('Vertical fields', () => (
-    <React.Fragment>
-      <InfoContainer header="Vertical fields" infoFields={infoFields} />
-    </React.Fragment>
+    <InfoContainer header="Vertical fields" infoFields={infoFields} />
   ));
