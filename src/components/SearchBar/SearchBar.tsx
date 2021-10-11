@@ -7,7 +7,7 @@ import { Colors } from '../../styling';
 import { IconBox, HelpText, Outer, StyledInput } from './searchBarStyles';
 import { keyboard } from '../../utils';
 
-interface SearchBarProps {
+export interface SearchBarProps {
   helpText?: string;
   outlined?: boolean;
   autoFocus?: boolean;
@@ -48,6 +48,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   return (
     <React.Fragment>
       <Outer
+        data-testid="searchBarContainer"
         style={{
           border: props.outlined ? `1px solid ${Colors.lightGrey}` : 0,
         }}
@@ -66,6 +67,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         <IconBox style={{ cursor: 'pointer' }}>
           {!!value.length && (
             <Close
+              data-testid="searchBarClearBtn"
               tabIndex={0}
               onClick={_handleClear}
               onKeyPress={keyboard.onActivation(_handleClear)}
