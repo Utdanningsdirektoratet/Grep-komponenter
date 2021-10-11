@@ -9,8 +9,9 @@ interface Props {
   role: string;
 }
 
-const renderField = (label: string, value: string) => (
+const renderField = (id: string, label: string, value: string) => (
   <ProfileField
+    id={id}
     disabled
     label={label}
     value={value}
@@ -21,11 +22,11 @@ const renderField = (label: string, value: string) => (
 
 const ProfileInfo: React.FC<Props> = (props) => (
   <Container>
-    {renderField('Fornavn', props.firstName)}
-    {renderField('Etternavn', props.lastName)}
-    {renderField('E-post adresse', props.email)}
-    {renderField('Telefonnummer', props.phoneNumber)}
-    {renderField('Rolle', props.role)}
+    {renderField('firstname', 'Fornavn', props.firstName)}
+    {renderField('lastname', 'Etternavn', props.lastName)}
+    {renderField('email', 'E-post adresse', props.email)}
+    {renderField('phone', 'Telefonnummer', props.phoneNumber)}
+    {renderField('role', 'Rolle', props.role)}
   </Container>
 );
 
