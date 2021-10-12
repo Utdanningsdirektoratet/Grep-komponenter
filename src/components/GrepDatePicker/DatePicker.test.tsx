@@ -45,20 +45,24 @@ describe('GrepDatePicker', () => {
   });
 
   it('should handle open/close', async () => {
-    const { findByText, getByRole } = render(<Component />);
+    const { getByRole } = render(<Component />);
 
     expect(screen.queryByRole('dialog')).toBeFalsy();
 
     userEvent.click(getByRole('button'));
 
-    expect(await findByText('Clear')).toBeInTheDocument();
-    expect(await findByText('Cancel')).toBeInTheDocument();
-    expect(await findByText('OK')).toBeInTheDocument();
+    const clearBtn = getByRole('button', { name: 'Clear' });
+    const cancelBtn = getByRole('button', { name: 'Cancel' });
+    const okBtn = getByRole('button', { name: 'OK' });
 
-    userEvent.click(getByRole('button', { name: 'Cancel' }));
+    expect(clearBtn).toBeVisible();
+    expect(cancelBtn).toBeVisible();
+    expect(okBtn).toBeVisible();
+
+    userEvent.click(cancelBtn);
 
     await waitForElementToBeRemoved(() => screen.queryAllByRole('dialog'));
-  });
+  }, 15000);
 
   it('should open with todays date selected', () => {
     const { getByText, getByRole } = render(<Component />);
@@ -76,7 +80,7 @@ describe('GrepDatePicker', () => {
 
   it('should handle picking a date', async () => {
     const { getByRole, getByText } = render(<Component />);
-    
+
     const date = dayjs().set('date', 13);
     const dateToSelect = date.format('DD/MM/YYYY');
 
