@@ -5,6 +5,8 @@
 
 Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
 
+[![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://utdanningsdirektoratet.github.io/Grep-komponenter)
+
 # Installation
 
     npm i grep-components
@@ -42,6 +44,5 @@ The release-workflow can also be manually triggered from [here](https://github.c
 
 ### Important
 
-- Commits with the `chore` prefix will skip the release-workflow job
 - Feature-branches have to start with `feature/` to be included in the release-workflow. **Example:** `feature/some-feature`
 - Published versions from a valid feature-branch will get the branch-name, excluding the `feature/` part, as a dist-tag in NPM. **Example:** `feature/some-feature` on version 0.18.0 will become `0.18.0-some-feature.1` and can be installed by running `npm i grep-components@some-feature`

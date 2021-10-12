@@ -1,5 +1,4 @@
-# This workflow will do a clean install of node dependencies and build the source code
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# This workflow will do a clean install of node dependencies, run tests and build the source code
 
 name: Build
 
@@ -8,7 +7,14 @@ on:
     branches:
     - master
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master ]
+    
+  workflow_dispatch:
+    inputs:
+      args:
+        description: 'Jest CLI args'
+        required: false
+        default: ''
 
 jobs:
   build:
@@ -24,6 +30,9 @@ jobs:
         
     - name: Install dependencies
       run: npm ci
-    
+      
+    - name: Run tests
+      run: npm test:ci ${{ github.event.inputs.args }}
+      
     - name: Build source code
       run: npm run build
