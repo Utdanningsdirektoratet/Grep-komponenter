@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import DropdownMenu from './dropdown-menu';
 
 describe('DropdownMenu', () => {
   it('should render correctly', () => {
-    const component = shallow(
+    render(
       <DropdownMenu
         anchorEl={null}
         open={false}
@@ -13,7 +13,5 @@ describe('DropdownMenu', () => {
         onClose={() => void 1}
       />,
     );
-
-    expect(component).toMatchSnapshot();
   });
 });
