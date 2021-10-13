@@ -1,14 +1,10 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import AppBarLogo from './AppBarLogo';
 
 describe('AppBarLogo', () => {
   it('should render correctly', () => {
-    const component = shallow(
-      <AppBarLogo title="" imageAlt="" environment="" imageSrc="" />,
-    );
-
-    expect(component).toMatchSnapshot();
+    render(<AppBarLogo title="" imageAlt="" environment="" imageSrc="" />);
   });
 });
