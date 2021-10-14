@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "0.18.9",
+  "version": "0.20.0",
   "description": "Grep komponentbibliotek",
   "repository": {
     "type": "git",
@@ -12,20 +12,22 @@
     "npm": ">=5"
   },
   "type": "module",
-  "homepage": "https://github.com/Utdanningsdirektoratet/Grep-komponenter",
+  "homepage": "https://Utdanningsdirektoratet.github.io/Grep-komponenter",
   "author": "Udir",
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "pretest": "tsc --noEmit",
-    "test": "jest",
+    "test": "jest --maxWorkers=4 --verbose",
+    "test:ci": "jest --maxWorkers=2 --verbose",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
     "yalc:init": "yalc add && yalc push",
     "yalc:build": "rollup -c --no-treeshake --no-sourcemap --environment yalc",
     "yalc:watch": "npm run yalc:build -- -w",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "release": {
     "plugins": [
@@ -98,13 +100,17 @@
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-jest": "^6.0.28",
     "@storybook/addon-links": "^6.0.28",
+    "@storybook/addon-storysource": "^6.3.11",
     "@storybook/addons": "^6.0.28",
     "@storybook/cli": "^6.0.28",
     "@storybook/preset-create-react-app": "^4.0.0",
     "@storybook/react": "^6.0.28",
+    "@storybook/storybook-deployer": "^2.8.10",
+    "@testing-library/dom": "^8.6.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
+    "@testing-library/user-event": "^13.2.1",
     "@types/draft-js": "^0.11.3",
-    "@types/enzyme": "^3.10.4",
-    "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/history": "^4.7.3",
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.160",
@@ -130,9 +136,6 @@
     "dayjs": "^1.8.19",
     "draft-js-export-html": "^1.4.1",
     "draft-js-import-html": "^1.4.1",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.3",
     "eslint": "^7.28.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-react": "^7.24.0",

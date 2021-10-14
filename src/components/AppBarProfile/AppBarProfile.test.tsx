@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import AppBarProfile from './AppBarProfile';
 
 describe('AppBarProfile', () => {
   it('should render correctly', () => {
-    const component = shallow(
+    render(
       <AppBarProfile fullName="" userRole="" onButtonClick={() => void 1} />,
     );
-
-    expect(component).toMatchSnapshot();
   });
 });

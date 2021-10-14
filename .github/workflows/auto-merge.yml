@@ -1,6 +1,8 @@
 name: Auto-merge
 
-on: pull_request_target
+on: 
+  pull_request_target:
+    branches: [ dependabot/updates ]
 
 permissions:
   pull-requests: write
@@ -9,7 +11,7 @@ permissions:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' && github.base_ref == 'dependabot/updates' }}
+    if: ${{ github.actor == 'dependabot[bot]' || github.head_ref == 'master' }}
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata

@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import CenterLayout from './CenterLayout';
 
 describe('CenterLayout', () => {
   it('should render correctly', () => {
-    const component = shallow(<CenterLayout />);
-
-    expect(component).toMatchSnapshot();
+    render(<CenterLayout />);
   });
 });

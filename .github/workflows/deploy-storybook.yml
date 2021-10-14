@@ -1,0 +1,25 @@
+name: Deploy-storybook
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy storybook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install and Build 🔧
+        # This needs an Acces Token stored as "GH_TOKEN" 👇
+        run: |
+          npm install
+          npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
