@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import GreyCover from './GreyCover';
 
 describe('GreyCover', () => {
   it('should render correctly', () => {
-    const component = shallow(<GreyCover />);
-
-    expect(component).toMatchSnapshot();
+    render(<GreyCover />);
   });
 });
