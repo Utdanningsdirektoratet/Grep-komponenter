@@ -1,0 +1,22 @@
+name: Dependabot-sync
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  pull-request:
+    name: Open PR to dependabot/updates
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      name: checkout
+
+    - uses: repo-sync/pull-request@v2
+      name: pull-request
+      with:
+        destination_branch: "dependabot/updates"
+        pr_title: "Pulling ${{ github.ref }} into dependabot/updates"
+        pr_body: "*Automated PR*"
+        github_token: ${{ secrets.GITHUB_TOKEN }}
