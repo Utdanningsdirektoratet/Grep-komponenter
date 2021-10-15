@@ -1,6 +1,4 @@
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
-import TextField from '@material-ui/core/TextField/TextField';
+import { Box, TextField, withStyles } from '@material-ui/core';
 
 export const Container = withStyles({
   root: {
@@ -8,7 +6,7 @@ export const Container = withStyles({
     display: 'flex',
     flexDirection: 'column',
   },
-})(CleanPaper);
+})(Box);
 
 export const ProfileField = withStyles({
   root: {
