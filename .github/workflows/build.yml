@@ -8,6 +8,7 @@ on:
     - master
     paths-ignore:
     - '.*'
+    - '.*/**'
     - '*.md'
     
   pull_request_target:
