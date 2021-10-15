@@ -1,7 +1,5 @@
+import { Box, Typography, withStyles } from '@material-ui/core';
 import Colors from '../../styling/Colors';
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography/Typography';
 
 export const Container = withStyles({
   root: {
@@ -9,7 +7,7 @@ export const Container = withStyles({
     height: 'fit-content',
     flex: 'auto',
   },
-})(CleanPaper);
+})(Box);
 
 export const Title = withStyles({
   root: {

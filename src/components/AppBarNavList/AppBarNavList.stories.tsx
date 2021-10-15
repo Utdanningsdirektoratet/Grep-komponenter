@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { MainLayout, AppBar, CenterLayout, AppBarNavList } from '..';
+import AppBar from '../AppBar';
+import AppBarNavList from '.';
 
 export const navbarPages = [
   {
@@ -30,15 +31,11 @@ export const navbarPages = [
 ];
 
 storiesOf('AppbarNavigationList', module).add('with theme and appbar', () => (
-  <MainLayout>
-    <CenterLayout>
-      <AppBar>
-        <AppBarNavList
-          pages={navbarPages}
-          selectedPage={navbarPages[0].id}
-          onChange={number => console.log('index: ', number)}
-        />
-      </AppBar>
-    </CenterLayout>
-  </MainLayout>
+  <AppBar>
+    <AppBarNavList
+      pages={navbarPages}
+      selectedPage={navbarPages[0].id}
+      onChange={(number) => console.log('index: ', number)}
+    />
+  </AppBar>
 ));
