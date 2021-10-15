@@ -16,10 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install and Build 🔧
-        # This needs an Acces Token stored as "GH_TOKEN" 👇
-        run: |
-          npm install
-          npm run deploy-storybook -- --ci
+      
+      - name: Use Node.js (v14)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: npm
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Deploy storybook
+        run: npm run deploy-storybook -- --ci
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
