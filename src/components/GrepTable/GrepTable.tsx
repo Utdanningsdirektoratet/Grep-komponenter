@@ -206,7 +206,7 @@ export const GrepTable = <T extends any>({
     const tooltip = menuTooltip ? menuTooltip(row) : '';
     return (
       <Tooltip title={tooltip} placement="bottom">
-        <div style={{ display: 'flex' }}>
+        <div style={{ display: 'flex', justifyContent: 'end' }}>
           <IconButton
             disableTouchRipple={true}
             disabled={disabled}
