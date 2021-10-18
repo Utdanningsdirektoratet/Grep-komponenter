@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import CenterLayout from '../CenterLayout/CenterLayout';
 import GrepSelect, { SelectItem } from '../GrepSelect/GrepSelect';
+import { Container } from '@material-ui/core';
 
 const selectItems: SelectItem[] = [
   {
@@ -15,8 +15,8 @@ const selectItems: SelectItem[] = [
 ];
 
 storiesOf('GrepSelect', module)
-  .addDecorator(storyFn => (
-    <CenterLayout
+  .addDecorator((storyFn) => (
+    <Container
       style={{
         marginTop: 40,
         display: 'flex',
@@ -24,7 +24,7 @@ storiesOf('GrepSelect', module)
       }}
     >
       {storyFn()}
-    </CenterLayout>
+    </Container>
   ))
   .add('Standard', () => (
     <React.Fragment>

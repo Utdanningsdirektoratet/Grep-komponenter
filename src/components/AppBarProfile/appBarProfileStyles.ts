@@ -1,6 +1,4 @@
-import CleanPaper from '../CleanPaper';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography/Typography';
+import { Box, Typography, withStyles } from '@material-ui/core';
 
 export const Container = withStyles({
   root: {
@@ -11,7 +9,7 @@ export const Container = withStyles({
     alignItems: 'center',
     float: 'right',
   },
-})(CleanPaper);
+})(Box);
 
 export const UserContainer = withStyles({
   root: {
@@ -22,7 +20,7 @@ export const UserContainer = withStyles({
     backgroundColor: 'inherit',
     textTransform: 'none',
   },
-})(CleanPaper);
+})(Box);
 
 export const UserName = withStyles({
   root: {

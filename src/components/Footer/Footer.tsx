@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
-import { List, ListItem, ListItemText } from '@material-ui/core';
-import CenterLayout from '../CenterLayout';
+import { List, ListItem, ListItemText, Container } from '@material-ui/core';
 import { useFooterStyles } from './footerStyles';
 
 export interface FooterItem {
@@ -26,7 +25,7 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
 
   return (
     <div className={classes.footer}>
-      <CenterLayout>
+      <Container>
         <List className={classes.list}>
           {items.map(({ label, render, onClickItem }, i) => (
             <ListItem
@@ -42,7 +41,7 @@ const Footer: React.FC<FooterProps> = ({ items }) => {
             </ListItem>
           ))}
         </List>
-      </CenterLayout>
+      </Container>
     </div>
   );
 };

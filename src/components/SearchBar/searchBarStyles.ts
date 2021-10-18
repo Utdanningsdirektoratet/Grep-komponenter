@@ -1,8 +1,5 @@
-import CleanPaper from '../CleanPaper';
+import { Box, TextField, Typography, withStyles } from '@material-ui/core';
 import { Colors } from '../../styling';
-import withStyles from '@material-ui/core/styles/withStyles';
-import TextField from '@material-ui/core/TextField/TextField';
-import Typography from '@material-ui/core/Typography/Typography';
 
 export const Outer = withStyles({
   root: {
@@ -14,7 +11,7 @@ export const Outer = withStyles({
     marginRight: 'auto',
     boxSizing: 'unset',
   },
-})(CleanPaper);
+})(Box);
 
 export const IconBox = withStyles({
   root: {
@@ -24,7 +21,7 @@ export const IconBox = withStyles({
     justifyContent: 'center',
     width: 56,
   },
-})(CleanPaper);
+})(Box);
 
 export const StyledInput = withStyles({
   root: {
