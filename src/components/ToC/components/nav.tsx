@@ -11,7 +11,7 @@ import { Key } from 'ts-keycode-enum';
 
 import context from '../context';
 import NavTree from './nav-tree';
-import useStyles from './nav.style';
+import useStyles from '../styles/nav.style';
 import { buildTree } from '../utils/tree-builder';
 
 export interface GrepTableOfContentNavProps {
@@ -19,7 +19,9 @@ export interface GrepTableOfContentNavProps {
   style?: React.CSSProperties;
 }
 
-export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = props => {
+export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
+  props,
+) => {
   const [showKeyboardHint, setShowKeyboardHint] = useState<boolean>(false);
   const ref = useRef<HTMLElement>(null);
   const { elements, classes, selected, setSelected } = useContext(context);

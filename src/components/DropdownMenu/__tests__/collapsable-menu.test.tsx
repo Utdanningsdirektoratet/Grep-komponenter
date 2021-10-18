@@ -8,7 +8,7 @@ import {
 import userEvent from '@testing-library/user-event';
 import { Button } from '@material-ui/core';
 
-import DropdownMenu, { DropdownMenuItem } from '../dropdown-menu';
+import DropdownMenu, { DropdownMenuItem } from '..';
 
 const items: Array<DropdownMenuItem<any>> = [
   {
