@@ -16,12 +16,24 @@ export const useFooterStyles = makeStyles((theme: Theme) =>
     list: {
       display: 'flex',
       justifyContent: 'center',
+      [theme.breakpoints.down('md')]: {
+        flexDirection: 'column',
+      },
+      [theme.breakpoints.up('md')]: {
+        flexDirection: 'row',
+      },
     },
     item: {
       color: Colors.white,
-      borderRight: '1px solid',
       width: 'fit-content',
       height: '10px',
+      [theme.breakpoints.down('md')]: {
+        margin: '4px auto',
+      },
+      [theme.breakpoints.up('md')]: {
+        margin: '0',
+        borderRight: '1px solid',
+      },
 
       '&:last-child': {
         border: '0 !important',
