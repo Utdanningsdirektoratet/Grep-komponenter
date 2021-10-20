@@ -33,11 +33,14 @@ export const useFooterStyles = makeStyles((theme: Theme) =>
       width: 'fit-content',
       height: '10px',
       [theme.breakpoints.down('md')]: {
-        margin: '4px auto',
+        margin: '0 auto',
+        textAlign: 'center',
+        height: 'min-content',
       },
       [theme.breakpoints.up('md')]: {
         margin: '0',
         borderRight: '1px solid',
+        height: '0',
       },
 
       '&:last-child': {
