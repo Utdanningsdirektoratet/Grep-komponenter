@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 
 import AppBarNavList from './AppBarNavList';
 
@@ -14,10 +14,8 @@ const pages = [
 
 describe('AppBarNavList', () => {
   it('should render correctly', () => {
-    const component = shallow(
+    render(
       <AppBarNavList pages={pages} onChange={() => void 0} selectedPage={0} />,
     );
-
-    expect(component).toMatchSnapshot();
   });
 });

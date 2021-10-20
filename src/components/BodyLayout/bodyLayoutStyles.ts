@@ -1,5 +1,4 @@
-import withStyles from '@material-ui/core/styles/withStyles';
-import CleanPaper from '../CleanPaper';
+import { Box, withStyles } from '@material-ui/core';
 
 export const StyledBodyLayout = withStyles({
   root: {
@@ -9,4 +8,4 @@ export const StyledBodyLayout = withStyles({
     marginBottom: 20,
     justifyContent: 'space-between',
   },
-})(CleanPaper);
+})(Box);

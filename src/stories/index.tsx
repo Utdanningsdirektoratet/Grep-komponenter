@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import { Box, Container } from '@material-ui/core';
 import {
   MainLayout,
   AppBar,
-  AppBarTop,
-  CenterLayout,
-  AppBarLogo,
   AppBarProfile,
   DropdownMenu,
   AppBarNavList,
@@ -17,9 +15,9 @@ import { menuItems } from '../components/DropdownMenu/DropDownMenu.stories';
 import { navbarPages } from '../components/AppBarNavList/AppBarNavList.stories';
 import { footerItems } from '../components/Footer/Footer.stories';
 import LinkList from '../components/LinkList';
-import CurriculumTable from '../components/CurriculumTable';
+import GrepTableCard from '../components/GrepTableCard';
 import { adminPages } from '../components/LinkList/LinkList.stories';
-import { curriculums } from '../components/CurriculumTable/CurriculumTable.stories';
+import { data } from '../components/GrepTableCard/GrepTableCard.stories';
 import { tableColumns } from '../components/GrepTable/GrepTable.stories';
 import { myPages } from '../components/ContainedLinkList/ContainedLinkList.stories';
 import GrepCrumbs from '../components/GrepCrumbs';
@@ -39,14 +37,13 @@ storiesOf('Pages', module)
   .addDecorator((storyFn) => (
     <MainLayout>
       <AppBar>
-        <AppBarTop>
-          <CenterLayout>
-            <AppBarLogo
-              title="Grepadmin"
-              environment="Test"
-              imageSrc="./logo.png"
-              imageAlt={''}
-            />
+        <Box display="flex" width="100%" height={64} overflow="hidden">
+          <AppBarNavList
+            pages={navbarPages}
+            selectedPage={navbarPages[0].id}
+            onChange={(number) => console.log('index: ', number)}
+          />
+          <Box marginLeft="auto">
             <AppBarProfile
               userRole={'Superbruker'}
               fullName={'Grep Fagansvarlig'}
@@ -58,34 +55,27 @@ storiesOf('Pages', module)
               menuItems={menuItems}
               onClose={() => console.log('closing menu')}
             />
-          </CenterLayout>
-        </AppBarTop>
-        <CenterLayout>
-          <AppBarNavList
-            pages={navbarPages}
-            selectedPage={navbarPages[0].id}
-            onChange={(number) => console.log('index: ', number)}
-          />
-        </CenterLayout>
+          </Box>
+        </Box>
       </AppBar>
-      <CenterLayout>{storyFn()}</CenterLayout>
+      <Container>{storyFn()}</Container>
       <Footer items={footerItems} />
     </MainLayout>
   ))
   .add('Dashboard', () => (
-    <BodyLayout>
+    <Box display="flex">
       <ContainedLinkList
         title={'Mine tilganger'}
         pages={myPages}
         onPageClick={(page) => console.log('clicked on ', page.label)}
       />
-      <CurriculumTable
+      <GrepTableCard
         title={'Mine læreplaner'}
         columns={tableColumns}
-        data={curriculums}
+        data={data}
         onRowClick={(id) => console.log('clicked on ', id)}
       />
-    </BodyLayout>
+    </Box>
   ))
   .add('Admin', () => (
     <React.Fragment>

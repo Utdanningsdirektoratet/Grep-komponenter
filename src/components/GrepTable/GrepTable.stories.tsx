@@ -4,7 +4,7 @@ import GrepTable, { TableColumn } from './GrepTable';
 import { DropdownMenuItem } from '../DropdownMenu';
 import { Button, Box, FormControlLabel, Checkbox } from '@material-ui/core';
 
-interface ICurriculum {
+export interface ICurriculum {
   id: number;
   code: string;
   title: string;
