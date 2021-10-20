@@ -6,7 +6,6 @@ export const useFooterStyles = makeStyles((theme: Theme) =>
   createStyles({
     footer: {
       bottom: 0,
-      minHeight: 50,
       width: '100%',
       marginTop: 'auto',
       display: 'flex',
