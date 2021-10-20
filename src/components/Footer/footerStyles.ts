@@ -11,6 +11,12 @@ export const useFooterStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       alignItems: 'center',
       backgroundColor: theme.palette.primary.main,
+      [theme.breakpoints.down('md')]: {
+        minHeight: 'unset',
+      },
+      [theme.breakpoints.up('md')]: {
+        minHeight: 50,
+      },
     },
     list: {
       display: 'flex',
