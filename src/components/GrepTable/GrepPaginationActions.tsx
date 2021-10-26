@@ -2,6 +2,7 @@ import * as React from 'react';
 import { PaginationButton, PaginationTextButton } from './grepTableStyles';
 import { Colors } from '../../styling';
 import { WithStyles, withStyles } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 
 const actionsStyles = () => ({
   root: {
