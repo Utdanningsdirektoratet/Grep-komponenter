@@ -1,5 +1,5 @@
 import React from 'react';
-import { configure } from '@storybook/react';
+// import { configure } from '@storybook/react';
 import { addDecorator } from '@storybook/react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { createTheme, CssBaseline, StylesProvider } from '@material-ui/core';
