@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyledTabs, StyledTab } from './appBarNavListStyles';
+import MobileAppBarNavList from './MobileAppBarNavList';
 
 export interface NavigationProps {
   id: number;
@@ -22,17 +23,23 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
 }) => {
   const [value, setValue] = React.useState(selectedPage);
 
-  const handleChange = (_event: React.ChangeEvent<unknown>, newValue: number) => {
+  const handleChange = (
+    _event: React.ChangeEvent<unknown>,
+    newValue: number,
+  ) => {
     setValue(newValue);
     onChange(newValue);
   };
 
   return (
-    <StyledTabs value={value} onChange={handleChange}>
-      {pages.map((page) => (
-        <StyledTab key={page.id} label={page.label} />
-      ))}
-    </StyledTabs>
+    <>
+      <StyledTabs value={value} onChange={handleChange}>
+        {pages.map((page) => (
+          <StyledTab key={page.id} label={page.label} />
+        ))}
+      </StyledTabs>
+      <MobileAppBarNavList pages={pages} />
+    </>
   );
 };
 

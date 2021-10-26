@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 
@@ -12,6 +13,12 @@ export const StyledTabs = withStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: 'auto 0',
+      [theme.breakpoints.down('md')]: {
+        display: 'none',
+      },
+      [theme.breakpoints.up('md')]: {
+        display: 'grid',
+      },
     },
     indicator: {
       display: 'flex',
@@ -46,3 +53,19 @@ export const StyledTab = withStyles((theme: Theme) =>
     },
   }),
 )((props: StyledTabProps) => <Tab disableTouchRipple {...props} />);
+
+export const useMobileStyles = makeStyles(({ palette, breakpoints }) =>
+  createStyles({
+    mobileNavList: {
+      backgroundColor: `transparent`,
+      color: palette.primary.main,
+      fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
+      [breakpoints.down('md')]: {
+        display: 'flex',
+      },
+      [breakpoints.up('md')]: {
+        display: 'none',
+      },
+    },
+  }),
+);
