@@ -17,7 +17,9 @@ export interface AppBarNavListProps {
   pages: NavigationProps[];
 }
 
-const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({ pages }) => {
+const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
+  pages,
+}: AppBarNavListProps) => {
   const mobileStyles = useMobileStyles({});
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
