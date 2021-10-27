@@ -35,3 +35,12 @@ storiesOf('Footer', module).add('Footer with content', () => (
     <Footer items={footerItems} />
   </MainLayout>
 ));
+
+storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
+  <div style={{ display: 'block', width: '100%' }}>
+    <div
+      style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
+    ></div>
+    <Footer items={footerItems} />
+  </div>
+));
