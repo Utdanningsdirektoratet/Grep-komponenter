@@ -1,4 +1,4 @@
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { Theme } from '@material-ui/core';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Colors from '../../styling/Colors';
 
