@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
+import clsx from 'clsx';
+
 import context from '../context';
 import NavTreeNode from './nav-tree-node';
 import { ContextTree } from '../utils/tree-builder';
-import clsx from 'clsx';
-
-import useStyles from './nav-tree.style';
+import useStyles from '../styles/nav-tree.style';
 
 interface Props {
   elements: ContextTree;
