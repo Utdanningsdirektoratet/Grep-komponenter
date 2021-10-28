@@ -2,14 +2,13 @@ import React from 'react';
 // import { configure } from '@storybook/react';
 import { addDecorator } from '@storybook/react';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { createTheme } from '@material-ui/core/styles';
-import { CssBaseline, StylesProvider } from '@material-ui/core';
+import { createMuiTheme, CssBaseline, StylesProvider } from '@material-ui/core';
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-const theme = createTheme({
+const theme = createMuiTheme({
   palette: {
     primary: {
       main: Colors.cyan,

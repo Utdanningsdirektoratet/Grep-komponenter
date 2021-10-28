@@ -1,8 +1,8 @@
 import React from 'react';
 import { ContentState } from 'draft-js';
 
-import EditorProvider from './provider';
-import EditorComponent, { Properties as GrepEditorProps } from './editor';
+import EditorProvider from './context/provider';
+import EditorComponent, { Properties as GrepEditorProps } from './components/editor';
 
 export { EditorContext } from './context';
 
@@ -10,7 +10,7 @@ interface Properties extends GrepEditorProps {
   html?: string;
 }
 
-export * from './utils';
+export * from './misc/utils';
 export { ContentState };
 
 type Component = React.FunctionComponent<Properties>;
