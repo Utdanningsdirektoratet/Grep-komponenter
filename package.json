@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "1.0.1-grepf-1456.2",
+  "version": "1.1.0",
   "description": "Grep komponentbibliotek",
   "repository": {
     "type": "git",
@@ -54,7 +54,12 @@
       ],
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
-      "@semantic-release/github",
+      [
+        "@semantic-release/github",
+        {
+          "successComment": false
+        }
+      ],
       "@semantic-release/git"
     ],
     "branches": [
