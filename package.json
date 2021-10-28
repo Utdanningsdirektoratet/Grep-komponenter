@@ -20,7 +20,7 @@
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "pretest": "tsc --noEmit",
     "test": "jest --maxWorkers=4 --verbose",
-    "test:ci": "jest --maxWorkers=2 --verbose && echo testing",
+    "test:ci": "jest --maxWorkers=2 --verbose && echo testing 2",
     "storybook": "start-storybook -p 9009",
     "build-storybook": "build-storybook",
     "yalc:init": "yalc add && yalc push",
