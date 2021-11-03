@@ -1,6 +1,6 @@
 {
   "name": "grep-components",
-  "version": "1.1.0",
+  "version": "0.0.0-semantically-released",
   "description": "Grep komponentbibliotek",
   "repository": {
     "type": "git",
@@ -59,8 +59,7 @@
         {
           "successComment": false
         }
-      ],
-      "@semantic-release/git"
+      ]
     ],
     "branches": [
       {
@@ -103,15 +102,14 @@
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@rollup/plugin-url": "^6.0.0",
-    "@semantic-release/git": "^10.0.0",
-    "@storybook/addon-actions": "^6.0.28",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.0.28",
-    "@storybook/addon-storysource": "^6.3.11",
-    "@storybook/addons": "^6.0.28",
-    "@storybook/cli": "^6.0.28",
-    "@storybook/preset-create-react-app": "^4.0.0",
-    "@storybook/react": "^6.0.28",
+    "@storybook/addon-actions": "^6.3.12",
+    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-links": "^6.3.12",
+    "@storybook/addon-storysource": "^6.3.12",
+    "@storybook/addons": "^6.3.12",
+    "@storybook/cli": "^6.3.12",
+    "@storybook/preset-create-react-app": "^3.2.0",
+    "@storybook/react": "^6.3.12",
     "@storybook/storybook-deployer": "^2.8.10",
     "@testing-library/dom": "^8.6.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -119,7 +117,7 @@
     "@testing-library/user-event": "^13.2.1",
     "@types/draft-js": "^0.11.3",
     "@types/history": "^4.7.3",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.160",
     "@types/react": "^17.0.11",
     "@types/react-beautiful-dnd": "^13.0.0",
