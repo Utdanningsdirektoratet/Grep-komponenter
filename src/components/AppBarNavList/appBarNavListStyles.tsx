@@ -13,10 +13,10 @@ export const StyledTabs = withStyles((theme: Theme) =>
   createStyles({
     root: {
       margin: 'auto 0',
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('lg')]: {
         display: 'none',
       },
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('lg')]: {
         display: 'grid',
       },
     },
@@ -52,10 +52,11 @@ export const StyledTab = withStyles((theme: Theme) =>
       },
       [theme.breakpoints.down('lg')]: {
         minWidth: 120,
-        marginRight: 0
+        marginRight: 0,
       },
       [theme.breakpoints.up('lg')]: {
-        minWidth: 160
+        minWidth: 160,
+        padding: "12px"
       },
     },
   }),
@@ -67,10 +68,10 @@ export const useMobileStyles = makeStyles(({ palette, breakpoints }) =>
       backgroundColor: `transparent`,
       color: palette.primary.main,
       fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
-      [breakpoints.down('md')]: {
+      [breakpoints.down('lg')]: {
         display: 'flex',
       },
-      [breakpoints.up('md')]: {
+      [breakpoints.up('lg')]: {
         display: 'none',
       },
     },
