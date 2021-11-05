@@ -50,6 +50,13 @@ export const StyledTab = withStyles((theme: Theme) =>
       '&:focus': {
         opacity: 1,
       },
+      [theme.breakpoints.down('lg')]: {
+        minWidth: 120,
+        marginRight: 0
+      },
+      [theme.breakpoints.up('lg')]: {
+        minWidth: 160
+      },
     },
   }),
 )((props: StyledTabProps) => <Tab disableTouchRipple {...props} />);
