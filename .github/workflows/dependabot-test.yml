@@ -1,0 +1,32 @@
+# This workflow will do a clean install of node dependencies and run tests
+
+name: Dependabot test
+
+on:
+  push:
+    branches: 
+    - 'dependabot/updates'
+
+  pull_request:
+    branches: 
+    - 'dependabot/updates'
+    
+jobs:
+  test:
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Use Node.js (v14)
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        cache: npm
+        
+    - name: Install dependencies
+      run: npm ci --no-scripts
+      
+    - name: Run tests
+      run: npm run test:ci
