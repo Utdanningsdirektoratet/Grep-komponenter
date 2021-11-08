@@ -1,6 +1,6 @@
 # This workflow will do a clean install of node dependencies, run tests and build the source code
 
-name: Build
+name: Test
 
 on:
   push:
@@ -14,6 +14,7 @@ on:
   pull_request:
     branches: 
     - master
+    - 'dependabot/updates'
     
   workflow_dispatch:
     inputs:
@@ -23,7 +24,8 @@ on:
         default: ''
 
 jobs:
-  build:
+  test:
+    if: ${{ github.actor == 'dependabot[bot]' || github.base_ref != 'dependabot/updates' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -36,10 +38,7 @@ jobs:
         cache: npm
         
     - name: Install dependencies
-      run: npm ci
+      run: npm ci --no-scripts
       
     - name: Run tests
       run: npm run test:ci ${{ github.event.inputs.args }}
-      
-    - name: Build source code
-      run: npm run build
