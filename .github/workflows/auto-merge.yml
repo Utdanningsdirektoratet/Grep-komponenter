@@ -26,9 +26,6 @@ jobs:
       
     - name: Run tests
       run: npm run test:ci
-      
-    - name: Run storybook
-      run: npx start-storybook --ci --smoke-test --quiet --loglevel error
 
   merge:
     needs: test
