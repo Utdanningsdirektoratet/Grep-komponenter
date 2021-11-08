@@ -1,6 +1,6 @@
 # This workflow will do a clean install of node dependencies and run tests
 
-name: Dependabot test
+name: Dependabot-test
 
 on:
   push:
@@ -11,8 +11,10 @@ on:
     branches: 
     - 'dependabot/updates'
     
+  workflow_dispatch:
+    
 jobs:
-  test:
+  run-test:
     if: ${{ github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
 
