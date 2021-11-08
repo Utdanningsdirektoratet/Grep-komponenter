@@ -23,7 +23,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Auto merge
-      run: gh pr merge --admin --auto --merge "$PR_URL"
+      run: gh pr merge --admin --merge "$PR_URL"
       env:
         PR_URL: ${{ steps.open-pr.outputs.pr_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
