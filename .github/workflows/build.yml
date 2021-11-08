@@ -14,6 +14,7 @@ on:
   pull_request:
     branches: 
     - master
+    - 'dependabot/updates'
     
   workflow_dispatch:
     inputs:
@@ -24,6 +25,7 @@ on:
 
 jobs:
   test:
+    if: ${{ github.actor == 'dependabot[bot]' || github.base_ref != 'dependabot/updates' }}
     runs-on: ubuntu-latest
 
     steps:
