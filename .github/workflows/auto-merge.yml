@@ -1,3 +1,5 @@
+# This workflow will auto-merge dependabot PRs targeting the 'dependabot/updates' branch.
+
 name: Auto-merge
 
 on: 
