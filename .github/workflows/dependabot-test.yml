@@ -3,21 +3,9 @@
 name: Dependabot-test
 
 on:
-  push:
-    branches: 
-    - 'dependabot/updates'
-
   pull_request:
     branches: 
     - 'dependabot/updates'
-    
-  workflow_dispatch:
-  
-  workflow_run:
-    workflows:
-    - 'Dependabot-sync'
-    types:
-    - completed
     
 jobs:
   run-test:
