@@ -22,4 +22,17 @@ jobs:
         destination_branch: "dependabot/updates"
         pr_title: "Pulling ${{ github.ref }} into dependabot/updates"
         pr_body: "*Automated PR*"
-        github_token: ${{ secrets.PAT }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Auto merge
+      run: gh pr merge --auto --merge "$PR_URL"
+      env:
+        PR_URL: ${{ steps.open-pr.outputs.pr_url }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+  run-test:
+    if: ${{ 1 == 2 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip
+        run: echo skipping
