@@ -1,8 +1,11 @@
 import React from 'react';
 // import { configure } from '@storybook/react';
 import { addDecorator } from '@storybook/react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { createTheme, CssBaseline, StylesProvider } from '@material-ui/core';
+import {
+  ThemeProvider as MuiThemeProvider,
+  createTheme,
+} from '@material-ui/core/styles';
+import { CssBaseline, StylesProvider } from '@material-ui/core';
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
 import { Provider } from 'react-redux';
