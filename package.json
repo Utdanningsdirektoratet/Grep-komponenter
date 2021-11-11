@@ -42,6 +42,11 @@
               "release": "patch"
             },
             {
+              "type": "chore",
+              "scope": "deps*",
+              "release": "patch"
+            },
+            {
               "type": "refactor",
               "release": "patch"
             },
