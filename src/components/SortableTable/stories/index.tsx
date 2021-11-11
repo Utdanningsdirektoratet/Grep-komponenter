@@ -1,9 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useState } from '@storybook/addons';
-
-import SortableTable from '../table';
 import { Checkbox, Box, FormControlLabel } from '@material-ui/core';
+
+import SortableTable from '..';
 
 interface TestData {
   id: number;

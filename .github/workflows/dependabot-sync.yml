@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+      
+  workflow_dispatch:
 
 jobs:
   pull-request:
@@ -27,3 +29,10 @@ jobs:
       env:
         PR_URL: ${{ steps.open-pr.outputs.pr_url }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+  run-test:
+    if: ${{ 1 == 2 }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip
+        run: echo skipping

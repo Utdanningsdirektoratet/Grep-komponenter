@@ -1,15 +1,12 @@
 import React, { useContext, ReactElement, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-
 import { getLocation } from 'connected-react-router';
+import { useSelector } from 'react-redux';
+import Link from '@material-ui/core/Link';
+import clsx from 'clsx';
 
 import context from '../context';
 import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
-
-import Link from '@material-ui/core/Link';
-
-import { useStyles } from './nav-tree-node.style';
-import clsx from 'clsx';
+import { useStyles } from '../styles/nav-tree-node.style';
 
 /**
  * @TODO fix later
@@ -29,61 +26,63 @@ export interface GrepTableOfContentNavTreeNodeProps {
   renderChilds: (children: ContextTree) => ReactElement;
 }
 
-export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> = (
-  props,
-) => {
-  const linkRef = useRef<HTMLLIElement>(null);
+export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> =
+  (props) => {
+    const linkRef = useRef<HTMLLIElement>(null);
 
-  const { node, style, renderChilds } = props;
-  const { lvl, el, index, children } = node;
-  const { selected, setSelected, classes } = useContext(context);
-  const isSelected = el === selected;
-  const styles = useStyles({ lvl });
-  const className = clsx(
-    'grep-toc__nav-tree-node',
-    isSelected && 'grep-toc__nav-tree-node--selected',
-    styles.root,
-    classes?.node,
-    props.className,
-  );
+    const { node, style, renderChilds } = props;
+    const { lvl, el, index, children } = node;
+    const { selected, setSelected, classes } = useContext(context);
+    const isSelected = el === selected;
+    const styles = useStyles({ lvl });
+    const className = clsx(
+      'grep-toc__nav-tree-node',
+      isSelected && 'grep-toc__nav-tree-node--selected',
+      styles.root,
+      classes?.node,
+      props.className,
+    );
 
-  const txt = el.innerText;
-  const location = useSelector((s) => getLocation(s as any));
-  const url = `${location.pathname}${location.search}#${node.id}`;
+    const txt = el.innerText;
+    const location = useSelector((s) => getLocation(s as any));
+    const url = `${location.pathname}${location.search}#${node.id}`;
 
-  useEffect(() => {
-    const link = linkRef.current;
-    if (isSelected) {
-      link?.scrollIntoViewIfNeeded();
-    } else if (link === document.activeElement) {
-      link?.blur();
-    }
-  }, [isSelected, linkRef]);
+    useEffect(() => {
+      const link = linkRef.current;
+      if (isSelected) {
+        link?.scrollIntoViewIfNeeded();
+      } else if (link === document.activeElement) {
+        link?.blur();
+      }
+    }, [isSelected, linkRef]);
 
-  const tabIndex = isSelected ? 0 : -1;
+    const tabIndex = isSelected ? 0 : -1;
 
-  return (
-    <li key={index} data-lvl={lvl} className={className} style={style}>
-      <Link
-        ref={linkRef}
-        className={clsx(styles.link, isSelected && `${styles.link}--selected`)}
-        href={url}
-        tabIndex={tabIndex}
-        onClick={(event: React.MouseEvent) => {
-          console.debug('node click', node);
-          event.preventDefault();
-          event.stopPropagation();
-          window.history.replaceState({}, txt, url);
-          setSelected(el, true);
-        }}
-        color="inherit"
-      >
-        {txt}
-      </Link>
-      {children && renderChilds(children)}
-    </li>
-  );
-};
+    return (
+      <li key={index} data-lvl={lvl} className={className} style={style}>
+        <Link
+          ref={linkRef}
+          className={clsx(
+            styles.link,
+            isSelected && `${styles.link}--selected`,
+          )}
+          href={url}
+          tabIndex={tabIndex}
+          onClick={(event: React.MouseEvent) => {
+            console.debug('node click', node);
+            event.preventDefault();
+            event.stopPropagation();
+            window.history.replaceState({}, txt, url);
+            setSelected(el, true);
+          }}
+          color="inherit"
+        >
+          {txt}
+        </Link>
+        {children && renderChilds(children)}
+      </li>
+    );
+  };
 
 GrepTableOfContentNavTreeNode.displayName = 'Grep.ToC.NavTree.Node';
 
