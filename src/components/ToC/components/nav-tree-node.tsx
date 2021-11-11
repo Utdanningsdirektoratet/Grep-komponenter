@@ -23,6 +23,10 @@ export interface GrepTableOfContentNavTreeNodeProps {
   node: ContextTreeElement;
   className?: string;
   style?: React.CSSProperties;
+  isSelectedHandler?: (
+    isSelected: boolean,
+    linkRef: React.RefObject<HTMLLIElement>,
+  ) => void;
   renderChilds: (children: ContextTree) => ReactElement;
 }
 
@@ -48,11 +52,15 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
     const url = `${location.pathname}${location.search}#${node.id}`;
 
     useEffect(() => {
-      const link = linkRef.current;
-      if (isSelected) {
-        link?.scrollIntoViewIfNeeded();
-      } else if (link === document.activeElement) {
-        link?.blur();
+      if (props.isSelectedHandler) {
+        props.isSelectedHandler(isSelected, linkRef);
+      } else {
+        const link = linkRef.current;
+        if (isSelected) {
+          link?.scrollIntoViewIfNeeded();
+        } else if (link === document.activeElement) {
+          link?.blur();
+        }
       }
     }, [isSelected, linkRef]);
 

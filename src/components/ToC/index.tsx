@@ -9,16 +9,25 @@ import Nav from './components/nav';
 export interface GrepTableOfContentProps extends ContextProviderProps {
   style?: React.CSSProperties;
   className?: string;
+  isSelectedHandler?: (
+    isSelected: boolean,
+    linkRef: React.RefObject<HTMLLIElement>,
+  ) => void;
 }
 
 export const GrepTableOfContent: React.FC<GrepTableOfContentProps> = ({
   style,
   className,
+  isSelectedHandler,
   ...props
-}) => {
+}: GrepTableOfContentProps) => {
   return (
     <ContextProvider {...props}>
-      <Nav className={className} style={style} />
+      <Nav
+        className={className}
+        style={style}
+        isSelectedHandler={isSelectedHandler}
+      />
     </ContextProvider>
   );
 };

@@ -17,6 +17,10 @@ import { buildTree } from '../utils/tree-builder';
 export interface GrepTableOfContentNavProps {
   className?: string;
   style?: React.CSSProperties;
+  isSelectedHandler?: (
+    isSelected: boolean,
+    linkRef: React.RefObject<HTMLLIElement>,
+  ) => void;
 }
 
 export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
@@ -97,7 +101,10 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
       onKeyDown={onKeyDown}
       ref={ref}
     >
-      <NavTree elements={tree}></NavTree>
+      <NavTree
+        elements={tree}
+        isSelectedHandler={props.isSelectedHandler}
+      ></NavTree>
     </nav>
   );
 };

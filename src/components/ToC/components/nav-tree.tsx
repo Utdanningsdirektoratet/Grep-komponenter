@@ -10,10 +10,14 @@ interface Props {
   elements: ContextTree;
   className?: string;
   style?: React.CSSProperties;
+  isSelectedHandler?: (
+    isSelected: boolean,
+    linkRef: React.RefObject<HTMLLIElement>,
+  ) => void;
 }
 
 const NavTree: React.FC<Props> = (props) => {
-  const { elements, style } = props;
+  const { elements, style, isSelectedHandler } = props;
   const { classes } = useContext(context);
   const styles = useStyles({});
   const className = clsx(
@@ -29,6 +33,7 @@ const NavTree: React.FC<Props> = (props) => {
           node={node}
           key={node.index}
           renderChilds={(children) => <NavTree elements={children} />}
+          isSelectedHandler={isSelectedHandler}
         />
       ))}
     </ul>
