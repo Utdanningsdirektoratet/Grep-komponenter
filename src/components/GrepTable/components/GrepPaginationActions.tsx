@@ -5,7 +5,6 @@ import { Theme } from '@material-ui/core';
 import { PaginationButton, PaginationTextButton } from '../styles';
 import { Colors } from '../../../styling';
 
-
 const actionsStyles = () => ({
   root: {
     display: 'flex',
