@@ -32,10 +32,10 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
   const { elements, classes, selected, setSelected } = useContext(context);
   const tree = useMemo(() => buildTree(Object.values(elements)), [elements]);
 
-  const focusSelected = props.onFocusSelected
-    ? props.onFocusSelected()
-    : useCallback(() => {
-        requestAnimationFrame(() => {
+  const focusSelected = useCallback(() => {
+    props.onFocusSelected !== undefined
+      ? props.onFocusSelected()
+      : requestAnimationFrame(() => {
           if (!(ref.current instanceof HTMLElement)) return;
           const active = ref.current.querySelector('[tabindex="0"]');
           if (active instanceof HTMLElement) {
@@ -44,7 +44,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
             ref.current.focus();
           }
         });
-      }, [ref]);
+  }, [ref]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (selected && e.which === Key.Tab) {
