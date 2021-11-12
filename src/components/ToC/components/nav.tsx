@@ -21,7 +21,7 @@ export interface GrepTableOfContentNavProps {
     isSelected: boolean,
     linkRef: React.RefObject<HTMLLIElement>,
   ) => void;
-  onFocusSelected?: () => void;
+  onFocusSelected?: (ref: React.RefObject<HTMLElement>) => void;
 }
 
 export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
@@ -34,7 +34,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
 
   const focusSelected = useCallback(() => {
     props.onFocusSelected !== undefined
-      ? props.onFocusSelected()
+      ? props.onFocusSelected(ref)
       : requestAnimationFrame(() => {
           if (!(ref.current instanceof HTMLElement)) return;
           const active = ref.current.querySelector('[tabindex="0"]');
