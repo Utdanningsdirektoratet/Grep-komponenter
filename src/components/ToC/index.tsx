@@ -13,12 +13,14 @@ export interface GrepTableOfContentProps extends ContextProviderProps {
     isSelected: boolean,
     linkRef: React.RefObject<HTMLLIElement>,
   ) => void;
+  onFocusSelected?: () => void;
 }
 
 export const GrepTableOfContent: React.FC<GrepTableOfContentProps> = ({
   style,
   className,
   isSelectedHandler,
+  onFocusSelected,
   ...props
 }: GrepTableOfContentProps) => {
   return (
@@ -27,6 +29,7 @@ export const GrepTableOfContent: React.FC<GrepTableOfContentProps> = ({
         className={className}
         style={style}
         isSelectedHandler={isSelectedHandler}
+        onFocusSelected={onFocusSelected}
       />
     </ContextProvider>
   );
