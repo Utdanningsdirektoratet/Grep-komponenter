@@ -1,23 +1,28 @@
+# This workflow will auto-merge dependabot PRs targeting the 'dependabot/updates' branch.
+
 name: Auto-merge
 
 on: 
   pull_request_target:
-    branches: [ dependabot/updates ]
+    branches:
+    - 'dependabot/updates'
 
 permissions:
   pull-requests: write
   contents: write
 
 jobs:
-  dependabot:
-    runs-on: ubuntu-latest
+  merge:
     if: ${{ github.actor == 'dependabot[bot]' }}
+    runs-on: ubuntu-latest
+
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v1.1.1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+          
       - name: Auto merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:

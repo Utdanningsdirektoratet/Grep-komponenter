@@ -11,21 +11,21 @@ import {
   BodyLayout,
   ContainedLinkList,
 } from '..';
-import { menuItems } from '../components/DropdownMenu/DropDownMenu.stories';
-import { navbarPages } from '../components/AppBarNavList/AppBarNavList.stories';
-import { footerItems } from '../components/Footer/Footer.stories';
+import { menuItems } from '../components/DropdownMenu/stories/DropDownMenu.stories';
+import { navbarPages } from '../components/AppBarNavList/stories/AppBarNavList.stories';
+import { footerItems } from '../components/Footer/stories/Footer.stories';
 import LinkList from '../components/LinkList';
 import GrepTableCard from '../components/GrepTableCard';
-import { adminPages } from '../components/LinkList/LinkList.stories';
-import { data } from '../components/GrepTableCard/GrepTableCard.stories';
-import { tableColumns } from '../components/GrepTable/GrepTable.stories';
-import { myPages } from '../components/ContainedLinkList/ContainedLinkList.stories';
+import { adminPages } from '../components/LinkList/stories/LinkList.stories';
+import { data } from '../components/GrepTableCard/stories/GrepTableCard.stories';
+import { tableColumns } from '../components/GrepTable/stories/GrepTable.stories';
+import { myPages } from '../components/ContainedLinkList/stories/ContainedLinkList.stories';
 import GrepCrumbs from '../components/GrepCrumbs';
-import { breadcrumbs } from '../components/GrepCrumbs/GrepCrumbs.stories';
-import { renderGDPRText } from '../components/GDPR/GDPR.stories';
+import { breadcrumbs } from '../components/GrepCrumbs/stories/GrepCrumbs.stories';
+import { renderGDPRText } from '../components/GDPR/stories/GDPR.stories';
 import GDPR from '../components/GDPR';
 import ProfileInfo from '../components/ProfileInfo';
-import { user } from '../components/ProfileInfo/ProfileInfo.stories';
+import { user } from '../components/ProfileInfo/stories/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
 
 import '../components/NavGuard/stories';

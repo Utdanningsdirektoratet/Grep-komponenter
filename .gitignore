@@ -4,7 +4,6 @@
 # dependencies
 node_modules
 
-
 # builds
 build
 dist
@@ -18,6 +17,7 @@ dist
 .env.test.local
 .env.production.local
 __snapshots__/
+coverage
 
 npm-debug.log*
 yarn-debug.log*
