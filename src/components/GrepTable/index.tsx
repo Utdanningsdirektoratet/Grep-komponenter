@@ -364,6 +364,7 @@ export const GrepTable = <T,>({
                 count={data.length}
                 rowsPerPage={rowsPerPage}
                 onChangePage={_handlePageChange}
+                onPageChange={_handlePageChange}
                 onChangeRowsPerPage={_handleChangeRowsPerPage}
                 labelRowsPerPage={''}
                 labelDisplayedRows={({ from, to, count }) =>
