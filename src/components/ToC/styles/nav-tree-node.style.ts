@@ -1,4 +1,5 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { convertToRgba } from '../../../styling';
 
 export interface StyleProps {

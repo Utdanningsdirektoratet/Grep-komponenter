@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { WithStyles, withStyles } from '@material-ui/core';
+import { Theme } from '@material-ui/core';
 
 import { PaginationButton, PaginationTextButton } from '../styles';
 import { Colors } from '../../../styling';
-
 
 const actionsStyles = () => ({
   root: {
@@ -20,6 +20,7 @@ export type PaginationActionsProps = {
   ) => void;
   page: number;
   rowsPerPage: number;
+  theme?: Theme;
 };
 
 type Props = WithStylesProps & PaginationActionsProps;
