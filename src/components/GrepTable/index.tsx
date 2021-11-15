@@ -209,8 +209,8 @@ export const GrepTable = <T extends any>({
     const disabled = menuDisabled && menuDisabled(row);
     const tooltip = menuTooltip ? menuTooltip(row) : '';
     return (
-      <Tooltip title={tooltip}>
-        <div>
+      <Tooltip title={tooltip} placement="bottom">
+        <div style={{ display: 'flex', justifyContent: 'end' }}>
           <IconButton
             disableTouchRipple={true}
             disabled={disabled}
