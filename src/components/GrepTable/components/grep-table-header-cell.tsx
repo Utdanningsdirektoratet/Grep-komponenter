@@ -34,7 +34,7 @@ export const useStyles = makeStyles(() =>
   }),
 );
 
-export const TableHeaderCell: Component<any> = <T extends any>({
+export const TableHeaderCell: Component<any> = <T,>({
   column,
   onSortBy,
   direction,

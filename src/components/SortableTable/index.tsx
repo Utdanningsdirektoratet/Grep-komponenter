@@ -40,7 +40,7 @@ function castCellNode(value: CellNode | ReactNode): CellNode {
     : { value };
 }
 
-export const SortableTable = <T extends any>({
+export const SortableTable = <T,>({
   columns,
   items,
   identify,

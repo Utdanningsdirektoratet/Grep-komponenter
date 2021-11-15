@@ -101,7 +101,7 @@ const getElementIndex = (el: Element): number =>
  * @todo enhance page handling
  *
  */
-export const GrepTable = <T extends any>({
+export const GrepTable = <T,>({
   placeholderText,
   dropdownItems,
   isRowDisabled,
@@ -364,6 +364,7 @@ export const GrepTable = <T extends any>({
                 count={data.length}
                 rowsPerPage={rowsPerPage}
                 onChangePage={_handlePageChange}
+                onPageChange={_handlePageChange}
                 onChangeRowsPerPage={_handleChangeRowsPerPage}
                 labelRowsPerPage={''}
                 labelDisplayedRows={({ from, to, count }) =>

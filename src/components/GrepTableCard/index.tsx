@@ -6,7 +6,7 @@ interface GrepTableCardProps<T> extends GrepTableProps<T> {
   title: string;
 }
 
-const GrepTableCard = <T extends any>(props: GrepTableCardProps<T>) => {
+const GrepTableCard = <T,>(props: GrepTableCardProps<T>) => {
   return (
     <Container style={props.style}>
       <Title>{props.title}</Title>

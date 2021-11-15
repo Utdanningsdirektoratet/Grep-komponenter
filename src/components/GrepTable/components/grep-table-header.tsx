@@ -18,7 +18,7 @@ interface Properties<T> extends TableHeadProps {
 
 type Component<T> = React.FunctionComponent<Properties<T>>;
 
-export const TableHeader: Component<any> = <T extends any>({
+export const TableHeader: Component<any> = <T,>({
   columns,
   sortBy,
   sortDirection,

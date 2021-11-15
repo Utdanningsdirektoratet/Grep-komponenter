@@ -23,7 +23,7 @@ const CellValue = styled('span')({
   WebkitBoxOrient: 'vertical',
 });
 
-export const GrepTableRow: Component<any> = <T extends any>({
+export const GrepTableRow: Component<any> = <T,>({
   row,
   column,
   selected,

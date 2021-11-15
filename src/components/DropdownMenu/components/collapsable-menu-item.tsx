@@ -117,7 +117,7 @@ export const CollapsableMenuItem: FunctionComponent<
     const handleClick = items ? onToggleClick : onClick;
 
     useEffect(() => {
-      document.addEventListener('click', onScrimClick);
+      document.addEventListener('click', onScrimClick, { capture: true });
       return () => document.removeEventListener('click', onScrimClick);
     }, [listItemRef, onScrimClick]);
 

@@ -20,7 +20,7 @@ export interface DropdownMenuProps<T> extends MenuProps {
   menuItems: Array<DropdownMenuItem<T>>;
 }
 
-export default <T extends any>({
+export default <T,>({
   context,
   menuItems,
   ...menuProps
