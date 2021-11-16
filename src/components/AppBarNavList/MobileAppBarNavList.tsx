@@ -2,7 +2,7 @@ import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import * as React from 'react';
 import { useHistory } from 'react-router';
-import { useMobileStyles } from './appBarNavListStyles';
+import { useMobileStyles } from './styles';
 import { Utils } from '../..';
 
 export interface NavigationProps {
