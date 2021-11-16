@@ -44,16 +44,17 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
   const [to, setTo] = useDate(toProperties.value);
   const { minDate, maxDate, ...commonProperties } = properties;
 
-  useEffect(() => onChange(new DateRangeValue(from, to)), [
-    String(from),
-    String(to),
-  ]);
+  useEffect(
+    () => onChange(new DateRangeValue(from, to)),
+    [String(from), String(to)],
+  );
 
   return (
     <Grid container spacing={spacing} style={style}>
       <Grid item xs={12} sm={fullWidth ? 12 : 6}>
         <DatePicker
           // default
+          id={String(fromProperties.label)}
           fullWidth
           minDate={minDate}
           maxDateMessage={`Dato må være før "${toProperties.label}"`}
@@ -68,6 +69,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
       <Grid item xs={12} sm={fullWidth ? 12 : 6}>
         <DatePicker
           // default
+          id={String(toProperties.label)}
           fullWidth
           maxDate={maxDate}
           minDateMessage={`Dato må være etter "${fromProperties.label}"`}

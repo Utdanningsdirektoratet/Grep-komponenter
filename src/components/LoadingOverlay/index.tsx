@@ -1,7 +1,7 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import { Box, CircularProgress } from '@material-ui/core';
 
-interface Properties {
+export interface LoadingOverlayProps {
   show: boolean;
   overlay?: string;
   children?: ReactNode;
@@ -9,13 +9,13 @@ interface Properties {
   minTime?: number;
 }
 
-export const LoadingOverlay: React.FC<Properties> = ({
+export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   overlay = 'rgba(255,255,255, .5)',
   show,
   children,
   minTime,
   ...box
-}: Properties) => {
+}: LoadingOverlayProps) => {
   const [enabled, setEnabled] = useState(show);
 
   useEffect(() => {

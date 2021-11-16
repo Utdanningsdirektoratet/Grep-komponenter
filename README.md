@@ -1,9 +1,9 @@
 # Komponentbibliotek
 
 [![npm package](https://img.shields.io/npm/v/grep-components/latest.svg)](https://www.npmjs.com/package/grep-components)
-[![Build](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/build.yml/badge.svg)](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/build.yml)
+[![Test](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/test.yml/badge.svg?branch=master&event=push)](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/test.yml)
 
-Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin
+Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin.
 
 [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://utdanningsdirektoratet.github.io/Grep-komponenter)
 
@@ -32,11 +32,11 @@ Pushing to `master` or any feature-branch (`feature/some-feature`) will automati
 
 [Semantic-release](https://github.com/semantic-release/semantic-release) will determine the next version number by looking at the commit message prefix:
 
-| Prefix                                       | Release type  | Example commit message                                                                        |
-| :------------------------------------------- | :------------ | :-------------------------------------------------------------------------------------------- |
-| 'BREAKING CHANGE: ' in commit message footer | Major release | revert: Reverting some changes <br /><br /> BREAKING CHANGE: this revert will break something |
-| feat                                         | Minor release | feat: Some minor changes                                                                      |
-| fix, perf, revert, refactor, build(deps)     | Patch release | fix: Some fixes                                                                               |
+| Prefix                                           | Release type  | Example commit message                                                                        |
+| :----------------------------------------------- | :------------ | :-------------------------------------------------------------------------------------------- |
+| 'BREAKING CHANGE: ' in commit message footer     | Major release | revert: Reverting some changes <br /><br /> BREAKING CHANGE: this revert will break something |
+| feat                                             | Minor release | feat: Some minor changes                                                                      |
+| fix, perf, revert, refactor, build/chore(deps\*) | Patch release | fix: Some fixes                                                                               |
 
 If a commit contains none of these, then no release will be created / published.
 
