@@ -168,7 +168,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^4.0.1",
-    "rollup-plugin-typescript2": "^0.30.0",
+    "rollup-plugin-typescript2": "^0.31.0",
     "seamless-immutable": "^7.1.4",
     "semantic-release": "^18.0.0",
     "ts-jest": "^27.0.7",
