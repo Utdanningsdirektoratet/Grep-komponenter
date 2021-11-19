@@ -47,10 +47,10 @@ export function SortableTableRow<T>({
       isDragDisabled={disabled}
     >
       {(provided, { isDragging }): JSX.Element => {
-        const styles = makeStyle({ isDragging: isDragging });
+        const { classes } = makeStyle({ isDragging: isDragging });
         return (
           <TableRow
-            className={styles.row}
+            className={classes.row}
             ref={provided.innerRef}
             {...provided.draggableProps}
           >

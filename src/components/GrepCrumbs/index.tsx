@@ -22,7 +22,7 @@ const GrepCrumbs: React.FC<Props> = ({
   onClick,
   breadcrumbs,
 }: Props) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const dispatch = useDispatch();
   const ref = React.useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = React.useState(false);

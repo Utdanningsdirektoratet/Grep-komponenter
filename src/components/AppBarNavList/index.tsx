@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { StyledTabs, StyledTab } from './styles';
+import { useStyles } from './styles';
 import MobileAppBarNavList from './MobileAppBarNavList';
+import { Tab, Tabs } from '@material-ui/core';
 
 export interface NavigationProps {
   id: number;
@@ -22,6 +23,7 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
   onChange,
 }) => {
   const [value, setValue] = React.useState(selectedPage);
+  const { classes } = useStyles();
 
   const handleChange = (
     _event: React.ChangeEvent<unknown>,
@@ -33,11 +35,21 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
 
   return (
     <>
-      <StyledTabs value={value} onChange={handleChange}>
+      <Tabs
+        classes={{ root: classes.tabs, indicator: classes.indicator }}
+        value={value}
+        onChange={handleChange}
+        TabIndicatorProps={{ children: <div /> }}
+      >
         {pages.map((page) => (
-          <StyledTab key={page.id} label={page.label} />
+          <Tab
+            disableTouchRipple
+            className={classes.tab}
+            key={page.id}
+            label={page.label}
+          />
         ))}
-      </StyledTabs>
+      </Tabs>
       <MobileAppBarNavList pages={pages} />
     </>
   );

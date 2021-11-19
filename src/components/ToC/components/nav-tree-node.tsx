@@ -34,7 +34,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
     const { lvl, el, index, children } = node;
     const { selected, setSelected, classes } = useContext(context);
     const isSelected = el === selected;
-    const styles = useStyles({ lvl });
+    const { classes: styles } = useStyles({ lvl });
     const className = clsx(
       'grep-toc__nav-tree-node',
       isSelected && 'grep-toc__nav-tree-node--selected',

@@ -7,7 +7,7 @@ export interface GreyCoverProps {
 }
 
 const GreyCover: React.FC<GreyCoverProps> = ({ elevation, children }) => {
-  const classes = useStyles({ elevation });
+  const { classes } = useStyles({ elevation });
   return <Box className={classes.cover}>{children}</Box>;
 };
 

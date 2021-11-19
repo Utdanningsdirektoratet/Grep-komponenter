@@ -48,11 +48,11 @@ export const FloatingToolbar: Component = ({
       !!selection && !selection.isCollapsed() && selection.getHasFocus(),
     );
   });
-  const styles = useStyles({ isVisible });
+  const { classes } = useStyles({ isVisible });
   return (
     <div
       ref={toolbar as React.MutableRefObject<HTMLDivElement>}
-      className={styles.root}
+      className={classes.root}
     >
       <ToggleButtonGroup>
         {buttons.map(({ type, children }, key) => (

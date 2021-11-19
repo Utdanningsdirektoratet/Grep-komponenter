@@ -24,7 +24,7 @@ export interface NavGuardProperties {
   onSave?: () => void;
 }
 
-export default ({
+const NavGuard = ({
   when,
   title,
   txt,
@@ -40,7 +40,7 @@ export default ({
   const [lastLocation, setLastLocation] = React.useState<Location>();
 
   const dispatch = useDispatch();
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   const handleCancel = () => {
     setLeave(false);
@@ -101,3 +101,5 @@ export default ({
     </React.Fragment>
   );
 };
+
+export default NavGuard;

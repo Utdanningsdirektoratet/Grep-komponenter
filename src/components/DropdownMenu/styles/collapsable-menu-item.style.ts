@@ -1,13 +1,7 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { convertToRgba } from '../../../styling/hex2rgb';
+import { convertToRgba, makeStyles } from '../../../styling';
 
-interface Properties {
-  open: boolean;
-  indent: number;
-}
-
-export const useStyles = makeStyles(({ transitions, palette }: Theme) =>
-  createStyles({
+export const useStyles = makeStyles<{ open: boolean }>()(
+  ({ palette, transitions }, open) => ({
     root: {
       padding: '0 1rem',
       transition: transitions.create(['background-color'], {
@@ -21,15 +15,13 @@ export const useStyles = makeStyles(({ transitions, palette }: Theme) =>
     subMenu: {
       margin: '0 -1rem',
     },
-    expander: ({ open }: Properties) => ({
+    expander: {
       marginLeft: '2rem',
       transform: `rotate(${open ? 180 : 0}deg)`,
       transition: transitions.create(['transform, color, background-color'], {
         duration: transitions.duration.short,
         easing: transitions.easing.easeOut,
       }),
-    }),
+    },
   }),
 );
-
-export default useStyles;

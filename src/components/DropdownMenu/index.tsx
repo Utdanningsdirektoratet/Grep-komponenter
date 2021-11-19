@@ -4,7 +4,7 @@ import Menu, { MenuProps } from '@material-ui/core/Menu';
 import { MenuItemProps } from '@material-ui/core/MenuItem/MenuItem';
 
 import CollapsableMenuItem from './components/collapsable-menu-item';
-import useStyles from './styles/dropdown-menu.style';
+import { useStyles } from './styles/dropdown-menu.style';
 
 type BooleanFunction<T> = (context?: T) => boolean;
 
@@ -20,12 +20,12 @@ export interface DropdownMenuProps<T> extends MenuProps {
   menuItems: Array<DropdownMenuItem<T>>;
 }
 
-export default <T,>({
+const DropdownMenu = <T,>({
   context,
   menuItems,
   ...menuProps
 }: DropdownMenuProps<T>) => {
-  const styles = useStyles({});
+  const { classes } = useStyles();
 
   const renderChild =
     (level = 0) =>
@@ -33,7 +33,7 @@ export default <T,>({
       const { label, children, handleClick, disabled, ...props } = item;
 
       props.key = `child-item-${index}`;
-      props.classes = { selected: styles.selected };
+      props.classes = { selected: classes.selected };
       // ninja way, since rewriting existing code on lpu and admin is daunting
       props.onClick = (e: React.MouseEvent) => {
         menuProps.onClose && menuProps.onClose(e, 'backdropClick');
@@ -74,3 +74,5 @@ export default <T,>({
     </Menu>
   );
 };
+
+export default DropdownMenu;

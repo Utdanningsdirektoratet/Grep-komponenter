@@ -1,12 +1,21 @@
 import * as React from 'react';
-import { StyledBodyLayout } from './styles';
+import { Box } from '@material-ui/core';
 
 export interface BodyLayoutProps {
   children?: React.ReactNode;
 }
 
 const BodyLayout: React.FC<BodyLayoutProps> = (props) => (
-  <StyledBodyLayout>{props.children}</StyledBodyLayout>
+  <Box
+    width="100%"
+    paddingTop="20px"
+    display="flex"
+    flexDirection="row"
+    marginBottom="20px"
+    justifyContent="space-between"
+  >
+    {props.children}
+  </Box>
 );
 
 export default BodyLayout as React.ComponentType<BodyLayoutProps>;

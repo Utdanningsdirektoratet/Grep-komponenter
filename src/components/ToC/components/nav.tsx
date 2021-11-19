@@ -11,7 +11,7 @@ import { Key } from 'ts-keycode-enum';
 
 import context from '../context';
 import NavTree from './nav-tree';
-import useStyles from '../styles/nav.style';
+import { useStyles } from '../styles/nav.style';
 import { buildTree } from '../utils/tree-builder';
 
 export interface GrepTableOfContentNavProps {
@@ -80,7 +80,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
     };
   }, [focusSelected]);
 
-  const style = useStyles({});
+  const { classes: style } = useStyles();
   const className = clsx(
     'grep-toc__nav',
     style.root,

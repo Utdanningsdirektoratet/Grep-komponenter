@@ -13,7 +13,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ items }) => {
-  const classes = useFooterStyles({});
+  const { classes } = useFooterStyles();
 
   const renderItem = (text: string) => (
     <ListItemText

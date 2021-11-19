@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Container, Title } from './styles';
+import { Box, Typography } from '@material-ui/core';
+
+import { useStyles } from './styles';
 import GrepTable, { GrepTableProps } from '../GrepTable';
 
 interface GrepTableCardProps<T> extends GrepTableProps<T> {
@@ -7,11 +9,13 @@ interface GrepTableCardProps<T> extends GrepTableProps<T> {
 }
 
 const GrepTableCard = <T,>(props: GrepTableCardProps<T>) => {
+  const { classes } = useStyles();
+
   return (
-    <Container style={props.style}>
-      <Title>{props.title}</Title>
+    <Box className={classes.container} style={props.style}>
+      <Typography className={classes.title}>{props.title}</Typography>
       <GrepTable<T> {...props} header />
-    </Container>
+    </Box>
   );
 };
 

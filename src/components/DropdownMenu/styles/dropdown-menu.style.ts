@@ -1,12 +1,8 @@
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles(({ palette }: Theme) =>
-  createStyles({
-    selected: {
-      color: `${palette.common.black} !important`,
-      backgroundColor: 'rgba(0,0,0,.05) !important',
-    },
-  }),
-);
-
-export default useStyles;
+export const useStyles = makeStyles()(({ palette }) => ({
+  selected: {
+    color: `${palette.common.black} !important`,
+    backgroundColor: 'rgba(0,0,0,.05) !important',
+  },
+}));

@@ -138,7 +138,7 @@ export const EditorComponent: Component = ({
 
   const hasContent = state.getCurrentContent().hasText();
 
-  const styles = useStyles({
+  const { classes: styles } = useStyles({
     hasFocus,
     hasContent,
     readOnly: props.readOnly,

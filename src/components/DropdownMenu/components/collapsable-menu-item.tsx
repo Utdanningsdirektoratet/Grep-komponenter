@@ -16,7 +16,7 @@ import IconExpand from '@material-ui/icons/ExpandMore';
 import { CollapsableMenu } from './collapsable-menu';
 import { TooltipMenuItem } from './tooltip-menu-item';
 
-import useStyle from '../styles/collapsable-menu-item.style';
+import { useStyles } from '../styles/collapsable-menu-item.style';
 
 /**
  * TypeError: Failed to construct 'CustomEvent': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
@@ -50,15 +50,7 @@ export const CollapsableMenuItem: FunctionComponent<
   PropsWithChildren<Properties>
 > = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
   (
-    {
-      items,
-      onClick,
-      children,
-      onClose: _onclose,
-      level,
-      tooltipText,
-      ...props
-    },
+    { items, onClick, children, onClose: _onclose, tooltipText, ...props },
     ref,
   ) => {
     const listItemRef = useRef<HTMLElement>();
@@ -121,7 +113,7 @@ export const CollapsableMenuItem: FunctionComponent<
       return () => document.removeEventListener('click', onScrimClick);
     }, [listItemRef, onScrimClick]);
 
-    const styles = useStyle({ open, indent: level });
+    const { classes } = useStyles({ open });
 
     const renderInner = () => (
       <Box display="flex" flexDirection="column" width="100%">
@@ -132,11 +124,11 @@ export const CollapsableMenuItem: FunctionComponent<
           minHeight={48}
         >
           {children}
-          {items && <IconExpand className={styles.expander} />}
+          {items && <IconExpand className={classes.expander} />}
         </Box>
         {items && (
           <CollapsableMenu
-            className={styles.subMenu}
+            className={classes.subMenu}
             in={open}
             onMenuClose={collapse}
             onEntered={() =>
@@ -153,7 +145,7 @@ export const CollapsableMenuItem: FunctionComponent<
 
     return !!tooltipText && props.disabled ? (
       <TooltipMenuItem
-        className={styles.root}
+        className={classes.root}
         tooltipText={tooltipText}
         onMouseOver={(e) => e.currentTarget.focus()}
       >
@@ -161,7 +153,7 @@ export const CollapsableMenuItem: FunctionComponent<
       </TooltipMenuItem>
     ) : (
       <MenuItem
-        className={styles.root}
+        className={classes.root}
         innerRef={listItemRef}
         selected={open}
         ref={ref}

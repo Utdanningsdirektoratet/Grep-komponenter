@@ -11,8 +11,8 @@ type Props = {
   onDismiss?: (id: number) => void;
 };
 
-export default ({ id, message, isPublic, onDismiss }: Props) => {
-  const classes = useStyles({});
+const ServiceMessage = ({ id, message, isPublic, onDismiss }: Props) => {
+  const { classes } = useStyles();
 
   return (
     <Box className={classes.message}>
@@ -29,3 +29,5 @@ export default ({ id, message, isPublic, onDismiss }: Props) => {
     </Box>
   );
 };
+
+export default ServiceMessage;

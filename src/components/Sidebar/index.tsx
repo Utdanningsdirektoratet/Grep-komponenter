@@ -15,9 +15,9 @@ export interface SidebarProps {
   onPageClick: (page: NavigationProps) => any;
 }
 
-export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
+const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
   const [expanded, setExpanded] = React.useState<number[]>([]);
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   React.useEffect(() => {
     if (currentPageId) {
@@ -103,3 +103,5 @@ export default ({ pages, onPageClick, currentPageId }: SidebarProps) => {
     </Box>
   );
 };
+
+export default Sidebar;

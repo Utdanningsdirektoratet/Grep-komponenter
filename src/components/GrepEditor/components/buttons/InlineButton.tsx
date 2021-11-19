@@ -21,7 +21,7 @@ const InlineButton: Component = ({
   children,
   ...props
 }: React.PropsWithChildren<Properties>) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const { state, setState } = useContext(EditorContext);
 
   const onClick = (

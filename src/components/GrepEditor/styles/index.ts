@@ -1,5 +1,4 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
-import { hex2rgba } from '../../../styling';
+import { hex2rgba, makeStyles } from '../../../styling';
 
 interface Properties {
   hasFocus: boolean;
@@ -7,15 +6,15 @@ interface Properties {
   readOnly?: boolean;
 }
 
-export default makeStyles((theme: Theme) =>
-  createStyles({
+export default makeStyles<Properties>()(
+  (theme, { hasFocus, hasContent, readOnly }) => ({
     root: {
       position: 'relative',
       display: 'inline-flex',
       flexFlow: 'column',
       minWidth: '100%', // TODO
     },
-    legend: ({ hasFocus }: Properties) => ({
+    legend: {
       position: 'absolute' as const,
       top: -5,
       left: 0,
@@ -39,16 +38,16 @@ export default makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.shorter,
         easing: theme.transitions.easing.easeOut,
       }),
-    }),
-    editor: ({ hasFocus, readOnly }: Properties) => ({
+    },
+    editor: {
       padding: '.8rem 1rem',
       position: 'relative' as const,
       zIndex: hasFocus || readOnly ? 1 : 0,
       '& .unstyled': {
         margin: '.5rem 0',
       },
-    }),
-    label: ({ hasFocus, hasContent }: Properties) => ({
+    },
+    label: {
       position: 'absolute' as const,
       top: 0,
       left: 0,
@@ -64,15 +63,15 @@ export default makeStyles((theme: Theme) =>
       }),
       color: hasFocus
         ? theme.palette.primary[
-            theme.palette.type === 'light' ? 'dark' : 'light'
+            theme.palette.mode === 'light' ? 'dark' : 'light'
           ]
         : theme.palette.text.secondary,
       fontSize: '1.1428571428571428rem',
       // hack @todo when time
       backgroundColor: 'white',
       padding: '2px 10px',
-    }),
-    helpertext: ({ hasFocus }) => ({
+    },
+    helpertext: {
       margin: 0,
       opacity: hasFocus ? 1 : 0,
       transition: theme.transitions.create(['opacity'], {
@@ -83,7 +82,7 @@ export default makeStyles((theme: Theme) =>
       // hack @todo when time
       backgroundColor: 'white',
       padding: '2px 10px',
-    }),
+    },
     charcount: {
       margin: 0,
       transition: theme.transitions.create(['opacity'], {
