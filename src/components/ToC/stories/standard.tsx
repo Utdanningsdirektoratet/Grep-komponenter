@@ -23,6 +23,10 @@ export default () => {
           position: 'sticky',
           top: 0,
         }}
+        percentageRendered={100}
+        setSelectedValue={() => {
+          console.log('selected value');
+        }}
       />
       <div style={{ flex: '1 1 auto' }}>
         <div

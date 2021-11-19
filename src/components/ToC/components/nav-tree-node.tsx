@@ -1,4 +1,10 @@
-import React, { useContext, ReactElement, useEffect, useRef } from 'react';
+import React, {
+  useContext,
+  ReactElement,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { getLocation } from 'connected-react-router';
 import { useSelector } from 'react-redux';
 import Link from '@material-ui/core/Link';
@@ -23,20 +29,19 @@ export interface GrepTableOfContentNavTreeNodeProps {
   node: ContextTreeElement;
   className?: string;
   style?: React.CSSProperties;
-  isSelectedHandler?: (
-    isSelected: boolean,
-    linkRef: React.RefObject<HTMLLIElement>,
-  ) => void;
   renderChilds: (children: ContextTree) => ReactElement;
+  setSelectedValue: (selected: any) => void;
+  percentageRendered: number;
 }
 
 export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> =
   (props) => {
     const linkRef = useRef<HTMLLIElement>(null);
 
-    const { node, style, renderChilds } = props;
+    const { node, style, renderChilds, setSelectedValue, percentageRendered } =
+      props;
     const { lvl, el, index, children } = node;
-    const { selected, setSelected, classes } = useContext(context);
+    const { selected, setSelected, classes, elements } = useContext(context);
     const isSelected = el === selected;
     const styles = useStyles({ lvl });
     const className = clsx(
@@ -46,25 +51,42 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
       classes?.node,
       props.className,
     );
+    const [awaitingRender, setAwaitingRender] = useState<boolean>(false);
 
     const txt = el.innerText;
     const location = useSelector((s) => getLocation(s as any));
     const url = `${location.pathname}${location.search}#${node.id}`;
 
     useEffect(() => {
-      if (props.isSelectedHandler) {
-        props.isSelectedHandler(isSelected, linkRef);
-      } else {
-        const link = linkRef.current;
-        if (isSelected) {
-          link?.scrollIntoViewIfNeeded();
-        } else if (link === document.activeElement) {
-          link?.blur();
-        }
+      const link = linkRef.current;
+      if (isSelected) {
+        link?.scrollIntoViewIfNeeded();
+        //setTimeout(() => link?.scrollIntoViewIfNeeded(), 2000);
+      } else if (link === document.activeElement) {
+        link?.blur();
       }
-    }, [isSelected, linkRef]);
+    }, [isSelected, linkRef, setSelectedValue]);
 
     const tabIndex = isSelected ? 0 : -1;
+
+    useEffect(() => {
+      if (awaitingRender) {
+        doSelect();
+        setAwaitingRender(false);
+      }
+    }, [percentageRendered]);
+
+    const doSelect = (checkAwaitRender = false) => {
+      window.history.replaceState({}, txt, url);
+      setSelected(el, true);
+      const values = Object.values(elements);
+      const newPercentage =
+        values.findIndex((e) => e === el) / values.length + 0.1;
+      setSelectedValue(newPercentage);
+      if (checkAwaitRender && newPercentage > percentageRendered) {
+        setAwaitingRender(true);
+      }
+    };
 
     return (
       <li key={index} data-lvl={lvl} className={className} style={style}>
@@ -80,8 +102,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
             console.debug('node click', node);
             event.preventDefault();
             event.stopPropagation();
-            window.history.replaceState({}, txt, url);
-            setSelected(el, true);
+            doSelect(true);
           }}
           color="inherit"
         >

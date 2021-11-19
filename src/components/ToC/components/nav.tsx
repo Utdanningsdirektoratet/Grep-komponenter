@@ -17,11 +17,8 @@ import { buildTree } from '../utils/tree-builder';
 export interface GrepTableOfContentNavProps {
   className?: string;
   style?: React.CSSProperties;
-  isSelectedHandler?: (
-    isSelected: boolean,
-    linkRef: React.RefObject<HTMLLIElement>,
-  ) => void;
-  onFocusSelected?: (ref: React.RefObject<HTMLElement>) => void;
+  setSelectedValue: (selected: any) => void;
+  percentageRendered: number;
 }
 
 export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
@@ -33,17 +30,15 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
   const tree = useMemo(() => buildTree(Object.values(elements)), [elements]);
 
   const focusSelected = useCallback(() => {
-    props.onFocusSelected !== undefined
-      ? props.onFocusSelected(ref)
-      : requestAnimationFrame(() => {
-          if (!(ref.current instanceof HTMLElement)) return;
-          const active = ref.current.querySelector('[tabindex="0"]');
-          if (active instanceof HTMLElement) {
-            active.focus();
-          } else {
-            ref.current.focus();
-          }
-        });
+    requestAnimationFrame(() => {
+      if (!(ref.current instanceof HTMLElement)) return;
+      const active = ref.current.querySelector('[tabindex="0"]');
+      if (active instanceof HTMLElement) {
+        active.focus();
+      } else {
+        ref.current.focus();
+      }
+    });
   }, [ref]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
@@ -106,7 +101,8 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
     >
       <NavTree
         elements={tree}
-        isSelectedHandler={props.isSelectedHandler}
+        setSelectedValue={props.setSelectedValue}
+        percentageRendered={props.percentageRendered}
       ></NavTree>
     </nav>
   );
