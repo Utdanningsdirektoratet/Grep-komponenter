@@ -8,7 +8,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
     display: 'flex',
     alignItems: 'center',
     backgroundColor: theme.palette.primary.main,
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       minHeight: 'unset',
     },
     [theme.breakpoints.up('md')]: {
@@ -18,7 +18,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
   list: {
     display: 'flex',
     justifyContent: 'center',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       flexDirection: 'column',
     },
     [theme.breakpoints.up('md')]: {
@@ -29,7 +29,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
     color: Colors.white,
     width: 'fit-content',
     height: '10px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       margin: '0 auto',
       textAlign: 'center',
       height: 'min-content',

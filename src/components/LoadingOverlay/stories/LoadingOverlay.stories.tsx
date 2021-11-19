@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import LoadingOverlay from '..';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 storiesOf('LoadingOverlay', module).add('standard', () => {
   const [show, setShow] = React.useState(false);

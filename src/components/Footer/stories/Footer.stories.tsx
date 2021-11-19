@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MainLayout, Footer } from '../..';
-import { Switch } from '@material-ui/core';
+import { Switch } from '@mui/material';
 import { FooterItem } from '..';
 
 export const footerItems: FooterItem[] = [

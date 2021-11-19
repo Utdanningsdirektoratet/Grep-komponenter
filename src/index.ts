@@ -1,6 +1,6 @@
 import * as Utils from './utils';
 
-export { default as Grid } from '@material-ui/core/Grid';
+export { default as Grid } from '@mui/material/Grid';
 export { default as Colors } from './styling/Colors';
 export { default as AppBar } from './components/AppBar';
 export { default as AppBarProfile } from './components/AppBarProfile';

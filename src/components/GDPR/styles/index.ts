@@ -5,7 +5,7 @@ export const useStyles = makeStyles()((theme) => ({
     backgroundColor: 'rgb(241, 243, 244)',
     height: 'fit-content',
     display: 'flex',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       maxWidth: 'unset',
       width: '100%',
     },

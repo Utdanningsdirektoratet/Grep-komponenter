@@ -1,28 +1,28 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 
-import DatePicker, { DatePickerProps } from '../GrepDatePicker';
+import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 import { useDate } from '../../hooks/use-date';
 
-import { GridSpacing } from '@material-ui/core/Grid';
+import { GridSpacing } from '@mui/material/Grid';
 import { DateRangeValue } from '../../utils/dateHelper';
 
 type CommonProperties = Pick<
-  DatePickerProps,
-  | 'variant'
-  | 'inputVariant'
-  | 'format'
-  | 'clearable'
-  | 'disabled'
-  | 'invalidDateMessage'
-  | 'emptyLabel'
+  GrepDatePickerProps,
+  'variant'
+  // | 'inputVariant'
+  // | 'format'
+  // | 'clearable'
+  // | 'disabled'
+  // | 'invalidDateMessage'
+  // | 'emptyLabel'
 >;
 
-type ReferenceProperties = Pick<DatePickerProps, 'minDate' | 'maxDate'>;
+type ReferenceProperties = Pick<GrepDatePickerProps, 'minDate' | 'maxDate'>;
 
 interface Props extends CommonProperties, ReferenceProperties {
-  from: Omit<DatePickerProps, 'onChange'>;
-  to: Omit<DatePickerProps, 'onChange'>;
+  from: Omit<GrepDatePickerProps, 'onChange'>;
+  to: Omit<GrepDatePickerProps, 'onChange'>;
   onChange: (date: DateRangeValue) => void;
   // container
   spacing?: GridSpacing;
@@ -57,7 +57,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
           id={String(fromProperties.label)}
           fullWidth
           minDate={minDate}
-          maxDateMessage={`Dato må være før "${toProperties.label}"`}
+          // maxDateMessage={`Dato må være før "${toProperties.label}"`}
           // logic
           {...commonProperties}
           {...fromProperties}
@@ -72,7 +72,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
           id={String(toProperties.label)}
           fullWidth
           maxDate={maxDate}
-          minDateMessage={`Dato må være etter "${fromProperties.label}"`}
+          // minDateMessage={`Dato må være etter "${fromProperties.label}"`}
           // logic
           {...commonProperties}
           {...toProperties}

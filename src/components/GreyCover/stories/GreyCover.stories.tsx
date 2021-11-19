@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MainLayout, GreyCover, SearchBar } from '../..';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 storiesOf('GreyCover', module).add('GreyCover with content', () => (
   <MainLayout>

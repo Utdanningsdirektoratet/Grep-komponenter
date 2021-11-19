@@ -7,8 +7,8 @@ import {
   Divider,
   Box,
   Typography,
-} from '@material-ui/core';
-import { ArrowForward } from '@material-ui/icons';
+} from '@mui/material';
+import { ArrowForward } from '@mui/icons-material';
 
 import { Colors } from '../../styling';
 import { NavigationProps } from '../AppBarNavList';

@@ -1,26 +1,25 @@
 import React, { useCallback } from 'react';
 import { Key } from 'ts-keycode-enum';
 
+import MoreVert from '@mui/icons-material/MoreVert';
 import {
-  Theme,
-  TableFooter,
+  Table,
   TableRow,
+  TableBody,
+  TableFooter,
   TableContainer,
-} from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
-import MoreVert from '@material-ui/icons/MoreVert';
-import IconButton from '@material-ui/core/IconButton';
-import TableBody from '@material-ui/core/TableBody';
-import Table, { TableProps } from '@material-ui/core/Table';
-import { TableCellProps } from '@material-ui/core/TableCell';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
+  TableCellProps,
+  TableProps,
+  Tooltip,
+  IconButton,
+} from '@mui/material';
 
 import GrepTableRow from './components/grep-table-row';
 import GrpeTableHeader from './components/grep-table-header';
 import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
+import { makeStyles } from '../../styling';
 
 export interface TableColumn<T> extends Pick<TableCellProps, 'padding'> {
   label?: string | JSX.Element;
@@ -64,21 +63,21 @@ export interface GrepTableProps<T>
   rowHeight?: number;
 }
 
-interface StyleProperties {
+interface StyleProps {
   outlined?: boolean;
   showHeader?: boolean;
 }
 
-export const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    table: ({ outlined }: StyleProperties) => ({
+export const useStyles = makeStyles<StyleProps>()(
+  (theme, { showHeader, outlined }) => ({
+    table: {
       border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
       borderCollapse: outlined ? 'separate' : 'collapse',
       tableLayout: 'auto',
-    }),
-    header: ({ showHeader }: StyleProperties) => ({
+    },
+    header: {
       visibility: showHeader ? 'visible' : 'collapse',
-    }),
+    },
     body: {
       '&:focus': {
         outline: 'none',
@@ -233,6 +232,7 @@ export const GrepTable = <T,>({
               }
             }}
             tabIndex={0}
+            size="large"
           >
             <MoreVert />
           </IconButton>
@@ -324,7 +324,7 @@ export const GrepTable = <T,>({
       )
     : data;
 
-  const classes = useStyles({ outlined, showHeader: header });
+  const { classes } = useStyles({ outlined, showHeader: header });
 
   return (
     <TableContainer style={props.style}>

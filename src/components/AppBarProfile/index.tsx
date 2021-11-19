@@ -1,7 +1,7 @@
 import * as React from 'react';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ArrowDropdown from '@material-ui/icons/ArrowDropDown';
-import { Box, Button, Typography } from '@material-ui/core';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ArrowDropdown from '@mui/icons-material/ArrowDropDown';
+import { Box, Button, Typography } from '@mui/material';
 
 import { useStyles } from './styles';
 

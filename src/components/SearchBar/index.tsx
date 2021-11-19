@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Close from '@material-ui/icons/Close';
-import Search from '@material-ui/icons/Search';
-import { Button, Box, TextField, Typography } from '@material-ui/core';
+import Close from '@mui/icons-material/Close';
+import Search from '@mui/icons-material/Search';
+import { Button, Box, TextField, Typography } from '@mui/material';
 
 import { useStyles } from './styles';
 import { Colors } from '../../styling';

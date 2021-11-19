@@ -1,8 +1,8 @@
 import React from 'react';
-import TableRow from '@material-ui/core/TableRow/TableRow';
+import TableRow from '@mui/material/TableRow/TableRow';
 import TableCell, {
   TableCellProps,
-} from '@material-ui/core/TableCell/TableCell';
+} from '@mui/material/TableCell/TableCell';
 
 import { TableColumn } from '..';
 

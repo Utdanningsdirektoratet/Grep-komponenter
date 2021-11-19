@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import ContainedLinkList from '..';
-import Inbox from '@material-ui/icons/Inbox';
-import Settings from '@material-ui/icons/Settings';
-import Description from '@material-ui/icons/Description';
+import Inbox from '@mui/icons-material/Inbox';
+import Settings from '@mui/icons-material/Settings';
+import Description from '@mui/icons-material/Description';
 import { NavigationProps } from '../../AppBarNavList';
 
 export const myPages: NavigationProps[] = [

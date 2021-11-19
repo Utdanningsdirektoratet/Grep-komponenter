@@ -1,12 +1,12 @@
 import * as React from 'react';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import {
   Box,
   List,
   ListItem,
   Typography,
   ListItemText,
-} from '@material-ui/core';
+} from '@mui/material';
 
 import { useStyles } from './styles';
 import { NavigationProps } from '..';

@@ -3,7 +3,7 @@ import { makeStyles } from '../../../styling';
 export const useStyles = makeStyles()((theme) => ({
   tabs: {
     margin: 'auto 0',
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('xl')]: {
       display: 'none',
     },
     [theme.breakpoints.up('lg')]: {
@@ -19,7 +19,7 @@ export const useStyles = makeStyles()((theme) => ({
     '&:focus': {
       opacity: 1,
     },
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('xl')]: {
       minWidth: 120,
       marginRight: 0,
     },

@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect, useState } from 'react';
 
 import { getVisibleSelectionRect } from 'draft-js';
 
-import { ToggleButtonGroup } from '@material-ui/lab';
+import { ToggleButtonGroup } from '@mui/material';
 
 import EditorContext from '../../context';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
-import { Link, Box, Tooltip } from '@material-ui/core';
+import { Link, Box, Tooltip } from '@mui/material';
 import { useStyles } from './styles/styles';
 
 export interface Breadcrumb {

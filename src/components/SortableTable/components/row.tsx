@@ -2,9 +2,9 @@ import React, { useCallback, useMemo } from 'react';
 
 import { Draggable } from 'react-beautiful-dnd';
 
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import DragIndicator from '@material-ui/icons/DragIndicator';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import DragIndicator from '@mui/icons-material/DragIndicator';
 
 import SortableTableCell from './cell';
 

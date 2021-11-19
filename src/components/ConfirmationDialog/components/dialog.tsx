@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContentText,
   Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useStyles } from '../styles';
 
 export interface ConfirmationOptions {

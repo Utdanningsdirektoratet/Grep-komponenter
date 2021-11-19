@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { List, ListItem, ListItemText, Container } from '@material-ui/core';
+import { List, ListItem, ListItemText, Container } from '@mui/material';
 import { useFooterStyles } from './styles';
 
 export interface FooterItem {

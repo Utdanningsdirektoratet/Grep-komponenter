@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Editor } from 'draft-js';
 
-import ToggleButton, { ToggleButtonProps } from '@material-ui/lab/ToggleButton';
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 
 import EditorContext from '../../context';
 import { UpdateStyle } from '../../misc/utils';

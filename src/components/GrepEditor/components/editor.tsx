@@ -1,7 +1,7 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
 
 import clsx from 'clsx';
-import { Box, FormHelperText } from '@material-ui/core';
+import { Box, FormHelperText } from '@mui/material';
 import {
   Editor,
   ContentState,

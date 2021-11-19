@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import InfoContainer, { InfoField } from '..';
+import InfoContainer, { InfoFieldType } from '..';
 
-const infoFields: InfoField[] = [
+const infoFields: InfoFieldType[] = [
   {
     key: 'Field 1',
     value: 'Test 1',

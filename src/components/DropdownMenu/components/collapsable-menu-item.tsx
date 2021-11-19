@@ -9,9 +9,8 @@ import React, {
 
 import { Key } from 'ts-keycode-enum';
 
-import Box from '@material-ui/core/Box';
-import MenuItem, { MenuItemProps } from '@material-ui/core/MenuItem';
-import IconExpand from '@material-ui/icons/ExpandMore';
+import { Box, MenuItem, MenuItemProps } from '@mui/material';
+import IconExpand from '@mui/icons-material/ExpandMore';
 
 import { CollapsableMenu } from './collapsable-menu';
 import { TooltipMenuItem } from './tooltip-menu-item';
@@ -49,11 +48,8 @@ export interface Properties extends Omit<MenuItemProps, 'button'> {
 export const CollapsableMenuItem: FunctionComponent<
   PropsWithChildren<Properties>
 > = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
-  (
-    { items, onClick, children, onClose: _onclose, tooltipText, ...props },
-    ref,
-  ) => {
-    const listItemRef = useRef<HTMLElement>();
+  ({ items, onClick, children, onClose: _onclose, tooltipText, ...props }) => {
+    const listItemRef = useRef<HTMLLIElement>(null);
     const [open, setOpen] = useState<boolean>(false);
 
     const onStatusChange = useCallback(
@@ -154,9 +150,8 @@ export const CollapsableMenuItem: FunctionComponent<
     ) : (
       <MenuItem
         className={classes.root}
-        innerRef={listItemRef}
+        ref={listItemRef}
         selected={open}
-        ref={ref}
         onClick={handleClick}
         onKeyDown={handleKey}
         {...props}

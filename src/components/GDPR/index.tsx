@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Info } from '@material-ui/icons';
-import { Box, Typography } from '@material-ui/core';
+import { Info } from '@mui/icons-material';
+import { Box, Typography } from '@mui/material';
 
 import { useStyles } from './styles';
 

@@ -1,6 +1,7 @@
+import { TableColumn } from '..';
 import { makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles()(({ palette }) => ({
+export const usePaginationActionStyles = makeStyles()(({ palette }) => ({
   button: {
     minWidth: '18px',
     minHeight: '20px',
@@ -16,3 +17,40 @@ export const useStyles = makeStyles()(({ palette }) => ({
     fontSize: 12,
   },
 }));
+
+export const usePaginationStyles = makeStyles()({
+  toolbar: {
+    padding: 0,
+    width: '100%',
+    display: 'grid',
+    gridTemplateAreas: "'left right'",
+  },
+  input: {
+    gridArea: 'left',
+    justifySelf: 'start',
+  },
+  caption: {
+    gridArea: 'left',
+    paddingLeft: '60px',
+  },
+  spacer: {
+    display: 'none',
+  },
+});
+
+export const useTableHeaderStyles = makeStyles<{ column: TableColumn<any> }>()(
+  (_theme, { column }) => {
+    const width = column.width
+      ? typeof column.width === 'number'
+        ? `${column.width}%`
+        : column.width
+      : undefined;
+
+    return {
+      th: {
+        width,
+        fontSize: 14,
+      },
+    };
+  },
+);

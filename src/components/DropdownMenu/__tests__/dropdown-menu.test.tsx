@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 

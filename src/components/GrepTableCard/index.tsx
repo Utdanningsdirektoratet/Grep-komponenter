@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 
 import { useStyles } from './styles';
 import GrepTable, { GrepTableProps } from '../GrepTable';

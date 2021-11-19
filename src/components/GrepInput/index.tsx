@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TextField, {
   TextFieldProps,
-} from '@material-ui/core/TextField/TextField';
+} from '@mui/material/TextField/TextField';
 
 export type GrepInputProps = TextFieldProps & {
   shrink?: boolean;

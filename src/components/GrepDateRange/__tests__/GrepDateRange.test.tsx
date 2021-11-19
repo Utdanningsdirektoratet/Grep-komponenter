@@ -3,13 +3,13 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import GrepDateRange from '..';
-import { DatePickerProps } from '../../GrepDatePicker';
+import { GrepDatePickerProps } from '../../GrepDatePicker';
 
-const fromDateProps: Omit<DatePickerProps, 'onChange'> = {
+const fromDateProps: Omit<GrepDatePickerProps, 'onChange'> = {
   label: 'from',
 };
 
-const toDateProps: Omit<DatePickerProps, 'onChange'> = {
+const toDateProps: Omit<GrepDatePickerProps, 'onChange'> = {
   label: 'to',
 };
 

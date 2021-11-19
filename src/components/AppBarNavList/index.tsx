@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useStyles } from './styles';
 import MobileAppBarNavList from './MobileAppBarNavList';
-import { Tab, Tabs } from '@material-ui/core';
+import { Tab, Tabs } from '@mui/material';
 
 export interface NavigationProps {
   id: number;

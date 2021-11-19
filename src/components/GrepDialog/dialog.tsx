@@ -5,7 +5,7 @@ import {
   DialogContent,
   DialogActions,
   Button,
-} from '@material-ui/core';
+} from '@mui/material';
 
 export interface GrepDialogOptions {
   title: string;

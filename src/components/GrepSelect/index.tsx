@@ -1,10 +1,10 @@
 import * as React from 'react';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select, { SelectProps } from '@material-ui/core/Select';
-import { Input, FormHelperText, PropTypes } from '@material-ui/core';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectProps } from '@mui/material/Select';
+import { Input, FormHelperText } from '@mui/material';
 
 export interface SelectItem {
   value: string | number;
@@ -17,7 +17,7 @@ export interface GrepSelectProps extends SelectProps {
   helperText?: string;
   errorMessage?: string;
   selectItems: SelectItem[];
-  formMargin?: PropTypes.Margin;
+  formMargin?: 'none' | 'dense' | 'normal';
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -69,7 +69,8 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
         disabled={!selectItems || disabled}
         value={value === null ? '' : value}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
-        input={outlined ? <OutlinedInput labelWidth={labelWidth} /> : <Input />}
+        // @todo: make input respect label length
+        input={outlined ? <OutlinedInput label={label} /> : <Input />}
         MenuProps={{
           anchorOrigin: {
             vertical: 'bottom',
@@ -79,7 +80,6 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
             vertical: 'top',
             horizontal: 'center',
           },
-          getContentAnchorEl: null,
         }}
       >
         <MenuItem value="">
