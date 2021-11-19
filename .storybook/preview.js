@@ -1,14 +1,21 @@
 import React from 'react';
-// import { configure } from '@storybook/react';
-import { addDecorator } from '@storybook/react';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import { createMuiTheme, CssBaseline, StylesProvider } from '@material-ui/core';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+
+import createCache from '@emotion/cache';
+import { CacheProvider } from '@emotion/react';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
 
-const theme = createMuiTheme({
+export const muiCache = createCache({
+  key: 'mui',
+  prepend: true,
+});
+
+const theme = createTheme({
   palette: {
     primary: {
       main: Colors.cyan,
@@ -28,20 +35,26 @@ const theme = createMuiTheme({
       ',',
     ),
   },
-  overrides: {
+  components: {
     MuiTooltip: {
-      tooltip: {
-        fontSize: 'inherit',
+      styleOverrides: {
+        tooltip: {
+          fontSize: 'inherit',
+        },
       },
     },
     MuiChip: {
-      avatar: {
-        fontSize: 14,
+      styleOverrides: {
+        avatar: {
+          fontSize: 14,
+        },
       },
     },
     MuiDialog: {
-      paper: {
-        minWidth: '45rem',
+      styleOverrides: {
+        paper: {
+          minWidth: '45rem',
+        },
       },
     },
   },
@@ -49,24 +62,15 @@ const theme = createMuiTheme({
 
 const store = createStore(() => {});
 
-const Decorator = (story) => (
-  <Provider store={store}>
-    <StylesProvider>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        {story()}
-      </MuiThemeProvider>
-    </StylesProvider>
-  </Provider>
-);
-
-addDecorator(Decorator);
-
-// const req = require.context('../src/components', true, /\.stories\.tsx$/);
-
-// function loadStories() {
-//   require('../src/stories');
-//   req.keys().forEach(req);
-// }
-
-// configure(loadStories, module);
+export const decorators = [
+  (Story) => (
+    <Provider store={store}>
+      <CacheProvider value={muiCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Story />
+        </ThemeProvider>
+      </CacheProvider>
+    </Provider>
+  ),
+];
