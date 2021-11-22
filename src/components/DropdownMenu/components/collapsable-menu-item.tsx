@@ -9,8 +9,8 @@ import React, {
 
 import { Key } from 'ts-keycode-enum';
 
-import { Box, MenuItem, MenuItemProps } from '@mui/material';
 import IconExpand from '@mui/icons-material/ExpandMore';
+import { Box, MenuItem, MenuItemProps } from '@mui/material';
 
 import { CollapsableMenu } from './collapsable-menu';
 import { TooltipMenuItem } from './tooltip-menu-item';
@@ -47,119 +47,124 @@ export interface Properties extends Omit<MenuItemProps, 'button'> {
 
 export const CollapsableMenuItem: FunctionComponent<
   PropsWithChildren<Properties>
-> = React.forwardRef<HTMLLIElement, PropsWithChildren<Properties>>(
-  ({ items, onClick, children, onClose: _onclose, tooltipText, ...props }) => {
-    const listItemRef = useRef<HTMLLIElement>(null);
-    const [open, setOpen] = useState<boolean>(false);
+> = ({
+  items,
+  onClick,
+  children,
+  onClose: _onclose,
+  tooltipText,
+  ...props
+}) => {
+  const listItemRef = useRef<HTMLLIElement>(null);
+  const [open, setOpen] = useState<boolean>(false);
 
-    const onStatusChange = useCallback(
-      (type: ToggleState) => new CollapsableMenuStatusEvent(type, listItemRef),
-      [listItemRef],
-    );
+  const onStatusChange = useCallback(
+    (type: ToggleState) => new CollapsableMenuStatusEvent(type, listItemRef),
+    [listItemRef],
+  );
 
-    const expand = useCallback(() => {
-      const event = onStatusChange('expand');
-      !event.defaultPrevented && setOpen(true);
-      return !event.defaultPrevented;
-    }, [onStatusChange, setOpen]);
+  const expand = useCallback(() => {
+    const event = onStatusChange('expand');
+    !event.defaultPrevented && setOpen(true);
+    return !event.defaultPrevented;
+  }, [onStatusChange, setOpen]);
 
-    const collapse = useCallback(() => {
-      const event = onStatusChange('collapse');
-      if (!event.defaultPrevented) {
-        setOpen(false);
-        requestAnimationFrame(() => listItemRef.current?.focus());
+  const collapse = useCallback(() => {
+    const event = onStatusChange('collapse');
+    if (!event.defaultPrevented) {
+      setOpen(false);
+      requestAnimationFrame(() => listItemRef.current?.focus());
+    }
+    return !event.defaultPrevented;
+  }, [onStatusChange, setOpen, listItemRef]);
+
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (items) {
+      switch (e.keyCode) {
+        case Key.RightArrow:
+          if (expand()) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          break;
       }
-      return !event.defaultPrevented;
-    }, [onStatusChange, setOpen, listItemRef]);
+    }
+  };
 
-    const handleKey = (e: React.KeyboardEvent) => {
-      if (items) {
-        switch (e.keyCode) {
-          case Key.RightArrow:
-            if (expand()) {
-              e.preventDefault();
-              e.stopPropagation();
-            }
-            break;
-        }
-      }
-    };
+  const onToggleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      open ? collapse() : expand();
+    },
+    [open, collapse, expand],
+  );
 
-    const onToggleClick = useCallback(
-      (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-        open ? collapse() : expand();
-      },
-      [open, collapse, expand],
-    );
+  const onScrimClick = useCallback(
+    (e: MouseEvent) => {
+      const scrimClick = !listItemRef.current?.contains(e.target as Node);
+      scrimClick && collapse();
+    },
+    [listItemRef, collapse],
+  );
 
-    const onScrimClick = useCallback(
-      (e: MouseEvent) => {
-        const scrimClick = !listItemRef.current?.contains(e.target as Node);
-        scrimClick && collapse();
-      },
-      [listItemRef, collapse],
-    );
+  const handleClick = items ? onToggleClick : onClick;
 
-    const handleClick = items ? onToggleClick : onClick;
+  useEffect(() => {
+    document.addEventListener('click', onScrimClick, { capture: true });
+    return () => document.removeEventListener('click', onScrimClick);
+  }, [listItemRef, onScrimClick]);
 
-    useEffect(() => {
-      document.addEventListener('click', onScrimClick, { capture: true });
-      return () => document.removeEventListener('click', onScrimClick);
-    }, [listItemRef, onScrimClick]);
+  const { classes } = useStyles({ open });
 
-    const { classes } = useStyles({ open });
-
-    const renderInner = () => (
-      <Box display="flex" flexDirection="column" width="100%">
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          minHeight={48}
-        >
-          {children}
-          {items && <IconExpand className={classes.expander} />}
-        </Box>
-        {items && (
-          <CollapsableMenu
-            className={classes.subMenu}
-            in={open}
-            onMenuClose={collapse}
-            onEntered={() =>
-              requestAnimationFrame(() =>
-                window.dispatchEvent(new Event('resize')),
-              )
-            }
-          >
-            {items}
-          </CollapsableMenu>
-        )}
+  const renderInner = () => (
+    <Box display="flex" flexDirection="column" width="100%">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        minHeight={48}
+      >
+        {children}
+        {items && <IconExpand className={classes.expander} />}
       </Box>
-    );
+      {items && (
+        <CollapsableMenu
+          className={classes.subMenu}
+          in={open}
+          onMenuClose={collapse}
+          onEntered={() =>
+            requestAnimationFrame(() =>
+              window.dispatchEvent(new Event('resize')),
+            )
+          }
+        >
+          {items}
+        </CollapsableMenu>
+      )}
+    </Box>
+  );
 
-    return !!tooltipText && props.disabled ? (
-      <TooltipMenuItem
-        className={classes.root}
-        tooltipText={tooltipText}
-        onMouseOver={(e) => e.currentTarget.focus()}
-      >
-        {renderInner()}
-      </TooltipMenuItem>
-    ) : (
-      <MenuItem
-        className={classes.root}
-        ref={listItemRef}
-        selected={open}
-        onClick={handleClick}
-        onKeyDown={handleKey}
-        {...props}
-      >
-        {renderInner()}
-      </MenuItem>
-    );
-  },
-);
+  return !!tooltipText && props.disabled ? (
+    <TooltipMenuItem
+      className={classes.root}
+      tooltipText={tooltipText}
+      onMouseOver={(e) => e.currentTarget.focus()}
+    >
+      {renderInner()}
+    </TooltipMenuItem>
+  ) : (
+    <MenuItem
+      className={classes.root}
+      ref={listItemRef}
+      selected={open}
+      onClick={handleClick}
+      onKeyDown={handleKey}
+      {...props}
+    >
+      {renderInner()}
+    </MenuItem>
+  );
+};
 
 export default CollapsableMenuItem;

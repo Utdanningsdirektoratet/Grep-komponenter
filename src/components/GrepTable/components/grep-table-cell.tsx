@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, FunctionComponent } from 'react';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import { styled, TableCell, TableCellProps } from '@mui/material';
 
 import { TableColumn } from '..';
 import OverflowTooltip from '../../OverflowTooltip';
-
-import { styled } from '@mui/material';
 
 export interface Properties<T> extends TableCellProps {
   row?: T;

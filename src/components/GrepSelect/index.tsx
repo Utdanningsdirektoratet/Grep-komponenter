@@ -1,10 +1,14 @@
 import * as React from 'react';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectProps } from '@mui/material/Select';
-import { Input, FormHelperText } from '@mui/material';
+import {
+  Input,
+  Select,
+  SelectProps,
+  MenuItem,
+  InputLabel,
+  OutlinedInput,
+  FormControl,
+  FormHelperText,
+} from '@mui/material';
 
 export interface SelectItem {
   value: string | number;
@@ -17,7 +21,6 @@ export interface GrepSelectProps extends SelectProps {
   helperText?: string;
   errorMessage?: string;
   selectItems: SelectItem[];
-  formMargin?: 'none' | 'dense' | 'normal';
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -32,13 +35,13 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     errorMessage,
     selectItems,
     helperText,
-    formMargin,
     fullWidth,
     outlined,
     disabled,
     required,
     label,
     value,
+    size,
     id,
     ...rest
   } = props;
@@ -48,12 +51,12 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
   return (
     <FormControl
       variant={outlined ? 'outlined' : 'standard'}
-      margin={formMargin ? formMargin : 'normal'}
       className={props.className}
       fullWidth={fullWidth}
       required={required}
       style={props.style}
       error={error}
+      size={size}
       disabled={disabled}
     >
       <InputLabel

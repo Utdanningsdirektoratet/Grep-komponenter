@@ -150,8 +150,8 @@ describe('DropdownMenu', () => {
 
     // check that items get correct disabled-attribute
     menuItems.forEach((item, index) => {
-      let disabled = item.getAttribute('aria-disabled');
-      expect(disabled).toBe(items[index].disabled ? 'true' : 'false');
+      let disabled = item.getAttribute('aria-disabled') || false;
+      expect(disabled).toBe(items[index].disabled ? 'true' : false);
     });
   });
 

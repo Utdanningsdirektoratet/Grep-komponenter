@@ -111,7 +111,9 @@ describe('CollapsableMenu', () => {
     openMenu();
     expect(screen.queryByText('tooltip text')).toBeFalsy();
 
-    userEvent.hover(screen.getAllByRole('menuitem')[2]);
+    const item = screen.getByRole('menuitem', { name: items[2].label });
+    userEvent.hover(item.parentElement!);
+
     expect(await screen.findByText('tooltip text')).toBeInTheDocument();
   });
 });

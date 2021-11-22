@@ -1,70 +1,78 @@
-import React, { useEffect } from 'react';
-import '../../utils/dateHelper';
-
+import React, { useEffect, useState } from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import {
   DatePickerProps,
   DesktopDatePicker,
-  // DesktopDatePickerProps,
   LocalizationProvider,
 } from '@mui/lab';
 import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import { TextField, TextFieldProps } from '@mui/material';
 
+import '../../utils/dateHelper';
 import { useDate } from '../../hooks';
 import { ParseableDate } from '../../utils/dateHelper';
-import { TextField, TextFieldProps } from '@mui/material';
-import { Dayjs } from 'dayjs';
 
-type DateInput = ParseableDate | null;
+type InputProps = Pick<
+  TextFieldProps,
+  'id' | 'variant' | 'label' | 'fullWidth' | 'placeholder' | 'helperText'
+>;
 
 export interface GrepDatePickerProps
   extends Omit<DatePickerProps<Dayjs>, 'value' | 'renderInput'>,
-    Pick<
-      TextFieldProps,
-      | 'id'
-      | 'variant'
-      | 'error'
-      | 'helperText'
-      | 'placeholder'
-      | 'fullWidth'
-      | 'label'
-    > {
-  value?: DateInput;
+    InputProps {
+  value?: ParseableDate | null;
   errorMessage?: string;
 }
 
 export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
+  id,
+  label,
   value,
+  variant,
   onChange,
   errorMessage,
-  variant,
   placeholder,
-  id,
   fullWidth,
-  label,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
+  const [error, setError] = useState<string | undefined>();
 
-  const error = !!errorMessage || props.error;
-  const helperText = errorMessage || props.helperText;
+  const helperText = errorMessage || error || props.helperText;
 
   useEffect(() => onChange(date), [String(date)]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} locale={'nb'}>
       <DesktopDatePicker
-        // default
-        // clearable
+        // clearable @todo
         inputFormat="DD/MM/YYYY"
-        // mask={'__/__/____'}
-        // invalidDateMessage={'Ugyldig dato'}
-        // margin="normal"
-        // KeyboardButtonProps={{
-        //   'aria-label': 'change date',
-        // }}
+        onError={(reason) => {
+          switch (reason) {
+            case 'invalidDate':
+              setError('Ugyldig dato');
+              break;
 
-        // logic
-        // {...props}
+            case 'maxDate':
+              setError(
+                `Dato må være før ${dayjs(props.maxDate)
+                  .add(1, 'day')
+                  .format('DD/MM/YYYY')}`,
+              );
+              break;
+
+            case 'minDate':
+              setError(
+                `Dato må være etter ${dayjs(props.minDate)
+                  .subtract(1, 'day')
+                  .format('DD/MM/YYYY')}`,
+              );
+              break;
+
+            default:
+              setError(undefined);
+          }
+        }}
         value={date}
         onChange={setDate}
         renderInput={(params) => (
@@ -75,10 +83,10 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
             fullWidth={fullWidth}
             variant={variant}
             placeholder={placeholder}
-            {...(error && { error })}
             {...(helperText && { helperText })}
           />
         )}
+        {...props}
       />
     </LocalizationProvider>
   );

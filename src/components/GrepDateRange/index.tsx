@@ -1,32 +1,20 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@mui/material';
+import { Grid, GridSpacing } from '@mui/material';
 
-import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 import { useDate } from '../../hooks/use-date';
-
-import { GridSpacing } from '@mui/material/Grid';
 import { DateRangeValue } from '../../utils/dateHelper';
+import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 
 type CommonProperties = Pick<
   GrepDatePickerProps,
-  'variant'
-  // | 'inputVariant'
-  // | 'format'
-  // | 'clearable'
-  // | 'disabled'
-  // | 'invalidDateMessage'
-  // | 'emptyLabel'
+  'variant' | 'clearable' | 'disabled' | 'minDate' | 'maxDate'
 >;
 
-type ReferenceProperties = Pick<GrepDatePickerProps, 'minDate' | 'maxDate'>;
-
-interface Props extends CommonProperties, ReferenceProperties {
+interface Props extends CommonProperties {
   from: Omit<GrepDatePickerProps, 'onChange'>;
   to: Omit<GrepDatePickerProps, 'onChange'>;
   onChange: (date: DateRangeValue) => void;
-  // container
   spacing?: GridSpacing;
-  disabled?: boolean;
   style?: React.CSSProperties;
   fullWidth?: boolean;
 }
@@ -53,12 +41,9 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
     <Grid container spacing={spacing} style={style}>
       <Grid item xs={12} sm={fullWidth ? 12 : 6}>
         <DatePicker
-          // default
           id={String(fromProperties.label)}
           fullWidth
           minDate={minDate}
-          // maxDateMessage={`Dato må være før "${toProperties.label}"`}
-          // logic
           {...commonProperties}
           {...fromProperties}
           value={from}
@@ -68,12 +53,9 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
       </Grid>
       <Grid item xs={12} sm={fullWidth ? 12 : 6}>
         <DatePicker
-          // default
           id={String(toProperties.label)}
           fullWidth
           maxDate={maxDate}
-          // minDateMessage={`Dato må være etter "${fromProperties.label}"`}
-          // logic
           {...commonProperties}
           {...toProperties}
           value={to}

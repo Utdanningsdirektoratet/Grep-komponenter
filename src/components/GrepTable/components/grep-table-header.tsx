@@ -1,7 +1,5 @@
 import React from 'react';
-
-import TableRow from '@mui/material/TableRow';
-import TableHead, { TableHeadProps } from '@mui/material/TableHead';
+import { TableHead, TableHeadProps, TableRow } from '@mui/material';
 
 import { TableColumn } from '..';
 import TableHeaderCell from './grep-table-header-cell';

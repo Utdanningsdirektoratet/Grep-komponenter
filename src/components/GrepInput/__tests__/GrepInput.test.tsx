@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
-import GrepInput from '..';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import GrepInput from '../';
 
 describe('GrepInput', () => {
   it('should render correctly with label', () => {
