@@ -209,8 +209,8 @@ export const GrepTable = <T,>({
     const disabled = menuDisabled && menuDisabled(row);
     const tooltip = menuTooltip ? menuTooltip(row) : '';
     return (
-      <Tooltip title={tooltip}>
-        <div>
+      <Tooltip title={tooltip} placement="bottom">
+        <div style={{ display: 'flex', justifyContent: 'end' }}>
           <IconButton
             disableTouchRipple={true}
             disabled={disabled}
@@ -363,6 +363,7 @@ export const GrepTable = <T,>({
                 page={currentPage}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
+                onChangePage={_handlePageChange}
                 onPageChange={_handlePageChange}
                 onRowsPerPageChange={_handleChangeRowsPerPage}
                 labelRowsPerPage={''}
