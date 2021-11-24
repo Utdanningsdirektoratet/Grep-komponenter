@@ -3,7 +3,7 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 import * as React from 'react';
 import { useHistory } from 'react-router';
 import { useMobileStyles } from './styles';
-import { Utils } from '../..';
+import { keyboard } from '../../utils';
 
 export interface NavigationProps {
   id: number;
@@ -61,7 +61,7 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
               handleCloseNav();
               history.push(page?.toUrl || '');
             }}
-            onKeyDown={Utils.keyboard.onActivation(() =>
+            onKeyDown={keyboard.onActivation(() =>
               history.push(page?.toUrl || ''),
             )}
           >
