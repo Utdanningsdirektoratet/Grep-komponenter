@@ -46,7 +46,7 @@ const GrepCrumbs: React.FC<Props> = ({
         crumb.path ? (
           <Box key={index} display="flex">
             <Link
-              style={{ fontSize: 16 }}
+              className={classes.link}
               tabIndex={0}
               component="button"
               onClick={(): void => handleClick(crumb)}

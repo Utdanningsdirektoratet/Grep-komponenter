@@ -23,7 +23,7 @@ export const footerItems: FooterItem[] = [
     label: 'Custom',
     render: (renderLabel) => (
       <React.Fragment>
-        <Switch />
+        <Switch color="secondary" />
         {renderLabel()}
       </React.Fragment>
     ),

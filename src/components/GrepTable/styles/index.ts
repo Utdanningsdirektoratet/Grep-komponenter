@@ -25,11 +25,11 @@ export const usePaginationStyles = makeStyles()({
     display: 'grid',
     gridTemplateAreas: "'left right'",
   },
-  input: {
+  selectLabel: {
     gridArea: 'left',
-    justifySelf: 'start',
+    paddingLeft: '60px',
   },
-  caption: {
+  displayedRows: {
     gridArea: 'left',
     paddingLeft: '60px',
   },

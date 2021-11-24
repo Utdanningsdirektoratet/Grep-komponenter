@@ -80,9 +80,10 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
             id={id}
             {...params}
             label={label}
-            fullWidth={fullWidth}
             variant={variant}
+            fullWidth={fullWidth}
             placeholder={placeholder}
+            error={!!error || !!errorMessage}
             {...(helperText && { helperText })}
           />
         )}

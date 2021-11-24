@@ -1,27 +1,21 @@
 import React, { useContext, useRef, useEffect, useState } from 'react';
-
 import { getVisibleSelectionRect } from 'draft-js';
-
 import { ToggleButtonGroup } from '@mui/material';
 
+import { useFloatingToolbarStyles } from '../../styles';
 import EditorContext from '../../context';
-
 import { InlineButton } from '../buttons';
-
-import useStyles from './floating-toolbar.style';
-
-import { ToolbarPropperties } from '.';
 import { GrepEditor } from '../editor';
+import { ToolbarPropperties } from '.';
 
 type Component = React.FunctionComponent<ToolbarPropperties>;
 
-export const FloatingToolbar: Component = ({
-  editor,
-  buttons,
-}: ToolbarPropperties) => {
+export const FloatingToolbar: Component = ({ editor, buttons }) => {
   const { selection } = useContext(EditorContext);
   const [isVisible, setVisibility] = useState(false);
   const toolbar = useRef<HTMLDivElement>();
+
+  const { classes } = useFloatingToolbarStyles({ isVisible });
 
   // @eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -48,7 +42,7 @@ export const FloatingToolbar: Component = ({
       !!selection && !selection.isCollapsed() && selection.getHasFocus(),
     );
   });
-  const { classes } = useStyles({ isVisible });
+
   return (
     <div
       ref={toolbar as React.MutableRefObject<HTMLDivElement>}

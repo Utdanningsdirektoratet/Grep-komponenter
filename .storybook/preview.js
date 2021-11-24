@@ -57,6 +57,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          fontSize: 12,
+        },
+      },
+    },
   },
 });
 

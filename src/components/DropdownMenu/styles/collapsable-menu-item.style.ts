@@ -1,7 +1,7 @@
 import { convertToRgba, makeStyles } from '../../../styling';
 
 export const useStyles = makeStyles<{ open: boolean }>()(
-  ({ palette, transitions }, open) => ({
+  ({ palette, transitions }, { open }) => ({
     root: {
       padding: '0 1rem',
       transition: transitions.create(['background-color'], {

@@ -1,9 +1,9 @@
 import { makeStyles } from '../../../styling';
 
 export const useStyles = makeStyles<{ elevation?: boolean }>()(
-  (_theme, { elevation }) => ({
+  (theme, { elevation }) => ({
     cover: {
-      background: _theme.palette.primary.main,
+      background: theme.palette.grey.A200,
       marginBottom: 12,
       padding: '10px 0',
       boxShadow: elevation

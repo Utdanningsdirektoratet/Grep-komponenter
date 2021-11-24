@@ -8,38 +8,43 @@ const textStyles: CSSProperties = {
   fontSize: 16,
 };
 
-export const useStyles = makeStyles()(({ palette }) => ({
-  container: {
-    padding: 10,
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  item: {
-    cursor: 'pointer',
-    color: palette.text.secondary, // @todo: https://github.com/mui-org/material-ui-pickers/issues/1681
-    outline: 'none',
-
-    '&:hover': {
-      color: palette.primary.main,
-    },
-
-    '&:focus > $text': {
-      color: palette.primary.main,
-      outline: 'auto',
-    },
-  },
-  text: {
+export const useStyles = makeStyles()(({ palette }, _props, createRef) => {
+  const text = {
+    ref: createRef(),
     ...textStyles,
     color: 'inherit',
     fontWeight: 400,
-  },
-  selected: {
-    ...textStyles,
-    color: palette.primary.main,
-    fontWeight: 500,
-  },
-  icon: {
-    minWidth: 'fit-content',
-    marginRight: 2,
-  },
-}));
+  } as const;
+
+  return {
+    container: {
+      padding: 10,
+      display: 'flex',
+      flexDirection: 'column',
+    },
+    item: {
+      cursor: 'pointer',
+      color: palette.text.disabled,
+      outline: 'none',
+
+      '&:hover': {
+        color: palette.primary.main,
+      },
+
+      [`&:focus .${text.ref}`]: {
+        color: palette.primary.main,
+        outline: 'auto',
+      },
+    },
+    text,
+    selected: {
+      ...textStyles,
+      color: palette.primary.main,
+      fontWeight: 500,
+    },
+    icon: {
+      minWidth: 'fit-content',
+      marginRight: 2,
+    },
+  };
+});

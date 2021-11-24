@@ -15,6 +15,12 @@ export const GrepTablePagination: React.FunctionComponent<TablePaginationProps> 
       <TablePagination
         classes={classes}
         rowsPerPageOptions={props.rowsPerPageOptions || [5, 10, 25, 50]}
+        SelectProps={{
+          style: {
+            gridArea: 'left',
+            justifySelf: 'start',
+          },
+        }}
         ActionsComponent={(actions) => (
           <PaginationActions {...(actions as PaginationActionsProps)} />
         )}

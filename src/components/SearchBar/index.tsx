@@ -62,6 +62,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         <TextField
           className={classes.input}
           value={value}
+          variant="standard"
           inputRef={inputRef}
           onChange={_handleChange}
           autoFocus={props.autoFocus}

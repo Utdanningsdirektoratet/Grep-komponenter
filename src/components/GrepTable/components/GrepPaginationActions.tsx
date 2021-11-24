@@ -59,7 +59,7 @@ export const PaginationActions: React.FunctionComponent<PaginationActionsProps> 
     };
 
     return (
-      <div style={{ display: 'flex', gridArea: 'right', justifySelf: 'end' }}>
+      <div style={{ gridArea: 'right', justifySelf: 'end' }}>
         <Button
           className={classes.textButton}
           onClick={(e) => onPageChange(e, page - 1)}

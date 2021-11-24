@@ -5,3 +5,5 @@ export interface ToolbarPropperties {
   editor: React.MutableRefObject<Editor>;
   buttons: Button[];
 }
+
+export { default as FloatingToolbar } from './floating-toolbar';

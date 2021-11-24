@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import { Prompt } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { Location } from 'history';
-
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { useStyles } from './styles';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+} from '@mui/material';
 
 export interface NavGuardProperties {
   when: boolean;
@@ -40,7 +40,6 @@ const NavGuard = ({
   const [lastLocation, setLastLocation] = React.useState<Location>();
 
   const dispatch = useDispatch();
-  const { classes } = useStyles();
 
   const handleCancel = () => {
     setLeave(false);
@@ -85,10 +84,10 @@ const NavGuard = ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel} autoFocus>
+          <Button onClick={handleCancel} autoFocus color="inherit">
             {txtCancel}
           </Button>
-          <Button onClick={handleDiscard} className={classes.discard}>
+          <Button onClick={handleDiscard} color="error">
             {txtDiscard}
           </Button>
           {onSave && (

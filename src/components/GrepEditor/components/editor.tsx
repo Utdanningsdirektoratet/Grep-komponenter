@@ -1,7 +1,5 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-
 import clsx from 'clsx';
-import { Box, FormHelperText } from '@mui/material';
 import {
   Editor,
   ContentState,
@@ -12,17 +10,16 @@ import {
   Modifier,
   DraftHandleValue,
 } from 'draft-js';
+import { Box, FormHelperText } from '@mui/material';
 
+import { FloatingToolbar, ToolbarPropperties } from './toolbars';
 import { createButton, Button, Style } from './buttons';
-import FloatingToolbar from './toolbars/floating-toolbar';
-import { ToolbarPropperties } from './toolbars';
 import keyHandler, {
   CustomDraftCommand,
   customKeyHandler,
 } from '../misc/handlers/key';
 import EditorContext from '../context';
-import useStyles from '../styles';
-
+import { useEditorStyles } from '../styles';
 import { useDebounce } from '../../../hooks';
 import { convert2html } from '../misc/utils';
 
@@ -138,7 +135,7 @@ export const EditorComponent: Component = ({
 
   const hasContent = state.getCurrentContent().hasText();
 
-  const { classes: styles } = useStyles({
+  const { classes: styles } = useEditorStyles({
     hasFocus,
     hasContent,
     readOnly: props.readOnly,

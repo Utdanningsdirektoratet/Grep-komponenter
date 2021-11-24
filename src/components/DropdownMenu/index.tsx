@@ -27,6 +27,7 @@ const DropdownMenu = <T,>({
 
   const renderChild =
     (level = 0) =>
+    // eslint-disable-next-line react/display-name
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
       const { label, children, handleClick, disabled, ...props } = item;
 
@@ -41,6 +42,7 @@ const DropdownMenu = <T,>({
       return (
         <CollapsableMenuItem
           level={level}
+          id={label}
           disabled={
             typeof disabled === 'function' ? disabled(context) : disabled
           }

@@ -14,4 +14,11 @@ export const useStyles = makeStyles()({
     whiteSpace: 'nowrap',
     fontWeight: 'bold',
   },
+  link: {
+    fontSize: 16,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
 });

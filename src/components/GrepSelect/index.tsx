@@ -62,7 +62,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       <InputLabel
         htmlFor={id}
         ref={inputLabel}
-        style={{ width: 'max-content' }}
+        style={{ minWidth: 'max-content', overflow: 'visible' }}
       >
         {label}
       </InputLabel>

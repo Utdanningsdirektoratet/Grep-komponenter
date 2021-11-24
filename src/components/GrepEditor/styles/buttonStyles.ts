@@ -1,6 +1,6 @@
-import { makeStyles } from '../../../../styling';
+import { makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles()({
+export const useButtonStyles = makeStyles()({
   btn: {
     backgroundColor: 'white',
 
