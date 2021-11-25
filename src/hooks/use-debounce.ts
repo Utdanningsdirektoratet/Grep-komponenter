@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import _ from 'lodash';
+import _debounce from 'lodash.debounce';
 
 interface Options extends _.DebounceSettings {
   wait: number;
@@ -29,7 +29,7 @@ export const useDebounce = <T extends (...args: any) => any>(
 ): Debounce<T> => {
   const debounce = useMemo(() => {
     const { wait, ...settings } = opt;
-    return _.debounce(func, wait, settings);
+    return _debounce(func, wait, settings);
   }, deps || []);
   useEffect(() => debounce.cancel, [debounce]);
   return debounce;
