@@ -1,15 +1,11 @@
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles(() => {
-  return createStyles({
-    root: {
-      listStyle: 'none',
-      padding: 0,
-      '& ul': {
-        fontSize: '.9em',
-      },
+export const useStyles = makeStyles()(() => ({
+  root: {
+    listStyle: 'none',
+    padding: 0,
+    '& ul': {
+      fontSize: '.9em',
     },
-  });
-});
-
-export default useStyles;
+  },
+}));

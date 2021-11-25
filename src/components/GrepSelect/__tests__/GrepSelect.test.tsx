@@ -79,8 +79,8 @@ describe('GrepSelect', () => {
     expect(getByRole('button').className.toLowerCase()).toContain('outlined');
   });
 
-  it('should render correctly with custom margin', () => {
-    const { getByRole } = render(<Component formMargin="dense" />);
-    expect(getByRole('button').className.toLowerCase()).toContain('dense');
+  it('should render correctly with small size', () => {
+    const { getByRole } = render(<Component size="small" />);
+    expect(getByRole('button').className.toLowerCase()).toContain('small');
   });
 });

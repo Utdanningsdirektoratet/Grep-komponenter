@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Inbox from '@material-ui/icons/Inbox';
+import Inbox from '@mui/icons-material/Inbox';
 
 import ContainedLinkList from '..';
 import { NavigationProps } from '../../AppBarNavList';

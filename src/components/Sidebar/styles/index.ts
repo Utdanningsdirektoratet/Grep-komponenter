@@ -1,6 +1,5 @@
-import { Theme } from '@material-ui/core';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { CSSProperties } from '@material-ui/core/styles/withStyles';
+import { CSSProperties } from 'tss-react/tools/types/CSSObject';
+import { makeStyles } from '../../../styling';
 
 const textStyles: CSSProperties = {
   userSelect: 'none',
@@ -9,8 +8,15 @@ const textStyles: CSSProperties = {
   fontSize: 16,
 };
 
-export const useStyles = makeStyles(({ palette }: Theme) =>
-  createStyles({
+export const useStyles = makeStyles()(({ palette }, _props, createRef) => {
+  const text = {
+    ref: createRef(),
+    ...textStyles,
+    color: 'inherit',
+    fontWeight: 400,
+  } as const;
+
+  return {
     container: {
       padding: 10,
       display: 'flex',
@@ -18,23 +24,19 @@ export const useStyles = makeStyles(({ palette }: Theme) =>
     },
     item: {
       cursor: 'pointer',
-      color: palette.text.hint,
+      color: palette.text.disabled,
       outline: 'none',
 
       '&:hover': {
         color: palette.primary.main,
       },
 
-      '&:focus > $text': {
+      [`&:focus .${text.ref}`]: {
         color: palette.primary.main,
         outline: 'auto',
       },
     },
-    text: {
-      ...textStyles,
-      color: 'inherit',
-      fontWeight: 400,
-    },
+    text,
     selected: {
       ...textStyles,
       color: palette.primary.main,
@@ -44,5 +46,5 @@ export const useStyles = makeStyles(({ palette }: Theme) =>
       minWidth: 'fit-content',
       marginRight: 2,
     },
-  }),
-);
+  };
+});

@@ -1,7 +1,8 @@
-import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
 import * as React from 'react';
 import { useHistory } from 'react-router';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+
 import { useMobileStyles } from './styles';
 import { keyboard } from '../../utils';
 
@@ -20,7 +21,7 @@ export interface AppBarNavListProps {
 const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   pages,
 }: AppBarNavListProps) => {
-  const mobileStyles = useMobileStyles({});
+  const { classes } = useMobileStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
@@ -34,7 +35,7 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   };
 
   return (
-    <Box style={{ flexGrow: 1 }} className={mobileStyles.mobileNavList}>
+    <Box style={{ flexGrow: 1 }} className={classes.mobileNavList}>
       <IconButton
         size="medium"
         edge="start"

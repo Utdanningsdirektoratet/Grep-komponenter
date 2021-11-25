@@ -1,19 +1,18 @@
 import * as React from 'react';
+import { Container } from '@mui/material';
 import { storiesOf } from '@storybook/react';
+
 import GrepEditor from '..';
-
-import { ToolbarPropperties } from '../components/toolbars';
+import { makeStyles } from '../../../styling';
 import { InlineButton } from '../components/buttons';
+import { ToolbarPropperties } from '../components/toolbars';
 import { convert2html, convert2txt } from '../misc/utils';
-import { Container, createStyles, makeStyles } from '@material-ui/core';
 
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      background: 'red',
-    },
-  }),
-);
+const useStyles = makeStyles()({
+  root: {
+    background: 'red',
+  },
+});
 
 const myToolbar: React.FunctionComponent<ToolbarPropperties> = ({
   editor,
@@ -44,7 +43,7 @@ storiesOf('GrepEditor', module)
   ))
   .add('Standard', () => <GrepEditor />)
   .add('Custom styles', () => {
-    const classes = useStyles({});
+    const { classes } = useStyles();
 
     return <GrepEditor classes={classes} />;
   })

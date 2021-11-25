@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import GrepSelect, { SelectItem } from '..';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 
 const selectItems: SelectItem[] = [
   {

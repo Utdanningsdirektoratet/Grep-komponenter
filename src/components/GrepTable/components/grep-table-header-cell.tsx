@@ -1,11 +1,8 @@
 import React from 'react';
-import TableSortLabel, {
-  TableSortLabelProps,
-} from '@material-ui/core/TableSortLabel';
-import TableCell from '@material-ui/core/TableCell';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { TableCell, TableSortLabel, TableSortLabelProps } from '@mui/material';
 
 import { TableColumn } from '..';
+import { useTableHeaderStyles } from '../styles';
 
 interface Properties<T> extends TableSortLabelProps {
   column: TableColumn<T>;
@@ -13,26 +10,6 @@ interface Properties<T> extends TableSortLabelProps {
 }
 
 type Component<T> = React.FunctionComponent<Properties<T>>;
-
-interface Styles<T> {
-  column: TableColumn<T>;
-}
-
-export const useStyles = makeStyles(() =>
-  createStyles({
-    th: ({ column }: Styles<any>) => {
-      const width = column.width
-        ? typeof column.width === 'number'
-          ? `${column.width}%`
-          : column.width
-        : undefined;
-      return {
-        width,
-        fontSize: 14,
-      };
-    },
-  }),
-);
 
 export const TableHeaderCell: Component<any> = <T,>({
   column,
@@ -42,8 +19,10 @@ export const TableHeaderCell: Component<any> = <T,>({
   children,
   ...props
 }: Properties<T>) => {
+  const { classes } = useTableHeaderStyles({ column });
+
   const sortable = !!(onSortBy && column.sortable);
-  const classes = useStyles({ column });
+
   if (sortable) {
     return (
       <TableCell variant="head" className={classes.th} {...props}>
@@ -53,6 +32,7 @@ export const TableHeaderCell: Component<any> = <T,>({
       </TableCell>
     );
   }
+
   return (
     <TableCell variant="head" className={classes.th} {...props}>
       {children}

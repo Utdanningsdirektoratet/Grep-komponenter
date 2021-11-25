@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { push } from 'connected-react-router';
-import { Link, Box, Tooltip } from '@material-ui/core';
+import { Link, Box, Tooltip } from '@mui/material';
 import { useStyles } from './styles/styles';
 
 export interface Breadcrumb {
@@ -22,7 +22,7 @@ const GrepCrumbs: React.FC<Props> = ({
   onClick,
   breadcrumbs,
 }: Props) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
   const dispatch = useDispatch();
   const ref = React.useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = React.useState(false);
@@ -46,7 +46,7 @@ const GrepCrumbs: React.FC<Props> = ({
         crumb.path ? (
           <Box key={index} display="flex">
             <Link
-              style={{ fontSize: 16 }}
+              className={classes.link}
               tabIndex={0}
               component="button"
               onClick={(): void => handleClick(crumb)}

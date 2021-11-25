@@ -1,27 +1,15 @@
-import { Colors } from '../../../styling';
-import { Box, List, ListItem, Typography, withStyles } from '@material-ui/core';
+import { Colors, makeStyles } from '../../../styling';
 
-export const Container = withStyles({
-  root: {
+export const useStyles = makeStyles()({
+  container: {
     border: `1px solid ${Colors.lightGrey}`,
     height: 'fit-content',
     width: 'fit-content',
   },
-})(Box);
-
-export const Title = withStyles({
-  root: {
+  title: {
     fontSize: 24,
     padding: 20,
     color: Colors.black,
     whiteSpace: 'nowrap',
   },
-})(Typography);
-
-export const StyledList = withStyles({
-  root: {
-    padding: 0,
-  },
-})(List);
-
-export const StyledListItem = withStyles({})(ListItem);
+});

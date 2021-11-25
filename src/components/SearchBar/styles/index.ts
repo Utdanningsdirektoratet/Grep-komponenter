@@ -1,8 +1,7 @@
-import { Box, TextField, Typography, withStyles } from '@material-ui/core';
-import { Colors } from '../../../styling';
+import { Colors, makeStyles } from '../../../styling';
 
-export const Outer = withStyles({
-  root: {
+export const useStyles = makeStyles()({
+  outer: {
     alignItems: 'center',
     background: Colors.white,
     display: 'flex',
@@ -11,32 +10,13 @@ export const Outer = withStyles({
     marginRight: 'auto',
     boxSizing: 'unset',
   },
-})(Box);
-
-export const IconBox = withStyles({
-  root: {
+  icon: {
     alignItems: 'center',
     display: 'flex',
     height: 48,
     justifyContent: 'center',
     width: 56,
   },
-})(Box);
-
-export const StyledInput = withStyles({
-  root: {
-    border: 0,
-    display: 'block',
-    flex: 1,
-    fontSize: 16,
-    outline: 0,
-  },
-})(TextField);
-
-export const HelpText = withStyles({
-  root: {
-    margin: '0 10px 0 10px',
-    color: Colors.grey,
-    fontSize: 12,
-  },
-})(Typography);
+  input: { border: 0, display: 'block', flex: 1, fontSize: 16, outline: 0 },
+  helptext: { margin: '0 10px 0 10px', color: Colors.grey, fontSize: 12 },
+});

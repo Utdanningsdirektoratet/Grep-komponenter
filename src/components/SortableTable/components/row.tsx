@@ -2,9 +2,9 @@ import React, { useCallback, useMemo } from 'react';
 
 import { Draggable } from 'react-beautiful-dnd';
 
-import TableRow from '@material-ui/core/TableRow';
-import TableCell from '@material-ui/core/TableCell';
-import DragIndicator from '@material-ui/icons/DragIndicator';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import DragIndicator from '@mui/icons-material/DragIndicator';
 
 import SortableTableCell from './cell';
 
@@ -47,10 +47,10 @@ export function SortableTableRow<T>({
       isDragDisabled={disabled}
     >
       {(provided, { isDragging }): JSX.Element => {
-        const styles = makeStyle({ isDragging: isDragging });
+        const { classes } = makeStyle({ isDragging: isDragging });
         return (
           <TableRow
-            className={styles.row}
+            className={classes.row}
             ref={provided.innerRef}
             {...provided.draggableProps}
           >

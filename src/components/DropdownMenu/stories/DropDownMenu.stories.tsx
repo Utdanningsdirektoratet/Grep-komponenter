@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { Button } from '@mui/material';
 import { storiesOf } from '@storybook/react';
-import { DropdownMenuItem, DropdownMenu } from '../..';
 import { useState, useRef } from '@storybook/addons';
-import { Button, createStyles, makeStyles } from '@material-ui/core';
+
+import { DropdownMenuItem, DropdownMenu } from '../..';
+import { makeStyles } from '../../../styling';
 
 interface TestMenuItem {
   label: string;
@@ -64,18 +66,29 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
       },
     ],
   },
+  {
+    label: 'Test 4',
+    disabled: true,
+    tooltipText: 'This is a tooltip',
+    handleClick: () => console.log('clicked '),
+    children: [
+      {
+        label: 'Test 4-1',
+        handleClick: () => console.log('clicked '),
+      },
+    ],
+  },
 ];
 
 storiesOf('DropdownMenu', module).add('standard', () => {
   const [open, setOpen] = useState(false);
   const menuAnchor = useRef(null);
-  const classes = makeStyles(
-    createStyles({
-      paper: {
-        width: '200px',
-      },
-    }),
-  )({});
+  const { classes } = makeStyles()({
+    paper: {
+      width: '200px',
+    },
+  })();
+
   return (
     <div>
       <Button ref={menuAnchor} onClick={() => setOpen(!open)}>
