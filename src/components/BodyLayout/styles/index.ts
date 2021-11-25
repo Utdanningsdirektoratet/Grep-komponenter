@@ -1,5 +1,4 @@
-import { Box, withStyles } from '@material-ui/core';
-import { createStyles } from '@material-ui/styles';
+import { Box, withStyles, createStyles } from '@material-ui/core';
 
 export const StyledBodyLayout = withStyles(() =>
   createStyles({

@@ -1,6 +1,5 @@
-import { Box, TextField, withStyles } from '@material-ui/core';
+import { Box, TextField, withStyles, createStyles } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles/createTheme';
-import { createStyles } from '@material-ui/styles';
 
 export const Container = withStyles((theme: Theme) =>
   createStyles({

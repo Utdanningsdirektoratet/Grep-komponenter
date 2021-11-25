@@ -1,6 +1,5 @@
 import Info from '@material-ui/icons/Info';
-import { Box, Typography, withStyles } from '@material-ui/core';
-import { createStyles } from '@material-ui/styles';
+import { Box, Typography, withStyles, createStyles } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles/createTheme';
 
 export const Container = withStyles((theme: Theme) =>
