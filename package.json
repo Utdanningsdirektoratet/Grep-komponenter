@@ -78,6 +78,8 @@
     ]
   },
   "peerDependencies": {
+    "@emotion/react": "^11.6.x",
+    "@emotion/styled": "^11.6.x",
     "connected-react-router": "6.x",
     "dayjs": "^1.x",
     "history": "4.x",
@@ -94,6 +96,8 @@
     "@babel/core": "^7.7.7",
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -177,8 +181,6 @@
     "@babel/preset-env": "7.5.5"
   },
   "dependencies": {
-    "@emotion/react": "^11.6.0",
-    "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.56",
     "@mui/material": "^5.2.0",
