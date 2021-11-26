@@ -20,7 +20,9 @@ export default {
     },
   ],
   plugins: [
-    external(),
+    external({
+      includeDependencies: true,
+    }),
     url(),
     json({
       exclude: ['node_modules/**'],
