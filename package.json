@@ -78,8 +78,6 @@
     ]
   },
   "peerDependencies": {
-    "@emotion/react": "^11.6.x",
-    "@emotion/styled": "^11.6.x",
     "connected-react-router": "6.x",
     "dayjs": "^1.x",
     "history": "4.x",
@@ -163,6 +161,7 @@
     "react-scripts": "^4.0.3",
     "rollup": "^2.3.3",
     "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-internal": "^1.0.4",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^4.0.1",
     "rollup-plugin-typescript2": "^0.30.0",
