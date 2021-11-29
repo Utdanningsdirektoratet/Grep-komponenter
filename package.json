@@ -136,7 +136,7 @@
     "babel-loader": "^8.0.6",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-runtime": "^6.26.0",
-    "chalk": "^4.0.0",
+    "chalk": "^5.0.0",
     "clsx": "^1.1.0",
     "commitlint": "^15.0.0",
     "connected-react-router": "^6.6.1",
