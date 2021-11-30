@@ -14,7 +14,14 @@ import { ParseableDate } from '../../utils/dateHelper';
 
 type InputProps = Pick<
   TextFieldProps,
-  'id' | 'variant' | 'label' | 'fullWidth' | 'placeholder' | 'helperText'
+  | 'id'
+  | 'variant'
+  | 'label'
+  | 'fullWidth'
+  | 'placeholder'
+  | 'helperText'
+  | 'required'
+  | 'onFocus'
 >;
 
 export interface GrepDatePickerProps
@@ -33,6 +40,8 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   errorMessage,
   placeholder,
   fullWidth,
+  required,
+  onFocus,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
@@ -81,6 +90,8 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
             {...params}
             label={label}
             variant={variant}
+            onFocus={onFocus}
+            required={required}
             fullWidth={fullWidth}
             placeholder={placeholder}
             error={!!error || !!errorMessage}
