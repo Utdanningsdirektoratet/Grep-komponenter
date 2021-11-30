@@ -21,6 +21,7 @@ export interface GrepSelectProps extends SelectProps {
   helperText?: string;
   errorMessage?: string;
   selectItems: SelectItem[];
+  unselectOption?: boolean;
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -32,6 +33,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
   }, []);
 
   const {
+    unselectOption = true,
     errorMessage,
     selectItems,
     helperText,
@@ -85,9 +87,11 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
           },
         }}
       >
-        <MenuItem value="">
-          <em>Fjern valgt</em>
-        </MenuItem>
+        {unselectOption && (
+          <MenuItem value="">
+            <em>Fjern valgt</em>
+          </MenuItem>
+        )}
         {selectItems.map(({ label, value, disabled }, i) => (
           <MenuItem key={i} value={value} disabled={disabled}>
             {label ? label : value}
