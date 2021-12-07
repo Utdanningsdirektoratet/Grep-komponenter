@@ -56,7 +56,7 @@ export const StyledTab = withStyles((theme: Theme) =>
       },
       [theme.breakpoints.up('lg')]: {
         minWidth: 160,
-        padding: "12px"
+        padding: '12px',
       },
     },
   }),
