@@ -155,7 +155,7 @@ export const CollapsableMenuItem: FunctionComponent<
       <TooltipMenuItem
         className={styles.root}
         tooltipText={tooltipText}
-        onMouseOver={(e) => e.currentTarget.focus()}
+        onMouseOver={(e: any) => e.currentTarget.focus()}
       >
         {renderInner()}
       </TooltipMenuItem>
