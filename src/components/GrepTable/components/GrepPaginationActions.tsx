@@ -14,7 +14,7 @@ type WithStylesProps = WithStyles<typeof actionsStyles>;
 
 export type PaginationActionsProps = {
   count: number;
-  onPageChange: (
+  onChangePage: (
     event: React.MouseEvent<HTMLElement> | null,
     page: number,
   ) => void;
@@ -53,20 +53,20 @@ class PaginationActions extends React.Component<Props> {
   private handleBackButtonClick = (
     event: React.MouseEvent<HTMLElement> | null,
   ) => {
-    this.props.onPageChange(event, this.props.page - 1);
+    this.props.onChangePage(event, this.props.page - 1);
   };
 
   private handleNextButtonClick = (
     event: React.MouseEvent<HTMLElement> | null,
   ) => {
-    this.props.onPageChange(event, this.props.page + 1);
+    this.props.onChangePage(event, this.props.page + 1);
   };
 
   private handlePageButtonClick = (
     event: React.MouseEvent<HTMLElement> | null,
     page: number,
   ) => {
-    this.props.onPageChange(event, page);
+    this.props.onChangePage(event, page);
   };
 
   private getPageNumbers = (
