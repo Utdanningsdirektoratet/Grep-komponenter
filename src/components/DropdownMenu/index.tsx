@@ -69,6 +69,7 @@ export default <T,>({
           horizontal: 'center',
         }
       }
+      getContentAnchorEl={null}
     >
       {menuItems.map(renderChild())}
     </Menu>
