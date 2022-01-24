@@ -7,6 +7,7 @@ export const useStyles = makeStyles(({ breakpoints }) =>
       backgroundColor: 'rgb(241, 243, 244)',
       height: 'fit-content',
       display: 'flex',
+      maxWidth: 500,
       [breakpoints.down('md')]: {
         maxWidth: 'unset',
         width: '100%',
