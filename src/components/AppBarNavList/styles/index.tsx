@@ -19,9 +19,13 @@ export const useStyles = makeStyles()((theme) => ({
     '&:focus': {
       opacity: 1,
     },
-    [theme.breakpoints.down('xl')]: {
+    [theme.breakpoints.down('lg')]: {
       minWidth: 120,
       marginRight: 0,
+    },
+    [theme.breakpoints.up('lg')]: {
+      minWidth: 160,
+      padding: '12px',
     },
     [theme.breakpoints.up('lg')]: {
       minWidth: 160,

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Info } from '@mui/icons-material';
-import { Box, Typography } from '@mui/material';
-
 import { useStyles } from './styles';
+import { Box, Typography } from '@mui/material';
 
 const GDPR: React.FC = (props) => {
   const { classes } = useStyles();
