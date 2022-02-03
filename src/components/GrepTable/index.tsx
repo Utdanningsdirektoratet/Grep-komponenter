@@ -21,7 +21,7 @@ import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
 import { makeStyles } from '../../styling';
 
-export interface TableColumn<T> extends Pick<TableCellProps, 'padding'> {
+export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   label?: string | JSX.Element;
   width?: number | string;
   colDef?: string;

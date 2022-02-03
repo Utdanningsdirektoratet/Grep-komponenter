@@ -48,6 +48,7 @@ export const TableHeader: Component<any> = <T,>({
                 }
               })}
               onSortBy={onSortBy}
+              sx={column.sx}
             >
               {label}
             </TableHeaderCell>
