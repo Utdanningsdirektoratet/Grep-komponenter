@@ -69,7 +69,6 @@ const DropdownMenu = <T,>({
           horizontal: 'center',
         }
       }
-      getContentAnchorEl={null}
     >
       {menuItems.map(renderChild())}
     </Menu>
