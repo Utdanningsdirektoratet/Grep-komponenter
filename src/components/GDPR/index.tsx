@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Info } from '@material-ui/icons';
-import { Box, Typography } from '@material-ui/core';
+import { Info } from '@mui/icons-material';
 import { useStyles } from './styles';
+import { Box, Typography } from '@mui/material';
 
 const GDPR: React.FC = (props) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <Box className={classes.container}>
@@ -13,7 +13,7 @@ const GDPR: React.FC = (props) => {
         <Typography className={classes.title}>
           Personlig informasjon og personvern
         </Typography>
-        <Typography component="div">{props.children}</Typography>
+        <Typography className={classes.body}>{props.children}</Typography>
       </Box>
     </Box>
   );

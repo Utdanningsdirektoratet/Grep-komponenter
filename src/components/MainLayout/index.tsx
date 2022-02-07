@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { StyledMainLayout } from './styles';
+import { Box } from '@mui/material';
 
 export interface MainLayoutProps {
   children: React.ReactNode;
 }
 
 const MainLayout: React.FC<MainLayoutProps> = (props) => (
-  <StyledMainLayout>{props.children}</StyledMainLayout>
+  <Box display="flex" flex="1" flexDirection="column">
+    {props.children}
+  </Box>
 );
 
 export default MainLayout as React.ComponentType<MainLayoutProps>;

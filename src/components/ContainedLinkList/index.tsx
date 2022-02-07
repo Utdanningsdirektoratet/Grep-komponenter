@@ -1,12 +1,14 @@
 import * as React from 'react';
+import ListItemIcon from '@mui/material/ListItemIcon';
 import {
-  Container,
-  Title,
-  StyledListItem,
-  StyledList,
-} from './styles';
-import ListItemIcon from '@material-ui/core/ListItemIcon/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText/ListItemText';
+  Box,
+  List,
+  ListItem,
+  Typography,
+  ListItemText,
+} from '@mui/material';
+
+import { useStyles } from './styles';
 import { NavigationProps } from '..';
 
 interface Props {
@@ -16,23 +18,27 @@ interface Props {
   onPageClick: (page: NavigationProps) => void;
 }
 
-const ContainedLinkList: React.FC<Props> = (props) => (
-  <Container style={props.style}>
-    <Title>{props.title}</Title>
-    <StyledList>
-      {props.pages.map((page) => (
-        <StyledListItem
-          button
-          divider
-          key={page.id}
-          onClick={() => props.onPageClick(page)}
-        >
-          {page.linkIcon && <ListItemIcon>{page.linkIcon}</ListItemIcon>}
-          <ListItemText primary={page.label} />
-        </StyledListItem>
-      ))}
-    </StyledList>
-  </Container>
-);
+const ContainedLinkList: React.FC<Props> = (props) => {
+  const { classes } = useStyles();
+
+  return (
+    <Box className={classes.container} style={props.style}>
+      <Typography className={classes.title}>{props.title}</Typography>
+      <List style={{ padding: 0 }}>
+        {props.pages.map((page) => (
+          <ListItem
+            button
+            divider
+            key={page.id}
+            onClick={() => props.onPageClick(page)}
+          >
+            {page.linkIcon && <ListItemIcon>{page.linkIcon}</ListItemIcon>}
+            <ListItemText primary={page.label} />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+};
 
 export default ContainedLinkList as React.ComponentType<Props>;

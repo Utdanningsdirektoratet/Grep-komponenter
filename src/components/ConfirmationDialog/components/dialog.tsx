@@ -6,7 +6,7 @@ import {
   DialogActions,
   DialogContentText,
   Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import { useStyles } from '../styles';
 
 export interface ConfirmationOptions {
@@ -32,7 +32,7 @@ export const ConfirmationDialog: React.FC<Props> = ({
   confirmText = 'OK',
   cancelText = 'Avbryt',
 }) => {
-  const classes = useStyles({});
+  const { classes } = useStyles();
 
   return (
     <Dialog open={open}>
@@ -44,11 +44,7 @@ export const ConfirmationDialog: React.FC<Props> = ({
         <Button color="primary" onClick={onCancel}>
           {cancelText}
         </Button>
-        <Button
-          color="primary"
-          className={warning ? classes.discard : ''}
-          onClick={onSubmit}
-        >
+        <Button className={warning ? classes.discard : ''} onClick={onSubmit}>
           {confirmText}
         </Button>
       </DialogActions>

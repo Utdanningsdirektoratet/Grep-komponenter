@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useState } from '@storybook/addons';
-import { Checkbox, Box, FormControlLabel } from '@material-ui/core';
+import { Checkbox, Box, FormControlLabel } from '@mui/material';
 
 import SortableTable from '..';
 

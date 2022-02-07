@@ -1,8 +1,8 @@
 import * as React from 'react';
 import useStyles from './styles';
-import Close from '@material-ui/icons/Close';
-import Warning from '@material-ui/icons/Warning';
-import { Box, Typography, IconButton } from '@material-ui/core';
+import Close from '@mui/icons-material/Close';
+import Warning from '@mui/icons-material/Warning';
+import { Box, Typography, IconButton } from '@mui/material';
 
 type Props = {
   id: number;
@@ -11,8 +11,8 @@ type Props = {
   onDismiss?: (id: number) => void;
 };
 
-export default ({ id, message, isPublic, onDismiss }: Props) => {
-  const classes = useStyles({});
+const ServiceMessage = ({ id, message, isPublic, onDismiss }: Props) => {
+  const { classes } = useStyles();
 
   return (
     <Box className={classes.message}>
@@ -22,10 +22,12 @@ export default ({ id, message, isPublic, onDismiss }: Props) => {
       </Typography>
       <Typography className={classes.messageText}>{message}</Typography>
       {!isPublic && onDismiss && (
-        <IconButton className={classes.button} onClick={() => onDismiss(id)}>
+        <IconButton className={classes.button} onClick={() => onDismiss(id)} size="large">
           <Close className={classes.close} />
         </IconButton>
       )}
     </Box>
   );
 };
+
+export default ServiceMessage;

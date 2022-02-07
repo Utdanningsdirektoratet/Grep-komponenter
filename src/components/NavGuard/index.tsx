@@ -3,14 +3,14 @@ import { useDispatch } from 'react-redux';
 import { Prompt } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { Location } from 'history';
-
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import { useStyles } from './styles';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  Button,
+} from '@mui/material';
 
 export interface NavGuardProperties {
   when: boolean;
@@ -24,7 +24,7 @@ export interface NavGuardProperties {
   onSave?: () => void;
 }
 
-export default ({
+const NavGuard = ({
   when,
   title,
   txt,
@@ -40,7 +40,6 @@ export default ({
   const [lastLocation, setLastLocation] = React.useState<Location>();
 
   const dispatch = useDispatch();
-  const classes = useStyles({});
 
   const handleCancel = () => {
     setLeave(false);
@@ -85,10 +84,10 @@ export default ({
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCancel} autoFocus>
+          <Button onClick={handleCancel} autoFocus color="inherit">
             {txtCancel}
           </Button>
-          <Button onClick={handleDiscard} className={classes.discard}>
+          <Button onClick={handleDiscard} color="error">
             {txtDiscard}
           </Button>
           {onSave && (
@@ -101,3 +100,5 @@ export default ({
     </React.Fragment>
   );
 };
+
+export default NavGuard;

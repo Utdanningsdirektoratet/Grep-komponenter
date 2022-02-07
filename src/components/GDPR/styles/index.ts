@@ -1,33 +1,37 @@
-import { makeStyles } from '@material-ui/core';
-import { createStyles } from '@material-ui/styles';
+import { makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles(({ breakpoints }) =>
-  createStyles({
-    container: {
-      backgroundColor: 'rgb(241, 243, 244)',
-      height: 'fit-content',
-      display: 'flex',
-      maxWidth: 500,
-      [breakpoints.down('md')]: {
-        maxWidth: 'unset',
-        width: '100%',
-      },
-      [breakpoints.up('md')]: {
-        maxWidth: 500,
-      },
+export const useStyles = makeStyles()((theme) => ({
+  container: {
+    backgroundColor: 'rgb(241, 243, 244)',
+    height: 'fit-content',
+    display: 'flex',
+    maxWidth: 500,
+    [theme.breakpoints.down('lg')]: {
+      maxWidth: 'unset',
+      width: '100%',
     },
-    content: {
-      backgroundColor: 'unset',
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 500,
+    },
+  },
+  content: {
+    backgroundColor: 'unset',
+    marginRight: 20,
+  },
+  title: {
+    backgroundColor: 'unset',
+    fontSize: 16,
+    margin: '20px 0',
+  },
+  body: {
+    backgroundColor: 'unset',
+
+    h4: {
       marginRight: 20,
     },
-    icon: {
-      margin: '20px 10px',
-      color: 'rgb(255, 158, 157)',
-    },
-    title: {
-      backgroundColor: 'unset',
-      fontSize: 16,
-      margin: '20px 0',
-    },
-  }),
-);
+  },
+  icon: {
+    margin: '20px 10px',
+    color: 'rgb(255, 158, 157)',
+  },
+}));

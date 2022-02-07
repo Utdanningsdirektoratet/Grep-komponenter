@@ -5,10 +5,10 @@ import {
   DropResult,
   DroppableProvided,
 } from 'react-beautiful-dnd';
-import TableBody from '@material-ui/core/TableBody';
-import Table from '@material-ui/core/Table';
-import { TableHead, TableRow } from '@material-ui/core';
-import { TableCellProps } from '@material-ui/core/TableCell';
+import TableBody from '@mui/material/TableBody';
+import Table from '@mui/material/Table';
+import { TableHead, TableRow } from '@mui/material';
+import { TableCellProps } from '@mui/material/TableCell';
 
 import TableCell from './components/cell';
 import SortableTableRow from './components/row';

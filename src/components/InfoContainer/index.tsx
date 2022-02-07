@@ -1,14 +1,9 @@
 import * as React from 'react';
-import {
-  Container,
-  InfoHeader,
-  InfoField,
-  InfoKey,
-  InfoValue,
-  HorizontalContainer,
-} from './styles';
+import { Box, Typography } from '@mui/material';
 
-export interface InfoField {
+import { Colors } from '../../styling';
+
+export interface InfoFieldType {
   key: string;
   value: string;
 }
@@ -16,33 +11,42 @@ export interface InfoField {
 interface InfoProps {
   header?: string;
   inline?: boolean;
-  infoFields: InfoField[];
+  infoFields: InfoFieldType[];
   style?: React.CSSProperties;
 }
 
-const renderField = (field: InfoField) => (
-  <InfoField key={field.key}>
-    <InfoKey>{field.key}:</InfoKey>
-    <InfoValue>{field.value}</InfoValue>
-  </InfoField>
+const renderField = ({ key, value }: InfoFieldType) => (
+  <Box key={key} display="flex" marginRight="20px">
+    <Typography
+      variant="body1"
+      style={{ color: Colors.grey, marginRight: '2rem' }}
+    >
+      {key}:
+    </Typography>
+    <Typography variant="body1">{value}</Typography>
+  </Box>
 );
 
-const renderHorizontal = (infoFields: InfoField[]) => (
-  <HorizontalContainer>
-    {infoFields.map((field: InfoField) => renderField(field))}
-  </HorizontalContainer>
+const renderHorizontal = (infoFields: InfoFieldType[]) => (
+  <Box display="flex" flexWrap="wrap" justifyContent="space-between">
+    {infoFields.map(renderField)}
+  </Box>
 );
 
-const renderVertical = (infoFields: InfoField[]) =>
-  infoFields.map((field: InfoField) => renderField(field));
+const renderVertical = (infoFields: InfoFieldType[]) =>
+  infoFields.map(renderField);
 
 const InfoContainer: React.FC<InfoProps> = (props) => (
-  <Container style={props.style}>
-    {props.header && <InfoHeader>{props.header}</InfoHeader>}
+  <Box style={{ paddingTop: 20, ...props.style }}>
+    {props.header && (
+      <Typography variant="h6" style={{ paddingBottom: 10 }}>
+        {props.header}
+      </Typography>
+    )}
     {props.inline
       ? renderHorizontal(props.infoFields)
       : renderVertical(props.infoFields)}
-  </Container>
+  </Box>
 );
 
 export default InfoContainer as React.ComponentType<InfoProps>;

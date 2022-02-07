@@ -1,10 +1,14 @@
 import * as React from 'react';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select, { SelectProps } from '@material-ui/core/Select';
-import { Input, FormHelperText, PropTypes } from '@material-ui/core';
+import {
+  Input,
+  Select,
+  SelectProps,
+  MenuItem,
+  InputLabel,
+  OutlinedInput,
+  FormControl,
+  FormHelperText,
+} from '@mui/material';
 
 export interface SelectItem {
   value: string | number;
@@ -17,7 +21,7 @@ export interface GrepSelectProps extends SelectProps {
   helperText?: string;
   errorMessage?: string;
   selectItems: SelectItem[];
-  formMargin?: PropTypes.Margin;
+  unselectOption?: boolean;
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -29,16 +33,17 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
   }, []);
 
   const {
+    unselectOption = true,
     errorMessage,
     selectItems,
     helperText,
-    formMargin,
     fullWidth,
     outlined,
     disabled,
     required,
     label,
     value,
+    size,
     id,
     ...rest
   } = props;
@@ -48,18 +53,18 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
   return (
     <FormControl
       variant={outlined ? 'outlined' : 'standard'}
-      margin={formMargin ? formMargin : 'normal'}
       className={props.className}
       fullWidth={fullWidth}
       required={required}
       style={props.style}
       error={error}
+      size={size}
       disabled={disabled}
     >
       <InputLabel
         htmlFor={id}
         ref={inputLabel}
-        style={{ width: 'max-content' }}
+        style={{ minWidth: 'max-content', overflow: 'visible' }}
       >
         {label}
       </InputLabel>
@@ -69,7 +74,8 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
         disabled={!selectItems || disabled}
         value={value === null ? '' : value}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
-        input={outlined ? <OutlinedInput labelWidth={labelWidth} /> : <Input />}
+        // @todo: make input respect label length
+        input={outlined ? <OutlinedInput label={label} /> : <Input />}
         MenuProps={{
           anchorOrigin: {
             vertical: 'bottom',
@@ -79,12 +85,13 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
             vertical: 'top',
             horizontal: 'center',
           },
-          getContentAnchorEl: null,
         }}
       >
-        <MenuItem value="">
-          <em>Fjern valgt</em>
-        </MenuItem>
+        {unselectOption && (
+          <MenuItem value="">
+            <em>Fjern valgt</em>
+          </MenuItem>
+        )}
         {selectItems.map(({ label, value, disabled }, i) => (
           <MenuItem key={i} value={value} disabled={disabled}>
             {label ? label : value}
