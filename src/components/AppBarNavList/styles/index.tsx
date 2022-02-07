@@ -1,6 +1,7 @@
+import { Theme } from '@mui/material';
 import { makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles()((theme) => ({
+export const useStyles = makeStyles()((theme: Theme) => ({
   tabs: {
     margin: 'auto 0',
     [theme.breakpoints.down('xl')]: {
@@ -22,6 +23,11 @@ export const useStyles = makeStyles()((theme) => ({
     [theme.breakpoints.down('lg')]: {
       minWidth: 120,
       marginRight: 0,
+    },
+
+    [theme.breakpoints.up('lg')]: {
+      minWidth: 160,
+      padding: '12px',
     },
     [theme.breakpoints.up('lg')]: {
       minWidth: 160,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Box, IconButton, Menu, MenuItem } from '@mui/material';
 
