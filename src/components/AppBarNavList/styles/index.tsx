@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { withStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core';
+import { withStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 
@@ -44,7 +44,7 @@ export const StyledTab = withStyles((theme: Theme) =>
     root: {
       textTransform: 'uppercase',
       color: theme.palette.primary.main,
-      fontWeight: theme.typography.fontWeightBold,
+      fontWeight: 'bold',
       fontSize: theme.typography.subtitle1.fontSize,
       marginRight: theme.spacing(1),
       '&:focus': {
@@ -56,7 +56,7 @@ export const StyledTab = withStyles((theme: Theme) =>
       },
       [theme.breakpoints.up('lg')]: {
         minWidth: 160,
-        padding: "12px"
+        padding: '12px',
       },
     },
   }),
