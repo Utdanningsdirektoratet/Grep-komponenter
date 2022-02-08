@@ -72,4 +72,13 @@ storiesOf('GrepEditor', module)
         console.log(convert2html(c));
       }}
     />
+  ))
+  .add('Disable pasting', () => (
+    <GrepEditor
+      blockPasting
+      onContentChange={(c) => {
+        console.log(convert2txt(c));
+        console.log(convert2html(c));
+      }}
+    />
   ));
