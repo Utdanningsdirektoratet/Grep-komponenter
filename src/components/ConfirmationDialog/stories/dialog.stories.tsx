@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { ConfirmationServiceProvider, useConfirmation } from '..';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 const Component: React.FC<{ warning?: boolean }> = ({ warning }) => {
   const confirm = useConfirmation();

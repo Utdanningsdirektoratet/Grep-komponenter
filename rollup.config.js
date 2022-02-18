@@ -4,6 +4,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
+import internal from 'rollup-plugin-internal';
 
 import yalc from './rollup-plugin-yalc';
 
@@ -20,7 +21,9 @@ export default {
     },
   ],
   plugins: [
-    external(),
+    external({
+      includeDependencies: true,
+    }),
     url(),
     json({
       exclude: ['node_modules/**'],
@@ -37,6 +40,7 @@ export default {
       sourceMap: false,
       include: 'node_modules/**',
     }),
+    internal(['@emotion/react']),
     yalc(process.env.yalc),
   ],
 };

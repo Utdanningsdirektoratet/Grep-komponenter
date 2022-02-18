@@ -3,13 +3,13 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import GrepDateRange from '..';
-import { DatePickerProps } from '../../GrepDatePicker';
+import { GrepDatePickerProps } from '../../GrepDatePicker';
 
-const fromDateProps: Omit<DatePickerProps, 'onChange'> = {
+const fromDateProps: Omit<GrepDatePickerProps, 'onChange'> = {
   label: 'from',
 };
 
-const toDateProps: Omit<DatePickerProps, 'onChange'> = {
+const toDateProps: Omit<GrepDatePickerProps, 'onChange'> = {
   label: 'to',
 };
 
@@ -42,8 +42,13 @@ describe('GrepDateRange', () => {
     expect(getByText(/dato må være før/i)).toBeInTheDocument();
     expect(getByText(/dato må være etter/i)).toBeInTheDocument();
 
-    expect(getByText(String(fromDateProps.label))).toHaveClass('Mui-error');
-    expect(getByText(String(toDateProps.label))).toHaveClass('Mui-error');
+    expect(
+      getByText(String(fromDateProps.label), { ignore: 'span' }),
+    ).toHaveClass('Mui-error');
+
+    expect(
+      getByText(String(toDateProps.label), { ignore: 'span' }),
+    ).toHaveClass('Mui-error');
   });
 
   it('should not allow selecting date before from-date', () => {
@@ -60,11 +65,11 @@ describe('GrepDateRange', () => {
     userEvent.click(btns[1]);
 
     expect(getByRole('button', { name: /12/i }).className).toContain(
-      'dayDisabled',
+      'disabled',
     );
 
     expect(getByRole('button', { name: /15/i }).className).not.toContain(
-      'dayDisabled',
+      'disabled',
     );
   });
 
@@ -82,11 +87,11 @@ describe('GrepDateRange', () => {
     userEvent.click(btns[0]);
 
     expect(getByRole('button', { name: /15/i }).className).toContain(
-      'dayDisabled',
+      'disabled',
     );
 
     expect(getByRole('button', { name: /12/i }).className).not.toContain(
-      'dayDisabled',
+      'disabled',
     );
   });
 });

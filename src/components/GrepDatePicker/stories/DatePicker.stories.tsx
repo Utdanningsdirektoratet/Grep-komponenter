@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import DatePicker from '..';
+import { LocalizationProvider } from '@mui/lab';
+import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import { Button, Box, Container } from '@mui/material';
 
-import DateUtils from '@date-io/dayjs';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { Button, Box, Container } from '@material-ui/core';
 import { ParseableDate, DateTime } from '../../../utils';
+import DatePicker from '..';
 
 const TestDatePicker = () => {
   const [value, setValue] = React.useState<ParseableDate | null>(
@@ -15,7 +15,7 @@ const TestDatePicker = () => {
     <Box display="flex" flexDirection="column">
       <DatePicker
         label="Med feilmelding"
-        inputVariant="standard"
+        variant="standard"
         errorMessage="Feilmelding"
         value={value}
         onChange={(date) => {
@@ -39,9 +39,9 @@ storiesOf('GrepDatePicker', module)
         justifyContent: 'space-between',
       }}
     >
-      <MuiPickersUtilsProvider utils={DateUtils} locale={'nb'}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} locale={'nb'}>
         {storyFn()}
-      </MuiPickersUtilsProvider>
+      </LocalizationProvider>
     </Container>
   ))
   .add('Standard', () => {
@@ -50,13 +50,13 @@ storiesOf('GrepDatePicker', module)
         <TestDatePicker />
         <DatePicker
           label="Med hjelpetekst"
-          inputVariant="standard"
+          variant="standard"
           helperText="Hjelpetekst"
           onChange={(date) => console.log(date)}
         />
         <DatePicker
           label="Med placeholder"
-          inputVariant="standard"
+          variant="standard"
           placeholder="25/04/2019"
           onChange={(date) => console.log(date)}
         />

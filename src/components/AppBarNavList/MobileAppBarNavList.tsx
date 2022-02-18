@@ -1,9 +1,10 @@
-import { Box, IconButton, Menu, MenuItem } from '@material-ui/core';
-import { Menu as MenuIcon } from '@material-ui/icons';
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+
 import { useMobileStyles } from './styles';
-import { Utils } from '../..';
+import { keyboard } from '../../utils';
 
 export interface NavigationProps {
   id: number;
@@ -20,7 +21,7 @@ export interface AppBarNavListProps {
 const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   pages,
 }: AppBarNavListProps) => {
-  const mobileStyles = useMobileStyles({});
+  const { classes } = useMobileStyles();
   const history = useHistory();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
@@ -34,7 +35,7 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   };
 
   return (
-    <Box style={{ flexGrow: 1 }} className={mobileStyles.mobileNavList}>
+    <Box style={{ flexGrow: 1 }} className={classes.mobileNavList}>
       <IconButton
         size="medium"
         edge="start"
@@ -61,7 +62,7 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
               handleCloseNav();
               history.push(page?.toUrl || '');
             }}
-            onKeyDown={Utils.keyboard.onActivation(() =>
+            onKeyDown={keyboard.onActivation(() =>
               history.push(page?.toUrl || ''),
             )}
           >

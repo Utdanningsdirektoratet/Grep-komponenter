@@ -6,10 +6,11 @@ import {
   ListItemIcon,
   Divider,
   Box,
-} from '@material-ui/core';
-import { ArrowForward } from '@material-ui/icons';
+  Typography,
+} from '@mui/material';
+import { ArrowForward } from '@mui/icons-material';
 
-import { Title } from './styles';
+import { Colors } from '../../styling';
 import { NavigationProps } from '../AppBarNavList';
 
 interface Props {
@@ -20,7 +21,9 @@ interface Props {
 
 const LinkList: React.FC<Props> = (props) => (
   <Box width="100%" flexDirection="column">
-    <Title>{props.title}</Title>
+    <Typography style={{ fontSize: 24, color: Colors.black, marginBottom: 20 }}>
+      {props.title}
+    </Typography>
     <List>
       {props.pages.map((page) => (
         <Box key={page.id}>

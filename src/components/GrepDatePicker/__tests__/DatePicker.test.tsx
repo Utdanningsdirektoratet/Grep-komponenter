@@ -49,37 +49,34 @@ describe('GrepDatePicker', () => {
 
     expect(screen.queryByRole('dialog')).toBeFalsy();
 
-    userEvent.click(getByRole('button'));
+    // Open datepicker
+    userEvent.click(getByRole('button', { name: 'Choose date' }));
 
-    const clearBtn = getByRole('button', { name: 'Clear' });
-    const cancelBtn = getByRole('button', { name: 'Cancel' });
-    const okBtn = getByRole('button', { name: 'OK' });
+    const dialog = getByRole('dialog');
+    expect(dialog).toBeVisible();
 
-    expect(clearBtn).toBeVisible();
-    expect(cancelBtn).toBeVisible();
-    expect(okBtn).toBeVisible();
+    // Close dialog
+    userEvent.keyboard('{esc}');
 
-    userEvent.click(cancelBtn);
-
-    await waitForElementToBeRemoved(() => screen.queryAllByRole('dialog'));
-  }, 15000);
+    await waitForElementToBeRemoved(dialog);
+  });
 
   it('should open with todays date selected', () => {
-    const { getByText, getByRole, getAllByRole } = render(<Component />);
+    const { getByText, getByRole } = render(<Component />);
 
-    const date = dayjs().format('D');
-    const monthAndYear = dayjs().format('MMMM YYYY');
+    const today = dayjs().format('D. MMM YYYY');
+    const month = dayjs().format('MMMM');
+    const year = dayjs().format('YYYY');
 
-    userEvent.click(getByRole('button'));
+    // Open datepicker
+    userEvent.click(getByRole('button', { name: 'Choose date' }));
 
-    expect(getByText(monthAndYear)).toBeInTheDocument();
+    expect(getByText(month)).toBeInTheDocument();
+    expect(getByText(year)).toBeInTheDocument();
 
-    const buttons = getAllByRole('button', { name: date }).filter(
-      (b) => !b.className.includes('MuiPickersDay-hidden'),
+    expect(getByRole('button', { name: today })).toHaveClass(
+      'MuiPickersDay-today',
     );
-
-    expect(buttons).toHaveLength(1);
-    expect(buttons[0]).toHaveClass('MuiPickersDay-daySelected');
   });
 
   it('should handle picking a date', async () => {
@@ -88,10 +85,11 @@ describe('GrepDatePicker', () => {
     const date = dayjs().set('date', 13);
     const dateToSelect = date.format('DD/MM/YYYY');
 
-    userEvent.click(getByRole('button'));
+    // Open datepicker
+    userEvent.click(getByRole('button', { name: 'Choose date' }));
 
+    // Select date by day (13th)
     userEvent.click(getByText(date.format('D')));
-    userEvent.click(getByText('OK'));
 
     await waitForElementToBeRemoved(() => screen.queryAllByRole('dialog'));
 

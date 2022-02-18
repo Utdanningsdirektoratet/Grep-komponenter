@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { GrepDialogServiceProvider, useGrepDialog } from '..';
-import { Button, DialogContentText } from '@material-ui/core';
+import { Button, DialogContentText } from '@mui/material';
 
 const Component: React.FC<{ actions?: JSX.Element[] }> = ({ actions }) => {
   const open = useGrepDialog();

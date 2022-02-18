@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Container } from '@material-ui/core';
+import { Container } from '@mui/material';
 import SearchBar from '..';
 
 storiesOf('SearchBar', module).add('standard', () => (

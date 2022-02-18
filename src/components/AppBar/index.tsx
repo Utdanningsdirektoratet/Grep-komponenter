@@ -1,7 +1,5 @@
 import * as React from 'react';
-import Slide from '@material-ui/core/Slide';
-import Toolbar from '@material-ui/core/Toolbar';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import { Slide, Toolbar, useScrollTrigger } from '@mui/material';
 
 import { StyledAppBar } from './styles';
 

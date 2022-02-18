@@ -1,54 +1,32 @@
 import React from 'react';
-
-import TablePagination, {
-  TablePaginationProps,
-} from '@material-ui/core/TablePagination';
+import { TablePagination, TablePaginationProps } from '@mui/material';
 
 import {
-  PaginationActionsWrapped,
+  PaginationActions,
   PaginationActionsProps,
 } from './GrepPaginationActions';
+import { usePaginationStyles } from '../styles';
 
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+export const GrepTablePagination: React.FunctionComponent<TablePaginationProps> =
+  (props) => {
+    const { classes } = usePaginationStyles();
 
-type Properties = TablePaginationProps;
-
-type Component = React.FunctionComponent<Properties>;
-
-export const useStyles = makeStyles(
-  createStyles({
-    toolbar: {
-      padding: 0,
-      width: '100%',
-      display: 'grid',
-      gridTemplateAreas: "'left right'",
-    },
-    input: {
-      gridArea: 'left',
-      justifySelf: 'start',
-    },
-    caption: {
-      gridArea: 'left',
-      paddingLeft: '60px',
-    },
-    spacer: {
-      display: 'none',
-    },
-  }),
-);
-
-export const GrepTablePagination: Component = (props: Properties) => {
-  const classes = useStyles({});
-  return (
-    <TablePagination
-      classes={classes}
-      rowsPerPageOptions={props.rowsPerPageOptions || [5, 10, 25, 50]}
-      ActionsComponent={(actions) => (
-        <PaginationActionsWrapped {...(actions as PaginationActionsProps)} />
-      )}
-      {...props}
-    />
-  );
-};
+    return (
+      <TablePagination
+        classes={classes}
+        rowsPerPageOptions={props.rowsPerPageOptions || [5, 10, 25, 50]}
+        SelectProps={{
+          style: {
+            gridArea: 'left',
+            justifySelf: 'start',
+          },
+        }}
+        ActionsComponent={(actions) => (
+          <PaginationActions {...(actions as PaginationActionsProps)} />
+        )}
+        {...props}
+      />
+    );
+  };
 
 export default GrepTablePagination;

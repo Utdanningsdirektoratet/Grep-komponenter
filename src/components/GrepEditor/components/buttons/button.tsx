@@ -1,6 +1,6 @@
 import React from 'react';
-import FormatBold from '@material-ui/icons/FormatBold';
-import FormatItalic from '@material-ui/icons/FormatItalic';
+import FormatBold from '@mui/icons-material/FormatBold';
+import FormatItalic from '@mui/icons-material/FormatItalic';
 
 export type InlineStyle = 'BOLD' | 'ITALIC' | 'STRIKETHROUGH' | string;
 
