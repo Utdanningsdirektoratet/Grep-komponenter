@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Container, UserContainer, UserName, UserRole } from './styles';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import ArrowDropdown from '@mui/icons-material/ArrowDropDown';
+import { Box, Button, Typography } from '@mui/material';
 
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import ArrowDropdown from '@material-ui/icons/ArrowDropDown';
-import IconButton from '@material-ui/core/IconButton/IconButton';
+import { useStyles } from './styles';
 
 export interface AppBarProfileProps {
   userRole: string;
@@ -11,17 +11,23 @@ export interface AppBarProfileProps {
   onButtonClick: (args?: any) => void;
 }
 
-const AppBarProfile: React.FC<AppBarProfileProps> = (props) => (
-  <Container>
-    <AccountCircle color="primary" />
-    <UserContainer>
-      <UserName>{props.fullName || 'ukjent navn'}</UserName>
-      <UserRole>{props.userRole || 'ukjent rolle'}</UserRole>
-    </UserContainer>
-    <IconButton color="primary" onClick={props.onButtonClick}>
-      <ArrowDropdown />
-    </IconButton>
-  </Container>
-);
+const AppBarProfile: React.FC<AppBarProfileProps> = (props) => {
+  const { classes } = useStyles();
+
+  return (
+    <Button variant="text" onClick={props.onButtonClick}>
+      <AccountCircle color="primary" fontSize="large" />
+      <Box className={classes.user}>
+        <Typography style={{ fontSize: 16 }}>
+          {props.fullName || 'ukjent navn'}
+        </Typography>
+        <Typography style={{ fontSize: 12 }}>
+          {props.userRole || 'ukjent rolle'}
+        </Typography>
+      </Box>
+      <ArrowDropdown color="primary" />
+    </Button>
+  );
+};
 
 export default AppBarProfile as React.ComponentType<AppBarProfileProps>;

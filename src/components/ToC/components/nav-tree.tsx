@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import context from '../context';
 import NavTreeNode from './nav-tree-node';
 import { ContextTree } from '../utils/tree-builder';
-import useStyles from '../styles/nav-tree.style';
+import { useStyles } from '../styles/nav-tree.style';
 
 interface Props {
   elements: ContextTree;
@@ -17,7 +17,7 @@ interface Props {
 const NavTree: React.FC<Props> = (props) => {
   const { elements, style, setSelectedValue, percentageRendered } = props;
   const { classes } = useContext(context);
-  const styles = useStyles({});
+  const { classes: styles } = useStyles();
   const className = clsx(
     'grep-toc__nav-tree',
     styles.root,

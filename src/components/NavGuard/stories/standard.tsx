@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { push } from 'connected-react-router';
 
-import { Button, Box } from '@material-ui/core';
+import { Button, Box } from '@mui/material';
 import NavGuard from '..';
 
 export default () => {

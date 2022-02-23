@@ -1,8 +1,5 @@
 import React from 'react';
-import TableRow from '@material-ui/core/TableRow/TableRow';
-import TableCell, {
-  TableCellProps,
-} from '@material-ui/core/TableCell/TableCell';
+import { TableCell, TableCellProps, TableRow } from '@mui/material';
 
 import { TableColumn } from '..';
 
@@ -13,7 +10,7 @@ interface Properties<T> extends Pick<TableCellProps, 'padding'> {
 
 type Component<T> = React.FunctionComponent<Properties<T>>;
 
-export const GrepTablePlaceholder: Component<any> = <T extends any>({
+export const GrepTablePlaceholder: Component<any> = <T,>({
   columns,
   padding,
   text = 'Tabellen er tom.',

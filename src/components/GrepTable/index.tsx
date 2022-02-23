@@ -1,28 +1,27 @@
 import React, { useCallback } from 'react';
 import { Key } from 'ts-keycode-enum';
 
+import MoreVert from '@mui/icons-material/MoreVert';
 import {
-  Theme,
-  TableFooter,
+  Table,
   TableRow,
+  TableBody,
+  TableFooter,
   TableContainer,
-} from '@material-ui/core';
-import Tooltip from '@material-ui/core/Tooltip';
-import MoreVert from '@material-ui/icons/MoreVert';
-import IconButton from '@material-ui/core/IconButton';
-import TableBody from '@material-ui/core/TableBody';
-import Table, { TableProps } from '@material-ui/core/Table';
-import { TableCellProps } from '@material-ui/core/TableCell';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import createStyles from '@material-ui/core/styles/createStyles';
+  TableCellProps,
+  TableProps,
+  Tooltip,
+  IconButton,
+} from '@mui/material';
 
 import GrepTableRow from './components/grep-table-row';
 import GrpeTableHeader from './components/grep-table-header';
 import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
+import { makeStyles } from '../../styling';
 
-export interface TableColumn<T> extends Pick<TableCellProps, 'padding'> {
+export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   label?: string | JSX.Element;
   width?: number | string;
   colDef?: string;
@@ -64,21 +63,21 @@ export interface GrepTableProps<T>
   rowHeight?: number;
 }
 
-interface StyleProperties {
+interface StyleProps {
   outlined?: boolean;
   showHeader?: boolean;
 }
 
-export const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    table: ({ outlined }: StyleProperties) => ({
+export const useStyles = makeStyles<StyleProps>()(
+  (theme, { showHeader, outlined }) => ({
+    table: {
       border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
       borderCollapse: outlined ? 'separate' : 'collapse',
       tableLayout: 'auto',
-    }),
-    header: ({ showHeader }: StyleProperties) => ({
+    },
+    header: {
       visibility: showHeader ? 'visible' : 'collapse',
-    }),
+    },
     body: {
       '&:focus': {
         outline: 'none',
@@ -101,7 +100,7 @@ const getElementIndex = (el: Element): number =>
  * @todo enhance page handling
  *
  */
-export const GrepTable = <T extends any>({
+export const GrepTable = <T,>({
   placeholderText,
   dropdownItems,
   isRowDisabled,
@@ -209,8 +208,8 @@ export const GrepTable = <T extends any>({
     const disabled = menuDisabled && menuDisabled(row);
     const tooltip = menuTooltip ? menuTooltip(row) : '';
     return (
-      <Tooltip title={tooltip}>
-        <div>
+      <Tooltip title={tooltip} placement="bottom">
+        <div style={{ display: 'flex', justifyContent: 'end' }}>
           <IconButton
             disableTouchRipple={true}
             disabled={disabled}
@@ -233,6 +232,7 @@ export const GrepTable = <T extends any>({
               }
             }}
             tabIndex={0}
+            size="large"
           >
             <MoreVert />
           </IconButton>
@@ -324,7 +324,7 @@ export const GrepTable = <T extends any>({
       )
     : data;
 
-  const classes = useStyles({ outlined, showHeader: header });
+  const { classes } = useStyles({ outlined, showHeader: header });
 
   return (
     <TableContainer style={props.style}>
@@ -363,8 +363,8 @@ export const GrepTable = <T extends any>({
                 page={currentPage}
                 count={data.length}
                 rowsPerPage={rowsPerPage}
-                onChangePage={_handlePageChange}
-                onChangeRowsPerPage={_handleChangeRowsPerPage}
+                onPageChange={_handlePageChange}
+                onRowsPerPageChange={_handleChangeRowsPerPage}
                 labelRowsPerPage={''}
                 labelDisplayedRows={({ from, to, count }) =>
                   `Viser ${from}-${to} av ${count}`

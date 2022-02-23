@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 
@@ -150,8 +150,8 @@ describe('DropdownMenu', () => {
 
     // check that items get correct disabled-attribute
     menuItems.forEach((item, index) => {
-      let disabled = item.getAttribute('aria-disabled');
-      expect(disabled).toBe(items[index].disabled ? 'true' : 'false');
+      let disabled = item.getAttribute('aria-disabled') || false;
+      expect(disabled).toBe(items[index].disabled ? 'true' : false);
     });
   });
 

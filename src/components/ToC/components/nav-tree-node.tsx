@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 import { getLocation } from 'connected-react-router';
 import { useSelector } from 'react-redux';
-import Link from '@material-ui/core/Link';
+import Link from '@mui/material/Link';
 import clsx from 'clsx';
 
 import context from '../context';
@@ -36,14 +36,14 @@ export interface GrepTableOfContentNavTreeNodeProps {
 
 export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNodeProps> =
   (props) => {
-    const linkRef = useRef<HTMLLIElement>(null);
+    const linkRef = useRef<HTMLAnchorElement>(null);
 
     const { node, style, renderChilds, setSelectedValue, percentageRendered } =
       props;
     const { lvl, el, index, children } = node;
     const { selected, setSelected, classes, elements } = useContext(context);
     const isSelected = el === selected;
-    const styles = useStyles({ lvl });
+    const { classes: styles } = useStyles({ lvl });
     const className = clsx(
       'grep-toc__nav-tree-node',
       isSelected && 'grep-toc__nav-tree-node--selected',

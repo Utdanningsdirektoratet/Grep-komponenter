@@ -2,7 +2,7 @@ import * as React from 'react';
 import Sidebar from '..';
 import { storiesOf } from '@storybook/react';
 import { NavigationProps } from '../../AppBarNavList';
-import { Assignment } from '@material-ui/icons';
+import { Assignment } from '@mui/icons-material';
 
 export const adminPages: NavigationProps[] = [
   {

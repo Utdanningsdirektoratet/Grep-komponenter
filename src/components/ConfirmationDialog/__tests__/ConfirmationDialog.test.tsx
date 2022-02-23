@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 import {
   render,
   screen,
@@ -39,12 +39,12 @@ describe('ConfirmationDialog', () => {
     const { getByRole, getByText } = renderComponent();
 
     // Dialog should not render by default
-    expect(screen.queryByRole('presentation')).toBeFalsy();
+    expect(screen.queryByRole('dialog')).toBeFalsy();
 
     userEvent.click(getByRole('button', { name: /open dialog/i }));
 
     // Dialog should render when opened
-    expect(getByRole('presentation')).toBeVisible();
+    expect(getByRole('dialog')).toBeVisible();
 
     // Dialog should contain title and description text
     expect(getByText('Title text')).toBeVisible();
@@ -62,7 +62,7 @@ describe('ConfirmationDialog', () => {
 
     userEvent.click(getByRole('button', { name: /confirm/i }));
 
-    await waitForElementToBeRemoved(() => getByRole('presentation'));
+    await waitForElementToBeRemoved(() => getByRole('dialog'));
 
     expect(mockFn).toHaveBeenCalledWith('confirmed');
   });
@@ -74,7 +74,9 @@ describe('ConfirmationDialog', () => {
 
     userEvent.click(getByRole('button', { name: /cancel/i }));
 
-    await waitForElementToBeRemoved(() => getByRole('presentation'));
+    await waitForElementToBeRemoved(() => getByRole('dialog'));
+
+    expect(mockFn).not.toHaveBeenCalled();
   });
 
   it("should have correct className when 'warning'-prop is true", () => {
@@ -84,6 +86,6 @@ describe('ConfirmationDialog', () => {
 
     const confirmBtn = getByRole('button', { name: /confirm/i });
 
-    expect(confirmBtn.className).toContain('makeStyles-discard');
+    expect(confirmBtn.className).toContain('discard');
   });
 });

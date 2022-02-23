@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { FormControlLabel, Checkbox } from '@material-ui/core';
+import { FormControlLabel, Checkbox } from '@mui/material';
 
 import GrepTable, { TableColumn } from '..';
 import { DropdownMenuItem } from '../../DropdownMenu';

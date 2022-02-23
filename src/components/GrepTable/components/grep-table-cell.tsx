@@ -1,10 +1,8 @@
 import React, { PropsWithChildren, FunctionComponent } from 'react';
-import TableCell, { TableCellProps } from '@material-ui/core/TableCell';
+import { styled, TableCell, TableCellProps } from '@mui/material';
 
 import { TableColumn } from '..';
 import OverflowTooltip from '../../OverflowTooltip';
-
-import { styled } from '@material-ui/core';
 
 export interface Properties<T> extends TableCellProps {
   row?: T;
@@ -23,7 +21,7 @@ const CellValue = styled('span')({
   WebkitBoxOrient: 'vertical',
 });
 
-export const GrepTableRow: Component<any> = <T extends any>({
+export const GrepTableRow: Component<any> = <T,>({
   row,
   column,
   selected,

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { MainLayout, Footer } from '../..';
-import { Switch } from '@material-ui/core';
+import { Switch } from '@mui/material';
 import { FooterItem } from '..';
 
 export const footerItems: FooterItem[] = [
@@ -23,7 +23,7 @@ export const footerItems: FooterItem[] = [
     label: 'Custom',
     render: (renderLabel) => (
       <React.Fragment>
-        <Switch />
+        <Switch color="secondary" />
         {renderLabel()}
       </React.Fragment>
     ),
@@ -34,4 +34,13 @@ storiesOf('Footer', module).add('Footer with content', () => (
   <MainLayout>
     <Footer items={footerItems} />
   </MainLayout>
+));
+
+storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
+  <div style={{ display: 'block', width: '100%' }}>
+    <div
+      style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
+    ></div>
+    <Footer items={footerItems} />
+  </div>
 ));

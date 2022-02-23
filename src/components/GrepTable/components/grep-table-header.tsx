@@ -1,7 +1,5 @@
 import React from 'react';
-
-import TableRow from '@material-ui/core/TableRow';
-import TableHead, { TableHeadProps } from '@material-ui/core/TableHead';
+import { TableHead, TableHeadProps, TableRow } from '@mui/material';
 
 import { TableColumn } from '..';
 import TableHeaderCell from './grep-table-header-cell';
@@ -18,7 +16,7 @@ interface Properties<T> extends TableHeadProps {
 
 type Component<T> = React.FunctionComponent<Properties<T>>;
 
-export const TableHeader: Component<any> = <T extends any>({
+export const TableHeader: Component<any> = <T,>({
   columns,
   sortBy,
   sortDirection,
@@ -50,6 +48,7 @@ export const TableHeader: Component<any> = <T extends any>({
                 }
               })}
               onSortBy={onSortBy}
+              sx={column.sx}
             >
               {label}
             </TableHeaderCell>

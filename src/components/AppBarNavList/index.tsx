@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { StyledTabs, StyledTab } from './styles';
+import { Tab, Tabs } from '@mui/material';
+
+import { useStyles } from './styles';
+import MobileAppBarNavList from './MobileAppBarNavList';
 
 export interface NavigationProps {
   id: number;
@@ -21,18 +24,35 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
   onChange,
 }) => {
   const [value, setValue] = React.useState(selectedPage);
+  const { classes } = useStyles();
 
-  const handleChange = (_event: React.ChangeEvent<unknown>, newValue: number) => {
+  const handleChange = (
+    _event: React.ChangeEvent<unknown>,
+    newValue: number,
+  ) => {
     setValue(newValue);
     onChange(newValue);
   };
 
   return (
-    <StyledTabs value={value} onChange={handleChange}>
-      {pages.map((page) => (
-        <StyledTab key={page.id} label={page.label} />
-      ))}
-    </StyledTabs>
+    <>
+      <Tabs
+        classes={{ root: classes.tabs, indicator: classes.indicator }}
+        value={value}
+        onChange={handleChange}
+        TabIndicatorProps={{ children: <div /> }}
+      >
+        {pages.map((page) => (
+          <Tab
+            disableTouchRipple
+            className={classes.tab}
+            key={page.id}
+            label={page.label}
+          />
+        ))}
+      </Tabs>
+      <MobileAppBarNavList pages={pages} />
+    </>
   );
 };
 

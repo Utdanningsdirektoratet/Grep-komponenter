@@ -3,8 +3,12 @@ export interface ElementLevel {
 }
 
 export const getElementLevel: ElementLevel = (el) => {
-  const [_, lvl] = el.nodeName.match(/H([1-9])/);
-  return Number(lvl);
+  const res = el.nodeName.match(/H([1-9])/);
+  if (res) {
+    const [_, lvl] = res;
+    return Number(lvl);
+  }
+  return 0;
 };
 
 export default getElementLevel;

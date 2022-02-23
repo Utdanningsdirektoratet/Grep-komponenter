@@ -1,12 +1,11 @@
 import React, { useContext } from 'react';
 import { Editor } from 'draft-js';
+import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 
-import ToggleButton, { ToggleButtonProps } from '@material-ui/lab/ToggleButton';
-
-import EditorContext from '../../context';
 import { UpdateStyle } from '../../misc/utils';
+import { useButtonStyles } from '../../styles';
+import EditorContext from '../../context';
 import { InlineStyle } from '.';
-import { useStyles } from './styles';
 
 interface Properties extends Omit<ToggleButtonProps, 'value' | 'type'> {
   editor: React.MutableRefObject<Editor>;
@@ -21,7 +20,7 @@ const InlineButton: Component = ({
   children,
   ...props
 }: React.PropsWithChildren<Properties>) => {
-  const classes = useStyles({});
+  const { classes } = useButtonStyles();
   const { state, setState } = useContext(EditorContext);
 
   const onClick = (

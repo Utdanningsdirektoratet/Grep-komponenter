@@ -1,7 +1,7 @@
-import withStyles from '@material-ui/core/styles/withStyles';
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '@mui/material/AppBar';
+import { withStyles } from '../../../styling';
 
-export const StyledAppBar = withStyles({
+export const StyledAppBar = withStyles(AppBar, {
   root: {
     backgroundColor: 'transparant',
   },
@@ -9,4 +9,4 @@ export const StyledAppBar = withStyles({
     left: 'unset',
     right: 'unset',
   },
-})(AppBar);
+});

@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Close from '@material-ui/icons/Close';
-import Search from '@material-ui/icons/Search';
-import Button from '@material-ui/core/Button';
-import { Colors } from '../../styling';
+import Close from '@mui/icons-material/Close';
+import Search from '@mui/icons-material/Search';
+import { Button, Box, TextField, Typography } from '@mui/material';
 
-import { IconBox, HelpText, Outer, StyledInput } from './styles';
+import { useStyles } from './styles';
+import { Colors } from '../../styling';
 import { keyboard } from '../../utils';
 
 export interface SearchBarProps {
@@ -23,6 +23,8 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [value, setValue] = React.useState(props.initValue || '');
+
+  const { classes } = useStyles();
 
   React.useEffect(() => {
     if (props.autoFocus && inputRef.current) {
@@ -47,24 +49,27 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
 
   return (
     <React.Fragment>
-      <Outer
+      <Box
+        className={classes.outer}
         data-testid="searchBarContainer"
         style={{
           border: props.outlined ? `1px solid ${Colors.lightGrey}` : 0,
         }}
       >
-        <IconBox>
+        <Box className={classes.icon}>
           <Search />
-        </IconBox>
-        <StyledInput
+        </Box>
+        <TextField
+          className={classes.input}
           value={value}
+          variant="standard"
           inputRef={inputRef}
           onChange={_handleChange}
           autoFocus={props.autoFocus}
           placeholder={props.placeholder}
           InputProps={{ disableUnderline: true, fullWidth: true }}
         />
-        <IconBox style={{ cursor: 'pointer' }}>
+        <Box className={classes.icon} style={{ cursor: 'pointer' }}>
           {!!value.length && (
             <Close
               data-testid="searchBarClearBtn"
@@ -73,10 +78,12 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
               onKeyPress={keyboard.onActivation(_handleClear)}
             />
           )}
-        </IconBox>
-      </Outer>
+        </Box>
+      </Box>
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        {props.helpText && <HelpText>{props.helpText}</HelpText>}
+        {props.helpText && (
+          <Typography className={classes.helptext}>{props.helpText}</Typography>
+        )}
         {props.searchAllText && props.onSearchAll && (
           <Button color="primary" onClick={props.onSearchAll}>
             {props.searchAllText}
