@@ -7,6 +7,7 @@ export interface LoadingOverlayProps {
   children?: ReactNode;
   minHeight?: number | string;
   minTime?: number;
+  zIndex?: number;
 }
 
 export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
@@ -14,6 +15,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   show,
   children,
   minTime,
+  zIndex,
   ...box
 }: LoadingOverlayProps) => {
   const [enabled, setEnabled] = useState(show);
@@ -35,7 +37,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
         left={0}
         height="100%"
         width="100%"
-        zIndex={enabled ? 999 : -999}
+        zIndex={enabled ? (zIndex ? zIndex : 999) : -999}
         style={{
           backgroundColor: overlay,
           opacity: show ? 1 : 0,
