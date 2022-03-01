@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from 'react';
-import { Box, CircularProgress } from '@mui/material';
+import { Box, CircularProgress, SxProps } from '@mui/material';
 
 export interface LoadingOverlayProps {
   show: boolean;
@@ -8,6 +8,7 @@ export interface LoadingOverlayProps {
   minHeight?: number | string;
   minTime?: number;
   zIndex?: number;
+  sx?: SxProps;
 }
 
 export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
@@ -16,6 +17,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   children,
   minTime,
   zIndex,
+  sx,
   ...box
 }: LoadingOverlayProps) => {
   const [enabled, setEnabled] = useState(show);
@@ -43,6 +45,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
           opacity: show ? 1 : 0,
           transition: `opacity ${show ? 0 : minTime}ms ease`,
         }}
+        sx={sx}
         {...box}
       >
         <CircularProgress />
