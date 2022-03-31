@@ -9,16 +9,25 @@ import Nav from './components/nav';
 export interface GrepTableOfContentProps extends ContextProviderProps {
   style?: React.CSSProperties;
   className?: string;
+  setSelectedValue: (selected: any) => void;
+  percentageRendered: number;
 }
 
 export const GrepTableOfContent: React.FC<GrepTableOfContentProps> = ({
   style,
   className,
+  setSelectedValue,
+  percentageRendered,
   ...props
-}) => {
+}: GrepTableOfContentProps) => {
   return (
     <ContextProvider {...props}>
-      <Nav className={className} style={style} />
+      <Nav
+        className={className}
+        style={style}
+        setSelectedValue={setSelectedValue}
+        percentageRendered={percentageRendered}
+      />
     </ContextProvider>
   );
 };

@@ -10,10 +10,12 @@ interface Props {
   elements: ContextTree;
   className?: string;
   style?: React.CSSProperties;
+  setSelectedValue: (selected: any) => void;
+  percentageRendered: number;
 }
 
 const NavTree: React.FC<Props> = (props) => {
-  const { elements, style } = props;
+  const { elements, style, setSelectedValue, percentageRendered } = props;
   const { classes } = useContext(context);
   const { classes: styles } = useStyles();
   const className = clsx(
@@ -28,7 +30,15 @@ const NavTree: React.FC<Props> = (props) => {
         <NavTreeNode
           node={node}
           key={node.index}
-          renderChilds={(children) => <NavTree elements={children} />}
+          renderChilds={(children) => (
+            <NavTree
+              elements={children}
+              setSelectedValue={setSelectedValue}
+              percentageRendered={percentageRendered}
+            />
+          )}
+          setSelectedValue={setSelectedValue}
+          percentageRendered={percentageRendered}
         />
       ))}
     </ul>

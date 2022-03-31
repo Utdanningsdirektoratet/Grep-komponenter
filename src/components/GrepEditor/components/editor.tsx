@@ -39,6 +39,7 @@ export interface Properties {
   buttons?: Array<Button>;
   disableNewlines?: boolean;
   stripPastedStyles?: boolean;
+  blockPasting?: boolean;
   /**
    * Undefined: allow all styles.
    * Empty array: disable all styles.
@@ -77,6 +78,7 @@ export const EditorComponent: Component = ({
   disableNewlines,
   onContentChange,
   Toolbar = FloatingToolbar,
+  blockPasting,
   ...props
 }: Properties) => {
   const { state, setState, setSelection } = useContext(EditorContext);
@@ -155,7 +157,7 @@ export const EditorComponent: Component = ({
     _html: string | undefined,
     editorState: EditorState,
   ): DraftHandleValue => {
-    if (disableNewlines) {
+    if (!blockPasting) {
       onChange(
         EditorState.push(
           editorState,
