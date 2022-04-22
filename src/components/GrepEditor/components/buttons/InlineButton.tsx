@@ -23,10 +23,9 @@ const InlineButton: Component = ({
   const { classes } = useButtonStyles();
   const { state, setState } = useContext(EditorContext);
 
-  const onClick = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ): void => {
-    e.preventDefault();
+  const onClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
+    event.preventDefault();
+    const e = event as React.MouseEvent<HTMLButtonElement, MouseEvent>;
     setState(UpdateStyle(state, e.currentTarget.value));
   };
 
