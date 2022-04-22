@@ -17,6 +17,8 @@ import { buildTree } from '../utils/tree-builder';
 export interface GrepTableOfContentNavProps {
   className?: string;
   style?: React.CSSProperties;
+  setSelectedValue: (selected: any) => void;
+  percentageRendered: number;
 }
 
 export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
@@ -97,7 +99,11 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
       onKeyDown={onKeyDown}
       ref={ref}
     >
-      <NavTree elements={tree}></NavTree>
+      <NavTree
+        elements={tree}
+        setSelectedValue={props.setSelectedValue}
+        percentageRendered={props.percentageRendered}
+      ></NavTree>
     </nav>
   );
 };
