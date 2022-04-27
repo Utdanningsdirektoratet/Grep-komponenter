@@ -29,4 +29,7 @@ module.exports = {
   ],
   managerWebpack: updateEmotionAliases,
   webpackFinal: updateEmotionAliases,
+  core: {
+    builder: 'webpack5',
+  },
 };
