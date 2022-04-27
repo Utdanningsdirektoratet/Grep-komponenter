@@ -74,47 +74,49 @@ describe('DropdownMenu', () => {
     expect(menu).toBeVisible();
   });
 
-  it('should open and close using keyboard', () => {
+  it('should open and close using keyboard', async () => {
     const { getByRole } = render(<ButtonMenu />);
+    const user = userEvent.setup();
 
-    userEvent.tab(); // focus on button
+    await user.tab(); // focus on button
     expect(getByRole('button')).toHaveFocus();
 
-    userEvent.keyboard('{space}'); // open menu with 'space'-key
+    await user.keyboard('[Space]'); // open menu with 'space'-key
     expect(getByRole('menu', { hidden: true })).toBeVisible();
 
-    userEvent.keyboard('{esc}'); // close menu with 'escape'-key
+    await user.keyboard('[Esc]'); // close menu with 'escape'-key
     expect(getByRole('menu', { hidden: true })).not.toBeVisible();
 
-    userEvent.keyboard('{enter}'); // open menu with 'enter'-key
+    await user.keyboard('[Enter]'); // open menu with 'enter'-key
     expect(getByRole('menu', { hidden: true })).toBeVisible();
   });
 
   it('should handle keyboard navigation', async () => {
     openMenu();
     const menuItems = screen.queryAllByRole('menuitem');
+    let user = userEvent.setup();
 
     // navigate down to menuitem #3 (skip disabled menuitems)
-    userEvent.keyboard('{arrowdown}');
+    await user.keyboard('[ArrowDown]');
     expect(menuItems[2]).toHaveFocus();
     expect(menuItems[0]).not.toHaveFocus();
     expect(menuItems[1]).not.toHaveFocus();
 
     // navigate up to menuitem #1 (skip disabled menuitems)
-    userEvent.keyboard('{arrowup}');
+    await user.keyboard('[ArrowUp]');
     expect(menuItems[0]).toHaveFocus();
     expect(menuItems[1]).not.toHaveFocus();
     expect(menuItems[2]).not.toHaveFocus();
 
     // navigate into menuitem #1.1
-    userEvent.keyboard('{arrowright}');
+    await user.keyboard('[ArrowRight]');
     expect(
       screen.getByRole('menuitem', { name: 'MenuItem #1.1' }),
     ).toHaveFocus();
 
-    await waitFor(() => {
+    await waitFor(async () => {
       // navigate back to menuitem #1
-      userEvent.keyboard('{arrowleft}');
+      await user.keyboard('[ArrowLeft]');
       expect(menuItems[0]).toHaveFocus();
       expect(
         screen.queryByRole('menuitem', { name: 'MenuItem #1.1' }),
@@ -124,13 +126,14 @@ describe('DropdownMenu', () => {
 
   it('should close on select', async () => {
     const menu = openMenu();
+    const user = userEvent.setup();
 
     // navigate down to menuitem #3
-    userEvent.keyboard('{arrowdown}');
+    await user.keyboard('[ArrowDown]');
 
-    await waitFor(() => {
+    await waitFor(async () => {
       // close on select, check that 'handleClick' is called
-      userEvent.keyboard('{enter}');
+      await user.keyboard('[Enter]');
       expect(menu).not.toBeVisible();
       expect(mockFunc).toHaveBeenCalledWith('MenuItem #3');
     });

@@ -26,6 +26,7 @@ const Component: React.FC = () => {
 };
 
 describe('GrepTableCard', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     const { getByRole, getByText } = render(<Component />);
 
@@ -33,10 +34,10 @@ describe('GrepTableCard', () => {
     expect(getByRole('table')).toBeInTheDocument();
   });
 
-  it('should handle row click', () => {
+  it('should handle row click', async () => {
     const { getByRole } = render(<Component />);
 
-    userEvent.click(getByRole('row', { name: /row #1/i }));
+    await user.click(getByRole('row', { name: /row #1/i }));
     expect(mockFn).toHaveBeenCalledWith('Row #1');
   });
 });
