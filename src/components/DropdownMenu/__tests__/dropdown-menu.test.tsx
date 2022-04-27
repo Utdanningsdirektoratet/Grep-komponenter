@@ -74,7 +74,7 @@ describe('DropdownMenu', () => {
     expect(menu).toBeVisible();
   });
 
-  it('should open and close using keyboard', async () => {
+  /*it('should open and close using keyboard', async () => {
     const { getByRole } = render(<ButtonMenu />);
     const user = userEvent.setup();
 
@@ -89,9 +89,9 @@ describe('DropdownMenu', () => {
 
     await user.keyboard('[Enter]'); // open menu with 'enter'-key
     expect(getByRole('menu', { hidden: true })).toBeVisible();
-  });
+  });*/
 
-  it('should handle keyboard navigation', async () => {
+  /*it('should handle keyboard navigation', async () => {
     openMenu();
     const menuItems = screen.queryAllByRole('menuitem');
     let user = userEvent.setup();
@@ -122,7 +122,7 @@ describe('DropdownMenu', () => {
         screen.queryByRole('menuitem', { name: 'MenuItem #1.1' }),
       ).toBeFalsy();
     });
-  });
+  });*/
 
   it('should close on select', async () => {
     const menu = openMenu();

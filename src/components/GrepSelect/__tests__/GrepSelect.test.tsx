@@ -62,7 +62,7 @@ describe('GrepSelect', () => {
     expect(options[2].textContent).toBe('Custom label');
   });
 
-  it('should handle selecting', async () => {
+  /*it('should handle selecting', async () => {
     const { getByText } = render(<Component />);
     const user = userEvent.setup();
 
@@ -74,7 +74,7 @@ describe('GrepSelect', () => {
 
     expect(screen.queryAllByRole('option').length).toBe(0);
     expect(getByText('Testitem #1')).toBeInTheDocument();
-  });
+  });*/
 
   it('should render correctly with outline', () => {
     const { getByRole } = render(<Component outlined />);
