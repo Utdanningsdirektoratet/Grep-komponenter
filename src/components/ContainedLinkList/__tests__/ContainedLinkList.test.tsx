@@ -32,16 +32,17 @@ describe('ContainedLinkList', () => {
       />,
     );
 
+    const user = userEvent.setup();
     expect(screen.getByText('List title')).toBeVisible();
     expect(screen.getByTestId('testIcon')).toBeVisible();
 
     const buttons = getAllByRole('button');
     expect(buttons.length).toEqual(pages.length);
 
-    buttons.forEach((btn, index) => {
+    buttons.forEach(async (btn, index) => {
       expect(btn.textContent).toEqual(pages[index].label);
 
-      userEvent.click(btn);
+      await user.click(btn);
       expect(mockFn).toHaveBeenCalledWith(pages[index].id);
     });
   });

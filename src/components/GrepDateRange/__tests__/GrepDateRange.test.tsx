@@ -24,20 +24,21 @@ const Component: React.FC = () => {
 };
 
 describe('GrepDateRange', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     const { getByLabelText } = render(<Component />);
     expect(getByLabelText(String(fromDateProps.label))).toBeInTheDocument();
     expect(getByLabelText(String(toDateProps.label))).toBeInTheDocument();
   });
 
-  it('should warn about overlapping dates', () => {
+  it('should warn about overlapping dates', async () => {
     const { getByText, getByLabelText } = render(<Component />);
 
-    userEvent.click(getByLabelText(String(fromDateProps.label)));
-    userEvent.keyboard('13121993');
+    await user.click(getByLabelText(String(fromDateProps.label)));
+    await user.keyboard('13121993');
 
-    userEvent.click(getByLabelText(String(toDateProps.label)));
-    userEvent.keyboard('12121993');
+    await user.click(getByLabelText(String(toDateProps.label)));
+    await user.keyboard('12121993');
 
     expect(getByText(/dato må være før/i)).toBeInTheDocument();
     expect(getByText(/dato må være etter/i)).toBeInTheDocument();
@@ -51,18 +52,18 @@ describe('GrepDateRange', () => {
     ).toHaveClass('Mui-error');
   });
 
-  it('should not allow selecting date before from-date', () => {
+  it('should not allow selecting date before from-date', async () => {
     const { getByRole, getByLabelText, getAllByRole } = render(<Component />);
 
     const btns = getAllByRole('button');
 
-    userEvent.click(getByLabelText(String(fromDateProps.label)));
-    userEvent.keyboard('13121993');
+    await user.click(getByLabelText(String(fromDateProps.label)));
+    await user.keyboard('13121993');
 
-    userEvent.click(getByLabelText(String(toDateProps.label)));
-    userEvent.keyboard('14121993');
+    await user.click(getByLabelText(String(toDateProps.label)));
+    await user.keyboard('14121993');
 
-    userEvent.click(btns[1]);
+    await user.click(btns[1]);
 
     expect(getByRole('button', { name: /12/i }).className).toContain(
       'disabled',
@@ -73,18 +74,18 @@ describe('GrepDateRange', () => {
     );
   });
 
-  it('should not allow selecting date after to-date', () => {
+  it('should not allow selecting date after to-date', async () => {
     const { getByRole, getByLabelText, getAllByRole } = render(<Component />);
 
     const btns = getAllByRole('button');
 
-    userEvent.click(getByLabelText(String(fromDateProps.label)));
-    userEvent.keyboard('13121993');
+    await user.click(getByLabelText(String(fromDateProps.label)));
+    await user.keyboard('13121993');
 
-    userEvent.click(getByLabelText(String(toDateProps.label)));
-    userEvent.keyboard('14121993');
+    await user.click(getByLabelText(String(toDateProps.label)));
+    await user.keyboard('14121993');
 
-    userEvent.click(btns[0]);
+    await user.click(btns[0]);
 
     expect(getByRole('button', { name: /15/i }).className).toContain(
       'disabled',

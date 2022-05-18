@@ -22,6 +22,7 @@ export const footerItems: FooterItem[] = [
 ];
 
 describe('Footer', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     const { getByText, getByRole } = render(<Footer items={footerItems} />);
 
@@ -30,10 +31,10 @@ describe('Footer', () => {
     expect(getByRole('button', { name: /test #3/i })).toBeInTheDocument();
   });
 
-  it('should handle onClick', () => {
+  it('should handle onClick', async () => {
     const { getByRole } = render(<Footer items={footerItems} />);
 
-    userEvent.click(getByRole('button', { name: /test #2/i }));
+    await user.click(getByRole('button', { name: /test #2/i }));
     expect(mockFn).toHaveBeenCalledWith('Test #2');
   });
 });

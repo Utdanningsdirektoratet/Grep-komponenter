@@ -21,6 +21,7 @@ const pages: NavigationProps[] = [
 const mockFn = jest.fn();
 
 describe('LinkList', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     const { getByRole, getByText } = render(
       <LinkList title="Title test" pages={pages} onPageClick={mockFn} />,
@@ -31,12 +32,12 @@ describe('LinkList', () => {
     expect(getByRole('button', { name: /link 2/i })).toBeVisible();
   });
 
-  it('should handle onPageClick', () => {
+  it('should handle onPageClick', async () => {
     const { getByRole } = render(
       <LinkList title="Title test" pages={pages} onPageClick={mockFn} />,
     );
 
-    userEvent.click(getByRole('button', { name: pages[0].label }));
+    await user.click(getByRole('button', { name: pages[0].label }));
     expect(mockFn).toHaveBeenCalledWith(pages[0]);
   });
 });

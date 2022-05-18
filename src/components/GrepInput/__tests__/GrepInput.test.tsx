@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import GrepInput from '../';
 
 describe('GrepInput', () => {
+  const user = userEvent.setup();
   it('should render correctly with label', () => {
     const { getByLabelText } = render(<GrepInput id="Test" label="Test" />);
     expect(getByLabelText('Test')).toBeInTheDocument();
@@ -26,22 +27,22 @@ describe('GrepInput', () => {
     expect(getByText('Test')).toHaveClass('Mui-error');
   });
 
-  it('should handle input (single line)', () => {
+  it('should handle input (single line)', async () => {
     const { getByDisplayValue } = render(<GrepInput />);
 
-    userEvent.tab();
-    userEvent.keyboard('{enter}');
-    userEvent.keyboard('some test input');
+    await user.tab();
+    await user.keyboard('{enter}');
+    await user.keyboard('some test input');
 
     expect(getByDisplayValue('some test input')).toBeInTheDocument();
   });
 
-  it('should handle input (multi line)', () => {
+  it('should handle input (multi line)', async () => {
     const { container } = render(<GrepInput multiline />);
 
-    userEvent.tab();
-    userEvent.keyboard('{enter}');
-    userEvent.keyboard('some test input');
+    await user.tab();
+    await user.keyboard('{enter}');
+    await user.keyboard('some test input');
 
     expect(container.querySelector('textarea')).toHaveValue(
       '\nsome test input',
