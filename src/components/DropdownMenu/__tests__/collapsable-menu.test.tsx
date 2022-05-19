@@ -84,10 +84,20 @@ describe('CollapsableMenu', () => {
 
     await user.click(item2);
     expect(screen.queryByText('Testitem #2.1')).toBeTruthy();
-    await waitForElementToBeRemoved(() => screen.queryByText('Testitem #1.1'));
+    var testitem1 = screen.queryByText('Testitem #1.1');
+    if (testitem1) {
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText('Testitem #1.1'),
+      );
+    }
 
     await user.click(item2);
-    await waitForElementToBeRemoved(() => screen.queryByText('Testitem #2.1'));
+    var testitem2 = screen.queryByText('Testitem #2.1');
+    if (testitem2) {
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText('Testitem #2.1'),
+      );
+    }
   });
 
   /*it('should handle collapse/expand (keyboard)', async () => {
