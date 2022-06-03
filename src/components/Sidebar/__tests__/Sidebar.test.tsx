@@ -84,9 +84,13 @@ describe('Sidebar', () => {
 
     // Collapse page 2
     await user.click(getByText(pages[1].label));
-    await waitForElementToBeRemoved(() =>
-      queryByText(pages[1].children![0].label),
-    );
+    var testitem1 = queryByText(pages[1].children![0].label);
+    if (testitem1) {
+      await waitForElementToBeRemoved(() =>
+        queryByText(pages[1].children![0].label),
+      );
+    }
+
     expect(getAllByRole('listitem')).toHaveLength(2);
 
     expect(mockFn).not.toHaveBeenCalled();
