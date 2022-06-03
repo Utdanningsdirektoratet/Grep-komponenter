@@ -36,23 +36,28 @@ const renderComponent = (onClick?: boolean) => {
 };
 
 describe('GrepCrumbs', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     renderComponent();
   });
 
-  it('should handle onClick', () => {
+  it('should handle onClick', async () => {
     renderComponent();
 
-    userEvent.click(screen.getByRole('button', { name: breadcrumbs[0].label }));
+    await user.click(
+      screen.getByRole('button', { name: breadcrumbs[0].label }),
+    );
     expect(store.dispatch).toHaveBeenCalledWith(
       store.dispatch(push(breadcrumbs[0].path!)),
     );
   });
 
-  it('should handle custom onClick', () => {
+  it('should handle custom onClick', async () => {
     renderComponent(true);
 
-    userEvent.click(screen.getByRole('button', { name: breadcrumbs[0].label }));
+    await user.click(
+      screen.getByRole('button', { name: breadcrumbs[0].label }),
+    );
     expect(mockFn).toHaveBeenCalledWith(breadcrumbs[0]);
   });
 

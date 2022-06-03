@@ -52,13 +52,14 @@ describe('AppBarNavList', () => {
     });
   });
 
-  it('should handle selecting pages', () => {
+  it('should handle selecting pages', async () => {
     const tabs = screen.getAllByRole('tab');
+    const user = userEvent.setup();
 
     // Expect initial page (selectedPage-prop) to be selected
     expect(tabs[0].getAttribute('aria-selected')).toBe('true');
 
-    userEvent.click(tabs[3]);
+    await user.click(tabs[3]);
 
     // Expect onChange to have been called with right args
     expect(mockFn).toHaveBeenCalledWith(pages[3].id - 1);
@@ -71,22 +72,23 @@ describe('AppBarNavList', () => {
     expect(tabs[0].getAttribute('aria-selected')).not.toBe('true');
   });
 
-  it('should handle keyboard navigation', () => {
+  it('should handle keyboard navigation', async () => {
     const tabs = screen.getAllByRole('tab');
+    const user = userEvent.setup();
 
-    userEvent.tab();
+    await user.tab();
 
     // Expect initial page to have focus
     expect(tabs[0]).toHaveFocus();
 
-    userEvent.keyboard('{arrowright}');
-    userEvent.keyboard('{arrowright}');
+    await user.keyboard('{arrowright}');
+    await user.keyboard('{arrowright}');
 
     // Expect new page to have focus
     expect(tabs[2]).toHaveFocus();
     expect(tabs[0]).not.toHaveFocus();
 
-    userEvent.keyboard('{enter}');
+    await user.keyboard('{enter}');
 
     // Expect selected page to be selected with 'enter'-key
     expect(tabs[2].getAttribute('aria-selected')).toBe('true');

@@ -6,6 +6,7 @@ import AppBarProfile from '..';
 
 describe('AppBarProfile', () => {
   const mockFn = jest.fn();
+  const user = userEvent.setup();
 
   const renderAppBarProfile = (userRole?: string, fullName?: string) => {
     render(
@@ -34,13 +35,13 @@ describe('AppBarProfile', () => {
     expect(screen.getByText('ukjent rolle')).toBeVisible();
   });
 
-  it('should handle button click', () => {
+  it('should handle button click', async () => {
     renderAppBarProfile();
 
     const button = document.querySelector('button')!;
 
-    userEvent.click(button);
-    userEvent.click(button);
+    await user.click(button);
+    await user.click(button);
 
     expect(mockFn).toHaveBeenCalledTimes(2);
   });

@@ -19,6 +19,7 @@ const Component: React.FC<Partial<SearchBarProps>> = (props) => {
 };
 
 describe('SearchBar', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     const { getByText, getByRole, getByPlaceholderText } = render(
       <Component />,
@@ -37,27 +38,27 @@ describe('SearchBar', () => {
     );
   });
 
-  it('should handle text input and clearing', () => {
+  it('should handle text input and clearing', async () => {
     const { getByTestId, getByRole, queryByTestId } = render(<Component />);
 
     const input = getByRole('textbox');
 
     expect(queryByTestId('searchBarClearBtn')).toBeFalsy();
 
-    userEvent.click(input);
-    userEvent.keyboard('test 123');
+    await user.click(input);
+    await user.keyboard('test 123');
 
     expect(mockFn).toHaveBeenCalledWith('test 123');
 
     const clearBtn = getByTestId('searchBarClearBtn');
     expect(clearBtn).toBeVisible();
-    userEvent.click(clearBtn);
+    await user.click(clearBtn);
 
     expect(mockFn).toHaveBeenCalledWith('cleared');
     expect(input).toHaveValue('');
   });
 
-  it("should handle 'onSearchAll'", () => {
+  it("should handle 'onSearchAll'", async () => {
     const { getByRole } = render(
       <Component
         searchAllText="Search all text"
@@ -69,7 +70,7 @@ describe('SearchBar', () => {
 
     expect(searchAllBtn).toBeVisible();
 
-    userEvent.click(searchAllBtn);
+    await user.click(searchAllBtn);
 
     expect(mockFn).toHaveBeenCalledWith('search all');
   });

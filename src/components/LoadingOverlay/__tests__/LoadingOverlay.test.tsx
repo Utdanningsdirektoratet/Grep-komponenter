@@ -21,6 +21,7 @@ const Component: React.FC<Partial<LoadingOverlayProps>> = (props) => {
 };
 
 describe('LoadingOverlay', () => {
+  const user = userEvent.setup();
   it('should render correctly', () => {
     const { getByTestId } = render(<Component />);
     expect(getByTestId('overlay')).toBeVisible();
@@ -41,7 +42,7 @@ describe('LoadingOverlay', () => {
     expect(getByTestId('overlay')).toHaveStyle('min-height: 400px');
   });
 
-  it('should render correctly with minTime', () => {
+  it('should render correctly with minTime', async () => {
     const { getByTestId, getByRole } = render(<Component minTime={500} />);
 
     expect(getByTestId('overlay')).toHaveStyle({
@@ -49,7 +50,7 @@ describe('LoadingOverlay', () => {
       opacity: 1,
     });
 
-    userEvent.click(getByRole('button', { name: /hide/i }));
+    await user.click(getByRole('button', { name: /hide/i }));
 
     expect(getByTestId('overlay')).toHaveStyle({
       transition: 'opacity 500ms ease',

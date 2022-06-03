@@ -47,6 +47,7 @@ const Component: React.FC<Partial<SidebarProps>> = (props) => {
 };
 
 describe('Sidebar', () => {
+  const user = userEvent.setup();
   it('should render correctly (collapsed)', () => {
     const { getByText, getAllByRole, queryByText } = render(<Component />);
 
@@ -78,11 +79,11 @@ describe('Sidebar', () => {
     expect(getAllByRole('listitem')).toHaveLength(2);
 
     // Expand page 2
-    userEvent.click(getByText(pages[1].label));
+    await user.click(getByText(pages[1].label));
     expect(getAllByRole('listitem')).toHaveLength(3);
 
     // Collapse page 2
-    userEvent.click(getByText(pages[1].label));
+    await user.click(getByText(pages[1].label));
     await waitForElementToBeRemoved(() =>
       queryByText(pages[1].children![0].label),
     );
@@ -91,28 +92,28 @@ describe('Sidebar', () => {
     expect(mockFn).not.toHaveBeenCalled();
   });
 
-  it('should handle click selection', () => {
+  it('should handle click selection', async () => {
     const { getByText } = render(<Component currentPageId={3} />);
 
-    userEvent.click(getByText(pages[0].label));
+    await user.click(getByText(pages[0].label));
     expect(mockFn).toHaveBeenCalledWith(pages[0]);
 
-    userEvent.click(getByText(pages[1].children![0].label));
+    await user.click(getByText(pages[1].children![0].label));
     expect(mockFn).toHaveBeenCalledWith(pages[1].children![0]);
   });
 
-  it('should handle keyboard selection', () => {
+  it('should handle keyboard selection', async () => {
     const { getByText } = render(<Component />);
 
-    userEvent.tab();
-    userEvent.keyboard('{enter}');
+    await user.tab();
+    await user.keyboard('{enter}');
     expect(mockFn).toHaveBeenCalledWith(pages[0]);
     expect(getByText(pages[0].label).className).toContain('selected');
 
-    userEvent.tab();
-    userEvent.keyboard('{enter}');
-    userEvent.tab();
-    userEvent.keyboard('{enter}');
+    await user.tab();
+    await user.keyboard('{enter}');
+    await user.tab();
+    await user.keyboard('{enter}');
 
     expect(mockFn).toHaveBeenCalledWith(pages[1].children![0]);
     expect(getByText(pages[1].children![0].label).className).toContain(

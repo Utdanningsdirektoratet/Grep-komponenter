@@ -35,13 +35,14 @@ const renderComponent = (warning?: boolean) =>
   );
 
 describe('ConfirmationDialog', () => {
+  const user = userEvent.setup();
   it('should render correctly', async () => {
     const { getByRole, getByText } = renderComponent();
 
     // Dialog should not render by default
     expect(screen.queryByRole('dialog')).toBeFalsy();
 
-    userEvent.click(getByRole('button', { name: /open dialog/i }));
+    await user.click(getByRole('button', { name: /open dialog/i }));
 
     // Dialog should render when opened
     expect(getByRole('dialog')).toBeVisible();
@@ -58,9 +59,9 @@ describe('ConfirmationDialog', () => {
   it('should handle confirm', async () => {
     const { getByRole } = renderComponent();
 
-    userEvent.click(getByRole('button', { name: /open dialog/i }));
+    await user.click(getByRole('button', { name: /open dialog/i }));
 
-    userEvent.click(getByRole('button', { name: /confirm/i }));
+    await user.click(getByRole('button', { name: /confirm/i }));
 
     await waitForElementToBeRemoved(() => getByRole('dialog'));
 
@@ -70,19 +71,19 @@ describe('ConfirmationDialog', () => {
   it('should handle cancel', async () => {
     const { getByRole } = renderComponent();
 
-    userEvent.click(getByRole('button', { name: /open dialog/i }));
+    await user.click(getByRole('button', { name: /open dialog/i }));
 
-    userEvent.click(getByRole('button', { name: /cancel/i }));
+    await user.click(getByRole('button', { name: /cancel/i }));
 
     await waitForElementToBeRemoved(() => getByRole('dialog'));
 
     expect(mockFn).not.toHaveBeenCalled();
   });
 
-  it("should have correct className when 'warning'-prop is true", () => {
+  it("should have correct className when 'warning'-prop is true", async () => {
     const { getByRole } = renderComponent(true);
 
-    userEvent.click(getByRole('button', { name: /open dialog/i }));
+    await user.click(getByRole('button', { name: /open dialog/i }));
 
     const confirmBtn = getByRole('button', { name: /confirm/i });
 
