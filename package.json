@@ -96,7 +96,7 @@
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-json": "^4.0.1",
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "@rollup/plugin-url": "^6.0.0",
+    "@rollup/plugin-url": "^7.0.0",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-links": "^6.4.19",
