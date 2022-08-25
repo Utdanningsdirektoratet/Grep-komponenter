@@ -2,14 +2,12 @@ import * as React from 'react';
 import {
   render,
   screen,
-  waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import UserEvent from '@testing-library/user-event';
 import { Button } from '@mui/material';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
-import { UserEvent } from '@testing-library/user-event/dist/types/setup';
 
 const items: Array<DropdownMenuItem<any>> = [
   {
@@ -64,14 +62,14 @@ const ButtonMenu = () => {
   );
 };
 
-const openMenu = async (user: UserEvent) => {
+const openMenu = async (user: any) => {
   render(<ButtonMenu />);
   await user.tab(); // focus on button
   await user.keyboard('{Enter}'); // open
 };
 
 describe('CollapsableMenu', () => {
-  const user = userEvent.setup();
+  const user = UserEvent.setup();
   it('should handle collapse/expand (mouse)', async () => {
     await openMenu(user);
     expect(screen.queryByText('Testitem #1.1')).toBeFalsy();

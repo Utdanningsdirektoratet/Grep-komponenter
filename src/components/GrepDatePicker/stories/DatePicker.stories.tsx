@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { LocalizationProvider } from '@mui/lab';
-import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Button, Box, Container } from '@mui/material';
 
 import { ParseableDate, DateTime } from '../../../utils';
@@ -18,7 +18,7 @@ const TestDatePicker = () => {
         variant="standard"
         errorMessage="Feilmelding"
         value={value}
-        onChange={(date) => {
+        onChange={(date: any) => {
           setValue(date);
         }}
       />
@@ -39,7 +39,7 @@ storiesOf('GrepDatePicker', module)
         justifyContent: 'space-between',
       }}
     >
-      <LocalizationProvider dateAdapter={AdapterDayjs} locale={'nb'}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
         {storyFn()}
       </LocalizationProvider>
     </Container>
@@ -52,13 +52,13 @@ storiesOf('GrepDatePicker', module)
           label="Med hjelpetekst"
           variant="standard"
           helperText="Hjelpetekst"
-          onChange={(date) => console.log(date)}
+          onChange={(date: any) => console.log(date)}
         />
         <DatePicker
           label="Med placeholder"
           variant="standard"
           placeholder="25/04/2019"
-          onChange={(date) => console.log(date)}
+          onChange={(date: any) => console.log(date)}
         />
       </React.Fragment>
     );
@@ -69,19 +69,19 @@ storiesOf('GrepDatePicker', module)
       <DatePicker
         label="Med feilmelding"
         value={'32.01.2019'}
-        onChange={(date) => console.log(date)}
+        onChange={(date: any) => console.log(date)}
       />
       <DatePicker
         label="Med hjelpetekst"
         helperText="Hjelpetekst"
         value={null}
-        onChange={(date) => console.log(date)}
+        onChange={(date: any) => console.log(date)}
       />
       <DatePicker
         label="Med placeholder"
         placeholder="25/04/2019"
         value={null}
-        onChange={(date) => console.log(date)}
+        onChange={(date: any) => console.log(date)}
       />
     </React.Fragment>
   ));

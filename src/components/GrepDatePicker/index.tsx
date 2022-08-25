@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   DatePickerProps,
   DesktopDatePicker,
   LocalizationProvider,
-} from '@mui/lab';
-import AdapterDayjs from '@mui/lab/AdapterDayjs';
+} from '@mui/x-date-pickers';
 import { TextField, TextFieldProps } from '@mui/material';
 
 import '../../utils/dateHelper';
@@ -25,7 +25,7 @@ type InputProps = Pick<
 >;
 
 export interface GrepDatePickerProps
-  extends Omit<DatePickerProps<Dayjs>, 'value' | 'renderInput'>,
+  extends Omit<DatePickerProps<Dayjs, Dayjs>, 'value' | 'renderInput'>,
     InputProps {
   value?: ParseableDate | null;
   errorMessage?: string;
@@ -56,7 +56,7 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
       <DesktopDatePicker
         // clearable @todo
         inputFormat="DD/MM/YYYY"
-        onError={(reason) => {
+        onError={(reason: any) => {
           switch (reason) {
             case 'invalidDate':
               setError('Ugyldig dato');
@@ -84,7 +84,7 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
         }}
         value={date}
         onChange={setDate}
-        renderInput={(params) => (
+        renderInput={(params: any) => (
           <TextField
             id={id}
             {...params}
