@@ -388,4 +388,6 @@ export const GrepTable = <T,>({
   );
 };
 
+export { GrepTableRow };
+
 export default GrepTable;
