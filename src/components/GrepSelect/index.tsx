@@ -8,6 +8,8 @@ import {
   OutlinedInput,
   FormControl,
   FormHelperText,
+  ListItemText,
+  Checkbox,
 } from '@mui/material';
 
 export interface SelectItem {
@@ -22,6 +24,7 @@ export interface GrepSelectProps extends SelectProps {
   errorMessage?: string;
   selectItems: SelectItem[];
   unselectOption?: boolean;
+  useCheckedSelect?: boolean;
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -45,10 +48,12 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     value,
     size,
     id,
+    useCheckedSelect,
     ...rest
   } = props;
 
   const error = errorMessage ? errorMessage.length > 0 : false;
+  const selected = value;
 
   return (
     <FormControl
@@ -94,7 +99,12 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
         )}
         {selectItems.map(({ label, value, disabled }, i) => (
           <MenuItem key={i} value={value} disabled={disabled}>
-            {label ? label : value}
+            {useCheckedSelect && (
+              <Checkbox
+                checked={(selected as number[])?.indexOf(value as number) > -1}
+              />
+            )}
+            <ListItemText primary={label ? label : value} />
           </MenuItem>
         ))}
       </Select>

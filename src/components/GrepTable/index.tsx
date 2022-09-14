@@ -61,6 +61,7 @@ export interface GrepTableProps<T>
    * @deprecated No longer in use.
    */
   rowHeight?: number;
+  disableSelectOnClick?: boolean;
 }
 
 interface StyleProps {
@@ -118,6 +119,7 @@ export const GrepTable = <T,>({
   caption,
   stickyHeader,
   padding,
+  disableSelectOnClick = false,
   ...props
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
@@ -258,7 +260,9 @@ export const GrepTable = <T,>({
         clickable={clickableRows}
         onMouseDown={({ currentTarget }) => {
           setSelectedElement(currentTarget);
-          _handleRowClick(row);
+          if (!disableSelectOnClick) {
+            _handleRowClick(row);
+          }
         }}
         columns={rowColumns}
         row={row}
@@ -387,5 +391,7 @@ export const GrepTable = <T,>({
     </TableContainer>
   );
 };
+
+export { GrepTableRow };
 
 export default GrepTable;
