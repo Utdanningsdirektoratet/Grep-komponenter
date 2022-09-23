@@ -29,6 +29,7 @@ export { default as Sidebar } from './components/Sidebar';
 export { default as ServiceMessage } from './components/ServiceMessage';
 export { default as SortableTable } from './components/SortableTable';
 export { default as GrepEditor } from './components/GrepEditor';
+export { default as NewAppBar } from './components/AppBarNew/AppBar';
 
 export { ParseableDate } from './utils/dateHelper';
 export { Utils };
