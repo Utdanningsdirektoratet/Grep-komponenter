@@ -76,9 +76,9 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
   };
 
   return (
-    <Toolbar colors={colors}>
-      <ToolbarFixer colors={colors}>
-        <ToolbarInner>
+    <Toolbar>
+      <ToolbarFixer>
+        <ToolbarInner colors={colors}>
           <ToolbarLeft>
             <ToolbarTitle to={'/'}>
               {appTitle}

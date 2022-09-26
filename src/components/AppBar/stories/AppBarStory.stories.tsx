@@ -53,34 +53,30 @@ const navbarPages: IAuthorizedPage[] = [
 
 storiesOf('AppBar', module).add('with content', () => {
   return (
-    <MainLayout>
-      <div>
-        <AppBar
-          appTitle="Læreplanutvikleren"
-          isProd={false}
-          colors={v0colors}
-          currentPath="/"
-          menuItems={navbarPages}
-          userMenuItems={[
-            {
-              id: 'profile',
-              action: () => {
-                console.log('profile');
-              },
-              label: 'Profil',
-            },
-            {
-              id: 'logout',
-              action: () => {
-                console.log('logout');
-              },
-              label: 'Logg ut',
-            },
-          ]}
-          username="Grep bruker"
-          userRole="Systemadministrator"
-        />
-      </div>
-    </MainLayout>
+    <AppBar
+      appTitle="Læreplanutvikleren"
+      isProd={false}
+      colors={v0colors}
+      currentPath="/"
+      menuItems={navbarPages}
+      userMenuItems={[
+        {
+          id: 'profile',
+          action: () => {
+            console.log('profile');
+          },
+          label: 'Profil',
+        },
+        {
+          id: 'logout',
+          action: () => {
+            console.log('logout');
+          },
+          label: 'Logg ut',
+        },
+      ]}
+      username="Grep bruker"
+      userRole="Systemadministrator"
+    />
   );
 });

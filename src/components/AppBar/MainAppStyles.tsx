@@ -1,4 +1,5 @@
 import { styled } from '@mui/material';
+import { Theme, MUIStyledCommonProps } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 import { v0colors } from './types';
 
@@ -30,47 +31,51 @@ export const EnvironmentTitle = styled('div')(() => ({
   marginLeft: '17px',
 }));
 
-export const Toolbar = styled('div')(({ colors }: { colors: v0colors }) => ({
+export const Toolbar = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: colors.headerBackgroundColor,
   height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
   minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
   maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
 }));
 
-export const ToolbarFixer = styled('div')(
-  ({ colors }: { colors: v0colors }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: colors.headerBackgroundColor,
-    height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-    minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-    maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    zIndex: 101,
-  }),
-);
-
-export const ToolbarInner = styled('div')(({ theme }) => ({
-  alignItems: 'center',
+export const ToolbarFixer = styled('div')(() => ({
   display: 'flex',
-  margin: '0 auto',
-  width: '100%',
-  padding: 0,
-  [theme.breakpoints.down('sm')]: {
-    height: `${dimensions.toolbarHeightMobile}px`,
-    minHeight: `${dimensions.toolbarHeightMobile}px`,
-  },
-  [theme.breakpoints.up('sm')]: {
-    padding: 0,
-    height: `${dimensions.toolbarHeight}px`,
-    minHeight: `${dimensions.toolbarHeight}px`,
-  },
+  flexDirection: 'column',
+  height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+  minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+  maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  zIndex: 101,
 }));
+
+export const ToolbarInner = styled('div')(
+  ({ colors, theme }: { colors: v0colors } & MUIStyledCommonProps<Theme>) => {
+    if (!theme) {
+      return {};
+    }
+    return {
+      alignItems: 'center',
+      display: 'flex',
+      margin: '0 auto',
+      width: '100%',
+      padding: 0,
+      backgroundColor: colors.headerBackgroundColor,
+      [theme.breakpoints.down('sm')]: {
+        height: `${dimensions.toolbarHeightMobile}px`,
+        minHeight: `${dimensions.toolbarHeightMobile}px`,
+      },
+      [theme.breakpoints.up('sm')]: {
+        padding: 0,
+        height: `${dimensions.toolbarHeight}px`,
+        minHeight: `${dimensions.toolbarHeight}px`,
+      },
+    };
+  },
+);
 
 export const ToolbarLeft = styled('div')(() => ({
   alignItems: 'center',
