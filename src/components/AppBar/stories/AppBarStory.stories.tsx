@@ -70,6 +70,12 @@ storiesOf('AppBar', module).add('with content', () => {
             label: 'Profil',
           },
           {
+            id: 'manual',
+            href: '/test.docx',
+            isAnchor: true,
+            label: 'Test',
+          },
+          {
             id: 'logout',
             action: () => {
               console.log('logout');

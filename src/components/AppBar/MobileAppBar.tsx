@@ -110,10 +110,23 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
                   key={i.id}
                   onClick={() => {
                     handleCloseMenu();
-                    i.action();
+                    i.action && i.action();
                   }}
                 >
-                  {i.label}
+                  {i.isAnchor ? (
+                    <a
+                      style={{
+                        textDecoration: 'inherit',
+                        color: 'inherit',
+                      }}
+                      rel="noreferrer"
+                      href={i.href}
+                    >
+                      {i.label}
+                    </a>
+                  ) : (
+                    i.label
+                  )}
                 </MenuItem>
                 {userMenuItems.length > index + 1 && <Divider />}
               </Box>

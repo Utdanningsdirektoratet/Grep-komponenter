@@ -1,7 +1,9 @@
 export type UserMenuItem = {
   id: string;
   label: string;
-  action: () => void;
+  action?: () => void;
+  isAnchor?: boolean;
+  href?: string;
 };
 
 export interface IAuthorizedPage {
