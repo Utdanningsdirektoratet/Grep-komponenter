@@ -1,5 +1,4 @@
 import { styled } from '@mui/material';
-import { Theme, MUIStyledCommonProps } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 import { v0colors } from './types';
 
@@ -34,7 +33,7 @@ export const EnvironmentTitle = styled('div')(() => ({
 export const Toolbar = styled('div')(({ colors }: { colors: v0colors }) => ({
   display: 'flex',
   flexDirection: 'column',
-  backgroundColor: `${colors.headerBackgroundColor}`,
+  backgroundColor: colors.headerBackgroundColor,
   height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
   minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
   maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
@@ -44,7 +43,7 @@ export const ToolbarFixer = styled('div')(
   ({ colors }: { colors: v0colors }) => ({
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: `${colors.headerBackgroundColor}`,
+    backgroundColor: colors.headerBackgroundColor,
     height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
     minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
     maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
@@ -107,56 +106,44 @@ export const AccountName = styled('span')(() => ({
   lineHeight: '25px',
 }));
 
-export const ToolbarMenu = styled('div')(
-  ({ theme, colors }: { colors: v0colors } & MUIStyledCommonProps<Theme>) => {
-    if (!theme) {
-      return {};
-    }
-    return {
-      backgroundColor: `${colors.primary}`,
-      height: `${dimensions.toolbarMenuHeight}px`,
-      maxHeight: `${dimensions.toolbarMenuHeight}px`,
-      minHeight: `${dimensions.toolbarMenuHeight}px`,
-      width: '100%',
+export const ToolbarMenu = styled('div')(({ theme }) => {
+  return {
+    backgroundColor: theme.palette.primary.main,
+    height: `${dimensions.toolbarMenuHeight}px`,
+    maxHeight: `${dimensions.toolbarMenuHeight}px`,
+    minHeight: `${dimensions.toolbarMenuHeight}px`,
+    width: '100%',
 
+    display: 'flex',
+    alignItems: 'center',
+    fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
+    boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.3)',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('sm')]: {
       display: 'flex',
-      alignItems: 'center',
-      fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
-      boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.3)',
-      [theme.breakpoints.down('sm')]: {
-        display: 'none',
-      },
-      [theme.breakpoints.up('sm')]: {
-        display: 'flex',
-      },
-    };
-  },
-);
+    },
+  };
+});
 
-export const MobileToolbarMenu = styled('div')(
-  ({ theme, colors }: { colors: v0colors } & MUIStyledCommonProps<Theme>) => {
-    if (!theme) {
-      return {};
-    }
-    return {
-      backgroundColor: `${colors.primary}`,
-      height: `${dimensions.toolbarMenuHeight}px`,
-      maxHeight: `${dimensions.toolbarMenuHeight}px`,
-      minHeight: `${dimensions.toolbarMenuHeight}px`,
-      width: '100%',
-      flexGrow: 1,
-      alignItems: 'center',
-      fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
-      boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.3)',
-      [theme.breakpoints.down('sm')]: {
-        display: 'flex',
-      },
-      [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
-    };
+export const MobileToolbarMenu = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  height: `${dimensions.toolbarMenuHeight}px`,
+  maxHeight: `${dimensions.toolbarMenuHeight}px`,
+  minHeight: `${dimensions.toolbarMenuHeight}px`,
+  width: '100%',
+  flexGrow: 1,
+  alignItems: 'center',
+  fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
+  boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.3)',
+  [theme.breakpoints.down('sm')]: {
+    display: 'flex',
   },
-);
+  [theme.breakpoints.up('sm')]: {
+    display: 'none',
+  },
+}));
 
 export const ToolbarMenuInner = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -173,57 +160,67 @@ export const ToolbarMenuInner = styled('div')(({ theme }) => ({
 }));
 
 const menuItemHoverGreen = '#B9E1CC';
-export const ToolbarMenuItem = styled(NavLink)(
-  ({ colors }: { colors: v0colors }) => ({
-    alignItems: 'center',
-    borderRight: '1px solid #696868',
-    color: colors.white,
-    cursor: 'pointer',
-    display: 'flex',
-    fontSize: '1.1rem',
-    padding: '0 17px',
-    height: '100%',
-    textTransform: 'capitalize',
-    userSelect: 'none',
-    position: 'relative',
-    textDecoration: 'none',
+export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
+  alignItems: 'center',
+  borderRight: '1px solid #696868',
+  color: theme.palette.background.default,
+  cursor: 'pointer',
+  display: 'flex',
+  fontSize: '1.1rem',
+  padding: '0 17px',
+  height: '100%',
+  textTransform: 'capitalize',
+  userSelect: 'none',
+  position: 'relative',
+  textDecoration: 'none',
 
-    ':first-child': {
-      paddingLeft: 0,
-      ':after': {
-        marginLeft: '-24px',
-      },
-    },
-
-    ':last-child': {
-      borderRight: 'none',
-    },
-
+  ':first-child': {
+    paddingLeft: 0,
     ':after': {
-      position: 'absolute',
-      bottom: 0,
-      left: '50%',
-      width: '32px',
-      marginLeft: '-16px',
-      borderBottom: `2px solid ${colors.secondary}`,
-      opacity: 0,
-      content: '""',
-      transition: 'all 0.3s ease',
-      pointerEvents: 'none',
+      marginLeft: '-24px',
     },
+  },
 
-    ':focus': {
-      outline: 'none',
-    },
+  ':last-child': {
+    borderRight: 'none',
+  },
 
-    ':hover': {
-      textDecoration: 'none',
-      color: menuItemHoverGreen,
-    },
+  ':after': {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    width: '32px',
+    marginLeft: '-16px',
+    borderBottom: `2px solid ${theme.palette.secondary.main}`,
+    opacity: 0,
+    content: '""',
+    transition: 'all 0.3s ease',
+    pointerEvents: 'none',
+  },
 
-    '.active:after, :hover:after, focus:after': {
-      bottom: '-4px',
-      opacity: '1',
-    },
-  }),
-);
+  ':focus': {
+    outline: 'none',
+  },
+
+  ':hover': {
+    textDecoration: 'none',
+    color: menuItemHoverGreen,
+  },
+
+  '.active:after, :hover:after, focus:after': {
+    bottom: '-4px',
+    opacity: '1',
+  },
+}));
+
+export const MobileToolbarMenuItem = styled(NavLink)(() => ({
+  alignItems: 'center',
+  color: 'black',
+  cursor: 'pointer',
+  display: 'flex',
+  height: '100%',
+  textTransform: 'capitalize',
+  userSelect: 'none',
+  position: 'relative',
+  textDecoration: 'none',
+}));

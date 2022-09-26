@@ -1,6 +1,6 @@
 import {
   AppBar,
-  /*Divider,*/
+  Divider,
   IconButton,
   Menu,
   MenuItem,
@@ -9,9 +9,8 @@ import {
 import { Menu as MenuIcon } from '@mui/icons-material';
 import MoreVert from '@mui/icons-material/MoreVert';
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 
-import { MobileToolbarMenu } from './MainAppStyles';
+import { MobileToolbarMenu, MobileToolbarMenuItem } from './MainAppStyles';
 import { IAuthorizedPage, UserMenuItem, v0colors } from './types';
 
 type Props = {
@@ -23,7 +22,6 @@ type Props = {
 const MobileAppBar: React.FunctionComponent<Props> = ({
   userMenuItems,
   menuItems,
-  colors,
 }: Props) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
@@ -48,7 +46,7 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <MobileToolbarMenu colors={colors} style={{ flexGrow: 1 }}>
+    <MobileToolbarMenu style={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar style={{ minHeight: '50px' }}>
           <IconButton
@@ -71,9 +69,19 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
             }}
           >
             {menuItems.map((page) => (
-              <NavLink key={page.name} to={page.redirectUrl || ''}>
-                <MenuItem key={page.name}>{page.translatedTextRef}</MenuItem>
-              </NavLink>
+              <MobileToolbarMenuItem
+                key={page.name}
+                to={page.redirectUrl || ''}
+              >
+                <MenuItem
+                  sx={{
+                    width: '100%',
+                  }}
+                  key={page.name}
+                >
+                  {page.translatedTextRef}
+                </MenuItem>
+              </MobileToolbarMenuItem>
             ))}
           </Menu>
           <IconButton
@@ -95,16 +103,19 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
               'aria-labelledby': 'basic-button',
             }}
           >
-            {userMenuItems.map((i) => (
-              <MenuItem
-                key={i.id}
-                onClick={() => {
-                  handleCloseMenu();
-                  i.action();
-                }}
-              >
-                {i.label}
-              </MenuItem>
+            {userMenuItems.map((i, index) => (
+              <>
+                <MenuItem
+                  key={i.id}
+                  onClick={() => {
+                    handleCloseMenu();
+                    i.action();
+                  }}
+                >
+                  {i.label}
+                </MenuItem>
+                {userMenuItems.length > index + 1 && <Divider />}
+              </>
             ))}
           </Menu>
         </Toolbar>

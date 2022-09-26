@@ -5,8 +5,8 @@ import MainLayout from '../../MainLayout';
 import { IAuthorizedPage } from '../types';
 
 export const v0colors = {
-  primary: '#7DBF9D',
-  secondary: '#EED0C3',
+  primary: '#3FB8AF',
+  secondary: '#FF9E9D',
   body: '#fff',
   headerBackgroundColor: '#F4F4F4',
   borderColor: '#D8D8D8',

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ArrowDropdown from '@mui/icons-material/ArrowDropDown';
-//import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
@@ -69,7 +69,6 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
         to={page.redirectUrl || ''}
         key={page.name}
         tabIndex={0}
-        colors={colors}
       >
         {page?.translatedTextRef}
       </ToolbarMenuItem>
@@ -116,24 +115,26 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
                 horizontal: 'center',
               }}
             >
-              {userMenuItems.map((i) => {
+              {userMenuItems.map((i, index) => {
                 return (
-                  <MenuItem
-                    key={i.id}
-                    onClick={() => {
-                      setUserMenuAnchor(null);
-                      i.action();
-                    }}
-                  >
-                    {i.label}
-                  </MenuItem>
+                  <>
+                    <MenuItem
+                      key={i.id}
+                      onClick={() => {
+                        setUserMenuAnchor(null);
+                        i.action();
+                      }}
+                    >
+                      {i.label}
+                    </MenuItem>
+                    {userMenuItems.length > index + 1 && <Divider />}
+                  </>
                 );
               })}
-              {/*<Divider />*/}
             </Menu>
           </ToolbarRight>
         </ToolbarInner>
-        <ToolbarMenu colors={colors}>
+        <ToolbarMenu>
           <ToolbarMenuInner>
             {menuItems.map((page) => _renderToolbarMenuItem(page))}
           </ToolbarMenuInner>
