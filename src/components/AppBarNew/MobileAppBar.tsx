@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Box,
   Divider,
   IconButton,
   Menu,
@@ -104,7 +105,7 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
             }}
           >
             {userMenuItems.map((i, index) => (
-              <>
+              <Box key={i.id}>
                 <MenuItem
                   key={i.id}
                   onClick={() => {
@@ -115,7 +116,7 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
                   {i.label}
                 </MenuItem>
                 {userMenuItems.length > index + 1 && <Divider />}
-              </>
+              </Box>
             ))}
           </Menu>
         </Toolbar>

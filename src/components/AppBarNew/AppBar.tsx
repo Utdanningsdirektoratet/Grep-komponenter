@@ -117,7 +117,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
             >
               {userMenuItems.map((i, index) => {
                 return (
-                  <>
+                  <Box key={i.id}>
                     <MenuItem
                       key={i.id}
                       onClick={() => {
@@ -128,7 +128,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
                       {i.label}
                     </MenuItem>
                     {userMenuItems.length > index + 1 && <Divider />}
-                  </>
+                  </Box>
                 );
               })}
             </Menu>
