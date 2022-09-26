@@ -31,25 +31,51 @@ export const EnvironmentTitle = styled('div')(() => ({
   marginLeft: '17px',
 }));
 
-export const Toolbar = styled('div')(() => ({
+export const Toolbar = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-  minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-  maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+  [theme.breakpoints.down('sm')]: {
+    height: `${
+      dimensions.toolbarMenuHeight + dimensions.toolbarHeightMobile
+    }px`,
+    minHeight: `${
+      dimensions.toolbarMenuHeight + dimensions.toolbarHeightMobile
+    }px`,
+    maxHeight: `${
+      dimensions.toolbarMenuHeight + dimensions.toolbarHeightMobile
+    }px`,
+  },
+  [theme.breakpoints.up('sm')]: {
+    height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+    minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+    maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+  },
 }));
 
-export const ToolbarFixer = styled('div')(() => ({
+export const ToolbarFixer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-  minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
-  maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
   position: 'fixed',
   top: 0,
   left: 0,
   right: 0,
   zIndex: 101,
+  [theme.breakpoints.down('sm')]: {
+    height: `${
+      dimensions.toolbarMenuHeight + dimensions.toolbarHeightMobile
+    }px`,
+    minHeight: `${
+      dimensions.toolbarMenuHeight + dimensions.toolbarHeightMobile
+    }px`,
+    maxHeight: `${
+      dimensions.toolbarMenuHeight + dimensions.toolbarHeightMobile
+    }px`,
+  },
+  [theme.breakpoints.up('sm')]: {
+    height: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+    minHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+    maxHeight: `${dimensions.toolbarMenuHeight + dimensions.toolbarHeight}px`,
+  },
 }));
 
 export const ToolbarInner = styled('div')(

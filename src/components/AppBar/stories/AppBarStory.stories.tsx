@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import AppBar from '../AppBar';
 import MainLayout from '../../MainLayout';
 import { IAuthorizedPage } from '../types';
+import { Box } from '@mui/system';
 
 export const v0colors = {
   primary: '#3FB8AF',
@@ -53,30 +54,32 @@ const navbarPages: IAuthorizedPage[] = [
 
 storiesOf('AppBar', module).add('with content', () => {
   return (
-    <AppBar
-      appTitle="Læreplanutvikleren"
-      isProd={false}
-      colors={v0colors}
-      currentPath="/"
-      menuItems={navbarPages}
-      userMenuItems={[
-        {
-          id: 'profile',
-          action: () => {
-            console.log('profile');
+    <Box display="flex" flexDirection="column">
+      <AppBar
+        appTitle="Læreplanutvikleren"
+        isProd={false}
+        colors={v0colors}
+        currentPath="/"
+        menuItems={navbarPages}
+        userMenuItems={[
+          {
+            id: 'profile',
+            action: () => {
+              console.log('profile');
+            },
+            label: 'Profil',
           },
-          label: 'Profil',
-        },
-        {
-          id: 'logout',
-          action: () => {
-            console.log('logout');
+          {
+            id: 'logout',
+            action: () => {
+              console.log('logout');
+            },
+            label: 'Logg ut',
           },
-          label: 'Logg ut',
-        },
-      ]}
-      username="Grep bruker"
-      userRole="Systemadministrator"
-    />
+        ]}
+        username="Grep bruker"
+        userRole="Systemadministrator"
+      />
+    </Box>
   );
 });
