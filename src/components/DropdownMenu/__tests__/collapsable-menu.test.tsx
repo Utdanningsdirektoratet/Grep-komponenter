@@ -28,7 +28,6 @@ const items: Array<DropdownMenuItem<any>> = [
   },
   {
     label: 'Testitem #3',
-    disabled: true,
     tooltipText: 'tooltip text',
     children: [
       {
@@ -121,7 +120,7 @@ describe('CollapsableMenu', () => {
     await openMenu(user);
     expect(screen.queryByText('tooltip text')).toBeFalsy();
 
-    const item = screen.getByRole('menuitem', { name: items[2].label });
+    const item = screen.getByText('Testitem #3');
     await user.hover(item.parentElement!);
 
     expect(await screen.findByText('tooltip text')).toBeInTheDocument();

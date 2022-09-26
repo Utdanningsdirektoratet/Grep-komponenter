@@ -126,6 +126,17 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
       },
     ],
   },
+  {
+    label: 'Test 3',
+    handleClick: (obj) => console.log('clicked on', obj),
+    tooltipText: 'This is a tooltip',
+    disabled: true,
+  },
+  {
+    label: 'Test 4',
+    tooltipText: 'This is a tooltip',
+    handleClick: (obj) => console.log('clicked on', obj),
+  },
 ];
 
 storiesOf('Grep table', module)
