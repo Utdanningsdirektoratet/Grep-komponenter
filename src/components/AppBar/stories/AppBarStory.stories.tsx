@@ -51,7 +51,7 @@ const navbarPages: IAuthorizedPage[] = [
   },
 ];
 
-storiesOf('NewAppBar', module).add('with content', () => {
+storiesOf('AppBar', module).add('with content', () => {
   return (
     <MainLayout>
       <div>
