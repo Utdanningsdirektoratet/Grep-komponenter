@@ -12,8 +12,10 @@ export const TooltipMenuItem: React.FC<Props> = ({
   ...props
 }) => (
   <Tooltip title={tooltipText}>
-    <MenuItem role="menuitem" disabled={disabled} {...props}>
-      {children}
-    </MenuItem>
+    <span>
+      <MenuItem role="menuitem" disabled={disabled} {...props}>
+        {children}
+      </MenuItem>
+    </span>
   </Tooltip>
 );
