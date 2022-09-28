@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { List, ListItem, ListItemText, Container, Box } from '@mui/material';
 import { useFooterStyles } from './styles';
-import darkLogo from '../../assets/utdanningsdirektoratet-logo-rgb-neg.png';
+import darkLogo from '../../../assets/utdanningsdirektoratet-logo-rgb-neg.png';
 
 export interface FooterItem {
   label: string;
