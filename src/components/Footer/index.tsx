@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
-import { List, ListItem, ListItemText, Container } from '@mui/material';
+import { List, ListItem, ListItemText, Container, Box } from '@mui/material';
 import { useFooterStyles } from './styles';
+import darkLogo from '../../assets/utdanningsdirektoratet-logo-rgb-neg.png';
 
 export interface FooterItem {
   label: string;
@@ -10,39 +11,53 @@ export interface FooterItem {
 
 interface FooterProps {
   items: FooterItem[];
+  serviceNameText: string;
+  udirLink: string;
 }
 
-const Footer: React.FC<FooterProps> = ({ items }) => {
+const Footer: React.FC<FooterProps> = ({
+  items,
+  serviceNameText,
+  udirLink,
+}) => {
   const { classes } = useFooterStyles();
 
   const renderItem = (text: string) => (
     <ListItemText
       className={classes.itemText}
       primary={text}
-      primaryTypographyProps={{ style: { fontSize: 14 } }}
+      primaryTypographyProps={{
+        style: { fontSize: 14, fontFamily: 'Montserrat Regular' },
+      }}
     />
   );
 
   return (
-    <div className={classes.footer}>
-      <Container>
-        <List className={classes.list}>
-          {items.map(({ label, render, onClickItem }, i) => (
-            <ListItem
-              key={i}
-              classes={{
-                root: classes.item,
-                button: onClickItem ? classes.itemBtn : undefined,
-              }}
-              onClick={onClickItem}
-              button={!!onClickItem as any}
-            >
-              {render ? render(() => renderItem(label)) : renderItem(label)}
-            </ListItem>
-          ))}
-        </List>
-      </Container>
-    </div>
+    <Box className={classes.footer}>
+      <Box className={classes.content}>
+        <a href={udirLink}>
+          <img src={darkLogo} style={{ height: '43px', width: '150px' }} />
+        </a>
+        <Container>
+          <span className={classes.serviceNameText}>{serviceNameText}</span>
+          <List className={classes.list}>
+            {items.map(({ label, render, onClickItem }, i) => (
+              <ListItem
+                key={i}
+                classes={{
+                  root: classes.item,
+                  button: onClickItem ? classes.itemBtn : undefined,
+                }}
+                onClick={onClickItem}
+                button={!!onClickItem as any}
+              >
+                {render ? render(() => renderItem(label)) : renderItem(label)}
+              </ListItem>
+            ))}
+          </List>
+        </Container>
+      </Box>
+    </Box>
   );
 };
 

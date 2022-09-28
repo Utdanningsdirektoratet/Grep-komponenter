@@ -8,36 +8,54 @@ export const useFooterStyles = makeStyles()((theme) => ({
     display: 'flex',
     alignItems: 'center',
     backgroundColor: theme.palette.primary.main,
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('md')]: {
       minHeight: 'unset',
     },
     [theme.breakpoints.up('md')]: {
-      minHeight: 50,
+      minHeight: '100px',
+    },
+    fontFamily: 'Montserrat Semibold',
+    fontSize: '14px',
+  },
+  content: {
+    padding: '0 40px 0 40px',
+    display: 'flex',
+    width: '100%',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      a: {
+        width: '150px',
+        margin: '40px auto 40px auto',
+      },
+    },
+    [theme.breakpoints.up('md')]: { flexDirection: 'row' },
+  },
+  serviceNameText: {
+    color: Colors.white,
+    textAlign: 'center',
+    display: 'block',
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '30px',
     },
   },
   list: {
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
-    [theme.breakpoints.down('lg')]: {
-      flexDirection: 'column',
-    },
-    [theme.breakpoints.up('md')]: {
-      flexDirection: 'row',
+    [theme.breakpoints.down('md')]: {
+      marginBottom: '40px',
+      flexWrap: 'wrap',
     },
   },
   item: {
     color: Colors.white,
     width: 'fit-content',
     height: '10px',
-    [theme.breakpoints.down('lg')]: {
-      margin: '0 auto',
+    margin: '0',
+    borderRight: `1px solid ${theme.palette.divider}`,
+    [theme.breakpoints.down('md')]: {
       textAlign: 'center',
-      height: 'min-content',
-    },
-    [theme.breakpoints.up('md')]: {
-      margin: '0',
-      borderRight: '1px solid',
-      height: '0',
+      width: 'filter-content',
     },
 
     '&:last-child': {
@@ -47,8 +65,11 @@ export const useFooterStyles = makeStyles()((theme) => ({
   itemText: {
     padding: 0,
     margin: '0 auto',
+    fontFamily: 'Montserrat Regular',
+    fontSize: '14px',
   },
   itemBtn: {
+    textDecoration: 'underline',
     '&:hover': {
       backgroundColor: 'unset',
     },

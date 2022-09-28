@@ -27,6 +27,7 @@ const theme = createTheme({
     background: {
       default: Colors.white,
     },
+    divider: Colors.green,
   },
   typography: {
     useNextVariants: true,

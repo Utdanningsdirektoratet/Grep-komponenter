@@ -6,13 +6,11 @@ import { FooterItem } from '..';
 
 export const footerItems: FooterItem[] = [
   {
-    label: '© 2018 Utdanningsdirektoratet. Alle rettigheter forbeholdt.',
+    label: 'Om Tjenestenavn',
+    onClickItem: () => console.log('test'),
   },
   {
-    label: 'Versjon 0.0.35',
-  },
-  {
-    label: 'Personvern',
+    label: 'Personvernerklæring',
     onClickItem: () => console.log('test'),
   },
   {
@@ -32,7 +30,11 @@ export const footerItems: FooterItem[] = [
 
 storiesOf('Footer', module).add('Footer with content', () => (
   <MainLayout>
-    <Footer items={footerItems} />
+    <Footer
+      udirLink="https://www.udir.no"
+      serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+      items={footerItems}
+    />
   </MainLayout>
 ));
 
@@ -41,6 +43,10 @@ storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
     <div
       style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
     ></div>
-    <Footer items={footerItems} />
+    <Footer
+      udirLink="https://www.udir.no"
+      serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+      items={footerItems}
+    />
   </div>
 ));

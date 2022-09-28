@@ -59,7 +59,11 @@ storiesOf('Pages', module)
         </Box>
       </AppBar>
       <Container>{storyFn()}</Container>
-      <Footer items={footerItems} />
+      <Footer
+        udirLink="https://www.udir.no"
+        serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+        items={footerItems}
+      />
     </MainLayout>
   ))
   .add('Dashboard', () => (
