@@ -24,7 +24,13 @@ export const footerItems: FooterItem[] = [
 describe('Footer', () => {
   const user = userEvent.setup();
   it('should render correctly', () => {
-    const { getByText, getByRole } = render(<Footer items={footerItems} />);
+    const { getByText, getByRole } = render(
+      <Footer
+        udirLink="https://udir.no"
+        serviceNameText="Tjenstenavn er levert av Utdanningsdirektoratet"
+        items={footerItems}
+      />,
+    );
 
     expect(getByText(/test #1/i)).toBeInTheDocument();
     expect(getByRole('button', { name: /test #2/i })).toBeInTheDocument();
@@ -32,7 +38,13 @@ describe('Footer', () => {
   });
 
   it('should handle onClick', async () => {
-    const { getByRole } = render(<Footer items={footerItems} />);
+    const { getByRole } = render(
+      <Footer
+        udirLink="https://udir.no"
+        serviceNameText="Tjenstenavn er levert av Utdanningsdirektoratet"
+        items={footerItems}
+      />,
+    );
 
     await user.click(getByRole('button', { name: /test #2/i }));
     expect(mockFn).toHaveBeenCalledWith('Test #2');
