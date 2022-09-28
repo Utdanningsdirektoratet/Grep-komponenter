@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { MainLayout, Footer } from '../..';
 import { Switch } from '@mui/material';
 import { FooterItem } from '..';
+import { UdirLogo } from '../../../assets';
 
 export const footerItems: FooterItem[] = [
   {
@@ -31,6 +32,7 @@ export const footerItems: FooterItem[] = [
 storiesOf('Footer', module).add('Footer with content', () => (
   <MainLayout>
     <Footer
+      udirLogo={UdirLogo}
       udirLink="https://www.udir.no"
       serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
       items={footerItems}
@@ -44,6 +46,7 @@ storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
       style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
     ></div>
     <Footer
+      udirLogo={UdirLogo}
       udirLink="https://www.udir.no"
       serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
       items={footerItems}

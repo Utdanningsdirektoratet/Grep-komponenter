@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
 import { List, ListItem, ListItemText, Container, Box } from '@mui/material';
 import { useFooterStyles } from './styles';
-import { UdirLogo } from '../../assets';
 
 export interface FooterItem {
   label: string;
@@ -13,12 +12,14 @@ interface FooterProps {
   items: FooterItem[];
   serviceNameText: string;
   udirLink: string;
+  udirLogo: string;
 }
 
 const Footer: React.FC<FooterProps> = ({
   items,
   serviceNameText,
   udirLink,
+  udirLogo,
 }) => {
   const { classes } = useFooterStyles();
 
@@ -36,7 +37,11 @@ const Footer: React.FC<FooterProps> = ({
     <Box className={classes.footer}>
       <Box className={classes.content}>
         <a href={udirLink}>
-          <img src={UdirLogo} style={{ height: '43px', width: '150px' }} />
+          <img
+            src={udirLogo}
+            alt="Utdanningsdirektoratet logo"
+            style={{ height: '43px', width: '150px' }}
+          />
         </a>
         <Container>
           <span className={classes.serviceNameText}>{serviceNameText}</span>

@@ -60,6 +60,7 @@ storiesOf('Pages', module)
       </AppBar>
       <Container>{storyFn()}</Container>
       <Footer
+        udirLogo="test"
         udirLink="https://www.udir.no"
         serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
         items={footerItems}

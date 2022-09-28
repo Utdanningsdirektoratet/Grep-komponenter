@@ -5,7 +5,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
 import internal from 'rollup-plugin-internal';
-import image from '@rollup/plugin-image';
 
 import yalc from './rollup-plugin-yalc';
 
@@ -43,6 +42,5 @@ export default {
     }),
     internal(['@emotion/react']),
     yalc(process.env.yalc),
-    image(),
   ],
 };

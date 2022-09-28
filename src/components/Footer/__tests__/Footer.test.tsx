@@ -26,6 +26,7 @@ describe('Footer', () => {
   it('should render correctly', () => {
     const { getByText, getByRole } = render(
       <Footer
+        udirLogo="test"
         udirLink="https://udir.no"
         serviceNameText="Tjenstenavn er levert av Utdanningsdirektoratet"
         items={footerItems}
@@ -40,6 +41,7 @@ describe('Footer', () => {
   it('should handle onClick', async () => {
     const { getByRole } = render(
       <Footer
+        udirLogo="test"
         udirLink="https://udir.no"
         serviceNameText="Tjenstenavn er levert av Utdanningsdirektoratet"
         items={footerItems}
