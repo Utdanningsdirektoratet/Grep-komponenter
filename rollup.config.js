@@ -42,5 +42,6 @@ export default {
     }),
     internal(['@emotion/react']),
     yalc(process.env.yalc),
+    image(),
   ],
 };
