@@ -14,7 +14,8 @@ export const useFooterStyles = makeStyles()((theme) => ({
     [theme.breakpoints.up('md')]: {
       minHeight: '100px',
     },
-    fontFamily: 'Montserrat Semibold',
+    fontFamily: 'Montserrat',
+    fontWeight: 600,
     fontSize: '14px',
   },
   content: {
@@ -50,8 +51,9 @@ export const useFooterStyles = makeStyles()((theme) => ({
   item: {
     color: Colors.white,
     width: 'fit-content',
-    height: '10px',
     margin: '0',
+    height: '10px',
+    gap: '10px',
     borderRight: `1px solid ${theme.palette.divider}`,
     [theme.breakpoints.down('md')]: {
       textAlign: 'center',
@@ -65,7 +67,8 @@ export const useFooterStyles = makeStyles()((theme) => ({
   itemText: {
     padding: 0,
     margin: '0 auto',
-    fontFamily: 'Montserrat Regular',
+    fontFamily: 'Montserrat',
+    fontWeight: 400,
     fontSize: '14px',
   },
   itemBtn: {

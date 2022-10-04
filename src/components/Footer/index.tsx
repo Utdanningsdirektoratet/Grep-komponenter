@@ -28,7 +28,7 @@ const Footer: React.FC<FooterProps> = ({
       className={classes.itemText}
       primary={text}
       primaryTypographyProps={{
-        style: { fontSize: 14, fontFamily: 'Montserrat Regular' },
+        style: { fontSize: 14, fontFamily: 'Montserrat', fontWeight: 400 },
       }}
     />
   );
