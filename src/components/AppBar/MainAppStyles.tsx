@@ -197,7 +197,7 @@ export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
   color: theme.palette.background.default,
   cursor: 'pointer',
   display: 'flex',
-  fontSize: '14px',
+  fontSize: '16px',
   padding: '0 17px',
   height: '100%',
   textTransform: 'capitalize',
