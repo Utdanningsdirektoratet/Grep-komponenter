@@ -182,7 +182,6 @@ export const ToolbarMenuInner = styled('div')(({ theme }) => ({
   height: 'fit-content',
   maxWidth: `${dimensions.toolbarMenuWidth}px`,
   margin: '0 auto',
-  width: '100%',
   [theme.breakpoints.down('lg')]: {
     padding: '0 24px',
   },
