@@ -19,7 +19,8 @@ export const ToolbarTitle = styled(NavLink)(() => ({
   display: 'flex',
   fontSize: '24px',
   color: '#303030',
-  fontFamily: 'Montserrat medium',
+  fontFamily: 'Montserrat',
+  fontWeight: 500,
   textDecoration: 'none',
   ':hover': {
     textDecoration: 'none',
