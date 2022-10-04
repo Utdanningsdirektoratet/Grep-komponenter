@@ -204,6 +204,7 @@ export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
   userSelect: 'none',
   position: 'relative',
   textDecoration: 'none',
+  fontWeight: 500,
 
   ':first-child': {
     paddingLeft: 0,
