@@ -19,17 +19,23 @@ export const useFooterStyles = makeStyles()((theme) => ({
     fontSize: '14px',
   },
   content: {
-    padding: '0 40px 0 40px',
     display: 'flex',
     width: '100%',
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
+      padding: '0',
       a: {
         width: '150px',
         margin: '40px auto 40px auto',
       },
     },
-    [theme.breakpoints.up('md')]: { flexDirection: 'row' },
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row',
+      padding: '0 12px 0 12px',
+      a: {
+        marginLeft: '28px',
+      },
+    },
   },
   serviceNameText: {
     color: Colors.white,
@@ -46,6 +52,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
     [theme.breakpoints.down('md')]: {
       marginBottom: '40px',
       flexWrap: 'wrap',
+      height: '64px',
     },
   },
   item: {

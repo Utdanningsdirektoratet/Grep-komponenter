@@ -7,6 +7,9 @@ import { UdirLogo } from '../../../assets';
 
 export const footerItems: FooterItem[] = [
   {
+    label: 'Versjon: v0.0.1',
+  },
+  {
     label: 'Om Tjenestenavn',
     onClickItem: () => console.log('test'),
   },

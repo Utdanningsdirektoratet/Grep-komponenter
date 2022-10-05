@@ -43,7 +43,13 @@ const Footer: React.FC<FooterProps> = ({
             style={{ height: '43px', width: '150px' }}
           />
         </a>
-        <Container>
+        <Container
+          sx={{
+            maxWidth: '100% !important',
+            paddingLeft: '16px !important',
+            paddingRight: '16px !important',
+          }}
+        >
           <span className={classes.serviceNameText}>{serviceNameText}</span>
           <List className={classes.list}>
             {items.map(({ label, render, onClickItem }, i) => (
