@@ -53,6 +53,7 @@ export const CollapsableMenuItem: FunctionComponent<
   children,
   onClose: _onclose,
   tooltipText,
+  disabled,
   ...props
 }) => {
   const listItemRef = useRef<HTMLLIElement>(null);
@@ -145,11 +146,15 @@ export const CollapsableMenuItem: FunctionComponent<
     </Box>
   );
 
-  return !!tooltipText && props.disabled ? (
+  return tooltipText ? (
     <TooltipMenuItem
       className={classes.root}
       tooltipText={tooltipText}
       onMouseOver={(e) => e.currentTarget.focus()}
+      disabled={disabled}
+      selected={open}
+      onClick={handleClick}
+      onKeyDown={handleKey}
     >
       {renderInner()}
     </TooltipMenuItem>

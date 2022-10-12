@@ -67,6 +67,11 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
     ],
   },
   {
+    label: 'Test 5',
+    tooltipText: 'This is a tooltip',
+    handleClick: () => console.log('clicked '),
+  },
+  {
     label: 'Test 4',
     disabled: true,
     tooltipText: 'This is a tooltip',
