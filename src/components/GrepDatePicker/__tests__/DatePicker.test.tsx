@@ -24,7 +24,7 @@ const Component: React.FC<Props> = ({ error }) => {
       helperText="HelperTextTest"
       errorMessage={error ? 'ErrorMessageTest' : undefined}
       value={value}
-      onChange={(date) => {
+      onChange={(date: any) => {
         setValue(date);
       }}
     />
@@ -72,8 +72,7 @@ describe('GrepDatePicker', () => {
     // Open datepicker
     await user.click(getByRole('button', { name: 'Choose date' }));
 
-    expect(getByText(month)).toBeInTheDocument();
-    expect(getByText(year)).toBeInTheDocument();
+    expect(getByText(`${month} ${year}`)).toBeInTheDocument();
 
     expect(getByRole('button', { name: today })).toHaveClass(
       'MuiPickersDay-today',

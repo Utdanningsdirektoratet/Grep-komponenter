@@ -1,18 +1,19 @@
 import React from 'react';
 import { MenuItem, MenuItemProps, Tooltip } from '@mui/material';
 
-type Props = Pick<MenuItemProps, 'className' | 'onMouseOver'> & {
+type Props = MenuItemProps & {
   tooltipText: string;
 };
 
 export const TooltipMenuItem: React.FC<Props> = ({
   children,
   tooltipText,
+  disabled,
   ...props
 }) => (
   <Tooltip title={tooltipText}>
     <span>
-      <MenuItem disabled {...props}>
+      <MenuItem role="menuitem" disabled={disabled} {...props}>
         {children}
       </MenuItem>
     </span>

@@ -5,10 +5,7 @@ import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
 import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 
-type CommonProperties = Pick<
-  GrepDatePickerProps,
-  'variant' | 'clearable' | 'disabled' | 'minDate' | 'maxDate'
->;
+type CommonProperties = Pick<GrepDatePickerProps, 'variant'>;
 
 interface Props extends CommonProperties {
   from: Omit<GrepDatePickerProps, 'onChange'>;
@@ -17,6 +14,10 @@ interface Props extends CommonProperties {
   spacing?: GridSpacing;
   style?: React.CSSProperties;
   fullWidth?: boolean;
+  clearable?: any;
+  disabled?: any;
+  minDate?: any;
+  maxDate?: any;
 }
 
 export const GrepDateRange: React.FunctionComponent<Props> = ({
