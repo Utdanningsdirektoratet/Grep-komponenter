@@ -17,6 +17,7 @@ export const useStyles = makeStyles()({
   },
   link: {
     fontSize: 16,
+    margin: 'auto 0',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',
