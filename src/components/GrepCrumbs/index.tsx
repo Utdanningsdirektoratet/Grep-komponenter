@@ -53,7 +53,11 @@ const GrepCrumbs: React.FC<Props> = ({
             >
               {crumb.label}
             </Link>
-            {index !== breadcrumbs.length - 1 && <Box margin="0 8px">&gt;</Box>}
+            {index !== breadcrumbs.length - 1 && (
+              <Box margin="auto 8px" height="fit-content" /*lineHeight="20px"*/>
+                &gt;
+              </Box>
+            )}
           </Box>
         ) : (
           <Tooltip key={index} title={showTooltip ? crumb.label : ''}>
