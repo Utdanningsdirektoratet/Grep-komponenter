@@ -22,6 +22,8 @@ type InputProps = Pick<
   | 'helperText'
   | 'required'
   | 'onFocus'
+  | 'margin'
+  | 'sx'
 >;
 
 export interface GrepDatePickerProps
@@ -42,6 +44,8 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   fullWidth,
   required,
   onFocus,
+  margin,
+  sx,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
@@ -94,6 +98,8 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
             required={required}
             fullWidth={fullWidth}
             placeholder={placeholder}
+            sx={sx}
+            margin={margin}
             error={!!error || !!errorMessage}
             {...(helperText && { helperText })}
           />
