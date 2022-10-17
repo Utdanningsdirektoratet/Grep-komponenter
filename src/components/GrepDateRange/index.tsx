@@ -5,7 +5,7 @@ import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
 import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 
-type CommonProperties = Pick<GrepDatePickerProps, 'variant'>;
+type CommonProperties = Pick<GrepDatePickerProps, 'variant' | 'margin' | 'sx'>;
 
 interface Props extends CommonProperties {
   from: Omit<GrepDatePickerProps, 'onChange'>;
