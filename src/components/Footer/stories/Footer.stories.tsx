@@ -3,16 +3,18 @@ import { storiesOf } from '@storybook/react';
 import { MainLayout, Footer } from '../..';
 import { Switch } from '@mui/material';
 import { FooterItem } from '..';
+import { UdirLogo } from '../../../assets';
 
 export const footerItems: FooterItem[] = [
   {
-    label: '© 2018 Utdanningsdirektoratet. Alle rettigheter forbeholdt.',
+    label: 'Versjon: v0.0.1',
   },
   {
-    label: 'Versjon 0.0.35',
+    label: 'Om Tjenestenavn',
+    onClickItem: () => console.log('test'),
   },
   {
-    label: 'Personvern',
+    label: 'Personvernerklæring',
     onClickItem: () => console.log('test'),
   },
   {
@@ -32,7 +34,12 @@ export const footerItems: FooterItem[] = [
 
 storiesOf('Footer', module).add('Footer with content', () => (
   <MainLayout>
-    <Footer items={footerItems} />
+    <Footer
+      udirLogo={UdirLogo}
+      udirLink="https://www.udir.no"
+      serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+      items={footerItems}
+    />
   </MainLayout>
 ));
 
@@ -41,6 +48,11 @@ storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
     <div
       style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
     ></div>
-    <Footer items={footerItems} />
+    <Footer
+      udirLogo={UdirLogo}
+      udirLink="https://www.udir.no"
+      serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+      items={footerItems}
+    />
   </div>
 ));
