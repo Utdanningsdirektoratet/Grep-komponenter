@@ -1,4 +1,4 @@
-export * from './AppBar';
+export * from './AppBar/AppBar';
 export * from './AppBarProfile';
 export * from './AppBarNavList';
 export * from './BodyLayout';
@@ -29,7 +29,7 @@ export * from './ConfirmationDialog';
 export * from './GrepDialog';
 export * from './ToC';
 
-export { default as AppBar } from './AppBar';
+export { default as AppBar } from './AppBar/AppBar';
 export { default as AppBarProfile } from './AppBarProfile';
 export { default as AppBarNavList } from './AppBarNavList';
 export { default as BodyLayout } from './BodyLayout';
