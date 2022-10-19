@@ -61,7 +61,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
     margin: '0',
     height: '10px',
     gap: '10px',
-    borderRight: `1px solid ${theme.palette.divider}`,
+    borderRight: `1px solid #7dbf9d`,
     [theme.breakpoints.down('md')]: {
       textAlign: 'center',
       width: 'filter-content',
