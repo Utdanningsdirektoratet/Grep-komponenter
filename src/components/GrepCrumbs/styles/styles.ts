@@ -9,7 +9,6 @@ export const useStyles = makeStyles()({
     fontSize: 16,
   },
   current: {
-    overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     fontWeight: 'bold',
