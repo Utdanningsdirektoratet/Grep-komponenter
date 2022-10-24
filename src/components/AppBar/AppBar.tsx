@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ArrowDropdown from '@mui/icons-material/ArrowDropDown';
-import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
@@ -90,7 +89,12 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
             </ToolbarTitle>
           </ToolbarLeft>
           <ToolbarRight>
-            <Button onClick={_handleIconButtonClick}>
+            <Button
+              aria-controls={userMenuAnchor ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={userMenuAnchor ? 'true' : undefined}
+              onClick={_handleIconButtonClick}
+            >
               <AccountCircle color="primary" fontSize="large" />
               <UserContainer>
                 <AccountName>{username}</AccountName>
@@ -117,32 +121,34 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
             >
               {userMenuItems.map((i, index) => {
                 return (
-                  <Box key={i.id}>
-                    <MenuItem
-                      key={i.id}
-                      onClick={() => {
-                        setUserMenuAnchor(null);
-                        i.action && i.action();
-                      }}
-                    >
-                      {i.isAnchor ? (
-                        <a
-                          style={{
-                            textDecoration: 'inherit',
-                            color: 'inherit',
-                          }}
-                          rel="noreferrer"
-                          href={i.href}
-                        >
-                          {i.label}
-                        </a>
-                      ) : (
-                        i.label
-                      )}
-                    </MenuItem>
-
-                    {userMenuItems.length > index + 1 && <Divider />}
-                  </Box>
+                  <MenuItem
+                    key={i.id}
+                    onClick={() => {
+                      setUserMenuAnchor(null);
+                      i.action && i.action();
+                    }}
+                    divider={userMenuItems.length > index + 1}
+                    sx={{
+                      ':focus': {
+                        textDecoration: 'underline',
+                      },
+                    }}
+                  >
+                    {i.isAnchor ? (
+                      <a
+                        style={{
+                          textDecoration: 'inherit',
+                          color: 'inherit',
+                        }}
+                        rel="noreferrer"
+                        href={i.href}
+                      >
+                        {i.label}
+                      </a>
+                    ) : (
+                      i.label
+                    )}
+                  </MenuItem>
                 );
               })}
             </Menu>
