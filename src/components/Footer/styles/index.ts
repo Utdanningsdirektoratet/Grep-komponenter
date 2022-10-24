@@ -81,7 +81,6 @@ export const useFooterStyles = makeStyles()((theme) => ({
       background: 'inherit',
       boxShadow: '0px 0px 0px 1px white',
       borderRadius: '2px',
-      div: {},
     },
   },
   itemText: {
