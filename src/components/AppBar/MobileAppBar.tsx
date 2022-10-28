@@ -48,7 +48,7 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
 
   return (
     <MobileToolbarMenu style={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" role="nav">
         <Toolbar style={{ minHeight: '50px' }}>
           <IconButton
             size="medium"
