@@ -25,6 +25,11 @@ export const ToolbarTitle = styled(NavLink)(() => ({
   ':hover': {
     textDecoration: 'none',
   },
+  h1: {
+    fontSize: '24px',
+    fontFamily: 'Montserrat',
+    fontWeight: 500,
+  },
 }));
 
 export const EnvironmentTitle = styled('div')(() => ({

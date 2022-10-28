@@ -81,7 +81,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
         <ToolbarInner colors={colors}>
           <ToolbarLeft>
             <ToolbarTitle to={'/'}>
-              {appTitle}
+              <h1>{appTitle}</h1>
               {!isProd && (
                 <EnvironmentTitle>
                   {process.env.REACT_APP_HOST}
