@@ -17,6 +17,8 @@ export interface SearchBarProps {
   onClear: () => void;
   onSearchAll?: () => void;
   onInputChange: (value: string) => void;
+  id?: string;
+  title?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
@@ -60,8 +62,10 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           <Search />
         </Box>
         <TextField
+          id={props.id}
           className={classes.input}
           value={value}
+          title={props.title}
           variant="standard"
           inputRef={inputRef}
           onChange={_handleChange}
