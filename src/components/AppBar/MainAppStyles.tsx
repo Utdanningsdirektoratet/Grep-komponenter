@@ -29,6 +29,7 @@ export const ToolbarTitle = styled(NavLink)(() => ({
     fontSize: '24px',
     fontFamily: 'Montserrat',
     fontWeight: 500,
+    margin: '0 !important',
   },
 }));
 
