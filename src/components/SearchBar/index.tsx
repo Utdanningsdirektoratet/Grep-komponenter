@@ -65,13 +65,16 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           id={props.id}
           className={classes.input}
           value={value}
-          title={props.title}
           variant="standard"
           inputRef={inputRef}
           onChange={_handleChange}
           autoFocus={props.autoFocus}
           placeholder={props.placeholder}
-          InputProps={{ disableUnderline: true, fullWidth: true }}
+          InputProps={{
+            disableUnderline: true,
+            fullWidth: true,
+            title: props.title,
+          }}
         />
         <Box className={classes.icon} style={{ cursor: 'pointer' }}>
           {!!value.length && (
