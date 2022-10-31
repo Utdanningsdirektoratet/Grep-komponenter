@@ -148,7 +148,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
             </Menu>
           </ToolbarRight>
         </ToolbarInner>
-        <ToolbarMenu role="nav">
+        <ToolbarMenu role="navigation">
           <ToolbarMenuInner>
             {menuItems.map((page) => _renderToolbarMenuItem(page))}
           </ToolbarMenuInner>
