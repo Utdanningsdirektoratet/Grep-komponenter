@@ -133,6 +133,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
                           }}
                           rel="noreferrer"
                           href={i.href}
+                          onClick={i.onClick}
                         >
                           {i.label}
                         </a>
