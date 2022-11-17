@@ -129,7 +129,7 @@
     "babel-loader": "^9.0.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-runtime": "^6.26.0",
-    "chalk": "^5.1.2",
+    "chalk": "^4.1.2",
     "clsx": "^1.1.0",
     "commitlint": "^17.0.2",
     "connected-react-router": "^6.6.1",
@@ -194,7 +194,7 @@
       "react-router": "^6.2.2"
     },
     "ts-jest": {
-      "babel-jest": "^28.1.0"
+      "babel-jest": "^29.2.0"
     },
     "terser": "^5.14.2",
     "trim-newlines": "^3.0.1",
@@ -207,6 +207,7 @@
     "package-json": {
       "got": "^11.8.5"
     },
-    "nth-check": "^2.0.1"
+    "nth-check": "^2.0.1",
+    "minimatch": "^3.0.5"
   }
 }
