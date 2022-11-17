@@ -207,7 +207,6 @@
     "package-json": {
       "got": "^11.8.5"
     },
-    "nth-check": "^2.0.1",
-    "minimatch": "^3.0.5"
+    "nth-check": "^2.0.1"
   }
 }
