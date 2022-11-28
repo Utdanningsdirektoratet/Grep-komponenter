@@ -1,5 +1,12 @@
 import React, { ReactElement } from 'react';
-import { List, ListItem, ListItemText, Container, Box } from '@mui/material';
+import {
+  List,
+  ListItem,
+  ListItemText,
+  Container,
+  Box,
+  Button,
+} from '@mui/material';
 import { useFooterStyles } from './styles';
 
 export interface FooterItem {
@@ -23,15 +30,23 @@ const Footer: React.FC<FooterProps> = ({
 }) => {
   const { classes } = useFooterStyles();
 
-  const renderItem = (text: string) => (
-    <ListItemText
-      className={classes.itemText}
-      primary={text}
-      primaryTypographyProps={{
-        style: { fontSize: 14, fontFamily: 'Montserrat', fontWeight: 400 },
-      }}
-    />
-  );
+  const renderItem = (item: FooterItem) =>
+    item.onClickItem ? (
+      <Button
+        className={classes.itemBtn.concat(' ' + classes.itemText)}
+        onClick={item.onClickItem}
+      >
+        {item.label}
+      </Button>
+    ) : (
+      <ListItemText
+        className={classes.itemText}
+        primary={item.label}
+        primaryTypographyProps={{
+          style: { fontSize: 14, fontFamily: 'Montserrat', fontWeight: 400 },
+        }}
+      />
+    );
 
   return (
     <Box className={classes.footer}>
@@ -52,17 +67,18 @@ const Footer: React.FC<FooterProps> = ({
         >
           <span className={classes.serviceNameText}>{serviceNameText}</span>
           <List className={classes.list}>
-            {items.map(({ label, render, onClickItem }, i) => (
+            {items.map((item, i) => (
               <ListItem
                 key={i}
                 classes={{
                   root: classes.item,
-                  button: onClickItem ? classes.itemBtn : undefined,
+                  //button: onClickItem ? classes.itemBtn : undefined,
                 }}
-                onClick={onClickItem}
-                button={!!onClickItem as any}
+                //button={!!onClickItem as any}
               >
-                {render ? render(() => renderItem(label)) : renderItem(label)}
+                {item.render
+                  ? item.render(() => renderItem(item))
+                  : renderItem(item)}
               </ListItem>
             ))}
           </List>
