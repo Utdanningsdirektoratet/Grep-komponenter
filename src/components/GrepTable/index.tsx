@@ -30,6 +30,7 @@ export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   getTooltip?: (row: T) => string;
   getCell: (row: T) => string | number | boolean | JSX.Element;
   lines?: (row: T) => number;
+  lang?: string;
 }
 
 export interface GrepTableProps<T>

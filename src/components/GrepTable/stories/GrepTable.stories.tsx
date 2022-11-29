@@ -34,6 +34,7 @@ export const tableColumns: TableColumn<ICurriculum>[] = [
     label: 'Publisert',
     width: 20,
     forceTooltip: true,
+    lang: 'en',
     getCell: (row) => row.lastModified,
   },
 ] as TableColumn<ICurriculum>[];
