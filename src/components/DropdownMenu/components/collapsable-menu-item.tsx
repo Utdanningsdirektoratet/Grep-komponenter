@@ -163,6 +163,7 @@ export const CollapsableMenuItem: FunctionComponent<
       className={classes.root}
       ref={listItemRef}
       selected={open}
+      disabled={disabled}
       onClick={handleClick}
       onKeyDown={handleKey}
       {...props}
