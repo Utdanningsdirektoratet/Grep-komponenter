@@ -36,7 +36,10 @@ export const GrepTableRow: Component<any> = <T,>({
   } = column;
   const { padding } = column;
   const value = (
-    <CellValue style={{ WebkitLineClamp: lines(row as T) }} lang={lang}>
+    <CellValue
+      style={{ WebkitLineClamp: lines(row as T) }}
+      lang={typeof lang === 'string' ? lang : lang ? lang(row as T) : ''}
+    >
       {getCell(row as T)}
     </CellValue>
   );
