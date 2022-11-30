@@ -33,10 +33,43 @@ import '../components/SortableTable/stories';
 import '../components/GrepDateRange/stories';
 import '../components/ToC/stories';
 
+const v0colors = {
+  primary: '#3FB8AF',
+  secondary: '#FF9E9D',
+  body: '#fff',
+  headerBackgroundColor: '#F4F4F4',
+  borderColor: '#D8D8D8',
+  primaryFade: '#F1F3F4',
+  greyText: '#f2f2f2',
+  placeholderText: '#848484',
+  textColor: 'rgba(0, 0, 0, .87)',
+  textColorFade: 'rgba(0, 0, 0, .56)',
+  textColorMoreFade: 'rgba(0, 0, 0, .45)',
+  white: '#fff',
+  lightGrey: '#DCDCDC',
+};
+
 storiesOf('Pages', module)
   .addDecorator((storyFn) => (
     <MainLayout>
-      <AppBar>
+      <AppBar
+        appTitle="Demo"
+        currentPath="/"
+        username="Grep Fagansvarlig"
+        userRole="Superbruker"
+        isProd={false}
+        colors={v0colors}
+        menuItems={navbarPages}
+        userMenuItems={[
+          {
+            id: '1',
+            label: 'Min profil',
+            action: () => {
+              console.log('test');
+            },
+          },
+        ]}
+      >
         <Box display="flex" width="100%" height={64} overflow="hidden">
           <AppBarNavList
             pages={navbarPages}
@@ -59,7 +92,12 @@ storiesOf('Pages', module)
         </Box>
       </AppBar>
       <Container>{storyFn()}</Container>
-      <Footer items={footerItems} />
+      <Footer
+        udirLogo="test"
+        udirLink="https://www.udir.no"
+        serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+        items={footerItems}
+      />
     </MainLayout>
   ))
   .add('Dashboard', () => (

@@ -6,6 +6,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { BrowserRouter } from 'react-router-dom';
 
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
@@ -27,6 +28,7 @@ const theme = createTheme({
     background: {
       default: Colors.white,
     },
+    divider: Colors.green,
   },
   typography: {
     useNextVariants: true,
@@ -74,8 +76,10 @@ export const decorators = [
     <Provider store={store}>
       <CacheProvider value={muiCache}>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Story />
+          <BrowserRouter>
+            <CssBaseline />
+            <Story />
+          </BrowserRouter>
         </ThemeProvider>
       </CacheProvider>
     </Provider>

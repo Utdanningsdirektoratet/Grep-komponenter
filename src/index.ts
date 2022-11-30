@@ -1,7 +1,6 @@
 import * as Utils from './utils';
 
 export { default as Colors } from './styling/Colors';
-export { default as AppBar } from './components/AppBar';
 export { default as AppBarProfile } from './components/AppBarProfile';
 export { default as AppBarNavList } from './components/AppBarNavList';
 export { default as BodyLayout } from './components/BodyLayout';
@@ -29,6 +28,7 @@ export { default as Sidebar } from './components/Sidebar';
 export { default as ServiceMessage } from './components/ServiceMessage';
 export { default as SortableTable } from './components/SortableTable';
 export { default as GrepEditor } from './components/GrepEditor';
+export { default as AppBar } from './components/AppBar/AppBar';
 
 export { ParseableDate } from './utils/dateHelper';
 export { Utils };
@@ -36,3 +36,4 @@ export { Utils };
 export * from './components';
 export * from './hooks';
 export * from './styling';
+export * from './assets';
