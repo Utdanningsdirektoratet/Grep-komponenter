@@ -34,7 +34,7 @@ const Footer: React.FC<FooterProps> = ({
   );
 
   return (
-    <Box className={classes.footer}>
+    <Box className={classes.footer} role="contentinfo">
       <Box className={classes.content}>
         <a href={udirLink}>
           <img
