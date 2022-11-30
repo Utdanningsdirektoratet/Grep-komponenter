@@ -9,13 +9,14 @@ export const useStyles = makeStyles()({
     fontSize: 16,
   },
   current: {
-    overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
     fontWeight: 'bold',
+    lineHeight: '16px',
   },
   link: {
     fontSize: 16,
+    margin: 'auto 0',
     textDecoration: 'none',
     '&:hover': {
       textDecoration: 'underline',

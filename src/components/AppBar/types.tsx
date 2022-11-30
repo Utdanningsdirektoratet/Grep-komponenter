@@ -4,6 +4,7 @@ export type UserMenuItem = {
   action?: () => void;
   isAnchor?: boolean;
   href?: string;
+  onClick?: (e: any) => void;
 };
 
 export interface IAuthorizedPage {
