@@ -125,8 +125,8 @@
     "@typescript-eslint/parser": "^5.1.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^28.1.0",
-    "babel-loader": "^8.0.6",
+    "babel-jest": "^29.2.0",
+    "babel-loader": "^9.0.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-runtime": "^6.26.0",
     "chalk": "^4.1.2",
@@ -194,7 +194,7 @@
       "react-router": "^6.2.2"
     },
     "ts-jest": {
-      "babel-jest": "^28.1.0"
+      "babel-jest": "^29.2.0"
     },
     "terser": "^5.14.2",
     "trim-newlines": "^3.0.1",
