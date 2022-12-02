@@ -51,7 +51,6 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
     React.useState<HTMLAnchorElement | null>(null);
 
   const _handleIconButtonClick = (event: any) => {
-    event.preventDefault();
     setUserMenuAnchor(event.currentTarget);
   };
 
@@ -75,6 +74,47 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
     );
   };
 
+  const renderMenuItems = () => {
+    const newItemList: UserMenuItem[] = [];
+    userMenuItems.forEach((item, index) => {
+      newItemList.push(item);
+      if (userMenuItems.length > index + 1) {
+        newItemList.push({ isDivider: true, id: '', label: '' });
+      }
+    });
+
+    return newItemList.map((i, index) => {
+      return i.isDivider ? (
+        <Divider key={index} />
+      ) : (
+        <MenuItem
+          key={i.id}
+          onClick={() => {
+            setUserMenuAnchor(null);
+            i.action && i.action();
+          }}
+        >
+          {i.isAnchor ? (
+            <a
+              style={{
+                textDecoration: 'inherit',
+                color: 'inherit',
+              }}
+              tabIndex={-1}
+              rel="noreferrer"
+              href={i.href}
+              onClick={i.onClick}
+            >
+              {i.label}
+            </a>
+          ) : (
+            i.label
+          )}
+        </MenuItem>
+      );
+    });
+  };
+
   return (
     <Toolbar>
       <ToolbarFixer>
@@ -90,7 +130,12 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
             </ToolbarTitle>
           </ToolbarLeft>
           <ToolbarRight>
-            <Button onClick={_handleIconButtonClick}>
+            <Button
+              aria-controls={userMenuAnchor ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={userMenuAnchor ? 'true' : undefined}
+              onClick={_handleIconButtonClick}
+            >
               <AccountCircle color="primary" fontSize="large" />
               <UserContainer>
                 <AccountName>{username}</AccountName>
@@ -115,37 +160,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
                 horizontal: 'center',
               }}
             >
-              {userMenuItems.map((i, index) => {
-                return (
-                  <Box key={i.id}>
-                    <MenuItem
-                      key={i.id}
-                      onClick={() => {
-                        setUserMenuAnchor(null);
-                        i.action && i.action();
-                      }}
-                    >
-                      {i.isAnchor ? (
-                        <a
-                          style={{
-                            textDecoration: 'inherit',
-                            color: 'inherit',
-                          }}
-                          rel="noreferrer"
-                          href={i.href}
-                          onClick={i.onClick}
-                        >
-                          {i.label}
-                        </a>
-                      ) : (
-                        i.label
-                      )}
-                    </MenuItem>
-
-                    {userMenuItems.length > index + 1 && <Divider />}
-                  </Box>
-                );
-              })}
+              {renderMenuItems()}
             </Menu>
           </ToolbarRight>
         </ToolbarInner>
