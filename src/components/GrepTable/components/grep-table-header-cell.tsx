@@ -7,6 +7,7 @@ import { useTableHeaderStyles } from '../styles';
 interface Properties<T> extends TableSortLabelProps {
   column: TableColumn<T>;
   onSortBy?: (row: T) => void;
+  empty?: boolean;
 }
 
 type Component<T> = React.FunctionComponent<Properties<T>>;
@@ -17,15 +18,20 @@ export const TableHeaderCell: Component<any> = <T,>({
   direction,
   active,
   children,
+  empty = false,
   ...props
 }: Properties<T>) => {
   const { classes } = useTableHeaderStyles({ column });
 
   const sortable = !!(onSortBy && column.sortable);
 
-  if (sortable) {
+  if (sortable && !empty) {
     return (
-      <TableCell variant="head" className={classes.th} {...props}>
+      <TableCell
+        variant={empty ? 'body' : 'head'}
+        className={classes.th}
+        {...props}
+      >
         <TableSortLabel active={active} direction={direction}>
           {children}
         </TableSortLabel>
@@ -33,8 +39,14 @@ export const TableHeaderCell: Component<any> = <T,>({
     );
   }
 
-  return (
-    <TableCell variant="head" className={classes.th} {...props}>
+  return empty ? (
+    <td className={classes.th}>{children}</td>
+  ) : (
+    <TableCell
+      variant={empty ? 'body' : 'head'}
+      className={classes.th}
+      {...props}
+    >
       {children}
     </TableCell>
   );
