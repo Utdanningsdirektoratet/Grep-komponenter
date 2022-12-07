@@ -72,7 +72,10 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       <InputLabel
         htmlFor={id}
         ref={inputLabel}
-        style={{ minWidth: 'max-content', overflow: 'visible' }}
+        style={{
+          minWidth: 'max-content',
+          overflow: 'visible',
+        }}
       >
         {label}
       </InputLabel>
@@ -107,7 +110,10 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
                 checked={(selected as number[])?.indexOf(value as number) > -1}
               />
             )}
-            <ListItemText primary={label ? label : value} />
+            <ListItemText
+              sx={{ margin: '0px', span: { lineHeight: '1.4375em' } }}
+              primary={label ? label : value}
+            />
           </MenuItem>
         ))}
       </Select>

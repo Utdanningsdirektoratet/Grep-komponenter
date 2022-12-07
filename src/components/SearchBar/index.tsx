@@ -63,6 +63,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         </Box>
         <TextField
           id={props.id}
+          role="search"
           className={classes.input}
           value={value}
           variant="standard"
