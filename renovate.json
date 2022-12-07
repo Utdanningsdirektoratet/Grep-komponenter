@@ -13,5 +13,6 @@
       "description": "Group together minor and patch level updates",
       "matchUpdateTypes": ["minor", "patch", "digest"]
     }
-  ]
+  ],
+  "baseBranches": ["renovate/updates"]
 }
