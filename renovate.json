@@ -3,6 +3,11 @@
   "extends": ["config:base"],
   "labels": ["dependencies"],
   "prConcurrentLimit": 5,
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/playground/**"
+  ],
   "packageRules": [
     {
       "description": "Group together minor and patch level updates",
