@@ -47,6 +47,7 @@ const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
         <ListItemIcon className={classes.icon}>{page.linkIcon}</ListItemIcon>
       )}
       <ListItemText
+        sx={{ outline: 'none !important' }}
         tabIndex={-1}
         disableTypography
         primary={page.label}

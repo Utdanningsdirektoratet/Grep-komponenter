@@ -78,7 +78,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
   return (
     <Toolbar>
       <ToolbarFixer>
-        <ToolbarInner colors={colors}>
+        <ToolbarInner colors={colors} role="banner">
           <ToolbarLeft>
             <ToolbarTitle to={'/'}>
               {appTitle}
@@ -133,6 +133,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
                           }}
                           rel="noreferrer"
                           href={i.href}
+                          onClick={i.onClick}
                         >
                           {i.label}
                         </a>
@@ -148,7 +149,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
             </Menu>
           </ToolbarRight>
         </ToolbarInner>
-        <ToolbarMenu>
+        <ToolbarMenu role="navigation">
           <ToolbarMenuInner>
             {menuItems.map((page) => _renderToolbarMenuItem(page))}
           </ToolbarMenuInner>
