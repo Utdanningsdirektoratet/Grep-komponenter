@@ -109,12 +109,12 @@
     "@storybook/react": "^6.5.12",
     "@storybook/storybook-deployer": "^2.8.12",
     "@testing-library/dom": "^8.6.0",
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^14.1.1",
     "@types/draft-js": "^0.11.3",
     "@types/history": "^4.7.3",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^29.2.4",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
     "@types/react": "^17.0.11",
@@ -125,7 +125,7 @@
     "@typescript-eslint/parser": "^5.1.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^29.2.0",
+    "babel-jest": "^29.3.1",
     "babel-loader": "^9.0.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-runtime": "^6.26.0",
@@ -144,7 +144,7 @@
     "history": "^4.7.2",
     "husky": "^8.0.1",
     "immutable": "^3.8.2",
-    "jest": "^27.5.1",
+    "jest": "^29.0.3",
     "lint-staged": "^13.0.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
@@ -165,7 +165,7 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "seamless-immutable": "^7.1.4",
     "semantic-release": "^19.0.3",
-    "ts-jest": "^27.0.7",
+    "ts-jest": "^29.0.3",
     "ts-keycode-enum": "^1.0.6",
     "tslib": "^2.2.0",
     "tss-react": "^4.0.0",
@@ -184,17 +184,15 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.93",
     "@mui/material": "^5.2.0",
-    "@mui/x-date-pickers": "^5.0.0-beta.4",
+    "@mui/x-date-pickers": "5.0.0-beta.4",
     "dayjs": "^1.10.7",
-    "draft-js": "^0.11.0"
+    "draft-js": "^0.11.0",
+    "jest-environment-jsdom": "^29.3.1"
   },
   "overrides": {
     "connected-react-router": {
       "react-redux": "^8.0.0",
       "react-router": "^6.2.2"
-    },
-    "ts-jest": {
-      "babel-jest": "^29.2.0"
     },
     "terser": "^5.14.2",
     "trim-newlines": "^3.0.1",
