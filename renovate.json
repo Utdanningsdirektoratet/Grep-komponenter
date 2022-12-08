@@ -10,8 +10,10 @@
   ],
   "packageRules": [
     {
+      "matchPackagePatterns": ["*"],
       "description": "Group together minor and patch level updates",
-      "matchUpdateTypes": ["minor", "patch", "digest"]
+      "groupName": "all non-major dependencies",
+      "matchUpdateTypes": ["minor", "patch"]
     }
   ],
   "baseBranches": ["renovate/updates"]
