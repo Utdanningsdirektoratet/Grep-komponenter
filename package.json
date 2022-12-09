@@ -184,7 +184,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.93",
     "@mui/material": "^5.2.0",
-    "@mui/x-date-pickers": "5.0.0-beta.4",
+    "@mui/x-date-pickers": "5.0.10",
     "dayjs": "^1.10.7",
     "draft-js": "^0.11.0",
     "jest-environment-jsdom": "^29.3.1"
