@@ -334,7 +334,7 @@ export const GrepTable = <T,>({
   const { classes } = useStyles({ outlined, showHeader: header });
 
   return (
-    <TableContainer style={props.style}>
+    <TableContainer sx={props.style}>
       <Table
         className={classes.table}
         size={size}
