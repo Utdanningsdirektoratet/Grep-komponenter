@@ -15,13 +15,6 @@
       "groupName": "all non-major dependencies",
       "matchUpdateTypes": ["minor", "patch"],
       "automerge": true
-    },
-    {
-      "matchPackagePatterns": ["*"],
-      "description": "Group together major level updates",
-      "groupName": "all major dependencies",
-      "matchUpdateTypes": ["major"],
-      "automerge": false
     }
   ],
   "baseBranches": ["renovate/updates"]
