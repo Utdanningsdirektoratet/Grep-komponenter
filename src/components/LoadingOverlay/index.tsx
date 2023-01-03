@@ -48,7 +48,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
         sx={sx}
         {...box}
       >
-        <CircularProgress />
+        <CircularProgress aria-label="Laster inn" />
       </Box>
     </Box>
   );

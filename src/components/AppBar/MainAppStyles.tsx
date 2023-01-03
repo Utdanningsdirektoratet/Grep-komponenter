@@ -23,7 +23,11 @@ export const ToolbarTitle = styled(NavLink)(() => ({
   fontWeight: 500,
   textDecoration: 'none',
   ':hover': {
-    textDecoration: 'none',
+    textDecoration: 'underline',
+  },
+  ':focus': {
+    outline: 'none',
+    textDecoration: 'underline',
   },
 }));
 
@@ -223,7 +227,7 @@ export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
     left: '50%',
     width: '32px',
     marginLeft: '-16px',
-    borderBottom: `2px solid ${theme.palette.secondary.main}`,
+    borderBottom: `2px solid ${theme.palette.secondary.light}`,
     opacity: 0,
     content: '""',
     transition: 'all 0.3s ease',
@@ -232,14 +236,23 @@ export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
 
   ':focus': {
     outline: 'none',
+    color: menuItemHoverGreen,
+    ':after': {
+      bottom: '-4px',
+      opacity: '1',
+    },
   },
 
   ':hover': {
     textDecoration: 'none',
     color: menuItemHoverGreen,
+    ':after': {
+      bottom: '-4px',
+      opacity: '1',
+    },
   },
 
-  '.active:after, :hover:after, focus:after': {
+  '.active:after': {
     bottom: '-4px',
     opacity: '1',
   },

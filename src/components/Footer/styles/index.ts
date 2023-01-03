@@ -21,6 +21,12 @@ export const useFooterStyles = makeStyles()((theme) => ({
   content: {
     display: 'flex',
     width: '100%',
+    a: {
+      ':focus': {
+        outlineColor: 'white',
+        outlineOffset: '8px',
+      },
+    },
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
       padding: '0',
@@ -70,6 +76,12 @@ export const useFooterStyles = makeStyles()((theme) => ({
     '&:last-child': {
       border: '0 !important',
     },
+
+    ':focus': {
+      background: 'inherit',
+      boxShadow: '0px 0px 0px 1px white',
+      borderRadius: '2px',
+    },
   },
   itemText: {
     padding: 0,
@@ -77,9 +89,11 @@ export const useFooterStyles = makeStyles()((theme) => ({
     fontFamily: 'Montserrat',
     fontWeight: 400,
     fontSize: '14px',
+    color: Colors.white,
   },
   itemBtn: {
     textDecoration: 'underline',
+    textTransform: 'none',
     '&:hover': {
       backgroundColor: 'unset',
     },
