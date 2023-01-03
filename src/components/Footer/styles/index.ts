@@ -89,9 +89,11 @@ export const useFooterStyles = makeStyles()((theme) => ({
     fontFamily: 'Montserrat',
     fontWeight: 400,
     fontSize: '14px',
+    color: Colors.white,
   },
   itemBtn: {
     textDecoration: 'underline',
+    textTransform: 'none',
     '&:hover': {
       backgroundColor: 'unset',
     },
