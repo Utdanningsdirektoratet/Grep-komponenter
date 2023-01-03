@@ -58,6 +58,7 @@ export interface GrepTableProps<T>
   onContextIdChanged?: (row: T) => void;
   onSortBy?: (col: TableColumn<T>) => any;
   caption?: React.ReactNode;
+  menuButtonLabel?: string;
   /**
    * @deprecated No longer in use.
    */
@@ -122,6 +123,7 @@ export const GrepTable = <T,>({
   stickyHeader,
   padding,
   disableSelectOnClick = false,
+  menuButtonLabel,
   underlineOnFocus,
   ...props
 }: GrepTableProps<T>) => {
@@ -238,6 +240,7 @@ export const GrepTable = <T,>({
             }}
             tabIndex={0}
             size="large"
+            aria-label={menuButtonLabel ?? 'Åpne meny'}
           >
             <MoreVert />
           </IconButton>
