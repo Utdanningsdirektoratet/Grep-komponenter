@@ -17,6 +17,7 @@ export interface SelectItem {
   value: string | number;
   label?: string;
   disabled?: boolean;
+  lang?: string;
 }
 export interface GrepSelectProps extends SelectProps {
   label: string;
@@ -103,8 +104,8 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
             <em>Fjern valgt</em>
           </MenuItem>
         )}
-        {selectItems.map(({ label, value, disabled }, i) => (
-          <MenuItem key={i} value={value} disabled={disabled}>
+        {selectItems.map(({ label, value, disabled, lang }, i) => (
+          <MenuItem key={i} value={value} disabled={disabled} lang={lang}>
             {useCheckedSelect && (
               <Checkbox
                 checked={(selected as number[])?.indexOf(value as number) > -1}
