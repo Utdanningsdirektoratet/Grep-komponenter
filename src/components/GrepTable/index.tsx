@@ -30,6 +30,7 @@ export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   getTooltip?: (row: T) => string;
   getCell: (row: T) => string | number | boolean | JSX.Element;
   lines?: (row: T) => number;
+  lang?: string | ((row: T) => string);
 }
 
 export interface GrepTableProps<T>
@@ -62,6 +63,7 @@ export interface GrepTableProps<T>
    */
   rowHeight?: number;
   disableSelectOnClick?: boolean;
+  underlineOnFocus?: boolean;
 }
 
 interface StyleProps {
@@ -120,6 +122,7 @@ export const GrepTable = <T,>({
   stickyHeader,
   padding,
   disableSelectOnClick = false,
+  underlineOnFocus,
   ...props
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
@@ -268,6 +271,7 @@ export const GrepTable = <T,>({
         row={row}
         style={{ cursor: clickableRows && !disabled ? 'pointer' : '' }}
         onFocus={({ currentTarget }) => setSelectedElement(currentTarget)}
+        underlineOnFocus={underlineOnFocus}
       />
     );
   };

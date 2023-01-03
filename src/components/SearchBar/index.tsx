@@ -17,6 +17,8 @@ export interface SearchBarProps {
   onClear: () => void;
   onSearchAll?: () => void;
   onInputChange: (value: string) => void;
+  id?: string;
+  title?: string;
 }
 
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
@@ -60,6 +62,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           <Search />
         </Box>
         <TextField
+          id={props.id}
           role="search"
           className={classes.input}
           value={value}
@@ -68,7 +71,13 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           onChange={_handleChange}
           autoFocus={props.autoFocus}
           placeholder={props.placeholder}
-          InputProps={{ disableUnderline: true, fullWidth: true }}
+          InputProps={{
+            disableUnderline: true,
+            fullWidth: true,
+            inputProps: {
+              title: props.title,
+            },
+          }}
         />
         <Box className={classes.icon} style={{ cursor: 'pointer' }}>
           {!!value.length && (

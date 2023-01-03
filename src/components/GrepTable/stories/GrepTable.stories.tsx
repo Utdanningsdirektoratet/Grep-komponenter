@@ -34,6 +34,7 @@ export const tableColumns: TableColumn<ICurriculum>[] = [
     label: 'Publisert',
     width: 20,
     forceTooltip: true,
+    lang: 'en',
     getCell: (row) => row.lastModified,
   },
 ] as TableColumn<ICurriculum>[];
@@ -182,6 +183,7 @@ storiesOf('Grep table', module)
       isRowDisabled={(row) => !!(row.id % 2)}
       pagination
       rowsPerPage={10}
+      underlineOnFocus
     />
   ))
   .add('with pagination', () => {
