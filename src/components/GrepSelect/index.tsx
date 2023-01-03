@@ -10,6 +10,7 @@ import {
   FormHelperText,
   ListItemText,
   Checkbox,
+  InputBaseComponentProps,
 } from '@mui/material';
 
 export interface SelectItem {
@@ -25,6 +26,7 @@ export interface GrepSelectProps extends SelectProps {
   selectItems: SelectItem[];
   unselectOption?: boolean;
   useCheckedSelect?: boolean;
+  inputProps?: InputBaseComponentProps | undefined;
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -45,6 +47,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     disabled,
     required,
     label,
+    inputProps,
     value,
     size,
     id,
@@ -78,7 +81,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       </InputLabel>
       <Select
         {...rest}
-        inputProps={{ id }}
+        inputProps={{ id, ...inputProps }}
         disabled={!selectItems || disabled}
         value={value === null ? '' : value}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
