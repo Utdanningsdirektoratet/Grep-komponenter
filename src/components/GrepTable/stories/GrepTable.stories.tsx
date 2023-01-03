@@ -182,6 +182,7 @@ storiesOf('Grep table', module)
       isRowDisabled={(row) => !!(row.id % 2)}
       pagination
       rowsPerPage={10}
+      underlineOnFocus
     />
   ))
   .add('with pagination', () => {

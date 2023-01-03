@@ -23,7 +23,11 @@ export const ToolbarTitle = styled(NavLink)(() => ({
   fontWeight: 500,
   textDecoration: 'none',
   ':hover': {
-    textDecoration: 'none',
+    textDecoration: 'underline',
+  },
+  ':focus': {
+    outline: 'none',
+    textDecoration: 'underline',
   },
 }));
 
@@ -232,14 +236,23 @@ export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
 
   ':focus': {
     outline: 'none',
+    color: menuItemHoverGreen,
+    ':after': {
+      bottom: '-4px',
+      opacity: '1',
+    },
   },
 
   ':hover': {
     textDecoration: 'none',
     color: menuItemHoverGreen,
+    ':after': {
+      bottom: '-4px',
+      opacity: '1',
+    },
   },
 
-  '.active:after, :hover:after, focus:after': {
+  '.active:after': {
     bottom: '-4px',
     opacity: '1',
   },
