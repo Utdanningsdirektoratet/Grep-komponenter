@@ -227,7 +227,7 @@ export const ToolbarMenuItem = styled(NavLink)(({ theme }) => ({
     left: '50%',
     width: '32px',
     marginLeft: '-16px',
-    borderBottom: `2px solid ${theme.palette.secondary.main}`,
+    borderBottom: `2px solid ${theme.palette.secondary.light}`,
     opacity: 0,
     content: '""',
     transition: 'all 0.3s ease',
