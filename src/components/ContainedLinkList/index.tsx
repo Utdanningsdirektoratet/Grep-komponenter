@@ -6,6 +6,7 @@ import {
   ListItem,
   Typography,
   ListItemText,
+  ListItemButton,
 } from '@mui/material';
 
 import { useStyles } from './styles';
@@ -26,14 +27,11 @@ const ContainedLinkList: React.FC<Props> = (props) => {
       <Typography className={classes.title}>{props.title}</Typography>
       <List style={{ padding: 0 }}>
         {props.pages.map((page) => (
-          <ListItem
-            button
-            divider
-            key={page.id}
-            onClick={() => props.onPageClick(page)}
-          >
-            {page.linkIcon && <ListItemIcon>{page.linkIcon}</ListItemIcon>}
-            <ListItemText primary={page.label} />
+          <ListItem divider key={page.id} disablePadding>
+            <ListItemButton onClick={() => props.onPageClick(page)}>
+              {page.linkIcon && <ListItemIcon>{page.linkIcon}</ListItemIcon>}
+              <ListItemText primary={page.label} />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>
