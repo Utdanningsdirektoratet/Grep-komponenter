@@ -198,7 +198,7 @@
     },
     "terser": "^5.14.2",
     "trim-newlines": "^3.0.1",
-    "glob-parent": "^5.1.2",
+    "glob-parent": "^6.0.0",
     "git-up": {
       "parse-url": "^8.1.0"
     },
