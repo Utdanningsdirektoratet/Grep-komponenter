@@ -13,7 +13,7 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin.
 
 ## Features
 
-- Bundles `cjs` and `es` module formats
+- Bundles `cjs` and `es` module formats test
 - [create-react-app](https://github.com/facebookincubator/create-react-app) for example usage and local dev
 - [Rollup](https://rollupjs.org/) for bundling
 - [Babel](https://babeljs.io/) for transpiling
