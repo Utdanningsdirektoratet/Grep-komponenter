@@ -203,7 +203,7 @@
       "parse-url": "^8.1.0"
     },
     "trim": "^0.0.3",
-    "parse-path": "^5.0.0",
+    "parse-path": "^7.0.0",
     "package-json": {
       "got": "^11.8.5"
     },
