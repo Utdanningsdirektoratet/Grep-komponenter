@@ -78,7 +78,7 @@
   },
   "peerDependencies": {
     "connected-react-router": "6.x",
-    "history": "4.x",
+    "history": "4.x || 5.x",
     "prop-types": "^15.7.2",
     "react": "^17.x",
     "react-dom": "^17.x",
@@ -141,7 +141,7 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "history": "^4.7.2",
+    "history": "^5.0.0",
     "husky": "^8.0.1",
     "immutable": "^3.8.2",
     "jest": "^27.5.1",
