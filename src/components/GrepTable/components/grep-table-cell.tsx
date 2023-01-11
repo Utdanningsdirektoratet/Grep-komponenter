@@ -31,11 +31,15 @@ export const GrepTableRow: Component<any> = <T,>({
     forceTooltip,
     getTooltip,
     getCell,
+    lang,
     lines = () => (selected ? undefined : 1),
   } = column;
   const { padding } = column;
   const value = (
-    <CellValue style={{ WebkitLineClamp: lines(row as T) }}>
+    <CellValue
+      style={{ WebkitLineClamp: lines(row as T) }}
+      lang={typeof lang === 'string' ? lang : lang ? lang(row as T) : ''}
+    >
       {getCell(row as T)}
     </CellValue>
   );

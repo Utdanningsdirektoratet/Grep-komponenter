@@ -10,12 +10,14 @@ import {
   FormHelperText,
   ListItemText,
   Checkbox,
+  InputBaseComponentProps,
 } from '@mui/material';
 
 export interface SelectItem {
   value: string | number;
   label?: string;
   disabled?: boolean;
+  lang?: string;
 }
 export interface GrepSelectProps extends SelectProps {
   label: string;
@@ -25,6 +27,7 @@ export interface GrepSelectProps extends SelectProps {
   selectItems: SelectItem[];
   unselectOption?: boolean;
   useCheckedSelect?: boolean;
+  inputProps?: InputBaseComponentProps | undefined;
 }
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
@@ -45,6 +48,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     disabled,
     required,
     label,
+    inputProps,
     value,
     size,
     id,
@@ -78,7 +82,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       </InputLabel>
       <Select
         {...rest}
-        inputProps={{ id }}
+        inputProps={{ id, ...inputProps }}
         disabled={!selectItems || disabled}
         value={value === null ? '' : value}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
@@ -100,8 +104,8 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
             <em>Fjern valgt</em>
           </MenuItem>
         )}
-        {selectItems.map(({ label, value, disabled }, i) => (
-          <MenuItem key={i} value={value} disabled={disabled}>
+        {selectItems.map(({ label, value, disabled, lang }, i) => (
+          <MenuItem key={i} value={value} disabled={disabled} lang={lang}>
             {useCheckedSelect && (
               <Checkbox
                 checked={(selected as number[])?.indexOf(value as number) > -1}

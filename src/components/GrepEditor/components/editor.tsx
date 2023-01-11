@@ -40,6 +40,7 @@ export interface Properties {
   disableNewlines?: boolean;
   stripPastedStyles?: boolean;
   blockPasting?: boolean;
+  lang?: string;
   /**
    * Undefined: allow all styles.
    * Empty array: disable all styles.
@@ -79,6 +80,7 @@ export const EditorComponent: Component = ({
   onContentChange,
   Toolbar = FloatingToolbar,
   blockPasting,
+  lang,
   ...props
 }: Properties) => {
   const { state, setState, setSelection } = useContext(EditorContext);
@@ -188,7 +190,7 @@ export const EditorComponent: Component = ({
           buttons={buttons}
         ></Toolbar>
       )}
-      <Box className={clsx(styles.editor, classes?.editor)}>
+      <Box className={clsx(styles.editor, classes?.editor)} lang={lang}>
         <Editor
           ref={ref as React.MutableRefObject<Editor>}
           {...{

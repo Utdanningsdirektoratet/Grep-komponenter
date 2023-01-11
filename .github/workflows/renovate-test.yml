@@ -9,7 +9,7 @@ on:
 
 jobs:
   run-test:
-    if: ${{ github.actor == 'renovate' }}
+    if: ${{ github.actor == 'renovate[bot]' }}
     runs-on: ubuntu-latest
 
     steps:

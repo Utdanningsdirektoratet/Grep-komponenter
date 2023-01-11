@@ -13,6 +13,7 @@ interface Properties<T>
   columns: Array<TableColumn<T>>;
   clickable?: boolean;
   height?: number;
+  underlineOnFocus?: boolean;
 }
 
 type Component<T> = React.FunctionComponent<Properties<T>>;
@@ -24,12 +25,22 @@ export const GrepTableRow: Component<any> = <T,>({
   variant,
   clickable: _clickable,
   height: _height,
+  underlineOnFocus,
   ...props
 }: Properties<T>) => {
   const render = (column: TableColumn<T>, index: number) => (
     <TableCell key={index} {...{ column, row, variant, selected }}></TableCell>
   );
-  return <TableRow {...{ selected, ...props }}>{columns.map(render)}</TableRow>;
+  return (
+    <TableRow
+      sx={{
+        ':focus': { textDecoration: underlineOnFocus ? 'underline' : 'none' },
+      }}
+      {...{ selected, ...props }}
+    >
+      {columns.map(render)}
+    </TableRow>
+  );
 };
 
 export default GrepTableRow;

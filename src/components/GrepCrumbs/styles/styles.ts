@@ -21,5 +21,9 @@ export const useStyles = makeStyles()({
     '&:hover': {
       textDecoration: 'underline',
     },
+    '&:focus': {
+      textDecoration: 'underline',
+      outlineOffset: '2px',
+    },
   },
 });
