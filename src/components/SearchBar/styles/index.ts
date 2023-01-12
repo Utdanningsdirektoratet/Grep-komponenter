@@ -18,5 +18,5 @@ export const useStyles = makeStyles()({
     width: 56,
   },
   input: { border: 0, display: 'block', flex: 1, fontSize: 16, outline: 0 },
-  helptext: { margin: '0 10px 0 10px', color: Colors.grey, fontSize: 12 },
+  helptext: { margin: '0 10px 0 10px', color: '#6e6e6e', fontSize: 12 },
 });
