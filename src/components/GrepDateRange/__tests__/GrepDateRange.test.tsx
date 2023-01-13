@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { getByText, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import GrepDateRange from '..';
@@ -53,7 +53,7 @@ describe('GrepDateRange', () => {
   });
 
   it('should not allow selecting date before from-date', async () => {
-    const { getByRole, getByLabelText, getAllByRole } = render(<Component />);
+    const { getByLabelText, getAllByRole, getByText } = render(<Component />);
 
     const btns = getAllByRole('button');
 
@@ -65,17 +65,13 @@ describe('GrepDateRange', () => {
 
     await user.click(btns[1]);
 
-    expect(getByRole('button', { name: /12/i }).className).toContain(
-      'disabled',
-    );
+    expect(getByText('12').className).toContain('disabled');
 
-    expect(getByRole('button', { name: /15/i }).className).not.toContain(
-      'disabled',
-    );
+    expect(getByText('15').className).not.toContain('disabled');
   });
 
   it('should not allow selecting date after to-date', async () => {
-    const { getByRole, getByLabelText, getAllByRole } = render(<Component />);
+    const { getByLabelText, getAllByRole, getByText } = render(<Component />);
 
     const btns = getAllByRole('button');
 
@@ -87,12 +83,8 @@ describe('GrepDateRange', () => {
 
     await user.click(btns[0]);
 
-    expect(getByRole('button', { name: /15/i }).className).toContain(
-      'disabled',
-    );
+    expect(getByText('15').className).toContain('disabled');
 
-    expect(getByRole('button', { name: /12/i }).className).not.toContain(
-      'disabled',
-    );
+    expect(getByText('12').className).not.toContain('disabled');
   });
 });

@@ -63,20 +63,17 @@ describe('GrepDatePicker', () => {
   });
 
   it('should open with todays date selected', async () => {
-    const { getByText, getByRole } = render(<Component />);
+    const { getByText, getByRole, getByLabelText } = render(<Component />);
 
     const today = dayjs().format('D. MMM YYYY');
     const month = dayjs().format('MMMM');
     const year = dayjs().format('YYYY');
 
     // Open datepicker
-    await user.click(getByRole('button', { name: 'Choose date' }));
+    await user.click(getByLabelText('Choose date'));
 
     expect(getByText(`${month} ${year}`)).toBeInTheDocument();
-
-    expect(getByRole('button', { name: today })).toHaveClass(
-      'MuiPickersDay-today',
-    );
+    expect(getByText(dayjs().date())).toHaveClass('MuiPickersDay-today');
   });
 
   it('should handle picking a date', async () => {
