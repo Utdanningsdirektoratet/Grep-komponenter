@@ -82,14 +82,14 @@
     "prop-types": "^15.7.2",
     "react": "^17.x",
     "react-dom": "^17.x",
-    "react-redux": "7.x",
-    "react-router": "5.x",
+    "react-redux": "7.x || 8.x",
+    "react-router": "5.x || 6.x",
     "react-router-dom": "5.x",
     "react-router-redux": "4.x",
     "redux": "^4.x"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.7",
+    "@babel/core": "^7.20.12",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@date-io/dayjs": "^2.14.0",
@@ -97,16 +97,16 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
     "@rollup/plugin-url": "^8.0.0",
-    "@storybook/addon-actions": "^6.5.12",
-    "@storybook/addon-essentials": "^6.5.12",
-    "@storybook/addon-links": "^6.5.12",
-    "@storybook/addon-storysource": "^6.5.12",
-    "@storybook/addons": "^6.5.12",
-    "@storybook/builder-webpack5": "^6.5.12",
-    "@storybook/cli": "^6.5.12",
-    "@storybook/manager-webpack5": "^6.5.12",
+    "@storybook/addon-actions": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
+    "@storybook/addon-links": "^6.5.15",
+    "@storybook/addon-storysource": "^6.5.15",
+    "@storybook/addons": "^6.5.15",
+    "@storybook/builder-webpack5": "^6.5.15",
+    "@storybook/cli": "^6.5.15",
+    "@storybook/manager-webpack5": "^6.5.15",
     "@storybook/preset-create-react-app": "^4.1.2",
-    "@storybook/react": "^6.5.12",
+    "@storybook/react": "^6.5.15",
     "@storybook/storybook-deployer": "^2.8.12",
     "@testing-library/dom": "^8.6.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -123,7 +123,6 @@
     "@types/react-router-dom": "^5.1.3",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
-    "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "^29.3.1",
     "babel-loader": "^9.0.0",
@@ -176,7 +175,7 @@
     "assets"
   ],
   "resolutions": {
-    "@babel/preset-env": "7.5.5"
+    "@babel/preset-env": "7.20.2"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",
@@ -184,7 +183,7 @@
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.93",
     "@mui/material": "^5.2.0",
-    "@mui/x-date-pickers": "5.0.0-beta.4",
+    "@mui/x-date-pickers": "^5.0.13",
     "dayjs": "^1.10.7",
     "draft-js": "^0.11.0",
     "jest-environment-jsdom": "^29.3.1"
@@ -195,12 +194,12 @@
       "react-router": "^6.2.2"
     },
     "terser": "^5.14.2",
-    "trim-newlines": "^3.0.1",
-    "glob-parent": "^5.1.2",
+    "trim-newlines": "^4.0.0",
+    "glob-parent": "^6.0.0",
     "git-up": {
       "parse-url": "^8.1.0"
     },
-    "trim": "^0.0.3",
+    "trim": "^1.0.0",
     "parse-path": "^5.0.0",
     "package-json": {
       "got": "^11.8.5"
