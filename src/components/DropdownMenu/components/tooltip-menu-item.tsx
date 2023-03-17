@@ -12,10 +12,13 @@ export const TooltipMenuItem: React.FC<Props> = ({
   ...props
 }) => (
   <Tooltip title={tooltipText}>
-    <span>
-      <MenuItem role="menuitem" disabled={disabled} {...props}>
-        {children}
-      </MenuItem>
-    </span>
+    <MenuItem
+      role="menuitem"
+      disabled={disabled}
+      sx={{ pointerEvents: 'inherit !important' }}
+      {...props}
+    >
+      {children}
+    </MenuItem>
   </Tooltip>
 );
