@@ -36,6 +36,7 @@ export const GrepTableRow: Component<any> = <T,>({
       sx={{
         ':focus': { textDecoration: underlineOnFocus ? 'underline' : 'none' },
       }}
+      tabIndex={props.tabIndex}
       {...{ selected, ...props }}
     >
       {columns.map(render)}

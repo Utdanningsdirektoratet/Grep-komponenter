@@ -65,6 +65,7 @@ export interface GrepTableProps<T>
   rowHeight?: number;
   disableSelectOnClick?: boolean;
   underlineOnFocus?: boolean;
+  rowTabIndex?: number;
 }
 
 interface StyleProps {
@@ -125,6 +126,7 @@ export const GrepTable = <T,>({
   disableSelectOnClick = false,
   menuButtonLabel,
   underlineOnFocus,
+  rowTabIndex,
   ...props
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
@@ -260,7 +262,7 @@ export const GrepTable = <T,>({
       <GrepTableRow
         key={rowIndex}
         data-index={rowIndex}
-        tabIndex={0}
+        tabIndex={rowTabIndex ?? 0}
         hover={clickableRows}
         selected={rowIndex === selectedRowIndex}
         clickable={clickableRows}
