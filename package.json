@@ -163,7 +163,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.34.1",
     "seamless-immutable": "^7.1.4",
-    "semantic-release": "^19.0.3",
+    "semantic-release": "^21.0.0",
     "ts-jest": "^27.0.7",
     "ts-keycode-enum": "^1.0.6",
     "tslib": "^2.2.0",
