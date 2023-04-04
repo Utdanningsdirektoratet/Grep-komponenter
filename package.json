@@ -101,7 +101,7 @@
     "@storybook/addon-essentials": "^7.0.2",
     "@storybook/addon-links": "^7.0.2",
     "@storybook/addon-storysource": "^7.0.2",
-    "@storybook/addons": "^6.5.15",
+    "@storybook/addons": "^7.0.2",
     "@storybook/builder-webpack5": "^7.0.2",
     "@storybook/cli": "^7.0.2",
     "@storybook/manager-webpack5": "^6.5.15",
