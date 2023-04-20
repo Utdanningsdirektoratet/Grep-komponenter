@@ -89,6 +89,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
         // @todo: make input respect label length
         input={outlined ? <OutlinedInput label={label} /> : <Input />}
         MenuProps={{
+          ...rest.MenuProps,
           anchorOrigin: {
             vertical: 'bottom',
             horizontal: 'center',
