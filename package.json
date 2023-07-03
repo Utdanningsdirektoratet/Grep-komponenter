@@ -195,7 +195,6 @@
     "ts-jest": {
       "babel-jest": "^29.2.0"
     },
-    "terser": "^5.14.2",
     "trim-newlines": "^4.0.0",
     "glob-parent": "^6.0.0",
     "git-up": {
