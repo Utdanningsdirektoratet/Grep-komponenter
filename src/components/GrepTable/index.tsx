@@ -266,8 +266,13 @@ export const GrepTable = <T,>({
         hover={clickableRows}
         selected={rowIndex === selectedRowIndex}
         clickable={clickableRows}
-        onMouseDown={({ currentTarget }) => {
-          setSelectedElement(currentTarget);
+        onMouseDown={(e: any) => {
+          if (e.target.type === 'checkbox') {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
+          setSelectedElement(e.currentTarget);
           if (!disableSelectOnClick) {
             _handleRowClick(row);
           }
