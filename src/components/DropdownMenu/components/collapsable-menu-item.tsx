@@ -153,7 +153,7 @@ export const CollapsableMenuItem: FunctionComponent<
       onMouseOver={(e) => e.currentTarget.focus()}
       disabled={disabled}
       selected={open}
-      onClick={handleClick}
+      onClick={!disabled ? handleClick : undefined}
       onKeyDown={handleKey}
     >
       {renderInner()}
@@ -164,7 +164,7 @@ export const CollapsableMenuItem: FunctionComponent<
       ref={listItemRef}
       selected={open}
       disabled={disabled}
-      onClick={handleClick}
+      onClick={!disabled ? handleClick : undefined}
       onKeyDown={handleKey}
       {...props}
     >

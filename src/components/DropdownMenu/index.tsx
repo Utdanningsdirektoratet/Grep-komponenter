@@ -26,7 +26,7 @@ const DropdownMenu = <T,>({
   const { classes } = useStyles();
 
   const renderChild =
-    (level = 0) =>
+    (level = 0, parentDisabled?: BooleanFunction<T> | boolean) =>
     // eslint-disable-next-line react/display-name
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
       const { label, children, handleClick, disabled, ...props } = item;
@@ -36,7 +36,7 @@ const DropdownMenu = <T,>({
       // ninja way, since rewriting existing code on lpu and admin is daunting
       props.onClick = (e: React.MouseEvent) => {
         menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-        handleClick && handleClick(context);
+        handleClick && !disabled && handleClick(context);
       };
 
       return (
@@ -44,9 +44,13 @@ const DropdownMenu = <T,>({
           level={level}
           id={label}
           disabled={
-            typeof disabled === 'function' ? disabled(context) : disabled
+            parentDisabled
+              ? true
+              : typeof disabled === 'function'
+              ? disabled(context)
+              : disabled
           }
-          items={children?.map(renderChild(level + 1))}
+          items={children?.map(renderChild(level + 1, disabled))}
           {...props}
         >
           <span style={{ paddingLeft: `${level * 0.5}rem` }}>{label}</span>

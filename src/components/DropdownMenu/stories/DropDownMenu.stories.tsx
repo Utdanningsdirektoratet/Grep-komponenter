@@ -17,7 +17,7 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
     handleClick: () => console.log('clicked '),
     children: [
       {
-        label: 'Test 3-1',
+        label: 'Test 1-1',
         handleClick: () => console.log('clicked '),
       },
     ],
@@ -29,35 +29,36 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
     handleClick: () => console.log('clicked '),
   },
   {
-    label: 'Test 2',
+    label: 'Test 3',
     handleClick: () => console.log('clicked '),
   },
   {
-    label: 'Test 3',
+    label: 'Test 4',
     handleClick: () => console.log('clicked '),
     children: [
       {
-        label: 'Test 3-1',
+        label: 'Test 4-1',
         handleClick: () => console.log('clicked '),
       },
       {
-        label: 'Test 3-2',
+        label: 'Test 4-2',
         handleClick: () => console.log('clicked '),
         children: [
           {
-            label: 'Test 3-1',
+            label: 'Test 4-2-1',
             handleClick: () => console.log('clicked '),
           },
           {
-            label: 'Test 3-2',
+            label: 'Test 4-2-2',
+            disabled: true,
             handleClick: () => console.log('clicked '),
             children: [
               {
-                label: 'Test 3-1',
+                label: 'Test 4-2-2-1',
                 handleClick: () => console.log('clicked '),
               },
               {
-                label: 'Test 3-2',
+                label: 'Test 4-2-2-2',
                 handleClick: () => console.log('clicked '),
               },
             ],
@@ -72,13 +73,13 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
     handleClick: () => console.log('clicked '),
   },
   {
-    label: 'Test 4',
+    label: 'Test 6',
     disabled: true,
     tooltipText: 'This is a tooltip',
     handleClick: () => console.log('clicked '),
     children: [
       {
-        label: 'Test 4-1',
+        label: 'Test 6-1',
         handleClick: () => console.log('clicked '),
       },
     ],
