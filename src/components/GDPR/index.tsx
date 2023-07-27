@@ -3,7 +3,7 @@ import { Info } from '@mui/icons-material';
 import { useStyles } from './styles';
 import { Box, Typography } from '@mui/material';
 
-const GDPR: React.FC = (props) => {
+const GDPR: React.FC<{ children: React.ReactNode }> = (props) => {
   const { classes } = useStyles();
 
   return (
