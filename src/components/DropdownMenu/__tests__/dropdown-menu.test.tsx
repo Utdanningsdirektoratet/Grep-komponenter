@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { getRoles, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Button } from '@mui/material';
 
@@ -42,7 +42,9 @@ const ButtonMenu = () => {
 
   return (
     <div>
-      <Button onClick={handleOpenMenu}>Open menu</Button>
+      <Button data-testid="testbutton" onClick={handleOpenMenu}>
+        Open menu
+      </Button>
       <DropdownMenu
         anchorEl={anchorEl}
         menuItems={items}
@@ -54,12 +56,12 @@ const ButtonMenu = () => {
   );
 };
 
-const openMenu = () => {
-  const { getByRole } = render(<ButtonMenu />);
+const openMenu = async (user: any) => {
+  const { getByRole, getByTestId } = render(<ButtonMenu />);
 
-  getByRole('button').click();
+  await user.click(getByTestId('testbutton'));
 
-  return getByRole('menu', { hidden: true });
+  return getByRole('menu');
 };
 
 describe('DropdownMenu', () => {
@@ -68,8 +70,10 @@ describe('DropdownMenu', () => {
     expect(screen.queryByRole('menu')).toBeFalsy();
   });
 
-  it('should be visible when open', () => {
-    const menu = openMenu();
+  it('should be visible when open', async () => {
+    const user = userEvent.setup();
+    const menu = await openMenu(user);
+
     expect(menu).toBeVisible();
   });
 
@@ -124,8 +128,8 @@ describe('DropdownMenu', () => {
   });*/
 
   it('should close on select', async () => {
-    const menu = openMenu();
     const user = userEvent.setup();
+    const menu = await openMenu(user);
 
     // navigate down to menuitem #3
     await user.keyboard('[ArrowDown]');
@@ -138,8 +142,9 @@ describe('DropdownMenu', () => {
     });
   });
 
-  it('should render menuitems correctly when open', () => {
-    openMenu();
+  it('should render menuitems correctly when open', async () => {
+    const user = userEvent.setup();
+    await openMenu(user);
     const menuItems = screen.queryAllByRole('menuitem');
 
     // check that number of items is correct
