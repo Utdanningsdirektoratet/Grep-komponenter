@@ -19,4 +19,4 @@ const GDPR: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export default GDPR as React.ComponentType;
+export default GDPR;
