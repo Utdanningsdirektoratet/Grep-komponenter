@@ -3,7 +3,7 @@ import { Info } from '@mui/icons-material';
 import { useStyles } from './styles';
 import { Box, Typography } from '@mui/material';
 
-const GDPR: React.FC<{ children: React.ReactNode }> = (props) => {
+const GDPR: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { classes } = useStyles();
 
   return (
@@ -13,7 +13,7 @@ const GDPR: React.FC<{ children: React.ReactNode }> = (props) => {
         <Typography className={classes.title}>
           Personlig informasjon og personvern
         </Typography>
-        <Typography className={classes.body}>{props.children}</Typography>
+        <Typography className={classes.body}>{children}</Typography>
       </Box>
     </Box>
   );
