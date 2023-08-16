@@ -161,7 +161,7 @@
     "rollup-plugin-internal": "^1.0.4",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-typescript2": "^0.34.1",
+    "rollup-plugin-typescript2": "^0.35.0",
     "seamless-immutable": "^7.1.4",
     "semantic-release": "^19.0.3",
     "ts-jest": "^27.0.7",
@@ -175,14 +175,14 @@
     "assets"
   ],
   "resolutions": {
-    "@babel/preset-env": "7.20.2"
+    "@babel/preset-env": "7.22.5"
   },
   "dependencies": {
     "@emotion/react": "^11.6.0",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.0",
     "@mui/lab": "^5.0.0-alpha.93",
-    "@mui/material": "5.11.16",
+    "@mui/material": "5.13.6",
     "@mui/x-date-pickers": "^5.0.13",
     "dayjs": "^1.10.7",
     "draft-js": "^0.11.0"
@@ -195,8 +195,7 @@
     "ts-jest": {
       "babel-jest": "^29.2.0"
     },
-    "terser": "^5.14.2",
-    "trim-newlines": "^4.0.0",
+    "trim-newlines": "^4.1.1",
     "glob-parent": "^6.0.0",
     "git-up": {
       "parse-url": "^8.1.0"
@@ -206,6 +205,7 @@
     "package-json": {
       "got": "^11.8.5"
     },
-    "nth-check": "^2.0.1"
+    "nth-check": "^2.0.1",
+    "semver": "^7.5.2"
   }
 }
