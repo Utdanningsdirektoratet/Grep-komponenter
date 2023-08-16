@@ -9,6 +9,7 @@ export interface Properties<T> extends TableCellProps {
   column: TableColumn<T>;
   lines?: number;
   selected?: boolean;
+  expanded?: boolean;
 }
 
 type ComponentProperties<T> = PropsWithChildren<Properties<T>>;
@@ -24,7 +25,7 @@ const CellValue = styled('span')({
 export const GrepTableRow: Component<any> = <T,>({
   row,
   column,
-  selected,
+  expanded,
   ...props
 }: Properties<T>) => {
   const {
@@ -32,7 +33,7 @@ export const GrepTableRow: Component<any> = <T,>({
     getTooltip,
     getCell,
     lang,
-    lines = () => (selected ? undefined : 1),
+    lines = () => (expanded ? undefined : 1),
   } = column;
   const { padding } = column;
   const value = (

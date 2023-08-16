@@ -133,30 +133,41 @@ export const GrepTable = <T,>({
   const [menuAnchor, setMenuAnchor] = React.useState<Element | null>(null);
   const [currentPage, _setCurrentPage] = React.useState<number>(0);
   const [selectedRowIndex, _setSelectedRowIndex] = React.useState<number>();
+  const [expandedRowIndex, _setExpandedRowIndex] = React.useState<number>();
   const [dropdownContext, setDropdownContext] = React.useState<T>();
 
   const selectedRow = data[selectedRowIndex!] || null;
 
   const setCurrentPage = useCallback(
-    (index: number, rowIndex?: number) => {
+    (index: number, rowIndex?: number, shouldExpand?: boolean) => {
       index = pagination && index >= 0 ? index : 0;
       _setCurrentPage(index);
       _setSelectedRowIndex(rowIndex);
+      if (shouldExpand) {
+        _setExpandedRowIndex(rowIndex);
+      }
     },
-    [_setCurrentPage, _setSelectedRowIndex, rowsPerPage, pagination],
+    [
+      _setCurrentPage,
+      _setSelectedRowIndex,
+      _setExpandedRowIndex,
+      rowsPerPage,
+      pagination,
+    ],
   );
 
-  const setSelectedRowIndex = (index: number) => {
+  const setSelectedRowIndex = (index: number, shouldExpand = true) => {
     const hasIndexChanged = index === selectedRowIndex;
     const pageIndex = Math.floor(index / rowsPerPage);
-    setCurrentPage(pageIndex, index);
+    setCurrentPage(pageIndex, index, shouldExpand);
     if (hasIndexChanged && onSelectedRowChange) {
       onSelectedRowChange(data[index]);
     }
   };
 
-  const setSelectedElement = (el: Element) =>
-    setSelectedRowIndex(getElementIndex(el));
+  const setSelectedElement = (el: Element, shouldExpand = true) => {
+    setSelectedRowIndex(getElementIndex(el), shouldExpand);
+  };
 
   const tableRef = React.useRef<HTMLTableSectionElement | null>(null);
 
@@ -265,17 +276,28 @@ export const GrepTable = <T,>({
         tabIndex={rowTabIndex ?? 0}
         hover={clickableRows}
         selected={rowIndex === selectedRowIndex}
+        expanded={rowIndex === expandedRowIndex}
         clickable={clickableRows}
-        onMouseDown={({ currentTarget }) => {
-          setSelectedElement(currentTarget);
-          if (!disableSelectOnClick) {
-            _handleRowClick(row);
+        onMouseDown={(e: any) => {
+          if (e.target.type === 'checkbox') {
+            e.preventDefault();
+            e.stopPropagation();
+            setSelectedElement(e.currentTarget, false);
+          } else {
+            setSelectedElement(e.currentTarget);
+            if (!disableSelectOnClick) {
+              _handleRowClick(row);
+            }
           }
         }}
         columns={rowColumns}
         row={row}
         style={{ cursor: clickableRows && !disabled ? 'pointer' : '' }}
-        onFocus={({ currentTarget }) => setSelectedElement(currentTarget)}
+        onFocus={(e) => {
+          if (selectedRowIndex !== rowIndex) {
+            setSelectedElement(e.currentTarget);
+          }
+        }}
         underlineOnFocus={underlineOnFocus}
       />
     );
