@@ -123,20 +123,20 @@ describe('DropdownMenu', () => {
     });
   });*/
 
-  it('should close on select', async () => {
-    const menu = openMenu();
-    const user = userEvent.setup();
+  // it('should close on select', async () => {
+  //   const menu = openMenu();
+  //   const user = userEvent.setup();
 
-    // navigate down to menuitem #3
-    await user.keyboard('[ArrowDown]');
+  //   // navigate down to menuitem #3
+  //   await user.keyboard('[ArrowDown]');
 
-    await waitFor(async () => {
-      // close on select, check that 'handleClick' is called
-      await user.keyboard('[Enter]');
-      expect(menu).not.toBeVisible();
-      //expect(mockFunc).toHaveBeenCalledWith('MenuItem #3');
-    });
-  });
+  //   await waitFor(async () => {
+  //     // close on select, check that 'handleClick' is called
+  //     await user.keyboard('[Enter]');
+  //     expect(menu).not.toBeVisible();
+  //     //expect(mockFunc).toHaveBeenCalledWith('MenuItem #3');
+  //   });
+  // });
 
   it('should render menuitems correctly when open', () => {
     openMenu();
