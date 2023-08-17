@@ -8,13 +8,13 @@ type Props = MenuItemProps & {
 export const TooltipMenuItem: React.FC<Props> = ({
   children,
   tooltipText,
-  disabled,
+  //disabled,
   ...props
 }) => (
   <Tooltip title={tooltipText}>
     <MenuItem
       role="menuitem"
-      disabled={disabled}
+      //disabled={disabled}
       sx={{ pointerEvents: 'inherit !important' }}
       {...props}
     >

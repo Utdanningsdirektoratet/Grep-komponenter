@@ -60,6 +60,12 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
               {
                 label: 'Test 4-2-2-2',
                 handleClick: () => console.log('clicked '),
+                children: [
+                  {
+                    label: 'Test 4-2-2-2-1',
+                    handleClick: () => console.log('clicked '),
+                  },
+                ],
               },
             ],
           },

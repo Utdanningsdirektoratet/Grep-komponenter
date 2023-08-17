@@ -66,18 +66,22 @@ export const CollapsableMenuItem: FunctionComponent<
 
   const expand = useCallback(() => {
     const event = onStatusChange('expand');
+
+    if (!event.defaultPrevented) console.log('expand');
+
     !event.defaultPrevented && setOpen(true);
     return !event.defaultPrevented;
-  }, [onStatusChange, setOpen]);
+  }, [onStatusChange]);
 
   const collapse = useCallback(() => {
     const event = onStatusChange('collapse');
     if (!event.defaultPrevented) {
+      console.log('collapse');
       setOpen(false);
       requestAnimationFrame(() => listItemRef.current?.focus());
     }
     return !event.defaultPrevented;
-  }, [onStatusChange, setOpen, listItemRef]);
+  }, [onStatusChange, listItemRef]);
 
   const handleKey = (e: React.KeyboardEvent) => {
     if (items) {
@@ -92,14 +96,20 @@ export const CollapsableMenuItem: FunctionComponent<
     }
   };
 
-  const onToggleClick = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      open ? collapse() : expand();
-    },
-    [open, collapse, expand],
-  );
+  // const onToggleClick = useCallback(
+  //   (e: React.MouseEvent) => {
+  //     e.preventDefault();
+  //     e.stopPropagation();
+  //     open ? collapse() : expand();
+  //   },
+  //   [open, collapse, expand],
+  // );
+
+  const onToggleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    open ? collapse() : expand();
+  };
 
   const onScrimClick = useCallback(
     (e: MouseEvent) => {
@@ -112,6 +122,7 @@ export const CollapsableMenuItem: FunctionComponent<
   const handleClick = items ? onToggleClick : onClick;
 
   useEffect(() => {
+    console.log('scrim');
     document.addEventListener('click', onScrimClick, { capture: true });
     return () => document.removeEventListener('click', onScrimClick);
   }, [listItemRef, onScrimClick]);
@@ -148,23 +159,23 @@ export const CollapsableMenuItem: FunctionComponent<
 
   return tooltipText ? (
     <TooltipMenuItem
+      sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
       className={classes.root}
       tooltipText={tooltipText}
       onMouseOver={(e) => e.currentTarget.focus()}
-      disabled={disabled}
       selected={open}
-      onClick={!disabled ? handleClick : undefined}
+      onClick={handleClick}
       onKeyDown={handleKey}
     >
       {renderInner()}
     </TooltipMenuItem>
   ) : (
     <MenuItem
+      sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
       className={classes.root}
       ref={listItemRef}
       selected={open}
-      disabled={disabled}
-      onClick={!disabled ? handleClick : undefined}
+      onClick={handleClick}
       onKeyDown={handleKey}
       {...props}
     >
