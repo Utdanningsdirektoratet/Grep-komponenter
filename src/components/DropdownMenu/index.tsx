@@ -4,8 +4,6 @@ import { Menu, MenuItemProps, MenuProps } from '@mui/material';
 import CollapsableMenuItem from './components/collapsable-menu-item';
 import { useStyles } from './styles/dropdown-menu.style';
 
-//type BooleanFunction<T> = (context?: T) => boolean;
-
 export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   label: string;
   tooltipText?: string;
@@ -38,7 +36,6 @@ const DropdownMenu = <T,>({
       // ninja way, since rewriting existing code on lpu and admin is daunting
       props.onClick = (e: React.MouseEvent) => {
         if (itemOrParentDisabled) {
-          console.log('e.preventDefault()');
           e.preventDefault();
           e.stopPropagation();
           return;
@@ -52,8 +49,7 @@ const DropdownMenu = <T,>({
         ? { paddingLeft: `${level * 0.5}rem` }
         : {
             paddingLeft: `${level * 0.5}rem`,
-            textDecoration: 'line-through',
-            opacity: 0.5,
+            opacity: 0.4,
           };
       return (
         <CollapsableMenuItem

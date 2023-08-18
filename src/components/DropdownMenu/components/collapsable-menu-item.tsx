@@ -66,22 +66,18 @@ export const CollapsableMenuItem: FunctionComponent<
 
   const expand = useCallback(() => {
     const event = onStatusChange('expand');
-
-    if (!event.defaultPrevented) console.log('expand');
-
     !event.defaultPrevented && setOpen(true);
     return !event.defaultPrevented;
-  }, [onStatusChange]);
+  }, [onStatusChange, setOpen]);
 
   const collapse = useCallback(() => {
     const event = onStatusChange('collapse');
     if (!event.defaultPrevented) {
-      console.log('collapse');
       setOpen(false);
       requestAnimationFrame(() => listItemRef.current?.focus());
     }
     return !event.defaultPrevented;
-  }, [onStatusChange, listItemRef]);
+  }, [onStatusChange, setOpen, listItemRef]);
 
   const handleKey = (e: React.KeyboardEvent) => {
     if (items) {
@@ -96,25 +92,19 @@ export const CollapsableMenuItem: FunctionComponent<
     }
   };
 
-  // const onToggleClick = useCallback(
-  //   (e: React.MouseEvent) => {
-  //     e.preventDefault();
-  //     e.stopPropagation();
-  //     open ? collapse() : expand();
-  //   },
-  //   [open, collapse, expand],
-  // );
-
-  const onToggleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    open ? collapse() : expand();
-  };
+  const onToggleClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      open ? collapse() : expand();
+    },
+    [open, collapse, expand],
+  );
 
   const onScrimClick = useCallback(
     (e: MouseEvent) => {
       const scrimClick = !listItemRef.current?.contains(e.target as Node);
-      scrimClick && collapse();
+      scrimClick && !disabled && collapse();
     },
     [listItemRef, collapse],
   );
@@ -122,7 +112,6 @@ export const CollapsableMenuItem: FunctionComponent<
   const handleClick = items ? onToggleClick : onClick;
 
   useEffect(() => {
-    console.log('scrim');
     document.addEventListener('click', onScrimClick, { capture: true });
     return () => document.removeEventListener('click', onScrimClick);
   }, [listItemRef, onScrimClick]);
