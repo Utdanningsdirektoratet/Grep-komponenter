@@ -10,10 +10,9 @@ import React, {
 import { Key } from 'ts-keycode-enum';
 
 import IconExpand from '@mui/icons-material/ExpandMore';
-import { Box, MenuItem, MenuItemProps } from '@mui/material';
+import { Box, MenuItem, MenuItemProps, Tooltip } from '@mui/material';
 
 import { CollapsableMenu } from './collapsable-menu';
-import { TooltipMenuItem } from './tooltip-menu-item';
 
 import { useStyles } from '../styles/collapsable-menu-item.style';
 
@@ -104,7 +103,7 @@ export const CollapsableMenuItem: FunctionComponent<
   const onScrimClick = useCallback(
     (e: MouseEvent) => {
       const scrimClick = !listItemRef.current?.contains(e.target as Node);
-      scrimClick && !disabled && collapse();
+      scrimClick && collapse();
     },
     [listItemRef, collapse],
   );
@@ -147,17 +146,24 @@ export const CollapsableMenuItem: FunctionComponent<
   );
 
   return tooltipText ? (
-    <TooltipMenuItem
-      sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
-      className={classes.root}
-      tooltipText={tooltipText}
-      onMouseOver={(e) => e.currentTarget.focus()}
-      selected={open}
-      onClick={handleClick}
-      onKeyDown={handleKey}
-    >
-      {renderInner()}
-    </TooltipMenuItem>
+    <Tooltip title={tooltipText}>
+      <MenuItem
+        role="menuitem"
+        sx={
+          disabled && !items
+            ? { cursor: 'not-allowed', pointerEvents: 'inherit !important' }
+            : { pointerEvents: 'inherit !important' }
+        }
+        className={classes.root}
+        onMouseOver={(e: any) => e.currentTarget.focus()}
+        selected={open}
+        ref={listItemRef}
+        onClick={handleClick}
+        onKeyDown={handleKey}
+      >
+        {renderInner()}
+      </MenuItem>
+    </Tooltip>
   ) : (
     <MenuItem
       sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
