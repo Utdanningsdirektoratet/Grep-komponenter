@@ -4,10 +4,12 @@ import { Menu, MenuItemProps, MenuProps } from '@mui/material';
 import CollapsableMenuItem from './components/collapsable-menu-item';
 import { useStyles } from './styles/dropdown-menu.style';
 
+type BooleanFunction<T> = (context?: T) => boolean;
+
 export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   label: string;
   tooltipText?: string;
-  disabled?: boolean;
+  disabled?: BooleanFunction<T> | boolean;
   children?: Array<DropdownMenuItem<T>>;
   handleClick?: (context?: T) => void;
 };
@@ -24,7 +26,7 @@ const DropdownMenu = <T,>({
   const { classes } = useStyles();
 
   const renderChild =
-    (level = 0, parentDisabled = false) =>
+    (level = 0, parentDisabled?: BooleanFunction<T> | boolean) =>
     // eslint-disable-next-line react/display-name
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
       const { label, children, handleClick, disabled, ...props } = item;
@@ -58,7 +60,13 @@ const DropdownMenu = <T,>({
           }
           level={level}
           id={label}
-          disabled={itemOrParentDisabled}
+          disabled={
+            itemOrParentDisabled
+              ? true
+              : typeof disabled === 'function'
+              ? disabled(context)
+              : disabled
+          }
           items={children?.map(renderChild(level + 1, itemOrParentDisabled))}
           {...props}
         >
