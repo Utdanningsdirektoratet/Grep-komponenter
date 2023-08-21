@@ -54,7 +54,7 @@ export interface GrepTableProps<T>
   onSelectedRowChange?: (row: T | null) => void;
   onRowClick?: (row: T) => any;
   menuTooltip?: (row: T) => string;
-  menuDisabled?: (row: T) => boolean;
+  menuDisabled?: (row: T) => any;
   onContextIdChanged?: (row: T) => void;
   onSortBy?: (col: TableColumn<T>) => any;
   caption?: React.ReactNode;
