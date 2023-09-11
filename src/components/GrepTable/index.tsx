@@ -128,7 +128,7 @@ export const GrepTable = <T,>({
   menuButtonLabel,
   underlineOnFocus,
   rowTabIndex,
-  rowsPerPageOptions,
+  rowsPerPageOptions = [5, 10, 25, 50],
   ...props
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
