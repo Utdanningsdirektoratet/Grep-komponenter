@@ -41,6 +41,7 @@ export interface GrepTableProps<T>
   header?: boolean;
   outlined?: boolean;
   rowsPerPage?: number;
+  rowsPerPageOptions?: number[];
   pagination?: boolean;
   /**
    * @deprecated No longer in use.
@@ -127,6 +128,7 @@ export const GrepTable = <T,>({
   menuButtonLabel,
   underlineOnFocus,
   rowTabIndex,
+  rowsPerPageOptions,
   ...props
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
@@ -399,6 +401,7 @@ export const GrepTable = <T,>({
                 count={data.length}
                 rowsPerPage={rowsPerPage}
                 onPageChange={_handlePageChange}
+                rowsPerPageOptions={rowsPerPageOptions}
                 onRowsPerPageChange={_handleChangeRowsPerPage}
                 labelRowsPerPage={''}
                 labelDisplayedRows={({ from, to, count }) =>
