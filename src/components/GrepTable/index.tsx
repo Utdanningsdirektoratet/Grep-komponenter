@@ -64,6 +64,9 @@ export interface GrepTableProps<T>
    * @deprecated No longer in use.
    */
   rowHeight?: number;
+  rowStyle?:
+  | React.CSSProperties
+  | ((data: any, index: number) => React.CSSProperties);
   disableSelectOnClick?: boolean;
   underlineOnFocus?: boolean;
   rowTabIndex?: number;
@@ -128,6 +131,7 @@ export const GrepTable = <T,>({
   menuButtonLabel,
   underlineOnFocus,
   rowTabIndex,
+  rowStyle,
   rowsPerPageOptions = [5, 10, 25, 50],
   ...props
 }: GrepTableProps<T>) => {
@@ -264,6 +268,26 @@ export const GrepTable = <T,>({
     );
   };
 
+  const getRowStyle = (row: T, index: number, clickableRows: boolean, disabled: boolean | undefined) => {
+    let style = { cursor: clickableRows && !disabled ? 'pointer' : ''}
+    if (typeof rowStyle === "function") {
+      style = {
+        ...style,
+        ...rowStyle(
+          row,
+          index,
+          // level
+        )
+      }
+    } else if (rowStyle) {
+      style = {
+        ...style,
+        ...rowStyle
+      }
+    }
+    return style;
+  }
+
   const _renderRow = (row: T, index: number) => {
     const rowColumns = dropdownItems
       ? columns.concat([{ getCell: _renderCellButton, padding: 'none' }])
@@ -294,7 +318,7 @@ export const GrepTable = <T,>({
         }}
         columns={rowColumns}
         row={row}
-        style={{ cursor: clickableRows && !disabled ? 'pointer' : '' }}
+        style={getRowStyle(row, index, clickableRows, disabled)}
         onFocus={(e) => {
           if (selectedRowIndex !== rowIndex) {
             setSelectedElement(e.currentTarget);

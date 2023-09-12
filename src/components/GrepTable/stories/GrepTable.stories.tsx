@@ -229,4 +229,29 @@ storiesOf('Grep table', module)
         padding="none"
       />
     </div>
+  ))
+  .add('with rowStyle', () => (
+    <GrepTable
+      caption="Some caption text"
+      header
+      columns={tableColumns}
+      data={tableData()}
+      rowStyle={{backgroundColor: "lightgrey"}}
+    />
+  ))
+  .add('with rowStyle function', () => (
+    <GrepTable
+      caption="Some caption text"
+      header
+      columns={tableColumns}
+      data={tableData()}
+      rowStyle={ rowData => {
+        if (rowData.id === 4) {
+          return {backgroundColor: "lightgray"}
+        } else if (rowData.title === "Testplanen 2") {
+          return {backgroundColor: "lightblue"}
+        }
+        return {}
+      }}
+    />
   ));
