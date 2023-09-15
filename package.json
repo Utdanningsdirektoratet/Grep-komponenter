@@ -131,7 +131,7 @@
     "chalk": "^4.1.2",
     "clsx": "^1.1.0",
     "commitlint": "^17.0.2",
-    "connected-react-router": "^6.6.1",
+    "connected-react-router": "^6.9.3",
     "conventional-changelog-cli": "^2.0.31",
     "cross-env": "^7.0.3",
     "draft-js-export-html": "^1.4.1",
@@ -151,8 +151,7 @@
     "react": "^18.2.0",
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.0.2",
-    "react-redux": "^8.0.0",
-    "react-router": "^6.2.2",
+    "react-router": "^5.3.4",
     "react-router-dom": "^5.3.0",
     "react-router-redux": "^4.0.8",
     "react-scripts": "^5.0.1",
@@ -190,8 +189,7 @@
   "overrides": {
     "connected-react-router": {
       "react": "^18.0.0",
-      "react-redux": "^8.0.0",
-      "react-router": "^6.2.2"
+      "react-redux": "^8.0.0"
     },
     "ts-jest": {
       "babel-jest": "^29.2.0"
