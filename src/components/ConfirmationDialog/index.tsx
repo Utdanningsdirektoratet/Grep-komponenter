@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ConfirmationDialog, ConfirmationOptions } from './components/dialog';
 
 const ConfirmationServiceContext = React.createContext<
   (options: ConfirmationOptions) => Promise<void>
 >(Promise.reject);
 
-export const ConfirmationServiceProvider: React.FC = ({ children }) => {
-  const [
-    confirmationState,
-    setConfirmationState,
-  ] = React.useState<ConfirmationOptions | null>(null);
+export const ConfirmationServiceProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [confirmationState, setConfirmationState] =
+    React.useState<ConfirmationOptions | null>(null);
 
   const [dialogOpen, setDialogOpen] = React.useState(false);
 

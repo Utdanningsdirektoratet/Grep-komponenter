@@ -42,7 +42,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
   }, [ref]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (selected && e.which === Key.Tab) {
+    if (selected && e.which === Key.Tab && e.shiftKey === false) {
       const tabindex = selected.getAttribute('tabindex');
       selected.setAttribute('tabindex', '0');
       selected.focus();

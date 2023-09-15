@@ -71,6 +71,7 @@ storiesOf('GrepSelect', module)
       <GrepSelect
         value={'Test'}
         outlined
+        MenuProps={{ MenuListProps: { sx: { maxHeight: '400px' } } }}
         label="Med kjempelang label bla bla bla"
         selectItems={selectItems}
         onChange={action('outlined-select med lang-label change')}
