@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { MainLayout, GreyCover, SearchBar } from '../..';
 import { Container } from '@mui/material';
 
-storiesOf('GreyCover', module).add('GreyCover with content', () => (
+export default {
+  title: 'GreyCover',
+};
+
+export const GreyCoverWithContent = () => (
   <MainLayout>
     <GreyCover elevation>
       <Container>
@@ -11,4 +14,8 @@ storiesOf('GreyCover', module).add('GreyCover with content', () => (
       </Container>
     </GreyCover>
   </MainLayout>
-));
+);
+
+GreyCoverWithContent.story = {
+  name: 'GreyCover with content',
+};

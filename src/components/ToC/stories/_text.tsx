@@ -1,5 +1,6 @@
 import React from 'react';
 
+// eslint-disable-next-line react/display-name
 export default () => (
   <div style={{ maxWidth: 440, margin: '0 auto' }}>
     <h1>Strip steak venison</h1>

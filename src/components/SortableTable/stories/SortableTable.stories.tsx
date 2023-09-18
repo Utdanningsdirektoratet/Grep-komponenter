@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { useState } from '@storybook/addons';
 import { Checkbox, Box, FormControlLabel } from '@mui/material';
 
@@ -14,7 +13,12 @@ interface TestData {
   protein: number;
 }
 
-storiesOf('SortableList', module).add('standard', () => {
+export default  {
+  title: 'SortableList'
+}
+
+export const Standard = () => {
+// storiesOf('SortableList', module).add('standard', () => {
   const [disabled, setDisabled] = useState<boolean>(false);
   const createData = (
     id: number,
@@ -50,4 +54,8 @@ storiesOf('SortableList', module).add('standard', () => {
       ></SortableTable>
     </Box>
   );
-});
+};
+
+Standard.story = {
+  name: 'standard',
+};
