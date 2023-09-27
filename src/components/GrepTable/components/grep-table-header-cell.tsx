@@ -4,7 +4,7 @@ import { TableCell, TableSortLabel, TableSortLabelProps } from '@mui/material';
 import { TableColumn } from '..';
 import { useTableHeaderStyles } from '../styles';
 
-interface Properties<T> extends TableSortLabelProps {
+interface Properties<T> extends Omit<TableSortLabelProps,"component">  {
   column: TableColumn<T>;
   onSortBy?: (row: T) => void;
   empty?: boolean;

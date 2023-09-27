@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { MainLayout, Footer } from '../..';
 import { Switch } from '@mui/material';
 import { FooterItem } from '..';
@@ -32,7 +31,12 @@ export const footerItems: FooterItem[] = [
   },
 ];
 
-storiesOf('Footer', module).add('Footer with content', () => (
+export default {
+  title: 'Footer',
+  excludeStories: ['footerItems'],
+};
+
+export const FooterWithContent = () => (
   <MainLayout>
     <Footer
       udirLogo={UdirLogo}
@@ -41,9 +45,14 @@ storiesOf('Footer', module).add('Footer with content', () => (
       items={footerItems}
     />
   </MainLayout>
-));
+);
 
-storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
+FooterWithContent.story = {
+  name: 'Footer with content',
+};
+
+
+export const FooterWithContentLongerThan100 = () => (
   <div style={{ display: 'block', width: '100%' }}>
     <div
       style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
@@ -55,4 +64,8 @@ storiesOf('Footer', module).add('Footer with content, longer than 100%', () => (
       items={footerItems}
     />
   </div>
-));
+);
+
+FooterWithContentLongerThan100.story = {
+  name: 'Footer with content, longer than 100%',
+};

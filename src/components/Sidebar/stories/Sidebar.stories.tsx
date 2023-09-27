@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Sidebar from '..';
-import { storiesOf } from '@storybook/react';
 import { NavigationProps } from '../../AppBarNavList';
 import { Assignment } from '@mui/icons-material';
 
@@ -43,7 +42,12 @@ export const adminPages: NavigationProps[] = [
   },
 ];
 
-storiesOf('Sidebar', module).add('standard', () => {
+export default {
+  title: 'Sidebar',
+  excludeStories: ['adminPages'],
+};
+
+export const Standard = () => {
   const [pageId, setPageId] = React.useState(4);
   return (
     <Sidebar
@@ -52,4 +56,8 @@ storiesOf('Sidebar', module).add('standard', () => {
       onPageClick={(page) => setPageId(page.id)}
     />
   );
-});
+};
+
+Standard.story = {
+  name: 'standard',
+};

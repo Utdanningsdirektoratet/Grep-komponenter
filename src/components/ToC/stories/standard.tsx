@@ -4,12 +4,13 @@ import Text from './_text';
 
 import { GrepTableOfContent } from '..';
 
+// eslint-disable-next-line react/display-name
 export default () => {
   const [container, setContainer] = useState<HTMLElement | null>(null);
   const [scrollTarget, setScrollTarget] = useState<HTMLElement>();
   return (
     <div
-      style={{ display: 'flex', width: '100%', overflow: 'scroll' }}
+      style={{ display: 'flex', width: '100%', overflow: 'scroll', height: "100vh" }}
       ref={(el) => setScrollTarget(el as HTMLElement)}
     >
       <GrepTableOfContent

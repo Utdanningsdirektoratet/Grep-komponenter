@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import GrepCrumbs, { Breadcrumb } from '..';
 
 export const breadcrumbs: Breadcrumb[] = [
@@ -13,22 +12,35 @@ export const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
-storiesOf('GrepCrumbs', module)
-  .add('standard', () => (
+export default {
+  title: 'GrepCrumbs',
+  excludeStories: ['breadcrumbs'],
+};
+
+export const Standard = () => (
+  <GrepCrumbs
+    breadcrumbs={[...breadcrumbs, { label: 'Test ' }]}
+    // onClick={(page) => console.log('clicked on ', page.label)}
+  />
+);
+
+Standard.story = {
+  name: 'standard',
+};
+
+export const OverflowAsTooltip = () => (
+  <div style={{ maxWidth: 500 }}>
     <GrepCrumbs
-      breadcrumbs={[...breadcrumbs, { label: 'Test ' }]}
-      onClick={(page) => console.log('clicked on ', page.label)}
+      breadcrumbs={[
+        ...breadcrumbs,
+        {
+          label: 'Very very very very very very very very very very label',
+        },
+      ]}
     />
-  ))
-  .add('overflow as tooltip', () => (
-    <div style={{ maxWidth: 500 }}>
-      <GrepCrumbs
-        breadcrumbs={[
-          ...breadcrumbs,
-          {
-            label: 'Very very very very very very very very very very label',
-          },
-        ]}
-      />
-    </div>
-  ));
+  </div>
+);
+
+OverflowAsTooltip.story = {
+  name: 'overflow as tooltip',
+};

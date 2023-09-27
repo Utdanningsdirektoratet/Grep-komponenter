@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import AppBar from '../AppBar';
-import MainLayout from '../../MainLayout';
 import { IAuthorizedPage } from '../types';
 import { Box } from '@mui/system';
 
@@ -52,7 +50,12 @@ const navbarPages: IAuthorizedPage[] = [
   },
 ];
 
-storiesOf('AppBar', module).add('with content', () => {
+export default {
+  title: 'AppBar',
+  excludeStories: ['v0colors'],
+};
+
+export const WithContent = () => {
   return (
     <Box display="flex" flexDirection="column">
       <AppBar
@@ -88,4 +91,8 @@ storiesOf('AppBar', module).add('with content', () => {
       />
     </Box>
   );
-});
+};
+
+WithContent.story = {
+  name: 'with content',
+};
