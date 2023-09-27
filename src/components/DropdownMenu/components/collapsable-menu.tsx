@@ -8,25 +8,26 @@ interface Properties extends TransitionProps {
   onMenuClose?: VoidFunction;
 }
 
-export const CollapsableMenu: FunctionComponent<PropsWithChildren<Properties>> =
-  ({ children, onMenuClose, ...collapseProps }) => {
-    const onKeyDown = (e: React.KeyboardEvent) => {
-      switch (e.keyCode) {
-        case Key.Escape:
-          onMenuClose && onMenuClose();
-          return;
-        case Key.LeftArrow:
-          onMenuClose && onMenuClose();
-      }
-      e.stopPropagation();
-    };
-    return (
-      <Collapse timeout="auto" unmountOnExit mountOnEnter {...collapseProps}>
-        <MenuList disablePadding autoFocusItem onKeyDown={onKeyDown}>
-          {children}
-        </MenuList>
-      </Collapse>
-    );
+export const CollapsableMenu: FunctionComponent<
+  PropsWithChildren<Properties>
+> = ({ children, onMenuClose, ...collapseProps }) => {
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.keyCode) {
+      case Key.Escape:
+        onMenuClose && onMenuClose();
+        return;
+      case Key.LeftArrow:
+        onMenuClose && onMenuClose();
+    }
+    e.stopPropagation();
   };
+  return (
+    <Collapse timeout="auto" unmountOnExit mountOnEnter {...collapseProps}>
+      <MenuList disablePadding autoFocusItem onKeyDown={onKeyDown}>
+        {children}
+      </MenuList>
+    </Collapse>
+  );
+};
 
 export default CollapsableMenu;
