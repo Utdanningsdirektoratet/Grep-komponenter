@@ -135,7 +135,19 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
   {
     label: 'Test 4',
     tooltipText: 'This is a tooltip',
+    disabled: true,
     handleClick: (obj) => console.log('clicked on', obj),
+    children: [
+      {
+        label: 'Test 4-1 child',
+        handleClick: (obj) => console.log('clicked on', obj),
+      },
+      {
+        label: 'Test 4-2 child',
+        disabled: true,
+        handleClick: (obj) => console.log('clicked on', obj),
+      },
+    ],
   },
 ];
 

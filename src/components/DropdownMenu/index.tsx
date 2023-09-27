@@ -26,30 +26,51 @@ const DropdownMenu = <T,>({
   const { classes } = useStyles();
 
   const renderChild =
-    (level = 0) =>
+    (level = 0, parentDisabled?: BooleanFunction<T> | boolean) =>
     // eslint-disable-next-line react/display-name
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
       const { label, children, handleClick, disabled, ...props } = item;
+
+      const itemOrParentDisabled = (parentDisabled || disabled) ?? false;
 
       props.key = `child-item-${index}`;
       props.classes = { selected: classes.selected };
       // ninja way, since rewriting existing code on lpu and admin is daunting
       props.onClick = (e: React.MouseEvent) => {
+        if (itemOrParentDisabled) {
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+
         menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-        handleClick && handleClick(context);
+        !itemOrParentDisabled && handleClick && handleClick(context);
       };
 
+      const style = !itemOrParentDisabled
+        ? { paddingLeft: `${level * 0.5}rem` }
+        : {
+            paddingLeft: `${level * 0.5}rem`,
+            opacity: 0.4,
+          };
       return (
         <CollapsableMenuItem
+          sx={
+            itemOrParentDisabled && !children ? { cursor: 'not-allowed' } : {}
+          }
           level={level}
           id={label}
           disabled={
-            typeof disabled === 'function' ? disabled(context) : disabled
+            itemOrParentDisabled
+              ? true
+              : typeof disabled === 'function'
+              ? disabled(context)
+              : disabled
           }
-          items={children?.map(renderChild(level + 1))}
+          items={children?.map(renderChild(level + 1, itemOrParentDisabled))}
           {...props}
         >
-          <span style={{ paddingLeft: `${level * 0.5}rem` }}>{label}</span>
+          <span style={style}>{label}</span>
         </CollapsableMenuItem>
       );
     };
