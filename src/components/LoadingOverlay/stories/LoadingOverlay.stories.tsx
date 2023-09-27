@@ -1,9 +1,12 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import LoadingOverlay from '..';
 import { Button } from '@mui/material';
 
-storiesOf('LoadingOverlay', module).add('standard', () => {
+export default {
+  title: 'LoadingOverlay',
+};
+
+export const Standard = () => {
   const [show, setShow] = React.useState(false);
 
   return (
@@ -15,4 +18,8 @@ storiesOf('LoadingOverlay', module).add('standard', () => {
       >{`Turn ${show ? 'off' : 'on'}`}</Button>
     </LoadingOverlay>
   );
-});
+};
+
+Standard.story = {
+  name: 'standard',
+};

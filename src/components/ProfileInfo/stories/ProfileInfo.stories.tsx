@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import ProfileInfo from '..';
 
 export const user = {
@@ -10,6 +9,13 @@ export const user = {
   role: 'Systemadministrator',
 };
 
-storiesOf('ProfileInfo', module).add('standard', () => (
-  <ProfileInfo {...user} />
-));
+export default {
+  title: 'ProfileInfo',
+  excludeStories: ['user'],
+};
+
+export const Standard = () => <ProfileInfo {...user} />;
+
+Standard.story = {
+  name: 'standard',
+};

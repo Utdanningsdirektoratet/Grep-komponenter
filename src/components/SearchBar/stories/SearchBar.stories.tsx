@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Container } from '@mui/material';
 import SearchBar from '..';
 
-storiesOf('SearchBar', module).add('standard', () => (
+export default {
+  title: 'SearchBar',
+};
+
+export const Standard = () => (
   <Container style={{ marginTop: 40 }}>
     <SearchBar
       placeholder={'Skriv inn søketekst'}
@@ -15,4 +18,8 @@ storiesOf('SearchBar', module).add('standard', () => (
       outlined
     />
   </Container>
-));
+);
+
+Standard.story = {
+  name: 'standard',
+};

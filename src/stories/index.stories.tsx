@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { Box, Container } from '@mui/material';
 import {
   MainLayout,
@@ -28,10 +27,10 @@ import ProfileInfo from '../components/ProfileInfo';
 import { user } from '../components/ProfileInfo/stories/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
 
-import '../components/NavGuard/stories';
-import '../components/SortableTable/stories';
-import '../components/GrepDateRange/stories';
-import '../components/ToC/stories';
+// import '../components/NavGuard/stories/NavGuard.stories';
+// import '../components/SortableTable/stories/SortableTable.stories';
+// import '../components/GrepDateRange/stories/GrepDateRange.stories';
+// import '../components/ToC/stories/ToC.stories';
 
 const v0colors = {
   primary: '#3FB8AF',
@@ -49,58 +48,65 @@ const v0colors = {
   lightGrey: '#DCDCDC',
 };
 
-storiesOf('Pages', module)
-  .addDecorator((storyFn) => (
-    <MainLayout>
-      <AppBar
-        appTitle="Demo"
-        currentPath="/"
-        username="Grep Fagansvarlig"
-        userRole="Superbruker"
-        isProd={false}
-        colors={v0colors}
-        menuItems={navbarPages}
-        userMenuItems={[
-          {
-            id: '1',
-            label: 'Min profil',
-            action: () => {
-              console.log('test');
+export default {
+  title: "Pages",
+
+  decorators: [
+    (storyFn: any) => 
+      <MainLayout>
+        <AppBar
+          appTitle="Demo"
+          currentPath="/"
+          username="Grep Fagansvarlig"
+          userRole="Superbruker"
+          isProd={false}
+          colors={v0colors}
+          menuItems={navbarPages}
+          userMenuItems={[
+            {
+              id: '1',
+              label: 'Min profil',
+              action: () => {
+                console.log('test');
+              },
             },
-          },
-        ]}
-      >
-        <Box display="flex" width="100%" height={64} overflow="hidden">
-          <AppBarNavList
-            pages={navbarPages}
-            selectedPage={navbarPages[0].id}
-            onChange={(number) => console.log('index: ', number)}
-          />
-          <Box marginLeft="auto">
-            <AppBarProfile
-              userRole={'Superbruker'}
-              fullName={'Grep Fagansvarlig'}
-              onButtonClick={() => console.log('Button clicked')}
+          ]}
+        >
+          <Box display="flex" width="100%" height={64} overflow="hidden">
+            <AppBarNavList
+              pages={navbarPages}
+              selectedPage={navbarPages[0].id}
+              onChange={(number) => console.log('index: ', number)}
             />
-            <DropdownMenu
-              open={false}
-              anchorEl={null}
-              menuItems={menuItems}
-              onClose={() => console.log('closing menu')}
-            />
+            <Box marginLeft="auto">
+              <AppBarProfile
+                userRole={'Superbruker'}
+                fullName={'Grep Fagansvarlig'}
+                onButtonClick={() => console.log('Button clicked')}
+              />
+              <DropdownMenu
+                open={false}
+                anchorEl={null}
+                menuItems={menuItems}
+                onClose={() => console.log('closing menu')}
+              />
+            </Box>
           </Box>
-        </Box>
-      </AppBar>
-      <Container>{storyFn()}</Container>
-      <Footer
-        udirLogo="test"
-        udirLink="https://www.udir.no"
-        serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
-        items={footerItems}
-      />
-    </MainLayout>
-  ))
-  .add('Dashboard', () => (
+        </AppBar>
+        <Container>{storyFn()}</Container>
+        <Footer
+          udirLogo="test"
+          udirLink="https://www.udir.no"
+          serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+          items={footerItems}
+        />
+      </MainLayout>
+    
+  ],
+};
+
+export const Dashboard = () => {
+  return (
     <Box display="flex">
       <ContainedLinkList
         title={'Mine tilganger'}
@@ -114,8 +120,15 @@ storiesOf('Pages', module)
         onRowClick={(id) => console.log('clicked on ', id)}
       />
     </Box>
-  ))
-  .add('Admin', () => (
+  );
+};
+
+Dashboard.story = {
+  name: "Dashboard"
+}
+
+export const Admin = () => {
+  return (
     <React.Fragment>
       <GrepCrumbs
         breadcrumbs={breadcrumbs}
@@ -129,13 +142,20 @@ storiesOf('Pages', module)
         />
       </BodyLayout>
     </React.Fragment>
-  ))
-  .add('My profile', () => (
+  );
+};
+
+export const MyProfile = () => {
+  return (
     <BodyLayout>
       <ProfileInfo {...user} />
       <GDPR>{renderGDPRText()}</GDPR>
     </BodyLayout>
-  ))
-  .add('Læreplaner', () => (
+  );
+};
+
+export const Læreplaner = () => {
+  return (
     <Sidebar pages={adminPages} onPageClick={() => console.log('test')} />
-  ));
+  );
+};

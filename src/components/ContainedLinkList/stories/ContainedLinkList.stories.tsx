@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import ContainedLinkList from '..';
 import Inbox from '@mui/icons-material/Inbox';
 import Settings from '@mui/icons-material/Settings';
@@ -27,10 +26,19 @@ export const myPages: NavigationProps[] = [
   },
 ];
 
-storiesOf('ContainedLinkList', module).add('standard', () => (
+export default {
+  title: 'ContainedLinkList',
+  excludeStories: ['myPages'],
+};
+
+export const Standard = () => (
   <ContainedLinkList
     title={'Mine tilganger'}
     pages={myPages}
-    onPageClick={page => console.log('clicked on ', page.label)}
+    onPageClick={(page) => console.log('clicked on ', page.label)}
   />
-));
+);
+
+Standard.story = {
+  name: 'standard',
+};

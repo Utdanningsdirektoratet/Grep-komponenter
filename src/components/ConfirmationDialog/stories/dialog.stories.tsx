@@ -1,5 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { ConfirmationServiceProvider, useConfirmation } from '..';
 import { Button } from '@mui/material';
 
@@ -19,9 +18,24 @@ const Component: React.FC<{ warning?: boolean }> = ({ warning }) => {
   return <Button onClick={handleClick}>Open dialog</Button>;
 };
 
-storiesOf('ConfirmDialog', module)
-  .addDecorator(storyFn => (
-    <ConfirmationServiceProvider>{storyFn()}</ConfirmationServiceProvider>
-  ))
-  .add('standard', () => <Component />)
-  .add('warning', () => <Component warning />);
+export default {
+  title: 'ConfirmDialog',
+
+  decorators: [
+    (storyFn: any) => (
+      <ConfirmationServiceProvider>{storyFn()}</ConfirmationServiceProvider>
+    ),
+  ],
+};
+
+export const Standard = () => <Component />;
+
+Standard.story = {
+  name: 'standard',
+};
+
+export const Warning = () => <Component warning />;
+
+Warning.story = {
+  name: 'warning',
+};

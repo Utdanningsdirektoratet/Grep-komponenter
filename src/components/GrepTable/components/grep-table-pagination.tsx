@@ -15,7 +15,7 @@ export const GrepTablePagination: React.FunctionComponent<
   return (
     <TablePagination
       classes={classes}
-      rowsPerPageOptions={props.rowsPerPageOptions || [5, 10, 25, 50]}
+      rowsPerPageOptions={props.rowsPerPageOptions}
       SelectProps={{
         inputProps: {
           title: 'Velg antall elementer',

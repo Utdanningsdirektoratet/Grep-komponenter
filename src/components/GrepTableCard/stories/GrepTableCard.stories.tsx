@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import GrepTableCard from '..';
-import { ICurriculum, tableColumns } from '../../GrepTable/stories/GrepTable.stories';
+import {
+  ICurriculum,
+  tableColumns,
+} from '../../GrepTable/stories/GrepTable.stories';
 
 export const data: ICurriculum[] = [
   {
@@ -34,11 +36,20 @@ export const data: ICurriculum[] = [
   },
 ];
 
-storiesOf('GrepTableCard', module).add('standard', () => (
+export default {
+  title: 'GrepTableCard',
+  excludeStories: ['data'],
+};
+
+export const Standard = () => (
   <GrepTableCard
     data={data}
     columns={tableColumns}
     title={'Mine læreplaner'}
     onRowClick={(id) => console.log('clicked on ', id)}
   />
-));
+);
+
+Standard.story = {
+  name: 'standard',
+};

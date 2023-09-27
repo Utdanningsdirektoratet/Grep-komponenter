@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import GDPR from '..';
 
 export const renderGDPRText = () => (
@@ -143,6 +142,13 @@ export const renderGDPRText = () => (
   </React.Fragment>
 );
 
-storiesOf('GDPR', module).add('standard', () => (
-  <GDPR>{renderGDPRText()}</GDPR>
-));
+export default {
+  title: 'GDPR',
+  excludeStories: ['renderGDPRText'],
+};
+
+export const Standard = () => <GDPR>{renderGDPRText()}</GDPR>;
+
+Standard.story = {
+  name: 'standard',
+};
