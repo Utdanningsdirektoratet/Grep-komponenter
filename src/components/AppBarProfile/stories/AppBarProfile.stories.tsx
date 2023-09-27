@@ -1,11 +1,18 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { AppBarProfile } from '../..';
 
-storiesOf('AppBarProfile', module).add('standard', () => (
+export default {
+  title: 'AppBarProfile',
+};
+
+export const Standard = () => (
   <AppBarProfile
     userRole={'Superbruker'}
     fullName={'Grep Fagansvarlig'}
     onButtonClick={() => console.log('Button clicked!')}
   />
-));
+);
+
+Standard.story = {
+  name: 'standard',
+};

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { GrepDialog, GrepDialogOptions } from './dialog';
 
 const GrepDialogServiceContext = React.createContext<
   (options: GrepDialogOptions) => void
 >(() => null);
 
-export const GrepDialogServiceProvider: React.FC = ({ children }) => {
+export const GrepDialogServiceProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
   const [dialogOpen, setDialogOpen] = React.useState(false);
   const [dialogState, setDialogState] = React.useState<GrepDialogOptions>(
     {} as GrepDialogOptions,

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Button, Box, Container } from '@mui/material';
@@ -30,58 +29,66 @@ const TestDatePicker = () => {
   );
 };
 
-storiesOf('GrepDatePicker', module)
-  .addDecorator((storyFn) => (
-    <Container
-      style={{
-        marginTop: 40,
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
-        {storyFn()}
-      </LocalizationProvider>
-    </Container>
-  ))
-  .add('Standard', () => {
-    return (
-      <React.Fragment>
-        <TestDatePicker />
-        <DatePicker
-          label="Med hjelpetekst"
-          variant="standard"
-          helperText="Hjelpetekst"
-          onChange={(date: any) => console.log(date)}
-        />
-        <DatePicker
-          label="Med placeholder"
-          variant="standard"
-          placeholder="25/04/2019"
-          onChange={(date: any) => console.log(date)}
-        />
-      </React.Fragment>
-    );
-  })
-  .add('Test', () => <TestDatePicker />)
-  .add('Outlined', () => (
+export default {
+  title: 'GrepDatePicker',
+
+  decorators: [
+    (storyFn: any) => (
+      <Container
+        style={{
+          marginTop: 40,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
+          {storyFn()}
+        </LocalizationProvider>
+      </Container>
+    ),
+  ],
+};
+
+export const Standard = () => {
+  return (
     <React.Fragment>
-      <DatePicker
-        label="Med feilmelding"
-        value={'32.01.2019'}
-        onChange={(date: any) => console.log(date)}
-      />
+      <TestDatePicker />
       <DatePicker
         label="Med hjelpetekst"
+        variant="standard"
         helperText="Hjelpetekst"
-        value={null}
         onChange={(date: any) => console.log(date)}
       />
       <DatePicker
         label="Med placeholder"
+        variant="standard"
         placeholder="25/04/2019"
-        value={null}
         onChange={(date: any) => console.log(date)}
       />
     </React.Fragment>
-  ));
+  );
+};
+
+export const Test = () => <TestDatePicker />;
+
+export const Outlined = () => (
+  <React.Fragment>
+    <DatePicker
+      label="Med feilmelding"
+      value={'32.01.2019'}
+      onChange={(date: any) => console.log(date)}
+    />
+    <DatePicker
+      label="Med hjelpetekst"
+      helperText="Hjelpetekst"
+      value={null}
+      onChange={(date: any) => console.log(date)}
+    />
+    <DatePicker
+      label="Med placeholder"
+      placeholder="25/04/2019"
+      value={null}
+      onChange={(date: any) => console.log(date)}
+    />
+  </React.Fragment>
+);

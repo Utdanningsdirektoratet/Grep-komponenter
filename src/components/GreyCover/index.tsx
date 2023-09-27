@@ -4,6 +4,7 @@ import { useStyles } from './styles';
 
 export interface GreyCoverProps {
   elevation?: boolean;
+  children?: React.ReactNode;
 }
 
 const GreyCover: React.FC<GreyCoverProps> = ({ elevation, children }) => {

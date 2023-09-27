@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Container } from '@mui/material';
-import { storiesOf } from '@storybook/react';
 
 import GrepEditor from '..';
 import { makeStyles } from '../../../styling';
@@ -29,56 +28,97 @@ const myToolbar: React.FunctionComponent<ToolbarPropperties> = ({
   );
 };
 
-storiesOf('GrepEditor', module)
-  .addDecorator((storyFn) => (
-    <Container
-      style={{
-        marginTop: 40,
-        display: 'flex',
-        justifyContent: 'space-between',
-      }}
-    >
-      {storyFn()}
-    </Container>
-  ))
-  .add('Standard', () => <GrepEditor />)
-  .add('Custom styles', () => {
-    const { classes } = useStyles();
+export default {
+  title: 'GrepEditor',
 
-    return <GrepEditor classes={classes} />;
-  })
-  .add('Custom toolbar', () => <GrepEditor Toolbar={myToolbar} />)
-  .add('Custom buttons', () => (
-    <GrepEditor
-      allowedStyles={['bold']}
-      helperText="Some help text"
-      onContentChange={(c) => {
-        console.log(convert2txt(c));
-        console.log(convert2html(c));
-      }}
-    />
-  ))
-  .add('Paste stripping and blocked inline styles', () => (
-    <GrepEditor stripPastedStyles allowedStyles={[]} />
-  ))
-  .add('With character count', () => (
-    <GrepEditor showCharCount helperText="Marker tekst for formatering" />
-  ))
-  .add('Disable and strip newlines', () => (
-    <GrepEditor
-      disableNewlines
-      onContentChange={(c) => {
-        console.log(convert2txt(c));
-        console.log(convert2html(c));
-      }}
-    />
-  ))
-  .add('Disable pasting', () => (
-    <GrepEditor
-      blockPasting
-      onContentChange={(c) => {
-        console.log(convert2txt(c));
-        console.log(convert2html(c));
-      }}
-    />
-  ));
+  decorators: [
+    (storyFn: any) => (
+      <Container
+        style={{
+          marginTop: 40,
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        {storyFn()}
+      </Container>
+    ),
+  ],
+};
+
+export const Standard = () => <GrepEditor />;
+
+export const CustomStyles = () => {
+  const { classes } = useStyles();
+
+  return <GrepEditor classes={classes} />;
+};
+
+CustomStyles.story = {
+  name: 'Custom styles',
+};
+
+export const CustomToolbar = () => <GrepEditor Toolbar={myToolbar} />;
+
+CustomToolbar.story = {
+  name: 'Custom toolbar',
+};
+
+export const CustomButtons = () => (
+  <GrepEditor
+    allowedStyles={['bold']}
+    helperText="Some help text"
+    onContentChange={(c) => {
+      console.log(convert2txt(c));
+      console.log(convert2html(c));
+    }}
+  />
+);
+
+CustomButtons.story = {
+  name: 'Custom buttons',
+};
+
+export const PasteStrippingAndBlockedInlineStyles = () => (
+  <GrepEditor stripPastedStyles allowedStyles={[]} />
+);
+
+PasteStrippingAndBlockedInlineStyles.story = {
+  name: 'Paste stripping and blocked inline styles',
+};
+
+export const WithCharacterCount = () => (
+  <GrepEditor showCharCount helperText="Marker tekst for formatering" />
+);
+
+WithCharacterCount.story = {
+  name: 'With character count',
+};
+
+export const DisableAndStripNewlines = () => (
+  <GrepEditor
+    disableNewlines
+    onContentChange={(c) => {
+      console.log(convert2txt(c));
+      console.log(convert2html(c));
+    }}
+  />
+);
+
+DisableAndStripNewlines.story = {
+  name: 'Disable and strip newlines',
+};
+
+export const DisablePasting = () => (
+  <GrepEditor
+    blockPasting
+    onContentChange={(c) => {
+      console.log(convert2txt(c));
+      console.log(convert2html(c));
+    }}
+  />
+);
+
+DisablePasting.story = {
+  name: 'Disable pasting',
+};

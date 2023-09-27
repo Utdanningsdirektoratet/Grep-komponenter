@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import InfoContainer, { InfoFieldType } from '..';
 
 const infoFields: InfoFieldType[] = [
@@ -29,10 +28,22 @@ const infoFields: InfoFieldType[] = [
   },
 ];
 
-storiesOf('InfoContainer', module)
-  .add('Horizontal fields', () => (
-    <InfoContainer inline header="Horizontal fields" infoFields={infoFields} />
-  ))
-  .add('Vertical fields', () => (
-    <InfoContainer header="Vertical fields" infoFields={infoFields} />
-  ));
+export default {
+  title: 'InfoContainer',
+};
+
+export const HorizontalFields = () => (
+  <InfoContainer inline header="Horizontal fields" infoFields={infoFields} />
+);
+
+HorizontalFields.story = {
+  name: 'Horizontal fields',
+};
+
+export const VerticalFields = () => (
+  <InfoContainer header="Vertical fields" infoFields={infoFields} />
+);
+
+VerticalFields.story = {
+  name: 'Vertical fields',
+};

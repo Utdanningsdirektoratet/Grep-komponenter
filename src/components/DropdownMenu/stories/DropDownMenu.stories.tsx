@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button } from '@mui/material';
-import { storiesOf } from '@storybook/react';
 import { useState, useRef } from '@storybook/addons';
 
 import { DropdownMenuItem, DropdownMenu } from '../..';
@@ -92,7 +91,12 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
   },
 ];
 
-storiesOf('DropdownMenu', module).add('standard', () => {
+export default {
+  title: 'DropdownMenu',
+  excludeStories: ['menuItems'],
+};
+
+export const Standard = () => {
   const [open, setOpen] = useState(false);
   const menuAnchor = useRef(null);
   const { classes } = makeStyles()({
@@ -115,4 +119,8 @@ storiesOf('DropdownMenu', module).add('standard', () => {
       />
     </div>
   );
-});
+};
+
+Standard.story = {
+  name: 'standard',
+};

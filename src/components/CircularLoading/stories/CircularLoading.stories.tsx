@@ -1,7 +1,18 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import CircularLoading from '..';
 
-storiesOf('CircularLoading', module)
-  .add('standard', () => <CircularLoading />)
-  .add('custom height', () => <CircularLoading height={200} />);
+export default {
+  title: 'CircularLoading',
+};
+
+export const Standard = () => <CircularLoading />;
+
+Standard.story = {
+  name: 'standard',
+};
+
+export const CustomHeight = () => <CircularLoading height={200} />;
+
+CustomHeight.story = {
+  name: 'custom height',
+};

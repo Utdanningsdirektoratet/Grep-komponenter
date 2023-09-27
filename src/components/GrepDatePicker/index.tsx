@@ -56,7 +56,7 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   useEffect(() => onChange(date), [String(date)]);
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs} locale={'nb'}>
+    <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
       <DesktopDatePicker
         // clearable @todo
         inputFormat="DD/MM/YYYY"

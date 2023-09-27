@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import { FormControlLabel, Checkbox } from '@mui/material';
 
 import GrepTable, { TableColumn } from '..';
@@ -152,93 +151,171 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
   },
 ];
 
-storiesOf('Grep table', module)
-  .addDecorator((storyFn) => <div style={{ margin: 10 }}>{storyFn()}</div>)
-  .add('standard', () => (
+export default {
+  title: 'Grep table',
+  decorators: [(storyFn: any) => <div style={{ margin: 10 }}>{storyFn()}</div>],
+  excludeStories: ['ICurriculum', 'tableColumns', 'tableData'],
+};
+
+export const Standard = () => (
+  <GrepTable
+    caption="Some caption text"
+    header
+    columns={tableColumns}
+    data={tableData()}
+  />
+);
+
+Standard.story = {
+  name: 'standard',
+};
+
+export const Outlined = () => (
+  <GrepTable header columns={tableColumns} data={tableData()} outlined />
+);
+
+Outlined.story = {
+  name: 'outlined',
+};
+
+export const Clickable = () => (
+  <GrepTable
+    columns={tableColumns}
+    data={tableData().map((c) => {
+      if (c.id % 2 === 0) {
+        return {
+          ...c,
+          rowDisabled: true,
+        };
+      }
+      return c;
+    })}
+    clickableRows
+    header
+  />
+);
+
+Clickable.story = {
+  name: 'clickable',
+};
+
+export const WithoutData = () => (
+  <GrepTable header columns={tableColumns} data={[]} />
+);
+
+WithoutData.story = {
+  name: 'without data',
+};
+
+export const WithDropdownMenu = () => (
+  <GrepTable
+    header
+    data={tableData(100)}
+    dropdownItems={menuItems}
+    columns={CURRICULUM_COLUMNS}
+    menuTooltip={() => 'Tooltip'}
+    menuDisabled={(row) => row.id === 3}
+    isRowDisabled={(row) => !!(row.id % 2)}
+    pagination
+    rowsPerPage={10}
+    underlineOnFocus
+  />
+);
+
+WithDropdownMenu.story = {
+  name: 'with dropdown-menu',
+};
+
+export const WithPagination = () => {
+  function Parent({ children }: { children: any }) {
+    const [state, setState] = React.useState(tableData(50));
+    return <div>{children(state, setState)}</div>;
+  }
+
+  return (
+    <Parent>
+      {(state: ICurriculum[]) => (
+        <div>
+          <GrepTable
+            header
+            columns={tableColumns}
+            data={state}
+            pagination
+            rowsPerPage={4}
+          />
+        </div>
+      )}
+    </Parent>
+  );
+};
+
+WithPagination.story = {
+  name: 'with pagination',
+};
+
+export const WithoutHeader = () => (
+  <GrepTable columns={tableColumns} data={tableData()} />
+);
+
+WithoutHeader.story = {
+  name: 'without header',
+};
+
+export const WithoutPadding = () => (
+  <div>
     <GrepTable
-      caption="Some caption text"
       header
+      style={{ border: '1px solid black' }}
       columns={tableColumns}
       data={tableData()}
+      padding="none"
     />
-  ))
-  .add('outlined', () => (
-    <GrepTable header columns={tableColumns} data={tableData()} outlined />
-  ))
-  .add('clickable', () => (
+    <br />
     <GrepTable
+      header
+      style={{ border: '1px solid black' }}
       columns={tableColumns}
-      data={tableData().map((c) => {
-        if (c.id % 2 === 0) {
-          return {
-            ...c,
-            rowDisabled: true,
-          };
-        }
-        return c;
-      })}
-      clickableRows
-      header
+      data={[]}
+      padding="none"
     />
-  ))
-  .add('without data', () => (
-    <GrepTable header columns={tableColumns} data={[]} />
-  ))
-  .add('with dropdown-menu', () => (
-    <GrepTable
-      header
-      data={tableData(100)}
-      dropdownItems={menuItems}
-      columns={CURRICULUM_COLUMNS}
-      menuTooltip={() => 'Tooltip'}
-      menuDisabled={(row) => row.id === 3}
-      isRowDisabled={(row) => !!(row.id % 2)}
-      pagination
-      rowsPerPage={10}
-      underlineOnFocus
-    />
-  ))
-  .add('with pagination', () => {
-    function Parent({ children }: { children: any }) {
-      const [state, setState] = React.useState(tableData(50));
-      return <div>{children(state, setState)}</div>;
-    }
+  </div>
+);
 
-    return (
-      <Parent>
-        {(state: ICurriculum[]) => (
-          <div>
-            <GrepTable
-              header
-              columns={tableColumns}
-              data={state}
-              pagination
-              rowsPerPage={4}
-            />
-          </div>
-        )}
-      </Parent>
-    );
-  })
-  .add('without header', () => (
-    <GrepTable columns={tableColumns} data={tableData()} />
-  ))
-  .add('without padding', () => (
-    <div>
-      <GrepTable
-        header
-        style={{ border: '1px solid black' }}
-        columns={tableColumns}
-        data={tableData()}
-        padding="none"
-      />
-      <br />
-      <GrepTable
-        header
-        style={{ border: '1px solid black' }}
-        columns={tableColumns}
-        data={[]}
-        padding="none"
-      />
-    </div>
-  ));
+WithoutPadding.story = {
+  name: 'without padding',
+};
+
+export const WithRowStyle = () => (
+  <GrepTable
+    caption="Some caption text"
+    header
+    columns={tableColumns}
+    data={tableData()}
+    rowStyle={{ backgroundColor: 'lightgrey' }}
+  />
+);
+
+WithRowStyle.story = {
+  name: 'with rowStyle',
+};
+
+export const WithRowStyleFunction = () => (
+  <GrepTable
+    caption="Some caption text"
+    header
+    columns={tableColumns}
+    data={tableData()}
+    rowStyle={(rowData) => {
+      if (rowData.id === 4) {
+        return { backgroundColor: 'lightgray' };
+      } else if (rowData.title === 'Testplanen 2') {
+        return { backgroundColor: 'lightblue' };
+      }
+      return {};
+    }}
+  />
+);
+
+WithRowStyleFunction.story = {
+  name: 'with rowStyle function',
+};

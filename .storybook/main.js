@@ -4,7 +4,7 @@ const path = require('path');
 const modulesDir = path.join(process.cwd(), 'node_modules');
 
 //SEE: https://github.com/storybookjs/storybook/pull/13300#issuecomment-756675536
-const updateEmotionAliases = (config) => ({
+const updateEmotionAliases = config => ({
   ...config,
   resolve: {
     ...config.resolve,
@@ -13,23 +13,21 @@ const updateEmotionAliases = (config) => ({
       '@emotion/core': path.join(modulesDir, '@emotion/react'),
       '@emotion/styled': path.join(modulesDir, '@emotion/styled'),
       '@emotion/styled-base': path.join(modulesDir, '@emotion/styled'),
-      'emotion-theming': path.join(modulesDir, '@emotion/react'),
-    },
-  },
+      'emotion-theming': path.join(modulesDir, '@emotion/react')
+    }
+  }
 });
-
 module.exports = {
-  stories: ['../src/**/*.stories.tsx', '../src/stories/*'],
-  addons: [
-    '@storybook/preset-create-react-app',
-    '@storybook/addon-essentials',
-    '@storybook/addon-actions',
-    '@storybook/addon-links',
-    '@storybook/addon-storysource',
-  ],
+  framework: '@storybook/react-webpack5',
+  stories: ['../src/**/*.stories.tsx', '../src/**/*.stories.@(tsx)'],
+  addons: ['@storybook/preset-create-react-app', '@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-storysource'],
   managerWebpack: updateEmotionAliases,
   webpackFinal: updateEmotionAliases,
-  core: {
-    builder: 'webpack5',
+  features: {
+    storyStoreV7: false,
   },
+
+  // docs: {
+  //   autodocs: true
+  // }
 };
