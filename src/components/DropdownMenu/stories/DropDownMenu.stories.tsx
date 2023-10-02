@@ -10,59 +10,61 @@ interface TestMenuItem {
   handleClick: VoidFunction;
   disabled?: boolean;
 }
+
 export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
   {
     label: 'Test 1',
-    handleClick: () => console.log('clicked '),
+    handleClick: () => console.log('clicked 1'),
     children: [
       {
         label: 'Test 1-1',
-        handleClick: () => console.log('clicked '),
+        handleClick: () => console.log('clicked 1-1'),
       },
     ],
   },
   {
     label: 'Test 2',
-    disabled: true,
+    disabled: () => true,
     tooltipText: 'This is a tooltip',
-    handleClick: () => console.log('clicked '),
+    handleClick: () => console.log('clicked 2'),
   },
   {
     label: 'Test 3',
-    handleClick: () => console.log('clicked '),
+    disabled: false,
+    handleClick: () => console.log('clicked 3'),
   },
   {
     label: 'Test 4',
-    handleClick: () => console.log('clicked '),
+    handleClick: () => console.log('clicked 4'),
     children: [
       {
         label: 'Test 4-1',
-        handleClick: () => console.log('clicked '),
+        handleClick: () => console.log('clicked 4-1'),
       },
       {
         label: 'Test 4-2',
-        handleClick: () => console.log('clicked '),
+        handleClick: () => console.log('clicked 4-2'),
         children: [
           {
             label: 'Test 4-2-1',
-            handleClick: () => console.log('clicked '),
+            handleClick: () => console.log('clicked 4-2-1'),
           },
           {
             label: 'Test 4-2-2',
             disabled: true,
-            handleClick: () => console.log('clicked '),
+            handleClick: () => console.log('clicked 4-2-2'),
             children: [
               {
                 label: 'Test 4-2-2-1',
-                handleClick: () => console.log('clicked '),
+                handleClick: () => console.log('clicked 4-2-2-1'),
               },
               {
                 label: 'Test 4-2-2-2',
-                handleClick: () => console.log('clicked '),
+                handleClick: () => console.log('clicked 4-2-2-2'),
                 children: [
                   {
                     label: 'Test 4-2-2-2-1',
-                    handleClick: () => console.log('clicked '),
+                    handleClick: () => console.log('clicked 4-2-2-2-1'),
                   },
                 ],
               },
@@ -75,17 +77,17 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
   {
     label: 'Test 5',
     tooltipText: 'This is a tooltip',
-    handleClick: () => console.log('clicked '),
+    handleClick: () => console.log('clicked 5'),
   },
   {
     label: 'Test 6',
     disabled: true,
     tooltipText: 'This is a tooltip',
-    handleClick: () => console.log('clicked '),
+    handleClick: () => console.log('clicked 6'),
     children: [
       {
         label: 'Test 6-1',
-        handleClick: () => console.log('clicked '),
+        handleClick: () => console.log('clicked 6-1'),
       },
     ],
   },
