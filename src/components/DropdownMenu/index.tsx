@@ -33,41 +33,38 @@ const DropdownMenu = <T,>({
 
       const itemOrParentDisabled = (parentDisabled || disabled) ?? false;
 
+      const isDisabled =
+        typeof itemOrParentDisabled === 'function'
+          ? itemOrParentDisabled(context)
+          : itemOrParentDisabled;
+
+      const style = isDisabled
+        ? { paddingLeft: `${level * 0.5}rem`, opacity: 0.4 }
+        : {
+            paddingLeft: `${level * 0.5}rem`,
+          };
+
       props.key = `child-item-${index}`;
       props.classes = { selected: classes.selected };
       // ninja way, since rewriting existing code on lpu and admin is daunting
       props.onClick = (e: React.MouseEvent) => {
-        if (itemOrParentDisabled) {
+        if (isDisabled) {
           e.preventDefault();
           e.stopPropagation();
           return;
         }
 
         menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-        !itemOrParentDisabled && handleClick && handleClick(context);
+        !isDisabled && handleClick && handleClick(context);
       };
 
-      const style = !itemOrParentDisabled
-        ? { paddingLeft: `${level * 0.5}rem` }
-        : {
-            paddingLeft: `${level * 0.5}rem`,
-            opacity: 0.4,
-          };
       return (
         <CollapsableMenuItem
-          sx={
-            itemOrParentDisabled && !children ? { cursor: 'not-allowed' } : {}
-          }
+          sx={isDisabled && !children ? { cursor: 'not-allowed' } : {}}
           level={level}
           id={label}
-          disabled={
-            itemOrParentDisabled
-              ? true
-              : typeof disabled === 'function'
-              ? disabled(context)
-              : disabled
-          }
-          items={children?.map(renderChild(level + 1, itemOrParentDisabled))}
+          disabled={isDisabled}
+          items={children?.map(renderChild(level + 1, isDisabled))}
           {...props}
         >
           <span style={style}>{label}</span>
