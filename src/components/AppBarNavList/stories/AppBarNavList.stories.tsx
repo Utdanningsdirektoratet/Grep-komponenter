@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { storiesOf } from '@storybook/react';
 import AppBarNavList from '..';
 
 export const navbarPages = [
@@ -37,10 +36,19 @@ export const navbarPages = [
   },
 ];
 
-storiesOf('AppbarNavigationList', module).add('with theme and appbar', () => (
+export default {
+  title: 'AppbarNavigationList',
+  excludeStories: ['navbarPages'],
+};
+
+export const WithThemeAndAppbar = () => (
   <AppBarNavList
     pages={navbarPages}
     selectedPage={navbarPages[0].id}
     onChange={(number) => console.log('index: ', number)}
   />
-));
+);
+
+WithThemeAndAppbar.story = {
+  name: 'with theme and appbar',
+};
