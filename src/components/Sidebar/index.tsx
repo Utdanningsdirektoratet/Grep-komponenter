@@ -13,9 +13,10 @@ export interface SidebarProps {
   currentPageId?: number;
   pages: NavigationProps[];
   onPageClick: (page: NavigationProps) => any;
+  expandAndClick?: boolean;
 }
 
-const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
+const Sidebar = ({ pages, onPageClick, currentPageId, expandAndClick }: SidebarProps) => {
   const [expanded, setExpanded] = React.useState<number[]>([]);
   const { classes } = useStyles();
 
@@ -38,7 +39,12 @@ const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
   };
 
   const handleClick = (page: NavigationProps) => {
-    page.children ? toggleExpand(page.id) : onPageClick(page);
+    if (expandAndClick) {
+      toggleExpand(page.id)
+      onPageClick(page)
+    } else {
+      page.children ? toggleExpand(page.id) : onPageClick(page);
+    }
   };
 
   const renderItem = (page: NavigationProps) => (
@@ -71,9 +77,9 @@ const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               {renderItem(page)}
               {page.children ? (
                 expanded.includes(page.id) ? (
-                  <ExpandMore />
-                ) : (
                   <ExpandLess />
+                ) : (
+                  <ExpandMore />
                 )
               ) : null}
             </ListItem>

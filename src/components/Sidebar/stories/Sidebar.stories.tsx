@@ -53,11 +53,27 @@ export const Standard = () => {
     <Sidebar
       pages={adminPages}
       currentPageId={pageId}
-      onPageClick={(page) => setPageId(page.id)}
+      onPageClick={(page) => {setPageId(page.id), console.log(page)}}
     />
   );
 };
 
 Standard.story = {
-  name: 'standard',
+  name: 'Standard',
 };
+
+export const ExpandAndClick = () => {
+  const [pageId, setPageId] = React.useState(4);
+  return (
+    <Sidebar
+      pages={adminPages}
+      currentPageId={pageId}
+      onPageClick={(page) => {setPageId(page.id), console.log(page)}}
+      expandAndClick
+    />
+  );
+}
+
+ExpandAndClick.story = {
+  name: "Expand and click"
+}
