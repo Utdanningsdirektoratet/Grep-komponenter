@@ -69,11 +69,11 @@ export const ExpandAndClick = () => {
       pages={adminPages}
       currentPageId={pageId}
       onPageClick={(page) => {setPageId(page.id), console.log(page)}}
-      expandAndClick
+      expandOnIcon
     />
   );
 }
 
 ExpandAndClick.story = {
-  name: "Expand and click"
+  name: "Expand on icon only"
 }
