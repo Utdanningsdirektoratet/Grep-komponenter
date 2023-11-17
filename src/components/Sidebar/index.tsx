@@ -13,9 +13,10 @@ export interface SidebarProps {
   currentPageId?: number;
   pages: NavigationProps[];
   onPageClick: (page: NavigationProps) => any;
+  expandOnIcon?: boolean;
 }
 
-const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
+const Sidebar = ({ pages, onPageClick, currentPageId, expandOnIcon }: SidebarProps) => {
   const [expanded, setExpanded] = React.useState<number[]>([]);
   const { classes } = useStyles();
 
@@ -38,7 +39,11 @@ const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
   };
 
   const handleClick = (page: NavigationProps) => {
-    page.children ? toggleExpand(page.id) : onPageClick(page);
+    if (expandOnIcon) {
+      onPageClick(page)
+    } else {
+      page.children ? toggleExpand(page.id) : onPageClick(page);
+    }
   };
 
   const renderItem = (page: NavigationProps) => (
@@ -55,6 +60,25 @@ const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
       />
     </React.Fragment>
   );
+  
+  const renderExpandIcon = (page: NavigationProps) => {
+    if (page.children) {
+      if (expanded.includes(page.id)) {
+        if (expandOnIcon) {
+          return  <ExpandLess onClick={(e) => {e.stopPropagation(), toggleExpand(page.id)}}/>
+        } else {
+          return  <ExpandLess/>
+        }
+      } else {
+        if (expandOnIcon) {
+          return  <ExpandMore onClick={(e) => {e.stopPropagation(), toggleExpand(page.id)}}/>
+        } else {
+          return  <ExpandMore/>
+        }
+      }
+    }
+    return null
+  }
 
   return (
     <Box className={classes.container}>
@@ -69,13 +93,7 @@ const Sidebar = ({ pages, onPageClick, currentPageId }: SidebarProps) => {
               onKeyPress={keyboard.onActivation(() => handleClick(page))}
             >
               {renderItem(page)}
-              {page.children ? (
-                expanded.includes(page.id) ? (
-                  <ExpandMore />
-                ) : (
-                  <ExpandLess />
-                )
-              ) : null}
+              {renderExpandIcon(page)}
             </ListItem>
 
             <Collapse

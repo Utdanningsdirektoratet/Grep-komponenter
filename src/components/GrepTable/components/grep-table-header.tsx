@@ -37,7 +37,7 @@ export const TableHeader: Component<any> = <T,>({
           return (
             <TableHeaderCell
               key={index}
-              empty={!label}
+              empty={label === undefined}
               column={column}
               direction={sortDirection}
               active={sortable ? sortBy === colDef : undefined}
