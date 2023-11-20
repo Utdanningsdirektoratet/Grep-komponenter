@@ -19,8 +19,7 @@ jobs:
         id: open-pr
         run: |
           gh_pr_up() { gh pr create $* || gh pr edit$* }
-          gh_pr_up --base 'dependabot/updates'
-          gh_pr_up --title 'Pulling ${{ github.ref }} into dependabot/updates' --body '*Automated PR*'
+          gh_pr_up --title 'Pulling ${{ github.ref }} into dependabot/updates' --body '*Automated PR*' --base 'dependabot/updates'
         env:
           PR_URL: ${{ steps.open-pr.outputs.pr_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
