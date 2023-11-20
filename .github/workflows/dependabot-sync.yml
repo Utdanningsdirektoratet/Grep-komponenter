@@ -15,8 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         name: checkout
 
-      - uses: actions/checkout@v4
-        name: pull-request
+      - name: pull-request
         id: open-pr
         run: |
           gh_pr_up() { gh pr create $* || gh pr edit$* }
