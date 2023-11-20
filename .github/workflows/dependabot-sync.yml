@@ -7,10 +7,14 @@ on:
 
   workflow_dispatch:
 
+permissions:
+  pull-requests: write
+
 jobs:
   pull-request:
     name: Open PR to dependabot/updates
     runs-on: ubuntu-latest
+    outputs: ${{ steps.open-pr.ouputs.pr_url}}
     steps:
       - uses: actions/checkout@v4
         name: checkout
@@ -20,13 +24,15 @@ jobs:
         run: |
           gh_pr_up() { gh pr create $* }
           gh_pr_up --title "Pulling ${{ github.ref }} into dependabot/updates" --body "*Automated PR*" --base "dependabot/updates"
+          gh_pr_up --body "*Automated PR*"
+          gh_pr_up --base "dependabot/updates" >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
-          PR_URL: ${{ steps.open-pr.outputs.pr_url }}
+          PR_URL: ${{ needs.open-pr.outputs.pr_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   run-test:
