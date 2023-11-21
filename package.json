@@ -130,7 +130,7 @@
     "babel-runtime": "^6.26.0",
     "chalk": "^4.1.2",
     "clsx": "^1.1.0",
-    "commitlint": "^17.0.2",
+    "commitlint": "^18.4.3",
     "connected-react-router": "^6.9.3",
     "conventional-changelog-cli": "^4.1.0",
     "cross-env": "^7.0.3",
