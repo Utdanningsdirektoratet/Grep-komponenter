@@ -145,15 +145,6 @@ export const CollapsableMenuItem: FunctionComponent<
     </Box>
   );
 
-  const setFocus = () => {
-    if (
-      !listItemRef.current?.classList.contains('Mui-selected') &&
-      !listItemRef.current?.classList.contains(classes.subMenu)
-    ) {
-      listItemRef.current?.focus();
-    }
-  };
-
   return tooltipText ? (
     <Tooltip title={tooltipText}>
       <MenuItem
@@ -164,7 +155,7 @@ export const CollapsableMenuItem: FunctionComponent<
             : { pointerEvents: 'inherit !important' }
         }
         className={classes.root}
-        onMouseOver={setFocus}
+        onMouseOver={(e: any) => e.currentTarget.focus()}
         selected={open}
         ref={listItemRef}
         onClick={handleClick}
@@ -177,7 +168,6 @@ export const CollapsableMenuItem: FunctionComponent<
     <MenuItem
       sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
       className={classes.root}
-      onMouseOver={setFocus}
       ref={listItemRef}
       selected={open}
       onClick={handleClick}
