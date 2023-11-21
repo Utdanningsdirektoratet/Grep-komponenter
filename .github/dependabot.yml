@@ -1,9 +1,17 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "04:00"
-  target-branch: "dependabot/updates"
-  open-pull-requests-limit: 25
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: daily
+      time: '04:00'
+    target-branch: 'dependabot/updates'
+    open-pull-requests-limit: 25
+    groups:
+      major-dependecies:
+        update-types:
+          - 'major'
+      non-major-dependecies:
+        update-types:
+          - 'minor'
+          - 'patch'
