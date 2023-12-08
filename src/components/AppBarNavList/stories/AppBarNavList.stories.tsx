@@ -1,12 +1,13 @@
 import * as React from 'react';
 import AppBarNavList from '..';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 export const navbarPages = [
   {
     id: 1,
     label: 'Hjem',
     onClick: (url: string) => console.log('going to url: ', url),
-    toUrl: '/home',
+    toUrl: '/',
     name: 'home',
     path: '/home',
   },
@@ -14,7 +15,7 @@ export const navbarPages = [
     id: 2,
     label: 'Læreplaner',
     onClick: (url: string) => console.log('going to url: ', url),
-    toUrl: '/curriculums',
+    toUrl: '/',
     name: 'curriculums',
     path: '/curriculums',
   },
@@ -22,7 +23,7 @@ export const navbarPages = [
     id: 3,
     label: 'Metadata',
     onClick: (url: string) => console.log('going to url: ', url),
-    toUrl: '/metadata',
+    toUrl: '/',
     name: 'metadata',
     path: '/metadata',
   },
@@ -30,7 +31,7 @@ export const navbarPages = [
     id: 4,
     label: 'Administrasjon',
     onClick: (url: string) => console.log('going to url: ', url),
-    toUrl: '/admin',
+    toUrl: '/',
     name: 'admin',
     path: '/admin',
   },
@@ -39,6 +40,8 @@ export const navbarPages = [
 export default {
   title: 'AppbarNavigationList',
   excludeStories: ['navbarPages'],
+  render: () => <WithThemeAndAppbar />,
+  decorators: [withRouter],
 };
 
 export const WithThemeAndAppbar = () => (

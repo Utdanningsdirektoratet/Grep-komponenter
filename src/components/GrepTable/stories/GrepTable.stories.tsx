@@ -95,7 +95,7 @@ export const tableData = (samples: number = 5): ICurriculum[] =>
     lastModified: '10. desember',
   }));
 
-const menuItems: DropdownMenuItem<ICurriculum>[] = [
+const menuItems = [
   {
     label: 'Test 1',
     handleClick: (obj) => console.log('clicked on', obj),
@@ -149,7 +149,7 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
       },
     ],
   },
-];
+] as DropdownMenuItem<ICurriculum>[];
 
 export default {
   title: 'Grep table',

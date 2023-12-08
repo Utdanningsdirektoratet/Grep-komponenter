@@ -1,11 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Router } from 'react-router-dom';
 
-import {
-  ConnectedRouter,
-  connectRouter,
-  routerMiddleware,
-} from 'connected-react-router';
+import { connectRouter, routerMiddleware } from 'connected-react-router';
 
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
@@ -20,10 +17,14 @@ const store = createStore(
   compose(applyMiddleware(routerMiddleware(history))),
 );
 
-export default ({ children }: { children: React.ReactNode }) => {
+const Scaffold = ({ children }: { children: React.ReactNode }) => {
   return (
     <Provider store={store}>
-      <ConnectedRouter history={history}>{children}</ConnectedRouter>
+      <Router location={history.location} navigator={history}>
+        {children}
+      </Router>
     </Provider>
   );
 };
+
+export default Scaffold;

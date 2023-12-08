@@ -26,6 +26,7 @@ import GDPR from '../components/GDPR';
 import ProfileInfo from '../components/ProfileInfo';
 import { user } from '../components/ProfileInfo/stories/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 // import '../components/NavGuard/stories/NavGuard.stories';
 // import '../components/SortableTable/stories/SortableTable.stories';
@@ -49,10 +50,10 @@ const v0colors = {
 };
 
 export default {
-  title: "Pages",
+  title: 'Pages',
 
   decorators: [
-    (storyFn: any) => 
+    (storyFn: any) => (
       <MainLayout>
         <AppBar
           appTitle="Demo"
@@ -101,7 +102,9 @@ export default {
           items={footerItems}
         />
       </MainLayout>
-    
+    ),
+
+    withRouter,
   ],
 };
 
@@ -124,8 +127,8 @@ export const Dashboard = () => {
 };
 
 Dashboard.story = {
-  name: "Dashboard"
-}
+  name: 'Dashboard',
+};
 
 export const Admin = () => {
   return (
@@ -155,7 +158,5 @@ export const MyProfile = () => {
 };
 
 export const Læreplaner = () => {
-  return (
-    <Sidebar pages={adminPages} onPageClick={() => console.log('test')} />
-  );
+  return <Sidebar pages={adminPages} onPageClick={() => console.log('test')} />;
 };

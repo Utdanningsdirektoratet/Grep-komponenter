@@ -89,7 +89,11 @@ describe('GrepTable', () => {
 
   it('should render with pagination', async () => {
     const { getByRole, getAllByRole, queryByRole } = render(
-      <Component pagination rowsPerPage={rowsPerPage} />,
+      <Component
+        pagination
+        rowsPerPage={rowsPerPage}
+        rowsPerPageOptions={[5, 10, 25, 50]}
+      />,
     );
     const user = userEvent.setup();
 
@@ -104,7 +108,9 @@ describe('GrepTable', () => {
     expect(queryByRole('cell', { name: 'row1' })).not.toBeInTheDocument();
 
     // Change rows per page to "10"
-    await user.click(getByRole('button', { name: String(rowsPerPage) }));
+    // PaginationElement
+    expect(getByRole('combobox', { name: '' })).toBeVisible();
+    await user.click(getByRole('combobox', { name: '' }));
     await user.click(getByRole('option', { name: '10' }));
 
     expect(getAllByRole('row').length).toBe(12);

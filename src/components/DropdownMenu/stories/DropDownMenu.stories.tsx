@@ -11,7 +11,7 @@ interface TestMenuItem {
   disabled?: boolean;
 }
 
-export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
+export const menuItems = [
   {
     label: 'Test 1',
     handleClick: () => console.log('clicked 1'),
@@ -91,7 +91,7 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
       },
     ],
   },
-];
+] as DropdownMenuItem<TestMenuItem>[];
 
 export default {
   title: 'DropdownMenu',

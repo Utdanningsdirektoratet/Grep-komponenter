@@ -24,6 +24,7 @@ import {
 import MobileAppBar from './MobileAppBar';
 import { Box } from '@mui/material';
 import { IAuthorizedPage, UserMenuItem, v0colors } from './types';
+import { ReactNode } from 'react';
 
 type AppBarProps = {
   isProd: boolean;
@@ -34,6 +35,7 @@ type AppBarProps = {
   menuItems: IAuthorizedPage[];
   userRole?: string;
   colors: v0colors;
+  children?: ReactNode;
 };
 
 const AppBar: React.FunctionComponent<AppBarProps> = ({

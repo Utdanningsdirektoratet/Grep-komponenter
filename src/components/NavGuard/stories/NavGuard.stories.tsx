@@ -1,20 +1,15 @@
 import React from 'react';
-import Scaffold from './_scaffold';
 import Standard from './standard';
-
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 export default {
-  title: "NavGuard"
-}
+  title: 'NavGuard',
+  render: () => <Standard />,
+  decorators: [withRouter],
+};
 
-export const Default = () =>  {
-  return (
-    <Scaffold>
-      <Standard />
-    </Scaffold>
-  )
-}
+export const Default = () => {
+  return <Standard />;
+};
 
-Default.story = {
-  name: "standard"
-}
+Default.storyName = 'Default';

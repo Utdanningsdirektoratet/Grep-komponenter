@@ -1,12 +1,13 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore} from 'redux';
 import { Provider } from 'react-redux';
 
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { BrowserRouter } from 'react-router-dom';
+
+// import { BrowserRouter } from 'react-router-dom';
 
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
@@ -59,27 +60,20 @@ const theme = createTheme({
         },
       },
     },
-    MuiTooltip: {
-      styleOverrides: {
-        tooltip: {
-          fontSize: 12,
-        },
-      },
-    },
   },
 });
 
-const store = createStore(() => {});
+const store = createStore(() => {return});
 
 export const decorators = [
   (Story) => (
     <Provider store={store}>
       <CacheProvider value={muiCache}>
         <ThemeProvider theme={theme}>
-          <BrowserRouter>
+          {/* <BrowserRouter> */}
             <CssBaseline />
             <Story />
-          </BrowserRouter>
+          {/* </BrowserRouter> */}
         </ThemeProvider>
       </CacheProvider>
     </Provider>

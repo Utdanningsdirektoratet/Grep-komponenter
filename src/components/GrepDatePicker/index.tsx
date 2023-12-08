@@ -11,6 +11,7 @@ import { TextField, TextFieldProps } from '@mui/material';
 import '../../utils/dateHelper';
 import { useDate } from '../../hooks';
 import { ParseableDate } from '../../utils/dateHelper';
+import { DateValidationError } from '@mui/x-date-pickers/internals';
 
 type InputProps = Pick<
   TextFieldProps,
@@ -60,7 +61,7 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
       <DesktopDatePicker
         // clearable @todo
         inputFormat="DD/MM/YYYY"
-        onError={(reason: any) => {
+        onError={(reason: DateValidationError) => {
           switch (reason) {
             case 'invalidDate':
               setError('Ugyldig dato');
@@ -88,7 +89,7 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
         }}
         value={date}
         onChange={setDate}
-        renderInput={(params: any) => (
+        renderInput={(params: TextFieldProps) => (
           <TextField
             id={id}
             {...params}

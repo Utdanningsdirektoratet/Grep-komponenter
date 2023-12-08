@@ -1,5 +1,5 @@
-const chalk = require('chalk');
-const spawn = require('child_process').spawn;
+import chalk from "chalk"
+import { spawn } from 'node:child_process';
 
 export default function pluginYalc(enabled) {
     let run = enabled;

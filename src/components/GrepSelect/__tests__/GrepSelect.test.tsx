@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import GrepSelect, { SelectItem, GrepSelectProps } from '..';
@@ -78,11 +74,11 @@ describe('GrepSelect', () => {
 
   it('should render correctly with outline', () => {
     const { getByRole } = render(<Component outlined />);
-    expect(getByRole('button').className.toLowerCase()).toContain('outlined');
+    expect(getByRole('combobox').className.toLowerCase()).toContain('outlined');
   });
 
   it('should render correctly with small size', () => {
     const { getByRole } = render(<Component size="small" />);
-    expect(getByRole('button').className.toLowerCase()).toContain('small');
+    expect(getByRole('combobox').className.toLowerCase()).toContain('small');
   });
 });

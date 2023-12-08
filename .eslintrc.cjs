@@ -26,6 +26,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': ['error', {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_'
-    }]
+    }],
+    'storybook/no-uninstalled-addons': ['error', { packageJsonLocation: '../package.json' }]
+
   }
 };

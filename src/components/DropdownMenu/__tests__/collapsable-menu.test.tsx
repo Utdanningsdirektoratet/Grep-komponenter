@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 
-const items: Array<DropdownMenuItem<any>> = [
+const items = [
   {
     label: 'Testitem #1',
     children: [
@@ -35,7 +35,7 @@ const items: Array<DropdownMenuItem<any>> = [
       },
     ],
   },
-];
+] as Array<DropdownMenuItem<unknown>>;
 
 const ButtonMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);

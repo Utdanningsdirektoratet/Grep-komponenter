@@ -7,7 +7,7 @@ import DropdownMenu, { DropdownMenuItem } from '..';
 
 const mockFunc = jest.fn();
 
-const items: DropdownMenuItem<any>[] = [
+const items = [
   {
     label: 'MenuItem #1',
     children: [
@@ -27,7 +27,7 @@ const items: DropdownMenuItem<any>[] = [
   {
     label: 'MenuItem #4',
   },
-];
+] as DropdownMenuItem<unknown>[];
 
 const ButtonMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);

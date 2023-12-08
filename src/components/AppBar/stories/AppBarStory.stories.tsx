@@ -2,6 +2,8 @@ import * as React from 'react';
 import AppBar from '../AppBar';
 import { IAuthorizedPage } from '../types';
 import { Box } from '@mui/system';
+import { withRouter } from 'storybook-addon-react-router-v6';
+import { useLocation } from 'react-router-dom';
 
 export const v0colors = {
   primary: '#3FB8AF',
@@ -30,21 +32,21 @@ const navbarPages: IAuthorizedPage[] = [
   {
     name: 'curriculums',
     path: '/curriculums',
-    redirectUrl: '/curriculums',
+    redirectUrl: '/',
     exact: true,
     translatedTextRef: 'Læreplaner',
   },
   {
     name: 'Metadata',
     path: '/metadata',
-    redirectUrl: '/metadata',
+    redirectUrl: '/',
     exact: true,
     translatedTextRef: 'Metadata',
   },
   {
     name: 'admin',
     path: '/admin',
-    redirectUrl: '/admin',
+    redirectUrl: '/',
     exact: true,
     translatedTextRef: 'Administrasjon',
   },
@@ -53,6 +55,8 @@ const navbarPages: IAuthorizedPage[] = [
 export default {
   title: 'AppBar',
   excludeStories: ['v0colors'],
+  render: () => <WithContent />,
+  decorators: [withRouter],
 };
 
 export const WithContent = () => {
