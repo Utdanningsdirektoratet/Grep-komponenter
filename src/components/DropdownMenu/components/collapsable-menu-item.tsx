@@ -28,7 +28,10 @@ class CollapsableMenuStatusEvent {
     return !!this._defaultPrevented;
   }
 
-  constructor(public type: ToggleState, public currentTarget: React.Ref<any>) {}
+  constructor(
+    public type: ToggleState,
+    public currentTarget: React.Ref<unknown>,
+  ) {}
 
   public preventDefault(): void {
     this._defaultPrevented = true;
@@ -155,7 +158,7 @@ export const CollapsableMenuItem: FunctionComponent<
             : { pointerEvents: 'inherit !important' }
         }
         className={classes.root}
-        onMouseOver={(e: any) => e.currentTarget.focus()}
+        onMouseOver={(e: React.BaseSyntheticEvent) => e.currentTarget.focus()}
         selected={open}
         ref={listItemRef}
         onClick={handleClick}

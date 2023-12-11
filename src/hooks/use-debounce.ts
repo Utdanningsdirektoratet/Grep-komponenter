@@ -1,12 +1,13 @@
 import { useEffect, useMemo } from 'react';
 import _debounce from 'lodash.debounce';
+import _ from 'lodash';
 
 interface Options extends _.DebounceSettings {
   wait: number;
 }
 
 // type Debounce<T> = T & _.Cancelable;
-type Debounce<T extends (...args: any) => any> = _.DebouncedFunc<T>;
+type Debounce<T extends (...args: unknown[]) => unknown> = _.DebouncedFunc<T>;
 
 /**
  * Custom hook for debouncing functions inside components
@@ -22,10 +23,10 @@ type Debounce<T extends (...args: any) => any> = _.DebouncedFunc<T>;
  *  return (<><input {...{ref,onChange}}/><p>{txt}</p></>)
  * }
  */
-export const useDebounce = <T extends (...args: any) => any>(
+export const useDebounce = <T extends (...args: unknown[]) => unknown>(
   func: T,
   opt: Options,
-  deps?: any[],
+  deps?: unknown[],
 ): Debounce<T> => {
   const debounce = useMemo(() => {
     const { wait, ...settings } = opt;

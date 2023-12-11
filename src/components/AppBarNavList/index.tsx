@@ -9,7 +9,7 @@ export interface NavigationProps {
   label: string;
   toUrl?: string;
   children?: NavigationProps[];
-  linkIcon?: React.ReactElement<any>;
+  linkIcon?: React.ReactElement<unknown>;
 }
 
 export interface AppBarNavListProps {

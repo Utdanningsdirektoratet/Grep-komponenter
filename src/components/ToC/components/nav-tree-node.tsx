@@ -31,7 +31,7 @@ export interface GrepTableOfContentNavTreeNodeProps {
   className?: string;
   style?: React.CSSProperties;
   renderChilds: (children: ContextTree) => ReactElement;
-  setSelectedValue: (selected: any) => void;
+  setSelectedValue: (selected: unknown) => void;
   percentageRendered: number;
 }
 

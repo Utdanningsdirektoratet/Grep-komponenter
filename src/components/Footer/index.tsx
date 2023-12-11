@@ -12,7 +12,7 @@ import { useFooterStyles } from './styles';
 export interface FooterItem {
   label: string;
   render?: (renderLabel: () => ReactElement) => ReactElement;
-  onClickItem?: (args?: any) => void;
+  onClickItem?: (args?: unknown) => void;
 }
 
 interface FooterProps {
@@ -74,7 +74,6 @@ const Footer: React.FC<FooterProps> = ({
                   root: classes.item,
                   //button: onClickItem ? classes.itemBtn : undefined,
                 }}
-                //button={!!onClickItem as any}
               >
                 {item.render
                   ? item.render(() => renderItem(item))

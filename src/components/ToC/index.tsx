@@ -9,7 +9,7 @@ import Nav from './components/nav';
 export interface GrepTableOfContentProps extends ContextProviderProps {
   style?: React.CSSProperties;
   className?: string;
-  setSelectedValue: (selected: any) => void;
+  setSelectedValue: (selected: unknown) => void;
   percentageRendered: number;
 }
 

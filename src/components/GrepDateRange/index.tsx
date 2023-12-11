@@ -4,6 +4,7 @@ import { Grid, GridSpacing } from '@mui/material';
 import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
 import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
+import { Dayjs } from 'dayjs';
 
 type CommonProperties = Pick<GrepDatePickerProps, 'variant' | 'margin' | 'sx'>;
 
@@ -14,10 +15,10 @@ interface Props extends CommonProperties {
   spacing?: GridSpacing;
   style?: React.CSSProperties;
   fullWidth?: boolean;
-  clearable?: any;
-  disabled?: any;
-  minDate?: any;
-  maxDate?: any;
+  clearable?: boolean;
+  disabled?: boolean;
+  minDate?: Dayjs;
+  maxDate?: Dayjs;
 }
 
 export const GrepDateRange: React.FunctionComponent<Props> = ({

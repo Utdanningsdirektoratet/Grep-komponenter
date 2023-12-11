@@ -21,7 +21,7 @@ export const useDate = (
   const [date, _setDate] = useState<DateState>(null);
 
   const getDate = useCallback(
-    (value: any) => {
+    (value: DateInput) => {
       if (value) {
         const date = DateTime(value);
         return preserveTime ? date : date.startOf('day');
@@ -36,10 +36,10 @@ export const useDate = (
     hasDateChanged(date, nextDate) && _setDate(nextDate);
   };
 
-  useMemo(() => setDate(value ? parseDate(value, { utc }) : null), [
-    value,
-    utc,
-  ]);
+  useMemo(
+    () => setDate(value ? parseDate(value, { utc }) : null),
+    [value, utc],
+  );
   return [date, setDate];
 };
 

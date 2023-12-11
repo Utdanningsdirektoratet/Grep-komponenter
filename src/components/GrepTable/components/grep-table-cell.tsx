@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, FunctionComponent } from 'react';
+import React from 'react';
 import { styled, TableCell, TableCellProps } from '@mui/material';
 
 import { TableColumn } from '..';
@@ -12,9 +12,6 @@ export interface Properties<T> extends TableCellProps {
   expanded?: boolean;
 }
 
-type ComponentProperties<T> = PropsWithChildren<Properties<T>>;
-export type Component<T> = FunctionComponent<ComponentProperties<T>>;
-
 const CellValue = styled('span')({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -22,7 +19,7 @@ const CellValue = styled('span')({
   WebkitBoxOrient: 'vertical',
 });
 
-export const GrepTableRow: Component<any> = <T,>({
+export const GrepTableCell = <T,>({
   row,
   column,
   expanded,
@@ -63,4 +60,4 @@ export const GrepTableRow: Component<any> = <T,>({
   );
 };
 
-export default GrepTableRow;
+export default GrepTableCell;

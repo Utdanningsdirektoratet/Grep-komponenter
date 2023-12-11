@@ -3,7 +3,6 @@ import AppBar from '../AppBar';
 import { IAuthorizedPage } from '../types';
 import { Box } from '@mui/system';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import { useLocation } from 'react-router-dom';
 
 export const v0colors = {
   primary: '#3FB8AF',

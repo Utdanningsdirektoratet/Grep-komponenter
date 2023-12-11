@@ -51,7 +51,7 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
   const [userMenuAnchor, setUserMenuAnchor] =
     React.useState<HTMLAnchorElement | null>(null);
 
-  const _handleIconButtonClick = (event: any) => {
+  const _handleIconButtonClick = (event: React.BaseSyntheticEvent) => {
     event.preventDefault();
     setUserMenuAnchor(event.currentTarget);
   };

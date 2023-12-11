@@ -17,9 +17,7 @@ interface Properties<T>
   expanded?: boolean;
 }
 
-type Component<T> = React.FunctionComponent<Properties<T>>;
-
-export const GrepTableRow: Component<any> = <T,>({
+export const GrepTableRow = <T,>({
   row,
   columns,
   selected,

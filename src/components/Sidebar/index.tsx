@@ -12,18 +12,23 @@ import { Collapse, ListItemIcon } from '@mui/material';
 export interface SidebarProps {
   currentPageId?: number;
   pages: NavigationProps[];
-  onPageClick: (page: NavigationProps) => any;
+  onPageClick: (page: NavigationProps) => void;
   expandOnIcon?: boolean;
 }
 
-const Sidebar = ({ pages, onPageClick, currentPageId, expandOnIcon }: SidebarProps) => {
+const Sidebar = ({
+  pages,
+  onPageClick,
+  currentPageId,
+  expandOnIcon,
+}: SidebarProps) => {
   const [expanded, setExpanded] = React.useState<number[]>([]);
   const { classes } = useStyles();
 
   React.useEffect(() => {
     if (currentPageId) {
-      const pageId = pages.find((p) =>
-        p.children?.some((c) => c.id === currentPageId),
+      const pageId = pages.find(
+        (p) => p.children?.some((c) => c.id === currentPageId),
       )?.id;
 
       !!pageId && setExpanded([...expanded, pageId]);
@@ -40,7 +45,7 @@ const Sidebar = ({ pages, onPageClick, currentPageId, expandOnIcon }: SidebarPro
 
   const handleClick = (page: NavigationProps) => {
     if (expandOnIcon) {
-      onPageClick(page)
+      onPageClick(page);
     } else {
       page.children ? toggleExpand(page.id) : onPageClick(page);
     }
@@ -60,25 +65,37 @@ const Sidebar = ({ pages, onPageClick, currentPageId, expandOnIcon }: SidebarPro
       />
     </React.Fragment>
   );
-  
+
   const renderExpandIcon = (page: NavigationProps) => {
     if (page.children) {
       if (expanded.includes(page.id)) {
         if (expandOnIcon) {
-          return  <ExpandLess onClick={(e) => {e.stopPropagation(), toggleExpand(page.id)}}/>
+          return (
+            <ExpandLess
+              onClick={(e) => {
+                e.stopPropagation(), toggleExpand(page.id);
+              }}
+            />
+          );
         } else {
-          return  <ExpandLess/>
+          return <ExpandLess />;
         }
       } else {
         if (expandOnIcon) {
-          return  <ExpandMore onClick={(e) => {e.stopPropagation(), toggleExpand(page.id)}}/>
+          return (
+            <ExpandMore
+              onClick={(e) => {
+                e.stopPropagation(), toggleExpand(page.id);
+              }}
+            />
+          );
         } else {
-          return  <ExpandMore/>
+          return <ExpandMore />;
         }
       }
     }
-    return null
-  }
+    return null;
+  };
 
   return (
     <Box className={classes.container}>

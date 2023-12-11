@@ -16,7 +16,7 @@ import { NavigationProps } from '../AppBarNavList';
 interface Props {
   title: string;
   pages: NavigationProps[];
-  onPageClick: (page: NavigationProps) => any;
+  onPageClick: (page: NavigationProps) => unknown;
 }
 
 const LinkList: React.FC<Props> = (props) => (

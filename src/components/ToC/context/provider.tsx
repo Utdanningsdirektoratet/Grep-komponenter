@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { getHash } from 'connected-react-router';
+import { getHash, RouterRootState } from 'connected-react-router';
 import { useSelector } from 'react-redux';
 import throttle from 'lodash.throttle';
 
@@ -50,7 +50,9 @@ export const GrepTableOfContentProvider: React.FC<
   const [selected, _setSelected] = useState<HTMLElement>();
   const [initialized, setInitialized] = useState<boolean>();
 
-  const hash = useSelector((s) => decodeURI(getHash(s as any))).substring(1);
+  const hash = useSelector((s) =>
+    decodeURI(getHash(s as RouterRootState)),
+  ).substring(1);
 
   const scrollToElement = useCallback(
     (element: HTMLElement) => {

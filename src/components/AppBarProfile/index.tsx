@@ -8,7 +8,7 @@ import { useStyles } from './styles';
 export interface AppBarProfileProps {
   userRole: string;
   fullName: string;
-  onButtonClick: (args?: any) => void;
+  onButtonClick: (args?: unknown) => void;
 }
 
 const AppBarProfile: React.FC<AppBarProfileProps> = (props) => {

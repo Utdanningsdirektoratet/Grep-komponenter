@@ -8,9 +8,7 @@ interface Properties<T> extends Pick<TableCellProps, 'padding'> {
   text?: string;
 }
 
-type Component<T> = React.FunctionComponent<Properties<T>>;
-
-export const GrepTablePlaceholder: Component<any> = <T,>({
+export const GrepTablePlaceholder = <T,>({
   columns,
   padding,
   text = 'Tabellen er tom.',

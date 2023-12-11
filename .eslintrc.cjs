@@ -21,8 +21,8 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'react/display-name': 'warn',
-    'no-unused-vars': 'off',
     'no-undef': 'off',
+    "@typescript-eslint/no-explicit-any": "error",
     '@typescript-eslint/no-unused-vars': ['error', {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_'
