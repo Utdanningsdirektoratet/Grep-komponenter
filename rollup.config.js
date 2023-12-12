@@ -33,6 +33,8 @@ export default {
       check: false,
       typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
+      objectHashIgnoreUnknownHack: true,
+      rollupCommonJSResolveHack: true,
     }),
     commonjs({
       sourceMap: false,
