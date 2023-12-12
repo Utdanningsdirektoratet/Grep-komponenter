@@ -157,7 +157,6 @@
     "react-router": "^6.20.1",
     "react-router-dom": "^6.20.1",
     "react-router-redux": "^4.0.8",
-    "react-scripts": "^5.0.1",
     "rollup": "^4.6.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
