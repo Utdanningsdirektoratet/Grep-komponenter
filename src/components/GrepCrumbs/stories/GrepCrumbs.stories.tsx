@@ -1,20 +1,23 @@
 import * as React from 'react';
 import GrepCrumbs, { Breadcrumb } from '..';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 export const breadcrumbs: Breadcrumb[] = [
   {
     label: 'Driftsmeldinger',
-    path: '/service-messages',
+    path: '/?service-messages',
   },
   {
     label: 'Administrer brukere',
-    path: '/manage-users',
+    path: '/?manage-users',
   },
 ];
 
 export default {
   title: 'GrepCrumbs',
   excludeStories: ['breadcrumbs'],
+  render: () => <Standard />,
+  decorators: [withRouter],
 };
 
 export const Standard = () => (

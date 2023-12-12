@@ -7,6 +7,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
 import GrepCrumbs, { Breadcrumb } from '..';
+import { BrowserRouter } from 'react-router-dom';
 
 export const breadcrumbs: Breadcrumb[] = [
   {
@@ -32,6 +33,7 @@ const renderComponent = (onClick?: boolean) => {
         onClick={onClick ? mockFn : undefined}
       />
     </Provider>,
+    { wrapper: BrowserRouter },
   );
 };
 
