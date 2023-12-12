@@ -1,16 +1,16 @@
-import typescript from 'rollup-plugin-typescript2';
+import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
-import internal from 'rollup-plugin-internal';
 
-import yalc from './rollup-plugin-yalc';
+import yalc from './rollup-plugin-yalc.js';
 
-import pkg from './package.json';
+import pkg from './package.json' assert { type: "json" };
 
 export default {
+  strictDeprecations: true,
   input: 'src/index.ts',
   output: [
     {
@@ -20,6 +20,7 @@ export default {
       sourcemap: true,
     },
   ],
+  external: Object.keys(pkg.dependencies),
   plugins: [
     external({
       includeDependencies: true,
@@ -30,15 +31,12 @@ export default {
     }),
     resolve(),
     typescript({
-      check: false,
-      typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
     }),
     commonjs({
       sourceMap: false,
       include: 'node_modules/**',
     }),
-    internal(['@emotion/react']),
     yalc(process.env.yalc),
   ],
 };

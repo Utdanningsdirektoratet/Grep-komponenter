@@ -5,6 +5,7 @@ import React, {
   useRef,
   useCallback,
   useEffect,
+  BaseSyntheticEvent,
 } from 'react';
 
 import { Key } from 'ts-keycode-enum';
@@ -171,7 +172,7 @@ export const CollapsableMenuItem: FunctionComponent<
     <MenuItem
       sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
       className={classes.root}
-      onMouseOver={(e: any) => e.currentTarget.focus()}
+      onMouseOver={(e: BaseSyntheticEvent) => e.currentTarget.focus()}
       ref={listItemRef}
       selected={open}
       onClick={handleClick}

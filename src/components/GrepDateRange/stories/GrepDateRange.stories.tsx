@@ -6,11 +6,11 @@ import 'dayjs/locale/nb';
 import DateRangePicker from '..';
 
 export default {
-  title: "GrepDateRange",
-  
+  title: 'GrepDateRange',
+
   decorators: [
     (storyFn: any) => (
-      <LocalizationProvider dateAdapter={AdapterDayjs} locale={'nb'}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
         {storyFn()}
       </LocalizationProvider>
     ),
@@ -25,5 +25,5 @@ export const Standard = () => {
       variant="outlined"
       onChange={console.log}
     />
-  )
+  );
 };

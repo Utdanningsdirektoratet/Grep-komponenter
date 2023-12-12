@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   DatePickerProps,
+  DateValidationError,
   DesktopDatePicker,
   LocalizationProvider,
 } from '@mui/x-date-pickers';
-import { TextField, TextFieldProps } from '@mui/material';
+import { TextFieldProps } from '@mui/material';
 
 import '../../utils/dateHelper';
 import { useDate } from '../../hooks';
 import { ParseableDate } from '../../utils/dateHelper';
-import { DateValidationError } from '@mui/x-date-pickers/internals';
 
 type InputProps = Pick<
   TextFieldProps,
@@ -28,7 +28,7 @@ type InputProps = Pick<
 >;
 
 export interface GrepDatePickerProps
-  extends Omit<DatePickerProps<Dayjs, Dayjs>, 'value' | 'renderInput'>,
+  extends Omit<DatePickerProps<Dayjs>, 'value' | 'renderInput'>,
     InputProps {
   value?: ParseableDate | null;
   errorMessage?: string;
@@ -39,7 +39,6 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   label,
   value,
   variant,
-  onChange,
   errorMessage,
   placeholder,
   fullWidth,
@@ -54,13 +53,11 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
 
   const helperText = errorMessage || error || props.helperText;
 
-  useEffect(() => onChange(date), [String(date)]);
-
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
       <DesktopDatePicker
         // clearable @todo
-        inputFormat="DD/MM/YYYY"
+        format="DD/MM/YYYY"
         onError={(reason: DateValidationError) => {
           switch (reason) {
             case 'invalidDate':
@@ -89,22 +86,21 @@ export const DatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
         }}
         value={date}
         onChange={setDate}
-        renderInput={(params: TextFieldProps) => (
-          <TextField
-            id={id}
-            {...params}
-            label={label}
-            variant={variant}
-            onFocus={onFocus}
-            required={required}
-            fullWidth={fullWidth}
-            placeholder={placeholder}
-            sx={sx}
-            margin={margin}
-            error={!!error || !!errorMessage}
-            {...(helperText && { helperText })}
-          />
-        )}
+        slotProps={{
+          textField: {
+            id: id,
+            label: label,
+            variant: variant,
+            onFocus: onFocus,
+            required: required,
+            fullWidth: fullWidth,
+            placeholder: placeholder,
+            sx: sx,
+            margin: margin,
+            error: !!error || !!errorMessage,
+            ...(helperText && { helperText }),
+          },
+        }}
         {...props}
       />
     </LocalizationProvider>
