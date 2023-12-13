@@ -86,7 +86,7 @@
     "react-dom": "^18.x",
     "react-redux": "8.x || 9.x",
     "react-router": "5.x || 6.x",
-    "react-router-dom": "5.x",
+    "react-router-dom": "5.x || 6.x",
     "react-router-redux": "4.x",
     "redux": "^5.x"
   },
