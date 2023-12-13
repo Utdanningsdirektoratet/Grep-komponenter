@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { FormControlLabel, Checkbox } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import GrepTable, { TableColumn } from '..';
 import { DropdownMenuItem } from '../../DropdownMenu';

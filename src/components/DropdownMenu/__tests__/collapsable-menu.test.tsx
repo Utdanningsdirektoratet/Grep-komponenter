@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React from 'react';
 import {
   render,
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import UserEvent from '@testing-library/user-event';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 

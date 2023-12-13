@@ -1,5 +1,6 @@
 import React from 'react';
-import { styled, TableCell, TableCellProps } from '@mui/material';
+import { styled } from '@mui/material';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
 
 import { TableColumn } from '..';
 import OverflowTooltip from '../../OverflowTooltip';

@@ -1,5 +1,4 @@
-// import * as React from 'react';
-import * as React from 'react';
+import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { push } from 'connected-react-router';

@@ -1,5 +1,8 @@
 import React from 'react';
-import { TableCell, TableSortLabel, TableSortLabelProps } from '@mui/material';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel, {
+  TableSortLabelProps,
+} from '@mui/material/TableSortLabel';
 
 import { TableColumn } from '..';
 import { useTableHeaderStyles } from '../styles';

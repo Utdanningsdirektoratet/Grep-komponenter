@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import Sidebar from '..';
 import { NavigationProps } from '../../AppBarNavList';
-import { Assignment } from '@mui/icons-material';
+import Assignment from '@mui/icons-material/Assignment';
 
 export const adminPages: NavigationProps[] = [
   {
@@ -53,7 +53,9 @@ export const Standard = () => {
     <Sidebar
       pages={adminPages}
       currentPageId={pageId}
-      onPageClick={(page) => {setPageId(page.id), console.log(page)}}
+      onPageClick={(page) => {
+        setPageId(page.id), console.log(page);
+      }}
     />
   );
 };
@@ -68,12 +70,14 @@ export const ExpandAndClick = () => {
     <Sidebar
       pages={adminPages}
       currentPageId={pageId}
-      onPageClick={(page) => {setPageId(page.id), console.log(page)}}
+      onPageClick={(page) => {
+        setPageId(page.id), console.log(page);
+      }}
       expandOnIcon
     />
   );
-}
+};
 
 ExpandAndClick.story = {
-  name: "Expand on icon only"
-}
+  name: 'Expand on icon only',
+};

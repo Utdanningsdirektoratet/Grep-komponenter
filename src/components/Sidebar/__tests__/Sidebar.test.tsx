@@ -1,10 +1,6 @@
-import * as React from 'react';
-import { Assignment } from '@mui/icons-material';
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import React from 'react';
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import Sidebar, { SidebarProps } from '..';
@@ -23,7 +19,7 @@ const pages: NavigationProps[] = [
       {
         id: 3,
         label: 'Page 2.1',
-        linkIcon: <Assignment data-testid="linkIconTest" />,
+        linkIcon: <AssignmentIcon data-testid="linkIconTest" />,
       },
     ],
   },
@@ -49,49 +45,47 @@ const Component: React.FC<Partial<SidebarProps>> = (props) => {
 describe('Sidebar', () => {
   const user = userEvent.setup();
   it('should render correctly (collapsed)', () => {
-    const { getByText, getAllByRole, queryByText } = render(<Component />);
+    render(<Component />);
 
-    expect(getAllByRole('listitem')).toHaveLength(2);
+    expect(screen.getAllByRole('listitem')).toHaveLength(2);
 
-    expect(getByText(pages[0].label)).toBeVisible();
-    expect(getByText(pages[1].label)).toBeVisible();
-    expect(queryByText(pages[1].children![0].label)).toBeFalsy();
+    expect(screen.getByText(pages[0].label)).toBeVisible();
+    expect(screen.getByText(pages[1].label)).toBeVisible();
+    expect(screen.queryByText(pages[1].children![0].label)).toBeFalsy();
     expect(screen.queryByTestId('linkIconTest')).toBeFalsy();
   });
 
   it('should render correctly (expanded)', () => {
-    const { getByText, getAllByRole } = render(<Component currentPageId={3} />);
+    render(<Component currentPageId={3} />);
 
-    expect(getAllByRole('listitem')).toHaveLength(3);
+    expect(screen.getAllByRole('listitem')).toHaveLength(3);
 
-    expect(getByText(pages[0].label)).toBeVisible();
-    expect(getByText(pages[1].label)).toBeVisible();
-    expect(getByText(pages[1].children![0].label)).toBeVisible();
-    expect(getByText(pages[1].children![0].label).className).toContain(
+    expect(screen.getByText(pages[0].label)).toBeVisible();
+    expect(screen.getByText(pages[1].label)).toBeVisible();
+    expect(screen.getByText(pages[1].children![0].label)).toBeVisible();
+    expect(screen.getByText(pages[1].children![0].label).className).toContain(
       'selected',
     );
     expect(screen.getByTestId('linkIconTest')).toBeVisible();
   });
 
   it('should handle expand/collapse', async () => {
-    const { getByText, getAllByRole, queryByText } = render(<Component />);
+    render(<Component />);
 
-    expect(getAllByRole('listitem')).toHaveLength(2);
+    expect(screen.getAllByRole('listitem')).toHaveLength(2);
 
     // Expand page 2
-    await user.click(getByText(pages[1].label));
-    expect(getAllByRole('listitem')).toHaveLength(3);
+    await user.click(screen.getByText(pages[1].label));
+    expect(screen.getAllByRole('listitem')).toHaveLength(3);
 
     // Collapse page 2
-    await user.click(getByText(pages[1].label));
-    var testitem1 = queryByText(pages[1].children![0].label);
+    await user.click(screen.getByText(pages[1].label));
+    var testitem1 = screen.queryByText(pages[1].children![0].label);
     if (testitem1) {
-      await waitForElementToBeRemoved(() =>
-        queryByText(pages[1].children![0].label),
-      );
+      await !screen.getByText(pages[1].children![0].label);
     }
 
-    expect(getAllByRole('listitem')).toHaveLength(2);
+    expect(screen.getAllByRole('listitem')).toHaveLength(2);
 
     expect(mockFn).not.toHaveBeenCalled();
   });
@@ -107,12 +101,12 @@ describe('Sidebar', () => {
   });
 
   it('should handle keyboard selection', async () => {
-    const { getByText } = render(<Component />);
+    render(<Component />);
 
     await user.tab();
     await user.keyboard('{enter}');
     expect(mockFn).toHaveBeenCalledWith(pages[0]);
-    expect(getByText(pages[0].label).className).toContain('selected');
+    expect(screen.getByText(pages[0].label).className).toContain('selected');
 
     await user.tab();
     await user.keyboard('{enter}');
@@ -120,7 +114,7 @@ describe('Sidebar', () => {
     await user.keyboard('{enter}');
 
     expect(mockFn).toHaveBeenCalledWith(pages[1].children![0]);
-    expect(getByText(pages[1].children![0].label).className).toContain(
+    expect(screen.getByText(pages[1].children![0].label).className).toContain(
       'selected',
     );
   });

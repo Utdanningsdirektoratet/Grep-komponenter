@@ -1,10 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { render } from '@testing-library/react';
 
 import GrepTable, { GrepTableProps, TableColumn } from '..';
-import { DropdownMenuItem } from '../..';
+import { DropdownMenuItem } from '../../DropdownMenu';
 import userEvent from '@testing-library/user-event';
-import { delay } from 'lodash';
 
 const columns: TableColumn<string>[] = [
   {

@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { getRoles, render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 

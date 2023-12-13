@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import { NavigationProps } from '..';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Collapse from '@mui/material/Collapse';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ExpandMore from '@mui/icons-material/ExpandMore';
+import ExpandLess from '@mui/icons-material/ExpandLess';
 import { useStyles } from './styles';
 import { keyboard } from '../../utils';
-import { ExpandMore, ExpandLess } from '@mui/icons-material';
-import { Collapse, ListItemIcon } from '@mui/material';
 
 export interface SidebarProps {
   currentPageId?: number;

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { Grid, GridSpacing } from '@mui/material';
-
+import Grid, { GridSpacing } from '@mui/material/Grid';
 import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
 import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';

@@ -1,7 +1,8 @@
-import * as React from 'react';
-import { Info } from '@mui/icons-material';
+import React from 'react';
+import Info from '@mui/icons-material/Info';
 import { useStyles } from './styles';
-import { Box, Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 const GDPR: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { classes } = useStyles();

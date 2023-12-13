@@ -2,17 +2,14 @@ import React, { BaseSyntheticEvent, useCallback } from 'react';
 import { Key } from 'ts-keycode-enum';
 
 import MoreVert from '@mui/icons-material/MoreVert';
-import {
-  Table,
-  TableRow,
-  TableBody,
-  TableFooter,
-  TableContainer,
-  TableCellProps,
-  TableProps,
-  Tooltip,
-  IconButton,
-} from '@mui/material';
+import Table, { TableProps } from '@mui/material/Table';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableFooter from '@mui/material/TableFooter';
+import TableContainer from '@mui/material/TableContainer';
+import { TableCellProps } from '@mui/material/TableCell';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 
 import GrepTableRow from './components/grep-table-row';
 import GrpeTableHeader from './components/grep-table-header';
