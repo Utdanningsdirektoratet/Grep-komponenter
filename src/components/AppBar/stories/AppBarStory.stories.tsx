@@ -2,7 +2,6 @@ import * as React from 'react';
 import AppBar from '../AppBar';
 import { IAuthorizedPage } from '../types';
 import { Box } from '@mui/system';
-import { withRouter } from 'storybook-addon-react-router-v6';
 
 export const v0colors = {
   primary: '#3FB8AF',
@@ -53,9 +52,7 @@ const navbarPages: IAuthorizedPage[] = [
 
 export default {
   title: 'AppBar',
-  excludeStories: ['v0colors'],
-  render: () => <WithContent />,
-  decorators: [withRouter],
+  excludeStories: ['v0colors']
 };
 
 export const WithContent = () => {

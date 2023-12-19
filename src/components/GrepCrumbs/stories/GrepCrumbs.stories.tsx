@@ -1,6 +1,5 @@
 import * as React from 'react';
 import GrepCrumbs, { Breadcrumb } from '..';
-import { withRouter } from 'storybook-addon-react-router-v6';
 
 export const breadcrumbs: Breadcrumb[] = [
   {
@@ -15,9 +14,7 @@ export const breadcrumbs: Breadcrumb[] = [
 
 export default {
   title: 'GrepCrumbs',
-  excludeStories: ['breadcrumbs'],
-  render: () => <Standard />,
-  decorators: [withRouter],
+  excludeStories: ['breadcrumbs']
 };
 
 export const Standard = () => (

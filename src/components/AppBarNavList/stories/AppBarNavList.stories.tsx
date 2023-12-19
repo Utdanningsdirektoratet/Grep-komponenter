@@ -1,6 +1,5 @@
 import * as React from 'react';
 import AppBarNavList from '..';
-import { withRouter } from 'storybook-addon-react-router-v6';
 
 export const navbarPages = [
   {
@@ -39,9 +38,7 @@ export const navbarPages = [
 
 export default {
   title: 'AppbarNavigationList',
-  excludeStories: ['navbarPages'],
-  render: () => <WithThemeAndAppbar />,
-  decorators: [withRouter],
+  excludeStories: ['navbarPages']
 };
 
 export const WithThemeAndAppbar = () => (

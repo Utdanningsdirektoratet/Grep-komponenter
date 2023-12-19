@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Box, Container } from '@mui/material';
+
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import {
   MainLayout,
   AppBar,
@@ -26,7 +29,6 @@ import GDPR from '../components/GDPR';
 import ProfileInfo from '../components/ProfileInfo';
 import { user } from '../components/ProfileInfo/stories/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
-import { withRouter } from 'storybook-addon-react-router-v6';
 
 // import '../components/NavGuard/stories/NavGuard.stories';
 // import '../components/SortableTable/stories/SortableTable.stories';
@@ -103,8 +105,6 @@ export default {
         />
       </MainLayout>
     ),
-
-    withRouter,
   ],
 };
 

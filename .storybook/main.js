@@ -19,7 +19,7 @@ const updateEmotionAliases = config => ({
 module.exports = {
   framework: '@storybook/react-webpack5',
   stories: ['../src/**/*.stories.tsx', '../src/**/*.stories.@(tsx)'],
-  addons: ['@storybook/preset-create-react-app', '@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-links', 'storybook-addon-react-router-v6'],
+  addons: ['@storybook/preset-create-react-app', '@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-links'],
   managerWebpack: updateEmotionAliases,
   webpackFinal: updateEmotionAliases,
   features: {
