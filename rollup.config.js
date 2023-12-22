@@ -30,6 +30,7 @@ export default {
     }),
     nodeResolve(),
     typescript({
+      typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
     }),
     commonjs({
