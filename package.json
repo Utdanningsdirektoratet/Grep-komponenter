@@ -2,7 +2,6 @@
   "name": "grep-components",
   "version": "0.0.0-semantically-released",
   "description": "Grep komponentbibliotek",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/Utdanningsdirektoratet/Grep-komponenter.git"
@@ -15,8 +14,8 @@
   "homepage": "https://Utdanningsdirektoratet.github.io/Grep-komponenter",
   "author": "Udir",
   "scripts": {
-    "build": "rollup -c",
-    "start": "rollup -c -w",
+    "build": "rollup -c --bundleConfigAsCjs",
+    "start": "rollup -c -w --bundleConfigAsCjs",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "pretest": "tsc --noEmit",
     "test": "jest --maxWorkers=50% --verbose --logHeapUsage",
@@ -96,7 +95,6 @@
     "@babel/plugin-transform-private-property-in-object": "^7.22.11",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@date-io/dayjs": "^2.17.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.0",
@@ -185,8 +183,7 @@
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
     "@mui/x-date-pickers": "^6.18.3",
-    "@rollup/plugin-babel": "^6.0.4",
-    "dayjs": "^1.11.7",
+    "dayjs": "^1.11.10",
     "draft-js": "^0.11.0"
   },
   "overrides": {

@@ -1,16 +1,14 @@
 import typescript from '@rollup/plugin-typescript';
 import commonjs from '@rollup/plugin-commonjs';
 import external from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
 
-import yalc from './rollup-plugin-yalc.js';
 
 import pkg from './package.json' assert { type: "json" };
 
 export default {
-  strictDeprecations: true,
   input: 'src/index.ts',
   output: [
     {
@@ -20,6 +18,7 @@ export default {
       sourcemap: true,
     },
   ],
+  treeshake: {moduleSideEffects: 'no-external'},
   external: Object.keys(pkg.dependencies),
   plugins: [
     external({
@@ -29,14 +28,13 @@ export default {
     json({
       exclude: ['node_modules/**'],
     }),
-    resolve(),
+    nodeResolve(),
     typescript({
       tsconfig: 'tsconfig.rollup.json',
     }),
     commonjs({
-      sourceMap: false,
-      include: 'node_modules/**',
+      include: 'node_modules/**'
     }),
-    yalc(process.env.yalc),
   ],
+
 };
