@@ -32,6 +32,8 @@ export default {
     typescript({
       typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
+      objectHashIgnoreUnknownHack: true,
+      rollupCommonJSResolveHack: true,
     }),
     commonjs({
       include: 'node_modules/**'

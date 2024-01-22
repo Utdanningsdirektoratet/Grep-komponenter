@@ -16,6 +16,7 @@ import { Box, MenuItem, MenuItemProps, Tooltip } from '@mui/material';
 import { CollapsableMenu } from './collapsable-menu';
 
 import { useStyles } from '../styles/collapsable-menu-item.style';
+import { TooltipPlacement } from '..';
 
 /**
  * TypeError: Failed to construct 'CustomEvent': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
@@ -44,6 +45,7 @@ export type ToggleState = 'collapse' | 'expand';
 export interface Properties extends Omit<MenuItemProps, 'button'> {
   items?: React.ReactNode;
   tooltipText?: string;
+  tooltipPlacement?: TooltipPlacement;
   onClose?: (event: CollapsableMenuStatusEvent) => void;
   level: number;
 }
@@ -56,6 +58,7 @@ export const CollapsableMenuItem: FunctionComponent<
   children,
   onClose: _onclose,
   tooltipText,
+  tooltipPlacement,
   disabled,
   ...props
 }) => {
@@ -150,7 +153,7 @@ export const CollapsableMenuItem: FunctionComponent<
   );
 
   return tooltipText ? (
-    <Tooltip title={tooltipText}>
+    <Tooltip title={tooltipText} placement={tooltipPlacement} arrow>
       <MenuItem
         role="menuitem"
         sx={

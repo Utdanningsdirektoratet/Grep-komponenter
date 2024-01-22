@@ -9,7 +9,7 @@
   "main": "dist/index.js",
   "types": "dist/build/index.d.ts",
   "engines": {
-    "node": ">=18",
+    "node": ">=8",
     "npm": ">=5"
   },
   "homepage": "https://Utdanningsdirektoratet.github.io/Grep-komponenter",
@@ -191,11 +191,14 @@
   "overrides": {
     "fork-ts-checker-webpack-plugin": "^6.5.3",
     "react-scripts": {
-      "typescript": "5.3.2"
+      "typescript": "^5.3.3"
     },
     "connected-react-router": {
       "react": "^18.0.0",
       "react-redux": "^9.0.4",
+      "redux": "^5.0.0"
+    },
+    "react-beautiful-dnd": {
       "redux": "^5.0.0"
     },
     "ts-jest": {
