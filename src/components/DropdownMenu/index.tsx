@@ -6,9 +6,25 @@ import { useStyles } from './styles/dropdown-menu.style';
 
 type BooleanFunction<T> = (context?: T) => boolean;
 
+export type TooltipPlacement =
+  | 'bottom'
+  | 'left'
+  | 'right'
+  | 'top'
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'left-end'
+  | 'left-start'
+  | 'right-end'
+  | 'right-start'
+  | 'top-end'
+  | 'top-start'
+  | undefined;
+
 export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   label: string;
   tooltipText?: string;
+  tooltipPlacement?: TooltipPlacement;
   disabled?: BooleanFunction<T> | boolean;
   children?: Array<DropdownMenuItem<T>>;
   handleClick?: (context?: T) => void;
