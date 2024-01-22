@@ -1,7 +1,5 @@
 # This workflow will do a clean install of node dependencies and run tests
-
 name: Test
-
 on:
   push:
     branches:
@@ -21,7 +19,6 @@ on:
         description: 'Jest CLI args'
         required: false
         default: ''
-
 jobs:
   test:
     runs-on: ubuntu-latest

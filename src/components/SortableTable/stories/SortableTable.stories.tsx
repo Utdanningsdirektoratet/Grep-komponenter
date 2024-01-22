@@ -13,12 +13,11 @@ interface TestData {
   protein: number;
 }
 
-export default  {
-  title: 'SortableList'
-}
+export default {
+  title: 'SortableList',
+};
 
 export const Standard = () => {
-// storiesOf('SortableList', module).add('standard', () => {
   const [disabled, setDisabled] = useState<boolean>(false);
   const createData = (
     id: number,

@@ -1,13 +1,13 @@
-import * as React from 'react';
-import { getRoles, render, screen, waitFor } from '@testing-library/react';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 
 const mockFunc = jest.fn();
 
-const items: DropdownMenuItem<any>[] = [
+const items = [
   {
     label: 'MenuItem #1',
     children: [
@@ -27,7 +27,7 @@ const items: DropdownMenuItem<any>[] = [
   {
     label: 'MenuItem #4',
   },
-];
+] as DropdownMenuItem<unknown>[];
 
 const ButtonMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);

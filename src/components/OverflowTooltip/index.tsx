@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Tooltip } from '@mui/material';
+import { ReactNode } from 'react';
 
 export interface OverflowTooltipProps {
-  title: any;
+  title: string | React.JSX.Element;
   force?: boolean;
+  children: ReactNode;
 }
 
 interface LocalState {

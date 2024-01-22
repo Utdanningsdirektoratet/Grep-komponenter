@@ -1,5 +1,4 @@
 name: Dependabot-sync
-
 on:
   push:
     branches:

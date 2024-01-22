@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { styled } from '@mui/material/styles';
 import { Theme, MUIStyledCommonProps } from '@mui/system';
 import { NavLink } from 'react-router-dom';
 import { v0colors } from './types';

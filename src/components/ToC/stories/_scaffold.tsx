@@ -9,9 +9,7 @@ import {
 
 import { createBrowserHistory } from 'history';
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux';
-
 const history = createBrowserHistory();
-
 const store = createStore(
   combineReducers({
     router: connectRouter(history),

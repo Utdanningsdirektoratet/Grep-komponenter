@@ -5,7 +5,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { getLocation } from 'connected-react-router';
+import { RouterRootState, getLocation } from 'connected-react-router';
 import { useSelector } from 'react-redux';
 import Link from '@mui/material/Link';
 import clsx from 'clsx';
@@ -18,19 +18,17 @@ import { useStyles } from '../styles/nav-tree-node.style';
  * @TODO fix later
  * cheat, https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoViewIfNeeded
  */
-
 declare global {
   interface HTMLElement {
     scrollIntoViewIfNeeded: VoidFunction;
   }
 }
-
 export interface GrepTableOfContentNavTreeNodeProps {
   node: ContextTreeElement;
   className?: string;
   style?: React.CSSProperties;
   renderChilds: (children: ContextTree) => ReactElement;
-  setSelectedValue: (selected: any) => void;
+  setSelectedValue: (selected: unknown) => void;
   percentageRendered: number;
 }
 
@@ -54,7 +52,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<GrepTableOfContentNavTreeNo
     const [awaitingRender, setAwaitingRender] = useState<boolean>(false);
 
     const txt = el.innerText;
-    const location = useSelector((s) => getLocation(s as any));
+    const location = useSelector((s) => getLocation(s as RouterRootState<unknown>));
     const url = `${location.pathname}${location.search}#${node.id}`;
 
     useEffect(() => {

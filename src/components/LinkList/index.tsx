@@ -1,14 +1,12 @@
-import * as React from 'react';
-import {
-  List,
-  ListItem,
-  ListItemText,
-  ListItemIcon,
-  Divider,
-  Box,
-  Typography,
-} from '@mui/material';
-import { ArrowForward } from '@mui/icons-material';
+import React from 'react';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import ArrowForward from '@mui/icons-material/ArrowForward';
 
 import { Colors } from '../../styling';
 import { NavigationProps } from '../AppBarNavList';
@@ -16,7 +14,7 @@ import { NavigationProps } from '../AppBarNavList';
 interface Props {
   title: string;
   pages: NavigationProps[];
-  onPageClick: (page: NavigationProps) => any;
+  onPageClick: (page: NavigationProps) => unknown;
 }
 
 const LinkList: React.FC<Props> = (props) => (

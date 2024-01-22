@@ -30,21 +30,21 @@ const navbarPages: IAuthorizedPage[] = [
   {
     name: 'curriculums',
     path: '/curriculums',
-    redirectUrl: '/curriculums',
+    redirectUrl: '/',
     exact: true,
     translatedTextRef: 'Læreplaner',
   },
   {
     name: 'Metadata',
     path: '/metadata',
-    redirectUrl: '/metadata',
+    redirectUrl: '/',
     exact: true,
     translatedTextRef: 'Metadata',
   },
   {
     name: 'admin',
     path: '/admin',
-    redirectUrl: '/admin',
+    redirectUrl: '/',
     exact: true,
     translatedTextRef: 'Administrasjon',
   },
@@ -52,7 +52,7 @@ const navbarPages: IAuthorizedPage[] = [
 
 export default {
   title: 'AppBar',
-  excludeStories: ['v0colors'],
+  excludeStories: ['v0colors']
 };
 
 export const WithContent = () => {

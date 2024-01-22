@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { Box, Container } from '@mui/material';
+
+
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import {
   MainLayout,
   AppBar,
@@ -49,10 +52,10 @@ const v0colors = {
 };
 
 export default {
-  title: "Pages",
+  title: 'Pages',
 
   decorators: [
-    (storyFn: any) => 
+    (storyFn: any) => (
       <MainLayout>
         <AppBar
           appTitle="Demo"
@@ -101,7 +104,7 @@ export default {
           items={footerItems}
         />
       </MainLayout>
-    
+    ),
   ],
 };
 
@@ -124,8 +127,8 @@ export const Dashboard = () => {
 };
 
 Dashboard.story = {
-  name: "Dashboard"
-}
+  name: 'Dashboard',
+};
 
 export const Admin = () => {
   return (
@@ -155,7 +158,5 @@ export const MyProfile = () => {
 };
 
 export const Læreplaner = () => {
-  return (
-    <Sidebar pages={adminPages} onPageClick={() => console.log('test')} />
-  );
+  return <Sidebar pages={adminPages} onPageClick={() => console.log('test')} />;
 };

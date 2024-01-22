@@ -1,5 +1,4 @@
-const path = require('path');
-
+import path from "path"
 // Location of root node_modules
 const modulesDir = path.join(process.cwd(), 'node_modules');
 
@@ -20,12 +19,12 @@ const updateEmotionAliases = config => ({
 module.exports = {
   framework: '@storybook/react-webpack5',
   stories: ['../src/**/*.stories.tsx', '../src/**/*.stories.@(tsx)'],
-  addons: ['@storybook/preset-create-react-app', '@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-storysource'],
+  addons: ['@storybook/preset-create-react-app', '@storybook/addon-essentials', '@storybook/addon-actions', '@storybook/addon-links'],
   managerWebpack: updateEmotionAliases,
   webpackFinal: updateEmotionAliases,
   features: {
-    storyStoreV7: false,
-  },
+    storyStoreV7: true,
+  }
 
   // docs: {
   //   autodocs: true

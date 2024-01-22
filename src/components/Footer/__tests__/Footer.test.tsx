@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Button } from '@mui/material';
+import React from 'react';
+import Button from '@mui/material/Button';
 import { render } from '@testing-library/react';
 
 import Footer, { FooterItem } from '..';

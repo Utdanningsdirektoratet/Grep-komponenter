@@ -1,5 +1,4 @@
-// import * as React from 'react';
-import * as React from 'react';
+import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { push } from 'connected-react-router';
@@ -7,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
 import GrepCrumbs, { Breadcrumb } from '..';
+import { BrowserRouter } from 'react-router-dom';
 
 export const breadcrumbs: Breadcrumb[] = [
   {
@@ -32,6 +32,7 @@ const renderComponent = (onClick?: boolean) => {
         onClick={onClick ? mockFn : undefined}
       />
     </Provider>,
+    { wrapper: BrowserRouter },
   );
 };
 

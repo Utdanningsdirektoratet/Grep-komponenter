@@ -5,6 +5,7 @@ import React, {
   useRef,
   useCallback,
   useEffect,
+  BaseSyntheticEvent,
 } from 'react';
 
 import { Key } from 'ts-keycode-enum';
@@ -15,6 +16,7 @@ import { Box, MenuItem, MenuItemProps, Tooltip } from '@mui/material';
 import { CollapsableMenu } from './collapsable-menu';
 
 import { useStyles } from '../styles/collapsable-menu-item.style';
+import { TooltipPlacement } from '..';
 
 /**
  * TypeError: Failed to construct 'CustomEvent': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
@@ -28,7 +30,10 @@ class CollapsableMenuStatusEvent {
     return !!this._defaultPrevented;
   }
 
-  constructor(public type: ToggleState, public currentTarget: React.Ref<any>) {}
+  constructor(
+    public type: ToggleState,
+    public currentTarget: React.Ref<unknown>,
+  ) {}
 
   public preventDefault(): void {
     this._defaultPrevented = true;
@@ -40,6 +45,7 @@ export type ToggleState = 'collapse' | 'expand';
 export interface Properties extends Omit<MenuItemProps, 'button'> {
   items?: React.ReactNode;
   tooltipText?: string;
+  tooltipPlacement?: TooltipPlacement;
   onClose?: (event: CollapsableMenuStatusEvent) => void;
   level: number;
 }
@@ -52,6 +58,7 @@ export const CollapsableMenuItem: FunctionComponent<
   children,
   onClose: _onclose,
   tooltipText,
+  tooltipPlacement,
   disabled,
   ...props
 }) => {
@@ -146,7 +153,7 @@ export const CollapsableMenuItem: FunctionComponent<
   );
 
   return tooltipText ? (
-    <Tooltip title={tooltipText}>
+    <Tooltip title={tooltipText} placement={tooltipPlacement} arrow>
       <MenuItem
         role="menuitem"
         sx={
@@ -155,7 +162,7 @@ export const CollapsableMenuItem: FunctionComponent<
             : { pointerEvents: 'inherit !important' }
         }
         className={classes.root}
-        onMouseOver={(e: any) => e.currentTarget.focus()}
+        onMouseOver={(e: React.BaseSyntheticEvent) => e.currentTarget.focus()}
         selected={open}
         ref={listItemRef}
         onClick={handleClick}
@@ -168,7 +175,7 @@ export const CollapsableMenuItem: FunctionComponent<
     <MenuItem
       sx={disabled && !items ? { cursor: 'not-allowed' } : {}}
       className={classes.root}
-      onMouseOver={(e: any) => e.currentTarget.focus()}
+      onMouseOver={(e: BaseSyntheticEvent) => e.currentTarget.focus()}
       ref={listItemRef}
       selected={open}
       onClick={handleClick}

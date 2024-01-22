@@ -17,7 +17,7 @@ import { buildTree } from '../utils/tree-builder';
 export interface GrepTableOfContentNavProps {
   className?: string;
   style?: React.CSSProperties;
-  setSelectedValue: (selected: any) => void;
+  setSelectedValue: (selected: unknown) => void;
   percentageRendered: number;
 }
 

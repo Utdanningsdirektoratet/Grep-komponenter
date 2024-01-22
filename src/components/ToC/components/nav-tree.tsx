@@ -10,7 +10,7 @@ interface Props {
   elements: ContextTree;
   className?: string;
   style?: React.CSSProperties;
-  setSelectedValue: (selected: any) => void;
+  setSelectedValue: (selected: unknown) => void;
   percentageRendered: number;
 }
 

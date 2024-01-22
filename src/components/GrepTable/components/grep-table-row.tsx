@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableRow, TableRowProps } from '@mui/material';
+import TableRow, { TableRowProps } from '@mui/material/TableRow';
 
 import { TableColumn } from '../';
 import TableCell, {
@@ -17,9 +17,7 @@ interface Properties<T>
   expanded?: boolean;
 }
 
-type Component<T> = React.FunctionComponent<Properties<T>>;
-
-export const GrepTableRow: Component<any> = <T,>({
+export const GrepTableRow = <T,>({
   row,
   columns,
   selected,

@@ -4,17 +4,17 @@ import GrepCrumbs, { Breadcrumb } from '..';
 export const breadcrumbs: Breadcrumb[] = [
   {
     label: 'Driftsmeldinger',
-    path: '/service-messages',
+    path: '/?service-messages',
   },
   {
     label: 'Administrer brukere',
-    path: '/manage-users',
+    path: '/?manage-users',
   },
 ];
 
 export default {
   title: 'GrepCrumbs',
-  excludeStories: ['breadcrumbs'],
+  excludeStories: ['breadcrumbs']
 };
 
 export const Standard = () => (

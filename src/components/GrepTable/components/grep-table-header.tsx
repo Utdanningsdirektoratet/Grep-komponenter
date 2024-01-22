@@ -1,5 +1,6 @@
 import React from 'react';
-import { TableHead, TableHeadProps, TableRow } from '@mui/material';
+import TableHead, { TableHeadProps } from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 
 import { TableColumn } from '..';
 import TableHeaderCell from './grep-table-header-cell';
@@ -10,13 +11,11 @@ interface Properties<T> extends TableHeadProps {
   columns: Array<TableColumn<T>>;
   sortBy?: string;
   sortDirection?: 'desc' | 'asc';
-  onSortBy?: (col: TableColumn<T>) => any;
+  onSortBy?: (col: TableColumn<T>) => void;
   dropdownItems?: Array<DropdownMenuItem<T>>;
 }
 
-type Component<T> = React.FunctionComponent<Properties<T>>;
-
-export const TableHeader: Component<any> = <T,>({
+export const TableHeader = <T,>({
   columns,
   sortBy,
   sortDirection,

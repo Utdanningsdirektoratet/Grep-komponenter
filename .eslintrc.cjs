@@ -12,7 +12,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'testing-library', "jest-dom"],
   settings: {
     react: {
       version: 'detect'
@@ -21,11 +21,20 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'react/display-name': 'warn',
-    'no-unused-vars': 'off',
     'no-undef': 'off',
+    'testing-library/await-async-queries': 'error',
+		'testing-library/no-await-sync-queries': 'error',
+		'testing-library/no-debugging-utils': 'warn',
+    "jest-dom/prefer-checked": "error",
+    "jest-dom/prefer-enabled-disabled": "error",
+    "jest-dom/prefer-required": "error",
+    "jest-dom/prefer-to-have-attribute": "error",
+    "@typescript-eslint/no-explicit-any": "error",
     '@typescript-eslint/no-unused-vars': ['error', {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_'
-    }]
+    }],
+    'storybook/no-uninstalled-addons': ['error', { packageJsonLocation: '../package.json' }]
+
   }
 };

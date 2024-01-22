@@ -1,15 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import {
   render,
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import UserEvent from '@testing-library/user-event';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
 
 import DropdownMenu, { DropdownMenuItem } from '..';
 
-const items: Array<DropdownMenuItem<any>> = [
+const items = [
   {
     label: 'Testitem #1',
     children: [
@@ -35,7 +35,7 @@ const items: Array<DropdownMenuItem<any>> = [
       },
     ],
   },
-];
+] as Array<DropdownMenuItem<unknown>>;
 
 const ButtonMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);

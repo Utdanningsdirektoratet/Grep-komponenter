@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { render } from '@testing-library/react';
 
 import LoadingOverlay, { LoadingOverlayProps } from '..';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+
 import userEvent from '@testing-library/user-event';
 
 const Component: React.FC<Partial<LoadingOverlayProps>> = (props) => {

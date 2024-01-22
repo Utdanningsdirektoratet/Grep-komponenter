@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { FormControlLabel, Checkbox } from '@mui/material';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import GrepTable, { TableColumn } from '..';
 import { DropdownMenuItem } from '../../DropdownMenu';
@@ -95,7 +96,7 @@ export const tableData = (samples: number = 5): ICurriculum[] =>
     lastModified: '10. desember',
   }));
 
-const menuItems: DropdownMenuItem<ICurriculum>[] = [
+const menuItems = [
   {
     label: 'Test 1',
     handleClick: (obj) => console.log('clicked on', obj),
@@ -149,7 +150,7 @@ const menuItems: DropdownMenuItem<ICurriculum>[] = [
       },
     ],
   },
-];
+] as DropdownMenuItem<ICurriculum>[];
 
 export default {
   title: 'Grep table',

@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
-import { Prompt } from 'react-router-dom';
-import { push } from 'connected-react-router';
+import { Prompt, useHistory } from 'react-router-dom';
 import { Location } from 'history';
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-  Button,
-} from '@mui/material';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export interface NavGuardProperties {
   when: boolean;
@@ -23,7 +19,6 @@ export interface NavGuardProperties {
   onCancel?: () => void;
   onSave?: () => void;
 }
-
 const NavGuard = ({
   when,
   title,
@@ -38,8 +33,8 @@ const NavGuard = ({
   const [open, setOpen] = React.useState(false);
   const [leave, setLeave] = React.useState(false);
   const [lastLocation, setLastLocation] = React.useState<Location>();
+  const history = useHistory();
 
-  const dispatch = useDispatch();
 
   const handleCancel = () => {
     setLeave(false);
@@ -52,7 +47,7 @@ const NavGuard = ({
     setOpen(false);
     onDiscard && onDiscard();
     lastLocation &&
-      window.requestAnimationFrame(() => dispatch(push(lastLocation)));
+      window.requestAnimationFrame(() =>history.push(lastLocation));
   };
 
   const handleSave = () => {
@@ -60,7 +55,7 @@ const NavGuard = ({
     setLeave(true);
     setOpen(false);
     lastLocation &&
-      window.requestAnimationFrame(() => dispatch(push(lastLocation)));
+      window.requestAnimationFrame(() => history.push(lastLocation));
   };
 
   const handleLeave = (location: Location) => {

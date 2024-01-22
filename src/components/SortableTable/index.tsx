@@ -37,7 +37,7 @@ function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
 function castCellNode(value: CellNode | ReactNode): CellNode {
   return typeof value === 'object' && (value as CellNode).value !== undefined
     ? (value as CellNode)
-    : { value };
+    : ({ value } as CellNode);
 }
 
 export const SortableTable = <T,>({
@@ -81,13 +81,15 @@ export const SortableTable = <T,>({
 
   const headers = useMemo(() => {
     return columns.map((column) =>
-      castCellNode(headerValue ? headerValue(column) : column),
+      castCellNode(headerValue ? headerValue(column) : (column as string)),
     );
   }, [columns, headerValue]);
 
   const getCellValue = useCallback(
     (column: keyof T, item: T) => {
-      return castCellNode(cellValue ? cellValue(column, item) : item[column]);
+      return castCellNode(
+        cellValue ? cellValue(column, item) : (item[column] as string),
+      );
     },
     [cellValue],
   );

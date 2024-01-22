@@ -1,20 +1,13 @@
 import React from 'react';
-import Scaffold from './_scaffold';
 import Standard from './standard';
 
-
 export default {
-  title: "NavGuard"
-}
+  title: 'NavGuard',
+  render: () => <Standard />
+};
 
-export const Default = () =>  {
-  return (
-    <Scaffold>
-      <Standard />
-    </Scaffold>
-  )
-}
+export const Default = () => {
+  return <Standard />;
+};
 
-Default.story = {
-  name: "standard"
-}
+Default.storyName = 'Default';

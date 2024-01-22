@@ -38,19 +38,19 @@ export const usePaginationStyles = makeStyles()({
   },
 });
 
-export const useTableHeaderStyles = makeStyles<{ column: TableColumn<any> }>()(
-  (_theme, { column }) => {
-    const width = column.width
-      ? typeof column.width === 'number'
-        ? `${column.width}%`
-        : column.width
-      : undefined;
+export const useTableHeaderStyles = makeStyles<{
+  column: TableColumn<unknown>;
+}>()((_theme, { column }) => {
+  const width = column.width
+    ? typeof column.width === 'number'
+      ? `${column.width}%`
+      : column.width
+    : undefined;
 
-    return {
-      th: {
-        width,
-        fontSize: 14,
-      },
-    };
-  },
-);
+  return {
+    th: {
+      width,
+      fontSize: 14,
+    },
+  };
+});

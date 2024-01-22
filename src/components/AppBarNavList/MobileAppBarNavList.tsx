@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Box, IconButton, Menu, MenuItem } from '@mui/material';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
+
 
 import { useMobileStyles } from './styles';
 import { keyboard } from '../../utils';
@@ -11,7 +16,7 @@ export interface NavigationProps {
   label: string;
   toUrl?: string;
   children?: NavigationProps[];
-  linkIcon?: React.ReactElement<any>;
+  linkIcon?: React.ReactElement<unknown>;
 }
 
 export interface AppBarNavListProps {
@@ -62,9 +67,7 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
               handleCloseNav();
               history.push(page?.toUrl || '');
             }}
-            onKeyDown={keyboard.onActivation(() =>
-              history.push(page?.toUrl || ''),
-            )}
+            onKeyDown={keyboard.onActivation(() => history.push(page?.toUrl || ''))}
           >
             {page.label}
           </MenuItem>

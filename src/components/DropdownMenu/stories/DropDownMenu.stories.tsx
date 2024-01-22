@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Button } from '@mui/material';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { useState, useRef } from '@storybook/addons';
 
 import { DropdownMenuItem, DropdownMenu } from '../..';
@@ -11,7 +12,7 @@ interface TestMenuItem {
   disabled?: boolean;
 }
 
-export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
+export const menuItems = [
   {
     label: 'Test 1',
     handleClick: () => console.log('clicked 1'),
@@ -25,7 +26,8 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
   {
     label: 'Test 2',
     disabled: () => true,
-    tooltipText: 'This is a tooltip',
+    tooltipText: 'This tooltip has specific placement left',
+    tooltipPlacement: 'left',
     handleClick: () => console.log('clicked 2'),
   },
   {
@@ -76,13 +78,14 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
   },
   {
     label: 'Test 5',
-    tooltipText: 'This is a tooltip',
+    tooltipText: 'This tooltip has placement top',
+    tooltipPlacement: 'top',
     handleClick: () => console.log('clicked 5'),
   },
   {
     label: 'Test 6',
     disabled: true,
-    tooltipText: 'This is a tooltip',
+    tooltipText: 'This tooltip has default placement (bottom)',
     handleClick: () => console.log('clicked 6'),
     children: [
       {
@@ -91,7 +94,7 @@ export const menuItems: DropdownMenuItem<TestMenuItem>[] = [
       },
     ],
   },
-];
+] as DropdownMenuItem<TestMenuItem>[];
 
 export default {
   title: 'DropdownMenu',
@@ -108,7 +111,7 @@ export const Standard = () => {
   })();
 
   return (
-    <div>
+    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
       <Button ref={menuAnchor} onClick={() => setOpen(!open)}>
         menu
       </Button>
@@ -119,7 +122,7 @@ export const Standard = () => {
         onClose={() => setOpen(false)}
         classes={classes}
       />
-    </div>
+    </Box>
   );
 };
 

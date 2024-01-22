@@ -1,5 +1,7 @@
 import React from 'react';
-import { TablePagination, TablePaginationProps } from '@mui/material';
+import TablePagination, {
+  TablePaginationProps,
+} from '@mui/material/TablePagination';
 
 import {
   PaginationActions,

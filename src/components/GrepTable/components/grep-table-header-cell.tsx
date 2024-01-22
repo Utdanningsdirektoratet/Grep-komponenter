@@ -1,18 +1,19 @@
 import React from 'react';
-import { TableCell, TableSortLabel, TableSortLabelProps } from '@mui/material';
+import TableCell from '@mui/material/TableCell';
+import TableSortLabel, {
+  TableSortLabelProps,
+} from '@mui/material/TableSortLabel';
 
 import { TableColumn } from '..';
 import { useTableHeaderStyles } from '../styles';
 
-interface Properties<T> extends Omit<TableSortLabelProps,"component">  {
+interface Properties<T> extends Omit<TableSortLabelProps, 'component'> {
   column: TableColumn<T>;
-  onSortBy?: (row: T) => void;
+  onSortBy?: (col: TableColumn<T>) => void;
   empty?: boolean;
 }
 
-type Component<T> = React.FunctionComponent<Properties<T>>;
-
-export const TableHeaderCell: Component<any> = <T,>({
+export const TableHeaderCell = <T,>({
   column,
   onSortBy,
   direction,
@@ -21,7 +22,9 @@ export const TableHeaderCell: Component<any> = <T,>({
   empty = false,
   ...props
 }: Properties<T>) => {
-  const { classes } = useTableHeaderStyles({ column });
+  const { classes } = useTableHeaderStyles({
+    column: column as TableColumn<unknown>,
+  });
 
   const sortable = !!(onSortBy && column.sortable);
 

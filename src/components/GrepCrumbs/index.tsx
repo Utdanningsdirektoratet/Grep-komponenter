@@ -1,8 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { push } from 'connected-react-router';
-import { Link, Box, Tooltip } from '@mui/material';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
+import Tooltip from '@mui/material/Tooltip';
 import { useStyles } from './styles/styles';
+import { useHistory } from 'react-router-dom';
 
 export interface Breadcrumb {
   path?: string;
@@ -23,7 +24,7 @@ const GrepCrumbs: React.FC<Props> = ({
   breadcrumbs,
 }: Props) => {
   const { classes } = useStyles();
-  const dispatch = useDispatch();
+  const history = useHistory();
   const ref = React.useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = React.useState(false);
 
@@ -36,7 +37,7 @@ const GrepCrumbs: React.FC<Props> = ({
     if (onClick) {
       onClick(crumb);
     } else {
-      crumb.path && dispatch(push(crumb.path));
+      crumb.path && history.push(crumb.path);
     }
   };
 

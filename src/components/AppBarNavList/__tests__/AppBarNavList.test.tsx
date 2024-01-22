@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import AppBarNavList from '..';
 import userEvent from '@testing-library/user-event';
+import { BrowserRouter } from 'react-router-dom';
 
 const pages = [
   {
@@ -37,6 +38,7 @@ describe('AppBarNavList', () => {
         onChange={(id) => mockFn(id)}
         selectedPage={0}
       />,
+      { wrapper: BrowserRouter },
     );
   });
 

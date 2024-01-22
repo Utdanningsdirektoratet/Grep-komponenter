@@ -1,18 +1,15 @@
-import React, { useCallback } from 'react';
+import React, { BaseSyntheticEvent, useCallback } from 'react';
 import { Key } from 'ts-keycode-enum';
 
 import MoreVert from '@mui/icons-material/MoreVert';
-import {
-  Table,
-  TableRow,
-  TableBody,
-  TableFooter,
-  TableContainer,
-  TableCellProps,
-  TableProps,
-  Tooltip,
-  IconButton,
-} from '@mui/material';
+import Table, { TableProps } from '@mui/material/Table';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
+import TableFooter from '@mui/material/TableFooter';
+import TableContainer from '@mui/material/TableContainer';
+import { TableCellProps } from '@mui/material/TableCell';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
 
 import GrepTableRow from './components/grep-table-row';
 import GrpeTableHeader from './components/grep-table-header';
@@ -53,11 +50,11 @@ export interface GrepTableProps<T>
   sortDirection?: 'desc' | 'asc';
   isRowDisabled?: (row: T) => boolean;
   onSelectedRowChange?: (row: T | null) => void;
-  onRowClick?: (row: T) => any;
+  onRowClick?: (row: T) => void;
   menuTooltip?: (row: T) => string;
   menuDisabled?: (row: T) => boolean;
   onContextIdChanged?: (row: T) => void;
-  onSortBy?: (col: TableColumn<T>) => any;
+  onSortBy?: (col: TableColumn<T>) => void;
   caption?: React.ReactNode;
   menuButtonLabel?: string;
   /**
@@ -65,8 +62,8 @@ export interface GrepTableProps<T>
    */
   rowHeight?: number;
   rowStyle?:
-  | React.CSSProperties
-  | ((data: any, index: number) => React.CSSProperties);
+    | React.CSSProperties
+    | ((data: T, index: number) => React.CSSProperties);
   disableSelectOnClick?: boolean;
   underlineOnFocus?: boolean;
   rowTabIndex?: number;
@@ -268,25 +265,30 @@ export const GrepTable = <T,>({
     );
   };
 
-  const getRowStyle = (row: T, index: number, clickableRows: boolean, disabled: boolean | undefined) => {
-    let style = { cursor: clickableRows && !disabled ? 'pointer' : ''}
-    if (typeof rowStyle === "function") {
+  const getRowStyle = (
+    row: T,
+    index: number,
+    clickableRows: boolean,
+    disabled: boolean | undefined,
+  ) => {
+    let style = { cursor: clickableRows && !disabled ? 'pointer' : '' };
+    if (typeof rowStyle === 'function') {
       style = {
         ...style,
         ...rowStyle(
           row,
           index,
           // level
-        )
-      }
+        ),
+      };
     } else if (rowStyle) {
       style = {
         ...style,
-        ...rowStyle
-      }
+        ...rowStyle,
+      };
     }
     return style;
-  }
+  };
 
   const _renderRow = (row: T, index: number) => {
     const rowColumns = dropdownItems
@@ -304,7 +306,7 @@ export const GrepTable = <T,>({
         selected={rowIndex === selectedRowIndex}
         expanded={rowIndex === expandedRowIndex}
         clickable={clickableRows}
-        onMouseDown={(e: any) => {
+        onMouseDown={(e: BaseSyntheticEvent) => {
           if (e.target.type === 'checkbox') {
             e.preventDefault();
             e.stopPropagation();
