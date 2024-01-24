@@ -64,6 +64,15 @@ export const CollapsableMenuItem: FunctionComponent<
 }) => {
   const listItemRef = useRef<HTMLLIElement>(null);
   const [open, setOpen] = useState<boolean>(false);
+  const [openTooltip, setOpenTooltip] = React.useState(false);
+
+  const handleCloseTooltip = () => {
+    setOpenTooltip(false);
+  };
+
+  const handleOpenTooltip = () => {
+    setOpenTooltip(true);
+  };
 
   const onStatusChange = useCallback(
     (type: ToggleState) => new CollapsableMenuStatusEvent(type, listItemRef),
@@ -145,6 +154,7 @@ export const CollapsableMenuItem: FunctionComponent<
               window.dispatchEvent(new Event('resize')),
             )
           }
+          {...props}
         >
           {items}
         </CollapsableMenu>
@@ -153,7 +163,13 @@ export const CollapsableMenuItem: FunctionComponent<
   );
 
   return tooltipText ? (
-    <Tooltip title={tooltipText} placement={tooltipPlacement} arrow>
+    <Tooltip
+      title={tooltipText}
+      placement={tooltipPlacement}
+      describeChild
+      arrow
+      open={openTooltip}
+    >
       <MenuItem
         role="menuitem"
         sx={
@@ -162,11 +178,16 @@ export const CollapsableMenuItem: FunctionComponent<
             : { pointerEvents: 'inherit !important' }
         }
         className={classes.root}
-        onMouseOver={(e: React.BaseSyntheticEvent) => e.currentTarget.focus()}
+        onFocusVisible={handleOpenTooltip}
+        onMouseOver={(e: React.BaseSyntheticEvent) => (
+          e.currentTarget.focus(), handleOpenTooltip()
+        )}
+        onMouseLeave={handleCloseTooltip}
         selected={open}
         ref={listItemRef}
         onClick={handleClick}
-        onKeyDown={handleKey}
+        onKeyDown={(e) => (handleKey(e), handleCloseTooltip())}
+        {...props}
       >
         {renderInner()}
       </MenuItem>

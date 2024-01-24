@@ -42,10 +42,14 @@ export const menuItems = [
       {
         label: 'Test 4-1',
         handleClick: () => console.log('clicked 4-1'),
+        tooltipText: 'This tooltip is on submenu 4-1',
+        tooltipPlacement: 'left',
       },
       {
         label: 'Test 4-2',
         handleClick: () => console.log('clicked 4-2'),
+        tooltipText: 'This tooltip is on submenu 4-2',
+        tooltipPlacement: 'left-start',
         children: [
           {
             label: 'Test 4-2-1',
@@ -55,6 +59,8 @@ export const menuItems = [
             label: 'Test 4-2-2',
             disabled: true,
             handleClick: () => console.log('clicked 4-2-2'),
+            tooltipText: 'This tooltip is on submenu 4-2-2',
+            tooltipPlacement: 'left-start',
             children: [
               {
                 label: 'Test 4-2-2-1',
@@ -67,6 +73,8 @@ export const menuItems = [
                   {
                     label: 'Test 4-2-2-2-1',
                     handleClick: () => console.log('clicked 4-2-2-2-1'),
+                    tooltipText: 'This tooltip is on subumenu 4-2-2-2-1',
+                    tooltipPlacement: 'left',
                   },
                 ],
               },
@@ -78,8 +86,6 @@ export const menuItems = [
   },
   {
     label: 'Test 5',
-    tooltipText: 'This tooltip has placement top',
-    tooltipPlacement: 'top',
     handleClick: () => console.log('clicked 5'),
   },
   {
