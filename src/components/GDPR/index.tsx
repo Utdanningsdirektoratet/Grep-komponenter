@@ -14,7 +14,7 @@ const GDPR: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         <Typography className={classes.title}>
           Personlig informasjon og personvern
         </Typography>
-        <Typography className={classes.body}>{children}</Typography>
+        <Box className={classes.body}>{children}</Box>
       </Box>
     </Box>
   );
