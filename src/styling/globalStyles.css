@@ -14,3 +14,10 @@ html, body {
 p {
     margin: .5rem 0
 }
+
+.GrepEditor-italic {
+    font-style: italic;
+}
+.GrepEditor-bold {
+    font-style: bold;
+}

@@ -21,13 +21,13 @@ import { LexicalOnChange, Properties } from '../entities';
 // Classes here are added to the relevant tags i.e.(<strong>)
 const theme = {
   text: {
-    bold: 'lexicalEditor-bold',
-    italic: 'lexicalEditor-italic',
+    bold: 'GrepEditor-bold',
+    italic: 'GrepEditor-italic',
   },
 };
 
 function onError(error: Error): void {
-  console.error('LexicalGrepEditor: ', error);
+  console.error('GrepEditor: ', error);
 }
 
 const createDefaultButtons = (): Array<Button> => [
@@ -35,7 +35,7 @@ const createDefaultButtons = (): Array<Button> => [
   createButton('italic'),
 ];
 
-export default function LexicalGrepEditor({
+export default function Editor({
   html,
   label,
   classes,
@@ -51,7 +51,7 @@ export default function LexicalGrepEditor({
   Toolbar,
 }: Properties) {
   const initialConfig: InitialConfigType = {
-    namespace: 'lexicalEditor',
+    namespace: 'GrepEditor',
     theme,
     onError,
     nodes: [HeadingNode],
@@ -95,9 +95,11 @@ export default function LexicalGrepEditor({
         )}
         <RichTextPlugin
           contentEditable={
-            <div className="editor">
-              <ContentEditable spellCheck={false} className="lexicalEditor" />
-            </div>
+            <ContentEditable
+              spellCheck={false}
+              className="GrepEditor"
+              style={{ outline: 'none' }}
+            />
           }
           placeholder={null}
           ErrorBoundary={LexicalErrorBoundary}
