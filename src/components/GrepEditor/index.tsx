@@ -1,26 +1,13 @@
 import React from 'react';
-import { ContentState } from 'draft-js';
+import './styles/styles.css';
 
-import EditorProvider from './context/provider';
-import EditorComponent, { Properties as GrepEditorProps } from './components/editor';
-
-export { EditorContext } from './context';
-
-interface Properties extends GrepEditorProps {
-  html?: string;
-}
-
-export * from './misc/utils';
-export { ContentState };
+import LexicalGrepEditor from './components/editor';
+import { Properties } from './entities';
 
 type Component = React.FunctionComponent<Properties>;
 
-const GrepEditor: Component = ({ html, ...props }: Properties) => {
-  return (
-    <EditorProvider {...{ html }}>
-      <EditorComponent {...props}></EditorComponent>
-    </EditorProvider>
-  );
+const GrepEditor: Component = ({ ...props }: Properties) => {
+  return <LexicalGrepEditor {...props} />;
 };
 
 export default GrepEditor;

@@ -1,48 +1,42 @@
-import React, { useContext } from 'react';
-import { Editor } from 'draft-js';
+import React from 'react';
 import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
 
-import { UpdateStyle } from '../../misc/utils';
 import { useButtonStyles } from '../../styles';
-import EditorContext from '../../context';
-import { InlineStyle } from '.';
+import { ButtonType } from '.';
+import { FORMAT_TEXT_COMMAND, LexicalEditor } from 'lexical';
 
 interface Properties extends Omit<ToggleButtonProps, 'value' | 'type'> {
-  editor: React.MutableRefObject<Editor>;
-  type: InlineStyle;
+  editor: LexicalEditor;
+  type: ButtonType;
+  selected: boolean;
 }
 
 type Component = React.FunctionComponent<React.PropsWithChildren<Properties>>;
 
-const InlineButton: Component = ({
+const LexicalButton: Component = ({
   type,
-  editor: _editor,
+  editor,
   children,
+  selected,
   ...props
 }: React.PropsWithChildren<Properties>) => {
   const { classes } = useButtonStyles();
-  const { state, setState } = useContext(EditorContext);
-
-  const onClick = (event: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-    event.preventDefault();
-    const e = event as React.MouseEvent<HTMLButtonElement, MouseEvent>;
-    setState(UpdateStyle(state, e.currentTarget.value));
-  };
-
-  const selected = state.getCurrentInlineStyle().has(type);
 
   return (
     <ToggleButton
-      {...props}
       classes={{ root: classes.btn, selected: classes.btnSelected }}
-      selected={selected}
-      onClick={onClick}
       value={type}
+      selected={selected}
       size="small"
+      onClick={() => {
+        editor.dispatchCommand(FORMAT_TEXT_COMMAND, type);
+      }}
+      aria-label={`format text as ${type.toLowerCase}`}
+      {...props}
     >
       {children}
     </ToggleButton>
   );
 };
 
-export default InlineButton;
+export default LexicalButton;
