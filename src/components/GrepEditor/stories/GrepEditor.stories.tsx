@@ -151,3 +151,19 @@ export const WithLabel = () => <GrepEditor label="This is a label" />;
 WithLabel.story = {
   name: 'With label',
 };
+
+export const OnlyHeading = () => (
+  <GrepEditor html="<h3>This is an h3 tag, but it could be any heading tag between h1 and h6 based on html input.</h3>" />
+);
+
+OnlyHeading.story = {
+  name: 'OnlyHeading',
+};
+
+export const ReadOnly = () => (
+  <GrepEditor readOnly html="This is some text you cannot edit" />
+);
+
+ReadOnly.story = {
+  name: 'ReadOnly',
+};

@@ -17,6 +17,7 @@ import { Button, createButton } from './buttons';
 import FloatingTextFormatToolbarPlugin from './plugins/ToolbarPlugin';
 import InsertDataPlugin from './plugins/InitialDataPlugin';
 import { LexicalOnChange, Properties } from '../entities';
+import HeadingPlugin from './plugins/HeadingPlugin';
 
 // Classes here are added to the relevant tags i.e.(<strong>)
 const theme = {
@@ -53,6 +54,7 @@ export default function Editor({
   const initialConfig: InitialConfigType = {
     namespace: 'GrepEditor',
     theme,
+    editable: !readOnly,
     onError,
     nodes: [HeadingNode],
     html: {
@@ -107,6 +109,7 @@ export default function Editor({
         <HistoryPlugin />
         <OnChangePlugin onChange={onContentChange as LexicalOnChange} />
         <InsertDataPlugin html={html} />
+        <HeadingPlugin html={html} />
         <ModifyPastePlugin
           blockPasting={blockPasting}
           stripPastedStyles={stripPastedStyles}
