@@ -3,9 +3,10 @@ import { Container } from '@mui/material';
 
 import GrepEditor from '..';
 import { makeStyles } from '../../../styling';
-import { InlineButton } from '../components/buttons';
-import { ToolbarPropperties } from '../components/toolbars';
-import { convert2html, convert2txt } from '../misc/utils';
+import { ToolbarProperties } from '../entities';
+import { $getTextContent } from 'lexical';
+import { $generateHtmlFromNodes } from '@lexical/html';
+import LexicalButton from '../components/buttons/InlineButton';
 
 const useStyles = makeStyles()({
   root: {
@@ -13,16 +14,22 @@ const useStyles = makeStyles()({
   },
 });
 
-const myToolbar: React.FunctionComponent<ToolbarPropperties> = ({
-  editor,
+const myToolbar: React.FunctionComponent<ToolbarProperties> = ({
   buttons,
-}: ToolbarPropperties) => {
+  editor,
+  isSelected,
+}: ToolbarProperties) => {
   return (
     <div>
       {buttons.map(({ type, children }, key) => (
-        <InlineButton key={key} type={type} editor={editor}>
+        <LexicalButton
+          key={key}
+          type={type}
+          editor={editor}
+          selected={isSelected[key]}
+        >
           {children}
-        </InlineButton>
+        </LexicalButton>
       ))}
     </div>
   );
@@ -37,6 +44,7 @@ export default {
         style={{
           marginTop: 40,
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'space-between',
         }}
       >
@@ -68,9 +76,11 @@ export const CustomButtons = () => (
   <GrepEditor
     allowedStyles={['bold']}
     helperText="Some help text"
-    onContentChange={(c) => {
-      console.log(convert2txt(c));
-      console.log(convert2html(c));
+    onContentChange={(editorState, editor) => {
+      editorState.read(() => {
+        console.log('Lexical-text', $getTextContent());
+        console.log('Lexical-html', $generateHtmlFromNodes(editor));
+      });
     }}
   />
 );
@@ -88,7 +98,16 @@ PasteStrippingAndBlockedInlineStyles.story = {
 };
 
 export const WithCharacterCount = () => (
-  <GrepEditor showCharCount helperText="Marker tekst for formatering" />
+  <GrepEditor
+    showCharCount
+    helperText="Marker tekst for formatering"
+    onContentChange={(editorState, editor) => {
+      editorState.read(() => {
+        console.log('Lexical-text', $getTextContent());
+        console.log('Lexical-html', $generateHtmlFromNodes(editor));
+      });
+    }}
+  />
 );
 
 WithCharacterCount.story = {
@@ -98,9 +117,11 @@ WithCharacterCount.story = {
 export const DisableAndStripNewlines = () => (
   <GrepEditor
     disableNewlines
-    onContentChange={(c) => {
-      console.log(convert2txt(c));
-      console.log(convert2html(c));
+    onContentChange={(editorState, editor) => {
+      editorState.read(() => {
+        console.log('Lexical-text', $getTextContent());
+        console.log('Lexical-html', $generateHtmlFromNodes(editor));
+      });
     }}
   />
 );
@@ -112,13 +133,37 @@ DisableAndStripNewlines.story = {
 export const DisablePasting = () => (
   <GrepEditor
     blockPasting
-    onContentChange={(c) => {
-      console.log(convert2txt(c));
-      console.log(convert2html(c));
+    onContentChange={(editorState, editor) => {
+      editorState.read(() => {
+        console.log('Lexical-text', $getTextContent());
+        console.log('Lexical-html', $generateHtmlFromNodes(editor));
+      });
     }}
   />
 );
 
 DisablePasting.story = {
   name: 'Disable pasting',
+};
+
+export const WithLabel = () => <GrepEditor label="This is a label" />;
+
+WithLabel.story = {
+  name: 'With label',
+};
+
+export const OnlyHeading = () => (
+  <GrepEditor html="<h3>This is an h3 tag, but it could be any heading tag between h1 and h6 based on html input.</h3>" />
+);
+
+OnlyHeading.story = {
+  name: 'OnlyHeading',
+};
+
+export const ReadOnly = () => (
+  <GrepEditor readOnly html="This is some text you cannot edit" />
+);
+
+ReadOnly.story = {
+  name: 'ReadOnly',
 };
