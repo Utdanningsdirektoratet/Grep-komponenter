@@ -1,3 +1,4 @@
+import { RefObject } from 'react';
 import { Button, Style } from '../components/buttons';
 import { EditorState, LexicalEditor } from 'lexical';
 
@@ -25,6 +26,7 @@ export interface Properties {
   disableNewlines?: boolean;
   stripPastedStyles?: boolean;
   blockPasting?: boolean;
+  editorRef?: RefObject<LexicalEditor>;
   /**
    * Undefined: allow all styles.
    * Empty array: disable all styles.

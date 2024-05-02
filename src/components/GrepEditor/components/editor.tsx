@@ -7,8 +7,9 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
 import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
+import { EditorRefPlugin } from '@lexical/react/LexicalEditorRefPlugin';
 import { HeadingNode } from '@lexical/rich-text';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import StyleWrapperPlugin from './plugins/StyleWrapperPlugin';
 import { htmlExportMap } from './plugins/CustomHtmlExport';
 import ModifyPastePlugin from './plugins/DisablePastePlugin';
@@ -18,6 +19,8 @@ import FloatingTextFormatToolbarPlugin from './plugins/ToolbarPlugin';
 import InsertDataPlugin from './plugins/InitialDataPlugin';
 import { LexicalOnChange, Properties } from '../entities';
 import HeadingPlugin from './plugins/HeadingPlugin';
+import { LexicalEditor } from 'lexical';
+import TextNodeStylingPlugin from './plugins/TextNodeStylingPlugin';
 
 // Classes here are added to the relevant tags i.e.(<strong>)
 const theme = {
@@ -36,6 +39,9 @@ const createDefaultButtons = (): Array<Button> => [
   createButton('italic'),
 ];
 
+/* This allows interaction with the editor outside of the LexicalComposer */
+// export const editorRef = useRef<LexicalEditor>(null);
+
 export default function Editor({
   html,
   label,
@@ -47,6 +53,7 @@ export default function Editor({
   blockPasting,
   disableNewlines,
   onContentChange,
+  editorRef,
   stripPastedStyles,
   readOnly,
   Toolbar,
@@ -70,6 +77,10 @@ export default function Editor({
     }
   };
 
+  if (editorRef === undefined) {
+    editorRef = useRef<LexicalEditor>(null);
+  }
+
   const canStyle = allowedStyles === undefined || allowedStyles.length > 0;
 
   const buttons = !allowedStyles
@@ -78,6 +89,7 @@ export default function Editor({
 
   return (
     <LexicalComposer initialConfig={initialConfig}>
+      <EditorRefPlugin editorRef={editorRef} />
       <StyleWrapperPlugin
         helperText={helperText}
         showCharcount={showCharCount}
@@ -115,6 +127,7 @@ export default function Editor({
           stripPastedStyles={stripPastedStyles}
         />
         <PreventNewlinesPlugin disableNewlines={disableNewlines} />
+        <TextNodeStylingPlugin allowedStyles={allowedStyles} />
       </StyleWrapperPlugin>
     </LexicalComposer>
   );
