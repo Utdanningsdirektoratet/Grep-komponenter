@@ -19,7 +19,7 @@ export interface SelectItem {
   disabled?: boolean;
   lang?: string;
 }
-export interface GrepSelectProps extends SelectProps {
+export type GrepSelectProps = SelectProps & {
   label: string;
   outlined?: boolean;
   helperText?: string;
@@ -28,7 +28,7 @@ export interface GrepSelectProps extends SelectProps {
   unselectOption?: boolean;
   useCheckedSelect?: boolean;
   inputProps?: InputBaseComponentProps | undefined;
-}
+};
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
   const inputLabel = React.useRef<HTMLLabelElement>(null);
