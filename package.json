@@ -79,15 +79,11 @@
     ]
   },
   "peerDependencies": {
-    "connected-react-router": "6.x",
-    "history": "4x || 5.x",
     "prop-types": "^15.7.2",
     "react": "^18.x",
     "react-dom": "^18.x",
     "react-redux": "8.x || 9.x",
-    "react-router": "5.x || 6.x",
-    "react-router-dom": "5.x || 6.x",
-    "react-router-redux": "4.x",
+    "react-router-dom": "6.x",
     "redux": "^4.x || ^5.x"
   },
   "devDependencies": {
@@ -133,7 +129,6 @@
     "chalk": "^5.3.0",
     "clsx": "^2.0.0",
     "commitlint": "^19.2.2",
-    "connected-react-router": "^6.9.3",
     "conventional-changelog-cli": "^4.1.0",
     "cross-env": "^7.0.3",
     "draft-js-export-html": "^1.4.1",
@@ -145,7 +140,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-testing-library": "^6.2.0",
-    "history": "^4.7.2",
     "husky": "^9.0.11",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -157,9 +151,7 @@
     "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.0.2",
     "react-redux": "^9.0.2",
-    "react-router": "^5.3.4",
-    "react-router-dom": "^5.3.4",
-    "react-router-redux": "^4.0.8",
+    "react-router-dom": "^6.23.1",
     "react-scripts": "^5.0.1",
     "rollup": "^4.6.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -193,11 +185,6 @@
     "fork-ts-checker-webpack-plugin": "^6.5.3",
     "react-scripts": {
       "typescript": "^5.3.3"
-    },
-    "connected-react-router": {
-      "react": "^18.0.0",
-      "react-redux": "^9.0.4",
-      "redux": "^5.0.0"
     },
     "react-beautiful-dnd": {
       "redux": "^5.0.0"

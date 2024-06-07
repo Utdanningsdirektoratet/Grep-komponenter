@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import NavGuard from '..';
 
 // eslint-disable-next-line react/display-name
 export default () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const props = {
     when: true,
     title: 'Confirm navigation',
@@ -20,7 +20,7 @@ export default () => {
   return (
     <Box>
       <NavGuard {...props} onSave={() => null} />
-      <Button onClick={() => history.push('elsewhere')}>Test me</Button>
+      <Button onClick={() => navigate('elsewhere')}>Test me</Button>
     </Box>
   );
 };
