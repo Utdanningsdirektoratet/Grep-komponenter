@@ -1,26 +1,13 @@
 import React from 'react';
-import { ContentState } from 'draft-js';
 
-import EditorProvider from './context/provider';
-import EditorComponent, { Properties as GrepEditorProps } from './components/editor';
-
-export { EditorContext } from './context';
-
-interface Properties extends GrepEditorProps {
-  html?: string;
-}
-
-export * from './misc/utils';
-export { ContentState };
+import Editor from './components/editor';
+import { Properties } from './entities';
 
 type Component = React.FunctionComponent<Properties>;
 
-const GrepEditor: Component = ({ html, ...props }: Properties) => {
-  return (
-    <EditorProvider {...{ html }}>
-      <EditorComponent {...props}></EditorComponent>
-    </EditorProvider>
-  );
+/* To have both italic and bold styles apply, css rules need to be added as per: https://lexical.dev/docs/getting-started/theming */
+const GrepEditor: Component = ({ ...props }: Properties) => {
+  return <Editor {...props} />;
 };
 
 export default GrepEditor;

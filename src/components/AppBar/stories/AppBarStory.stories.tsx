@@ -52,7 +52,7 @@ const navbarPages: IAuthorizedPage[] = [
 
 export default {
   title: 'AppBar',
-  excludeStories: ['v0colors']
+  excludeStories: ['v0colors'],
 };
 
 export const WithContent = () => {
@@ -60,7 +60,7 @@ export const WithContent = () => {
     <Box display="flex" flexDirection="column">
       <AppBar
         appTitle="Læreplanutvikleren"
-        isProd={false}
+        environmentTitle={'UTVIKLING'}
         colors={v0colors}
         currentPath="/"
         menuItems={navbarPages}
