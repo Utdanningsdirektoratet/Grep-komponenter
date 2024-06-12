@@ -2,10 +2,10 @@
 
 name: Auto-merge
 
-on: 
+on:
   pull_request_target:
     branches:
-    - 'dependabot/updates'
+      - 'dependabot/updates'
 
 permissions:
   pull-requests: write
@@ -19,10 +19,10 @@ jobs:
     steps:
       - name: Fetch Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1.6.0
+        uses: dependabot/fetch-metadata@v2
         with:
-          github-token: "${{ secrets.GITHUB_TOKEN }}"
-          
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+
       - name: Auto merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
