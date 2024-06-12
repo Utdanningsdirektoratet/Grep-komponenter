@@ -4,14 +4,15 @@ interface Properties {
   hasFocus: boolean;
   hasContent: boolean;
   readOnly?: boolean;
+  hasCustomToolbar?: boolean;
 }
 
 export const useEditorStyles = makeStyles<Properties>()(
-  (theme, { hasFocus, hasContent, readOnly }) => ({
+  (theme, { hasFocus, hasContent, readOnly, hasCustomToolbar }) => ({
     root: {
       position: 'relative',
       display: 'inline-flex',
-      flexFlow: 'column',
+      flexDirection: hasCustomToolbar ? 'column-reverse' : 'column',
       minWidth: '100%', // TODO
     },
     legend: {
