@@ -2,16 +2,16 @@ import React from 'react';
 import FormatBold from '@mui/icons-material/FormatBold';
 import FormatItalic from '@mui/icons-material/FormatItalic';
 
-export type InlineStyle = 'BOLD' | 'ITALIC' | 'STRIKETHROUGH' | string;
+export type InlineStyle = 'bold' | 'italic' | 'strikethrough' | string;
 
 export interface Button {
-  type: string;
+  type: ButtonType;
   children: React.ReactNode;
 }
 
 export enum ButtonType {
-  bold = 'BOLD',
-  italic = 'ITALIC',
+  bold = 'bold',
+  italic = 'italic',
 }
 
 export type Style = keyof typeof ButtonType;
