@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useBlocker, useNavigate } from 'react-router-dom';
-import { Location } from 'history';
+import { useBlocker } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -31,42 +30,34 @@ const NavGuard = ({
   onDiscard,
 }: NavGuardProperties) => {
   const [open, setOpen] = React.useState(false);
-  const [leave, setLeave] = React.useState(false);
-  const [lastLocation, setLastLocation] = React.useState<Location>();
-  const navigate = useNavigate();
 
   const handleCancel = () => {
-    setLeave(false);
     setOpen(false);
     onCancel && onCancel();
   };
 
   const handleDiscard = () => {
-    setLeave(true);
     setOpen(false);
     onDiscard && onDiscard();
-    lastLocation && window.requestAnimationFrame(() => navigate(lastLocation));
+    blocker.proceed ? blocker.proceed() : null;
   };
 
   const handleSave = () => {
     onSave && onSave();
-    setLeave(true);
     setOpen(false);
-    lastLocation && window.requestAnimationFrame(() => navigate(lastLocation));
+    blocker.proceed ? blocker.proceed() : null;
   };
 
-  const handleLeave = (location: Location) => {
-    setLastLocation(location);
-    setOpen(!leave);
-    return !!leave;
-  };
+  const blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      when && currentLocation.pathname !== nextLocation.pathname,
+  );
 
-  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
-    if (when && currentLocation.pathname !== nextLocation.pathname)
-      handleLeave(nextLocation);
-
-    return currentLocation.pathname !== nextLocation.pathname;
-  });
+  React.useEffect(() => {
+    if (blocker.state === 'blocked') {
+      setOpen(true);
+    }
+  }, [blocker]);
 
   return (
     <React.Fragment>
