@@ -17,6 +17,11 @@ export const muiCache = createCache({
   prepend: true,
 });
 
+/* Added to suspend a console warning(error): 
+The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. 
+Try changing it to ":first-of-type" */
+muiCache.compat = true;
+
 const theme = createTheme({
   palette: {
     primary: {

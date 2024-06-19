@@ -109,7 +109,7 @@ export const WithAppBar = () => {
       <NavGuard {...props} />
       <AppBar
         appTitle="Læreplanutvikleren"
-        isProd={false}
+        environmentTitle={'STORYBOOK'}
         colors={v0colors}
         currentPath="/iframe.html"
         menuItems={navbarPages}

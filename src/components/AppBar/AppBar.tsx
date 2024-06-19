@@ -27,7 +27,7 @@ import { IAuthorizedPage, UserMenuItem, v0colors } from './types';
 import { ReactNode } from 'react';
 
 type AppBarProps = {
-  isProd: boolean;
+  environmentTitle: string;
   username: string;
   currentPath: string;
   appTitle: string;
@@ -41,7 +41,7 @@ type AppBarProps = {
 const AppBar: React.FunctionComponent<AppBarProps> = ({
   username,
   currentPath,
-  isProd,
+  environmentTitle,
   appTitle,
   userMenuItems,
   menuItems,
@@ -83,10 +83,8 @@ const AppBar: React.FunctionComponent<AppBarProps> = ({
           <ToolbarLeft>
             <ToolbarTitle to={'/'}>
               {appTitle}
-              {!isProd && (
-                <EnvironmentTitle>
-                  {process.env.REACT_APP_HOST}
-                </EnvironmentTitle>
+              {!(environmentTitle === 'PROD') && (
+                <EnvironmentTitle>{environmentTitle}</EnvironmentTitle>
               )}
             </ToolbarTitle>
           </ToolbarLeft>

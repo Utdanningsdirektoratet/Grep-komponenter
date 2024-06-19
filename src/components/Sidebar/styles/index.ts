@@ -1,6 +1,7 @@
 import { makeStyles } from '../../../styling';
+import { CSSProperties } from 'react';
 
-const textStyles: Record<string, number | string> = {
+const textStyles: CSSProperties = {
   userSelect: 'none',
   whiteSpace: 'nowrap',
   outline: 'none',

@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import {
@@ -62,7 +61,7 @@ export default {
           currentPath="/"
           username="Grep Fagansvarlig"
           userRole="Superbruker"
-          isProd={false}
+          environmentTitle={'UTVIKLING'}
           colors={v0colors}
           menuItems={navbarPages}
           userMenuItems={[
