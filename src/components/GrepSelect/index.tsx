@@ -26,6 +26,8 @@ export type GrepSelectProps = SelectProps & {
   errorMessage?: string;
   selectItems: SelectItem[];
   unselectOption?: boolean;
+  unselectOptionBottom?: boolean;
+  defaultHighlight?: string;
   useCheckedSelect?: boolean;
   inputProps?: InputBaseComponentProps | undefined;
 };
@@ -40,6 +42,8 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
 
   const {
     unselectOption = true,
+    unselectOptionBottom = false,
+    defaultHighlight = '',
     errorMessage,
     selectItems,
     helperText,
@@ -55,6 +59,8 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     useCheckedSelect,
     ...rest
   } = props;
+
+  const [highlightValue, setHighlightValue] = React.useState<string>('');
 
   const error = errorMessage ? errorMessage.length > 0 : false;
   const selected = value;
@@ -83,8 +89,34 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       <Select
         {...rest}
         inputProps={{ id, ...inputProps }}
+        onOpen={(e) => {
+          if (highlightValue) {
+            props.onOpen && props.onOpen(e);
+            return;
+          }
+
+          if (selectItems.length > 0 && defaultHighlight !== '') {
+            const index = selectItems.findIndex(
+              (e) => e.value === defaultHighlight,
+            );
+            if (index >= 0) {
+              setHighlightValue(defaultHighlight);
+            }
+          }
+          props.onOpen && props.onOpen(e);
+        }}
+        onChange={(e, c) => {
+          //console.log(highlightValue, e.target.value);
+          if (highlightValue === e.target.value) {
+            setHighlightValue('');
+            //console.log('asdlfjlasfjlkasd');
+          } else {
+            setHighlightValue(e.target.value as string);
+          }
+          props.onChange && props.onChange(e, c);
+        }}
         disabled={!selectItems || disabled}
-        value={value === null ? '' : value}
+        value={value || highlightValue}
         style={{ minWidth: labelWidth + (outlined ? 35 : 25) }}
         // @todo: make input respect label length
         input={outlined ? <OutlinedInput label={label} /> : <Input />}
@@ -118,6 +150,11 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
             />
           </MenuItem>
         ))}
+        {unselectOptionBottom && (
+          <MenuItem value="">
+            <em>Fjern valgt</em>
+          </MenuItem>
+        )}
       </Select>
       <FormHelperText>{errorMessage || helperText}</FormHelperText>
     </FormControl>

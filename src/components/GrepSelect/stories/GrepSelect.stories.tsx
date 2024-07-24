@@ -8,6 +8,9 @@ const selectItems: SelectItem[] = [
     value: 'Test',
   },
   {
+    value: 'Test2',
+  },
+  {
     value: 'Best',
     label: 'Custom label (value is Best)',
   },
@@ -34,11 +37,13 @@ export default {
 export const Standard = () => (
   <React.Fragment>
     <GrepSelect
-      value={'Test'}
+      //value={'Test'}
+      defaultHighlight="Test2"
       label="Med feilmelding"
       errorMessage="Feilmelding"
       selectItems={selectItems}
-      onChange={action('select med feilmelding change')}
+      onChange={() => action('select med feilmelding change')}
+      unselectOptionBottom={true}
     />
     <GrepSelect
       value={'Test'}
