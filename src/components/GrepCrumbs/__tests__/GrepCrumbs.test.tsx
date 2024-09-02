@@ -1,12 +1,11 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { push } from 'connected-react-router';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
 import GrepCrumbs, { Breadcrumb } from '..';
-import { BrowserRouter } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router-dom';
 
 export const breadcrumbs: Breadcrumb[] = [
   {
@@ -23,6 +22,11 @@ const store = createStore(() => {});
 const origDispatch = store.dispatch;
 store.dispatch = jest.fn(origDispatch);
 const mockFn = jest.fn();
+export const LocationDisplay = () => {
+  const location = useLocation();
+
+  return <div data-testid="location-display">{location.pathname}</div>;
+};
 
 const renderComponent = (onClick?: boolean) => {
   render(
@@ -31,8 +35,9 @@ const renderComponent = (onClick?: boolean) => {
         breadcrumbs={breadcrumbs}
         onClick={onClick ? mockFn : undefined}
       />
+      <LocationDisplay />
     </Provider>,
-    { wrapper: BrowserRouter },
+    { wrapper: MemoryRouter },
   );
 };
 
@@ -48,8 +53,8 @@ describe('GrepCrumbs', () => {
     await user.click(
       screen.getByRole('button', { name: breadcrumbs[0].label }),
     );
-    expect(store.dispatch).toHaveBeenCalledWith(
-      store.dispatch(push(breadcrumbs[0].path!)),
+    expect(screen.getByTestId('location-display')).toHaveTextContent(
+      breadcrumbs[0].path as string,
     );
   });
 

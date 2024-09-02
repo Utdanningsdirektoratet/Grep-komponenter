@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-
 
 import { useMobileStyles } from './styles';
 import { keyboard } from '../../utils';
@@ -27,7 +25,7 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   pages,
 }: AppBarNavListProps) => {
   const { classes } = useMobileStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
@@ -65,9 +63,9 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
             key={page.id}
             onClick={() => {
               handleCloseNav();
-              history.push(page?.toUrl || '');
+              navigate(page?.toUrl || '');
             }}
-            onKeyDown={keyboard.onActivation(() => history.push(page?.toUrl || ''))}
+            onKeyDown={keyboard.onActivation(() => navigate(page?.toUrl || ''))}
           >
             {page.label}
           </MenuItem>
