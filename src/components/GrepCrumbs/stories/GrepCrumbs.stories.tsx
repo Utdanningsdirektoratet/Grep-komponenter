@@ -14,13 +14,13 @@ export const breadcrumbs: Breadcrumb[] = [
 
 export default {
   title: 'GrepCrumbs',
-  excludeStories: ['breadcrumbs']
+  excludeStories: ['breadcrumbs'],
 };
 
 export const Standard = () => (
   <GrepCrumbs
     breadcrumbs={[...breadcrumbs, { label: 'Test ' }]}
-    // onClick={(page) => console.log('clicked on ', page.label)}
+    onClick={(page) => console.log('clicked on ', page.label)}
   />
 );
 
