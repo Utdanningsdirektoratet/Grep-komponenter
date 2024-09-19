@@ -186,6 +186,7 @@
     "react-scripts": {
       "typescript": "^5.3.3"
     },
+    "postcss": "^8.4.31",
     "ts-jest": {
       "babel-jest": "^29.2.0"
     },
