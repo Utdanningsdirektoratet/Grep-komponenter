@@ -30,11 +30,19 @@ module.exports = {
     "jest-dom/prefer-required": "error",
     "jest-dom/prefer-to-have-attribute": "error",
     "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-unused-expressions": ["off", {"allowShortCircuit": true}],
     '@typescript-eslint/no-unused-vars': ['error', {
       argsIgnorePattern: '^_',
       varsIgnorePattern: '^_'
     }],
     'storybook/no-uninstalled-addons': ['error', { packageJsonLocation: '../package.json' }]
-
-  }
+  },
+  // overrides: [{
+  //   files: ["./src/*.js", "./src/*.ts", "./src/*.tsx"],
+  //   rules: {
+  //     "no-unused-expressions": ["error", {
+  //       "allowShortCircuit": true
+  //     }]
+  //   }
+  // }]
 };
