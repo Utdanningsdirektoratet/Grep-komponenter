@@ -10,34 +10,21 @@ on:
 
 jobs:
   pull-request:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     name: Open PR to dependabot/updates
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
       - uses: actions/checkout@v4
-      #  This action is only to be run when master has been updated.
-      # I.E. only needs to be run on a closed and merged pr to master.
-      # Then it needs to merge master into dependabot/updates
-      - name: Write GitHub context to log1
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(steps) }}
-        run: echo "$GITHUB_CONTEXT"
 
       - name: pull-request
         id: openPr
-        # run: gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates" >> $GITHUB_OUTPUT
         run: | 
-          pr_url=$(gh pr create --title "Pulling ${{ github.ref }} into TESST" --head "master" --body "*Automated PR*" --base "test2458Branch") 
+          pr_url=$(gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates") 
           echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Write GitHub context to log2
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(steps) }}
-        run: echo "$GITHUB_CONTEXT"
-
+          
       - name: Auto merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
