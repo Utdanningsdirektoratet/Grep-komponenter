@@ -30,7 +30,7 @@ jobs:
         run: | 
           {
             echo 'pr_url << EOF' gh pr create --title "Pulling ${{ github.ref }} into TESST" --head "master" --body "*Automated PR*" --base "test2458Branch" echo EOF
-          } >> $GITHUB_OUTPUT
+          } >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
