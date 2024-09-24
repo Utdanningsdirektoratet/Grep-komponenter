@@ -1,5 +1,5 @@
 import React from 'react';
-import { legacy_createStore as createStore} from 'redux';
+import { createStore} from 'redux';
 import { Provider } from 'react-redux';
 
 import createCache from '@emotion/cache';
@@ -7,7 +7,7 @@ import { CacheProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
@@ -68,24 +68,19 @@ const theme = createTheme({
   },
 });
 
-// Use the legacy store, in order to not add redux-toolkit as an extra dependency.
 const store = createStore(() => {return});
 
 export const decorators = [
-  (Story) => {
-    const router = createBrowserRouter([
-      {
-        path: '*',
-        element: <Story />
-      },
-    ]);
-    return (<Provider store={store}>
+  (Story) => (
+    <Provider store={store}>
       <CacheProvider value={muiCache}>
         <ThemeProvider theme={theme}>
+          <BrowserRouter>
             <CssBaseline />
-            <RouterProvider router={router}/>
+            <Story />
+          </BrowserRouter>
         </ThemeProvider>
       </CacheProvider>
-    </Provider>)
-  }
+    </Provider>
+  ),
 ];

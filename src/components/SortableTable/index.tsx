@@ -4,7 +4,7 @@ import {
   Droppable,
   DropResult,
   DroppableProvided,
-} from '@hello-pangea/dnd';
+} from 'react-beautiful-dnd';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import { TableHead, TableRow } from '@mui/material';
