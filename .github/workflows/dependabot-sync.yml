@@ -5,6 +5,7 @@ on:
       - master
     types:
       - closed
+  merge_group:
 
   workflow_dispatch:
 
@@ -19,12 +20,12 @@ jobs:
 
       - name: pull-request
         id: openPr
-        run: | 
+        run: |
           pr_url=$(gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates") 
           echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Auto merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
