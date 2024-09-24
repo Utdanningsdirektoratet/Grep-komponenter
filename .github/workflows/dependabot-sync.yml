@@ -27,7 +27,7 @@ jobs:
       - name: pull-request
         id: openPr
         # run: gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates" >> $GITHUB_OUTPUT
-        run: gh pr create --title "Pulling ${{ github.ref }} into TESST" --head "master" --body "*Automated PR*" --base "test2458Branch" >> $GITHUB_OUTPUT
+        run: echo 'pr_url=gh pr create --title "Pulling ${{ github.ref }} into TESST" --head "master" --body "*Automated PR*" --base "test2458Branch"' >> $GITHUB_OUTPUT 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
