@@ -1,35 +1,42 @@
 name: Dependabot-sync
 on:
-  push:
+  pull_request:
     branches:
       - master
+    types:
+      - closed
 
   workflow_dispatch:
 
 jobs:
   pull-request:
+    if: github.event.pull_request.merged == true
     name: Open PR to dependabot/updates
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
       - uses: actions/checkout@v4
-        name: checkout
+      #  This action is only to be run when master has been updated.
+      # I.E. only needs to be run on a closed and merged pr to master.
+      # Then it needs to merge master into dependabot/updates
+      - name: Write GitHub context to log1
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
       - name: pull-request
         id: openPr
-        run: pr_url = gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates" >> "$GITHUB_OUTPUT"
+        run: gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates" >> "$GITHUB_OUTPUT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Write GitHub context to log2
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
       - name: Auto merge
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ steps.openPr.outputs.pr_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  run-test:
-    if: ${{ 1 == 2 }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Skip
-        run: echo skipping
