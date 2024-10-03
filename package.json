@@ -75,6 +75,11 @@
         "name": "feature/*",
         "channel": "${name.replace(/^feature\\//g, \"\")}",
         "prerelease": "${name.replace(/^feature\\//g, \"\")}"
+      },
+      {
+        "name": "bugfix/*",
+        "channel": "${name.replace(/^bugfix\\//g, \"\")}",
+        "prerelease": "${name.replace(/^bugfix\\//g, \"\")}"
       }
     ]
   },
