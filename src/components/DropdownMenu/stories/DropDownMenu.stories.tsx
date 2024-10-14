@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useState, useRef } from '@storybook/addons';
+import { useState, useRef } from '@storybook/preview-api';
 
 import { DropdownMenuItem, DropdownMenu } from '../..';
 import { makeStyles } from '../../../styling';
