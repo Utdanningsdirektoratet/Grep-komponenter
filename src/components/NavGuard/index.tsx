@@ -7,6 +7,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+export interface NavguardExclusion {
+  current: string;
+  next: string;
+}
 export interface NavGuardProperties {
   when: boolean;
   title: string;
@@ -14,12 +18,15 @@ export interface NavGuardProperties {
   txtSave: string;
   txtCancel: string;
   txtDiscard: string;
+  /** Pass in an array of NavguardExclusions that the Navguard will not trigger when navigating from current to next. */
+  exclude?: NavguardExclusion[];
   onDiscard?: () => void;
   onCancel?: () => void;
   onSave?: () => void;
 }
 const NavGuard = ({
   when,
+  exclude,
   title,
   txt,
   txtSave,
@@ -48,10 +55,20 @@ const NavGuard = ({
     blocker.proceed ? blocker.proceed() : null;
   };
 
-  const blocker = useBlocker(
-    ({ currentLocation, nextLocation }) =>
-      when && currentLocation.pathname !== nextLocation.pathname,
-  );
+  const blocker = useBlocker(({ currentLocation, nextLocation }) => {
+    let excluded = false;
+    exclude?.forEach((navGuardExclusion) => {
+      if (
+        navGuardExclusion.current.includes(currentLocation.pathname) &&
+        navGuardExclusion.next.includes(nextLocation.pathname)
+      ) {
+        excluded = true;
+      }
+    });
+    return (
+      when && !excluded && currentLocation.pathname !== nextLocation.pathname
+    );
+  });
 
   React.useEffect(() => {
     if (blocker.state === 'blocked') {
