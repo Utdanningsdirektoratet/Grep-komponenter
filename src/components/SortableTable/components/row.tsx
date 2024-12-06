@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 
-import { Draggable } from 'react-beautiful-dnd';
+import { Draggable } from '@hello-pangea/dnd';
 
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';

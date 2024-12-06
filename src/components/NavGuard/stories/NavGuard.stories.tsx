@@ -55,7 +55,7 @@ const navbarPages: IAuthorizedPage[] = [
 
 export default {
   title: 'NavGuard',
-  render: () => <Standard />,
+  excludeStories: ['v0colors'],
 };
 
 export const Default = () => {

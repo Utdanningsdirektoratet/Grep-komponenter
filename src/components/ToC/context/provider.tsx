@@ -1,6 +1,4 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { getHash, RouterRootState } from 'connected-react-router';
-import { useSelector } from 'react-redux';
 import throttle from 'lodash.throttle';
 
 import { useContentElements } from '../../../hooks/use-content-elements';
@@ -12,6 +10,7 @@ import {
 } from '../utils/identity-element';
 
 import Context from '.';
+import { useLocation } from 'react-router-dom';
 
 const defaultSelector = [...new Array(9)]
   .map((_, i) => `h${i + 1}:not([role="presentation"])`)
@@ -50,9 +49,7 @@ export const GrepTableOfContentProvider: React.FC<
   const [selected, _setSelected] = useState<HTMLElement>();
   const [initialized, setInitialized] = useState<boolean>();
 
-  const hash = useSelector((s) =>
-    decodeURI(getHash(s as RouterRootState)),
-  ).substring(1);
+  const hash = useLocation().hash;
 
   const scrollToElement = useCallback(
     (element: HTMLElement) => {
