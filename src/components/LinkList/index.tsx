@@ -1,6 +1,5 @@
 import React from 'react';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
@@ -10,6 +9,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 
 import { Colors } from '../../styling';
 import { NavigationProps } from '../AppBarNavList';
+import { ListItemButton } from '@mui/material';
 
 interface Props {
   title: string;
@@ -25,8 +25,7 @@ const LinkList: React.FC<Props> = (props) => (
     <List>
       {props.pages.map((page) => (
         <Box key={page.id}>
-          <ListItem
-            button
+          <ListItemButton
             onClick={() => props.onPageClick(page)}
             style={{ padding: '12px 4px' }}
           >
@@ -40,7 +39,7 @@ const LinkList: React.FC<Props> = (props) => (
             <ListItemIcon style={{ justifyContent: 'flex-end' }}>
               <ArrowForward color="primary" />
             </ListItemIcon>
-          </ListItem>
+          </ListItemButton>
           <Divider />
         </Box>
       ))}
