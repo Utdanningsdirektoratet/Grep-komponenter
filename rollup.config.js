@@ -30,6 +30,9 @@ export default {
     }),
     nodeResolve(),
     typescript({
+      compilerOptions: {
+        outDir: "dist" 
+      },
       typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
     }),
