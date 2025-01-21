@@ -1,6 +1,6 @@
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export const useButtonStyles = makeStyles()({
+export const useButtonStyles = tss.create({
   btn: {
     backgroundColor: 'white',
 

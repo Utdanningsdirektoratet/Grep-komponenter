@@ -1,11 +1,11 @@
-import { hex2rgba, makeStyles } from '../../../styling';
+import { hex2rgba, tss } from '../../../styling';
 
-export const useStyles = makeStyles()(({ palette }) => ({
+export const useStyles = tss.create(({ theme }) => ({
   discard: {
-    color: palette.error.main,
+    color: theme.palette.error.main,
 
     '&:hover': {
-      backgroundColor: hex2rgba(palette.error.main, 0.1),
+      backgroundColor: hex2rgba(theme.palette.error.main, 0.1),
     },
   },
 }));

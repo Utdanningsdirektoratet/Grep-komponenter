@@ -1,8 +1,8 @@
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export const useStyles = makeStyles()(({ palette }) => ({
+export const useStyles = tss.create(({ theme }) => ({
   selected: {
-    color: `${palette.common.black} !important`,
+    color: `${theme.palette.common.black} !important`,
     backgroundColor: 'rgba(0,0,0,.05) !important',
   },
 }));

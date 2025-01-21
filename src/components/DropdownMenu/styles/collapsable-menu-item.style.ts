@@ -1,15 +1,16 @@
-import { convertToRgba, makeStyles } from '../../../styling';
+import { convertToRgba, tss } from '../../../styling';
 
-export const useStyles = makeStyles<{ open: boolean }>()(
-  ({ palette, transitions }, { open }) => ({
+export const useStyles = tss
+  .withParams<{ open: boolean }>()
+  .create(({ theme, open }) => ({
     root: {
       padding: '0 1rem',
-      transition: transitions.create(['background-color'], {
-        duration: transitions.duration.short,
-        easing: transitions.easing.easeIn,
+      transition: theme.transitions.create(['background-color'], {
+        duration: theme.transitions.duration.short,
+        easing: theme.transitions.easing.easeIn,
       }),
       '&.Mui-focusVisible': {
-        backgroundColor: convertToRgba(palette.primary.light, 0.15),
+        backgroundColor: convertToRgba(theme.palette.primary.light, 0.15),
       },
     },
     subMenu: {
@@ -18,10 +19,12 @@ export const useStyles = makeStyles<{ open: boolean }>()(
     expander: {
       marginLeft: '2rem',
       transform: `rotate(${open ? 180 : 0}deg)`,
-      transition: transitions.create(['transform, color, background-color'], {
-        duration: transitions.duration.short,
-        easing: transitions.easing.easeOut,
-      }),
+      transition: theme.transitions.create(
+        ['transform, color, background-color'],
+        {
+          duration: theme.transitions.duration.short,
+          easing: theme.transitions.easing.easeOut,
+        },
+      ),
     },
-  }),
-);
+  }));

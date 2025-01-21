@@ -1,6 +1,6 @@
-import { convertToRgba, makeStyles } from '../../../styling';
+import { convertToRgba, tss } from '../../../styling';
 
-export const useStyles = makeStyles()(() => ({
+export const useStyles = tss.create(() => ({
   root: {
     fontSize: 18,
     overflowY: 'scroll',

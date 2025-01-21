@@ -1,6 +1,6 @@
-import { Colors, makeStyles } from '../../../styling';
+import { Colors, tss } from '../../../styling';
 
-export const useStyles = makeStyles()({
+export const useStyles = tss.create({
   outer: {
     alignItems: 'center',
     background: Colors.white,

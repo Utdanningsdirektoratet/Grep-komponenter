@@ -16,7 +16,7 @@ const updateEmotionAliases = config => ({
     }
   }
 });
-module.exports = {
+export default{
   framework: '@storybook/react-webpack5',
   stories: ['../src/**/*.stories.tsx', '../src/**/*.stories.@(tsx)'],
   addons: [

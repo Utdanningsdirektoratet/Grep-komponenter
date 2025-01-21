@@ -2,12 +2,13 @@
   "name": "grep-components",
   "version": "0.0.0-semantically-released",
   "description": "Grep komponentbibliotek",
+  "type": "module",
+  "exports": "./dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Utdanningsdirektoratet/Grep-komponenter.git"
   },
-  "main": "dist/index.js",
-  "types": "dist/build/index.d.ts",
+  "types": "dist/index.d.ts",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -15,8 +16,8 @@
   "homepage": "https://Utdanningsdirektoratet.github.io/Grep-komponenter",
   "author": "Udir",
   "scripts": {
-    "build": "rollup -c --bundleConfigAsCjs",
-    "start": "rollup -c -w --bundleConfigAsCjs",
+    "build": "rollup -c rollup.config.mjs",
+    "start": "rollup -c rollup.config.mjs -w ",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "pretest": "tsc --noEmit",
     "test": "jest --maxWorkers=50% --verbose --logHeapUsage",
@@ -84,7 +85,6 @@
     ]
   },
   "peerDependencies": {
-    "prop-types": "^15.7.2",
     "react": "^18.x",
     "react-dom": "^18.x",
     "react-redux": "8.x || 9.x",

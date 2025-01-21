@@ -2,12 +2,12 @@ import * as React from 'react';
 import { Container } from '@mui/material';
 
 import GrepEditor from '..';
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 import { ToolbarProperties } from '../entities';
 import { $getTextContent } from 'lexical';
 import { $generateHtmlFromNodes } from '@lexical/html';
 import LexicalButton from '../components/buttons/InlineButton';
-const useStyles = makeStyles()({
+const useStyles = tss.create({
   root: {
     background: 'red',
   },

@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { useState, useRef } from '@storybook/preview-api';
 
 import { DropdownMenuItem, DropdownMenu } from '../..';
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
 interface TestMenuItem {
   label: string;
@@ -110,7 +110,7 @@ export default {
 export const Standard = () => {
   const [open, setOpen] = useState(false);
   const menuAnchor = useRef(null);
-  const { classes } = makeStyles()({
+  const { classes } = tss.create({
     paper: {
       width: '200px',
     },

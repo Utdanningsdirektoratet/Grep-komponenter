@@ -1,6 +1,6 @@
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export const useStyles = makeStyles()((theme) => ({
+export const useStyles = tss.create(({ theme }) => ({
   container: {
     width: '48%',
     display: 'flex',

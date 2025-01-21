@@ -1,4 +1,4 @@
-module.exports = {
+export default{
   roots: ['<rootDir>/src'],
   transform: {
     '^.+\\.(t|j)sx?$': ['ts-jest', { isolatedModules:true }],

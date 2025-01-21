@@ -1,6 +1,6 @@
-import { Colors, makeStyles } from '../../../styling';
+import { Colors, tss } from '../../../styling';
 
-export const useStyles = makeStyles()({
+export const useStyles = tss.create({
   container: {
     border: `1px solid ${Colors.lightGrey}`,
     height: 'fit-content',

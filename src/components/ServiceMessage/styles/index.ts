@@ -1,6 +1,6 @@
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export default makeStyles()(() => ({
+export default tss.create(() => ({
   message: {
     overflowWrap: 'break-word',
     backgroundColor: '#f8e9d6',

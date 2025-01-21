@@ -1,6 +1,6 @@
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export const useStyles = makeStyles()(() => ({
+export const useStyles = tss.create(() => ({
   root: {
     listStyle: 'none',
     padding: 0,

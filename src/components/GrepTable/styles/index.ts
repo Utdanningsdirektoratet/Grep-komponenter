@@ -1,7 +1,7 @@
 import { TableColumn } from '..';
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export const usePaginationActionStyles = makeStyles()(({ palette }) => ({
+export const usePaginationActionStyles = tss.create(({ theme }) => ({
   button: {
     minWidth: '18px',
     minHeight: '20px',
@@ -9,7 +9,7 @@ export const usePaginationActionStyles = makeStyles()(({ palette }) => ({
     margin: '0 8px',
     borderRadius: '2px',
     fontSize: 12,
-    backgroundColor: palette.primary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   textButton: {
     textTransform: 'capitalize',
@@ -18,7 +18,7 @@ export const usePaginationActionStyles = makeStyles()(({ palette }) => ({
   },
 }));
 
-export const usePaginationStyles = makeStyles()({
+export const usePaginationStyles = tss.create({
   toolbar: {
     padding: 0,
     width: '100%',
@@ -38,19 +38,19 @@ export const usePaginationStyles = makeStyles()({
   },
 });
 
-export const useTableHeaderStyles = makeStyles<{
-  column: TableColumn<unknown>;
-}>()((_theme, { column }) => {
-  const width = column.width
-    ? typeof column.width === 'number'
-      ? `${column.width}%`
-      : column.width
-    : undefined;
-
-  return {
-    th: {
-      width,
-      fontSize: 14,
-    },
-  };
-});
+export const useTableHeaderStyles = tss
+  .withParams<{
+    column: TableColumn<unknown>;
+  }>()
+  .create(({ column }) => {
+    let width = column.width ? column.width : undefined;
+    if (typeof width === 'number') {
+      width = `${column.width}%`;
+    }
+    return {
+      th: {
+        width,
+        fontSize: 14,
+      },
+    };
+  });

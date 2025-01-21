@@ -16,7 +16,7 @@ import GrpeTableHeader from './components/grep-table-header';
 import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
-import { makeStyles } from '../../styling';
+import { tss } from '../../styling';
 
 export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   label?: string | JSX.Element;
@@ -70,12 +70,14 @@ export interface GrepTableProps<T>
 }
 
 interface StyleProps {
+  [key: string]: boolean | undefined;
   outlined?: boolean;
   showHeader?: boolean;
 }
 
-export const useStyles = makeStyles<StyleProps>()(
-  (theme, { showHeader, outlined }) => ({
+export const useStyles = tss
+  .withParams<StyleProps>()
+  .create(({ theme, showHeader, outlined }) => ({
     table: {
       border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
       borderCollapse: outlined ? 'separate' : 'collapse',
@@ -89,8 +91,7 @@ export const useStyles = makeStyles<StyleProps>()(
         outline: 'none',
       },
     },
-  }),
-);
+  }));
 
 const containsFocus = (el: HTMLElement, tag = '*') =>
   Array.from(el.getElementsByTagName(tag)).some(

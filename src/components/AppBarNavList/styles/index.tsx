@@ -1,7 +1,7 @@
 import { Theme } from '@mui/material';
-import { makeStyles } from '../../../styling';
+import { tss } from '../../../styling';
 
-export const useStyles = makeStyles()((theme: Theme) => ({
+export const useStyles = tss.create(({ theme }) => ({
   tabs: {
     margin: 'auto 0',
     [theme.breakpoints.down('xl')]: {
@@ -50,15 +50,15 @@ export const useStyles = makeStyles()((theme: Theme) => ({
   },
 }));
 
-export const useMobileStyles = makeStyles()(({ palette, breakpoints }) => ({
+export const useMobileStyles = tss.create(({ theme }) => ({
   mobileNavList: {
     backgroundColor: `transparent`,
-    color: palette.primary.main,
+    color: theme.palette.primary.main,
     fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
-    [breakpoints.down('lg')]: {
+    [theme.breakpoints.down('lg')]: {
       display: 'flex',
     },
-    [breakpoints.up('lg')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'none',
     },
   },

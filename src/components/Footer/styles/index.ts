@@ -1,6 +1,6 @@
-import { Colors, makeStyles } from '../../../styling';
+import { Colors, tss } from '../../../styling';
 
-export const useFooterStyles = makeStyles()((theme) => ({
+export const useFooterStyles = tss.create(({ theme }) => ({
   footer: {
     bottom: 0,
     width: '100%',

@@ -6,13 +6,13 @@ import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
 
 
-import pkg from './package.json' assert { type: "json" };
+import pkg from './package.json' with { type: "json" };
 
 export default {
   input: 'src/index.ts',
   output: [
     {
-      file: pkg.main,
+      file: pkg.exports,
       format: 'es',
       exports: 'named',
       sourcemap: true,
@@ -30,7 +30,6 @@ export default {
     }),
     nodeResolve(),
     typescript({
-      typescript: require('typescript'),
       tsconfig: 'tsconfig.rollup.json',
     }),
     commonjs({

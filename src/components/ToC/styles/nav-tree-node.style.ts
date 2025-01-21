@@ -1,12 +1,13 @@
-import { convertToRgba, makeStyles } from '../../../styling';
+import { convertToRgba, tss } from '../../../styling';
 
-export const useStyles = makeStyles<{ lvl: number }>()(
-  ({ palette }, { lvl }) => {
-    const defaultColor = convertToRgba(palette.primary.main, 0.75);
+export const useStyles = tss
+  .withParams<{ lvl: number }>()
+  .create(({ theme, lvl }) => {
+    const defaultColor = convertToRgba(theme.palette.primary.main, 0.75);
     const linkcolor = `var(--grep-toc-link-color, ${defaultColor})`;
-    const selectedColor = `var(--grep-toc-selected-color, ${palette.primary.main})`;
+    const selectedColor = `var(--grep-toc-selected-color, ${theme.palette.primary.main})`;
     const focusBackground = `var(--grep-toc-focused-background, ${convertToRgba(
-      palette.primary.main,
+      theme.palette.primary.main,
       0.1,
     )})`;
 
@@ -33,5 +34,4 @@ export const useStyles = makeStyles<{ lvl: number }>()(
         },
       },
     };
-  },
-);
+  });

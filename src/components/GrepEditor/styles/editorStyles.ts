@@ -1,14 +1,16 @@
-import { hex2rgba, makeStyles } from '../../../styling';
+import { hex2rgba, tss } from '../../../styling';
 
 interface Properties {
+  [key: string]: boolean | undefined;
   hasFocus: boolean;
   hasContent: boolean;
   readOnly?: boolean;
   hasCustomToolbar?: boolean;
 }
 
-export const useEditorStyles = makeStyles<Properties>()(
-  (theme, { hasFocus, hasContent, readOnly, hasCustomToolbar }) => ({
+export const useEditorStyles = tss
+  .withParams<Properties>()
+  .create(({ theme, hasFocus, hasContent, readOnly, hasCustomToolbar }) => ({
     root: {
       position: 'relative',
       display: 'inline-flex',
@@ -95,5 +97,4 @@ export const useEditorStyles = makeStyles<Properties>()(
       backgroundColor: 'white',
       padding: '2px 10px',
     },
-  }),
-);
+  }));
