@@ -4,6 +4,7 @@ import external from 'rollup-plugin-peer-deps-external';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
+import * as ts from "typescript"
 
 
 import pkg from './package.json' with { type: "json" };
@@ -30,6 +31,7 @@ export default {
     }),
     nodeResolve(),
     typescript({
+      typescript: ts,
       tsconfig: 'tsconfig.rollup.json',
     }),
     commonjs({
