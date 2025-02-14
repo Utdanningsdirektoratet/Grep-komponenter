@@ -17,10 +17,12 @@ const GrepInput: React.FC<GrepInputProps> = ({
     <TextField
       {...rest}
       variant={variant}
-      helperText={errorMessage || helperText}
+      helperText={errorMessage ?? helperText}
       value={value === null ? '' : value}
-      InputLabelProps={{ shrink }}
       error={error || rest.error}
+      slotProps={{
+        inputLabel: { shrink },
+      }}
     />
   );
 };

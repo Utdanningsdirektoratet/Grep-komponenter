@@ -19,7 +19,9 @@ const renderField = (id: string, label: string, value: string) => (
     value={value}
     variant="outlined"
     style={{ margin: '10px 0' }}
-    InputProps={{ style: { color: 'rgb(84, 84, 84)' } }}
+    slotProps={{
+      input: { style: { color: 'rgb(84, 84, 84)' } }
+    }}
   />
 );
 

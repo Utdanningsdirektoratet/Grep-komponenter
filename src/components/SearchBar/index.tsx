@@ -24,7 +24,7 @@ export interface SearchBarProps {
 const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const [value, setValue] = React.useState(props.initValue || '');
+  const [value, setValue] = React.useState(props.initValue ?? '');
 
   const { classes } = useStyles();
 
@@ -71,11 +71,13 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
           onChange={_handleChange}
           autoFocus={props.autoFocus}
           placeholder={props.placeholder}
-          InputProps={{
-            disableUnderline: true,
-            fullWidth: true,
-            inputProps: {
-              title: props.title,
+          slotProps={{
+            input: {
+              disableUnderline: true,
+              fullWidth: true,
+              inputProps: {
+                title: props.title,
+              },
             },
           }}
         />
@@ -85,7 +87,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
               data-testid="searchBarClearBtn"
               tabIndex={0}
               onClick={_handleClear}
-              onKeyPress={keyboard.onActivation(_handleClear)}
+              onKeyDown={keyboard.onActivation(_handleClear)}
             />
           )}
         </Box>
