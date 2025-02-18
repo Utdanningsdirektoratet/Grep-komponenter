@@ -41,7 +41,7 @@ export const ConfirmationDialog: React.FC<Props> = ({
         <DialogContentText>{description}</DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button color="primary" onClick={onCancel}>
+        <Button color="inherit" onClick={onCancel}>
           {cancelText}
         </Button>
         <Button className={warning ? classes.discard : ''} onClick={onSubmit}>
