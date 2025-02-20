@@ -24,9 +24,6 @@
     "test:ci": "jest --runInBand --verbose",
     "storybook": "storybook dev -p 9009",
     "build-storybook": "storybook build",
-    "yalc:init": "yalc add && yalc push",
-    "yalc:build": "rollup -c --no-treeshake --no-sourcemap --environment yalc",
-    "yalc:watch": "npm run yalc:build -- -w",
     "prepare": "husky",
     "deploy-storybook": "storybook-to-ghpages"
   },

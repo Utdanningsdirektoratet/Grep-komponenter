@@ -9,6 +9,9 @@ build
 dist
 .rpt2_cache
 
+# local npm package
+grep-components-0.0.0-semantically-released.tgz
+
 # misc
 .DS_Store
 .env
