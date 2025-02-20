@@ -1,11 +1,14 @@
 import React from 'react';
+import util from 'node:util';
+const { TextEncoder } = util;
+globalThis.TextEncoder = TextEncoder;
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
 import GrepCrumbs, { Breadcrumb } from '..';
-import { MemoryRouter, useLocation } from 'react-router-dom';
+import { MemoryRouter, useLocation } from 'react-router';
 
 export const breadcrumbs: Breadcrumb[] = [
   {

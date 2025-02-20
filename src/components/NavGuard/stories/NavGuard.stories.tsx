@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import NavGuard, { NavGuardProperties } from '..';
 import { IAuthorizedPage } from '../../AppBar/types';
 import AppBar from '../../AppBar/AppBar';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import Button from '@mui/material/Button';
 
 export const v0colors = {

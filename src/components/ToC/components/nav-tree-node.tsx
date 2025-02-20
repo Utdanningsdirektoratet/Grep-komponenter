@@ -11,7 +11,7 @@ import clsx from 'clsx';
 import context from '../context';
 import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
 import { useStyles } from '../styles/nav-tree-node.style';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 /**
  * @TODO fix later

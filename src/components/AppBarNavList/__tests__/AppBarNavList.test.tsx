@@ -1,9 +1,12 @@
 import React from 'react';
+import util from 'node:util';
+const { TextEncoder } = util;
+globalThis.TextEncoder = TextEncoder;
 import { render, screen } from '@testing-library/react';
 
 import AppBarNavList from '..';
 import userEvent from '@testing-library/user-event';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 
 const pages = [
   {
