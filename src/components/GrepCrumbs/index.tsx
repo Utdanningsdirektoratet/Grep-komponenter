@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Tooltip from '@mui/material/Tooltip';
 import { useStyles } from './styles/styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export interface Breadcrumb {
   path?: string;
