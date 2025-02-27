@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 import { Theme, MUIStyledCommonProps } from '@mui/system';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 import { v0colors } from './types';
 
 export const dimensions = {
@@ -83,30 +83,31 @@ export const ToolbarFixer = styled('div')(({ theme }) => ({
   },
 }));
 
-export const ToolbarInner = styled('div')(
-  ({ colors, theme }: { colors: v0colors } & MUIStyledCommonProps<Theme>) => {
-    if (!theme) {
-      return {};
-    }
-    return {
-      alignItems: 'center',
-      display: 'flex',
-      margin: '0 auto',
-      width: '100%',
+export const ToolbarInner = styled('div')(({
+  colors,
+  theme,
+}: { colors: v0colors } & MUIStyledCommonProps<Theme>) => {
+  if (!theme) {
+    return {};
+  }
+  return {
+    alignItems: 'center',
+    display: 'flex',
+    margin: '0 auto',
+    width: '100%',
+    padding: 0,
+    backgroundColor: colors.headerBackgroundColor,
+    [theme.breakpoints.down('sm')]: {
+      height: `${dimensions.toolbarHeightMobile}px`,
+      minHeight: `${dimensions.toolbarHeightMobile}px`,
+    },
+    [theme.breakpoints.up('sm')]: {
       padding: 0,
-      backgroundColor: colors.headerBackgroundColor,
-      [theme.breakpoints.down('sm')]: {
-        height: `${dimensions.toolbarHeightMobile}px`,
-        minHeight: `${dimensions.toolbarHeightMobile}px`,
-      },
-      [theme.breakpoints.up('sm')]: {
-        padding: 0,
-        height: `${dimensions.toolbarHeight}px`,
-        minHeight: `${dimensions.toolbarHeight}px`,
-      },
-    };
-  },
-);
+      height: `${dimensions.toolbarHeight}px`,
+      minHeight: `${dimensions.toolbarHeight}px`,
+    },
+  };
+});
 
 export const ToolbarLeft = styled('div')(() => ({
   alignItems: 'center',
