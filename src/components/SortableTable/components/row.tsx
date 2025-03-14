@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { JSX, useCallback, useMemo } from 'react';
 
 import { Draggable } from '@hello-pangea/dnd';
 

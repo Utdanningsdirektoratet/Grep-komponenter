@@ -1,15 +1,16 @@
 import {
   DOMExportOutput,
-  KlassConstructor,
   LexicalEditor,
   LexicalNode,
   ParagraphNode,
   TextNode,
+  DOMExportOutputMap,
+  Klass,
 } from 'lexical';
 import { HeadingNode } from '@lexical/rich-text';
 
-export const htmlExportMap = new Map<
-  KlassConstructor<typeof LexicalNode>,
+export const htmlExportMap: DOMExportOutputMap = new Map<
+  Klass<LexicalNode>,
   (editor: LexicalEditor, target: LexicalNode) => DOMExportOutput
 >([
   [
@@ -37,7 +38,7 @@ export const htmlExportMap = new Map<
             return element?.textContent as unknown as Text;
           }
 
-          return element;
+          return element as HTMLElement | Text | null | undefined;
         },
       };
     },

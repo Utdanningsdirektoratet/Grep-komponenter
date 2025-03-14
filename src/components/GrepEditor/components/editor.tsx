@@ -5,7 +5,7 @@ import {
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import LexicalErrorBoundary from '@lexical/react/LexicalErrorBoundary';
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { EditorRefPlugin } from '@lexical/react/LexicalEditorRefPlugin';
 import { HeadingNode } from '@lexical/rich-text';
@@ -77,7 +77,7 @@ export default function Editor({
     }
   };
 
-  if (editorRef === undefined) {
+  if (!editorRef) {
     editorRef = useRef<LexicalEditor>(null);
   }
 
