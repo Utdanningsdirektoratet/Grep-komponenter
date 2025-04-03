@@ -10,7 +10,7 @@ import {
 } from '../utils/identity-element';
 
 import Context from '.';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 const defaultSelector = [...new Array(9)]
   .map((_, i) => `h${i + 1}:not([role="presentation"])`)
