@@ -18,13 +18,15 @@ export const GrepTablePagination: React.FunctionComponent<
     <TablePagination
       classes={classes}
       rowsPerPageOptions={props.rowsPerPageOptions}
-      SelectProps={{
-        inputProps: {
-          title: 'Velg antall elementer',
-        },
-        style: {
-          gridArea: 'left',
-          justifySelf: 'start',
+      slotProps={{
+        select: {
+          inputProps: {
+            title: 'Velg antall elementer',
+          },
+          style: {
+            gridArea: 'left',
+            justifySelf: 'start',
+          },
         },
       }}
       ActionsComponent={(actions) => (

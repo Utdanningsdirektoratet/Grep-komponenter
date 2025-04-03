@@ -30,7 +30,7 @@ export { default as SortableTable } from './components/SortableTable';
 export { default as GrepEditor } from './components/GrepEditor';
 export { default as AppBar } from './components/AppBar/AppBar';
 
-export { ParseableDate } from './utils/dateHelper';
+export type { ParseableDate } from './utils/dateHelper';
 export { Utils };
 
 export * from './components';
