@@ -31,9 +31,11 @@ const LinkList: React.FC<Props> = (props) => (
           >
             <ListItemText
               primary={page.label}
-              primaryTypographyProps={{
-                color: 'primary',
-                style: { fontSize: 18 },
+              slotProps={{
+                primary: {
+                  color: 'primary',
+                  style: { fontSize: 18 },
+                }
               }}
             />
             <ListItemIcon style={{ justifyContent: 'flex-end' }}>

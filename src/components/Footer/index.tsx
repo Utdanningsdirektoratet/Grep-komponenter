@@ -42,14 +42,16 @@ const Footer: React.FC<FooterProps> = ({
       <ListItemText
         className={classes.itemText}
         primary={item.label}
-        primaryTypographyProps={{
-          style: { fontSize: 14, fontFamily: 'Montserrat', fontWeight: 400 },
+        slotProps={{
+          primary: {
+            style: { fontSize: 14, fontFamily: 'Montserrat', fontWeight: 400 },
+          },
         }}
       />
     );
 
   return (
-    <Box className={classes.footer} role="contentinfo">
+    <footer className={classes.footer}>
       <Box className={classes.content}>
         <a href={udirLink}>
           <img
@@ -69,10 +71,9 @@ const Footer: React.FC<FooterProps> = ({
           <List className={classes.list}>
             {items.map((item, i) => (
               <ListItem
-                key={i}
+                key={i + item.label}
                 classes={{
                   root: classes.item,
-                  //button: onClickItem ? classes.itemBtn : undefined,
                 }}
               >
                 {item.render
@@ -83,7 +84,7 @@ const Footer: React.FC<FooterProps> = ({
           </List>
         </Container>
       </Box>
-    </Box>
+    </footer>
   );
 };
 
