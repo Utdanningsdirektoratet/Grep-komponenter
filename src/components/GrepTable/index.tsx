@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useCallback } from 'react';
+import React, { BaseSyntheticEvent, JSX, useCallback } from 'react';
 import { Key } from 'ts-keycode-enum';
 
 import MoreVert from '@mui/icons-material/MoreVert';

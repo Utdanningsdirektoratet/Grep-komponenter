@@ -26,7 +26,7 @@ export interface Properties {
   disableNewlines?: boolean;
   stripPastedStyles?: boolean;
   blockPasting?: boolean;
-  editorRef?: RefObject<LexicalEditor>;
+  editorRef?: RefObject<LexicalEditor | null | undefined>;
   /**
    * Undefined: allow all styles.
    * Empty array: disable all styles.
