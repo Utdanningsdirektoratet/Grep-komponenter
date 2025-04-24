@@ -16,7 +16,7 @@ export const ConfirmationServiceProvider: React.FC<{ children: ReactNode }> = ({
   const awaitingPromiseRef = React.useRef<{
     resolve: () => void;
     reject: () => void;
-  }>();
+  }>(null);
 
   const openDialog = (options: ConfirmationOptions) => {
     setConfirmationState(options);

@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, JSX } from 'react';
 import TableCell, { TableCellProps } from '@mui/material/TableCell';
 
 export interface Properties extends TableCellProps {
@@ -21,7 +21,7 @@ export function SortableTableCell({
   children,
   ...props
 }: React.PropsWithChildren<Properties>): JSX.Element {
-  const ref = useRef<HTMLElement>();
+  const ref = useRef<HTMLElement>(null);
   useMemo(() => {
     if (ref.current) {
       locked ? setDimensions(ref.current) : clearDimensions(ref.current);
