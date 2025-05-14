@@ -7,7 +7,7 @@ import {
   MenuItem,
   Toolbar,
 } from '@mui/material';
-import { Menu as MenuIcon } from '@mui/icons-material';
+import MenuIcon from '@mui/icons-material/Menu';
 import MoreVert from '@mui/icons-material/MoreVert';
 import * as React from 'react';
 
