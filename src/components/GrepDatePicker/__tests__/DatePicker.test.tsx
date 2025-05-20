@@ -32,13 +32,17 @@ describe('GrepDatePicker', () => {
   it('should render correctly (closed with helper text)', () => {
     const { getByText, getByLabelText } = render(<Component />);
     expect(getByText('HelperTextTest')).toBeInTheDocument();
-    expect(getByLabelText('DatePickerTest')).toBeInTheDocument();
+    expect(
+      getByLabelText('DatePickerTest', { selector: 'input' }),
+    ).toBeInTheDocument();
   });
 
   it('should render correctly (closed with error message)', () => {
     const { getByText, getByLabelText } = render(<Component error />);
     expect(getByText('ErrorMessageTest')).toBeInTheDocument();
-    expect(getByLabelText('DatePickerTest')).toBeInTheDocument();
+    expect(
+      getByLabelText('DatePickerTest', { selector: 'input' }),
+    ).toBeInTheDocument();
   });
 
   it('should handle open/close', async () => {

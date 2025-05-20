@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
+import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   DatePickerProps,
@@ -28,7 +28,7 @@ type InputProps = Pick<
 >;
 
 export interface GrepDatePickerProps
-  extends Omit<DatePickerProps<Dayjs>, 'value' | 'renderInput'>,
+  extends Omit<DatePickerProps, 'value' | 'renderInput'>,
     InputProps {
   value?: ParseableDate | null;
   errorMessage?: string;
