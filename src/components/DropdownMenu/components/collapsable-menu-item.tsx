@@ -89,7 +89,6 @@ export const CollapsableMenuItem: FunctionComponent<
     const event = onStatusChange('collapse');
     if (!event.defaultPrevented) {
       setOpen(false);
-      requestAnimationFrame(() => listItemRef.current?.focus());
     }
     return !event.defaultPrevented;
   }, [onStatusChange, setOpen, listItemRef]);
