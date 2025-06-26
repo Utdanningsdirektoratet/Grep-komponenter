@@ -13,15 +13,6 @@ import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
 import { useStyles } from '../styles/nav-tree-node.style';
 import { useLocation } from 'react-router';
 
-/**
- * @TODO fix later
- * cheat, https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoViewIfNeeded
- */
-declare global {
-  interface HTMLElement {
-    scrollIntoViewIfNeeded: VoidFunction;
-  }
-}
 export interface GrepTableOfContentNavTreeNodeProps {
   node: ContextTreeElement;
   className?: string;
@@ -58,8 +49,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<
   useEffect(() => {
     const link = linkRef.current;
     if (isSelected) {
-      link?.scrollIntoViewIfNeeded();
-      //setTimeout(() => link?.scrollIntoViewIfNeeded(), 2000);
+      link?.scrollIntoView({ block: 'nearest' });
     } else if (link === document.activeElement) {
       link?.blur();
     }
@@ -94,7 +84,6 @@ export const GrepTableOfContentNavTreeNode: React.FC<
         href={url}
         tabIndex={tabIndex}
         onClick={(event: React.MouseEvent) => {
-          console.debug('node click', node);
           event.preventDefault();
           event.stopPropagation();
           doSelect(true);

@@ -159,7 +159,8 @@
     "ts-keycode-enum": "^1.0.6",
     "tslib": "^2.2.0",
     "tss-react": "^4.9.15",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "whatwg-fetch": "^3.6.20"
   },
   "files": [
     "dist",
@@ -177,7 +178,7 @@
     "@mui/x-date-pickers": "^8.3.0",
     "dayjs": "^1.11.10",
     "lexical": "^0.27.2",
-    "react-router": "^7.6.0"
+    "react-router": "7.x"
   },
   "overrides": {
     "fork-ts-checker-webpack-plugin": "^6.5.3",
