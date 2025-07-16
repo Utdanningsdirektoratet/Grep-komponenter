@@ -26,16 +26,15 @@ export default {
   ],
 };
 
-export const Standard = () => <Component />;
-
-Standard.story = {
+export const Standard = {
+  render: () => <Component />,
   name: 'standard',
 };
 
-export const WithCustomActions = () => (
-  <Component actions={[<Button>Hei</Button>, <Button>Hade</Button>]} />
-);
+export const WithCustomActions = {
+  render: () => (
+    <Component actions={[<Button>Hei</Button>, <Button>Hade</Button>]} />
+  ),
 
-WithCustomActions.story = {
   name: 'with custom actions',
 };

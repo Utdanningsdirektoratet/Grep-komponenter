@@ -55,44 +55,44 @@ export default {
   excludeStories: ['v0colors'],
 };
 
-export const WithContent = () => {
-  return (
-    <Box display="flex" flexDirection="column">
-      <AppBar
-        appTitle="Læreplanutvikleren"
-        environmentTitle={'UTVIKLING'}
-        colors={v0colors}
-        currentPath="/"
-        menuItems={navbarPages}
-        userMenuItems={[
-          {
-            id: 'profile',
-            action: () => {
-              console.log('profile');
+export const WithContent = {
+  render: () => {
+    return (
+      <Box display="flex" flexDirection="column">
+        <AppBar
+          appTitle="Læreplanutvikleren"
+          environmentTitle={'UTVIKLING'}
+          colors={v0colors}
+          currentPath="/"
+          menuItems={navbarPages}
+          userMenuItems={[
+            {
+              id: 'profile',
+              action: () => {
+                console.log('profile');
+              },
+              label: 'Profil',
             },
-            label: 'Profil',
-          },
-          {
-            id: 'manual',
-            href: '/test.docx',
-            isAnchor: true,
-            label: 'Test',
-          },
-          {
-            id: 'logout',
-            action: () => {
-              console.log('logout');
+            {
+              id: 'manual',
+              href: '/test.docx',
+              isAnchor: true,
+              label: 'Test',
             },
-            label: 'Logg ut',
-          },
-        ]}
-        username="Grep bruker"
-        userRole="Systemadministrator"
-      />
-    </Box>
-  );
-};
+            {
+              id: 'logout',
+              action: () => {
+                console.log('logout');
+              },
+              label: 'Logg ut',
+            },
+          ]}
+          username="Grep bruker"
+          userRole="Systemadministrator"
+        />
+      </Box>
+    );
+  },
 
-WithContent.story = {
   name: 'with content',
 };

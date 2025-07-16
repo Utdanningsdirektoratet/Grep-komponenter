@@ -58,122 +58,128 @@ export default {
   excludeStories: ['v0colors'],
 };
 
-export const Default = () => {
-  const navigate = useNavigate();
-  const [where, setWhere] = React.useState<string>('/elsewhere');
-  const [count, setCount] = React.useState<number>(0);
-  const props: NavGuardProperties = {
-    when: true,
-    title: `Confirm navigation from: ${where}`,
-    txt: 'You have created or unstored data, leaving this page will discard all changes!',
-    txtDiscard: 'Discard',
-    txtCancel: 'Cancel',
-    txtSave: 'Save',
-    onCancel: () => {
-      setWhere('CancelLocation' + count);
-      setCount(count + 1);
-    },
-    onDiscard: () => {
-      setWhere('DiscardLocation' + count);
-      setCount(count + 1);
-    },
-    onSave: () => {
-      setWhere('SaveLocation' + count);
-      setCount(count + 1);
-    },
-  };
-  return (
-    <Box>
-      <NavGuard {...props} />
-      <Button onClick={() => navigate(where)}>Test me</Button>
-    </Box>
-  );
+export const Default = {
+  render: () => {
+    const navigate = useNavigate();
+    const [where, setWhere] = React.useState<string>('/elsewhere');
+    const [count, setCount] = React.useState<number>(0);
+    const props: NavGuardProperties = {
+      when: true,
+      title: `Confirm navigation from: ${where}`,
+      txt: 'You have created or unstored data, leaving this page will discard all changes!',
+      txtDiscard: 'Discard',
+      txtCancel: 'Cancel',
+      txtSave: 'Save',
+      onCancel: () => {
+        setWhere('CancelLocation' + count);
+        setCount(count + 1);
+      },
+      onDiscard: () => {
+        setWhere('DiscardLocation' + count);
+        setCount(count + 1);
+      },
+      onSave: () => {
+        setWhere('SaveLocation' + count);
+        setCount(count + 1);
+      },
+    };
+    return (
+      <Box>
+        <NavGuard {...props} />
+        <Button onClick={() => navigate(where)}>Test me</Button>
+      </Box>
+    );
+  },
+
+  name: 'Default',
 };
 
-Default.storyName = 'Default';
-
-export const WithAppBar = () => {
-  const props: NavGuardProperties = {
-    when: true,
-    title: 'Confirm navigation',
-    txt: 'You have created or unstored data, leaving this page will discard all changes!',
-    txtDiscard: 'Discard',
-    txtCancel: 'Cancel',
-    txtSave: 'Save',
-    onSave: () => console.log('Save clicked'),
-    onDiscard: () => console.log('Discard clicked'),
-    onCancel: () => console.log('Cancel clicked'),
-  };
-  const location = useLocation();
-  return (
-    <Box display="flex" flexDirection="column">
-      <NavGuard {...props} />
-      <AppBar
-        appTitle="Læreplanutvikleren"
-        environmentTitle={'STORYBOOK'}
-        colors={v0colors}
-        currentPath="/iframe.html"
-        menuItems={navbarPages}
-        userMenuItems={[
-          {
-            id: 'doesNotWork',
-            action: () => {
-              console.log('doesNotWork');
+export const WithAppBar = {
+  render: () => {
+    const props: NavGuardProperties = {
+      when: true,
+      title: 'Confirm navigation',
+      txt: 'You have created or unstored data, leaving this page will discard all changes!',
+      txtDiscard: 'Discard',
+      txtCancel: 'Cancel',
+      txtSave: 'Save',
+      onSave: () => console.log('Save clicked'),
+      onDiscard: () => console.log('Discard clicked'),
+      onCancel: () => console.log('Cancel clicked'),
+    };
+    const location = useLocation();
+    return (
+      <Box display="flex" flexDirection="column">
+        <NavGuard {...props} />
+        <AppBar
+          appTitle="Læreplanutvikleren"
+          environmentTitle={'STORYBOOK'}
+          colors={v0colors}
+          currentPath="/iframe.html"
+          menuItems={navbarPages}
+          userMenuItems={[
+            {
+              id: 'doesNotWork',
+              action: () => {
+                console.log('doesNotWork');
+              },
+              label: 'DoesNotWork',
             },
-            label: 'DoesNotWork',
-          },
-        ]}
-        username="Grep bruker"
-        userRole="something"
-      />
-      <h1>Current Location: {location.pathname}</h1>
-    </Box>
-  );
+          ]}
+          username="Grep bruker"
+          userRole="something"
+        />
+        <h1>Current Location: {location.pathname}</h1>
+      </Box>
+    );
+  },
+
+  name: 'With AppBar',
 };
 
-WithAppBar.storyName = 'With AppBar';
-
-export const WithExclude = () => {
-  const props: NavGuardProperties = {
-    when: true,
-    exclude: [
-      { current: '/metadata', next: '/admin' },
-      { current: '/admin', next: '/metadata' },
-    ],
-    title: 'Confirm navigation',
-    txt: 'You have created or unstored data, leaving this page will discard all changes!',
-    txtDiscard: 'Discard',
-    txtCancel: 'Cancel',
-    txtSave: 'Save',
-    onSave: () => console.log('Save clicked'),
-    onDiscard: () => console.log('Discard clicked'),
-    onCancel: () => console.log('Cancel clicked'),
-  };
-  const location = useLocation();
-  return (
-    <Box display="flex" flexDirection="column">
-      <NavGuard {...props} />
-      <AppBar
-        appTitle="Læreplanutvikleren"
-        environmentTitle={'STORYBOOK'}
-        colors={v0colors}
-        currentPath="/iframe.html"
-        menuItems={navbarPages}
-        userMenuItems={[
-          {
-            id: 'doesNotWork',
-            action: () => {
-              console.log('doesNotWork');
+export const WithExclude = {
+  render: () => {
+    const props: NavGuardProperties = {
+      when: true,
+      exclude: [
+        { current: '/metadata', next: '/admin' },
+        { current: '/admin', next: '/metadata' },
+      ],
+      title: 'Confirm navigation',
+      txt: 'You have created or unstored data, leaving this page will discard all changes!',
+      txtDiscard: 'Discard',
+      txtCancel: 'Cancel',
+      txtSave: 'Save',
+      onSave: () => console.log('Save clicked'),
+      onDiscard: () => console.log('Discard clicked'),
+      onCancel: () => console.log('Cancel clicked'),
+    };
+    const location = useLocation();
+    return (
+      <Box display="flex" flexDirection="column">
+        <NavGuard {...props} />
+        <AppBar
+          appTitle="Læreplanutvikleren"
+          environmentTitle={'STORYBOOK'}
+          colors={v0colors}
+          currentPath="/iframe.html"
+          menuItems={navbarPages}
+          userMenuItems={[
+            {
+              id: 'doesNotWork',
+              action: () => {
+                console.log('doesNotWork');
+              },
+              label: 'DoesNotWork',
             },
-            label: 'DoesNotWork',
-          },
-        ]}
-        username="Grep bruker"
-        userRole="something"
-      />
-      <h1>Current Location: {location.pathname}</h1>
-    </Box>
-  );
-};
+          ]}
+          username="Grep bruker"
+          userRole="something"
+        />
+        <h1>Current Location: {location.pathname}</h1>
+      </Box>
+    );
+  },
 
-WithExclude.storyName = 'With Exclude';
+  name: 'With Exclude',
+};

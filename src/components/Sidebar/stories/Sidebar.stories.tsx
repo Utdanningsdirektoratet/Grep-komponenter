@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from '..';
 import { NavigationProps } from '../../AppBarNavList';
 import Assignment from '@mui/icons-material/Assignment';
@@ -47,37 +47,33 @@ export default {
   excludeStories: ['adminPages'],
 };
 
-export const Standard = () => {
-  const [pageId, setPageId] = React.useState(4);
-  return (
-    <Sidebar
-      pages={adminPages}
-      currentPageId={pageId}
-      onPageClick={(page) => {
-        setPageId(page.id), console.log(page);
-      }}
-    />
-  );
-};
+export const Standard = {
+  render: () => {
+    const [pageId, setPageId] = useState<number>();
+    return (
+      <Sidebar
+        pages={adminPages}
+        currentPageId={pageId}
+        onPageClick={(page) => (setPageId(page.id), console.log(page))}
+      />
+    );
+  },
 
-Standard.story = {
   name: 'Standard',
 };
 
-export const ExpandAndClick = () => {
-  const [pageId, setPageId] = React.useState(4);
-  return (
-    <Sidebar
-      pages={adminPages}
-      currentPageId={pageId}
-      onPageClick={(page) => {
-        setPageId(page.id), console.log(page);
-      }}
-      expandOnIcon
-    />
-  );
-};
+export const ExpandAndClick = {
+  render: () => {
+    const [pageId, setPageId] = useState<number>();
+    return (
+      <Sidebar
+        pages={adminPages}
+        currentPageId={pageId}
+        onPageClick={(page) => (setPageId(page.id), console.log(page))}
+        expandOnIcon
+      />
+    );
+  },
 
-ExpandAndClick.story = {
   name: 'Expand on icon only',
 };

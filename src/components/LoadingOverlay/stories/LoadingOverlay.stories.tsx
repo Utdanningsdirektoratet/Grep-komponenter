@@ -6,20 +6,20 @@ export default {
   title: 'LoadingOverlay',
 };
 
-export const Standard = () => {
-  const [show, setShow] = React.useState(false);
+export const Standard = {
+  render: () => {
+    const [show, setShow] = React.useState(false);
 
-  return (
-    <LoadingOverlay show={show}>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => setShow(!show)}
-      >{`Turn ${show ? 'off' : 'on'}`}</Button>
-    </LoadingOverlay>
-  );
-};
+    return (
+      <LoadingOverlay show={show}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setShow(!show)}
+        >{`Turn ${show ? 'off' : 'on'}`}</Button>
+      </LoadingOverlay>
+    );
+  },
 
-Standard.story = {
   name: 'standard',
 };
