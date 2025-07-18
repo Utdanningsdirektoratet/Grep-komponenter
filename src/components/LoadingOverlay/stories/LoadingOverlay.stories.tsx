@@ -23,3 +23,19 @@ export const Standard = {
 
   name: 'standard',
 };
+
+export const CustomOverlay = {
+  render: () => {
+    const [show, setShow] = React.useState(false);
+
+    return (
+      <LoadingOverlay overlay="rgb(255, 0, 0)" show={show}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setShow(!show)}
+        >{`Turn ${show ? 'off' : 'on'}`}</Button>
+      </LoadingOverlay>
+    );
+  },
+};

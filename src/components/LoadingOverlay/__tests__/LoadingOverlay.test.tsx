@@ -34,8 +34,10 @@ describe('LoadingOverlay', () => {
   });
 
   it('should render correctly with custom overlay', () => {
-    const { getByTestId } = render(<Component overlay="red" />);
-    expect(getByTestId('overlay')).toHaveStyle('background-color: red');
+    const { getByTestId } = render(<Component overlay="rgb(255, 0, 0)" />);
+    expect(getByTestId('overlay')).toHaveStyle(
+      'background-color: rgb(255, 0, 0)',
+    );
   });
 
   it('should render correctly with minHeight', () => {
