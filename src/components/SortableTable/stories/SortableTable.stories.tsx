@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState } from '@storybook/preview-api';
+import { useState } from 'storybook/preview-api';
 import { Checkbox, Box, FormControlLabel } from '@mui/material';
 
 import SortableTable from '..';

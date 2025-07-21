@@ -2,7 +2,6 @@ import * as React from 'react';
 import { MainLayout, Footer } from '../..';
 import { Switch } from '@mui/material';
 import { FooterItem } from '..';
-import { UdirLogo } from '../../../assets';
 
 export const footerItems: FooterItem[] = [
   {
@@ -39,7 +38,7 @@ export default {
 export const FooterWithContent = () => (
   <MainLayout>
     <Footer
-      udirLogo={UdirLogo}
+      udirLogo={'src/assets/utdanningsdirektoratet-logo-rgb-neg.png'}
       udirLink="https://www.udir.no"
       serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
       items={footerItems}
@@ -51,14 +50,13 @@ FooterWithContent.story = {
   name: 'Footer with content',
 };
 
-
 export const FooterWithContentLongerThan100 = () => (
   <div style={{ display: 'block', width: '100%' }}>
     <div
       style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
     ></div>
     <Footer
-      udirLogo={UdirLogo}
+      udirLogo={'src/assets/utdanningsdirektoratet-logo-rgb-neg.png'}
       udirLink="https://www.udir.no"
       serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
       items={footerItems}
