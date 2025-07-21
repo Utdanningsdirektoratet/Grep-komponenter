@@ -48,13 +48,6 @@ const navbarPages: IAuthorizedPage[] = [
     exact: true,
     translatedTextRef: 'Administrasjon',
   },
-  {
-    name: 'admin2',
-    path: '/admin2',
-    redirectUrl: '/',
-    exact: true,
-    translatedTextRef: 'Administrasjon2',
-  },
 ];
 
 export default {
