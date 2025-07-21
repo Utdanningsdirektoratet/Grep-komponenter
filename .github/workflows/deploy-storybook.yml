@@ -15,6 +15,9 @@ jobs:
   deploy:
     name: Deploy storybook
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.build-publish.outputs.page_url }}
     steps:
       - uses: actions/checkout@v3
 
@@ -24,7 +27,7 @@ jobs:
           node-version: '20'
           cache: npm
         # https://storybook.js.org/docs/7/sharing/publish-storybook#github-pages
-      - id: deploy-storybook
+      - id: build-publish
         env:
           GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
