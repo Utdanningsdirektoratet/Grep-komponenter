@@ -25,6 +25,8 @@ jobs:
           cache: npm
         # https://storybook.js.org/docs/7/sharing/publish-storybook#github-pages
       - id: deploy-storybook
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         with:
           path: storybook-static # default: dist/storybook
