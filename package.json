@@ -24,8 +24,7 @@
     "test:ci": "jest --runInBand --verbose",
     "storybook": "storybook dev -p 9009",
     "build-storybook": "storybook build",
-    "prepare": "husky",
-    "deploy-storybook": "storybook-to-ghpages"
+    "prepare": "husky"
   },
   "release": {
     "plugins": [

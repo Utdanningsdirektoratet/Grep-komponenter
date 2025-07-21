@@ -7,6 +7,10 @@ on:
       - 'src/**'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
   deploy:
     name: Deploy storybook
@@ -19,11 +23,8 @@ jobs:
         with:
           node-version: '20'
           cache: npm
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Deploy storybook
-        run: npm run deploy-storybook -- --ci
-        env:
-          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
+        # https://storybook.js.org/docs/7/sharing/publish-storybook#github-pages
+      - id: deploy-storybook
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
+        with:
+          path: dist # default: dist/storybook
