@@ -17,8 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # https://storybook.js.org/docs/7/sharing/publish-storybook#github-pages
-      - id: build-publish
-        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
+      # Manual Checkout
+      - uses: actions/checkout@v3
+
+      # Set up Node
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      #👇 Add Storybook build and deploy to GitHub Pages as a step in the workflow
+      - uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         with:
           path: storybook-static # default: dist/storybook
-
+          checkout: false # default: true
