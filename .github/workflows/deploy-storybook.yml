@@ -27,4 +27,6 @@ jobs:
       - id: deploy-storybook
         uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
         with:
-          path: dist # default: dist/storybook
+          path: storybook-static # default: dist/storybook
+          checkout: false # default: true
+
