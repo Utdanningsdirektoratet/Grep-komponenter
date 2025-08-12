@@ -9,6 +9,9 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
+    permissions:
+      contents: read
+      pages: write
     name: Deploy storybook
     runs-on: ubuntu-latest
     steps:
