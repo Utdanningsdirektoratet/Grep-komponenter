@@ -6,14 +6,14 @@ export default {
   title: 'Table of contents',
 };
 
-export const Default = () => {
-  return (
-    <Scaffold>
-      <Standard />
-    </Scaffold>
-  );
-};
+export const Default = {
+  render: () => {
+    return (
+      <Scaffold>
+        <Standard />
+      </Scaffold>
+    );
+  },
 
-Default.story = {
   name: 'standard',
 };

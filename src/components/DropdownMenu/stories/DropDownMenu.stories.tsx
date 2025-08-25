@@ -1,7 +1,6 @@
-import * as React from 'react';
+import React, { useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import { useState, useRef } from '@storybook/preview-api';
 
 import { DropdownMenuItem, DropdownMenu } from '../..';
 import { makeStyles } from '../../../styling';
@@ -107,31 +106,31 @@ export default {
   excludeStories: ['menuItems'],
 };
 
-export const Standard = () => {
-  const [open, setOpen] = useState(false);
-  const menuAnchor = useRef(null);
-  const { classes } = makeStyles()({
-    paper: {
-      width: '200px',
-    },
-  })();
+export const Standard = {
+  render: () => {
+    const [open, setOpen] = useState(false);
+    const menuAnchor = useRef(null);
+    const { classes } = makeStyles()({
+      paper: {
+        width: '200px',
+      },
+    })();
 
-  return (
-    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-      <Button ref={menuAnchor} onClick={() => setOpen(!open)}>
-        menu
-      </Button>
-      <DropdownMenu
-        open={open}
-        anchorEl={menuAnchor.current}
-        menuItems={menuItems}
-        onClose={() => setOpen(false)}
-        classes={classes}
-      />
-    </Box>
-  );
-};
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button ref={menuAnchor} onClick={() => setOpen(!open)}>
+          menu
+        </Button>
+        <DropdownMenu
+          open={open}
+          anchorEl={menuAnchor.current}
+          menuItems={menuItems}
+          onClose={() => setOpen(false)}
+          classes={classes}
+        />
+      </Box>
+    );
+  },
 
-Standard.story = {
   name: 'standard',
 };

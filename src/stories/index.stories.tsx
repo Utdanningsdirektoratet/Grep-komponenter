@@ -107,25 +107,25 @@ export default {
   ],
 };
 
-export const Dashboard = () => {
-  return (
-    <Box display="flex">
-      <ContainedLinkList
-        title={'Mine tilganger'}
-        pages={myPages}
-        onPageClick={(page) => console.log('clicked on ', page.label)}
-      />
-      <GrepTableCard
-        title={'Mine læreplaner'}
-        columns={tableColumns}
-        data={data}
-        onRowClick={(id) => console.log('clicked on ', id)}
-      />
-    </Box>
-  );
-};
+export const Dashboard = {
+  render: () => {
+    return (
+      <Box display="flex">
+        <ContainedLinkList
+          title={'Mine tilganger'}
+          pages={myPages}
+          onPageClick={(page) => console.log('clicked on ', page.label)}
+        />
+        <GrepTableCard
+          title={'Mine læreplaner'}
+          columns={tableColumns}
+          data={data}
+          onRowClick={(id) => console.log('clicked on ', id)}
+        />
+      </Box>
+    );
+  },
 
-Dashboard.story = {
   name: 'Dashboard',
 };
 

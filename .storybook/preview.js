@@ -90,3 +90,4 @@ export const decorators = [
     </Provider>)
   }
 ];
+export const tags = ['autodocs'];
