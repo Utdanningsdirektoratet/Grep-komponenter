@@ -151,7 +151,7 @@
     "tslib": "^2.2.0",
     "tss-react": "^4.9.15",
     "typescript": "^5.4.5",
-    "@storybook/addon-docs": "^9.0.17"
+    "whatwg-fetch": "^3.6.20"
   },
   "files": [
     "dist",

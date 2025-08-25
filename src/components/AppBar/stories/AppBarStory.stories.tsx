@@ -19,7 +19,7 @@ export const v0colors = {
   lightGrey: '#DCDCDC',
 };
 
-const navbarPages: IAuthorizedPage[] = [
+export const navbarPages: IAuthorizedPage[] = [
   {
     name: 'home',
     path: '/',
@@ -30,69 +30,68 @@ const navbarPages: IAuthorizedPage[] = [
   {
     name: 'curriculums',
     path: '/curriculums',
-    redirectUrl: '/',
+    redirectUrl: '/curriculums',
     exact: true,
     translatedTextRef: 'Læreplaner',
   },
   {
     name: 'Metadata',
     path: '/metadata',
-    redirectUrl: '/',
+    redirectUrl: '/metadata',
     exact: true,
     translatedTextRef: 'Metadata',
   },
   {
     name: 'admin',
     path: '/admin',
-    redirectUrl: '/',
+    redirectUrl: '/admin',
     exact: true,
     translatedTextRef: 'Administrasjon',
   },
 ];
 
+const userMenuItems = [
+  {
+    id: 'profile',
+    action: () => {
+      console.log('profile');
+    },
+    label: 'Profil',
+  },
+  {
+    id: 'manual',
+    href: '/test.docx',
+    isAnchor: true,
+    label: 'Test',
+  },
+  {
+    id: 'logout',
+    action: () => {
+      console.log('logout');
+    },
+    label: 'Logg ut',
+  },
+];
+
 export default {
   title: 'AppBar',
-  excludeStories: ['v0colors'],
+  excludeStories: ['v0colors', 'navbarPages'],
 };
 
 export const WithContent = {
-  render: () => {
-    return (
-      <Box display="flex" flexDirection="column">
-        <AppBar
-          appTitle="Læreplanutvikleren"
-          environmentTitle={'UTVIKLING'}
-          colors={v0colors}
-          currentPath="/"
-          menuItems={navbarPages}
-          userMenuItems={[
-            {
-              id: 'profile',
-              action: () => {
-                console.log('profile');
-              },
-              label: 'Profil',
-            },
-            {
-              id: 'manual',
-              href: '/test.docx',
-              isAnchor: true,
-              label: 'Test',
-            },
-            {
-              id: 'logout',
-              action: () => {
-                console.log('logout');
-              },
-              label: 'Logg ut',
-            },
-          ]}
-          username="Grep bruker"
-          userRole="Systemadministrator"
-        />
-      </Box>
-    );
-  },
-
+  render: () => (
+    <Box display="flex" flexDirection="column">
+      <AppBar
+        appTitle="Læreplanutvikleren"
+        environmentTitle={'UTVIKLING'}
+        colors={v0colors}
+        currentPath="/"
+        menuItems={navbarPages}
+        userMenuItems={userMenuItems}
+        username="Grep bruker"
+        userRole="Systemadministrator"
+      />
+    </Box>
+  ),
   name: 'with content',
 };

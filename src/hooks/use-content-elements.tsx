@@ -60,12 +60,9 @@ export const useContentElements = (
     // start observing
     observer.observe(container, config);
 
-    console.debug('observing container', container);
-
     // stop observing when unmounted
     return () => {
       observer.disconnect();
-      console.debug('observing disconnected', container);
     };
   }, [container, config, getElements]);
 

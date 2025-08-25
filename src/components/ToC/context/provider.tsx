@@ -110,10 +110,7 @@ export const GrepTableOfContentProvider: React.FC<
     }, 50);
     target.addEventListener('scroll', onScroll, false);
 
-    console.debug('scroll observer attached');
-
     return () => {
-      console.debug('scroll observer detached');
       return target.removeEventListener('scroll', onScroll);
     };
   }, [scrollTarget, setSelected, offsetTop, getViewportElement]);
@@ -126,14 +123,12 @@ export const GrepTableOfContentProvider: React.FC<
   // observe changes in hash
   useEffect(() => {
     if (hash && elements[hash]) {
-      console.debug('anchor change, setting selected element');
       setSelected(elements[hash], true);
     }
   }, [hash, setSelected]);
 
   // set selected element on initial load
   if (!initialized && elements && elements[hash]) {
-    console.debug('setting initial selected element');
     setSelected(elements[hash], true);
     setInitialized(true);
   }
