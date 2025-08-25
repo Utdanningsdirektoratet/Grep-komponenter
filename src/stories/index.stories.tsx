@@ -97,7 +97,7 @@ export default {
         </AppBar>
         <Container>{storyFn()}</Container>
         <Footer
-          udirLogo="test"
+          udirLogo="src/assets/utdanningsdirektoratet-logo-rgb-neg.png"
           udirLink="https://www.udir.no"
           serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
           items={footerItems}

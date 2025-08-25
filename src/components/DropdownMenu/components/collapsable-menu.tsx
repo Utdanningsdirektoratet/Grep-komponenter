@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, FunctionComponent } from 'react';
 import { TransitionProps } from '@mui/material/transitions';
 import { Collapse, MenuList } from '@mui/material';
-import { Key } from 'ts-keycode-enum';
+import { Key } from '../../../assets/keycodeEnum';
 
 interface Properties extends TransitionProps {
   className?: string;
@@ -12,11 +12,11 @@ export const CollapsableMenu: FunctionComponent<
   PropsWithChildren<Properties>
 > = ({ children, onMenuClose, ...collapseProps }) => {
   const onKeyDown = (e: React.KeyboardEvent) => {
-    switch (e.keyCode) {
+    switch (e.key) {
       case Key.Escape:
         onMenuClose && onMenuClose();
         return;
-      case Key.LeftArrow:
+      case Key.ArrowLeft:
         onMenuClose && onMenuClose();
     }
     e.stopPropagation();
