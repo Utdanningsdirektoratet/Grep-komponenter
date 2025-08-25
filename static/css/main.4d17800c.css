@@ -1,0 +1,25 @@
+html, body {
+    height: 100%;
+    padding: 0;
+    font-size: 14px;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#root {
+    display: flex;
+    flex: 1 1;
+    height: 100%;
+}
+
+p {
+    margin: .5rem 0
+}
+
+.GrepEditor-italic {
+    font-style: italic;
+}
+.GrepEditor-bold {
+    font-style: bold;
+}
+
+/*# sourceMappingURL=main.4d17800c.css.map*/
