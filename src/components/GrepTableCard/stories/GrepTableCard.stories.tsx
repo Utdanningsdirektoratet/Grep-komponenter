@@ -41,15 +41,15 @@ export default {
   excludeStories: ['data'],
 };
 
-export const Standard = () => (
-  <GrepTableCard
-    data={data}
-    columns={tableColumns}
-    title={'Mine læreplaner'}
-    onRowClick={(id) => console.log('clicked on ', id)}
-  />
-);
+export const Standard = {
+  render: () => (
+    <GrepTableCard
+      data={data}
+      columns={tableColumns}
+      title={'Mine læreplaner'}
+      onRowClick={(id) => console.log('clicked on ', id)}
+    />
+  ),
 
-Standard.story = {
   name: 'standard',
 };

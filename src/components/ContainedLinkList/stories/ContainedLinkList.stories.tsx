@@ -31,14 +31,14 @@ export default {
   excludeStories: ['myPages'],
 };
 
-export const Standard = () => (
-  <ContainedLinkList
-    title={'Mine tilganger'}
-    pages={myPages}
-    onPageClick={(page) => console.log('clicked on ', page.label)}
-  />
-);
+export const Standard = {
+  render: () => (
+    <ContainedLinkList
+      title={'Mine tilganger'}
+      pages={myPages}
+      onPageClick={(page) => console.log('clicked on ', page.label)}
+    />
+  ),
 
-Standard.story = {
   name: 'standard',
 };

@@ -35,35 +35,34 @@ export default {
   excludeStories: ['footerItems'],
 };
 
-export const FooterWithContent = () => (
-  <MainLayout>
-    <Footer
-      udirLogo={'src/assets/utdanningsdirektoratet-logo-rgb-neg.png'}
-      udirLink="https://www.udir.no"
-      serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
-      items={footerItems}
-    />
-  </MainLayout>
-);
+export const FooterWithContent = {
+  render: () => (
+    <MainLayout>
+      <Footer
+        udirLogo={'src/assets/utdanningsdirektoratet-logo-rgb-neg.png'}
+        udirLink="https://www.udir.no"
+        serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+        items={footerItems}
+      />
+    </MainLayout>
+  ),
 
-FooterWithContent.story = {
   name: 'Footer with content',
 };
+export const FooterWithContentLongerThan100 = {
+  render: () => (
+    <div style={{ display: 'block', width: '100%' }}>
+      <div
+        style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
+      ></div>
+      <Footer
+        udirLogo={'src/assets/utdanningsdirektoratet-logo-rgb-neg.png'}
+        udirLink="https://www.udir.no"
+        serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
+        items={footerItems}
+      />
+    </div>
+  ),
 
-export const FooterWithContentLongerThan100 = () => (
-  <div style={{ display: 'block', width: '100%' }}>
-    <div
-      style={{ height: '120vh', backgroundColor: '', display: 'flex' }}
-    ></div>
-    <Footer
-      udirLogo={'src/assets/utdanningsdirektoratet-logo-rgb-neg.png'}
-      udirLink="https://www.udir.no"
-      serviceNameText="Tjenestenavn er levert av Utdanningsdirektoratet"
-      items={footerItems}
-    />
-  </div>
-);
-
-FooterWithContentLongerThan100.story = {
   name: 'Footer with content, longer than 100%',
 };

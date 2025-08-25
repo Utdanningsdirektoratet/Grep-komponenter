@@ -20,14 +20,14 @@ export default {
   excludeStories: ['adminPages'],
 };
 
-export const Standard = () => (
-  <LinkList
-    pages={adminPages}
-    title={'Systemadministrasjon'}
-    onPageClick={(page) => console.log('clicked on ', page.label)}
-  />
-);
+export const Standard = {
+  render: () => (
+    <LinkList
+      pages={adminPages}
+      title={'Systemadministrasjon'}
+      onPageClick={(page) => console.log('clicked on ', page.label)}
+    />
+  ),
 
-Standard.story = {
   name: 'standard',
 };

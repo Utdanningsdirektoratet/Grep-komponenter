@@ -55,114 +55,110 @@ export default {
 
 export const Standard = () => <GrepEditor />;
 
-export const CustomStyles = () => {
-  const { classes } = useStyles();
+export const CustomStyles = {
+  render: () => {
+    const { classes } = useStyles();
 
-  return <GrepEditor classes={classes} />;
-};
+    return <GrepEditor classes={classes} />;
+  },
 
-CustomStyles.story = {
   name: 'Custom styles',
 };
 
-export const CustomToolbar = () => <GrepEditor Toolbar={myToolbar} />;
-
-CustomToolbar.story = {
+export const CustomToolbar = {
+  render: () => <GrepEditor Toolbar={myToolbar} />,
   name: 'Custom toolbar',
 };
 
-export const CustomButtons = () => (
-  <GrepEditor
-    allowedStyles={['bold']}
-    helperText="Some help text"
-    onContentChange={(editorState, editor) => {
-      editorState.read(() => {
-        console.log('Lexical-text', $getTextContent());
-        console.log('Lexical-html', $generateHtmlFromNodes(editor));
-      });
-    }}
-  />
-);
+export const CustomButtons = {
+  render: () => (
+    <GrepEditor
+      allowedStyles={['bold']}
+      helperText="Some help text"
+      onContentChange={(editorState, editor) => {
+        editorState.read(() => {
+          console.log('Lexical-text', $getTextContent());
+          console.log('Lexical-html', $generateHtmlFromNodes(editor));
+        });
+      }}
+    />
+  ),
 
-CustomButtons.story = {
   name: 'Custom buttons',
 };
 
-export const PasteStrippingAndBlockedInlineStyles = () => (
-  <GrepEditor stripPastedStyles allowedStyles={[]} />
-);
+export const PasteStrippingAndBlockedInlineStyles = {
+  render: () => <GrepEditor stripPastedStyles allowedStyles={[]} />,
 
-PasteStrippingAndBlockedInlineStyles.story = {
   name: 'Paste stripping and blocked inline styles',
 };
 
-export const WithCharacterCount = () => (
-  <GrepEditor
-    showCharCount
-    helperText="Marker tekst for formatering"
-    onContentChange={(editorState, editor) => {
-      editorState.read(() => {
-        console.log('Lexical-text', $getTextContent());
-        console.log('Lexical-html', $generateHtmlFromNodes(editor));
-      });
-    }}
-  />
-);
+export const WithCharacterCount = {
+  render: () => (
+    <GrepEditor
+      showCharCount
+      helperText="Marker tekst for formatering"
+      onContentChange={(editorState, editor) => {
+        editorState.read(() => {
+          console.log('Lexical-text', $getTextContent());
+          console.log('Lexical-html', $generateHtmlFromNodes(editor));
+        });
+      }}
+    />
+  ),
 
-WithCharacterCount.story = {
   name: 'With character count',
 };
 
-export const DisableAndStripNewlines = () => (
-  <GrepEditor
-    disableNewlines
-    onContentChange={(editorState, editor) => {
-      editorState.read(() => {
-        console.log('Lexical-text', $getTextContent());
-        console.log('Lexical-html', $generateHtmlFromNodes(editor));
-      });
-    }}
-  />
-);
+export const DisableAndStripNewlines = {
+  render: () => (
+    <GrepEditor
+      disableNewlines
+      onContentChange={(editorState, editor) => {
+        editorState.read(() => {
+          console.log('Lexical-text', $getTextContent());
+          console.log('Lexical-html', $generateHtmlFromNodes(editor));
+        });
+      }}
+    />
+  ),
 
-DisableAndStripNewlines.story = {
   name: 'Disable and strip newlines',
 };
 
-export const DisablePasting = () => (
-  <GrepEditor
-    blockPasting
-    onContentChange={(editorState, editor) => {
-      editorState.read(() => {
-        console.log('Lexical-text', $getTextContent());
-        console.log('Lexical-html', $generateHtmlFromNodes(editor));
-      });
-    }}
-  />
-);
+export const DisablePasting = {
+  render: () => (
+    <GrepEditor
+      blockPasting
+      onContentChange={(editorState, editor) => {
+        editorState.read(() => {
+          console.log('Lexical-text', $getTextContent());
+          console.log('Lexical-html', $generateHtmlFromNodes(editor));
+        });
+      }}
+    />
+  ),
 
-DisablePasting.story = {
   name: 'Disable pasting',
 };
 
-export const WithLabel = () => <GrepEditor label="This is a label" />;
-
-WithLabel.story = {
+export const WithLabel = {
+  render: () => <GrepEditor label="This is a label" />,
   name: 'With label',
 };
 
-export const OnlyHeading = () => (
-  <GrepEditor html="<h3>This is an h3 tag, but it could be any heading tag between h1 and h6 based on html input.</h3>" />
-);
+export const OnlyHeading = {
+  render: () => (
+    <GrepEditor html="<h3>This is an h3 tag, but it could be any heading tag between h1 and h6 based on html input.</h3>" />
+  ),
 
-OnlyHeading.story = {
   name: 'OnlyHeading',
 };
 
-export const ReadOnly = () => (
-  <GrepEditor readOnly html="This is some text you cannot edit" />
-);
+export const ReadOnly = {
+  render: () => (
+    <GrepEditor readOnly html="This is some text you cannot edit" />
+  ),
 
-ReadOnly.story = {
   name: 'ReadOnly',
 };
