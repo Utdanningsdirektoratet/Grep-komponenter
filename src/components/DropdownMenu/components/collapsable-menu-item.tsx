@@ -8,8 +8,6 @@ import React, {
   BaseSyntheticEvent,
 } from 'react';
 
-import { Key } from 'ts-keycode-enum';
-
 import IconExpand from '@mui/icons-material/ExpandMore';
 import { Box, MenuItem, MenuItemProps, Tooltip } from '@mui/material';
 
@@ -17,6 +15,7 @@ import { CollapsableMenu } from './collapsable-menu';
 
 import { useStyles } from '../styles/collapsable-menu-item.style';
 import { TooltipPlacement } from '..';
+import { Key } from '../../../assets/keycodeEnum';
 
 /**
  * TypeError: Failed to construct 'CustomEvent': Please use the 'new' operator, this DOM object constructor cannot be called as a function.
@@ -89,15 +88,14 @@ export const CollapsableMenuItem: FunctionComponent<
     const event = onStatusChange('collapse');
     if (!event.defaultPrevented) {
       setOpen(false);
-      requestAnimationFrame(() => listItemRef.current?.focus());
     }
     return !event.defaultPrevented;
   }, [onStatusChange, setOpen, listItemRef]);
 
   const handleKey = (e: React.KeyboardEvent) => {
     if (items) {
-      switch (e.keyCode) {
-        case Key.RightArrow:
+      switch (e.key) {
+        case Key.ArrowRight:
           if (expand()) {
             e.preventDefault();
             e.stopPropagation();

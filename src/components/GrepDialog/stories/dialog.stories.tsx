@@ -2,18 +2,24 @@ import React, { JSX } from 'react';
 import { GrepDialogServiceProvider, useGrepDialog } from '..';
 import { Button, DialogContentText } from '@mui/material';
 
-const Component: React.FC<{ actions?: JSX.Element[] }> = ({ actions }) => {
+export const content = 'Some content';
+export const openText = 'Open dialog';
+export const title = 'Title text';
+
+export const Component: React.FC<{ actions?: JSX.Element[] }> = ({
+  actions,
+}) => {
   const open = useGrepDialog();
 
   const handleClick = () => {
     open({
-      title: 'Title text',
-      content: <DialogContentText>Some content</DialogContentText>,
+      title: title,
+      content: <DialogContentText>{content}</DialogContentText>,
       actions,
     });
   };
 
-  return <Button onClick={handleClick}>Open dialog</Button>;
+  return <Button onClick={handleClick}>{openText}</Button>;
 };
 
 export default {
@@ -24,18 +30,23 @@ export default {
       <GrepDialogServiceProvider>{storyFn()}</GrepDialogServiceProvider>
     ),
   ],
+  excludeStories: ['Component', 'content', 'openText', 'title'],
 };
 
-export const Standard = () => <Component />;
-
-Standard.story = {
+export const Standard = {
+  render: () => <Component />,
   name: 'standard',
 };
 
-export const WithCustomActions = () => (
-  <Component actions={[<Button>Hei</Button>, <Button>Hade</Button>]} />
-);
+export const WithCustomActions = {
+  render: () => (
+    <Component
+      actions={[
+        <Button key="Hei">Hei</Button>,
+        <Button key="Hade">Hade</Button>,
+      ]}
+    />
+  ),
 
-WithCustomActions.story = {
   name: 'with custom actions',
 };

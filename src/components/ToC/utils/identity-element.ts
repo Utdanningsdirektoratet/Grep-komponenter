@@ -3,7 +3,7 @@ export interface IdentifyElement {
 }
 
 export const generateElementId: IdentifyElement = (element: HTMLElement) => {
-  const tmpId = element.innerText.replace(/\s/g, '-').toLowerCase();
+  const tmpId = element.innerText?.replace(/\s/g, '-').toLowerCase();
   let id = tmpId,
     index = 1;
   while (document.getElementById(id)) {

@@ -28,14 +28,12 @@ export default {
   ],
 };
 
-export const Standard = () => <Component />;
-
-Standard.story = {
+export const Standard = {
+  render: () => <Component />,
   name: 'standard',
 };
 
-export const Warning = () => <Component warning />;
-
-Warning.story = {
+export const Warning = {
+  render: () => <Component warning />,
   name: 'warning',
 };

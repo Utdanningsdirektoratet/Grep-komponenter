@@ -147,8 +147,7 @@ export default {
   excludeStories: ['renderGDPRText'],
 };
 
-export const Standard = () => <GDPR>{renderGDPRText()}</GDPR>;
-
-Standard.story = {
+export const Standard = {
+  render: () => <GDPR>{renderGDPRText()}</GDPR>,
   name: 'standard',
 };

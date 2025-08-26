@@ -38,17 +38,17 @@ export const navbarPages = [
 
 export default {
   title: 'AppbarNavigationList',
-  excludeStories: ['navbarPages']
+  excludeStories: ['navbarPages'],
 };
 
-export const WithThemeAndAppbar = () => (
-  <AppBarNavList
-    pages={navbarPages}
-    selectedPage={navbarPages[0].id}
-    onChange={(number) => console.log('index: ', number)}
-  />
-);
+export const WithThemeAndAppbar = {
+  render: () => (
+    <AppBarNavList
+      pages={navbarPages}
+      selectedPage={navbarPages[0].id}
+      onChange={(number) => console.log('index: ', number)}
+    />
+  ),
 
-WithThemeAndAppbar.story = {
   name: 'with theme and appbar',
 };

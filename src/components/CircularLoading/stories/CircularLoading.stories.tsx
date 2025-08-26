@@ -5,14 +5,12 @@ export default {
   title: 'CircularLoading',
 };
 
-export const Standard = () => <CircularLoading />;
-
-Standard.story = {
+export const Standard = {
+  render: () => <CircularLoading />,
   name: 'standard',
 };
 
-export const CustomHeight = () => <CircularLoading height={200} />;
-
-CustomHeight.story = {
+export const CustomHeight = {
+  render: () => <CircularLoading height={200} />,
   name: 'custom height',
 };

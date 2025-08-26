@@ -36,4 +36,3 @@ export { Utils };
 export * from './components';
 export * from './hooks';
 export * from './styling';
-export * from './assets';

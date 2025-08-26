@@ -7,12 +7,12 @@ import React, {
   useState,
 } from 'react';
 import clsx from 'clsx';
-import { Key } from 'ts-keycode-enum';
 
 import context from '../context';
 import NavTree from './nav-tree';
 import { useStyles } from '../styles/nav.style';
 import { buildTree } from '../utils/tree-builder';
+import { Key } from '../../../assets/keycodeEnum';
 
 export interface GrepTableOfContentNavProps {
   className?: string;
@@ -42,7 +42,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
   }, [ref]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (selected && e.which === Key.Tab && e.shiftKey === false) {
+    if (selected && e.key === Key.Tab && e.shiftKey === false) {
       const tabindex = selected.getAttribute('tabindex');
       selected.setAttribute('tabindex', '0');
       selected.focus();
@@ -52,12 +52,12 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
           : selected.setAttribute('tabindex', tabindex);
       });
     }
-    if ([Key.UpArrow, Key.DownArrow].includes(e.which)) {
+    if (e.key === Key.ArrowUp || e.key === Key.ArrowDown) {
       e.preventDefault();
       e.stopPropagation();
       const nodes = Object.values(elements);
       const currentIndex = nodes.indexOf(selected!);
-      const moveIndex = e.which === Key.UpArrow ? -1 : 1;
+      const moveIndex = e.key === Key.ArrowUp ? -1 : 1;
       const next = nodes[currentIndex + moveIndex];
       next && setSelected(next, true);
       focusSelected();
@@ -66,13 +66,13 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      e.keyCode === Key.Alt && setShowKeyboardHint(true);
+      e.key === Key.Alt && setShowKeyboardHint(true);
       if (e.altKey) {
-        e.keyCode === Key.I && focusSelected();
+        e.key === Key.I && focusSelected();
       }
     };
     const onKeyUp = (e: KeyboardEvent) => {
-      e.keyCode === Key.Alt && setShowKeyboardHint(false);
+      e.key === Key.Alt && setShowKeyboardHint(false);
     };
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
