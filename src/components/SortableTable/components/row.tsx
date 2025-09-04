@@ -54,7 +54,8 @@ export function SortableTableRow<T>({
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
-            tabIndex={undefined}
+            role="row" // defined specifically to override this prop from provided.draghandleProps
+            tabIndex={undefined} // defined specifically to override this prop from provided.draghandleProps
           >
             <TableCell
               style={{ width: '45px', padding: '5px 10px' }}
