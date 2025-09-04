@@ -53,6 +53,8 @@ export function SortableTableRow<T>({
             className={classes.row}
             ref={provided.innerRef}
             {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            tabIndex={undefined}
           >
             <TableCell
               style={{ width: '45px', padding: '5px 10px' }}
