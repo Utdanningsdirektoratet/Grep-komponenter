@@ -163,7 +163,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
-    "@lexical/react": "^0.35.0",
+    "@lexical/react": "^0.36.1",
     "@mui/icons-material": "^7.1.0",
     "@mui/material": "^7.1.0",
     "@mui/x-date-pickers": "^8.3.0",
