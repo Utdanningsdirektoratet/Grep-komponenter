@@ -168,7 +168,7 @@
     "@mui/material": "^7.1.0",
     "@mui/x-date-pickers": "^8.3.0",
     "dayjs": "^1.11.10",
-    "lexical": "^0.35.0",
+    "lexical": "^0.36.1",
     "react-router": "7.x"
   },
   "overrides": {}
