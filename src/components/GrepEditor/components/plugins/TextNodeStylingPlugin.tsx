@@ -40,7 +40,6 @@ const allowBoldItalic = (node: TextNode) => {
   ) {
     node.setFormat('italic');
   } else if (
-    node.hasFormat('bold') ||
     node.hasFormat('code') ||
     node.hasFormat('highlight') ||
     node.hasFormat('strikethrough') ||

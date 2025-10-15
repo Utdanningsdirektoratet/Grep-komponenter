@@ -1,148 +1,198 @@
-import React, { useState, useMemo, useCallback, ReactNode, JSX } from 'react';
 import {
-  DragDropContext,
-  Droppable,
-  DropResult,
-  DroppableProvided,
-} from '@hello-pangea/dnd';
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
+  KeyboardSensor,
+  PointerSensor,
+  UniqueIdentifier,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
 import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
-import { TableHead, TableRow } from '@mui/material';
-import { TableCellProps } from '@mui/material/TableCell';
-
-import TableCell from './components/cell';
-import SortableTableRow from './components/row';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
+import { SortableTableRow2 } from './components/sortableTableRow';
+import { TableColumn } from '../GrepTable';
+import {
+  restrictToParentElement,
+  restrictToVerticalAxis,
+} from '@dnd-kit/modifiers';
+import useSortableTableStyles from './styles/row.style';
+import DragIndicator from '@mui/icons-material/DragIndicator';
 
 export interface CellNode {
   value: ReactNode;
   properties?: TableCellProps;
 }
 
-interface Properties<T = unknown> {
-  columns: Array<keyof T>;
-  items: T[];
+export interface dndModifiers {
+  modifiers: 'restrict';
+  dragOverlay: boolean;
+}
+
+// the extension makes the id a required prop for the generic
+interface SortableTableProperties<T extends { id: UniqueIdentifier }> {
+  columns: Array<TableColumn<T>>;
+  data: T[];
+  /** @default false */
+  header?: boolean;
+  /** @default "medium"
+   * Overrides tablecell sizes
+   */
+  size?: 'small' | 'medium';
+  /** Disables drag and drop for the component */
   disabled?: boolean;
-  identify: (item: T) => string | number;
-  headerValue?: (column: keyof T) => CellNode | ReactNode;
-  cellValue?: (column: keyof T, item: T) => CellNode | ReactNode;
   onChange?: (order: { id: string | number; index: number }[]) => void;
+  /** Restricts possibility to drag outside the table itself
+   * ref: https://docs.dndkit.com/api-documentation/modifiers */
+  modifiers?: 'restrict';
 }
 
-function reorder<T>(list: T[], startIndex: number, endIndex: number): T[] {
-  const [removed] = list.splice(startIndex, 1);
-  list.splice(endIndex, 0, removed);
-  return list;
-}
-
-function castCellNode(value: CellNode | ReactNode): CellNode {
-  return typeof value === 'object' && (value as CellNode).value !== undefined
-    ? (value as CellNode)
-    : ({ value } as CellNode);
-}
-
-export const SortableTable = <T,>({
-  columns,
-  items,
-  identify,
-  headerValue,
-  cellValue,
-  disabled,
+const SortableTable = <T extends { id: UniqueIdentifier }>({
+  data,
   onChange,
-}: Properties<T>): JSX.Element => {
-  const [records, setRecords] = useState<T[]>(items);
-  const [isDragging, setIsDragging] = useState<boolean>(false);
+  ...props
+}: SortableTableProperties<T>): ReactElement => {
+  const [activeId, setActiveId] = useState<UniqueIdentifier>('');
+  const [stateItems, setStateItems] = useState<T[]>([]);
+  const [cursor, setCursor] = useState('grab');
+  const { classes } = useSortableTableStyles();
 
-  useMemo(() => {
-    return setRecords(items);
-  }, [items]);
+  useEffect(() => {
+    if (data.length > 0) {
+      setStateItems([...data]);
+    } else {
+      setStateItems([]);
+    }
+  }, [data]);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
 
-  const onDragStart = (): void => {
-    setIsDragging(true);
-  };
+  const size = props.size ? props.size : 'medium';
+  const tableHead = props.header ? props.header : false;
 
-  const onDragEnd = (result: DropResult): void => {
-    setIsDragging(false);
-    if (result.destination) {
-      const newOrder = reorder(
-        records,
-        result.source.index,
-        result.destination.index,
-      );
-      setRecords(newOrder);
+  const renderRow = useCallback(
+    () =>
+      props.columns.map(({ getCell }, index) => {
+        const currentItem = data.find((item) => item.id === activeId);
+        if (currentItem === undefined) return;
+        return <TableCell key={index}>{getCell(currentItem)}</TableCell>;
+      }),
+    [props.columns, props, activeId],
+  );
+
+  function handleDragStart(event: DragStartEvent) {
+    const { active } = event;
+    setActiveId(active.id);
+    setCursor('grabbing');
+  }
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (over === null) return;
+
+    if (active.id !== over.id) {
+      const oldIndex = stateItems.findIndex((item) => item.id === active.id);
+      const newIndex = stateItems.findIndex((item) => item.id === over.id);
+      const newOrder = arrayMove(stateItems, oldIndex, newIndex);
+      setStateItems(newOrder);
       onChange &&
         onChange(
           newOrder.map((record, index: number) => ({
-            id: identify(record),
+            id: record.id,
             index,
           })),
         );
     }
-  };
 
-  const headers = useMemo(() => {
-    return columns.map((column) =>
-      castCellNode(headerValue ? headerValue(column) : (column as string)),
-    );
-  }, [columns, headerValue]);
-
-  const getCellValue = useCallback(
-    (column: keyof T, item: T) => {
-      return castCellNode(
-        cellValue ? cellValue(column, item) : (item[column] as string),
-      );
-    },
-    [cellValue],
-  );
-
-  const render = useCallback(
-    (item: T): CellNode[] =>
-      columns.map((column) => getCellValue(column, item)),
-    [columns, getCellValue],
-  );
+    setActiveId('');
+    setCursor('grab');
+  }
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell locked={isDragging} />
-          {headers.map(({ value, properties }, index) => {
-            return (
-              <TableCell
-                key={`header-${index}`}
-                locked={isDragging}
-                {...properties}
-              >
-                {value}
-              </TableCell>
-            );
-          })}
-        </TableRow>
-      </TableHead>
-      <DragDropContext onDragEnd={onDragEnd} onBeforeDragStart={onDragStart}>
-        <Droppable droppableId="droppable" direction="vertical">
-          {(provided: DroppableProvided): JSX.Element => (
-            <TableBody ref={provided.innerRef} {...provided.droppableProps}>
-              {records.map((item, index) => {
-                const props = {
-                  id: identify(item),
-                  item,
-                  index,
-                  render,
-                  disabled,
-                };
+    <DndContext
+      sensors={sensors}
+      collisionDetection={closestCenter}
+      modifiers={
+        props?.modifiers
+          ? [restrictToVerticalAxis, restrictToParentElement]
+          : []
+      }
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
+    >
+      <Table size={size} sx={{ cursor: cursor }}>
+        {tableHead && (
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ width: '45px' }}></TableCell>
+              {props.columns.map(({ label }, index) => {
+                if (!label) return;
                 return (
-                  <SortableTableRow<T> key={`item-${props.id}`} {...props} />
+                  <TableCell key={`header-${index}`}>
+                    {label.toString().charAt(0).toUpperCase() +
+                      label.toString().slice(1)}
+                  </TableCell>
                 );
               })}
-              {provided.placeholder}
+            </TableRow>
+          </TableHead>
+        )}
+
+        <SortableContext
+          items={stateItems}
+          strategy={verticalListSortingStrategy}
+        >
+          <TableBody>
+            {stateItems.map((item) => (
+              <SortableTableRow2
+                key={item.id}
+                id={item.id}
+                item={item}
+                columns={props.columns}
+              />
+            ))}
+          </TableBody>
+        </SortableContext>
+      </Table>
+
+      <DragOverlay>
+        {activeId !== '' ? (
+          <Table
+            size={size}
+            className={classes.dragOverlayRow}
+            sx={{ cursor: cursor }}
+          >
+            <TableBody>
+              <TableRow>
+                <TableCell sx={{ width: '45px' }}>
+                  <DragIndicator />
+                </TableCell>
+                {renderRow()}
+              </TableRow>
             </TableBody>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </Table>
+          </Table>
+        ) : null}
+      </DragOverlay>
+    </DndContext>
   );
 };
-
-// export const FormDefault = memo(SortableTable) as typeof SortableTable;
 
 export default SortableTable;
