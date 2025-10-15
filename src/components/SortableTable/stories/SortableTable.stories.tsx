@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { Checkbox, Box, FormControlLabel } from '@mui/material';
 
-import SortableTable from '..';
+import SortableTable from '../index';
+import { UniqueIdentifier } from '@dnd-kit/core';
+import { TableColumn } from '../../GrepTable';
 
 interface TestData {
-  id: number;
+  [key: string]: string | number | UniqueIdentifier;
+  id: UniqueIdentifier;
   name: string;
   calories: number;
   fat: number;
@@ -13,12 +16,13 @@ interface TestData {
 }
 
 export default {
-  title: 'SortableList',
+  title: 'SortableTable',
 };
 
-export const Standard = {
+export const SortableTableStory = {
   render: () => {
     const [disabled, setDisabled] = useState<boolean>(false);
+
     const createData = (
       id: number,
       name: string,
@@ -37,6 +41,11 @@ export const Standard = {
       createData(index++, 'Cupcake', 305, 3.7, 67, 4.3),
       createData(index++, 'Gingerbread', 356, 16.0, 49, 3.9),
     ];
+
+    const columns: Array<TableColumn<TestData>> = Object.keys(rows[0]).map(
+      (prop) => ({ label: prop, getCell: (row) => row[prop] }),
+    );
+
     return (
       <Box flex="auto">
         <FormControlLabel
@@ -46,14 +55,14 @@ export const Standard = {
           label="Disable drag"
         />
         <SortableTable
-          columns={['name', 'calories', 'fat', 'carbs']}
-          items={rows}
-          identify={(item: TestData) => String(item.id)}
-          disabled={disabled}
-        ></SortableTable>
+          header
+          size="small"
+          columns={columns}
+          data={rows}
+          modifiers="restrict"
+        />
       </Box>
     );
   },
-
   name: 'standard',
 };
