@@ -1,5 +1,5 @@
 import React from 'react';
-import { legacy_createStore as createStore} from 'redux';
+import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import createCache from '@emotion/cache';
@@ -8,7 +8,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import { createBrowserRouter } from 'react-router';
-import { RouterProvider } from "react-router/dom";
+import { RouterProvider } from 'react-router/dom';
 
 import Colors from '../src/styling/Colors';
 import '../src/styling/globalStyles.css';
@@ -38,7 +38,6 @@ const theme = createTheme({
     divider: Colors.green,
   },
   typography: {
-    useNextVariants: true,
     fontSize: 16,
     fontFamily: ['Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'].join(
       ',',
@@ -70,23 +69,28 @@ const theme = createTheme({
 });
 
 // Use the legacy store, in order to not add redux-toolkit as an extra dependency.
-const store = createStore(() => {return});
+const store = createStore(() => {
+  return;
+});
 
 export const decorators = [
   (Story) => {
     const router = createBrowserRouter([
       {
         path: '*',
-        element: <Story />
+        element: <Story />,
       },
     ]);
-    return (<Provider store={store}>
-      <CacheProvider value={muiCache}>
-        <ThemeProvider theme={theme}>
+    return (
+      <Provider store={store}>
+        <CacheProvider value={muiCache}>
+          <ThemeProvider theme={theme}>
             <CssBaseline />
-            <RouterProvider router={router}/>
-        </ThemeProvider>
-      </CacheProvider>
-    </Provider>)
-  }
+            <RouterProvider router={router} />
+          </ThemeProvider>
+        </CacheProvider>
+      </Provider>
+    );
+  },
 ];
+export const tags = ['autodocs'];

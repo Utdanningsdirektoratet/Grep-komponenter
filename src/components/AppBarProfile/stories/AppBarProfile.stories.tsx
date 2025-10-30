@@ -5,14 +5,14 @@ export default {
   title: 'AppBarProfile',
 };
 
-export const Standard = () => (
-  <AppBarProfile
-    userRole={'Superbruker'}
-    fullName={'Grep Fagansvarlig'}
-    onButtonClick={() => console.log('Button clicked!')}
-  />
-);
+export const Standard = {
+  render: () => (
+    <AppBarProfile
+      userRole={'Superbruker'}
+      fullName={'Grep Fagansvarlig'}
+      onButtonClick={() => console.log('Button clicked!')}
+    />
+  ),
 
-Standard.story = {
   name: 'standard',
 };

@@ -11,6 +11,7 @@ import {
   ListItemText,
   Checkbox,
   InputBaseComponentProps,
+  InputLabelProps,
 } from '@mui/material';
 
 export interface SelectItem {
@@ -27,6 +28,7 @@ export type GrepSelectProps = SelectProps & {
   selectItems: SelectItem[];
   unselectOption?: boolean;
   useCheckedSelect?: boolean;
+  labelProps?: InputLabelProps;
   inputProps?: InputBaseComponentProps | undefined;
 };
 
@@ -48,6 +50,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     disabled,
     required,
     label,
+    labelProps,
     inputProps,
     value,
     size,
@@ -77,6 +80,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
           minWidth: 'max-content',
           overflow: 'visible',
         }}
+        {...labelProps}
       >
         {label}
       </InputLabel>

@@ -14,8 +14,7 @@ export default {
   excludeStories: ['user'],
 };
 
-export const Standard = () => <ProfileInfo {...user} />;
-
-Standard.story = {
+export const Standard = {
+  render: () => <ProfileInfo {...user} />,
   name: 'standard',
 };

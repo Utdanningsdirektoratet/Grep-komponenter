@@ -17,30 +17,30 @@ export default {
   excludeStories: ['breadcrumbs'],
 };
 
-export const Standard = () => (
-  <GrepCrumbs
-    breadcrumbs={[...breadcrumbs, { label: 'Test ' }]}
-    onClick={(page) => console.log('clicked on ', page.label)}
-  />
-);
+export const Standard = {
+  render: () => (
+    <GrepCrumbs
+      breadcrumbs={[...breadcrumbs, { label: 'Test ' }]}
+      onClick={(page) => console.log('clicked on ', page.label)}
+    />
+  ),
 
-Standard.story = {
   name: 'standard',
 };
 
-export const OverflowAsTooltip = () => (
-  <div style={{ maxWidth: 500 }}>
-    <GrepCrumbs
-      breadcrumbs={[
-        ...breadcrumbs,
-        {
-          label: 'Very very very very very very very very very very label',
-        },
-      ]}
-    />
-  </div>
-);
+export const OverflowAsTooltip = {
+  render: () => (
+    <div style={{ maxWidth: 500 }}>
+      <GrepCrumbs
+        breadcrumbs={[
+          ...breadcrumbs,
+          {
+            label: 'Very very very very very very very very very very label',
+          },
+        ]}
+      />
+    </div>
+  ),
 
-OverflowAsTooltip.story = {
   name: 'overflow as tooltip',
 };

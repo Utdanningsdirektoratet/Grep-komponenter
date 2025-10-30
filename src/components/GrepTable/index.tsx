@@ -1,5 +1,4 @@
 import React, { BaseSyntheticEvent, JSX, useCallback } from 'react';
-import { Key } from 'ts-keycode-enum';
 
 import MoreVert from '@mui/icons-material/MoreVert';
 import Table, { TableProps } from '@mui/material/Table';
@@ -17,6 +16,7 @@ import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
 import { makeStyles } from '../../styling';
+import { Key } from '../../assets/keycodeEnum';
 
 export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   label?: string | JSX.Element;
@@ -245,7 +245,7 @@ export const GrepTable = <T,>({
               _openDropdown(e, row);
             }}
             onKeyDown={(e) => {
-              switch (e.which) {
+              switch (e.key) {
                 case Key.Enter:
                   // dont show dropdown
                   e.preventDefault();
@@ -340,21 +340,21 @@ export const GrepTable = <T,>({
       }
     };
 
-    switch (e.keyCode) {
-      case Key.DownArrow:
+    switch (e.key) {
+      case Key.ArrowDown:
         moveSelectedRow(1);
         break;
 
-      case Key.UpArrow:
+      case Key.ArrowUp:
         moveSelectedRow(-1);
         break;
 
-      case Key.LeftArrow:
+      case Key.ArrowLeft:
       case Key.PageUp:
         moveSelectedRow(-rowsPerPage);
         break;
 
-      case Key.RightArrow:
+      case Key.ArrowRight:
       case Key.PageDown:
         moveSelectedRow(rowsPerPage);
         break;

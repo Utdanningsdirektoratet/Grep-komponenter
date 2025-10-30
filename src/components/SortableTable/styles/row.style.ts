@@ -1,20 +1,16 @@
 import { hex2rgba, makeStyles } from '../../../styling';
 
-export const useStyles = makeStyles<{
-  isDragging: boolean;
-}>()(({ palette, transitions }, { isDragging }) => ({
-  row: {
-    transition: transitions.create(['background-color'], {
-      duration: transitions.duration.shorter,
-      easing: transitions.easing.easeOut,
-    }),
-    backgroundColor: isDragging
-      ? `var(--tablecell__background--drag, ${hex2rgba(
-          palette.primary.main,
-          0.25,
-        )})`
-      : 'var(--tablecell__background)',
+export const useSortableTableStyles = makeStyles()(({ palette }) => ({
+  dragOverlayRow: {
+    backgroundColor: hex2rgba(palette.primary.contrastText, 1),
+    scale: 1.05,
+    boxShadow: `0px 0px 2px 2px ${hex2rgba(palette.primary.main, 0.25)}`,
+  },
+  sortableRow: {
+    ':focus-visible': {
+      boxShadow: `0px 0px 3px 3px ${hex2rgba(palette.primary.main, 0.25)}`,
+    },
   },
 }));
 
-export default useStyles;
+export default useSortableTableStyles;
