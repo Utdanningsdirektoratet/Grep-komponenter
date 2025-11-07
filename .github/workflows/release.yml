@@ -15,7 +15,8 @@ on:
         description: 'CLI arguments'
         required: false
         default: ''
-
+permissions:
+  id-token: write # Required for OIDC
 jobs:
   release:
     name: Release
@@ -44,6 +45,6 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          # NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0
         run: npx semantic-release ${{ github.event.inputs.args }}
