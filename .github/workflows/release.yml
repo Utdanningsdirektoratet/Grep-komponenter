@@ -15,8 +15,7 @@ on:
         description: 'CLI arguments'
         required: false
         default: ''
-# permissions:
-#   id-token: write # Required for OIDC
+
 jobs:
   release:
     name: Release
