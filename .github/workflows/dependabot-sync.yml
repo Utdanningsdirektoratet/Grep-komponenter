@@ -14,7 +14,9 @@ jobs:
     if: github.event.pull_request.merged == true
     name: Open PR to dependabot/updates
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+      pull-requests: write
+      contents: write
     steps:
       - uses: actions/checkout@v4
 

@@ -13,6 +13,10 @@ permissions:
   id-token: write
 jobs:
   deploy:
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     name: Deploy storybook
     environment:
       name: github-pages
@@ -36,3 +40,8 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Deploy storybook
+        run: npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}
