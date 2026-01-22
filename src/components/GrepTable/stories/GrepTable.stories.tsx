@@ -104,6 +104,9 @@ const menuItems = [
       {
         label: 'Test child',
         handleClick: (obj) => console.log('clicked on', obj),
+        handleClickMiddleButton: (obj) => {
+          console.log('what to do when middle mouse button is clicked on', obj);
+        },
       },
       {
         label: 'Test child',
