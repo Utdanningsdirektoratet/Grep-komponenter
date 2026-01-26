@@ -170,7 +170,7 @@
     "@mui/x-date-pickers": "^8.19.0",
     "dayjs": "^1.11.19",
     "lexical": "^0.39.0",
-    "react-router": "7.12.x"
+    "react-router": "7.13.x"
   },
   "overrides": {}
 }
