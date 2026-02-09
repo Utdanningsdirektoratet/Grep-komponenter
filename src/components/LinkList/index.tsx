@@ -14,7 +14,7 @@ import { ListItemButton } from '@mui/material';
 interface Props {
   title: string;
   pages: NavigationProps[];
-  onPageClick: (page: NavigationProps) => unknown;
+  onPageClick: (page: NavigationProps, mouseEvent: React.MouseEvent) => unknown;
 }
 
 const LinkList: React.FC<Props> = (props) => (
@@ -26,7 +26,14 @@ const LinkList: React.FC<Props> = (props) => (
       {props.pages.map((page) => (
         <Box key={page.id}>
           <ListItemButton
-            onClick={() => props.onPageClick(page)}
+            onMouseDown={(e: React.MouseEvent) => {
+              if (e.button === 1) {
+                e.stopPropagation();
+                e.preventDefault();
+              }
+
+              props.onPageClick(page, e);
+            }}
             style={{ padding: '12px 4px' }}
           >
             <ListItemText
@@ -35,7 +42,7 @@ const LinkList: React.FC<Props> = (props) => (
                 primary: {
                   color: 'primary',
                   style: { fontSize: 18 },
-                }
+                },
               }}
             />
             <ListItemIcon style={{ justifyContent: 'flex-end' }}>

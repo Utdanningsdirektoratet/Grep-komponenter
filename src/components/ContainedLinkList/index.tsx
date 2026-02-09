@@ -16,7 +16,7 @@ interface Props {
   title: string;
   pages: NavigationProps[];
   style?: React.CSSProperties;
-  onPageClick: (page: NavigationProps) => void;
+  onPageClick: (page: NavigationProps, event: React.MouseEvent) => void;
 }
 
 const ContainedLinkList: React.FC<Props> = (props) => {
@@ -28,7 +28,16 @@ const ContainedLinkList: React.FC<Props> = (props) => {
       <List style={{ padding: 0 }}>
         {props.pages.map((page) => (
           <ListItem divider key={page.id} disablePadding>
-            <ListItemButton onClick={() => props.onPageClick(page)}>
+            <ListItemButton
+              onMouseDown={(e: React.MouseEvent) => {
+                if (e.button === 1) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }
+
+                props.onPageClick(page, e);
+              }}
+            >
               {page.linkIcon && <ListItemIcon>{page.linkIcon}</ListItemIcon>}
               <ListItemText primary={page.label} />
             </ListItemButton>

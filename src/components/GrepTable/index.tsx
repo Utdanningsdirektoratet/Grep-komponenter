@@ -30,8 +30,10 @@ export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   lang?: string | ((row: T) => string);
 }
 
-export interface GrepTableProps<T>
-  extends Pick<TableProps, 'size' | 'stickyHeader' | 'padding'> {
+export interface GrepTableProps<T> extends Pick<
+  TableProps,
+  'size' | 'stickyHeader' | 'padding'
+> {
   data: T[];
   columns: Array<TableColumn<T>>;
   sortBy?: string;
@@ -50,7 +52,7 @@ export interface GrepTableProps<T>
   sortDirection?: 'desc' | 'asc';
   isRowDisabled?: (row: T) => boolean;
   onSelectedRowChange?: (row: T | null) => void;
-  onRowClick?: (row: T) => void;
+  onRowClick?: (row: T, mouseEvent?: React.MouseEvent) => void;
   menuTooltip?: (row: T) => string;
   menuDisabled?: (row: T) => boolean;
   onContextIdChanged?: (row: T) => void;
@@ -201,9 +203,9 @@ export const GrepTable = <T,>({
   };
 
   const _handleRowClick = useCallback(
-    (row: T) => {
-      const disabled = isRowDisabled && isRowDisabled(row);
-      !disabled && onRowClick && onRowClick(row);
+    (row: T, event?: React.MouseEvent) => {
+      const disabled = (isRowDisabled && isRowDisabled(row)) ?? false;
+      !disabled && onRowClick && onRowClick(row, event);
     },
     [onRowClick],
   );
@@ -314,7 +316,12 @@ export const GrepTable = <T,>({
           } else {
             setSelectedElement(e.currentTarget);
             if (!disableSelectOnClick) {
-              _handleRowClick(row);
+              const me = e as React.MouseEvent;
+              if (me.button === 1) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+              _handleRowClick(row, me);
             }
           }
         }}

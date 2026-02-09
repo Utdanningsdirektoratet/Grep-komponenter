@@ -36,7 +36,9 @@ export const Standard = {
     <ContainedLinkList
       title={'Mine tilganger'}
       pages={myPages}
-      onPageClick={(page) => console.log('clicked on ', page.label)}
+      onPageClick={(page, event) =>
+        console.log(`button index ${event.button} clicked on ${page.label}`)
+      }
     />
   ),
 

@@ -54,7 +54,10 @@ export const Standard = {
       <Sidebar
         pages={adminPages}
         currentPageId={pageId}
-        onPageClick={(page) => (setPageId(page.id), console.log(page))}
+        onPageClick={(page, event) => (
+          setPageId(page.id),
+          console.log(`${page.label} - mouse button ${event?.button ?? 'N(A'}`)
+        )}
       />
     );
   },
@@ -69,7 +72,10 @@ export const ExpandAndClick = {
       <Sidebar
         pages={adminPages}
         currentPageId={pageId}
-        onPageClick={(page) => (setPageId(page.id), console.log(page))}
+        onPageClick={(page, event) => (
+          setPageId(page.id),
+          console.log(`${page.label} - mouse button ${event?.button ?? 'N(A'}`)
+        )}
         expandOnIcon
       />
     );

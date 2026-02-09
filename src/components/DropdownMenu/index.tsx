@@ -27,8 +27,7 @@ export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   tooltipPlacement?: TooltipPlacement;
   disabled?: BooleanFunction<T> | boolean;
   children?: Array<DropdownMenuItem<T>>;
-  handleClick?: (context?: T) => void;
-  handleClickMiddleButton?: (context?: T) => void;
+  handleClick?: (context?: T, mouseEvent?: React.MouseEvent) => void;
 };
 export interface DropdownMenuProps<T> extends MenuProps {
   context?: T;
@@ -46,14 +45,7 @@ const DropdownMenu = <T,>({
     (level = 0, parentDisabled?: BooleanFunction<T> | boolean) =>
     // eslint-disable-next-line react/display-name
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
-      const {
-        label,
-        children,
-        handleClick,
-        handleClickMiddleButton,
-        disabled,
-        ...props
-      } = item;
+      const { label, children, handleClick, disabled, ...props } = item;
 
       const itemOrParentDisabled = (parentDisabled || disabled) ?? false;
 
@@ -79,22 +71,20 @@ const DropdownMenu = <T,>({
         }
 
         menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-        !isDisabled && handleClick && handleClick(context);
+        handleClick && handleClick(context, e);
       };
 
       props.onMouseDown = (e: React.MouseEvent) => {
-        e.preventDefault();
-        e.stopPropagation();
-
         // 1 = middle mouse button / wheel
         if (isDisabled || e.button !== 1) {
           return;
         }
 
-        if (handleClickMiddleButton) {
-          menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-          handleClickMiddleButton(context);
-        }
+        e.preventDefault();
+        e.stopPropagation();
+
+        menuProps.onClose && menuProps.onClose(e, 'backdropClick');
+        handleClick && handleClick(context, e);
       };
 
       return (
