@@ -1,4 +1,4 @@
-import { /*convertToRgba,*/ makeStyles } from '../../../styling';
+import { makeStyles } from '../../../styling';
 
 export const useStyles = makeStyles()(() => ({
   root: {
