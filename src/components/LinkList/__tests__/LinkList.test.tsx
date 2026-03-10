@@ -38,6 +38,6 @@ describe('LinkList', () => {
     );
 
     await user.click(getByRole('button', { name: pages[0].label }));
-    expect(mockFn).toHaveBeenCalledWith(pages[0]);
+    expect(mockFn.mock.lastCall[0]).toEqual(pages[0]);
   });
 });

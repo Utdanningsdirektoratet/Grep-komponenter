@@ -25,7 +25,11 @@ export const Standard = {
     <LinkList
       pages={adminPages}
       title={'Systemadministrasjon'}
-      onPageClick={(page) => console.log('clicked on ', page.label)}
+      onPageClick={(page, mouseEvent) =>
+        console.log(
+          `clicked on mousebutton with index ${mouseEvent.button}: ${page.label}`,
+        )
+      }
     />
   ),
 

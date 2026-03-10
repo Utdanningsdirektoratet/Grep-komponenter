@@ -103,7 +103,8 @@ const menuItems = [
     children: [
       {
         label: 'Test child',
-        handleClick: (obj) => console.log('clicked on', obj),
+        handleClick: (obj, mouseEvent) =>
+          console.log(`clicked on button ${mouseEvent?.button}`, obj),
       },
       {
         label: 'Test child',
@@ -164,6 +165,11 @@ export const Standard = {
       caption="Some caption text"
       header
       columns={tableColumns}
+      onRowClick={(row, mouseEvent) =>
+        console.log(
+          `mouse button ${mouseEvent?.button ?? 'N/A'} clicked ${row}`,
+        )
+      }
       data={tableData()}
     />
   ),
