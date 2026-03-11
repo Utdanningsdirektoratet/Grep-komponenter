@@ -38,6 +38,6 @@ describe('GrepTableCard', () => {
     const { getByRole } = render(<Component />);
 
     await user.click(getByRole('row', { name: /row #1/i }));
-    expect(mockFn).toHaveBeenCalledWith('Row #1');
+    expect(mockFn.mock.lastCall[0]).toEqual('Row #1');
   });
 });

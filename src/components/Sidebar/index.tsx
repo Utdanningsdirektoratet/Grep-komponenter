@@ -14,7 +14,7 @@ import { keyboard } from '../../utils';
 export interface SidebarProps {
   currentPageId?: number;
   pages: NavigationProps[];
-  onPageClick: (page: NavigationProps) => void;
+  onPageClick: (page: NavigationProps, mouseEvent?: React.MouseEvent) => void;
   expandOnIcon?: boolean;
 }
 
@@ -29,8 +29,8 @@ const Sidebar = ({
 
   React.useEffect(() => {
     if (currentPageId) {
-      const pageId = pages.find(
-        (p) => p.children?.some((c) => c.id === currentPageId),
+      const pageId = pages.find((p) =>
+        p.children?.some((c) => c.id === currentPageId),
       )?.id;
 
       !!pageId && setExpanded([...expanded, pageId]);
@@ -45,11 +45,14 @@ const Sidebar = ({
     }
   };
 
-  const handleClick = (page: NavigationProps) => {
+  const handleClick = (
+    page: NavigationProps,
+    mouseEvent?: React.MouseEvent,
+  ) => {
     if (expandOnIcon) {
-      onPageClick(page);
+      onPageClick(page, mouseEvent);
     } else {
-      page.children ? toggleExpand(page.id) : onPageClick(page);
+      page.children ? toggleExpand(page.id) : onPageClick(page, mouseEvent);
     }
   };
 
@@ -75,7 +78,8 @@ const Sidebar = ({
           return (
             <ExpandLess
               onClick={(e) => {
-                e.stopPropagation(), toggleExpand(page.id);
+                e.stopPropagation();
+                toggleExpand(page.id);
               }}
             />
           );
@@ -87,7 +91,8 @@ const Sidebar = ({
           return (
             <ExpandMore
               onClick={(e) => {
-                e.stopPropagation(), toggleExpand(page.id);
+                e.stopPropagation();
+                toggleExpand(page.id);
               }}
             />
           );
@@ -108,7 +113,7 @@ const Sidebar = ({
               key={page.id}
               tabIndex={0}
               className={classes.item}
-              onClick={() => handleClick(page)}
+              onMouseDown={(e) => handleClick(page, e)}
               onKeyPress={keyboard.onActivation(() => handleClick(page))}
             >
               {renderItem(page)}
@@ -127,7 +132,7 @@ const Sidebar = ({
                     style={{ paddingLeft: '30px' }}
                     tabIndex={0}
                     className={classes.item}
-                    onClick={() => handleClick(child)}
+                    onMouseDown={(e) => handleClick(child, e)}
                     onKeyPress={keyboard.onActivation(() => handleClick(child))}
                   >
                     {renderItem(child)}

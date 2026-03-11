@@ -27,7 +27,7 @@ export type DropdownMenuItem<T> = Omit<MenuItemProps, 'disabled'> & {
   tooltipPlacement?: TooltipPlacement;
   disabled?: BooleanFunction<T> | boolean;
   children?: Array<DropdownMenuItem<T>>;
-  handleClick?: (context?: T) => void;
+  handleClick?: (context?: T, mouseEvent?: React.MouseEvent) => void;
 };
 export interface DropdownMenuProps<T> extends MenuProps {
   context?: T;
@@ -71,7 +71,20 @@ const DropdownMenu = <T,>({
         }
 
         menuProps.onClose && menuProps.onClose(e, 'backdropClick');
-        !isDisabled && handleClick && handleClick(context);
+        handleClick && handleClick(context, e);
+      };
+
+      props.onMouseDown = (e: React.MouseEvent) => {
+        // 1 = middle mouse button / wheel
+        if (isDisabled || e.button !== 1) {
+          return;
+        }
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        menuProps.onClose && menuProps.onClose(e, 'backdropClick');
+        handleClick && handleClick(context, e);
       };
 
       return (

@@ -131,7 +131,7 @@ describe('GrepTable', () => {
 
     await user.click(getByRole('menuitem', { name: dropdownItems[0].label }));
 
-    expect(mockFn).toHaveBeenCalledWith('row1');
+    expect(mockFn.mock.lastCall[0]).toEqual('row1');
   });
 
   it('should render empty table with placeholder text', () => {
@@ -159,7 +159,7 @@ describe('GrepTable', () => {
     const user = userEvent.setup();
 
     await user.click(getByRole('row', { name: /row3/i }));
-    expect(mockFn).toHaveBeenCalledWith('row3');
+    expect(mockFn.mock.lastCall[0]).toEqual('row3');
   });
 
   it('should handle custom row disabling', async () => {
@@ -175,10 +175,10 @@ describe('GrepTable', () => {
     expect(row2).not.toHaveStyle('cursor: pointer');
 
     await user.click(row1);
-    expect(mockFn).toHaveBeenCalledWith('row1');
+    expect(mockFn.mock.lastCall[0]).toEqual('row1');
 
     await user.click(row2);
-    expect(mockFn).not.toHaveBeenCalledWith('row2');
+    expect(mockFn.mock.lastCall[0]).not.toEqual('row2');
   });
 
   it('should handle menu disabling', () => {
