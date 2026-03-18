@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import util from 'node:util';
 const { TextEncoder } = util;
 globalThis.TextEncoder = TextEncoder;

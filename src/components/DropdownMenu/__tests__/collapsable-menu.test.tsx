@@ -38,9 +38,10 @@ const items = [
 ] as Array<DropdownMenuItem<unknown>>;
 
 const ButtonMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClickListItem = (event: any) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
+  const handleClickListItem = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -61,7 +62,12 @@ const ButtonMenu = () => {
   );
 };
 
-const openMenu = async (user: any) => {
+interface menuUser {
+  tab: () => void;
+  keyboard: (key: string) => void;
+}
+
+const openMenu = async (user: menuUser) => {
   render(<ButtonMenu />);
   await user.tab(); // focus on button
   await user.keyboard('{Enter}'); // open
@@ -81,7 +87,7 @@ describe('CollapsableMenu', () => {
 
     await user.click(item2);
     expect(screen.queryByText('Testitem #2.1')).toBeTruthy();
-    var testitem1 = screen.queryByText('Testitem #1.1');
+    const testitem1 = screen.queryByText('Testitem #1.1');
     if (testitem1) {
       await waitForElementToBeRemoved(() =>
         screen.queryByText('Testitem #1.1'),
@@ -89,7 +95,7 @@ describe('CollapsableMenu', () => {
     }
 
     await user.click(item2);
-    var testitem2 = screen.queryByText('Testitem #2.1');
+    const testitem2 = screen.queryByText('Testitem #2.1');
     if (testitem2) {
       await waitForElementToBeRemoved(() =>
         screen.queryByText('Testitem #2.1'),

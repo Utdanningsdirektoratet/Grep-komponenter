@@ -22,7 +22,7 @@ const myToolbar: React.FunctionComponent<ToolbarProperties> = ({
     <div>
       {buttons.map(({ type, children }, key) => (
         <LexicalButton
-          key={key}
+          key={Math.random()}
           type={type}
           editor={editor}
           selected={isSelected[key]}
@@ -38,7 +38,7 @@ export default {
   title: 'GrepEditor',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => React.ReactNode) => (
       <Container
         style={{
           marginTop: 40,

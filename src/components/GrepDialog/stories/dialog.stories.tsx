@@ -1,4 +1,4 @@
-import React, { JSX } from 'react';
+import React, { JSX, ReactNode } from 'react';
 import { GrepDialogServiceProvider, useGrepDialog } from '..';
 import { Button, DialogContentText } from '@mui/material';
 
@@ -26,7 +26,7 @@ export default {
   title: 'GrepDialog',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => ReactNode) => (
       <GrepDialogServiceProvider>{storyFn()}</GrepDialogServiceProvider>
     ),
   ],

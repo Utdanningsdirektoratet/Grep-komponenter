@@ -30,9 +30,11 @@ const items = [
 ] as DropdownMenuItem<unknown>[];
 
 const ButtonMenu = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
 
-  const handleOpenMenu = (event: any) => {
+  const handleOpenMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -56,7 +58,11 @@ const ButtonMenu = () => {
   );
 };
 
-const openMenu = async (user: any) => {
+interface menuUser {
+  click: (element: HTMLElement) => void;
+}
+
+const openMenu = async (user: menuUser) => {
   const { getByRole, getByTestId } = render(<ButtonMenu />);
 
   await user.click(getByTestId('testbutton'));

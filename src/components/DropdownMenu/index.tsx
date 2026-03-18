@@ -43,7 +43,6 @@ const DropdownMenu = <T,>({
 
   const renderChild =
     (level = 0, parentDisabled?: BooleanFunction<T> | boolean) =>
-    // eslint-disable-next-line react/display-name
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
       const { label, children, handleClick, disabled, ...props } = item;
 

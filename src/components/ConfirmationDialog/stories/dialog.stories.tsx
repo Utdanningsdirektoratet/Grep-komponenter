@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ConfirmationServiceProvider, useConfirmation } from '..';
 import { Button } from '@mui/material';
 
@@ -22,7 +22,7 @@ export default {
   title: 'ConfirmDialog',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => ReactNode) => (
       <ConfirmationServiceProvider>{storyFn()}</ConfirmationServiceProvider>
     ),
   ],

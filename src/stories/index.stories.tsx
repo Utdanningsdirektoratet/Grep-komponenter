@@ -54,7 +54,7 @@ export default {
   title: 'Pages',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => React.ReactNode) => (
       <MainLayout>
         <AppBar
           appTitle="Demo"

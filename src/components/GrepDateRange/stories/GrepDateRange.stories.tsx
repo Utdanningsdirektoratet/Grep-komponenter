@@ -9,7 +9,7 @@ export default {
   title: 'GrepDateRange',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => React.ReactNode) => (
       <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
         {storyFn()}
       </LocalizationProvider>
