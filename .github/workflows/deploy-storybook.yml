@@ -25,11 +25,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - run: node -v
-      
-      - name: Checkout
-        uses: actions/checkout@v5
-      - run: node -v
       - run: npm ci
 
       - run: npm run build-storybook
