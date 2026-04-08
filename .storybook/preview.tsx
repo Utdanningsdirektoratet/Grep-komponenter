@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ElementType } from 'react';
 import { legacy_createStore as createStore } from 'redux';
 import { Provider } from 'react-redux';
 
@@ -74,7 +74,7 @@ const store = createStore(() => {
 });
 
 export const decorators = [
-  (Story) => {
+  (Story: ElementType) => {
     const router = createBrowserRouter([
       {
         path: '*',

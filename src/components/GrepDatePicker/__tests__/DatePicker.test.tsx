@@ -20,7 +20,7 @@ const Component: React.FC<Props> = ({ error }) => {
       helperText="HelperTextTest"
       errorMessage={error ? 'ErrorMessageTest' : undefined}
       value={value}
-      onChange={(date: any) => {
+      onChange={(date) => {
         setValue(date);
       }}
     />
@@ -63,9 +63,8 @@ describe('GrepDatePicker', () => {
   });
 
   it('should open with todays date selected', async () => {
-    const { getByText, getByRole, getByLabelText } = render(<Component />);
+    const { getByText, getByLabelText } = render(<Component />);
 
-    const today = dayjs().format('D. MMM YYYY');
     const month = dayjs().format('MMMM');
     const year = dayjs().format('YYYY');
 

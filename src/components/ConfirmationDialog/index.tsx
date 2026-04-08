@@ -36,7 +36,7 @@ export const ConfirmationServiceProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   return (
-    <ConfirmationServiceContext.Provider value={openDialog}>
+    <ConfirmationServiceContext value={openDialog}>
       <ConfirmationDialog
         open={dialogOpen}
         onSubmit={handleSubmit}
@@ -44,9 +44,8 @@ export const ConfirmationServiceProvider: React.FC<{ children: ReactNode }> = ({
         {...confirmationState}
       />
       {children}
-    </ConfirmationServiceContext.Provider>
+    </ConfirmationServiceContext>
   );
 };
 
-export const useConfirmation = () =>
-  React.useContext(ConfirmationServiceContext);
+export const useConfirmation = () => React.use(ConfirmationServiceContext);

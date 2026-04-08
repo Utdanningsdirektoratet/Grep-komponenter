@@ -11,6 +11,7 @@ export interface ICurriculum {
   title: string;
   statusText: string;
   lastModified: string;
+  responsibleUsername?: string;
 }
 
 export const tableColumns: TableColumn<ICurriculum>[] = [
@@ -39,7 +40,7 @@ export const tableColumns: TableColumn<ICurriculum>[] = [
   },
 ] as TableColumn<ICurriculum>[];
 
-const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
+const CURRICULUM_COLUMNS: Array<TableColumn<ICurriculum>> = [
   {
     label: 'Kode',
     width: 8,
@@ -63,7 +64,7 @@ const CURRICULUM_COLUMNS: Array<TableColumn<any>> = [
   {
     label: 'Ansvarlig',
     width: 9,
-    getCell: (row) => row.grepAdminResponsibleUsername,
+    getCell: (row) => row.responsibleUsername as string,
   },
   {
     label: 'Importert',
@@ -155,7 +156,11 @@ const menuItems = [
 
 export default {
   title: 'Grep table',
-  decorators: [(storyFn: any) => <div style={{ margin: 10 }}>{storyFn()}</div>],
+  decorators: [
+    (storyFn: () => React.ReactNode) => (
+      <div style={{ margin: 10 }}>{storyFn()}</div>
+    ),
+  ],
   excludeStories: ['ICurriculum', 'tableColumns', 'tableData'],
 };
 
@@ -233,25 +238,17 @@ export const WithDropdownMenu = {
 
 export const WithPagination = {
   render: () => {
-    function Parent({ children }: { children: any }) {
-      const [state, setState] = React.useState(tableData(50));
-      return <div>{children(state, setState)}</div>;
-    }
-
+    const data = tableData(50);
     return (
-      <Parent>
-        {(state: ICurriculum[]) => (
-          <div>
-            <GrepTable
-              header
-              columns={tableColumns}
-              data={state}
-              pagination
-              rowsPerPage={4}
-            />
-          </div>
-        )}
-      </Parent>
+      <div>
+        <GrepTable
+          header
+          columns={tableColumns}
+          data={data}
+          pagination
+          rowsPerPage={4}
+        />
+      </div>
     );
   },
 

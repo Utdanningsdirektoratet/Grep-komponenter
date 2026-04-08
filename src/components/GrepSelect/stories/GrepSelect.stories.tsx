@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import GrepSelect, { SelectItem } from '..';
 import { Container } from '@mui/material';
 
@@ -17,7 +17,7 @@ export default {
   title: 'GrepSelect',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => ReactNode) => (
       <Container
         style={{
           marginTop: 40,

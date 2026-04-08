@@ -17,7 +17,7 @@ const TestDatePicker = () => {
         variant="standard"
         errorMessage="Feilmelding"
         value={value}
-        onChange={(date: any) => {
+        onChange={(date) => {
           setValue(date);
         }}
       />
@@ -33,7 +33,7 @@ export default {
   title: 'GrepDatePicker',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => React.ReactNode) => (
       <Container
         style={{
           marginTop: 40,
@@ -57,13 +57,13 @@ export const Standard = () => {
         label="Med hjelpetekst"
         variant="standard"
         helperText="Hjelpetekst"
-        onChange={(date: any) => console.log(date)}
+        onChange={(date) => console.log(date)}
       />
       <DatePicker
         label="Med placeholder"
         variant="standard"
         placeholder="25/04/2019"
-        onChange={(date: any) => console.log(date)}
+        onChange={(date) => console.log(date)}
       />
     </React.Fragment>
   );
@@ -76,19 +76,19 @@ export const Outlined = () => (
     <DatePicker
       label="Med feilmelding"
       value={'32.01.2019'}
-      onChange={(date: any) => console.log(date)}
+      onChange={(date) => console.log(date)}
     />
     <DatePicker
       label="Med hjelpetekst"
       helperText="Hjelpetekst"
       value={null}
-      onChange={(date: any) => console.log(date)}
+      onChange={(date) => console.log(date)}
     />
     <DatePicker
       label="Med placeholder"
       placeholder="25/04/2019"
       value={null}
-      onChange={(date: any) => console.log(date)}
+      onChange={(date) => console.log(date)}
     />
   </React.Fragment>
 );

@@ -80,7 +80,7 @@ describe('Sidebar', () => {
 
     // Collapse page 2
     await user.click(screen.getByText(pages[1].label));
-    var testitem1 = screen.queryByText(pages[1].children![0].label);
+    const testitem1 = screen.queryByText(pages[1].children![0].label);
     if (testitem1) {
       await !screen.getByText(pages[1].children![0].label);
     }

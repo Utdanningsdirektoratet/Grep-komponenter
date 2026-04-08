@@ -42,39 +42,6 @@ const Component: React.FC<Partial<GrepTableProps<string>>> = (props) => {
   );
 };
 
-const Sortable: React.FC<Partial<GrepTableProps<string>>> = (props) => {
-  const [sortDirection, setSortDirection] = React.useState<'asc' | 'desc'>(
-    'asc',
-  );
-
-  const sortedData = data().sort((a, b) => {
-    const aNum = Number(a.substr(3));
-    const bNum = Number(b.substr(3));
-    return sortDirection === 'asc' ? aNum - bNum : bNum - aNum;
-  });
-
-  return (
-    <GrepTable
-      header
-      sortBy="col1"
-      onSortBy={() =>
-        setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
-      }
-      columns={columns}
-      data={sortedData}
-      sortDirection={sortDirection}
-      {...props}
-    />
-  );
-};
-
-function setup(jsx: React.ReactElement) {
-  return {
-    user: userEvent.setup(),
-    ...render(jsx),
-  };
-}
-
 describe('GrepTable', () => {
   it('should render correctly', () => {
     const { getByRole } = render(<Component />);
@@ -206,79 +173,4 @@ describe('GrepTable', () => {
     await user.hover(getAllByRole('button')[1]);
     expect(await findByRole('tooltip', { name: 'row2 tooltip' })).toBeVisible();
   });
-
-  /*it('should not open menu with enter-key', async () => {
-    const { queryByRole, getAllByRole } = render(
-      <Component dropdownItems={dropdownItems} />,
-    );
-    const user = userEvent.setup();
-
-    getAllByRole('button')[2].focus();
-
-    await user.keyboard('[Enter]');
-    expect(queryByRole('menu')).not.toBeInTheDocument();
-
-    await user.keyboard('[Space');
-    expect(queryByRole('menu')).toBeInTheDocument();
-  });*/
-
-  /*it('should handle keyboard navigation', async () => {
-    //const user = userEvent.setup();
-    const { user, getByRole } = setup(
-      <Component pagination rowsPerPage={rowsPerPage} />,
-    );
-    /*const { getByRole } = render(
-      <Component pagination rowsPerPage={rowsPerPage} />,
-    );
-
-    await user.tab();
-    expect(getByRole('row', { name: /row1/i })).toHaveClass('Mui-selected');
-
-    await user.keyboard('{ArrowDown}');
-    //expect(mockFn).toHaveBeenCalledWith('navigated to row2');
-
-    await user.keyboard('{ArrowDown}');
-    await user.keyboard('{ArrowUp}');
-    expect(getByRole('row', { name: /row2/i })).toHaveClass('Mui-selected');
-
-    await user.keyboard('[ArrowRight]');
-    expect(getByRole('row', { name: /row7/i })).toHaveClass('Mui-selected');
-
-    await user.keyboard('[ArrowLeft]');
-    expect(getByRole('row', { name: /row2/i })).toHaveClass('Mui-selected');
-
-    await user.keyboard('[End]');
-    expect(getByRole('row', { name: /row20/i })).toHaveClass('Mui-selected');
-
-    await user.keyboard('[Home]');
-    expect(getByRole('row', { name: /row1/i })).toHaveClass('Mui-selected');
-
-    await user.keyboard('[Enter]');
-    expect(mockFn).toHaveBeenCalledWith('row1');
-  });*/
-
-  /*it('should handle sorting', async () => {
-    const { getByRole, getAllByRole } = render(<Sortable />);
-    const user = userEvent.setup();
-
-    const rows = getAllByRole('row');
-
-    expect(rows[1].textContent).toBe('row1');
-    expect(rows[2].textContent).toBe('row2');
-    expect(rows[3].textContent).toBe('row3');
-
-    const btn = getByRole('button', { name: /column #1/i });
-    await user.click(btn);
-
-    expect(rows[1].textContent).toBe(`row${numberOfRows}`);
-    expect(rows[2].textContent).toBe(`row${numberOfRows - 1}`);
-    expect(rows[3].textContent).toBe(`row${numberOfRows - 2}`);
-
-    btn.focus();
-    await user.keyboard('[Enter]');
-
-    //expect(rows[1].textContent).toBe('row1');
-    expect(rows[2].textContent).toBe('row2');
-    expect(rows[3].textContent).toBe('row3');
-  });*/
 });
