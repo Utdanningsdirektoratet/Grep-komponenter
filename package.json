@@ -128,7 +128,7 @@
     "chalk": "^5.3.0",
     "clsx": "^2.0.0",
     "commitlint": "^20.0.0",
-    "eslint": "^8.57.1",
+    "eslint": "^10.2.0",
     "eslint-plugin-jest-dom": "^5.5.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-storybook": "^10.1.4",
@@ -151,7 +151,7 @@
     "ts-jest": "^29.4.6",
     "tslib": "^2.2.0",
     "tss-react": "^4.9.15",
-    "typescript": "^5.4.5",
+    "typescript": "^6.0.2",
     "whatwg-fetch": "^3.6.20"
   },
   "files": [
@@ -165,8 +165,8 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@lexical/react": "^0.40.0",
-    "@mui/icons-material": "^7.3.6",
-    "@mui/material": "^7.1.0",
+    "@mui/icons-material": "^9.0.0",
+    "@mui/material": "^9.0.0",
     "@mui/x-date-pickers": "^8.19.0",
     "dayjs": "^1.11.19",
     "lexical": "^0.40.0",
