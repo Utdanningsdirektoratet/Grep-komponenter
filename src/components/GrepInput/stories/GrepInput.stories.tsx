@@ -6,7 +6,7 @@ export default {
   title: 'GrepInput',
 
   decorators: [
-    (storyFn: any) => (
+    (storyFn: () => React.ReactNode) => (
       <Container
         style={{
           marginTop: 40,

@@ -1,7 +1,7 @@
 import dayjs, { OpUnitType } from 'dayjs';
 import 'dayjs/locale/nb';
-import LocalizedFormatPlugin from 'dayjs/plugin/localizedFormat';
-import isBetweenPlugin from 'dayjs/plugin/isBetween';
+import LocalizedFormatPlugin from 'dayjs/plugin/localizedFormat.js';
+import isBetweenPlugin from 'dayjs/plugin/isBetween.js';
 
 export type ParseableDate = string | number | Date | dayjs.Dayjs;
 export type DateInput = ParseableDate | null;
@@ -16,7 +16,10 @@ export interface ParserOptions {
 }
 
 export class DateRangeValue {
-  constructor(public readonly from: DateInput, public readonly to: DateInput) {}
+  constructor(
+    public readonly from: DateInput,
+    public readonly to: DateInput,
+  ) {}
   get valid() {
     return this.isValid();
   }

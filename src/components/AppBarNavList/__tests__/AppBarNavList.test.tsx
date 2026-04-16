@@ -62,7 +62,7 @@ describe('AppBarNavList', () => {
     const user = userEvent.setup();
 
     // Expect initial page (selectedPage-prop) to be selected
-    expect(tabs[0].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[0]).toHaveAttribute('aria-selected', 'true');
 
     await user.click(tabs[3]);
 
@@ -71,7 +71,7 @@ describe('AppBarNavList', () => {
     expect(mockFn).toHaveBeenCalledTimes(1);
 
     // Expect selected page to be selected
-    expect(tabs[3].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[3]).toHaveAttribute('aria-selected', 'true');
 
     // Expect initial page (selectedPage-prop) to not be selected
     expect(tabs[0].getAttribute('aria-selected')).not.toBe('true');
@@ -96,7 +96,7 @@ describe('AppBarNavList', () => {
     await user.keyboard('{enter}');
 
     // Expect selected page to be selected with 'enter'-key
-    expect(tabs[2].getAttribute('aria-selected')).toBe('true');
+    expect(tabs[2]).toHaveAttribute('aria-selected', 'true');
 
     // Expect onChange to have been called with right args
     expect(mockFn).toHaveBeenCalledWith(pages[2].id - 1);
