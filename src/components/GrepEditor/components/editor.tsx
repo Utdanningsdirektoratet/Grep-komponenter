@@ -77,9 +77,7 @@ export default function Editor({
     }
   };
 
-  if (!editorRef) {
-    editorRef = useRef<LexicalEditor>(null);
-  }
+  editorRef = useRef<LexicalEditor>(null);
 
   const canStyle = allowedStyles === undefined || allowedStyles.length > 0;
 

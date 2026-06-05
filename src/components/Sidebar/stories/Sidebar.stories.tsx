@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Sidebar from '..';
+import Sidebar, { SidebarProps } from '..';
 import { NavigationProps } from '../../AppBarNavList';
 import Assignment from '@mui/icons-material/Assignment';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 export const adminPages: NavigationProps[] = [
   {
@@ -42,44 +43,41 @@ export const adminPages: NavigationProps[] = [
   },
 ];
 
-export default {
-  title: 'Sidebar',
-  excludeStories: ['adminPages'],
+const SidebarWithHooks = (
+  args: Omit<SidebarProps, 'currentPageId' | 'onPageClick'>,
+) => {
+  const [pageId, setPageId] = useState<number>();
+  return (
+    <Sidebar
+      currentPageId={pageId}
+      onPageClick={(page, event) => (
+        setPageId(page.id),
+        console.log(`${page.label} - mouse button ${event?.button ?? 'N(A'}`)
+      )}
+      {...args}
+    />
+  );
 };
 
-export const Standard = {
-  render: () => {
-    const [pageId, setPageId] = useState<number>();
-    return (
-      <Sidebar
-        pages={adminPages}
-        currentPageId={pageId}
-        onPageClick={(page, event) => (
-          setPageId(page.id),
-          console.log(`${page.label} - mouse button ${event?.button ?? 'N(A'}`)
-        )}
-      />
-    );
-  },
+const meta = {
+  component: SidebarWithHooks,
+  title: 'Sidebar',
+  excludeStories: ['adminPages'],
+  args: { pages: adminPages },
+  render: ({ ...args }) => <SidebarWithHooks {...args} />,
+} satisfies Meta<typeof SidebarWithHooks>;
+export default meta;
 
+type Story = StoryObj<typeof meta>;
+
+export const Standard: Story = {
+  args: {},
   name: 'Standard',
 };
 
-export const ExpandAndClick = {
-  render: () => {
-    const [pageId, setPageId] = useState<number>();
-    return (
-      <Sidebar
-        pages={adminPages}
-        currentPageId={pageId}
-        onPageClick={(page, event) => (
-          setPageId(page.id),
-          console.log(`${page.label} - mouse button ${event?.button ?? 'N(A'}`)
-        )}
-        expandOnIcon
-      />
-    );
+export const ExpandAndClick: Story = {
+  args: {
+    expandOnIcon: true,
   },
-
   name: 'Expand on icon only',
 };

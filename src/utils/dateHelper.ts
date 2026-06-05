@@ -4,7 +4,7 @@ import LocalizedFormatPlugin from 'dayjs/plugin/localizedFormat.js';
 import isBetweenPlugin from 'dayjs/plugin/isBetween.js';
 
 export type ParseableDate = string | number | Date | dayjs.Dayjs;
-export type DateInput = ParseableDate | null;
+export type DateInput = ParseableDate | null | undefined;
 
 dayjs.extend(isBetweenPlugin);
 dayjs.extend(LocalizedFormatPlugin);

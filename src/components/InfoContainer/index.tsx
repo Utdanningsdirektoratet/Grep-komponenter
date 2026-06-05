@@ -17,7 +17,7 @@ interface InfoProps {
 }
 
 const renderField = ({ key, value }: InfoFieldType) => (
-  <Box key={key} display="flex" marginRight="20px">
+  <Box key={key} sx={{ display: 'flex', marginRight: '20px' }}>
     <Typography
       variant="body1"
       style={{ color: Colors.grey, marginRight: '2rem' }}
@@ -29,7 +29,9 @@ const renderField = ({ key, value }: InfoFieldType) => (
 );
 
 const renderHorizontal = (infoFields: InfoFieldType[]) => (
-  <Box display="flex" flexWrap="wrap" justifyContent="space-between">
+  <Box
+    sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}
+  >
     {infoFields.map(renderField)}
   </Box>
 );

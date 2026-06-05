@@ -38,6 +38,7 @@ export const useDate = (
     hasDateChanged(date, nextDate) && _setDate(nextDate);
   };
 
+  // eslint-disable-next-line @eslint-react/use-memo
   useMemo(
     () => setDate(value ? parseDate(value, { utc }) : null),
     [value, utc],

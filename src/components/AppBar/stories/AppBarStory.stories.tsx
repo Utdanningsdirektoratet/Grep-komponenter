@@ -80,7 +80,7 @@ export default {
 
 export const WithContent = {
   render: () => (
-    <Box display="flex" flexDirection="column">
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
       <AppBar
         appTitle="Læreplanutvikleren"
         environmentTitle={'UTVIKLING'}

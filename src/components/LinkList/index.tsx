@@ -18,7 +18,7 @@ interface Props {
 }
 
 const LinkList: React.FC<Props> = (props) => (
-  <Box width="100%" flexDirection="column">
+  <Box sx={{ width: '100%', flexDirection: 'column' }}>
     <Typography style={{ fontSize: 24, color: Colors.black, marginBottom: 20 }}>
       {props.title}
     </Typography>

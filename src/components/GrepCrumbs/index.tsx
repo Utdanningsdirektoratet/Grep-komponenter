@@ -45,7 +45,7 @@ const GrepCrumbs: React.FC<Props> = ({
     <div className={classes.container} style={style}>
       {breadcrumbs.map((crumb, index) =>
         crumb.path ? (
-          <Box key={index} display="flex">
+          <Box key={crumb.label} sx={{ display: 'flex' }}>
             <Link
               className={classes.link}
               tabIndex={0}
@@ -55,13 +55,11 @@ const GrepCrumbs: React.FC<Props> = ({
               {crumb.label}
             </Link>
             {index !== breadcrumbs.length - 1 && (
-              <Box margin="auto 8px" height="fit-content" /*lineHeight="20px"*/>
-                &gt;
-              </Box>
+              <Box sx={{ margin: 'auto 8px', height: 'fit-content' }}>&gt;</Box>
             )}
           </Box>
         ) : (
-          <Tooltip key={index} title={showTooltip ? crumb.label : ''}>
+          <Tooltip key={crumb.label} title={showTooltip ? crumb.label : ''}>
             <div className={classes.current} ref={ref}>
               {crumb.label}
             </div>

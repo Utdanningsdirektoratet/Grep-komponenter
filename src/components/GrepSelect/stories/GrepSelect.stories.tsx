@@ -98,7 +98,7 @@ export const Outlined = () => {
       <GrepSelect
         value={selected2}
         outlined
-        MenuProps={{ MenuListProps: { sx: { maxHeight: '400px' } } }}
+        MenuProps={{ sx: { maxHeight: '400px' } }}
         label="Med kjempelang label bla bla bla"
         selectItems={selectItems}
         onChange={(e) => setSelected2(e.target.value as string)}
