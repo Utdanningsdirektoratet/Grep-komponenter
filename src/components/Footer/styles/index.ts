@@ -14,7 +14,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
     [theme.breakpoints.up('md')]: {
       minHeight: '100px',
     },
-    fontFamily: 'Montserrat',
+    fontFamily: 'MontSerrat, MontSerrat Variable',
     fontWeight: 600,
     fontSize: '14px',
   },
@@ -86,7 +86,7 @@ export const useFooterStyles = makeStyles()((theme) => ({
   itemText: {
     padding: 0,
     margin: '0 auto',
-    fontFamily: 'Montserrat',
+    fontFamily: 'MontSerrat, MontSerrat Variable',
     fontWeight: 400,
     fontSize: '14px',
     color: Colors.white,
