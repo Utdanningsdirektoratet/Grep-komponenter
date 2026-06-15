@@ -70,6 +70,7 @@ export default function Editor({
   };
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null);
+  const defaultRef = useRef<LexicalEditor>(null);
 
   const onRef = (_floatingAnchorElem: HTMLDivElement) => {
     if (_floatingAnchorElem !== null) {
@@ -77,7 +78,7 @@ export default function Editor({
     }
   };
 
-  editorRef = useRef<LexicalEditor>(null);
+  editorRef = editorRef ?? defaultRef;
 
   const canStyle = allowedStyles === undefined || allowedStyles.length > 0;
 
