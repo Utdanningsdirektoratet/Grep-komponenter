@@ -79,6 +79,6 @@ describe('GrepSelect', () => {
 
   it('should render correctly with small size', () => {
     const { getByRole } = render(<Component size="small" />);
-    expect(getByRole('combobox').className.toLowerCase()).toContain('small');
+    expect(getByRole('paragraph').className.toLowerCase()).toContain('small');
   });
 });

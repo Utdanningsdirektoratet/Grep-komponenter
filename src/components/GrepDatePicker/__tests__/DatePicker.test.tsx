@@ -3,18 +3,18 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
 
-import { ParseableDate } from '../../../utils';
-import DatePicker from '..';
+import { DateInput } from '../../../utils';
+import GrepDatePicker from '..';
 
 type Props = {
   error?: boolean;
 };
 
 const Component: React.FC<Props> = ({ error }) => {
-  const [value, setValue] = React.useState<ParseableDate | null>();
+  const [value, setValue] = React.useState<DateInput>();
 
   return (
-    <DatePicker
+    <GrepDatePicker
       id="DatePickerTest"
       label="DatePickerTest"
       helperText="HelperTextTest"
@@ -72,7 +72,7 @@ describe('GrepDatePicker', () => {
     await user.click(getByLabelText('Choose date'));
 
     expect(getByText(`${month} ${year}`)).toBeInTheDocument();
-    expect(getByText(dayjs().date())).toHaveClass('MuiPickersDay-today');
+    expect(getByText(dayjs().date())).toHaveClass('MuiPickerDay-today');
   });
 
   it('should handle picking a date', async () => {

@@ -53,7 +53,6 @@ export { default as InfoContainer } from './InfoContainer';
 export { default as OverflowTooltip } from './OverflowTooltip';
 export { default as Sidebar } from './Sidebar';
 export { default as NavGuard } from './NavGuard';
-export { default as DatePicker } from './GrepDatePicker';
 export { default as GrepDatePicker } from './GrepDatePicker';
 export { default as GrepDateRange } from './GrepDateRange';
 export { default as ServiceMessage } from './ServiceMessage';

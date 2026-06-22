@@ -40,7 +40,7 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
         classes={{ root: classes.tabs, indicator: classes.indicator }}
         value={value}
         onChange={handleChange}
-        TabIndicatorProps={{ children: <div /> }}
+        slotProps={{ indicator: { children: <div /> } }}
       >
         {pages.map((page) => (
           <Tab

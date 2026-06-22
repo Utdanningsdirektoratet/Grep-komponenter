@@ -54,9 +54,6 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
         anchorEl={anchorElNav}
         open={openNav}
         onClose={handleCloseNav}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
       >
         {pages.map((page) => (
           <MenuItem

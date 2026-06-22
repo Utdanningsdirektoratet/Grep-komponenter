@@ -17,6 +17,7 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   children,
   minTime,
   zIndex,
+  minHeight,
   sx,
   ...box
 }: LoadingOverlayProps) => {
@@ -28,24 +29,33 @@ export const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
   }, [show, minTime, setEnabled]);
 
   return (
-    <Box position="relative" display="block" overflow={show ? 'hidden' : ''}>
+    <Box
+      sx={{
+        position: 'relative',
+        display: 'block',
+        overflow: show ? 'hidden' : '',
+      }}
+    >
       {children}
       <Box
-        position="absolute"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        top={0}
-        left={0}
-        height="100%"
-        width="100%"
-        zIndex={enabled ? (zIndex ? zIndex : 999) : -999}
+        sx={{
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+          zIndex: enabled ? (zIndex ? zIndex : 999) : -999,
+          minHeight: minHeight,
+          ...sx,
+        }}
         style={{
           backgroundColor: overlay,
           opacity: show ? 1 : 0,
           transition: `opacity ${show ? 0 : minTime}ms ease`,
         }}
-        sx={sx}
         {...box}
       >
         <CircularProgress aria-label="Laster inn" />

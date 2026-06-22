@@ -65,9 +65,6 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
             anchorEl={anchorElNav}
             open={openNav}
             onClose={handleCloseNav}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
           >
             {menuItems.map((page) => (
               <MobileToolbarMenuItem
@@ -100,9 +97,6 @@ const MobileAppBar: React.FunctionComponent<Props> = ({
             anchorEl={anchorElMenu}
             open={openMenu}
             onClose={handleCloseMenu}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
           >
             {userMenuItems.map((i, index) => (
               <Box key={i.id}>

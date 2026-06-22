@@ -7,6 +7,8 @@ import { ToolbarProperties } from '../entities';
 import { $getTextContent } from 'lexical';
 import { $generateHtmlFromNodes } from '@lexical/html';
 import LexicalButton from '../components/buttons/InlineButton';
+import { Meta, StoryObj } from '@storybook/react-vite';
+
 const useStyles = makeStyles()({
   root: {
     background: 'red',
@@ -33,10 +35,22 @@ const myToolbar: React.FunctionComponent<ToolbarProperties> = ({
     </div>
   );
 };
+const EditorWithStyles = () => {
+  const { classes } = useStyles();
+  return <GrepEditor classes={classes} />;
+};
 
-export default {
+const meta = {
   title: 'GrepEditor',
-
+  component: GrepEditor,
+  args: {
+    onContentChange: (editorState, editor) => {
+      editorState.read(() => {
+        console.log('Lexical-text', $getTextContent());
+        console.log('Lexical-html', $generateHtmlFromNodes(editor));
+      });
+    },
+  },
   decorators: [
     (storyFn: () => React.ReactNode) => (
       <Container
@@ -51,114 +65,77 @@ export default {
       </Container>
     ),
   ],
-};
+} satisfies Meta<typeof GrepEditor>;
+export default meta;
 
-export const Standard = () => <GrepEditor />;
+type Story = StoryObj<typeof meta>;
 
-export const CustomStyles = {
-  render: () => {
-    const { classes } = useStyles();
+export const Standard: Story = {};
 
-    return <GrepEditor classes={classes} />;
-  },
-
+export const CustomStyles: Story = {
+  render: () => <EditorWithStyles />,
   name: 'Custom styles',
 };
 
-export const CustomToolbar = {
-  render: () => <GrepEditor Toolbar={myToolbar} />,
+export const CustomToolbar: Story = {
+  args: { Toolbar: myToolbar },
   name: 'Custom toolbar',
 };
 
-export const CustomButtons = {
-  render: () => (
-    <GrepEditor
-      allowedStyles={['bold']}
-      helperText="Some help text"
-      onContentChange={(editorState, editor) => {
-        editorState.read(() => {
-          console.log('Lexical-text', $getTextContent());
-          console.log('Lexical-html', $generateHtmlFromNodes(editor));
-        });
-      }}
-    />
-  ),
+export const CustomButtons: Story = {
+  args: {
+    allowedStyles: ['bold'],
+    helperText: 'Some help text',
+  },
 
   name: 'Custom buttons',
 };
 
-export const PasteStrippingAndBlockedInlineStyles = {
-  render: () => <GrepEditor stripPastedStyles allowedStyles={[]} />,
-
+export const PasteStrippingAndBlockedInlineStyles: Story = {
+  args: { stripPastedStyles: true, allowedStyles: [] },
   name: 'Paste stripping and blocked inline styles',
 };
 
-export const WithCharacterCount = {
-  render: () => (
-    <GrepEditor
-      showCharCount
-      helperText="Marker tekst for formatering"
-      onContentChange={(editorState, editor) => {
-        editorState.read(() => {
-          console.log('Lexical-text', $getTextContent());
-          console.log('Lexical-html', $generateHtmlFromNodes(editor));
-        });
-      }}
-    />
-  ),
-
+export const WithCharacterCount: Story = {
+  args: {
+    showCharCount: true,
+    helperText: 'Marker tekst for formatering',
+  },
   name: 'With character count',
 };
 
-export const DisableAndStripNewlines = {
-  render: () => (
-    <GrepEditor
-      disableNewlines
-      onContentChange={(editorState, editor) => {
-        editorState.read(() => {
-          console.log('Lexical-text', $getTextContent());
-          console.log('Lexical-html', $generateHtmlFromNodes(editor));
-        });
-      }}
-    />
-  ),
-
+export const DisableAndStripNewlines: Story = {
+  args: {
+    disableNewlines: true,
+  },
   name: 'Disable and strip newlines',
 };
 
-export const DisablePasting = {
-  render: () => (
-    <GrepEditor
-      blockPasting
-      onContentChange={(editorState, editor) => {
-        editorState.read(() => {
-          console.log('Lexical-text', $getTextContent());
-          console.log('Lexical-html', $generateHtmlFromNodes(editor));
-        });
-      }}
-    />
-  ),
-
+export const DisablePasting: Story = {
+  args: {
+    blockPasting: true,
+  },
   name: 'Disable pasting',
 };
 
-export const WithLabel = {
-  render: () => <GrepEditor label="This is a label" />,
+export const WithLabel: Story = {
+  args: {
+    label: 'This is a label',
+  },
   name: 'With label',
 };
 
-export const OnlyHeading = {
-  render: () => (
-    <GrepEditor html="<h3>This is an h3 tag, but it could be any heading tag between h1 and h6 based on html input.</h3>" />
-  ),
-
+export const OnlyHeading: Story = {
+  args: {
+    html: '<h3>This is an h3 tag, but it could be any heading tag between h1 and h6 based on html input.</h3>',
+  },
   name: 'OnlyHeading',
 };
 
-export const ReadOnly = {
-  render: () => (
-    <GrepEditor readOnly html="This is some text you cannot edit" />
-  ),
-
+export const ReadOnly: Story = {
+  args: {
+    readOnly: true,
+    html: 'This is some text you cannot edit',
+  },
   name: 'ReadOnly',
 };

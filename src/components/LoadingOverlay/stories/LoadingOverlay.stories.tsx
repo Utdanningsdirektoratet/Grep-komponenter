@@ -1,41 +1,35 @@
 import React from 'react';
-import LoadingOverlay from '..';
+import LoadingOverlay, { LoadingOverlayProps } from '..';
 import { Button } from '@mui/material';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
-export default {
-  title: 'LoadingOverlay',
+const TestLoadingOverlay = (args: Omit<LoadingOverlayProps, 'show'>) => {
+  const [show, setShow] = React.useState(false);
+
+  return (
+    <LoadingOverlay show={show} {...args}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => setShow(!show)}
+      >{`Turn ${show ? 'off' : 'on'}`}</Button>
+    </LoadingOverlay>
+  );
 };
 
-export const Standard = {
-  render: () => {
-    const [show, setShow] = React.useState(false);
+const meta = {
+  title: 'LoadingOverlay',
+  args: { zIndex: 1 },
+  render: ({ ...args }) => <TestLoadingOverlay {...args} />,
+} satisfies Meta<typeof TestLoadingOverlay>;
+export default meta;
 
-    return (
-      <LoadingOverlay show={show}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setShow(!show)}
-        >{`Turn ${show ? 'off' : 'on'}`}</Button>
-      </LoadingOverlay>
-    );
-  },
+type Story = StoryObj<typeof meta>;
 
+export const Standard: Story = {
   name: 'standard',
 };
 
 export const CustomOverlay = {
-  render: () => {
-    const [show, setShow] = React.useState(false);
-
-    return (
-      <LoadingOverlay overlay="rgb(255, 0, 0)" show={show}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => setShow(!show)}
-        >{`Turn ${show ? 'off' : 'on'}`}</Button>
-      </LoadingOverlay>
-    );
-  },
+  args: { overlay: 'rgb(255, 0, 0)' },
 };

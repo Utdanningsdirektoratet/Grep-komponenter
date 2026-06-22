@@ -10,11 +10,13 @@ interface Props extends CircularProgressProps {
 
 const CircularLoading: React.FC<Props> = ({ height, ...props }) => (
   <Box
-    height={height}
-    width="100%"
-    display="flex"
-    alignItems="center"
-    justifyContent="center"
+    sx={{
+      height: { height },
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
   >
     <CircularProgress {...props} />
   </Box>

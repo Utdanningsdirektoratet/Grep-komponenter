@@ -29,7 +29,7 @@ import ProfileInfo from '../components/ProfileInfo';
 import { user } from '../components/ProfileInfo/stories/ProfileInfo.stories';
 import Sidebar from '../components/Sidebar';
 
-// import '../components/NavGuard/stories/NavGuard.stories';
+// import '../components/NavGuard/stories/NavGuard.stories';menu=
 // import '../components/SortableTable/stories/SortableTable.stories';
 // import '../components/GrepDateRange/stories/GrepDateRange.stories';
 // import '../components/ToC/stories/ToC.stories';
@@ -74,13 +74,20 @@ export default {
             },
           ]}
         >
-          <Box display="flex" width="100%" height={64} overflow="hidden">
+          <Box
+            sx={{
+              display: 'flex',
+              width: '100%',
+              height: 64,
+              overflow: 'hidden',
+            }}
+          >
             <AppBarNavList
               pages={navbarPages}
               selectedPage={navbarPages[0].id}
               onChange={(number) => console.log('index: ', number)}
             />
-            <Box marginLeft="auto">
+            <Box sx={{ marginLeft: 'auto' }}>
               <AppBarProfile
                 userRole={'Superbruker'}
                 fullName={'Grep Fagansvarlig'}
@@ -110,7 +117,7 @@ export default {
 export const Dashboard = {
   render: () => {
     return (
-      <Box display="flex">
+      <Box sx={{ display: 'flex' }}>
         <ContainedLinkList
           title={'Mine tilganger'}
           pages={myPages}

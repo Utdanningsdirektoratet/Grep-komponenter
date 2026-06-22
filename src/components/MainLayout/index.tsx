@@ -6,7 +6,7 @@ export interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = (props) => (
-  <Box display="flex" flex="1" flexDirection="column">
+  <Box sx={{ display: 'flex', flex: '1', flexDirection: 'column' }}>
     {props.children}
   </Box>
 );
