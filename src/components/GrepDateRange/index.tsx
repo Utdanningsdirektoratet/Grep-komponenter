@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useEffect } from 'react';
 import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
 import GrepDatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
@@ -33,7 +33,7 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
   const [to, setTo] = useDate(toProperties.value);
   const { minDate, maxDate, ...commonProperties } = properties;
 
-  useCallback(
+  useEffect(
     () =>
       onChange(
         new DateRangeValue(from ? String(from) : from, to ? String(to) : to),
