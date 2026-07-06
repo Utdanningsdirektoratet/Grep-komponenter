@@ -38,7 +38,7 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
       onChange(
         new DateRangeValue(from ? String(from) : from, to ? String(to) : to),
       ),
-    [from, to, onChange],
+    [String(from), String(to)],
   );
 
   return (
