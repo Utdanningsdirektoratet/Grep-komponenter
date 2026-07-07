@@ -54,7 +54,8 @@ export const useMobileStyles = makeStyles()(({ palette, breakpoints }) => ({
   mobileNavList: {
     backgroundColor: `transparent`,
     color: palette.primary.main,
-    fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
+    fontFamily:
+      'MontSerrat, MontSerrat Variable, Helvetica Neue, Helvetica, Arial, sans-serif',
     [breakpoints.down('lg')]: {
       display: 'flex',
     },

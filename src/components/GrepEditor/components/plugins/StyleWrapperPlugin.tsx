@@ -106,7 +106,7 @@ export function StyleWrapperPlugin({
 
       {/* Wrapper for displaying charcount and helpertext */}
       {(showCharcount || helperText) && (
-        <Box margin=".5rem">
+        <Box sx={{ margin: '.5rem' }}>
           {showCharcount && (
             <FormHelperText className={styles.charcount}>
               {`Antall tegn: ${charCount}`}

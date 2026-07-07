@@ -3,35 +3,43 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Button, Box, Container } from '@mui/material';
 
-import { ParseableDate, DateTime } from '../../../utils';
-import DatePicker from '..';
+import { DateTime, DateInput } from '../../../utils';
+import GrepDatePicker, { GrepDatePickerProps } from '..';
+import { Meta, StoryObj } from '@storybook/react-vite';
+import dayjs from 'dayjs';
 
-const TestDatePicker = () => {
-  const [value, setValue] = React.useState<ParseableDate | null>(
-    '1993-12-12T23:00:00',
+const TestDatePicker = (
+  args: Omit<GrepDatePickerProps, 'value' | 'onChange'>,
+) => {
+  const [value, setValue] = React.useState<DateInput>(
+    args.defaultValue ?? null,
   );
   return (
-    <Box display="flex" flexDirection="column">
-      <DatePicker
-        label="Med feilmelding"
-        variant="standard"
-        errorMessage="Feilmelding"
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <GrepDatePicker
         value={value}
         onChange={(date) => {
           setValue(date);
         }}
+        {...args}
       />
-      <Button onClick={() => setValue(DateTime('1980-12-17'))}>
-        set to 17.12.1980
-      </Button>
-      <Button onClick={() => setValue(null)}>clear</Button>
+      {args.defaultValue && (
+        <>
+          {' '}
+          <Button onClick={() => setValue(DateTime('1980-12-17'))}>
+            set to 17.12.1980
+          </Button>
+          <Button onClick={() => setValue(null)}>clear</Button>
+        </>
+      )}
     </Box>
   );
 };
 
-export default {
-  title: 'GrepDatePicker',
-
+const meta = {
+  component: TestDatePicker,
+  title: 'DatePicker',
+  render: ({ ...args }) => <TestDatePicker {...args} />,
   decorators: [
     (storyFn: () => React.ReactNode) => (
       <Container
@@ -47,48 +55,38 @@ export default {
       </Container>
     ),
   ],
+} satisfies Meta<typeof TestDatePicker>;
+export default meta;
+
+type Story = StoryObj<typeof meta>;
+
+export const WithError: Story = {
+  name: 'Med feilmelding',
+  args: {
+    id: 'medFeilmelding',
+    label: 'Med feilmelding',
+    variant: 'outlined',
+    errorMessage: 'Feilmelding',
+    defaultValue: dayjs('1993-12-12T23:00:00'),
+  },
+};
+export const WithHelperText: Story = {
+  name: 'Med hjelpetekst',
+  args: {
+    id: 'medHjelpetekst',
+    label: 'Med hjelpetekst',
+    helperText: 'Hjelpetekst',
+    variant: undefined,
+  },
 };
 
-export const Standard = () => {
-  return (
-    <React.Fragment>
-      <TestDatePicker />
-      <DatePicker
-        label="Med hjelpetekst"
-        variant="standard"
-        helperText="Hjelpetekst"
-        onChange={(date) => console.log(date)}
-      />
-      <DatePicker
-        label="Med placeholder"
-        variant="standard"
-        placeholder="25/04/2019"
-        onChange={(date) => console.log(date)}
-      />
-    </React.Fragment>
-  );
+export const WithMoreControls: Story = {
+  name: 'Med flere props',
+  args: {
+    id: 'FlereProps',
+    label: 'test',
+    variant: 'filled',
+    required: true,
+    margin: 'dense',
+  },
 };
-
-export const Test = () => <TestDatePicker />;
-
-export const Outlined = () => (
-  <React.Fragment>
-    <DatePicker
-      label="Med feilmelding"
-      value={'32.01.2019'}
-      onChange={(date) => console.log(date)}
-    />
-    <DatePicker
-      label="Med hjelpetekst"
-      helperText="Hjelpetekst"
-      value={null}
-      onChange={(date) => console.log(date)}
-    />
-    <DatePicker
-      label="Med placeholder"
-      placeholder="25/04/2019"
-      value={null}
-      onChange={(date) => console.log(date)}
-    />
-  </React.Fragment>
-);

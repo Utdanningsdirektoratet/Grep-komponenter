@@ -159,6 +159,7 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
         <SortableContext
           items={stateItems}
           strategy={verticalListSortingStrategy}
+          disabled={props.disabled}
         >
           <TableBody>
             {stateItems.map((item) => (

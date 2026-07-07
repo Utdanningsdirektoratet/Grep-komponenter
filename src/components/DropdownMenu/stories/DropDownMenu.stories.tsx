@@ -107,30 +107,32 @@ export default {
 };
 
 export const Standard = {
-  render: () => {
-    const [open, setOpen] = useState(false);
-    const menuAnchor = useRef(null);
-    const { classes } = makeStyles()({
-      paper: {
-        width: '200px',
-      },
-    })();
+  decorators: [
+    () => {
+      const [open, setOpen] = useState(false);
+      const menuAnchorRef = useRef(null);
+      const { classes } = makeStyles()({
+        paper: {
+          width: '200px',
+        },
+      })();
 
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Button ref={menuAnchor} onClick={() => setOpen(!open)}>
-          menu
-        </Button>
-        <DropdownMenu
-          open={open}
-          anchorEl={menuAnchor.current}
-          menuItems={menuItems}
-          onClose={() => setOpen(false)}
-          classes={classes}
-        />
-      </Box>
-    );
-  },
+      return (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button ref={menuAnchorRef} onClick={() => setOpen(!open)}>
+            menu
+          </Button>
+          <DropdownMenu
+            open={open}
+            anchorEl={menuAnchorRef.current}
+            menuItems={menuItems}
+            onClose={() => setOpen(false)}
+            classes={classes}
+          />
+        </Box>
+      );
+    },
+  ],
 
   name: 'standard',
 };

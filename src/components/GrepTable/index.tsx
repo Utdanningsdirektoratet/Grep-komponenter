@@ -189,7 +189,7 @@ export const GrepTable = <T,>({
     }
   }, [tableRef, selectedRowIndex]);
 
-  React.useMemo(() => {
+  React.useEffect(() => {
     setCurrentPage(0);
   }, [data.length, setCurrentPage]);
 

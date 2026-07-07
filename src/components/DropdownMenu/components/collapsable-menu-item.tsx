@@ -132,12 +132,14 @@ export const CollapsableMenuItem: FunctionComponent<
   const { classes } = useStyles({ open });
 
   const renderInner = () => (
-    <Box display="flex" flexDirection="column" width="100%">
+    <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
       <Box
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        minHeight={48}
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          minHeight: 48,
+        }}
       >
         {children}
         {items && <IconExpand className={classes.expander} />}
@@ -178,7 +180,8 @@ export const CollapsableMenuItem: FunctionComponent<
         className={classes.root}
         onFocusVisible={handleOpenTooltip}
         onMouseOver={(e: React.BaseSyntheticEvent) => (
-          e.currentTarget.focus(), handleOpenTooltip()
+          e.currentTarget.focus(),
+          handleOpenTooltip()
         )}
         onMouseLeave={handleCloseTooltip}
         selected={open}

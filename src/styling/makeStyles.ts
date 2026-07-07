@@ -1,12 +1,12 @@
-import { useTheme } from '@mui/material/styles';
 import { createMakeAndWithStyles } from 'tss-react';
+import { useTheme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 
-export const { makeStyles, withStyles } = createMakeAndWithStyles({
-  useTheme,
-  /*
-    OR, if you have extended the default mui theme adding your own custom properties: 
-    Let's assume the myTheme object that you provide to the <ThemeProvider /> is of 
-    type MyTheme then you'll write:
-    */
-  //"useTheme": useTheme as (()=> MyTheme)
+type MakeAndWithStyles = ReturnType<typeof createMakeAndWithStyles<Theme>>;
+
+const tssStyles = createMakeAndWithStyles({
+  useTheme: useTheme as () => Theme,
 });
+
+export const makeStyles: MakeAndWithStyles['makeStyles'] = tssStyles.makeStyles;
+export const withStyles: MakeAndWithStyles['withStyles'] = tssStyles.withStyles;

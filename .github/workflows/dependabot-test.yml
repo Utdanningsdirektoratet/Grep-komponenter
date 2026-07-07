@@ -13,13 +13,17 @@ jobs:
     if: ${{ github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+    strategy:
+      matrix:
+        node-version: [24.x]
 
-      - name: Use Node.js (v20)
-        uses: actions/setup-node@v4
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Use Node.js (${{ matrix.node-version }})
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: ${{ matrix.node-version }}
           cache: npm
 
       - name: Install dependencies

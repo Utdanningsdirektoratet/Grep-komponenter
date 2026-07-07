@@ -44,7 +44,11 @@ const Footer: React.FC<FooterProps> = ({
         primary={item.label}
         slotProps={{
           primary: {
-            style: { fontSize: 14, fontFamily: 'Montserrat', fontWeight: 400 },
+            style: {
+              fontSize: 14,
+              fontFamily: 'MontSerrat, MontSerrat Variable',
+              fontWeight: 400,
+            },
           },
         }}
       />

@@ -19,7 +19,7 @@ export const ToolbarTitle = styled(NavLink)(() => ({
   display: 'flex',
   fontSize: '24px',
   color: '#303030',
-  fontFamily: 'Montserrat',
+  fontFamily: 'MontSerrat, MontSerrat Variable',
   fontWeight: 500,
   textDecoration: 'none',
   ':hover': {
@@ -153,7 +153,8 @@ export const ToolbarMenu = styled('div')(({ theme }) => {
 
     display: 'flex',
     alignItems: 'center',
-    fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
+    fontFamily:
+      'MontSerrat, MontSerrat Variable, Helvetica Neue, Helvetica, Arial, sans-serif',
     boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.3)',
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -172,7 +173,8 @@ export const MobileToolbarMenu = styled('div')(({ theme }) => ({
   width: '100%',
   flexGrow: 1,
   alignItems: 'center',
-  fontFamily: 'MontSerrat, Helvetica Neue, Helvetica, Arial, sans-serif',
+  fontFamily:
+    'MontSerrat, MontSerrat Variable, Helvetica Neue, Helvetica, Arial, sans-serif',
   boxShadow: '0 3px 5px 0 rgba(0, 0, 0, 0.3)',
   [theme.breakpoints.down('sm')]: {
     display: 'flex',

@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
-import DatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
+import GrepDatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 import { Dayjs } from 'dayjs';
 import Grid, { GridSpacing } from '@mui/material/Grid';
 
 type CommonProperties = Pick<GrepDatePickerProps, 'variant' | 'margin' | 'sx'>;
 
-interface Props extends CommonProperties {
+export interface GrepDateRangeProps extends CommonProperties {
   from: Omit<GrepDatePickerProps, 'onChange'>;
   to: Omit<GrepDatePickerProps, 'onChange'>;
   onChange: (date: DateRangeValue) => void;
@@ -20,7 +20,7 @@ interface Props extends CommonProperties {
   maxDate?: Dayjs;
 }
 
-export const GrepDateRange: React.FunctionComponent<Props> = ({
+export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
   onChange,
   spacing = 3,
   style,
@@ -28,20 +28,23 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
   from: fromProperties,
   to: toProperties,
   ...properties
-}: Props) => {
+}: GrepDateRangeProps) => {
   const [from, setFrom] = useDate(fromProperties.value);
   const [to, setTo] = useDate(toProperties.value);
   const { minDate, maxDate, ...commonProperties } = properties;
 
   useEffect(
-    () => onChange(new DateRangeValue(from, to)),
+    () =>
+      onChange(
+        new DateRangeValue(from ? String(from) : from, to ? String(to) : to),
+      ),
     [String(from), String(to)],
   );
 
   return (
     <Grid container spacing={spacing} style={style}>
       <Grid size={{ xs: 12, sm: fullWidth ? 12 : 6 }}>
-        <DatePicker
+        <GrepDatePicker
           id={String(fromProperties.label)}
           fullWidth
           minDate={minDate}
@@ -53,7 +56,7 @@ export const GrepDateRange: React.FunctionComponent<Props> = ({
         />
       </Grid>
       <Grid size={{ xs: 12, sm: fullWidth ? 12 : 6 }}>
-        <DatePicker
+        <GrepDatePicker
           id={String(toProperties.label)}
           fullWidth
           maxDate={maxDate}
