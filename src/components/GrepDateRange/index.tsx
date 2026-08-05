@@ -25,6 +25,7 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
   spacing = 3,
   style,
   fullWidth,
+  clearable,
   from: fromProperties,
   to: toProperties,
   ...properties
@@ -51,7 +52,7 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
           value={from}
           maxDate={to?.subtract(1, 'day') || undefined}
           onChange={setFrom}
-          onClear={() => setFrom(null)}
+          clearable={clearable || fromProperties.clearable}
         />
       </Grid>
       <Grid size={{ xs: 12, sm: fullWidth ? 12 : 6 }}>
@@ -64,7 +65,7 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
           value={to}
           minDate={from?.add(1, 'day') || undefined}
           onChange={setTo}
-          onClear={() => setTo(null)}
+          clearable={clearable || toProperties.clearable}
         />
       </Grid>
     </Grid>

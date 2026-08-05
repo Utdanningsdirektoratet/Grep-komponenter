@@ -29,7 +29,7 @@ export interface GrepDatePickerProps
   extends Omit<DatePickerProps, 'value' | 'renderInput'>, InputProps {
   value?: ParseableDate | null;
   errorMessage?: string;
-  onClear?: () => void;
+  clearable?: boolean;
 }
 
 export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
@@ -42,7 +42,7 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   required,
   margin,
   sx,
-  onClear,
+  clearable,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
@@ -84,8 +84,8 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
         onChange={setDate}
         slotProps={{
           field: {
-            clearable: !!onClear,
-            onClear: () => onClear && onClear(),
+            clearable: !!clearable,
+            onClear: () => setDate(null),
           },
           textField: {
             id: id,

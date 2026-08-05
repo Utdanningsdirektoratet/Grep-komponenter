@@ -86,9 +86,7 @@ export const WithClearText: Story = {
     id: 'withClear',
     helperText: 'Hjelpetekst',
     variant: undefined,
-    onClear: () => {
-      /* what to do */
-    },
+    clearable: true,
   },
 };
 
