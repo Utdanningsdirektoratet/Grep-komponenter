@@ -18,16 +18,16 @@ const useStyles = makeStyles()({
 const myToolbar: React.FunctionComponent<ToolbarProperties> = ({
   buttons,
   editor,
-  isSelected,
+  formats,
 }: ToolbarProperties) => {
   return (
     <div>
-      {buttons.map(({ type, children }, key) => (
+      {buttons.map(({ type, children }) => (
         <LexicalButton
-          key={Math.random()}
+          key={type}
           type={type}
           editor={editor}
-          selected={isSelected[key]}
+          selected={formats?.has(type)}
         >
           {children}
         </LexicalButton>

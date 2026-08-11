@@ -15,7 +15,7 @@ import { htmlExportMap } from './plugins/CustomHtmlExport';
 import ModifyPastePlugin from './plugins/DisablePastePlugin';
 import PreventNewlinesPlugin from './plugins/PreventNewlinesPlugin';
 import { Button, createButton } from './buttons';
-import FloatingTextFormatToolbarPlugin from './plugins/ToolbarPlugin';
+import FloatingTextFormatToolbarPlugin from './plugins/Toolbar/ToolbarPlugin';
 import InsertDataPlugin from './plugins/InitialDataPlugin';
 import { LexicalOnChange, Properties } from '../entities';
 import HeadingPlugin from './plugins/HeadingPlugin';
@@ -37,6 +37,7 @@ function onError(error: Error): void {
 const createDefaultButtons = (): Array<Button> => [
   createButton('bold'),
   createButton('italic'),
+  createButton('superscript'),
 ];
 
 /* This allows interaction with the editor outside of the LexicalComposer */

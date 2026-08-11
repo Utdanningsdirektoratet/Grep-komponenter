@@ -1,142 +1,77 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { TextNode } from 'lexical';
+import { TextFormatType, TextNode } from 'lexical';
 import { useEffect } from 'react';
-import { ButtonType, Style } from '../buttons';
+import { AllowedStyles } from '../buttons';
 
-const allowBoldItalic = (node: TextNode) => {
-  if (
-    node.hasFormat('italic') &&
-    node.hasFormat('bold') &&
-    (node.hasFormat('code') ||
-      node.hasFormat('highlight') ||
-      node.hasFormat('strikethrough') ||
-      node.hasFormat('subscript') ||
-      node.hasFormat('superscript') ||
-      node.hasFormat('underline'))
-  ) {
-    node.setFormat(0); // setFormat only sets one specific format. Therefore toggle is used to have both applied.
+const RESTRICTED_FORMATS = [
+  'code',
+  'highlight',
+  'strikethrough',
+  'subscript',
+  'underline',
+] as const;
+
+const hasAnyFormat = (
+  node: TextNode,
+  formats: readonly TextFormatType[],
+): boolean => {
+  return formats.some((format) => node.hasFormat(format));
+};
+
+const applyAllowedFormats = (
+  node: TextNode,
+  allowedFormats: readonly AllowedStyles[],
+): void => {
+  const hasBold = node.hasFormat('bold');
+  const hasItalic = node.hasFormat('italic');
+  const hasSuperscript = node.hasFormat('superscript');
+
+  const keepBold = allowedFormats.includes('bold') && hasBold;
+  const keepItalic = allowedFormats.includes('italic') && hasItalic;
+  const keepSuperscript =
+    allowedFormats.includes('superscript') && hasSuperscript;
+
+  if (!keepBold && !keepItalic && !keepSuperscript) {
+    return;
+  }
+
+  const hasDisallowedFormatting = hasAnyFormat(node, RESTRICTED_FORMATS);
+
+  if (!hasDisallowedFormatting) {
+    if (keepBold || keepItalic || keepSuperscript) {
+      return;
+    }
+  }
+
+  if (keepBold) {
     node.toggleFormat('bold');
+  }
+  if (keepItalic) {
     node.toggleFormat('italic');
-  } else if (node.hasFormat('italic') && node.hasFormat('bold')) {
-    return; // Need to set as italic to ensure format is only italic.
-  } else if (
-    node.hasFormat('bold') &&
-    (node.hasFormat('code') ||
-      node.hasFormat('highlight') ||
-      node.hasFormat('strikethrough') ||
-      node.hasFormat('subscript') ||
-      node.hasFormat('superscript') ||
-      node.hasFormat('underline'))
-  ) {
-    node.setFormat('bold');
-  } else if (
-    node.hasFormat('italic') &&
-    (node.hasFormat('code') ||
-      node.hasFormat('highlight') ||
-      node.hasFormat('strikethrough') ||
-      node.hasFormat('subscript') ||
-      node.hasFormat('superscript') ||
-      node.hasFormat('underline'))
-  ) {
-    node.setFormat('italic');
-  } else if (
-    node.hasFormat('code') ||
-    node.hasFormat('highlight') ||
-    node.hasFormat('strikethrough') ||
-    node.hasFormat('subscript') ||
-    node.hasFormat('superscript') ||
-    node.hasFormat('underline')
-  ) {
-    node.setFormat(0); // Sets format to none.
   }
-};
-
-const allowBold = (node: TextNode) => {
-  if (
-    node.hasFormat('bold') &&
-    (node.hasFormat('code') ||
-      node.hasFormat('highlight') ||
-      node.hasFormat('strikethrough') ||
-      node.hasFormat('subscript') ||
-      node.hasFormat('superscript') ||
-      node.hasFormat('underline'))
-  ) {
-    node.setFormat('bold');
-  } else if (
-    node.hasFormat('italic') ||
-    node.hasFormat('code') ||
-    node.hasFormat('highlight') ||
-    node.hasFormat('strikethrough') ||
-    node.hasFormat('subscript') ||
-    node.hasFormat('superscript') ||
-    node.hasFormat('underline')
-  ) {
-    node.setFormat(0); // Sets format to none.
-  }
-};
-
-const allowItalic = (node: TextNode) => {
-  if (
-    node.hasFormat('italic') &&
-    (node.hasFormat('code') ||
-      node.hasFormat('highlight') ||
-      node.hasFormat('strikethrough') ||
-      node.hasFormat('subscript') ||
-      node.hasFormat('superscript') ||
-      node.hasFormat('underline'))
-  ) {
-    node.setFormat('italic');
-  } else if (
-    node.hasFormat('bold') ||
-    node.hasFormat('code') ||
-    node.hasFormat('highlight') ||
-    node.hasFormat('strikethrough') ||
-    node.hasFormat('subscript') ||
-    node.hasFormat('superscript') ||
-    node.hasFormat('underline')
-  ) {
-    node.setFormat(0); // Sets format to none.
-  }
-};
-
-const disallowAll = (node: TextNode) => {
-  if (
-    node.hasFormat('bold') ||
-    node.hasFormat('italic') ||
-    node.hasFormat('code') ||
-    node.hasFormat('highlight') ||
-    node.hasFormat('strikethrough') ||
-    node.hasFormat('subscript') ||
-    node.hasFormat('superscript') ||
-    node.hasFormat('underline')
-  ) {
-    node.setFormat(0); // Sets format to none.
+  if (keepSuperscript) {
+    node.toggleFormat('superscript');
   }
 };
 
 export default function TextNodeStylingPlugin({
   allowedStyles,
 }: {
-  allowedStyles?: Style[];
+  allowedStyles?: AllowedStyles[];
 }): null {
   const [editor] = useLexicalComposerContext();
+
   useEffect(() => {
     return editor.registerNodeTransform(TextNode, (node) => {
+      const allowedFormats: AllowedStyles[] = allowedStyles ?? [];
+
       if (allowedStyles === undefined) {
-        allowBoldItalic(node);
-      } else if (
-        allowedStyles.includes(ButtonType.bold) &&
-        allowedStyles.includes(ButtonType.italic)
-      ) {
-        allowBoldItalic(node);
-      } else if (allowedStyles.includes(ButtonType.bold)) {
-        allowBold(node);
-      } else if (allowedStyles.includes(ButtonType.italic)) {
-        allowItalic(node);
-      } else {
-        disallowAll(node);
+        allowedFormats.push('bold', 'italic', 'superscript');
       }
+
+      applyAllowedFormats(node, allowedFormats);
     });
-  }, [editor]);
+  }, [editor, allowedStyles]);
+
   return null;
 }
