@@ -7,7 +7,6 @@ const RESTRICTED_FORMATS = [
   'code',
   'highlight',
   'strikethrough',
-  'subscript',
   'underline',
 ] as const;
 
@@ -25,20 +24,22 @@ const applyAllowedFormats = (
   const hasBold = node.hasFormat('bold');
   const hasItalic = node.hasFormat('italic');
   const hasSuperscript = node.hasFormat('superscript');
+  const hasSubscript = node.hasFormat('subscript');
 
   const keepBold = allowedFormats.includes('bold') && hasBold;
   const keepItalic = allowedFormats.includes('italic') && hasItalic;
   const keepSuperscript =
     allowedFormats.includes('superscript') && hasSuperscript;
+  const keepSubscript = allowedFormats.includes('subscript') && hasSubscript;
 
-  if (!keepBold && !keepItalic && !keepSuperscript) {
+  if (!keepBold && !keepItalic && !keepSuperscript && !keepSubscript) {
     return;
   }
 
   const hasDisallowedFormatting = hasAnyFormat(node, RESTRICTED_FORMATS);
 
   if (!hasDisallowedFormatting) {
-    if (keepBold || keepItalic || keepSuperscript) {
+    if (keepBold || keepItalic || keepSuperscript || keepSubscript) {
       return;
     }
   }
@@ -51,6 +52,9 @@ const applyAllowedFormats = (
   }
   if (keepSuperscript) {
     node.toggleFormat('superscript');
+  }
+  if (keepSubscript) {
+    node.toggleFormat('subscript');
   }
 };
 
@@ -66,7 +70,7 @@ export default function TextNodeStylingPlugin({
       const allowedFormats: AllowedStyles[] = allowedStyles ?? [];
 
       if (allowedStyles === undefined) {
-        allowedFormats.push('bold', 'italic', 'superscript');
+        allowedFormats.push('bold', 'italic', 'superscript', 'subscript');
       }
 
       applyAllowedFormats(node, allowedFormats);

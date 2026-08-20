@@ -9,6 +9,7 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { EditorRefPlugin } from '@lexical/react/LexicalEditorRefPlugin';
 import { HeadingNode } from '@lexical/rich-text';
+import { OverflowNode } from '@lexical/overflow';
 import React, { useRef, useState } from 'react';
 import StyleWrapperPlugin from './plugins/StyleWrapperPlugin';
 import { htmlExportMap } from './plugins/CustomHtmlExport';
@@ -21,6 +22,10 @@ import { LexicalOnChange, Properties } from '../entities';
 import HeadingPlugin from './plugins/HeadingPlugin';
 import { LexicalEditor } from 'lexical';
 import TextNodeStylingPlugin from './plugins/TextNodeStylingPlugin';
+import ReadModePlugin from './plugins/ReadMode';
+import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin';
+import RemoveOverflowPlugin from './plugins/RemoveOverflow';
+import { AddPlaceholderPlugin } from './plugins/Placeholder';
 
 // Classes here are added to the relevant tags i.e.(<strong>)
 const theme = {
@@ -38,6 +43,7 @@ const createDefaultButtons = (): Array<Button> => [
   createButton('bold'),
   createButton('italic'),
   createButton('superscript'),
+  createButton('subscript'),
 ];
 
 /* This allows interaction with the editor outside of the LexicalComposer */
@@ -58,13 +64,15 @@ export default function Editor({
   stripPastedStyles,
   readOnly,
   Toolbar,
+  maxChars,
+  placeholder,
 }: Properties) {
   const initialConfig: InitialConfigType = {
     namespace: 'GrepEditor',
     theme,
     editable: !readOnly,
     onError,
-    nodes: [HeadingNode],
+    nodes: [HeadingNode, OverflowNode],
     html: {
       export: htmlExportMap,
     },
@@ -93,6 +101,7 @@ export default function Editor({
       <StyleWrapperPlugin
         helperText={helperText}
         showCharcount={showCharCount}
+        maxChars={maxChars}
         readOnly={readOnly}
         classes={classes}
         label={label}
@@ -128,7 +137,19 @@ export default function Editor({
         />
         <PreventNewlinesPlugin disableNewlines={disableNewlines} />
         <TextNodeStylingPlugin allowedStyles={allowedStyles} />
+        <ReadModePlugin readOnly={!readOnly} />
+        {maxChars && (
+          <>
+            <RemoveOverflowPlugin maxChars={maxChars} />
+            <CharacterLimitPlugin
+              charset="UTF-16"
+              maxLength={maxChars}
+              renderer={() => <></>}
+            />
+          </>
+        )}
       </StyleWrapperPlugin>
+      <AddPlaceholderPlugin placeholder={placeholder} />
     </LexicalComposer>
   );
 }

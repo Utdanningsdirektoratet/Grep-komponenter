@@ -99,6 +99,7 @@ export const PasteStrippingAndBlockedInlineStyles: Story = {
 export const WithCharacterCount: Story = {
   args: {
     showCharCount: true,
+    maxChars: 400,
     helperText: 'Marker tekst for formatering',
   },
   name: 'With character count',
@@ -109,6 +110,13 @@ export const DisableAndStripNewlines: Story = {
     disableNewlines: true,
   },
   name: 'Disable and strip newlines',
+};
+export const WithPlaceholder: Story = {
+  args: {
+    placeholder: 'This is a placeholder',
+    autoFocus: true,
+  },
+  name: 'With placeholder',
 };
 
 export const DisablePasting: Story = {

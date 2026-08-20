@@ -18,6 +18,7 @@ export type LexicalOnChange = (
 export interface Properties {
   html?: string;
   label?: string;
+  placeholder?: string;
   readOnly?: boolean;
   autoFocus?: boolean;
   showCharCount?: boolean;
@@ -33,6 +34,7 @@ export interface Properties {
    * Not empty array: allow only specified styles.
    */
   allowedStyles?: Array<AllowedStyles>;
+  maxChars?: number;
   Toolbar?: React.FunctionComponent<ToolbarProperties>;
   classes?: Partial<Record<'root' | 'editor' | 'legend' | 'label', string>>;
   onContentChange?: LexicalOnChange;

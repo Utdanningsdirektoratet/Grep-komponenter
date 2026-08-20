@@ -2,6 +2,7 @@ import React from 'react';
 import FormatBold from '@mui/icons-material/FormatBold';
 import FormatItalic from '@mui/icons-material/FormatItalic';
 import FormatSuperscript from '@mui/icons-material/Superscript';
+import FormatSubscript from '@mui/icons-material/Subscript';
 export interface Button {
   type: ButtonType;
   children: React.ReactNode;
@@ -11,6 +12,7 @@ export enum ButtonType {
   bold = 'bold',
   italic = 'italic',
   superscript = 'superscript',
+  subscript = 'subscript',
 }
 
 export type AllowedStyles = keyof typeof ButtonType;
@@ -31,6 +33,11 @@ export const createButton = (style: AllowedStyles = 'bold'): Button => {
       return {
         type: ButtonType[style],
         children: <FormatSuperscript fontSize="small" />,
+      };
+    case 'subscript':
+      return {
+        type: ButtonType[style],
+        children: <FormatSubscript fontSize="small" />,
       };
   }
 };

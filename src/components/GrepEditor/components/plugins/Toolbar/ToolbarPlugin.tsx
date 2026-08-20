@@ -46,7 +46,6 @@ function TextFormatFloatingToolbar({
   formats: Set<AllowedStyles>;
   buttons?: Button[];
 }): JSX.Element {
-  console.log(formats);
   const { classes } = useButtonStyles();
   const popupCharStylesEditorRef = useRef<HTMLDivElement | null>(null);
 
@@ -155,7 +154,6 @@ function TextFormatFloatingToolbar({
       ),
     );
   }, [editor, updateTextFormatFloatingToolbar]);
-  console.log('Formats', formats);
 
   return (
     <>
@@ -178,12 +176,6 @@ function TextFormatFloatingToolbar({
               size="small"
               key={type}
               onClick={() => {
-                console.group('in onclikc');
-                console.log('formats?.has(type)', formats?.has(type));
-                console.log('type', type);
-                console.log('Formats', formats);
-
-                console.groupEnd();
                 editor.dispatchCommand(FORMAT_TEXT_COMMAND, type);
               }}
               aria-label={`format text as ${type.toLowerCase}`}
@@ -252,6 +244,11 @@ function useFloatingTextFormatToolbar(
         type: ToolbarActionKind.updateFormat,
         field: 'superscript',
         payload: selection.hasFormat('superscript'),
+      });
+      dispatch({
+        type: ToolbarActionKind.updateFormat,
+        field: 'subscript',
+        payload: selection.hasFormat('subscript'),
       });
 
       if (selection.getTextContent() !== '') {
