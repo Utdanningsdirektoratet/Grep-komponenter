@@ -80,6 +80,16 @@ export const WithHelperText: Story = {
   },
 };
 
+export const WithClearText: Story = {
+  name: 'Med mulighet for å fjerne verdien',
+  args: {
+    id: 'withClear',
+    helperText: 'Hjelpetekst',
+    variant: undefined,
+    clearable: true,
+  },
+};
+
 export const WithMoreControls: Story = {
   name: 'Med flere props',
   args: {
