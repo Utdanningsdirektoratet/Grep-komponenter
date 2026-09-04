@@ -171,6 +171,7 @@
     "@mui/material": "^9.0.1",
     "@mui/x-date-pickers": "^9.2.0",
     "dayjs": "^1.11.19",
+    "dompurify": "^3.4.13",
     "lexical": "^0.40.0",
     "react-router": "7.x"
   },
