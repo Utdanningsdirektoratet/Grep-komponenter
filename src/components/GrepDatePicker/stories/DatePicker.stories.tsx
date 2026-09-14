@@ -100,3 +100,16 @@ export const WithMoreControls: Story = {
     margin: 'dense',
   },
 };
+
+export const WithMinMaxDates: Story = {
+  name: 'Med min/max dates',
+  args: {
+    id: 'MinMax',
+    label: 'Min/max',
+    variant: undefined,
+    required: true,
+    clearable: true,
+    minDate: dayjs('2020-01-01'),
+    maxDate: dayjs('2025-12-31'),
+  },
+};
