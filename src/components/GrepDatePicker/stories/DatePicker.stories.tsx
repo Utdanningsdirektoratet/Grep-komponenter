@@ -80,6 +80,16 @@ export const WithHelperText: Story = {
   },
 };
 
+export const WithClearText: Story = {
+  name: 'Med mulighet for å fjerne verdien',
+  args: {
+    id: 'withClear',
+    helperText: 'Hjelpetekst',
+    variant: undefined,
+    clearable: true,
+  },
+};
+
 export const WithMoreControls: Story = {
   name: 'Med flere props',
   args: {
@@ -88,5 +98,18 @@ export const WithMoreControls: Story = {
     variant: 'filled',
     required: true,
     margin: 'dense',
+  },
+};
+
+export const WithMinMaxDates: Story = {
+  name: 'Med min/max dates',
+  args: {
+    id: 'MinMax',
+    label: 'Min/max',
+    variant: undefined,
+    required: true,
+    clearable: true,
+    minDate: dayjs('2020-01-01'),
+    maxDate: dayjs('2025-12-31'),
   },
 };

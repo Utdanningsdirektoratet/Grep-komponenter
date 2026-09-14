@@ -41,8 +41,8 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   fullWidth,
   required,
   margin,
-  clearable,
   sx,
+  clearable,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
@@ -53,7 +53,6 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
       <DatePicker
-        // clearable @todo
         format="DD/MM/YYYY"
         onError={(reason: DateValidationError) => {
           switch (reason) {
@@ -62,19 +61,32 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
               break;
 
             case 'maxDate':
-              setError(
-                `Dato må være før ${dayjs(props.maxDate)
-                  .add(1, 'day')
-                  .format('DD/MM/YYYY')}`,
-              );
+              if (!props.maxDate) {
+                props.maxDate = dayjs('31/12/2089', 'DD/MM/YYYY');
+              }
+
+              if (props.maxDate) {
+                setError(
+                  `Dato må være før ${dayjs(props.maxDate)
+                    .add(1, 'day')
+                    .format('DD/MM/YYYY')}`,
+                );
+              }
+
               break;
 
             case 'minDate':
-              setError(
-                `Dato må være etter ${dayjs(props.minDate)
-                  .subtract(1, 'day')
-                  .format('DD/MM/YYYY')}`,
-              );
+              if (!props.minDate) {
+                props.minDate = dayjs('02/01/1900', 'DD/MM/YYYY');
+              }
+
+              if (props.minDate) {
+                setError(
+                  `Dato må være etter ${dayjs(props.minDate)
+                    .subtract(1, 'day')
+                    .format('DD/MM/YYYY')}`,
+                );
+              }
               break;
 
             default:
@@ -84,7 +96,10 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
         value={date}
         onChange={setDate}
         slotProps={{
-          field: { clearable: clearable },
+          field: {
+            clearable: !!clearable,
+            onClear: () => setDate(null),
+          },
           textField: {
             id: id,
             label: label,
