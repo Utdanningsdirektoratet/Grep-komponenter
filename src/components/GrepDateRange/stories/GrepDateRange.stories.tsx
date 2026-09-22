@@ -16,6 +16,7 @@ const TestDateRangePicker = (
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
       <DateRangePicker
+        clearable
         from={{
           label: 'from',
           value: date.from ? date.from : null,
@@ -44,5 +45,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Standard: Story = {
-  args: { variant: 'outlined', clearable: true, disabled: false },
+  args: { variant: 'outlined', disabled: false },
 };

@@ -8,6 +8,7 @@ import { mergeRegister } from '@lexical/utils';
 
 export interface CharcounteHelpertextPPayload {
   showCharcount?: boolean;
+  maxChars?: number;
   helperText?: string;
   readOnly?: boolean;
   classes?: Partial<Record<'root' | 'editor' | 'legend' | 'label', string>>;
@@ -20,6 +21,7 @@ export interface CharcounteHelpertextPPayload {
 
 export function StyleWrapperPlugin({
   showCharcount,
+  maxChars,
   helperText,
   readOnly,
   classes,
@@ -109,7 +111,9 @@ export function StyleWrapperPlugin({
         <Box sx={{ margin: '.5rem' }}>
           {showCharcount && (
             <FormHelperText className={styles.charcount}>
-              {`Antall tegn: ${charCount}`}
+              {maxChars
+                ? `Antall tegn: ${charCount} / ${maxChars}`
+                : `Antall tegn: ${charCount}`}
             </FormHelperText>
           )}
 

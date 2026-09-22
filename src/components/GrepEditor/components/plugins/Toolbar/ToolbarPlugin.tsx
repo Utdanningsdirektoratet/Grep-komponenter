@@ -18,29 +18,32 @@ import {
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
-import { FC, JSX, useCallback, useEffect, useRef, useState } from 'react';
+import { FC, JSX, useCallback, useEffect, useRef } from 'react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
-import { setFloatingElemPosition } from '../utils/setFloatingElemPosition';
-import { getDOMRangeRect } from '../utils/getDOMRangeRect';
-import { getSelectedNode } from '../utils/getSelectedNode';
+import { setFloatingElemPosition } from '../../utils/setFloatingElemPosition';
+import { getDOMRangeRect } from '../../utils/getDOMRangeRect';
+import { getSelectedNode } from '../../utils/getSelectedNode';
 import { Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { Button } from '../buttons';
-import { useButtonStyles } from '../../styles';
-import { ToolbarProperties } from '../../entities';
+import { AllowedStyles, Button } from '../../buttons';
+import { useButtonStyles } from '../../../styles';
+import { ToolbarProperties } from '../../../entities';
+import {
+  ToolbarActionKind,
+  ToolbarInitialState,
+  ToolbarReducer,
+} from './toolbarReducer';
 
 function TextFormatFloatingToolbar({
   editor,
   anchorElem,
-  isBold,
-  isItalic,
+  formats,
   buttons,
 }: {
   editor: LexicalEditor;
   anchorElem: HTMLElement;
-  isBold: boolean;
-  isItalic: boolean;
+  formats: Set<AllowedStyles>;
   buttons?: Button[];
 }): JSX.Element {
   const { classes } = useButtonStyles();
@@ -165,13 +168,13 @@ function TextFormatFloatingToolbar({
             zIndex: 1,
           }}
         >
-          {buttons?.map(({ type, children }, key) => (
+          {buttons?.map(({ type, children }) => (
             <ToggleButton
               classes={{ root: classes.btn, selected: classes.btnSelected }}
               value={type}
-              selected={type === 'italic' ? isItalic : isBold}
+              selected={formats.has(type)}
               size="small"
-              key={key}
+              key={type}
               onClick={() => {
                 editor.dispatchCommand(FORMAT_TEXT_COMMAND, type);
               }}
@@ -192,10 +195,10 @@ function useFloatingTextFormatToolbar(
   buttons?: Button[],
   CustomToolbar?: FC<ToolbarProperties>,
 ): JSX.Element | null {
-  const [isText, setIsText] = useState(false);
-  const [isBold, setIsBold] = useState(false);
-  const [isItalic, setIsItalic] = useState(false);
-
+  const [state, dispatch] = React.useReducer(
+    ToolbarReducer,
+    ToolbarInitialState,
+  );
   const updatePopup = useCallback(() => {
     editor.getEditorState().read(() => {
       // Should not pop up the floating toolbar when using IME input
@@ -212,7 +215,11 @@ function useFloatingTextFormatToolbar(
           rootElement === null ||
           !rootElement.contains(nativeSelection.anchorNode))
       ) {
-        setIsText(false);
+        dispatch({
+          type: ToolbarActionKind.updateBoolean,
+          field: 'isText',
+          payload: false,
+        });
         return;
       }
 
@@ -223,18 +230,49 @@ function useFloatingTextFormatToolbar(
       const node = getSelectedNode(selection);
 
       // Update text format
-      setIsBold(selection.hasFormat('bold'));
-      setIsItalic(selection.hasFormat('italic'));
+      dispatch({
+        type: ToolbarActionKind.updateFormat,
+        field: 'bold',
+        payload: selection.hasFormat('bold'),
+      });
+      dispatch({
+        type: ToolbarActionKind.updateFormat,
+        field: 'italic',
+        payload: selection.hasFormat('italic'),
+      });
+      dispatch({
+        type: ToolbarActionKind.updateFormat,
+        field: 'superscript',
+        payload: selection.hasFormat('superscript'),
+      });
+      dispatch({
+        type: ToolbarActionKind.updateFormat,
+        field: 'subscript',
+        payload: selection.hasFormat('subscript'),
+      });
 
       if (selection.getTextContent() !== '') {
-        setIsText($isTextNode(node) || $isParagraphNode(node));
+        dispatch({
+          type: ToolbarActionKind.updateBoolean,
+          field: 'isText',
+          payload: $isTextNode(node) || $isParagraphNode(node),
+        });
       } else {
-        setIsText(false);
+        dispatch({
+          type: ToolbarActionKind.updateBoolean,
+          field: 'isText',
+          payload: false,
+        });
       }
 
       const rawTextContent = selection.getTextContent().replace(/\n/g, '');
       if (!selection.isCollapsed() && rawTextContent === '') {
-        setIsText(false);
+        dispatch({
+          type: ToolbarActionKind.updateBoolean,
+          field: 'isText',
+          payload: false,
+        });
+
         return;
       }
     });
@@ -254,7 +292,11 @@ function useFloatingTextFormatToolbar(
       }),
       editor.registerRootListener(() => {
         if (editor.getRootElement() === null) {
-          setIsText(false);
+          dispatch({
+            type: ToolbarActionKind.updateBoolean,
+            field: 'isText',
+            payload: false,
+          });
         }
       }),
     );
@@ -273,14 +315,14 @@ function useFloatingTextFormatToolbar(
         <CustomToolbar
           buttons={buttons as Button[]}
           editor={editor}
-          isSelected={[isBold, isItalic]}
+          formats={state.format}
         />
       </Box>,
       anchorElem as HTMLElement,
     );
   }
 
-  if (!isText) {
+  if (!state.isText) {
     return null;
   }
 
@@ -288,8 +330,7 @@ function useFloatingTextFormatToolbar(
     <TextFormatFloatingToolbar
       editor={editor}
       anchorElem={anchorElem}
-      isBold={isBold}
-      isItalic={isItalic}
+      formats={state.format}
       buttons={buttons}
     />,
     anchorElem,
