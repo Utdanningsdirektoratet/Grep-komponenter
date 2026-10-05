@@ -46,7 +46,15 @@ export const Standard = () => {
       <GrepSelect
         value={selected}
         label="Med feilmelding"
-        errorMessage="Feilmelding"
+        errorOptions={{ text: 'Feilmelding' }}
+        selectItems={selectItems}
+        onChange={(e) => setSelected(e.target.value as string)}
+      />
+      <GrepSelect
+        value={selected}
+        required
+        label="Feilmelding med farge"
+        errorOptions={{ text: 'Feilmelding', color: 'Orange' }}
         selectItems={selectItems}
         onChange={(e) => setSelected(e.target.value as string)}
       />
@@ -83,7 +91,15 @@ export const Outlined = () => {
         value={selected}
         outlined
         label="Med feilmelding"
-        errorMessage="Feilmelding"
+        errorOptions={{ text: 'Feilmelding' }}
+        selectItems={selectItems}
+        onChange={(e) => setSelected(e.target.value as string)}
+      />
+      <GrepSelect
+        value={selected}
+        outlined
+        label="Feilmelding med farge"
+        errorOptions={{ text: 'Feilmelding', color: 'Orange' }}
         selectItems={selectItems}
         onChange={(e) => setSelected(e.target.value as string)}
       />

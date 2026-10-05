@@ -17,6 +17,7 @@ import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
 import { makeStyles } from '../../styling';
 import { Key } from '../../assets/keycodeEnum';
+import { SxProps, Theme } from '@mui/material/styles';
 
 export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   label?: string | JSX.Element;
@@ -63,9 +64,9 @@ export interface GrepTableProps<T> extends Pick<
    * @deprecated No longer in use.
    */
   rowHeight?: number;
+  tableHeaderSx?: SxProps<Theme>;
   rowStyle?:
-    | React.CSSProperties
-    | ((data: T, index: number) => React.CSSProperties);
+    React.CSSProperties | ((data: T, index: number) => React.CSSProperties);
   disableSelectOnClick?: boolean;
   underlineOnFocus?: boolean;
   rowTabIndex?: number;
@@ -130,6 +131,7 @@ export const GrepTable = <T,>({
   menuButtonLabel,
   underlineOnFocus,
   rowTabIndex,
+  tableHeaderSx,
   rowStyle,
   rowsPerPageOptions = [5, 10, 25, 50],
   ...props
@@ -413,6 +415,7 @@ export const GrepTable = <T,>({
             sortDirection={sortDirection}
             onSortBy={onSortBy}
             dropdownItems={dropdownItems}
+            sx={tableHeaderSx}
           />
         }
         <TableBody ref={tableRef} className={classes.body} onKeyDown={onKey}>

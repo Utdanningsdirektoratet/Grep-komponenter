@@ -306,6 +306,7 @@ export const WithRowStyleFunction = {
       header
       columns={tableColumns}
       data={tableData()}
+      tableHeaderSx={{ backgroundColor: 'white' }}
       rowStyle={(rowData) => {
         if (rowData.id === 4) {
           return { backgroundColor: 'lightgray' };
