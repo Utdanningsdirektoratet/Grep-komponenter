@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, use } from 'react';
 import { GrepDialog, GrepDialogOptions } from './dialog';
 
 const GrepDialogServiceContext = React.createContext<
@@ -19,15 +19,15 @@ export const GrepDialogServiceProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   return (
-    <GrepDialogServiceContext.Provider value={openDialog}>
+    <GrepDialogServiceContext value={openDialog}>
       <GrepDialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
         {...dialogState}
       />
       {children}
-    </GrepDialogServiceContext.Provider>
+    </GrepDialogServiceContext>
   );
 };
 
-export const useGrepDialog = () => React.useContext(GrepDialogServiceContext);
+export const useGrepDialog = () => use(GrepDialogServiceContext);

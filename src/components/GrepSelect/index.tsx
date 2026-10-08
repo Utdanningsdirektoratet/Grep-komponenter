@@ -33,11 +33,11 @@ export type GrepSelectProps = SelectProps & {
 };
 
 const GrepSelect: React.FC<GrepSelectProps> = (props) => {
-  const inputLabel = React.useRef<HTMLLabelElement>(null);
+  const inputLabelRef = React.useRef<HTMLLabelElement>(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
 
   React.useEffect(() => {
-    setLabelWidth(inputLabel.current!.offsetWidth);
+    setLabelWidth(inputLabelRef.current!.offsetWidth);
   }, []);
 
   const {
@@ -75,7 +75,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     >
       <InputLabel
         htmlFor={id}
-        ref={inputLabel}
+        ref={inputLabelRef}
         style={{
           minWidth: 'max-content',
           overflow: 'visible',

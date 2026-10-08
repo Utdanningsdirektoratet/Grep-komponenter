@@ -20,7 +20,7 @@ export const useDate = (
 ): [DateState, (next: DateInput) => void] => {
   const { utc, preserveTime } = { ...options, ...defaultOptions };
 
-  const [date, _setDate] = useState<DateState>(null);
+  const [date, setDate] = useState<DateState>(null);
 
   const getDate = useCallback(
     (value: DateInput) => {
@@ -33,17 +33,17 @@ export const useDate = (
     [preserveTime],
   );
 
-  const setDate = (next: DateInput): void => {
+  const _setDate = (next: DateInput): void => {
     const nextDate = getDate(next);
-    hasDateChanged(date, nextDate) && _setDate(nextDate);
+    hasDateChanged(date, nextDate) && setDate(nextDate);
   };
 
   // eslint-disable-next-line @eslint-react/use-memo
   useMemo(
-    () => setDate(value ? parseDate(value, { utc }) : null),
+    () => _setDate(value ? parseDate(value, { utc }) : null),
     [value, utc],
   );
-  return [date, setDate];
+  return [date, _setDate];
 };
 
 export default useDate;

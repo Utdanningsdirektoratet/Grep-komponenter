@@ -28,7 +28,7 @@ export const identifyElements = (
   elements.forEach(indetifier);
 };
 
-export const useIdentifiedElements = (
+export const identifiedElements = (
   elements: Array<HTMLElement>,
   identify: IdentifyElement = generateElementId,
 ): Record<string, HTMLElement> => {
@@ -39,4 +39,4 @@ export const useIdentifiedElements = (
   );
 };
 
-export default useIdentifiedElements;
+export default identifiedElements;
