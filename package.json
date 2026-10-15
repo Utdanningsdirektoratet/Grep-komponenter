@@ -156,7 +156,7 @@
     "ts-jest": "^29.4.6",
     "tslib": "^2.2.0",
     "tss-react": "^4.9.21",
-    "typescript": "^5.9.0",
+    "typescript": "^6.0.3",
     "typescript-eslint": "^8.57.0",
     "whatwg-fetch": "^3.6.20"
   },
