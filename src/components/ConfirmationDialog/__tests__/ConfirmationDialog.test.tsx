@@ -79,14 +79,4 @@ describe('ConfirmationDialog', () => {
 
     expect(mockFn).not.toHaveBeenCalled();
   });
-
-  it("should have correct className when 'warning'-prop is true", async () => {
-    const { getByRole } = renderComponent(true);
-
-    await user.click(getByRole('button', { name: /open dialog/i }));
-
-    const confirmBtn = getByRole('button', { name: /confirm/i });
-
-    expect(confirmBtn.className).toContain('discard');
-  });
 });

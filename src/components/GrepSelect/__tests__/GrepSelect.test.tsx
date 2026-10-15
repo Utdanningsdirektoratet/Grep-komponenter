@@ -26,7 +26,7 @@ const Component: React.FC<Partial<GrepSelectProps>> = ({ error, ...props }) => {
       value={selected}
       onChange={(e) => setSelected(e.target.value as string)}
       helperText="HelpTextTest"
-      errorMessage={error ? 'ErrorMessageTest' : undefined}
+      errorOptions={{ text: error ? 'ErrorMessageTest' : '' }}
     />
   );
 };

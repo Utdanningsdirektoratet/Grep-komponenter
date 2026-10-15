@@ -1,9 +1,7 @@
 import React, { useContext, useMemo, useRef, useCallback } from 'react';
-import clsx from 'clsx';
-
 import context from '../context';
 import NavTree from './nav-tree';
-import { useStyles } from '../styles/nav.style';
+import style from '../styles/nav.style.module.css';
 import { buildTree } from '../utils/tree-builder';
 import { Key } from '../../../assets/keycodeEnum';
 
@@ -46,13 +44,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
     }
   };
 
-  const { classes: style } = useStyles();
-  const className = clsx(
-    'grep-toc__nav',
-    style.root,
-    classes?.nav,
-    props.className,
-  );
+  const className = `grep-toc__nav ${style.root} ${classes?.nav ?? ''} ${props.className ?? ''}`;
 
   return (
     <nav

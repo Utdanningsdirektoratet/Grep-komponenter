@@ -1,0 +1,23 @@
+.root {
+  color: var(--grep-toc-link-color);
+}
+
+.link {
+  display: block;
+  text-decoration: none;
+  padding: 2px 0 2px 5px;
+  min-height: 1rem;
+  border-left: 5px solid transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.link:focus {
+  outline: none;
+  background: var(--grep-toc-focused-background);
+}
+
+.link.selected {
+  color: var(--grep-toc-selected-color);
+  border-left: 5px solid var(--grep-toc-selected-color);
+}

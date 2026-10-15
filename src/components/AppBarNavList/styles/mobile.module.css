@@ -1,0 +1,11 @@
+.mobileNavList {
+  background-color: transparent;
+  font-family: 'MontSerrat, MontSerrat Variable, Helvetica Neue, Helvetica, Arial, sans-serif';
+  display: flex;
+}
+
+@media (min-width: 1200px) {
+  .mobileNavList {
+    display: none;
+  }
+}

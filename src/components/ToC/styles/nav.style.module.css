@@ -1,0 +1,10 @@
+.root {
+  font-size: 18px;
+  overflow-y: scroll;
+  outline: none;
+}
+
+.root::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}

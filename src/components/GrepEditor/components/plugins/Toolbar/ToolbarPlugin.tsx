@@ -27,13 +27,13 @@ import { getDOMRangeRect } from '../../utils/getDOMRangeRect';
 import { getSelectedNode } from '../../utils/getSelectedNode';
 import { Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
 import { AllowedStyles, Button } from '../../buttons';
-import { useButtonStyles } from '../../../styles';
 import { ToolbarProperties } from '../../../entities';
 import {
   ToolbarActionKind,
   ToolbarInitialState,
   ToolbarReducer,
 } from './toolbarReducer';
+import classes from '../../../styles/button.module.css';
 
 function TextFormatFloatingToolbar({
   editor,
@@ -46,7 +46,6 @@ function TextFormatFloatingToolbar({
   formats: Set<AllowedStyles>;
   buttons?: Button[];
 }): JSX.Element {
-  const { classes } = useButtonStyles();
   const popupCharStylesEditorRef = useRef<HTMLDivElement | null>(null);
 
   function mouseMoveListener(e: MouseEvent) {

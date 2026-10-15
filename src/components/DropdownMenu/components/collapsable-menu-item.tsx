@@ -13,7 +13,7 @@ import { Box, MenuItem, MenuItemProps, Tooltip } from '@mui/material';
 
 import { CollapsableMenu } from './collapsable-menu';
 
-import { useStyles } from '../styles/collapsable-menu-item.style';
+import classes from '../styles/collapsableMenuItem.module.css';
 import { TooltipPlacement } from '..';
 import { Key } from '../../../assets/keycodeEnum';
 
@@ -126,10 +126,9 @@ export const CollapsableMenuItem: FunctionComponent<
 
   useEffect(() => {
     document.addEventListener('click', onScrimClick, { capture: true });
-    return () => document.removeEventListener('click', onScrimClick);
+    return () =>
+      document.removeEventListener('click', onScrimClick, { capture: true });
   }, [listItemRef, onScrimClick]);
-
-  const { classes } = useStyles({ open });
 
   const renderInner = () => (
     <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -142,7 +141,11 @@ export const CollapsableMenuItem: FunctionComponent<
         }}
       >
         {children}
-        {items && <IconExpand className={classes.expander} />}
+        {items && (
+          <IconExpand
+            className={`${classes.expander} ${open ? classes.expanderOpen : ''}`}
+          />
+        )}
       </Box>
       {items && (
         <CollapsableMenu

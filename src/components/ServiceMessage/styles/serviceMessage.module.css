@@ -1,0 +1,36 @@
+.message {
+  overflow-wrap: break-word;
+  background-color: #f8e9d6;
+  margin: 10px 0;
+  padding: 4px 10px;
+  display: flex;
+  justify-content: space-between;
+  min-height: 48px;
+}
+.messageText {
+  overflow: auto;
+  align-self: center;
+  width: 100%;
+  margin-left: 20px;
+  padding: 6px 0;
+}
+.messageType {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.warning {
+  color: #e69136;
+  margin: 0 10px;
+}
+.close {
+  font-size: 16px;
+}
+.button {
+  display: flex;
+  color: #e6933a;
+  height: fit-content;
+  width: fit-content;
+  align-self: center;
+  margin-left: 5px;
+}

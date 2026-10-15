@@ -2,18 +2,12 @@ import * as React from 'react';
 import { Container } from '@mui/material';
 
 import GrepEditor from '..';
-import { makeStyles } from '../../../styling';
 import { ToolbarProperties } from '../entities';
 import { $getTextContent } from 'lexical';
 import { $generateHtmlFromNodes } from '@lexical/html';
 import LexicalButton from '../components/buttons/InlineButton';
 import { Meta, StoryObj } from '@storybook/react-vite';
-
-const useStyles = makeStyles()({
-  root: {
-    background: 'red',
-  },
-});
+import classes from './grepEditorStory.module.css';
 
 const myToolbar: React.FunctionComponent<ToolbarProperties> = ({
   buttons,
@@ -36,7 +30,6 @@ const myToolbar: React.FunctionComponent<ToolbarProperties> = ({
   );
 };
 const EditorWithStyles = () => {
-  const { classes } = useStyles();
   return <GrepEditor classes={classes} />;
 };
 

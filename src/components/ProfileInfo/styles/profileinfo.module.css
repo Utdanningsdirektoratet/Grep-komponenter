@@ -1,0 +1,17 @@
+.container {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 900px) {
+  .container {
+    width: 48%;
+  }
+}

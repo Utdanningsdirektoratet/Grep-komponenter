@@ -1,19 +1,26 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import { useStyles } from './styles';
 import GrepTable, { GrepTableProps } from '../GrepTable';
+import Colors from '../../styling/Colors';
 
 interface GrepTableCardProps<T> extends GrepTableProps<T> {
   title: string;
 }
 
 const GrepTableCard = <T,>(props: GrepTableCardProps<T>) => {
-  const { classes } = useStyles();
-
   return (
-    <Box className={classes.container} style={props.style}>
-      <Typography className={classes.title}>{props.title}</Typography>
+    <Box
+      sx={{
+        border: `1px solid ${Colors.lightGrey}`,
+        height: 'fit-content',
+        flex: 'auto',
+      }}
+      style={props.style}
+    >
+      <Typography sx={{ fontSize: 24, padding: '20px', color: Colors.black }}>
+        {props.title}
+      </Typography>
       <GrepTable<T> {...props} header />
     </Box>
   );

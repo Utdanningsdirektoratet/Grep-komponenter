@@ -5,8 +5,7 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
-import { useMobileStyles } from './styles';
+import classes from './styles/mobile.module.css';
 import { keyboard } from '../../utils';
 
 export interface NavigationProps {
@@ -24,7 +23,6 @@ export interface AppBarNavListProps {
 const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   pages,
 }: AppBarNavListProps) => {
-  const { classes } = useMobileStyles();
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
@@ -38,7 +36,11 @@ const MobileAppBarNavList: React.FC<AppBarNavListProps> = ({
   };
 
   return (
-    <Box style={{ flexGrow: 1 }} className={classes.mobileNavList}>
+    <Box
+      sx={(theme) => ({ color: theme.palette.primary.main })}
+      style={{ flexGrow: 1 }}
+      className={classes.mobileNavList}
+    >
       <IconButton
         size="medium"
         edge="start"

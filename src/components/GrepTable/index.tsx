@@ -15,7 +15,6 @@ import GrpeTableHeader from './components/grep-table-header';
 import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
-import { makeStyles } from '../../styling';
 import { Key } from '../../assets/keycodeEnum';
 import { SxProps, Theme } from '@mui/material/styles';
 
@@ -71,29 +70,6 @@ export interface GrepTableProps<T> extends Pick<
   underlineOnFocus?: boolean;
   rowTabIndex?: number;
 }
-
-interface StyleProps {
-  outlined?: boolean;
-  showHeader?: boolean;
-}
-
-export const useStyles = makeStyles<StyleProps>()(
-  (theme, { showHeader, outlined }) => ({
-    table: {
-      border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
-      borderCollapse: outlined ? 'separate' : 'collapse',
-      tableLayout: 'auto',
-    },
-    header: {
-      visibility: showHeader ? 'visible' : 'collapse',
-    },
-    body: {
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-  }),
-);
 
 const containsFocus = (el: HTMLElement, tag = '*') =>
   Array.from(el.getElementsByTagName(tag)).some(
@@ -395,30 +371,37 @@ export const GrepTable = <T,>({
         currentPage * rowsPerPage + rowsPerPage,
       )
     : data;
-
-  const { classes } = useStyles({ outlined, showHeader: header });
-
   return (
     <TableContainer sx={props.style}>
       <Table
-        className={classes.table}
         size={size}
         stickyHeader={stickyHeader}
         padding={padding}
+        sx={(theme) => ({
+          border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
+          borderCollapse: outlined ? 'separate' : 'collapse',
+          tableLayout: 'auto',
+        })}
       >
         {caption && <caption>{caption}</caption>}
         {
           <GrpeTableHeader
-            className={classes.header}
             columns={columns}
             sortBy={sortBy}
             sortDirection={sortDirection}
             onSortBy={onSortBy}
             dropdownItems={dropdownItems}
-            sx={tableHeaderSx}
+            sx={{
+              visibility: header ? 'visible' : 'collapse',
+              ...tableHeaderSx,
+            }}
           />
         }
-        <TableBody ref={tableRef} className={classes.body} onKeyDown={onKey}>
+        <TableBody
+          ref={tableRef}
+          sx={{ '&:focus': { outline: 'none' } }}
+          onKeyDown={onKey}
+        >
           {data.length ? (
             rows.map(_renderRow)
           ) : (

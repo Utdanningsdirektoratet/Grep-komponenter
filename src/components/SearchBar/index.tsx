@@ -3,9 +3,9 @@ import Close from '@mui/icons-material/Close';
 import Search from '@mui/icons-material/Search';
 import { Button, Box, TextField, Typography } from '@mui/material';
 
-import { useStyles } from './styles';
 import { Colors } from '../../styling';
 import { keyboard } from '../../utils';
+import classes from './styles/searchbar.module.css';
 
 export interface SearchBarProps {
   helpText?: string;
@@ -25,8 +25,6 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const [value, setValue] = React.useState(props.initValue ?? '');
-
-  const { classes } = useStyles();
 
   React.useEffect(() => {
     if (props.autoFocus && inputRef.current) {
@@ -56,6 +54,7 @@ const SearchBar: React.FC<SearchBarProps> = (props: SearchBarProps) => {
         data-testid="searchBarContainer"
         style={{
           border: props.outlined ? `1px solid ${Colors.lightGrey}` : 0,
+          background: Colors.white,
         }}
       >
         <Box className={classes.icon}>

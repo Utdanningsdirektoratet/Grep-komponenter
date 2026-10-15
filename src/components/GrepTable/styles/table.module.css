@@ -1,0 +1,35 @@
+.button {
+  min-width: 18px;
+  min-height: 20px;
+  padding: 0 6px;
+  margin: 0 8px;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.textButton {
+  text-transform: 'capitalize';
+  font-weight: 'initial';
+  font-size: 12px;
+}
+
+.toolbar {
+  padding: 0;
+  width: 100%;
+  display: grid;
+  grid-template-areas: 'left right';
+}
+
+.selectLabel {
+  grid-area: left;
+  padding-left: 60px;
+}
+
+.displayedRows {
+  grid-area: left;
+  padding-left: 60px;
+}
+
+.spacer {
+  display: none;
+}

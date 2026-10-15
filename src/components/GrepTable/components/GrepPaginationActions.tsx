@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Theme } from '@mui/material';
 import Button from '@mui/material/Button';
 
-import { usePaginationActionStyles } from '../styles';
 import { Colors } from '../../../styling';
+import classes from '../styles/table.module.css';
 
 export type PaginationActionsProps = {
   count: number;
@@ -19,8 +19,6 @@ export type PaginationActionsProps = {
 export const PaginationActions: React.FunctionComponent<
   PaginationActionsProps
 > = ({ count, page, rowsPerPage, onPageChange }) => {
-  const { classes } = usePaginationActionStyles();
-
   const getPageNumbers = (
     count: number,
     currentPage: number,
@@ -34,6 +32,7 @@ export const PaginationActions: React.FunctionComponent<
         <Button
           key={i}
           className={classes.button}
+          sx={(theme) => ({ backgroundColor: theme.palette.primary.main })}
           style={
             currentPage === i
               ? {

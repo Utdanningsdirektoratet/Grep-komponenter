@@ -8,8 +8,8 @@ import Collapse from '@mui/material/Collapse';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import ExpandLess from '@mui/icons-material/ExpandLess';
-import { useStyles } from './styles';
 import { keyboard } from '../../utils';
+import classes from './styles/sidebar.module.css';
 
 export interface SidebarProps {
   currentPageId?: number;
@@ -25,7 +25,6 @@ const Sidebar = ({
   expandOnIcon,
 }: SidebarProps) => {
   const [expanded, setExpanded] = React.useState<number[]>([]);
-  const { classes } = useStyles();
 
   React.useEffect(() => {
     if (currentPageId) {
@@ -62,7 +61,6 @@ const Sidebar = ({
         <ListItemIcon className={classes.icon}>{page.linkIcon}</ListItemIcon>
       )}
       <ListItemText
-        sx={{ outline: 'none !important' }}
         tabIndex={-1}
         disableTypography
         primary={page.label}
@@ -112,6 +110,14 @@ const Sidebar = ({
             <ListItem
               key={page.id}
               tabIndex={0}
+              sx={(theme) => ({
+                color: theme.palette.text.disabled,
+                '&:hover': { color: theme.palette.primary.main },
+                [`&:focus.${classes.text}`]: {
+                  color: theme.palette.primary.main,
+                  outline: 'auto',
+                },
+              })}
               className={classes.item}
               onMouseDown={(e) => handleClick(page, e)}
               onKeyPress={keyboard.onActivation(() => handleClick(page))}
@@ -129,6 +135,14 @@ const Sidebar = ({
                 {page.children?.map((child) => (
                   <ListItem
                     key={child.id}
+                    sx={(theme) => ({
+                      color: theme.palette.text.disabled,
+                      '&:hover': { color: theme.palette.primary.main },
+                      [`&:focus.${classes.text}`]: {
+                        color: theme.palette.primary.main,
+                        outline: 'auto',
+                      },
+                    })}
                     style={{ paddingLeft: '30px' }}
                     tabIndex={0}
                     className={classes.item}

@@ -1,0 +1,35 @@
+.container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  cursor: pointer;
+  outline: none;
+}
+
+.text {
+  font-weight: 400;
+}
+
+.text.text.text {
+  outline: none;
+}
+
+.selected {
+  font-weight: 500;
+}
+
+.selected,
+.text {
+  user-select: none;
+  white-space: nowrap;
+  outline: none;
+  font-size: 16px;
+}
+
+.icon {
+  min-width: fit-content;
+  margin-right: 2px;
+}
