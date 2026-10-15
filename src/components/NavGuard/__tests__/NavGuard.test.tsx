@@ -38,7 +38,7 @@ describe('AppBar', () => {
     };
     const location = useLocation();
     return (
-      <Box display="flex" flexDirection="column">
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
         <NavGuard {...props} />
         <AppBar
           appTitle="apptitle"
