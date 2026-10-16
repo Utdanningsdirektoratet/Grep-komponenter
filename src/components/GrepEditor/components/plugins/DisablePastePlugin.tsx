@@ -17,10 +17,10 @@ export function ModifyPastePlugin({
 
   editor.registerCommand(
     PASTE_COMMAND,
-    (e: ClipboardEvent) => {
+    (e) => {
       if (blockPasting) {
         return true;
-      } else if (stripPastedStyles) {
+      } else if (stripPastedStyles && 'clipboardData' in e && e.clipboardData) {
         const pastedText = e.clipboardData
           ?.getData('Text')
           .replaceAll('\n', ' ');
