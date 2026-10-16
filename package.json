@@ -19,9 +19,9 @@
     "start": "rollup -c -w --bundleConfigAsCjs",
     "lint": "eslint --quiet --fix",
     "pretest": "tsc --noEmit",
-    "test": "jest --maxWorkers=50% --verbose --logHeapUsage",
-    "test:watch": "jest --watch --verbose",
-    "test:ci": "jest --runInBand --verbose",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --maxWorkers=50% --verbose --logHeapUsage",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch --verbose",
+    "test:ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --verbose",
     "storybook": "storybook dev -p 9009",
     "build-storybook": "storybook build",
     "prepare": "husky"
@@ -84,7 +84,7 @@
     "react": "^18.x || ^19.x",
     "react-dom": "^18.x || ^19.x",
     "react-redux": "8.x || 9.x",
-    "react-router": "7.x",
+    "react-router": "8.x",
     "redux": "^4.x || ^5.x"
   },
   "devDependencies": {
@@ -116,8 +116,8 @@
     "@types/jest": "^30.0.0",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.throttle": "^4.1.6",
-    "@types/react": "^19.2.7",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "@types/react-redux": "^7.1.32",
     "@typescript-eslint/eslint-plugin": "^8.57.0",
     "@typescript-eslint/parser": "^8.57.0",
@@ -141,8 +141,8 @@
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "prettier": "^3.7.4",
-    "react": "^19.2.1",
-    "react-dom": "^19.2.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-redux": "^9.2.0",
     "rollup": "^4.53.3",
     "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -173,7 +173,7 @@
     "dayjs": "^1.11.23",
     "dompurify": "^3.4.16",
     "lexical": "^0.40.0",
-    "react-router": "^7.18.4"
+    "react-router": "^8.4.0"
   },
   "overrides": {}
 }
