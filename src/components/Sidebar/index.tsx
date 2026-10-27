@@ -113,9 +113,8 @@ const Sidebar = ({
               sx={(theme) => ({
                 color: theme.palette.text.disabled,
                 '&:hover': { color: theme.palette.primary.main },
-                [`&:focus.${classes.text}`]: {
+                [`& .${classes.selected}`]: {
                   color: theme.palette.primary.main,
-                  outline: 'auto',
                 },
               })}
               className={classes.item}
@@ -138,9 +137,8 @@ const Sidebar = ({
                     sx={(theme) => ({
                       color: theme.palette.text.disabled,
                       '&:hover': { color: theme.palette.primary.main },
-                      [`&:focus.${classes.text}`]: {
+                      [`& .${classes.selected}`]: {
                         color: theme.palette.primary.main,
-                        outline: 'auto',
                       },
                     })}
                     style={{ paddingLeft: '30px' }}

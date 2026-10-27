@@ -17,23 +17,23 @@ export interface ICurriculum {
 export const tableColumns: TableColumn<ICurriculum>[] = [
   {
     label: 'Kode',
-    width: 10,
+    sx: { width: '10%' },
     getCell: (row) => row.code,
   },
   {
     label: 'Navn',
-    width: 20,
+    sx: { width: '20%' },
     getCell: (row) => row.title,
   },
   {
     label: 'Status',
-    width: 20,
+    sx: { width: '20%' },
     getTooltip: (row) => row.statusText,
     getCell: (row) => row.statusText,
   },
   {
     label: 'Publisert',
-    width: 20,
+    sx: { width: '20%' },
     forceTooltip: true,
     lang: 'en',
     getCell: (row) => row.lastModified,
@@ -43,12 +43,12 @@ export const tableColumns: TableColumn<ICurriculum>[] = [
 const CURRICULUM_COLUMNS: Array<TableColumn<ICurriculum>> = [
   {
     label: 'Kode',
-    width: 8,
+    sx: { width: '8%' },
     getCell: () => 'Kode',
   },
   {
     label: 'Tittel',
-    width: '100px',
+    sx: { width: '100px' },
     getCell: (row) =>
       `Tittel ${row.id} dsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsasdsadassdasdsas dsadassdasdsas`,
   },
@@ -58,32 +58,32 @@ const CURRICULUM_COLUMNS: Array<TableColumn<ICurriculum>> = [
   },
   {
     label: 'Sist endret',
-    width: 9,
+    sx: { width: '9%' },
     getCell: () => '10. desember',
   },
   {
     label: 'Ansvarlig',
-    width: 9,
+    sx: { width: '9%' },
     getCell: (row) => row.responsibleUsername as string,
   },
   {
     label: 'Importert',
-    width: 8,
+    sx: { width: '8%' },
     getCell: () => <div style={{ textAlign: 'center' }}>{'\u2714'}</div>,
   },
   {
     label: 'Klar',
-    width: 7,
+    sx: { width: '7%' },
     getCell: () => <div style={{ textAlign: 'center' }}>{'\u2714'}</div>,
   },
   {
     label: 'Tanket',
-    width: 8,
+    sx: { width: '8%' },
     getCell: () => <div style={{ textAlign: 'center' }}>{'\u2714'}</div>,
   },
   {
     label: 'Låst',
-    width: 7,
+    sx: { width: '7%' },
     getCell: () => <div style={{ textAlign: 'center' }}>{'\u2714'}</div>,
   },
 ];

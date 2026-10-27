@@ -8,8 +8,8 @@
 }
 
 .textButton {
-  text-transform: 'capitalize';
-  font-weight: 'initial';
+  text-transform: capitalize;
+  font-weight: initial;
   font-size: 12px;
 }
 
@@ -32,4 +32,12 @@
 
 .spacer {
   display: none;
+}
+
+@media screen and (min-width: 600px) {
+  .toolbar {
+    min-height: 52px;
+    padding-right: 2px;
+    padding-left: 24px;
+  }
 }
