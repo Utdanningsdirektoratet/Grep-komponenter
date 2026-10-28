@@ -30,12 +30,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -48,6 +49,7 @@ jobs:
 
       - name: Release
         env:
+          GITHUB_ARGS: ${{ github.event.inputs.args }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HUSKY: 0
-        run: npx semantic-release ${{ github.event.inputs.args }}
+        run: npx semantic-release $GITHUB_ARGS

@@ -18,14 +18,17 @@ jobs:
       pull-requests: write
       contents: write
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
 
       - name: pull-request
         id: openPr
         run: |
-          pr_url=$(gh pr create --title "Pulling ${{ github.ref }} into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates") 
+          pr_url=$(gh pr create --title "Pulling $GITHUB_REF into dependabot/updates" --head "master" --body "*Automated PR*" --base "dependabot/updates") 
           echo "pr_url=$pr_url" >> "$GITHUB_OUTPUT"
         env:
+          GITHUB_REF: ${{ github.ref }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Auto merge
