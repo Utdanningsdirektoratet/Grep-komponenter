@@ -46,6 +46,4 @@ jobs:
         run: npm ci --no-scripts
 
       - name: Run tests
-        run: npm run test:ci $GITHUB_ARGS
-        env:
-          GITHUB_ARGS: ${{ github.event.inputs.args }}
+        run: npm run test:ci

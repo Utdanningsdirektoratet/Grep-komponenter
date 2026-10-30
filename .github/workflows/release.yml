@@ -49,7 +49,6 @@ jobs:
 
       - name: Release
         env:
-          GITHUB_ARGS: ${{ github.event.inputs.args }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HUSKY: 0
-        run: npx semantic-release $GITHUB_ARGS
+        run: npx semantic-release
