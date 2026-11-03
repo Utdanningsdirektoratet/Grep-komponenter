@@ -65,12 +65,14 @@ export const setPlaceholderOnSelection = ({
    */
   const anchor: PointType = selection.anchor;
 
-  placeholder = DOMPurify.sanitize(placeholder?.replace(/<[^>]+>/g, ''));
+  placeholder = DOMPurify.sanitize(placeholder || '');
   if (placeholder) {
     const selectedHtmlElement = editor.getElementByKey(anchor.key);
-
     selectedHtmlElement?.classList.add(PLACEHOLDER_CLASS_NAME);
-    selectedHtmlElement?.setAttribute('data-placeholder', placeholder);
+
+    const e = document.createElement('div');
+    e.innerHTML = placeholder;
+    selectedHtmlElement?.setAttribute('data-placeholder', e.textContent);
   }
 };
 
@@ -95,13 +97,9 @@ export const AddPlaceholderPlugin = ({
 }): null => {
   const [editor] = useLexicalComposerContext();
   useEffect(() => {
-    if (placeholder) {
-      return editor.registerUpdateListener(() => {
-        setNodePlaceholderFromSelection(editor, placeholder ?? '');
-      });
-    } else {
-      return;
-    }
+    return editor.registerUpdateListener(() => {
+      setNodePlaceholderFromSelection(editor, placeholder ?? '');
+    });
   }, [editor, placeholder]);
 
   return null;

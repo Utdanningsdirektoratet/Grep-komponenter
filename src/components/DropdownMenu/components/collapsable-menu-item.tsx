@@ -126,7 +126,8 @@ export const CollapsableMenuItem: FunctionComponent<
 
   useEffect(() => {
     document.addEventListener('click', onScrimClick, { capture: true });
-    return () => document.removeEventListener('click', onScrimClick);
+    return () =>
+      document.removeEventListener('click', onScrimClick, { capture: true });
   }, [listItemRef, onScrimClick]);
 
   const { classes } = useStyles({ open });
