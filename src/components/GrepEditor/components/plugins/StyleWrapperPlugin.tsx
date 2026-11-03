@@ -32,7 +32,7 @@ export function StyleWrapperPlugin({
   hasCustomToolbar,
 }: CharcounteHelpertextPPayload): React.JSX.Element | '' | undefined {
   const [editor] = useLexicalComposerContext();
-  const [hasFocus, setFocused] = useState(() => {
+  const [hasFocus, setHasFocus] = useState(() => {
     return editor.getRootElement() === document.activeElement;
   });
   const [charCount, setCharCount] = useState<number>(0);
@@ -42,7 +42,7 @@ export function StyleWrapperPlugin({
       editor.registerCommand(
         BLUR_COMMAND,
         () => {
-          setFocused(editor.getRootElement() === document.activeElement);
+          setHasFocus(editor.getRootElement() === document.activeElement);
           return false;
         },
         COMMAND_PRIORITY_EDITOR,
@@ -50,7 +50,7 @@ export function StyleWrapperPlugin({
       editor.registerCommand(
         FOCUS_COMMAND,
         () => {
-          setFocused(editor.getRootElement() === document.activeElement);
+          setHasFocus(editor.getRootElement() === document.activeElement);
           return false;
         },
         COMMAND_PRIORITY_EDITOR,

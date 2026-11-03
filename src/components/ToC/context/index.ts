@@ -15,8 +15,8 @@ const initial = {
   },
 };
 
-const context = React.createContext<Context>(initial);
-context.displayName = 'Grep.ToC.Context';
+const Context = React.createContext<Context>(initial);
+Context.displayName = 'Grep.ToC.Context';
 
-export { context as GrepTableOfContentContex };
-export default context;
+export { Context as GrepTableOfContentContex };
+export default Context;

@@ -64,8 +64,7 @@ export interface GrepTableProps<T> extends Pick<
    */
   rowHeight?: number;
   rowStyle?:
-    | React.CSSProperties
-    | ((data: T, index: number) => React.CSSProperties);
+    React.CSSProperties | ((data: T, index: number) => React.CSSProperties);
   disableSelectOnClick?: boolean;
   underlineOnFocus?: boolean;
   rowTabIndex?: number;
@@ -136,42 +135,42 @@ export const GrepTable = <T,>({
 }: GrepTableProps<T>) => {
   const [rowsPerPage, setRowsPerPage] = React.useState(props.rowsPerPage || 10);
   const [menuAnchor, setMenuAnchor] = React.useState<Element | null>(null);
-  const [currentPage, _setCurrentPage] = React.useState<number>(0);
-  const [selectedRowIndex, _setSelectedRowIndex] = React.useState<number>();
-  const [expandedRowIndex, _setExpandedRowIndex] = React.useState<number>();
+  const [currentPage, setCurrentPage] = React.useState<number>(0);
+  const [selectedRowIndex, setSelectedRowIndex] = React.useState<number>();
+  const [expandedRowIndex, setExpandedRowIndex] = React.useState<number>();
   const [dropdownContext, setDropdownContext] = React.useState<T>();
 
   const selectedRow = data[selectedRowIndex!] || null;
 
-  const setCurrentPage = useCallback(
+  const _setCurrentPage = useCallback(
     (index: number, rowIndex?: number, shouldExpand?: boolean) => {
       index = pagination && index >= 0 ? index : 0;
-      _setCurrentPage(index);
-      _setSelectedRowIndex(rowIndex);
+      setCurrentPage(index);
+      setSelectedRowIndex(rowIndex);
       if (shouldExpand) {
-        _setExpandedRowIndex(rowIndex);
+        setExpandedRowIndex(rowIndex);
       }
     },
     [
-      _setCurrentPage,
-      _setSelectedRowIndex,
-      _setExpandedRowIndex,
+      setCurrentPage,
+      setSelectedRowIndex,
+      setExpandedRowIndex,
       rowsPerPage,
       pagination,
     ],
   );
 
-  const setSelectedRowIndex = (index: number, shouldExpand = true) => {
+  const _setSelectedRowIndex = (index: number, shouldExpand = true) => {
     const hasIndexChanged = index === selectedRowIndex;
     const pageIndex = Math.floor(index / rowsPerPage);
-    setCurrentPage(pageIndex, index, shouldExpand);
+    _setCurrentPage(pageIndex, index, shouldExpand);
     if (hasIndexChanged && onSelectedRowChange) {
       onSelectedRowChange(data[index]);
     }
   };
 
   const setSelectedElement = (el: Element, shouldExpand = true) => {
-    setSelectedRowIndex(getElementIndex(el), shouldExpand);
+    _setSelectedRowIndex(getElementIndex(el), shouldExpand);
   };
 
   const tableRef = React.useRef<HTMLTableSectionElement | null>(null);
@@ -190,8 +189,8 @@ export const GrepTable = <T,>({
   }, [tableRef, selectedRowIndex]);
 
   React.useEffect(() => {
-    setCurrentPage(0);
-  }, [data.length, setCurrentPage]);
+    _setCurrentPage(0);
+  }, [data.length, _setCurrentPage]);
 
   const _openDropdown = (e: React.SyntheticEvent<Element>, row: T) => {
     const { onContextIdChanged } = props;
@@ -215,7 +214,7 @@ export const GrepTable = <T,>({
     newPage: number,
   ) => {
     event && event.preventDefault();
-    setCurrentPage(newPage);
+    _setCurrentPage(newPage);
   };
 
   const _handleChangeRowsPerPage = (
@@ -343,7 +342,7 @@ export const GrepTable = <T,>({
     const moveSelectedRow = (steps: number) => {
       const i = (selectedRowIndex || 0) + steps;
       if (i >= 0 && i <= maxIndex) {
-        setSelectedRowIndex(i);
+        _setSelectedRowIndex(i);
       }
     };
 
@@ -367,17 +366,17 @@ export const GrepTable = <T,>({
         break;
 
       case Key.Home:
-        setSelectedRowIndex(0);
+        _setSelectedRowIndex(0);
         break;
 
       case Key.End:
-        setSelectedRowIndex(maxIndex);
+        _setSelectedRowIndex(maxIndex);
         break;
 
       case Key.Tab:
         requestAnimationFrame(() => {
           // check is any children still has focus
-          !containsFocus(tableRef.current!) && setSelectedRowIndex(-1);
+          !containsFocus(tableRef.current!) && _setSelectedRowIndex(-1);
         });
         break;
 
