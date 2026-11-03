@@ -19,6 +19,7 @@ export function ModifyPastePlugin({
     PASTE_COMMAND,
     (e: ClipboardEvent) => {
       if (blockPasting) {
+        e.preventDefault();
         return true;
       } else if (stripPastedStyles) {
         const pastedText = e.clipboardData
