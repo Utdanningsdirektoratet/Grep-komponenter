@@ -163,9 +163,9 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
+    "@lexical/overflow": "^0.52.0",
     "@lexical/react": "^0.52.0",
     "@lexical/rich-text": "^0.52.0",
-    "@lexical/overflow": "^0.52.0",
     "@lexical/selection": "^0.52.0",
     "@mui/icons-material": "^9.5.0",
     "@mui/material": "^9.5.0",
@@ -173,7 +173,8 @@
     "dayjs": "^1.11.23",
     "dompurify": "^3.4.16",
     "lexical": "^0.52.0",
-    "react-router": "^8.4.0"
+    "react-router": "8.x",
+    "rollup-plugin-postcss": "^4.0.2"
   },
   "overrides": {
     "undici": "^6.28.0"
