@@ -21,7 +21,7 @@ import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell, { TableCellProps } from '@mui/material/TableCell';
-import React, { ReactElement, useCallback, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { ReactNode } from 'react';
 import { SortableTableRow2 } from './components/sortableTableRow';
 import { TableColumn } from '../GrepTable';
@@ -87,15 +87,11 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
   const size = props.size ? props.size : 'medium';
   const tableHead = props.header ? props.header : false;
 
-  const renderRow = useCallback(
-    () =>
-      props.columns.map(({ getCell }, index) => {
-        const currentItem = data.find((item) => item.id === activeId);
-        if (currentItem === undefined) return;
-        return <TableCell key={index}>{getCell(currentItem)}</TableCell>;
-      }),
-    [props.columns, props, activeId],
-  );
+  const renderRow = () => props.columns.map(({ getCell }, index) => {
+    const currentItem = data.find((item) => item.id === activeId);
+    if (currentItem === undefined) return;
+    return <TableCell key={index}>{getCell(currentItem)}</TableCell>;
+  });
 
   function handleDragStart(event: DragStartEvent) {
     const { active } = event;

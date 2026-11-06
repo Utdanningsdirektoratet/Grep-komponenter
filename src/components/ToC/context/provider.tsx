@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import throttle from 'lodash.throttle';
 
 import { useContentElements } from '../../../hooks/use-content-elements';
@@ -47,24 +47,11 @@ export const GrepTableOfContentProvider: React.FC<
   } = props;
 
   const [selected, setSelected] = useState<HTMLElement>();
-  const [initialized, setInitialized] = useState<boolean>();
-
   const hash = useLocation().hash;
 
-  const scrollToElement = useCallback(
-    (element: HTMLElement) => {
-      const target = scrollTarget || window;
-      const elementBounds = element.getBoundingClientRect();
-      const elementTop = elementBounds.top - element.clientHeight;
-      const top = elementTop - offsetTop;
-      target.scrollBy({ top });
-    },
-    [scrollTarget, offsetTop],
+  const identify = useMemo(() => identifyElementFn(identifier || generateElementId),
+    [identifier, generateElementId, identifyElementFn]
   );
-
-  const identify = useMemo(() => {
-    return identifyElementFn(identifier || generateElementId);
-  }, [identifier, identifyElementFn]);
 
   const elements = useContentElements(
     container,
@@ -72,48 +59,57 @@ export const GrepTableOfContentProvider: React.FC<
     { identify },
   );
 
-  const _setSelected = useCallback(
-    throttle(
-      (element: HTMLElement, scroll?: boolean) => {
-        element && scroll && scrollToElement(element);
-        setSelected(element);
-      },
-      50,
-      { trailing: false },
-    ),
-    [setSelected, scrollToElement],
+  // Preserve throttle state across selection updates.
+  const _setSelected = useMemo(
+    () =>
+      throttle(
+        (element: HTMLElement, scroll?: boolean) => {
+          if (element && scroll) {
+            const target = scrollTarget || window;
+            const elementBounds = element.getBoundingClientRect();
+            const elementTop = elementBounds.top - element.clientHeight;
+            const top = elementTop - offsetTop;
+            target.scrollBy({ top });
+          }
+          setSelected(element);
+        },
+        50,
+        { trailing: false },
+      ),
+    [scrollTarget, offsetTop],
   );
 
-  const getViewportElement = useCallback(() => {
-    const records = Object.values(elements);
-    if (!records.length) return;
-    const index = records.findIndex(
-      (e) => e.getBoundingClientRect().bottom > offsetTop,
-    );
-    if (index > 0) {
-      const rect = records[index].getBoundingClientRect();
-      const offset = Math.floor(rect.top - offsetTop);
-      const within = offset < rect.height + 20;
-      return records[within ? index : index - 1];
-    }
-    return records[index];
-  }, [elements, offsetTop]);
+  useEffect(() => () => _setSelected.cancel(), [_setSelected]);
 
-  // attach observer to elements
   useEffect(() => {
     const target = scrollTarget || window;
-    if (!target) return;
+
+    const getViewportElement = () => {
+      const records = Object.values(elements);
+      if (!records.length) return;
+      const index = records.findIndex(
+        (e) => e.getBoundingClientRect().bottom > offsetTop,
+      );
+      if (index > 0) {
+        const rect = records[index].getBoundingClientRect();
+        const offset = Math.floor(rect.top - offsetTop);
+        const within = offset < rect.height + 20;
+        return records[within ? index : index - 1];
+      }
+      return records[index];
+    };
 
     const onScroll = throttle(() => {
       const element = getViewportElement();
-      _setSelected(element as HTMLElement);
+      if (element) _setSelected(element);
     }, 50);
     target.addEventListener('scroll', onScroll, false);
 
     return () => {
-      return target.removeEventListener('scroll', onScroll);
+      target.removeEventListener('scroll', onScroll);
+      onScroll.cancel();
     };
-  }, [scrollTarget, _setSelected, offsetTop, getViewportElement]);
+  }, [scrollTarget, _setSelected, offsetTop, elements]);
 
   // notify observer when selected change
   useEffect(() => {
@@ -125,13 +121,7 @@ export const GrepTableOfContentProvider: React.FC<
     if (hash && elements[hash]) {
       _setSelected(elements[hash], true);
     }
-  }, [hash, _setSelected]);
-
-  // set selected element on initial load
-  if (!initialized && elements && elements[hash]) {
-    _setSelected(elements[hash], true);
-    setInitialized(true);
-  }
+  }, [hash, elements, _setSelected]);
 
   return (
     <Context value={{ elements, selected, classes, setSelected: _setSelected }}>

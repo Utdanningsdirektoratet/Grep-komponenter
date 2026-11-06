@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 const filterElements = (match?: RegExp) => (elements: Array<HTMLElement>) => {
   return match ? elements.filter((el) => el.nodeName.match(match)) : elements;
@@ -31,31 +31,40 @@ export const useContentElements = (
 
   const [elements, setElements] = useState<Record<string, HTMLElement>>({});
 
-  const getElements = useCallback(() => {
-    const all = Array.from(container!.querySelectorAll<HTMLElement>(selector));
-    const elements = filter ? all.filter(filter) : all;
-    return elements.reduce(
-      (curr: Record<string, HTMLElement>, el: HTMLElement) => {
-        const id = identify!(el);
-        if (curr[id]) throw Error('duplicate identifiers!');
-        curr[id] = el;
-        return curr;
-      },
-      {},
-    );
-  }, [container, selector, identify, filter]);
-
   useEffect(() => {
     // early exit, nothing to observe
     if (!container) return;
 
-    // set current elements
-    setElements(getElements());
+    const updateElements = () => {
+      const all = Array.from(container.querySelectorAll<HTMLElement>(selector));
+      const matches = filter ? all.filter(filter) : all;
+      const next = matches.reduce(
+        (curr: Record<string, HTMLElement>, el: HTMLElement) => {
+          const id = identify!(el);
+          if (curr[id]) throw Error('duplicate identifiers!');
+          curr[id] = el;
+          return curr;
+        },
+        {},
+      );
+
+      setElements((previous) => {
+        const previousIds = Object.keys(previous);
+        const nextIds = Object.keys(next);
+        const unchanged =
+          previousIds.length === nextIds.length &&
+          previousIds.every(
+            (id, index) => id === nextIds[index] && previous[id] === next[id],
+          );
+
+        return unchanged ? previous : next;
+      });
+    };
+
+    updateElements();
 
     // Observe changes in DOM
-    const observer = new MutationObserver(() => {
-      setElements(getElements());
-    });
+    const observer = new MutationObserver(updateElements);
 
     // start observing
     observer.observe(container, config);
@@ -64,7 +73,7 @@ export const useContentElements = (
     return () => {
       observer.disconnect();
     };
-  }, [container, config, getElements]);
+  }, [container, selector, filter, identify, config]);
 
   return elements;
 };

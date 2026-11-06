@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState } from 'react';
 
 import DateTime, {
   hasDateChanged,
@@ -20,29 +20,29 @@ export const useDate = (
 ): [DateState, (next: DateInput) => void] => {
   const { utc, preserveTime } = { ...options, ...defaultOptions };
 
-  const [date, setDate] = useState<DateState>(null);
+  const getDate = (value: DateInput) => {
+    if (value) {
+      const date = DateTime(value);
+      return preserveTime ? date : date.startOf('day');
+    }
+    return null;
+  };
 
-  const getDate = useCallback(
-    (value: DateInput) => {
-      if (value) {
-        const date = DateTime(value);
-        return preserveTime ? date : date.startOf('day');
-      }
-      return null;
-    },
-    [preserveTime],
+  const [date, setDate] = useState<DateState>(() =>
+    getDate(value ? parseDate(value, { utc }) : null),
   );
+  const [previousInput, setPreviousInput] = useState({ value, utc });
 
   const _setDate = (next: DateInput): void => {
     const nextDate = getDate(next);
     hasDateChanged(date, nextDate) && setDate(nextDate);
   };
 
-  // eslint-disable-next-line @eslint-react/use-memo
-  useMemo(
-    () => _setDate(value ? parseDate(value, { utc }) : null),
-    [value, utc],
-  );
+  // Synchronize before children render so MUI does not reset partially entered dates.
+  if (!Object.is(previousInput.value, value) || previousInput.utc !== utc) {
+    setPreviousInput({ value, utc });
+    _setDate(value ? parseDate(value, { utc }) : null);
+  }
   return [date, _setDate];
 };
 

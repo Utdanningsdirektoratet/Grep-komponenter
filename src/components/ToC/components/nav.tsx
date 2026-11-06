@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback, use } from 'react';
+import React, { useRef, use } from 'react';
 import clsx from 'clsx';
 
 import Context from '../context';
@@ -19,19 +19,17 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
 ) => {
   const ref = useRef<HTMLElement>(null);
   const { elements, classes, selected, setSelected } = use(Context);
-  const tree = useMemo(() => buildTree(Object.values(elements)), [elements]);
+  const tree = buildTree(Object.values(elements));
 
-  const focusSelected = useCallback(() => {
-    requestAnimationFrame(() => {
-      if (!(ref.current instanceof HTMLElement)) return;
-      const active = ref.current.querySelector('[tabindex="0"]');
-      if (active instanceof HTMLElement) {
-        active.focus();
-      } else {
-        ref.current.focus();
-      }
-    });
-  }, [ref]);
+  const focusSelected = () => requestAnimationFrame(() => {
+    if (!(ref.current instanceof HTMLElement)) return;
+    const active = ref.current.querySelector('[tabindex="0"]');
+    if (active instanceof HTMLElement) {
+      active.focus();
+    } else {
+      ref.current.focus();
+    }
+  });
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === Key.ArrowUp || e.key === Key.ArrowDown) {

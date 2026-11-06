@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { ReactElement } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { UniqueIdentifier } from '@dnd-kit/core';
@@ -28,13 +28,10 @@ export function SortableTableRow2<T>({
   };
   const { classes } = useSortableTableStyles();
 
-  const renderRow = useCallback(
-    () =>
-      columns.map(({ getCell }, index) => {
-        return <TableCell key={index}>{getCell(item)}</TableCell>;
-      }),
-    [columns, item],
-  );
+  const renderRow = () =>
+    columns.map(({ getCell }, index) => {
+      return <TableCell key={index}>{getCell(item)}</TableCell>;
+    });
 
   return (
     <TableRow
