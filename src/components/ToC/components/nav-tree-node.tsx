@@ -1,12 +1,6 @@
-import React, {
-  useContext,
-  ReactElement,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { ReactElement, useEffect, useRef, useState, use } from 'react';
 import Link from '@mui/material/Link';
-import context from '../context';
+import Context from '../context';
 import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
 import styles from '../styles/nav-tree-node.module.css';
 import { useLocation } from 'react-router';
@@ -28,7 +22,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<
   const { node, style, renderChilds, setSelectedValue, percentageRendered } =
     props;
   const { lvl, el, index, children } = node;
-  const { selected, setSelected, classes, elements } = useContext(context);
+  const { selected, setSelected, classes, elements } = use(Context);
   const isSelected = el === selected;
   const className = `
     grep-toc__nav-tree-node 

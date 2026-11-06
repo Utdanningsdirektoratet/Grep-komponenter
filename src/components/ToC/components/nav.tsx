@@ -1,5 +1,5 @@
-import React, { useContext, useMemo, useRef, useCallback } from 'react';
-import context from '../context';
+import React, { useMemo, useRef, useCallback, use } from 'react';
+import Context from '../context';
 import NavTree from './nav-tree';
 import style from '../styles/nav.style.module.css';
 import { buildTree } from '../utils/tree-builder';
@@ -16,7 +16,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
   props,
 ) => {
   const ref = useRef<HTMLElement>(null);
-  const { elements, classes, selected, setSelected } = useContext(context);
+  const { elements, classes, selected, setSelected } = use(Context);
   const tree = useMemo(() => buildTree(Object.values(elements)), [elements]);
 
   const focusSelected = useCallback(() => {

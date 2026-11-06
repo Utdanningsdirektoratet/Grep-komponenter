@@ -46,7 +46,7 @@ export const GrepTableOfContentProvider: React.FC<
     identifyElementFn = identifyElement,
   } = props;
 
-  const [selected, _setSelected] = useState<HTMLElement>();
+  const [selected, setSelected] = useState<HTMLElement>();
   const [initialized, setInitialized] = useState<boolean>();
 
   const hash = useLocation().hash;
@@ -72,16 +72,16 @@ export const GrepTableOfContentProvider: React.FC<
     { identify },
   );
 
-  const setSelected = useCallback(
+  const _setSelected = useCallback(
     throttle(
       (element: HTMLElement, scroll?: boolean) => {
         element && scroll && scrollToElement(element);
-        _setSelected(element);
+        setSelected(element);
       },
       50,
       { trailing: false },
     ),
-    [_setSelected, scrollToElement],
+    [setSelected, scrollToElement],
   );
 
   const getViewportElement = useCallback(() => {
@@ -106,14 +106,14 @@ export const GrepTableOfContentProvider: React.FC<
 
     const onScroll = throttle(() => {
       const element = getViewportElement();
-      setSelected(element as HTMLElement);
+      _setSelected(element as HTMLElement);
     }, 50);
     target.addEventListener('scroll', onScroll, false);
 
     return () => {
       return target.removeEventListener('scroll', onScroll);
     };
-  }, [scrollTarget, setSelected, offsetTop, getViewportElement]);
+  }, [scrollTarget, _setSelected, offsetTop, getViewportElement]);
 
   // notify observer when selected change
   useEffect(() => {
@@ -123,20 +123,20 @@ export const GrepTableOfContentProvider: React.FC<
   // observe changes in hash
   useEffect(() => {
     if (hash && elements[hash]) {
-      setSelected(elements[hash], true);
+      _setSelected(elements[hash], true);
     }
-  }, [hash, setSelected]);
+  }, [hash, _setSelected]);
 
   // set selected element on initial load
   if (!initialized && elements && elements[hash]) {
-    setSelected(elements[hash], true);
+    _setSelected(elements[hash], true);
     setInitialized(true);
   }
 
   return (
-    <Context.Provider value={{ elements, selected, classes, setSelected }}>
+    <Context value={{ elements, selected, classes, setSelected: _setSelected }}>
       {children}
-    </Context.Provider>
+    </Context>
   );
 };
 

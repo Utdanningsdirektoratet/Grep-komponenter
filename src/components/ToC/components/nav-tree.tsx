@@ -1,5 +1,5 @@
 import React, { use } from 'react';
-import context from '../context';
+import Context from '../context';
 import NavTreeNode from './nav-tree-node';
 import { ContextTree } from '../utils/tree-builder';
 import Box from '@mui/material/Box';
@@ -16,7 +16,7 @@ interface Props {
 
 const NavTree: React.FC<Props> = (props) => {
   const { elements, style, setSelectedValue, percentageRendered } = props;
-  const { classes } = use(context);
+  const { classes } = use(Context);
   const className = `
     grep-toc__nav-tree
     ${styles.root}
