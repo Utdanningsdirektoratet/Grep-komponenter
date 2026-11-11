@@ -31,6 +31,7 @@ export { default as GrepEditor } from './components/GrepEditor';
 export { default as AppBar } from './components/AppBar/AppBar';
 
 export type { ParseableDate } from './utils/dateHelper';
+export { downloadBlob } from './utils';
 export { Utils };
 
 export * from './components';
