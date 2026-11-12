@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
+import type { Dayjs } from 'dayjs';
+import type { FieldRef } from '@mui/x-date-pickers/models';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   DatePickerProps,
@@ -52,6 +54,67 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
 }) => {
   const [date, setDate] = useDate(value);
   const [error, setError] = useState<DateValidationError>(null);
+  const fieldRef = useRef<FieldRef<Dayjs | null> | null>(null);
+  const wasSectionEmptyRef = useRef(false);
+
+  const handleDeleteKeyDownCapture = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+  ) => {
+    if (event.repeat) {
+      return;
+    }
+
+    const field = fieldRef.current;
+    const sectionIndex = field?.getActiveSectionIndex();
+
+    wasSectionEmptyRef.current =
+      field !== null &&
+      sectionIndex != null &&
+      field.getSections()[sectionIndex]?.value === '';
+  };
+
+  const handleDeleteKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!wasSectionEmptyRef.current) {
+      return;
+    }
+    if (
+      (event.key !== 'Backspace' && event.key !== 'Delete') ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey ||
+      event.shiftKey ||
+      event.nativeEvent.isComposing ||
+      props.disabled ||
+      props.readOnly
+    ) {
+      return;
+    }
+
+    const field = fieldRef.current;
+    const sectionIndex = field?.getActiveSectionIndex();
+
+    if (!field || sectionIndex == null) {
+      return;
+    }
+
+    const sections = field.getSections();
+    const section = sections[sectionIndex];
+
+    if (!section || section.value !== '') {
+      return;
+    }
+
+    if (sections.every((item) => item.value === '')) {
+      field.setSelectedSections(0);
+      return;
+    }
+
+    const nextIndex = sectionIndex + (event.key === 'Backspace' ? -1 : 1);
+
+    if (nextIndex >= 0 && nextIndex < sections.length) {
+      field.setSelectedSections(nextIndex);
+    }
+  };
 
   const validationMessage =
     error === 'maxDate'
@@ -78,10 +141,13 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
         onChange={setDate}
         slotProps={{
           field: {
+            fieldRef,
             clearable: !!clearable,
             onClear: () => setDate(null),
           },
           textField: {
+            onKeyDownCapture: handleDeleteKeyDownCapture,
+            onKeyUp: handleDeleteKeyUp,
             id: id,
             label: label,
             variant: variant,
