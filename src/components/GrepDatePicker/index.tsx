@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   DatePickerProps,
@@ -9,9 +8,12 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TextFieldProps } from '@mui/material';
 
-import '../../utils/dateHelper';
+import {
+  DEFAULT_MIN_DATE,
+  DEFAULT_MAX_DATE,
+  ParseableDate,
+} from '../../utils/dateHelper';
 import { useDate } from '../../hooks';
-import { ParseableDate } from '../../utils/dateHelper';
 
 type InputProps = Pick<
   TextFieldProps,
@@ -43,55 +45,34 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   margin,
   sx,
   clearable,
+  minDate = DEFAULT_MIN_DATE,
+  maxDate = DEFAULT_MAX_DATE,
+  onError,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
-  const [error, setError] = useState<string | undefined>();
+  const [error, setError] = useState<DateValidationError>(null);
 
-  const helperText = errorMessage || error || props.helperText;
+  const validationMessage =
+    error === 'maxDate'
+      ? `Dato må være før ${maxDate.add(1, 'day').format('DD/MM/YYYY')}`
+      : error === 'minDate'
+        ? `Dato må være etter ${minDate.subtract(1, 'day').format('DD/MM/YYYY')}`
+        : error
+          ? 'Ugyldig dato'
+          : undefined;
+
+  const helperText = errorMessage || validationMessage || props.helperText;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
       <DatePicker
         format="DD/MM/YYYY"
-        onError={(reason: DateValidationError) => {
-          switch (reason) {
-            case 'invalidDate':
-              setError('Ugyldig dato');
-              break;
-
-            case 'maxDate':
-              if (!props.maxDate) {
-                props.maxDate = dayjs('31/12/2089', 'DD/MM/YYYY');
-              }
-
-              if (props.maxDate) {
-                setError(
-                  `Dato må være før ${dayjs(props.maxDate)
-                    .add(1, 'day')
-                    .format('DD/MM/YYYY')}`,
-                );
-              }
-
-              break;
-
-            case 'minDate':
-              if (!props.minDate) {
-                props.minDate = dayjs('02/01/1900', 'DD/MM/YYYY');
-              }
-
-              if (props.minDate) {
-                setError(
-                  `Dato må være etter ${dayjs(props.minDate)
-                    .subtract(1, 'day')
-                    .format('DD/MM/YYYY')}`,
-                );
-              }
-              break;
-
-            default:
-              setError(undefined);
-          }
+        minDate={minDate}
+        maxDate={maxDate}
+        onError={(reason, invalidValue) => {
+          setError(reason);
+          onError?.(reason, invalidValue);
         }}
         value={date}
         onChange={setDate}

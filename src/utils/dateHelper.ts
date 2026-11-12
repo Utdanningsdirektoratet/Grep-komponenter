@@ -10,6 +10,9 @@ dayjs.extend(isBetweenPlugin);
 dayjs.extend(LocalizedFormatPlugin);
 dayjs.locale('nb');
 
+export const DEFAULT_MIN_DATE = dayjs('1900-01-01');
+export const DEFAULT_MAX_DATE = dayjs('2099-12-31');
+
 export interface ParserOptions {
   utc?: boolean;
   format?: string;
@@ -24,7 +27,7 @@ export class DateRangeValue {
     return this.isValid();
   }
 
-  isValid(allowNull = true, allowSame = true, unit: OpUnitType = 'day') {
+  isValid(allowNull = true, allowSame = false, unit: OpUnitType = 'day') {
     if (!this.from && !this.to) return allowNull;
 
     const dateFrom = dayjs(this.from || undefined);

@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDate } from '../../hooks/use-date';
-import { DateRangeValue } from '../../utils/dateHelper';
+import {
+  DateRangeValue,
+  DEFAULT_MIN_DATE,
+  DEFAULT_MAX_DATE,
+} from '../../utils/dateHelper';
 import GrepDatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
 import { Dayjs } from 'dayjs';
 import Grid, { GridSpacing } from '@mui/material/Grid';
@@ -32,6 +36,32 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
   const [from, setFrom] = useDate(fromProperties.value);
   const [to, setTo] = useDate(toProperties.value);
   const { minDate, maxDate, ...commonProperties } = properties;
+  const fromMinimum = fromProperties.minDate ?? minDate ?? DEFAULT_MIN_DATE;
+  const fromMaximum = fromProperties.maxDate ?? maxDate ?? DEFAULT_MAX_DATE;
+  const toMinimum = toProperties.minDate ?? minDate ?? DEFAULT_MIN_DATE;
+  const toMaximum = toProperties.maxDate ?? maxDate ?? DEFAULT_MAX_DATE;
+
+  const isWithinBounds = (
+    date: Dayjs | null,
+    minimum: Dayjs,
+    maximum: Dayjs,
+  ): date is Dayjs =>
+    date !== null &&
+    date.isValid() &&
+    !date.isBefore(minimum, 'day') &&
+    !date.isAfter(maximum, 'day');
+
+  const maximumFromDate =
+    isWithinBounds(to, toMinimum, toMaximum) &&
+    to.subtract(1, 'day').isBefore(fromMaximum, 'day')
+      ? to.subtract(1, 'day')
+      : fromMaximum;
+
+  const minimumToDate =
+    isWithinBounds(from, fromMinimum, fromMaximum) &&
+    from.add(1, 'day').isAfter(toMinimum, 'day')
+      ? from.add(1, 'day')
+      : toMinimum;
 
   useEffect(
     () =>
@@ -47,11 +77,11 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
         <GrepDatePicker
           id={String(fromProperties.label)}
           fullWidth
-          minDate={minDate}
           {...commonProperties}
           {...fromProperties}
           value={from}
-          maxDate={to?.subtract(1, 'day') || undefined}
+          minDate={fromMinimum}
+          maxDate={maximumFromDate}
           onChange={setFrom}
         />
       </Grid>
@@ -59,11 +89,11 @@ export const GrepDateRange: React.FunctionComponent<GrepDateRangeProps> = ({
         <GrepDatePicker
           id={String(toProperties.label)}
           fullWidth
-          maxDate={maxDate}
           {...commonProperties}
           {...toProperties}
           value={to}
-          minDate={from?.add(1, 'day') || undefined}
+          minDate={minimumToDate}
+          maxDate={toMaximum}
           onChange={setTo}
         />
       </Grid>
