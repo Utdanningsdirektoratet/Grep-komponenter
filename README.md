@@ -26,6 +26,21 @@ Komponentbibliotek for Grep. Brukes i Læreplanutvikleren og Grepadmin.
 - [Github Actions](https://docs.github.com/en/actions) for running build, test and release jobs
 - [Dependabot](https://dependabot.com/) for dependency management
 
+## CSS Module types
+
+CSS Modules use generated `*.module.css.d.ts` declarations instead of a wildcard
+type. Commit these declarations alongside their CSS files.
+
+- `npm run css:types` generates declarations for all CSS Modules, including stories.
+- `npm run css:types:watch` keeps declarations updated while editing CSS (for example,
+  alongside Storybook).
+- `npm run css:types:check` fails if declarations are missing or out of date.
+
+`npm run build` and `npm start` generate declarations before Rollup initializes
+TypeScript. Rollup's PostCSS plugin also regenerates declarations when it processes
+CSS Modules, including during watch builds. Tests and CI check declaration freshness
+before type-checking.
+
 ## Publishing
 
 Pushing to `master` or any feature-branch (`feature/some-feature`) will automatically run the [release-workflow](https://github.com/Utdanningsdirektoratet/Grep-komponenter/blob/master/.github/workflows/release.yml). This will build the package, analyze the commits to determine next version number and publish the new version to [NPM](https://www.npmjs.com/package/grep-components) and [Github](https://github.com/Utdanningsdirektoratet/Grep-komponenter/releases). Current and previous runs can be seen [here](https://github.com/Utdanningsdirektoratet/Grep-komponenter/actions/workflows/release.yml).

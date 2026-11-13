@@ -5,8 +5,12 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
+import { createRequire } from 'node:module';
 
 import pkg from './package.json' with { type: 'json' };
+
+const requireModule = createRequire(import.meta.url);
+const { default: DtsCreator } = requireModule('typed-css-modules');
 
 export default {
   input: 'src/index.ts',
@@ -35,6 +39,14 @@ export default {
     commonjs({
       include: 'node_modules/**',
     }),
-    postcss({ plugins: [] }),
+    postcss({
+      modules: {
+        async getJSON(filepath: string) {
+          const creator = new DtsCreator();
+          const content = await creator.create(filepath);
+          await content.writeFile();
+        },
+      },
+    }),
   ],
 };
