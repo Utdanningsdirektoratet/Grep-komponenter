@@ -29,7 +29,7 @@
     "test:watch": "concurrently  \"npm run css:types:watch\" \"node --experimental-vm-modules node_modules/jest/bin/jest.js --watch --verbose\"",
     "test:ci": "npm run pretest && node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --verbose",
     "storybook": "concurrently \"npm run css:types:watch\" \"storybook dev -p 9009\"",
-    "build-storybook": "storybook build",
+    "build-storybook": "npm run css:types && storybook build",
     "prepare": "husky"
   },
   "release": {
