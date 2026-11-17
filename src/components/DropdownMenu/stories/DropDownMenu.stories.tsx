@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 import { DropdownMenuItem, DropdownMenu } from '../..';
-import { makeStyles } from '../../../styling';
 
 interface TestMenuItem {
   label: string;
@@ -111,12 +110,6 @@ export const Standard = {
     () => {
       const [open, setOpen] = useState(false);
       const menuAnchorRef = useRef(null);
-      const { classes } = makeStyles()({
-        paper: {
-          width: '200px',
-        },
-      })();
-
       return (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Button ref={menuAnchorRef} onClick={() => setOpen(!open)}>
@@ -124,10 +117,10 @@ export const Standard = {
           </Button>
           <DropdownMenu
             open={open}
+            sx={{ '& .MuiPaper-root': { width: '200px' } }}
             anchorEl={menuAnchorRef.current}
             menuItems={menuItems}
             onClose={() => setOpen(false)}
-            classes={classes}
           />
         </Box>
       );

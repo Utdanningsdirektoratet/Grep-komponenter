@@ -8,9 +8,9 @@ import {
   ListItemText,
   ListItemButton,
 } from '@mui/material';
-
-import { useStyles } from './styles';
+import classes from './styles/containedLinkList.module.css';
 import { NavigationProps } from '..';
+import Colors from '../../styling/Colors';
 
 interface Props {
   title: string;
@@ -20,11 +20,15 @@ interface Props {
 }
 
 const ContainedLinkList: React.FC<Props> = (props) => {
-  const { classes } = useStyles();
-
   return (
-    <Box className={classes.container} style={props.style}>
-      <Typography className={classes.title}>{props.title}</Typography>
+    <Box
+      sx={{ border: `1px solid ${Colors.lightGrey}` }}
+      className={classes.container}
+      style={props.style}
+    >
+      <Typography sx={{ color: Colors.black }} className={classes.title}>
+        {props.title}
+      </Typography>
       <List style={{ padding: 0 }}>
         {props.pages.map((page) => (
           <ListItem divider key={page.id} disablePadding>

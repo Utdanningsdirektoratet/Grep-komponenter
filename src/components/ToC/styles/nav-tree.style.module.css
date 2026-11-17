@@ -1,0 +1,8 @@
+.root {
+  list-style: none;
+  padding: 0;
+}
+
+.root ul {
+  font-size: 0.9em;
+}

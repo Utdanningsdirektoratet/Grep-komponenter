@@ -2,7 +2,7 @@ import React from 'react';
 import { Menu, MenuItemProps, MenuProps } from '@mui/material';
 
 import CollapsableMenuItem from './components/collapsable-menu-item';
-import { useStyles } from './styles/dropdown-menu.style';
+import classes from './styles/dropdownMenu.module.css';
 
 type BooleanFunction<T> = (context?: T) => boolean;
 
@@ -39,8 +39,6 @@ const DropdownMenu = <T,>({
   menuItems,
   ...menuProps
 }: DropdownMenuProps<T>) => {
-  const { classes } = useStyles();
-
   const renderChild =
     (level = 0, parentDisabled?: BooleanFunction<T> | boolean) =>
     (item: DropdownMenuItem<T>, index: number): React.ReactNode => {
@@ -88,7 +86,6 @@ const DropdownMenu = <T,>({
 
       return (
         <CollapsableMenuItem
-          sx={isDisabled && !children ? { cursor: 'not-allowed' } : {}}
           level={level}
           id={label}
           disabled={isDisabled}

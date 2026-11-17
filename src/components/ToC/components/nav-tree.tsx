@@ -1,10 +1,10 @@
 import React, { use } from 'react';
-import clsx from 'clsx';
-
 import Context from '../context';
 import NavTreeNode from './nav-tree-node';
 import { ContextTree } from '../utils/tree-builder';
-import { useStyles } from '../styles/nav-tree.style';
+import Box from '@mui/material/Box';
+import { convertToRgba } from '../../../styling/hex2rgb';
+import styles from '../styles/nav-tree.style.module.css';
 
 interface Props {
   elements: ContextTree;
@@ -17,31 +17,44 @@ interface Props {
 const NavTree: React.FC<Props> = (props) => {
   const { elements, style, setSelectedValue, percentageRendered } = props;
   const { classes } = use(Context);
-  const { classes: styles } = useStyles();
-  const className = clsx(
-    'grep-toc__nav-tree',
-    styles.root,
-    classes?.tree,
-    props.className,
-  );
+  const className = `
+    grep-toc__nav-tree
+    ${styles.root}
+    ${classes?.tree ?? ''}
+    ${props.className ?? ''}
+  `;
   return (
-    <ul className={className} style={style}>
-      {Object.values(elements).map((node) => (
-        <NavTreeNode
-          node={node}
-          key={node.index}
-          renderChilds={(children) => (
-            <NavTree
-              elements={children}
-              setSelectedValue={setSelectedValue}
-              percentageRendered={percentageRendered}
-            />
-          )}
-          setSelectedValue={setSelectedValue}
-          percentageRendered={percentageRendered}
-        />
-      ))}
-    </ul>
+    <Box
+      sx={(theme) => ({
+        '--grep-toc-link-color': convertToRgba(
+          theme.palette.primary.main,
+          0.75,
+        ),
+        '--grep-toc-focused-background': convertToRgba(
+          theme.palette.primary.main,
+          0.1,
+        ),
+        '--grep-toc-selected-color': theme.palette.primary.main,
+      })}
+    >
+      <ul className={className} style={style}>
+        {Object.values(elements).map((node) => (
+          <NavTreeNode
+            node={node}
+            key={node.index}
+            renderChilds={(children) => (
+              <NavTree
+                elements={children}
+                setSelectedValue={setSelectedValue}
+                percentageRendered={percentageRendered}
+              />
+            )}
+            setSelectedValue={setSelectedValue}
+            percentageRendered={percentageRendered}
+          />
+        ))}
+      </ul>
+    </Box>
   );
 };
 

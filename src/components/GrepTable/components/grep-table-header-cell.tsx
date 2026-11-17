@@ -5,7 +5,6 @@ import TableSortLabel, {
 } from '@mui/material/TableSortLabel';
 
 import { TableColumn } from '..';
-import { useTableHeaderStyles } from '../styles';
 
 interface Properties<T> extends Omit<TableSortLabelProps, 'component'> {
   column: TableColumn<T>;
@@ -22,9 +21,11 @@ export const TableHeaderCell = <T,>({
   empty = false,
   ...props
 }: Properties<T>) => {
-  const { classes } = useTableHeaderStyles({
-    column: column as TableColumn<unknown>,
-  });
+  const width = column.width
+    ? typeof column.width === 'number'
+      ? `${column.width}%`
+      : `${column.width}px`
+    : undefined;
 
   const sortable = !!(onSortBy && column.sortable);
 
@@ -32,7 +33,7 @@ export const TableHeaderCell = <T,>({
     return (
       <TableCell
         variant={empty ? 'body' : 'head'}
-        className={classes.th}
+        sx={{ width: width, fontSize: 14, ...props.sx }}
         {...props}
       >
         <TableSortLabel active={active} direction={direction}>
@@ -43,11 +44,11 @@ export const TableHeaderCell = <T,>({
   }
 
   return empty ? (
-    <td className={classes.th}>{children}</td>
+    <td style={{ width: width, fontSize: 14 }}>{children}</td>
   ) : (
     <TableCell
       variant={empty ? 'body' : 'head'}
-      className={classes.th}
+      sx={{ width: width, fontSize: 14, ...props.sx }}
       {...props}
     >
       {children}

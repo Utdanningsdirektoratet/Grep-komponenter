@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  align-items: center;
+  font-size: 16px;
+}
+
+.current {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.link {
+  font-size: 16px;
+  margin: auto 0;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:focus {
+  text-decoration: underline;
+  outline-offset: 2px;
+}
