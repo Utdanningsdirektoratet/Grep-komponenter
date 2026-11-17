@@ -29,8 +29,8 @@ import {
   restrictToParentElement,
   restrictToVerticalAxis,
 } from '@dnd-kit/modifiers';
-import useSortableTableStyles from './styles/row.style';
 import DragIndicator from '@mui/icons-material/DragIndicator';
+import { hex2rgba } from '../../styling/hex2rgb';
 
 export interface CellNode {
   value: ReactNode;
@@ -68,7 +68,6 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [stateItems, setStateItems] = useState<T[]>([]);
   const [cursor, setCursor] = useState('grab');
-  const { classes } = useSortableTableStyles();
 
   useEffect(() => {
     if (data.length > 0) {
@@ -178,8 +177,12 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
         {activeId !== '' ? (
           <Table
             size={size}
-            className={classes.dragOverlayRow}
-            sx={{ cursor: cursor }}
+            sx={(theme) => ({
+              cursor: cursor,
+              backgroundColor: hex2rgba(theme.palette.primary.contrastText, 1),
+              scale: 1.05,
+              boxShadow: `0px 0px 2px 2px ${hex2rgba(theme.palette.primary.main, 0.25)}`,
+            })}
           >
             <TableBody>
               <TableRow>

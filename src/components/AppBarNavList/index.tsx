@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Tab, Tabs } from '@mui/material';
-
-import { useStyles } from './styles';
 import MobileAppBarNavList from './MobileAppBarNavList';
+import classes from './styles/appbarNavList.module.css';
 
 export interface NavigationProps {
   id: number;
@@ -24,7 +23,6 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
   onChange,
 }) => {
   const [value, setValue] = React.useState(selectedPage);
-  const { classes } = useStyles();
 
   const handleChange = (
     _event: React.ChangeEvent<unknown>,
@@ -41,6 +39,11 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
         value={value}
         onChange={handleChange}
         slotProps={{ indicator: { children: <div /> } }}
+        sx={(theme) => ({
+          '& .MuiTabs-indicator > div': {
+            backgroundColor: theme.palette.secondary.main,
+          },
+        })}
       >
         {pages.map((page) => (
           <Tab
@@ -48,6 +51,12 @@ const AppBarNavList: React.FC<AppBarNavListProps> = ({
             className={classes.tab}
             key={page.id}
             label={page.label}
+            sx={(theme) => ({
+              color: theme.palette.primary.main,
+              fontWeight: theme.typography.fontWeightBold,
+              fontSize: theme.typography.subtitle1.fontSize,
+              marginRight: theme.spacing(1),
+            })}
           />
         ))}
       </Tabs>

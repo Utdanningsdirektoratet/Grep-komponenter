@@ -1,0 +1,10 @@
+.container {
+  height: fit-content;
+  width: fit-content;
+}
+
+.title {
+  font-size: 24px;
+  padding: 20px;
+  white-space: nowrap;
+}

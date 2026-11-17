@@ -2,8 +2,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Tooltip from '@mui/material/Tooltip';
-import { useStyles } from './styles/styles';
 import { useNavigate } from 'react-router';
+import classes from './styles/grepCrumbs.module.css';
 
 export interface Breadcrumb {
   path?: string;
@@ -23,7 +23,6 @@ const GrepCrumbs: React.FC<Props> = ({
   onClick,
   breadcrumbs,
 }: Props) => {
-  const { classes } = useStyles();
   const navigate = useNavigate();
   const ref = React.useRef<HTMLDivElement>(null);
   const [showTooltip, setShowTooltip] = React.useState(false);

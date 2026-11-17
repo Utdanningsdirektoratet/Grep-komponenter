@@ -7,7 +7,8 @@ import {
   Box,
   Button,
 } from '@mui/material';
-import { useFooterStyles } from './styles';
+import classes from './styles/footer.module.css';
+import Colors from '../../styling/Colors';
 
 export interface FooterItem {
   label: string;
@@ -28,8 +29,6 @@ const Footer: React.FC<FooterProps> = ({
   udirLink,
   udirLogo,
 }) => {
-  const { classes } = useFooterStyles();
-
   const renderItem = (item: FooterItem) =>
     item.onClickItem ? (
       <Button
@@ -41,6 +40,7 @@ const Footer: React.FC<FooterProps> = ({
     ) : (
       <ListItemText
         className={classes.itemText}
+        sx={{ color: Colors.white }}
         primary={item.label}
         slotProps={{
           primary: {
@@ -55,7 +55,10 @@ const Footer: React.FC<FooterProps> = ({
     );
 
   return (
-    <footer className={classes.footer}>
+    <Box
+      sx={(theme) => ({ backgroundColor: theme.palette.primary.main })}
+      className={classes.footer}
+    >
       <Box className={classes.content}>
         <a href={udirLink}>
           <img
@@ -71,7 +74,9 @@ const Footer: React.FC<FooterProps> = ({
             paddingRight: '16px !important',
           }}
         >
-          <span className={classes.serviceNameText}>{serviceNameText}</span>
+          <Box sx={{ color: Colors.white }} className={classes.serviceNameText}>
+            {serviceNameText}
+          </Box>
           <List className={classes.list}>
             {items.map((item, i) => (
               <ListItem
@@ -79,6 +84,7 @@ const Footer: React.FC<FooterProps> = ({
                 classes={{
                   root: classes.item,
                 }}
+                sx={{ '& .MuiButton-root': { color: Colors.white } }}
               >
                 {item.render
                   ? item.render(() => renderItem(item))
@@ -88,7 +94,7 @@ const Footer: React.FC<FooterProps> = ({
           </List>
         </Container>
       </Box>
-    </footer>
+    </Box>
   );
 };
 
