@@ -1,0 +1,12 @@
+.btn {
+  background-color: white;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+}
+.btnSelected.btnSelected {
+  background-color: #e0e0e0;
+}
+.btnSelected:hover.btnSelected:hover {
+  background-color: #d9d9d9;
+}

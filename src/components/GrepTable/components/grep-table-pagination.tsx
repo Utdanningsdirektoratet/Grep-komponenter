@@ -7,13 +7,11 @@ import {
   PaginationActions,
   PaginationActionsProps,
 } from './GrepPaginationActions';
-import { usePaginationStyles } from '../styles';
+import classes from '../styles/table.module.css';
 
 export const GrepTablePagination: React.FunctionComponent<
   TablePaginationProps
 > = (props) => {
-  const { classes } = usePaginationStyles();
-
   return (
     <TablePagination
       classes={classes}

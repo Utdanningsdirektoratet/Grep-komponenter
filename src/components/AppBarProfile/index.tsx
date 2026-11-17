@@ -2,8 +2,7 @@ import * as React from 'react';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import ArrowDropdown from '@mui/icons-material/ArrowDropDown';
 import { Box, Button, Typography } from '@mui/material';
-
-import { useStyles } from './styles';
+import classes from './styles/appBarProfile.module.css';
 
 export interface AppBarProfileProps {
   userRole: string;
@@ -12,12 +11,13 @@ export interface AppBarProfileProps {
 }
 
 const AppBarProfile: React.FC<AppBarProfileProps> = (props) => {
-  const { classes } = useStyles();
-
   return (
     <Button variant="text" onClick={props.onButtonClick}>
       <AccountCircle color="primary" fontSize="large" />
-      <Box className={classes.user}>
+      <Box
+        sx={(theme) => ({ color: theme.palette.text.primary })}
+        className={classes.user}
+      >
         <Typography style={{ fontSize: 16 }}>
           {props.fullName || 'ukjent navn'}
         </Typography>

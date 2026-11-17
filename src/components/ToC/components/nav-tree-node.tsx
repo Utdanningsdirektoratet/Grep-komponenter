@@ -1,10 +1,8 @@
 import React, { ReactElement, useEffect, useRef, useState, use } from 'react';
 import Link from '@mui/material/Link';
-import clsx from 'clsx';
-
 import Context from '../context';
 import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
-import { useStyles } from '../styles/nav-tree-node.style';
+import styles from '../styles/nav-tree-node.module.css';
 import { useLocation } from 'react-router';
 
 export interface GrepTableOfContentNavTreeNodeProps {
@@ -26,14 +24,13 @@ export const GrepTableOfContentNavTreeNode: React.FC<
   const { lvl, el, index, children } = node;
   const { selected, setSelected, classes, elements } = use(Context);
   const isSelected = el === selected;
-  const { classes: styles } = useStyles({ lvl });
-  const className = clsx(
-    'grep-toc__nav-tree-node',
-    isSelected && 'grep-toc__nav-tree-node--selected',
-    styles.root,
-    classes?.node,
-    props.className,
-  );
+  const className = `
+    grep-toc__nav-tree-node 
+    ${isSelected ? styles.selected : ''} 
+    ${styles.root} 
+    ${classes?.node ?? ''} 
+    ${props.className ?? ''} 
+  `;
   const [awaitingRender, setAwaitingRender] = useState<boolean>(false);
 
   const txt = el.innerText;
@@ -74,7 +71,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<
     <li key={index} data-lvl={lvl} className={className} style={style}>
       <Link
         ref={linkRef}
-        className={clsx(styles.link, isSelected && `${styles.link}--selected`)}
+        className={`${styles.link} ${isSelected ? `${styles.selected}` : ''}`}
         href={url}
         tabIndex={tabIndex}
         onClick={(event: React.MouseEvent) => {
@@ -83,6 +80,7 @@ export const GrepTableOfContentNavTreeNode: React.FC<
           doSelect(true);
         }}
         color="inherit"
+        sx={{ marginLeft: `${lvl * 5}px` }}
       >
         {txt}
       </Link>
