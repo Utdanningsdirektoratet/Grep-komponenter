@@ -1,5 +1,5 @@
 import { makeStyles } from '../../../styling';
-import { CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 
 const textStyles: CSSProperties = {
   userSelect: 'none',

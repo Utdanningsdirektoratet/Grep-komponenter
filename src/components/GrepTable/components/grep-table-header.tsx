@@ -1,10 +1,10 @@
 import React from 'react';
-import TableHead, { TableHeadProps } from '@mui/material/TableHead';
+import TableHead, { type TableHeadProps } from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { TableColumn } from '..';
+import type { TableColumn } from '..';
 import TableHeaderCell from './grep-table-header-cell';
-import { DropdownMenuItem } from '../../DropdownMenu';
+import type { DropdownMenuItem } from '../../DropdownMenu';
 import { onActivation } from '../../../utils/keyboard';
 
 interface Properties<T> extends TableHeadProps {

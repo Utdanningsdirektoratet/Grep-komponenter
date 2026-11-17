@@ -1,12 +1,12 @@
-import React, { BaseSyntheticEvent, JSX, useCallback } from 'react';
+import React, { type BaseSyntheticEvent, type JSX, useCallback } from 'react';
 
 import MoreVert from '@mui/icons-material/MoreVert';
-import Table, { TableProps } from '@mui/material/Table';
+import Table, { type TableProps } from '@mui/material/Table';
 import TableRow from '@mui/material/TableRow';
 import TableBody from '@mui/material/TableBody';
 import TableFooter from '@mui/material/TableFooter';
 import TableContainer from '@mui/material/TableContainer';
-import { TableCellProps } from '@mui/material/TableCell';
+import type { TableCellProps } from '@mui/material/TableCell';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 
@@ -14,7 +14,7 @@ import GrepTableRow from './components/grep-table-row';
 import GrpeTableHeader from './components/grep-table-header';
 import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
-import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
+import DropdownMenu, { type DropdownMenuItem } from '../DropdownMenu';
 import { makeStyles } from '../../styling';
 import { Key } from '../../assets/keycodeEnum';
 

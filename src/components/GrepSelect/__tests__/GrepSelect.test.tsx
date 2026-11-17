@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import GrepSelect, { SelectItem, GrepSelectProps } from '..';
+import GrepSelect, { type SelectItem, type GrepSelectProps } from '..';
 
 const selectItems: SelectItem[] = [
   {

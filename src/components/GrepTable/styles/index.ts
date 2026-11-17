@@ -1,4 +1,4 @@
-import { TableColumn } from '..';
+import type { TableColumn } from '..';
 import { makeStyles } from '../../../styling';
 
 export const usePaginationActionStyles = makeStyles()(({ palette }) => ({

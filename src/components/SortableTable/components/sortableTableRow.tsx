@@ -1,9 +1,9 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { type ReactElement, useCallback } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { UniqueIdentifier } from '@dnd-kit/core';
+import type { UniqueIdentifier } from '@dnd-kit/core';
 import TableRow from '@mui/material/TableRow';
-import { TableColumn } from '../../GrepTable';
+import type { TableColumn } from '../../GrepTable';
 import TableCell from '@mui/material/TableCell';
 import DragIndicator from '@mui/icons-material/DragIndicator';
 import useSortableTableStyles from '../styles/row.style';

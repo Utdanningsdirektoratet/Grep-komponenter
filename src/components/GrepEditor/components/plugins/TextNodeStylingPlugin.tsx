@@ -1,7 +1,7 @@
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { TextFormatType, TextNode } from 'lexical';
+import { type TextFormatType, TextNode } from 'lexical';
 import { useEffect } from 'react';
-import { AllowedStyles } from '../buttons';
+import { type AllowedStyles } from '../buttons';
 
 const RESTRICTED_FORMATS = [
   'code',

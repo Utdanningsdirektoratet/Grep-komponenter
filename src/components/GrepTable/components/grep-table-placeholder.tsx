@@ -1,8 +1,8 @@
 import React from 'react';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 
-import { TableColumn } from '..';
+import type { TableColumn } from '..';
 
 interface Properties<T> extends Pick<TableCellProps, 'padding'> {
   columns: Array<TableColumn<T>>;

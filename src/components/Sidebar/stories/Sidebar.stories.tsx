@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Sidebar, { SidebarProps } from '..';
-import { NavigationProps } from '../../AppBarNavList';
+import Sidebar, { type SidebarProps } from '..';
+import type { NavigationProps } from '../../AppBarNavList';
 import Assignment from '@mui/icons-material/Assignment';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 

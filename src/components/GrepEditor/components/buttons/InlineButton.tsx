@@ -1,9 +1,11 @@
 import React from 'react';
-import ToggleButton, { ToggleButtonProps } from '@mui/material/ToggleButton';
+import ToggleButton, {
+  type ToggleButtonProps,
+} from '@mui/material/ToggleButton';
 
 import { useButtonStyles } from '../../styles';
-import { ButtonType } from '.';
-import { FORMAT_TEXT_COMMAND, LexicalEditor } from 'lexical';
+import type{ ButtonType } from '.';
+import { FORMAT_TEXT_COMMAND, type LexicalEditor } from 'lexical';
 
 interface Properties extends Omit<ToggleButtonProps, 'value' | 'type'> {
   editor: LexicalEditor;

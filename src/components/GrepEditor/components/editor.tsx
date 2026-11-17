@@ -1,5 +1,5 @@
 import {
-  InitialConfigType,
+  type InitialConfigType,
   LexicalComposer,
 } from '@lexical/react/LexicalComposer';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
@@ -15,12 +15,12 @@ import StyleWrapperPlugin from './plugins/StyleWrapperPlugin';
 import { htmlExportMap } from './plugins/CustomHtmlExport';
 import ModifyPastePlugin from './plugins/DisablePastePlugin';
 import PreventNewlinesPlugin from './plugins/PreventNewlinesPlugin';
-import { Button, createButton } from './buttons';
+import { type Button, createButton } from './buttons';
 import FloatingTextFormatToolbarPlugin from './plugins/Toolbar/ToolbarPlugin';
 import InsertDataPlugin from './plugins/InitialDataPlugin';
-import { LexicalOnChange, Properties } from '../entities';
+import type { LexicalOnChange, Properties } from '../entities';
 import HeadingPlugin from './plugins/HeadingPlugin';
-import { LexicalEditor } from 'lexical';
+import type { LexicalEditor } from 'lexical';
 import TextNodeStylingPlugin from './plugins/TextNodeStylingPlugin';
 import ReadModePlugin from './plugins/ReadMode';
 import { CharacterLimitPlugin } from '@lexical/react/LexicalCharacterLimitPlugin';

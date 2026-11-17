@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Editor from './components/editor';
-import { Properties } from './entities';
+import type { Properties } from './entities';
 
 type Component = React.FunctionComponent<Properties>;
 

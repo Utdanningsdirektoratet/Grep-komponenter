@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 
 import { useStyles } from './styles';
-import { NavigationProps } from '..';
+import type{ NavigationProps } from '..';
 
 interface Props {
   title: string;

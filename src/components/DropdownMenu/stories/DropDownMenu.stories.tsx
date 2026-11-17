@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-import { DropdownMenuItem, DropdownMenu } from '../..';
+import { type DropdownMenuItem, DropdownMenu } from '../..';
 import { makeStyles } from '../../../styling';
 
 interface TestMenuItem {

@@ -1,12 +1,12 @@
 import {
   closestCenter,
   DndContext,
-  DragEndEvent,
+  type DragEndEvent,
   DragOverlay,
-  DragStartEvent,
+  type DragStartEvent,
   KeyboardSensor,
   PointerSensor,
-  UniqueIdentifier,
+  type UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -20,11 +20,11 @@ import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
-import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-import { ReactNode } from 'react';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
+import React, { type ReactElement, useCallback, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { SortableTableRow2 } from './components/sortableTableRow';
-import { TableColumn } from '../GrepTable';
+import type { TableColumn } from '../GrepTable';
 import {
   restrictToParentElement,
   restrictToVerticalAxis,

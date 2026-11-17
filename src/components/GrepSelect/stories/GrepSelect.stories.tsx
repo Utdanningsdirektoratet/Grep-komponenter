@@ -1,5 +1,5 @@
-import React, { ReactNode, useState } from 'react';
-import GrepSelect, { SelectItem } from '..';
+import React, { type ReactNode, useState } from 'react';
+import GrepSelect, { type SelectItem } from '..';
 import { Container } from '@mui/material';
 
 const selectItems: SelectItem[] = [

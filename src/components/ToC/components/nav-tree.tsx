@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 import Context from '../context';
 import NavTreeNode from './nav-tree-node';
-import { ContextTree } from '../utils/tree-builder';
+import type { ContextTree } from '../utils/tree-builder';
 import { useStyles } from '../styles/nav-tree.style';
 
 interface Props {

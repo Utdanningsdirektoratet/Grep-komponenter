@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDate } from '../../hooks/use-date';
 import { DateRangeValue } from '../../utils/dateHelper';
-import GrepDatePicker, { GrepDatePickerProps } from '../GrepDatePicker';
+import GrepDatePicker, { type GrepDatePickerProps } from '../GrepDatePicker';
 import { Dayjs } from 'dayjs';
-import Grid, { GridSpacing } from '@mui/material/Grid';
+import Grid, { type GridSpacing } from '@mui/material/Grid';
 
 type CommonProperties = Pick<GrepDatePickerProps, 'variant' | 'margin' | 'sx'>;
 

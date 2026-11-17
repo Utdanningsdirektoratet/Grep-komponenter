@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import LinkList from '..';
-import { NavigationProps } from '../../AppBarNavList';
+import type { NavigationProps } from '../../AppBarNavList';
 import userEvent from '@testing-library/user-event';
 
 const pages: NavigationProps[] = [
