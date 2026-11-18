@@ -20,10 +20,16 @@ export interface SelectItem {
   disabled?: boolean;
   lang?: string;
 }
+export interface ErrorOptions {
+  text: string;
+  color?: string;
+}
+
 export type GrepSelectProps = SelectProps & {
   label: string;
   outlined?: boolean;
   helperText?: string;
+  errorOptions?: ErrorOptions;
   errorMessage?: string;
   selectItems: SelectItem[];
   unselectOption?: boolean;
@@ -42,7 +48,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
 
   const {
     unselectOption = true,
-    errorMessage,
+    errorOptions,
     selectItems,
     helperText,
     fullWidth,
@@ -59,8 +65,35 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
     ...rest
   } = props;
 
-  const error = errorMessage ? errorMessage.length > 0 : false;
+  const error = errorOptions?.text ? errorOptions?.text.length > 0 : false;
   const selected = value;
+  const errorColor = errorOptions?.color
+    ? {
+        '& .MuiFormLabel-root.Mui-error': {
+          color: errorOptions?.color,
+        },
+        '& .MuiInputBase-root.Mui-error': {
+          ':after': {
+            borderBottomColor: errorOptions?.color,
+          },
+          ':before': {
+            borderBottomColor: errorOptions?.color,
+          },
+        },
+        '& .MuiFormHelperText-root.Mui-error': {
+          color: errorOptions?.color,
+        },
+        '& .MuiFormLabel-asterisk.Mui-error': {
+          color: errorOptions?.color,
+        },
+
+        '& .MuiOutlinedInput-root.Mui-error': {
+          '& fieldset': {
+            borderColor: errorOptions?.color,
+          },
+        },
+      }
+    : null;
 
   return (
     <FormControl
@@ -72,6 +105,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
       error={error}
       size={size}
       disabled={disabled}
+      sx={errorColor}
     >
       <InputLabel
         htmlFor={id}
@@ -123,7 +157,7 @@ const GrepSelect: React.FC<GrepSelectProps> = (props) => {
           </MenuItem>
         ))}
       </Select>
-      <FormHelperText>{errorMessage || helperText}</FormHelperText>
+      <FormHelperText>{errorOptions?.text || helperText}</FormHelperText>
     </FormControl>
   );
 };

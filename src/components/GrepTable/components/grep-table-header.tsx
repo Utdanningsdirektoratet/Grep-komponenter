@@ -24,7 +24,7 @@ export const TableHeader = <T,>({
   ...props
 }: Properties<T>) => {
   const headerColumns = dropdownItems
-    ? columns.concat([{ label: '', width: '48px', getCell: () => '' }])
+    ? columns.concat([{ label: '', sx: { width: '48px' }, getCell: () => '' }])
     : columns;
 
   return (

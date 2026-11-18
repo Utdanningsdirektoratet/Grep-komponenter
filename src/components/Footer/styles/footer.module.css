@@ -1,0 +1,100 @@
+.footer {
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  min-height: unset;
+  font-family:
+    MontSerrat,
+    MontSerrat Variable;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 0;
+  align-items: center;
+}
+
+.content a {
+  width: 150px;
+  margin: 40px auto;
+}
+
+.serviceNameText {
+  text-align: center;
+  display: block;
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.item {
+  width: fit-content;
+  margin: 0;
+  height: 10px;
+  gap: 10px;
+  border-right: 1px solid #7dbf9d;
+}
+
+.item:last-child {
+  border: 0;
+}
+
+.item:focus {
+  background: inherit;
+  box-shadow: 0px 0px 0px 1px white;
+  border-radius: 2px;
+}
+
+.itemText {
+  padding: 0;
+  margin: 0 auto;
+  font-family:
+    MontSerrat,
+    MontSerrat Variable;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.itemBtn {
+  text-decoration: underline;
+  text-transform: none;
+}
+
+.itemBtn:hover {
+  background-color: unset;
+}
+
+@media screen and (max-width: 900px) {
+  .serviceNameText {
+    margin-bottom: 30px;
+  }
+  .list {
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    height: 64px;
+  }
+  .item {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .footer {
+    min-height: 100px;
+  }
+  .content {
+    flex-direction: row;
+    padding: 0 12px 0 12px;
+  }
+  .content a {
+    margin: 0 0 0 28px;
+  }
+}
