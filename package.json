@@ -90,8 +90,8 @@
     "redux": "^4.x || ^5.x"
   },
   "devDependencies": {
-    "@babel/core": "^7.23.5",
-    "@babel/plugin-transform-private-property-in-object": "^7.22.11",
+    "@babel/core": "^8.1.2",
+    "@babel/plugin-transform-private-property-in-object": "^8.0.5",
     "@chromatic-com/storybook": "^5.4.0",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
@@ -145,11 +145,11 @@
     "react-redux": "^9.2.0",
     "rollup": "^4.64.3",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "semantic-release": "^25.0.9",
+    "semantic-release": "^26.0.0",
     "storybook": "^10.6.1",
     "ts-jest": "^29.4.6",
     "tslib": "^2.2.0",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "typescript-eslint": "^8.71.1",
     "whatwg-fetch": "^3.6.20"
   },
