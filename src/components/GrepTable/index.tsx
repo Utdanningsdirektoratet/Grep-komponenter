@@ -15,8 +15,8 @@ import GrpeTableHeader from './components/grep-table-header';
 import GrepTablePagination from './components/grep-table-pagination';
 import Placeholder from './components/grep-table-placeholder';
 import DropdownMenu, { DropdownMenuItem } from '../DropdownMenu';
-import { makeStyles } from '../../styling';
 import { Key } from '../../assets/keycodeEnum';
+import { SxProps, Theme } from '@mui/material/styles';
 
 export interface TableColumn<T> extends Pick<TableCellProps, 'padding' | 'sx'> {
   label?: string | JSX.Element;
@@ -63,34 +63,13 @@ export interface GrepTableProps<T> extends Pick<
    * @deprecated No longer in use.
    */
   rowHeight?: number;
-  rowStyle?: React.CSSProperties | ((data: T, index: number) => React.CSSProperties);
+  tableHeaderSx?: SxProps<Theme>;
+  rowStyle?:
+    React.CSSProperties | ((data: T, index: number) => React.CSSProperties);
   disableSelectOnClick?: boolean;
   underlineOnFocus?: boolean;
   rowTabIndex?: number;
 }
-
-interface StyleProps {
-  outlined?: boolean;
-  showHeader?: boolean;
-}
-
-export const useStyles = makeStyles<StyleProps>()(
-  (theme, { showHeader, outlined }) => ({
-    table: {
-      border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
-      borderCollapse: outlined ? 'separate' : 'collapse',
-      tableLayout: 'auto',
-    },
-    header: {
-      visibility: showHeader ? 'visible' : 'collapse',
-    },
-    body: {
-      '&:focus': {
-        outline: 'none',
-      },
-    },
-  }),
-);
 
 const containsFocus = (el: HTMLElement, tag = '*') =>
   Array.from(el.getElementsByTagName(tag)).some(
@@ -128,6 +107,7 @@ export const GrepTable = <T,>({
   menuButtonLabel,
   underlineOnFocus,
   rowTabIndex,
+  tableHeaderSx,
   rowStyle,
   rowsPerPageOptions = [5, 10, 25, 50],
   ...props
@@ -141,7 +121,11 @@ export const GrepTable = <T,>({
 
   const selectedRow = data[selectedRowIndex!] || null;
 
-  const _setCurrentPage = (index: number, rowIndex?: number, shouldExpand?: boolean) => {
+  const _setCurrentPage = (
+    index: number,
+    rowIndex?: number,
+    shouldExpand?: boolean,
+  ) => {
     index = pagination && index >= 0 ? index : 0;
     setCurrentPage(index);
     setSelectedRowIndex(rowIndex);
@@ -376,33 +360,41 @@ export const GrepTable = <T,>({
 
   const rows = pagination
     ? data.slice(
-      currentPage * rowsPerPage,
-      currentPage * rowsPerPage + rowsPerPage,
-    )
+        currentPage * rowsPerPage,
+        currentPage * rowsPerPage + rowsPerPage,
+      )
     : data;
-
-  const { classes } = useStyles({ outlined, showHeader: header });
-
   return (
     <TableContainer sx={props.style}>
       <Table
-        className={classes.table}
         size={size}
         stickyHeader={stickyHeader}
         padding={padding}
+        sx={(theme) => ({
+          border: outlined ? `1px solid ${theme.palette.divider}` : 'none',
+          borderCollapse: outlined ? 'separate' : 'collapse',
+          tableLayout: 'auto',
+        })}
       >
         {caption && <caption>{caption}</caption>}
         {
           <GrpeTableHeader
-            className={classes.header}
             columns={columns}
             sortBy={sortBy}
             sortDirection={sortDirection}
             onSortBy={onSortBy}
             dropdownItems={dropdownItems}
+            sx={{
+              visibility: header ? 'visible' : 'collapse',
+              ...tableHeaderSx,
+            }}
           />
         }
-        <TableBody ref={tableRef} className={classes.body} onKeyDown={onKey}>
+        <TableBody
+          ref={tableRef}
+          sx={{ '&:focus': { outline: 'none' } }}
+          onKeyDown={onKey}
+        >
           {data.length ? (
             rows.map(_renderRow)
           ) : (

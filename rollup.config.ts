@@ -5,8 +5,9 @@ import external from 'rollup-plugin-peer-deps-external';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import url from '@rollup/plugin-url';
 import json from '@rollup/plugin-json';
+import postcss from 'rollup-plugin-postcss';
 
-import pkg from './package.json' assert { type: 'json' };
+import pkg from './package.json' with { type: 'json' };
 
 export default {
   input: 'src/index.ts',
@@ -44,5 +45,6 @@ export default {
     commonjs({
       include: 'node_modules/**',
     }),
+    postcss({ plugins: [] }),
   ],
 };

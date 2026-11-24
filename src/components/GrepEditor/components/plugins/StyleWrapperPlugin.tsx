@@ -1,10 +1,12 @@
-import { Box, FormHelperText } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { BLUR_COMMAND, COMMAND_PRIORITY_EDITOR, FOCUS_COMMAND } from 'lexical';
-import { useEditorStyles } from '../../styles/editorStyles';
-import clsx from 'clsx';
 import { mergeRegister } from '@lexical/utils';
+import styles from '../../styles/editorStyles.module.css';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import { hex2rgba } from '../../../../styling/hex2rgb';
 
 export interface CharcounteHelpertextPPayload {
   showCharcount?: boolean;
@@ -58,13 +60,6 @@ export function StyleWrapperPlugin({
     );
   }, []);
 
-  const { classes: styles } = useEditorStyles({
-    hasFocus,
-    hasContent: charCount > 0,
-    readOnly,
-    hasCustomToolbar: hasCustomToolbar,
-  });
-
   // Autofocus, makes sure the editor is focused as soon as it it rendered.
   useEffect(() => {
     autoFocus &&
@@ -93,18 +88,45 @@ export function StyleWrapperPlugin({
 
   return (
     <Box
-      className={clsx(styles.root, classes?.root)}
+      className={`${styles.root} ${hasCustomToolbar ? styles.customToolbar : ''} ${classes?.root}`}
       sx={{ marginTop: '2em' }}
       onClick={() => editor.focus()}
       ref={toolbarAnchor}
     >
-      {/* This legend controls the border around the editor */}
-      <legend className={clsx(styles.legend, classes?.legend)} />
+      {/* This box controls the border around the editor */}
+      <Box
+        sx={(theme) => ({
+          borderColor: hasFocus
+            ? theme.palette.primary.main
+            : hex2rgba('#000', 0.23),
+          '&:hover': {
+            borderColor: hasFocus
+              ? theme.palette.primary.main
+              : theme.palette.text.primary,
+          },
+        })}
+        className={`${styles.legend} ${hasFocus ? styles.hasFocus : ''} ${classes?.legend}`}
+      />
       {label && (
-        <label className={clsx(styles.label, classes?.label)}>{label}</label>
+        <InputLabel
+          sx={(theme) => ({
+            color: hasFocus
+              ? theme.palette.primary[
+                  theme.palette.mode === 'light' ? 'dark' : 'light'
+                ]
+              : theme.palette.text.secondary,
+          })}
+          className={`${styles.label} ${hasFocus ? styles.hasFocus : ''} ${charCount > 0 ? styles.hasContent : ''} ${classes?.label}`}
+        >
+          {label}
+        </InputLabel>
       )}
       {/* Editor wrapper */}
-      <Box className={clsx(styles.editor, classes?.editor)}>{children}</Box>
+      <Box
+        className={`${styles.editor} ${hasFocus ? styles.hasFocus : ''} ${readOnly ? styles.readOnly : ''} ${classes?.editor}`}
+      >
+        {children}
+      </Box>
 
       {/* Wrapper for displaying charcount and helpertext */}
       {(showCharcount || helperText) && (
@@ -118,7 +140,9 @@ export function StyleWrapperPlugin({
           )}
 
           {helperText && (
-            <FormHelperText className={styles.helpertext}>
+            <FormHelperText
+              className={`${styles.helpertext} ${hasFocus ? styles.hasFocus : ''} `}
+            >
               {helperText}
             </FormHelperText>
           )}
