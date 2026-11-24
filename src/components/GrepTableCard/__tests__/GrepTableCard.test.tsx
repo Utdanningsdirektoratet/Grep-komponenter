@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import GrepTableCard from '..';
-import { TableColumn } from '../../GrepTable';
+import type { TableColumn } from '../../GrepTable';
 
 const mockFn = jest.fn();
 

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import DateTime, {
   hasDateChanged,
   parseDate,
-  ParseableDate,
+  type ParseableDate,
 } from '../utils/dateHelper';
 
 export type DateInput = ParseableDate | null;

@@ -1,12 +1,12 @@
-import React, { ReactElement } from 'react';
+import React, { type ReactElement } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { UniqueIdentifier } from '@dnd-kit/core';
+import type { UniqueIdentifier } from '@dnd-kit/core';
 import TableRow from '@mui/material/TableRow';
-import { TableColumn } from '../../GrepTable';
+import type { TableColumn } from '../../GrepTable';
 import TableCell from '@mui/material/TableCell';
 import DragIndicator from '@mui/icons-material/DragIndicator';
-import useSortableTableStyles from '../styles/row.style';
+import { hex2rgba } from '../../../styling/hex2rgb';
 
 interface props<T> extends Omit<React.HTMLProps<HTMLTableRowElement>, 'id'> {
   id: UniqueIdentifier;
@@ -26,7 +26,6 @@ export function SortableTableRow2<T>({
     transform: CSS.Transform.toString(transform),
     transition,
   };
-  const { classes } = useSortableTableStyles();
 
   const renderRow = () =>
     columns.map(({ getCell }, index) => {
@@ -37,9 +36,13 @@ export function SortableTableRow2<T>({
     <TableRow
       hover
       id={id as string}
-      className={classes.sortableRow}
       // https://docs.dndkit.com/api-documentation/sensors/pointer#touch-action
-      sx={{ touchAction: 'none' }}
+      sx={(theme) => ({
+        touchAction: 'none',
+        ':focus-visible': {
+          boxShadow: `0px 0px 3px 3px ${hex2rgba(theme.palette.primary.main, 0.25)}`,
+        },
+      })}
       style={style}
       ref={setNodeRef}
       {...attributes}

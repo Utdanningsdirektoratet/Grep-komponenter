@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Tooltip } from '@mui/material';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export interface OverflowTooltipProps {
   title: string | React.JSX.Element;

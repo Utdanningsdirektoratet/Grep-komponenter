@@ -1,19 +1,17 @@
 import React from 'react';
 import TablePagination, {
-  TablePaginationProps,
+  type TablePaginationProps,
 } from '@mui/material/TablePagination';
 
 import {
   PaginationActions,
-  PaginationActionsProps,
+  type PaginationActionsProps,
 } from './GrepPaginationActions';
-import { usePaginationStyles } from '../styles';
+import classes from '../styles/table.module.css';
 
 export const GrepTablePagination: React.FunctionComponent<
   TablePaginationProps
 > = (props) => {
-  const { classes } = usePaginationStyles();
-
   return (
     <TablePagination
       classes={classes}

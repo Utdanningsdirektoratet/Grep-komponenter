@@ -1,7 +1,7 @@
 import { styled } from '@mui/material/styles';
-import { Theme, MUIStyledCommonProps } from '@mui/system';
+import type { Theme, MUIStyledCommonProps } from '@mui/system';
 import { NavLink } from 'react-router';
-import { v0colors } from './types';
+import type { v0colors } from './types';
 
 export const dimensions = {
   breadcrumbsFontSize: 16,

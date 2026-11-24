@@ -1,0 +1,27 @@
+.outer {
+  align-items: center;
+  display: flex;
+  height: 48px;
+  position: relative;
+  margin-right: auto;
+  box-sizing: unset;
+}
+.icon {
+  align-items: center;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  width: 56px;
+}
+.input {
+  border: 0;
+  display: block;
+  flex: 1;
+  font-size: 16px;
+  outline: 0;
+}
+.helptext {
+  margin: 0 10px 0 10px;
+  color: #6e6e6e;
+  font-size: 12px;
+}

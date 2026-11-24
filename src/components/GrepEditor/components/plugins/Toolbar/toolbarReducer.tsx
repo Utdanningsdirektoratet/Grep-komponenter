@@ -1,4 +1,4 @@
-import { AllowedStyles } from '../../buttons';
+import type { AllowedStyles } from '../../buttons';
 
 export enum ToolbarActionKind {
   updateFormat = 'UPDATE_FORMAT',

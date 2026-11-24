@@ -1,8 +1,8 @@
 import React from 'react';
 import { styled } from '@mui/material/styles';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
 
-import { TableColumn } from '..';
+import type { TableColumn } from '..';
 import OverflowTooltip from '../../OverflowTooltip';
 
 export interface Properties<T> extends TableCellProps {

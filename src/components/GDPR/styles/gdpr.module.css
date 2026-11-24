@@ -1,0 +1,42 @@
+.container {
+  background-color: rgb(241, 243, 244);
+  height: fit-content;
+  display: flex;
+  max-width: 500px;
+}
+
+.content {
+  background-color: unset;
+  margin-right: 20px;
+}
+
+.title {
+  background-color: unset;
+  font-size: 16px;
+  margin: 20px 0;
+}
+
+.body {
+  background-color: unset;
+}
+
+.body h4 {
+  margin-right: 20px;
+}
+
+.icon {
+  margin: 20px 10px;
+  color: rgb(255, 158, 157);
+}
+
+@media (max-width: 1200px) {
+  .container {
+    max-width: unset;
+    width: 100%;
+  }
+}
+@media (min-width: 900px) {
+  .container {
+    max-width: 500px;
+  }
+}

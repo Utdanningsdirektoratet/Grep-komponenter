@@ -1,4 +1,4 @@
-import dayjs, { OpUnitType } from 'dayjs';
+import dayjs, { type OpUnitType } from 'dayjs';
 import 'dayjs/locale/nb';
 import LocalizedFormatPlugin from 'dayjs/plugin/localizedFormat.js';
 import isBetweenPlugin from 'dayjs/plugin/isBetween.js';

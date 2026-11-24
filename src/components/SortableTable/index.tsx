@@ -1,12 +1,12 @@
 import {
   closestCenter,
   DndContext,
-  DragEndEvent,
+  type DragEndEvent,
   DragOverlay,
-  DragStartEvent,
+  type DragStartEvent,
   KeyboardSensor,
   PointerSensor,
-  UniqueIdentifier,
+  type UniqueIdentifier,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
@@ -20,17 +20,17 @@ import TableBody from '@mui/material/TableBody';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import TableCell, { TableCellProps } from '@mui/material/TableCell';
-import React, { ReactElement, useEffect, useState } from 'react';
-import { ReactNode } from 'react';
+import TableCell, { type TableCellProps } from '@mui/material/TableCell';
+import React, { type ReactElement, useEffect, useState } from 'react';
+import type { ReactNode } from 'react';
 import { SortableTableRow2 } from './components/sortableTableRow';
-import { TableColumn } from '../GrepTable';
+import type { TableColumn } from '../GrepTable';
 import {
   restrictToParentElement,
   restrictToVerticalAxis,
 } from '@dnd-kit/modifiers';
-import useSortableTableStyles from './styles/row.style';
 import DragIndicator from '@mui/icons-material/DragIndicator';
+import { hex2rgba } from '../../styling/hex2rgb';
 
 export interface CellNode {
   value: ReactNode;
@@ -68,7 +68,6 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [stateItems, setStateItems] = useState<T[]>([]);
   const [cursor, setCursor] = useState('grab');
-  const { classes } = useSortableTableStyles();
 
   useEffect(() => {
     if (data.length > 0) {
@@ -87,11 +86,12 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
   const size = props.size ? props.size : 'medium';
   const tableHead = props.header ? props.header : false;
 
-  const renderRow = () => props.columns.map(({ getCell }, index) => {
-    const currentItem = data.find((item) => item.id === activeId);
-    if (currentItem === undefined) return;
-    return <TableCell key={index}>{getCell(currentItem)}</TableCell>;
-  });
+  const renderRow = () =>
+    props.columns.map(({ getCell }, index) => {
+      const currentItem = data.find((item) => item.id === activeId);
+      if (currentItem === undefined) return;
+      return <TableCell key={index}>{getCell(currentItem)}</TableCell>;
+    });
 
   function handleDragStart(event: DragStartEvent) {
     const { active } = event;
@@ -174,8 +174,12 @@ const SortableTable = <T extends { id: UniqueIdentifier }>({
         {activeId !== '' ? (
           <Table
             size={size}
-            className={classes.dragOverlayRow}
-            sx={{ cursor: cursor }}
+            sx={(theme) => ({
+              cursor: cursor,
+              backgroundColor: hex2rgba(theme.palette.primary.contrastText, 1),
+              scale: 1.05,
+              boxShadow: `0px 0px 2px 2px ${hex2rgba(theme.palette.primary.main, 0.25)}`,
+            })}
           >
             <TableBody>
               <TableRow>

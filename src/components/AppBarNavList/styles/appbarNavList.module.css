@@ -1,0 +1,35 @@
+.tabs {
+  margin: auto 0;
+  display: none;
+}
+
+.tab {
+  text-transform: uppercase;
+  min-width: 120px;
+  margin-right: 0;
+}
+
+.tab:focus {
+  opacity: 1;
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+}
+
+.indicator > div {
+  max-width: 40px;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .tabs {
+    display: grid;
+  }
+  .tab {
+    min-width: 160px;
+    padding: 12px;
+  }
+}

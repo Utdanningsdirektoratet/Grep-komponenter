@@ -1,0 +1,101 @@
+.root {
+  --root-flexDirection: column;
+}
+
+.root.customToolbar {
+  --root-flexDirection: column-reverse;
+}
+
+.root {
+  position: relative;
+  display: inline-flex;
+  flex-direction: var(--root-flexDirection);
+  min-width: 100%;
+}
+
+.legend {
+  --legend-zIndex: 1;
+  --legend-borderWidth: 1px;
+}
+
+.legend.hasFocus {
+  --legend-zIndex: 0;
+  --legend-borderWidth: 2px;
+}
+
+.legend {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  line-height: 11px;
+  z-index: var(--legend-zIndex);
+  padding-left: 10px;
+  border-style: solid;
+  border-radius: 8px;
+  border-width: var(--legend-borderWidth);
+  transition: border-color 200ms ease-out;
+}
+.editor {
+  --editor-zIndex: 0;
+}
+.editor.hasFocus,
+.editor.readOnly {
+  --editor-zIndex: 1;
+}
+.editor {
+  padding: 0.8rem 1rem;
+  position: relative;
+  z-index: var(--editor-zIndex);
+  & .unstyled {
+    margin: 0.5rem 0;
+  }
+}
+
+.label {
+  --label-transform: translate(6px, 12px) scale(1);
+}
+.label.hasContent,
+.label.hasFocus {
+  --label-transform: translate(6px, -14px) scale(0.75);
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: var(--label-transform);
+  transform-origin: top left;
+  transition:
+    color 200ms ease-out,
+    transform 200ms ease-out;
+  font-size: 1.1428571428571428rem;
+  background-color: white;
+  padding: 2px 10px;
+}
+
+.helpertext {
+  --helpertext-opacity: 0;
+}
+.helpertext.hasFocus {
+  --helpertext-opacity: 1;
+}
+
+.helpertext {
+  margin: 0;
+  opacity: var(--helpertext-opacity);
+  transition: opacity 200ms ease-out;
+  font-size: small;
+  background-color: white;
+  padding: 2px 10px;
+}
+
+.charcount {
+  margin: 0;
+  transition: opacity 200ms ease-out;
+  font-size: small;
+  background-color: white;
+  padding: 2px 10px;
+}

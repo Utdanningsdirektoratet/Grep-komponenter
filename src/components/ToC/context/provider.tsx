@@ -6,7 +6,7 @@ import { useContentElements } from '../../../hooks/use-content-elements';
 import {
   generateElementId,
   identifyElement,
-  IdentifyElement,
+  type IdentifyElement,
 } from '../utils/identity-element';
 
 import Context from '.';

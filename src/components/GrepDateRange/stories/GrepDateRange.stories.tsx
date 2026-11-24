@@ -3,8 +3,8 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import 'dayjs/locale/nb';
 
-import DateRangePicker, { GrepDateRangeProps } from '..';
-import { Meta, StoryObj } from '@storybook/react-vite';
+import DateRangePicker, { type GrepDateRangeProps } from '..';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { DateRangeValue } from '../../../utils';
 
 const TestDateRangePicker = (

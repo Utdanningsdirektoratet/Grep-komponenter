@@ -2,7 +2,7 @@ import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render } from '@testing-library/react';
 
-import SearchBar, { SearchBarProps } from '..';
+import SearchBar, { type SearchBarProps } from '..';
 
 const mockFn = jest.fn();
 

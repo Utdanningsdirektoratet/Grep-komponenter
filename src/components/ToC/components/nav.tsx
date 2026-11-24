@@ -1,9 +1,7 @@
 import React, { useRef, use } from 'react';
-import clsx from 'clsx';
-
 import Context from '../context';
 import NavTree from './nav-tree';
-import { useStyles } from '../styles/nav.style';
+import style from '../styles/nav.style.module.css';
 import { buildTree } from '../utils/tree-builder';
 import { Key } from '../../../assets/keycodeEnum';
 
@@ -21,15 +19,16 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
   const { elements, classes, selected, setSelected } = use(Context);
   const tree = buildTree(Object.values(elements));
 
-  const focusSelected = () => requestAnimationFrame(() => {
-    if (!(ref.current instanceof HTMLElement)) return;
-    const active = ref.current.querySelector('[tabindex="0"]');
-    if (active instanceof HTMLElement) {
-      active.focus();
-    } else {
-      ref.current.focus();
-    }
-  });
+  const focusSelected = () =>
+    requestAnimationFrame(() => {
+      if (!(ref.current instanceof HTMLElement)) return;
+      const active = ref.current.querySelector('[tabindex="0"]');
+      if (active instanceof HTMLElement) {
+        active.focus();
+      } else {
+        ref.current.focus();
+      }
+    });
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === Key.ArrowUp || e.key === Key.ArrowDown) {
@@ -44,13 +43,7 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
     }
   };
 
-  const { classes: style } = useStyles();
-  const className = clsx(
-    'grep-toc__nav',
-    style.root,
-    classes?.nav,
-    props.className,
-  );
+  const className = `grep-toc__nav ${style.root} ${classes?.nav ?? ''} ${props.className ?? ''}`;
 
   return (
     <nav
