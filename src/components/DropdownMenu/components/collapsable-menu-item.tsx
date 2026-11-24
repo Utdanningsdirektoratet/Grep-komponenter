@@ -3,7 +3,6 @@ import React, {
   useState,
   type FunctionComponent,
   useRef,
-  useCallback,
   useEffect,
   type BaseSyntheticEvent,
 } from 'react';
@@ -73,24 +72,22 @@ export const CollapsableMenuItem: FunctionComponent<
     setOpenTooltip(true);
   };
 
-  const onStatusChange = useCallback(
-    (type: ToggleState) => new CollapsableMenuStatusEvent(type, listItemRef),
-    [listItemRef],
-  );
+  const onStatusChange = (type: ToggleState) =>
+    new CollapsableMenuStatusEvent(type, listItemRef);
 
-  const expand = useCallback(() => {
+  const expand = () => {
     const event = onStatusChange('expand');
     !event.defaultPrevented && setOpen(true);
     return !event.defaultPrevented;
-  }, [onStatusChange, setOpen]);
+  };
 
-  const collapse = useCallback(() => {
+  const collapse = () => {
     const event = onStatusChange('collapse');
     if (!event.defaultPrevented) {
       setOpen(false);
     }
     return !event.defaultPrevented;
-  }, [onStatusChange, setOpen, listItemRef]);
+  };
 
   const handleKey = (e: React.KeyboardEvent) => {
     if (items) {
@@ -105,22 +102,16 @@ export const CollapsableMenuItem: FunctionComponent<
     }
   };
 
-  const onToggleClick = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      open ? collapse() : expand();
-    },
-    [open, collapse, expand],
-  );
+  const onToggleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    open ? collapse() : expand();
+  };
 
-  const onScrimClick = useCallback(
-    (e: MouseEvent) => {
-      const scrimClick = !listItemRef.current?.contains(e.target as Node);
-      scrimClick && collapse();
-    },
-    [listItemRef, collapse],
-  );
+  const onScrimClick = (e: MouseEvent) => {
+    const scrimClick = !listItemRef.current?.contains(e.target as Node);
+    scrimClick && collapse();
+  };
 
   const handleClick = items ? onToggleClick : onClick;
 

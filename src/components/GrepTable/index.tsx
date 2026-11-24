@@ -1,4 +1,4 @@
-import React, { type BaseSyntheticEvent, type JSX, useCallback } from 'react';
+import React, { type BaseSyntheticEvent, type JSX } from 'react';
 
 import MoreVert from '@mui/icons-material/MoreVert';
 import Table, { type TableProps } from '@mui/material/Table';
@@ -121,23 +121,18 @@ export const GrepTable = <T,>({
 
   const selectedRow = data[selectedRowIndex!] || null;
 
-  const _setCurrentPage = useCallback(
-    (index: number, rowIndex?: number, shouldExpand?: boolean) => {
-      index = pagination && index >= 0 ? index : 0;
-      setCurrentPage(index);
-      setSelectedRowIndex(rowIndex);
-      if (shouldExpand) {
-        setExpandedRowIndex(rowIndex);
-      }
-    },
-    [
-      setCurrentPage,
-      setSelectedRowIndex,
-      setExpandedRowIndex,
-      rowsPerPage,
-      pagination,
-    ],
-  );
+  const _setCurrentPage = (
+    index: number,
+    rowIndex?: number,
+    shouldExpand?: boolean,
+  ) => {
+    index = pagination && index >= 0 ? index : 0;
+    setCurrentPage(index);
+    setSelectedRowIndex(rowIndex);
+    if (shouldExpand) {
+      setExpandedRowIndex(rowIndex);
+    }
+  };
 
   const _setSelectedRowIndex = (index: number, shouldExpand = true) => {
     const hasIndexChanged = index === selectedRowIndex;
@@ -168,8 +163,9 @@ export const GrepTable = <T,>({
   }, [tableRef, selectedRowIndex]);
 
   React.useEffect(() => {
-    _setCurrentPage(0);
-  }, [data.length, _setCurrentPage]);
+    setCurrentPage(0);
+    setSelectedRowIndex(undefined);
+  }, [data.length, pagination, rowsPerPage]);
 
   const _openDropdown = (e: React.SyntheticEvent<Element>, row: T) => {
     const { onContextIdChanged } = props;
@@ -180,13 +176,10 @@ export const GrepTable = <T,>({
     setMenuAnchor(e.currentTarget);
   };
 
-  const _handleRowClick = useCallback(
-    (row: T, event?: React.MouseEvent) => {
-      const disabled = (isRowDisabled && isRowDisabled(row)) ?? false;
-      !disabled && onRowClick && onRowClick(row, event);
-    },
-    [onRowClick],
-  );
+  const _handleRowClick = (row: T, event?: React.MouseEvent) => {
+    const disabled = (isRowDisabled && isRowDisabled(row)) ?? false;
+    !disabled && onRowClick && onRowClick(row, event);
+  };
 
   const _handlePageChange = (
     event: React.MouseEvent<HTMLButtonElement> | null,

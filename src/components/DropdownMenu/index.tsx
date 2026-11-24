@@ -57,7 +57,6 @@ const DropdownMenu = <T,>({
             paddingLeft: `${level * 0.5}rem`,
           };
 
-      props.key = `child-item-${index}`;
       props.classes = { selected: classes.selected };
       // ninja way, since rewriting existing code on lpu and admin is daunting
       props.onClick = (e: React.MouseEvent) => {
@@ -86,6 +85,7 @@ const DropdownMenu = <T,>({
 
       return (
         <CollapsableMenuItem
+          key={index}
           level={level}
           id={label}
           disabled={isDisabled}
