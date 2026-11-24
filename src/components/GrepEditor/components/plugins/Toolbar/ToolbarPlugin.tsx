@@ -15,10 +15,10 @@ import {
   $isTextNode,
   COMMAND_PRIORITY_LOW,
   FORMAT_TEXT_COMMAND,
-  LexicalEditor,
+  type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
-import { FC, JSX, useEffect, useRef } from 'react';
+import { type FC, type JSX, useEffect, useRef } from 'react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
@@ -26,8 +26,8 @@ import { setFloatingElemPosition } from '../../utils/setFloatingElemPosition';
 import { getDOMRangeRect } from '../../utils/getDOMRangeRect';
 import { getSelectedNode } from '../../utils/getSelectedNode';
 import { Box, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { AllowedStyles, Button } from '../../buttons';
-import { ToolbarProperties } from '../../../entities';
+import type { AllowedStyles, Button } from '../../buttons';
+import type { ToolbarProperties } from '../../../entities';
 import {
   ToolbarActionKind,
   ToolbarInitialState,

@@ -1,7 +1,7 @@
-import React, { ReactElement, useEffect, useRef, useState, use } from 'react';
+import React, { type ReactElement, useEffect, useRef, useState, use } from 'react';
 import Link from '@mui/material/Link';
 import Context from '../context';
-import { ContextTreeElement, ContextTree } from '../utils/tree-builder';
+import type{ ContextTreeElement, ContextTree } from '../utils/tree-builder';
 import styles from '../styles/nav-tree-node.module.css';
 import { useLocation } from 'react-router';
 

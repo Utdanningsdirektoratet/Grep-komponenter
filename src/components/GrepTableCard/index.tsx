@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, Typography } from '@mui/material';
 
-import GrepTable, { GrepTableProps } from '../GrepTable';
+import GrepTable, { type GrepTableProps } from '../GrepTable';
 import Colors from '../../styling/Colors';
 
 interface GrepTableCardProps<T> extends GrepTableProps<T> {

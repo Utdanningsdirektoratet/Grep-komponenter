@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Container } from '@mui/material';
 
 import GrepEditor from '..';
-import { ToolbarProperties } from '../entities';
+import type { ToolbarProperties } from '../entities';
 import { $getTextContent } from 'lexical';
 import { $generateHtmlFromNodes } from '@lexical/html';
 import LexicalButton from '../components/buttons/InlineButton';
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import classes from './grepEditorStory.module.css';
 
 const myToolbar: React.FunctionComponent<ToolbarProperties> = ({

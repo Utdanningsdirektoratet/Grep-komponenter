@@ -23,8 +23,8 @@ import {
 
 import MobileAppBar from './MobileAppBar';
 import { Box } from '@mui/material';
-import { IAuthorizedPage, UserMenuItem, v0colors } from './types';
-import { ReactNode } from 'react';
+import type { IAuthorizedPage, UserMenuItem, v0colors } from './types';
+import type { ReactNode } from 'react';
 
 type AppBarProps = {
   environmentTitle: string;

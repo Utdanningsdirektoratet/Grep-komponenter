@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import GrepDateRange from '..';
-import { GrepDatePickerProps } from '../../GrepDatePicker';
+import type { GrepDatePickerProps } from '../../GrepDatePicker';
 
 const fromDateProps: Omit<GrepDatePickerProps, 'onChange'> = {
   label: 'from',

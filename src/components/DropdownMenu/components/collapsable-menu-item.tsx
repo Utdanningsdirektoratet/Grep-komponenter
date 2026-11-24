@@ -1,19 +1,19 @@
 import React, {
-  PropsWithChildren,
+  type PropsWithChildren,
   useState,
-  FunctionComponent,
+  type FunctionComponent,
   useRef,
   useEffect,
-  BaseSyntheticEvent,
+  type BaseSyntheticEvent,
 } from 'react';
 
 import IconExpand from '@mui/icons-material/ExpandMore';
-import { Box, MenuItem, MenuItemProps, Tooltip } from '@mui/material';
+import { Box, MenuItem, type MenuItemProps, Tooltip } from '@mui/material';
 
 import { CollapsableMenu } from './collapsable-menu';
 
 import classes from '../styles/collapsableMenuItem.module.css';
-import { TooltipPlacement } from '..';
+import type { TooltipPlacement } from '..';
 import { Key } from '../../../assets/keycodeEnum';
 
 /**

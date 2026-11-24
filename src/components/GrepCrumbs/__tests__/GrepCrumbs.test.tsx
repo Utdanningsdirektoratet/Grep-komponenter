@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import { render, screen } from '@testing-library/react';
 
-import GrepCrumbs, { Breadcrumb } from '..';
+import GrepCrumbs, { type Breadcrumb } from '..';
 import { MemoryRouter, useLocation } from 'react-router';
 
 export const breadcrumbs: Breadcrumb[] = [

@@ -5,9 +5,9 @@ import {
   $getRoot,
   $getSelection,
   $isRangeSelection,
-  LexicalEditor,
-  PointType,
-  RangeSelection,
+  type LexicalEditor,
+  type PointType,
+  type RangeSelection,
 } from 'lexical';
 import DOMPurify from 'dompurify';
 

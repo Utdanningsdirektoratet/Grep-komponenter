@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AppBar from '../AppBar';
-import { IAuthorizedPage } from '../types';
+import type { IAuthorizedPage } from '../types';
 import { Box } from '@mui/system';
 
 export const v0colors = {

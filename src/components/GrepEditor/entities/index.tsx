@@ -1,6 +1,6 @@
-import { RefObject } from 'react';
-import { Button, AllowedStyles } from '../components/buttons';
-import { EditorState, LexicalEditor } from 'lexical';
+import type { RefObject } from 'react';
+import type { Button, AllowedStyles } from '../components/buttons';
+import type { EditorState, LexicalEditor } from 'lexical';
 
 export interface ToolbarProperties {
   editor: LexicalEditor;

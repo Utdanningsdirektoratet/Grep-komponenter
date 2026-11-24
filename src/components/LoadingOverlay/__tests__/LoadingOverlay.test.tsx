@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import LoadingOverlay, { LoadingOverlayProps } from '..';
+import LoadingOverlay, { type LoadingOverlayProps } from '..';
 import Button from '@mui/material/Button';
 
 import userEvent from '@testing-library/user-event';

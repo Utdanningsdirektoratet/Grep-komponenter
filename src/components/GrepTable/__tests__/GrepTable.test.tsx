@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import GrepTable, { GrepTableProps, TableColumn } from '..';
-import { DropdownMenuItem } from '../../DropdownMenu';
+import GrepTable, { type GrepTableProps, type TableColumn } from '..';
+import type { DropdownMenuItem } from '../../DropdownMenu';
 import userEvent from '@testing-library/user-event';
 
 const columns: TableColumn<string>[] = [

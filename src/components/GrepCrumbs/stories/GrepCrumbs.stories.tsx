@@ -1,5 +1,5 @@
 import * as React from 'react';
-import GrepCrumbs, { Breadcrumb } from '..';
+import GrepCrumbs, { type Breadcrumb } from '..';
 
 export const breadcrumbs: Breadcrumb[] = [
   {

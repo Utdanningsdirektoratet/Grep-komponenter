@@ -1,14 +1,13 @@
 import React from 'react';
-import TableRow, { TableRowProps } from '@mui/material/TableRow';
+import TableRow, { type TableRowProps } from '@mui/material/TableRow';
 
-import { TableColumn } from '../';
+import type { TableColumn } from '../';
 import TableCell, {
-  Properties as TableCellProperties,
+  type Properties as TableCellProperties,
 } from './grep-table-cell';
 
 interface Properties<T>
-  extends TableRowProps,
-    Pick<TableCellProperties<T>, 'variant'> {
+  extends TableRowProps, Pick<TableCellProperties<T>, 'variant'> {
   row: T;
   columns: Array<TableColumn<T>>;
   clickable?: boolean;
