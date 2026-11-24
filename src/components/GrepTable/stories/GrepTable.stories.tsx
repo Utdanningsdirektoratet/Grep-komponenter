@@ -2,8 +2,8 @@ import * as React from 'react';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-import GrepTable, { TableColumn } from '..';
-import { DropdownMenuItem } from '../../DropdownMenu';
+import GrepTable, { type TableColumn } from '..';
+import { type DropdownMenuItem } from '../../DropdownMenu';
 
 export interface ICurriculum {
   id: number;

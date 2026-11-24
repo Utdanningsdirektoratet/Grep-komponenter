@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Checkbox, Box, FormControlLabel } from '@mui/material';
 
 import SortableTable from '../index';
-import { UniqueIdentifier } from '@dnd-kit/core';
-import { TableColumn } from '../../GrepTable';
+import type { UniqueIdentifier } from '@dnd-kit/core';
+import type { TableColumn } from '../../GrepTable';
 
 interface TestData {
   [key: string]: string | number | UniqueIdentifier;

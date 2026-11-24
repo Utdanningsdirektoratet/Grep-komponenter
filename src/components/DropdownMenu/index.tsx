@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, MenuItemProps, MenuProps } from '@mui/material';
+import { Menu, type MenuItemProps, type MenuProps } from '@mui/material';
 
 import CollapsableMenuItem from './components/collapsable-menu-item';
 import classes from './styles/dropdownMenu.module.css';

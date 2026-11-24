@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ContextProvider, {
-  GrepTableOfContentProviderProps as ContextProviderProps,
+  type GrepTableOfContentProviderProps as ContextProviderProps,
 } from './context/provider';
 
 import Nav from './components/nav';

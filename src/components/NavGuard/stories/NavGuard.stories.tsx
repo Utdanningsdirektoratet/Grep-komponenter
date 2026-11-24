@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Box } from '@mui/system';
-import NavGuard, { NavGuardProperties } from '..';
-import { IAuthorizedPage } from '../../AppBar/types';
+import NavGuard, { type NavGuardProperties } from '..';
+import type { IAuthorizedPage } from '../../AppBar/types';
 import AppBar from '../../AppBar/AppBar';
 import { useLocation, useNavigate } from 'react-router';
 import Button from '@mui/material/Button';
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 export const v0colors = {
   primary: '#3FB8AF',

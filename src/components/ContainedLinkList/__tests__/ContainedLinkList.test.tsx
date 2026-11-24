@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import Inbox from '@mui/icons-material/Inbox';
 
 import ContainedLinkList from '..';
-import { NavigationProps } from '../../AppBarNavList';
+import type { NavigationProps } from '../../AppBarNavList';
 
 const pages: NavigationProps[] = [
   {

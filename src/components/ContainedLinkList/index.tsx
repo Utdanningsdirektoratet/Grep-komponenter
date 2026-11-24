@@ -9,7 +9,7 @@ import {
   ListItemButton,
 } from '@mui/material';
 import classes from './styles/containedLinkList.module.css';
-import { NavigationProps } from '..';
+import type{ NavigationProps } from '..';
 import Colors from '../../styling/Colors';
 
 interface Props {

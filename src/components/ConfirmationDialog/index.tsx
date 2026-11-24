@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { ConfirmationDialog, ConfirmationOptions } from './components/dialog';
+import React, { type ReactNode } from 'react';
+import { ConfirmationDialog, type ConfirmationOptions } from './components/dialog';
 
 const ConfirmationServiceContext = React.createContext<
   (options: ConfirmationOptions) => Promise<void>

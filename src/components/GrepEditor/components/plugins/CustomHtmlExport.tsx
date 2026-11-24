@@ -1,11 +1,11 @@
 import {
-  DOMExportOutput,
-  LexicalEditor,
-  LexicalNode,
+  type DOMExportOutput,
+  type LexicalEditor,
+  type LexicalNode,
   ParagraphNode,
   TextNode,
-  DOMExportOutputMap,
-  Klass,
+  type DOMExportOutputMap,
+  type Klass,
 } from 'lexical';
 import { HeadingNode } from '@lexical/rich-text';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import GrepTableCard from '..';
 import {
-  ICurriculum,
+  type ICurriculum,
   tableColumns,
 } from '../../GrepTable/stories/GrepTable.stories';
 

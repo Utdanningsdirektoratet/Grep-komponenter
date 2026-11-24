@@ -12,7 +12,7 @@ import MoreVert from '@mui/icons-material/MoreVert';
 import * as React from 'react';
 
 import { MobileToolbarMenu, MobileToolbarMenuItem } from './MainAppStyles';
-import { IAuthorizedPage, UserMenuItem, v0colors } from './types';
+import type { IAuthorizedPage, UserMenuItem, v0colors } from './types';
 
 type Props = {
   userMenuItems: UserMenuItem[];

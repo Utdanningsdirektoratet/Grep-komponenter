@@ -1,5 +1,5 @@
-import React, { PropsWithChildren, FunctionComponent } from 'react';
-import { TransitionProps } from '@mui/material/transitions';
+import React, { type PropsWithChildren, type FunctionComponent } from 'react';
+import type { TransitionProps } from '@mui/material/transitions';
 import { Collapse, MenuList } from '@mui/material';
 import { Key } from '../../../assets/keycodeEnum';
 
