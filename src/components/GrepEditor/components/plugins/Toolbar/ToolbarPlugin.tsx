@@ -18,7 +18,7 @@ import {
   type LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from 'lexical';
-import { type FC, type JSX, useCallback, useEffect, useRef } from 'react';
+import { type FC, type JSX, useEffect, useRef } from 'react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
@@ -86,7 +86,7 @@ function TextFormatFloatingToolbar({
     return;
   }, [popupCharStylesEditorRef]);
 
-  const updateTextFormatFloatingToolbar = useCallback(() => {
+  const updateTextFormatFloatingToolbar = () => {
     const selection = $getSelection();
 
     const popupCharStylesEditorElem = popupCharStylesEditorRef.current;
@@ -108,7 +108,7 @@ function TextFormatFloatingToolbar({
 
       setFloatingElemPosition(rangeRect, popupCharStylesEditorElem, anchorElem);
     }
-  }, [editor, anchorElem]);
+  };
 
   useEffect(() => {
     const scrollerElem = anchorElem.parentElement;
@@ -198,7 +198,7 @@ function useFloatingTextFormatToolbar(
     ToolbarReducer,
     ToolbarInitialState,
   );
-  const updatePopup = useCallback(() => {
+  const updatePopup = () => {
     editor.getEditorState().read(() => {
       // Should not pop up the floating toolbar when using IME input
       if (editor.isComposing()) {
@@ -275,7 +275,7 @@ function useFloatingTextFormatToolbar(
         return;
       }
     });
-  }, [editor]);
+  };
 
   useEffect(() => {
     document.addEventListener('selectionchange', updatePopup);

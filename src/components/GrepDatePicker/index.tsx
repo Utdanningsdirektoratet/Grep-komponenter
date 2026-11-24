@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import dayjs from 'dayjs';
+import React, { useRef, useState } from 'react';
+import type { Dayjs } from 'dayjs';
+import type { FieldRef } from '@mui/x-date-pickers/models';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import {
   type DatePickerProps,
@@ -9,9 +10,12 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import type { TextFieldProps } from '@mui/material';
 
-import '../../utils/dateHelper';
+import {
+  DEFAULT_MIN_DATE,
+  DEFAULT_MAX_DATE,
+  type ParseableDate,
+} from '../../utils/dateHelper';
 import { useDate } from '../../hooks';
-import type { ParseableDate } from '../../utils/dateHelper';
 
 type InputProps = Pick<
   TextFieldProps,
@@ -43,64 +47,107 @@ export const GrepDatePicker: React.FunctionComponent<GrepDatePickerProps> = ({
   margin,
   sx,
   clearable,
+  minDate = DEFAULT_MIN_DATE,
+  maxDate = DEFAULT_MAX_DATE,
+  onError,
   ...props
 }) => {
   const [date, setDate] = useDate(value);
-  const [error, setError] = useState<string | undefined>();
+  const [error, setError] = useState<DateValidationError>(null);
+  const fieldRef = useRef<FieldRef<Dayjs | null> | null>(null);
+  const wasSectionEmptyRef = useRef(false);
 
-  const helperText = errorMessage || error || props.helperText;
+  const handleDeleteKeyDownCapture = (
+    event: React.KeyboardEvent<HTMLDivElement>,
+  ) => {
+    if (event.repeat) {
+      return;
+    }
+
+    const field = fieldRef.current;
+    const sectionIndex = field?.getActiveSectionIndex();
+
+    wasSectionEmptyRef.current =
+      field !== null &&
+      sectionIndex != null &&
+      field.getSections()[sectionIndex]?.value === '';
+  };
+
+  const handleDeleteKeyUp = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!wasSectionEmptyRef.current) {
+      return;
+    }
+    if (
+      (event.key !== 'Backspace' && event.key !== 'Delete') ||
+      event.ctrlKey ||
+      event.metaKey ||
+      event.altKey ||
+      event.shiftKey ||
+      event.nativeEvent.isComposing ||
+      props.disabled ||
+      props.readOnly
+    ) {
+      return;
+    }
+
+    const field = fieldRef.current;
+    const sectionIndex = field?.getActiveSectionIndex();
+
+    if (!field || sectionIndex == null) {
+      return;
+    }
+
+    const sections = field.getSections();
+    const section = sections[sectionIndex];
+
+    if (!section || section.value !== '') {
+      return;
+    }
+
+    if (sections.every((item) => item.value === '')) {
+      field.setSelectedSections(0);
+      return;
+    }
+
+    const nextIndex = sectionIndex + (event.key === 'Backspace' ? -1 : 1);
+
+    if (nextIndex >= 0 && nextIndex < sections.length) {
+      field.setSelectedSections(nextIndex);
+    }
+  };
+
+  const validationMessage =
+    error === 'maxDate'
+      ? `Dato må være før ${maxDate.add(1, 'day').format('DD/MM/YYYY')}`
+      : error === 'minDate'
+        ? `Dato må være etter ${minDate.subtract(1, 'day').format('DD/MM/YYYY')}`
+        : error
+          ? 'Ugyldig dato'
+          : undefined;
+
+  const helperText = errorMessage || validationMessage || props.helperText;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale={'nb'}>
       <DatePicker
         format="DD/MM/YYYY"
-        onError={(reason: DateValidationError) => {
-          switch (reason) {
-            case 'invalidDate':
-              setError('Ugyldig dato');
-              break;
-
-            case 'maxDate':
-              if (!props.maxDate) {
-                props.maxDate = dayjs('31/12/2089', 'DD/MM/YYYY');
-              }
-
-              if (props.maxDate) {
-                setError(
-                  `Dato må være før ${dayjs(props.maxDate)
-                    .add(1, 'day')
-                    .format('DD/MM/YYYY')}`,
-                );
-              }
-
-              break;
-
-            case 'minDate':
-              if (!props.minDate) {
-                props.minDate = dayjs('02/01/1900', 'DD/MM/YYYY');
-              }
-
-              if (props.minDate) {
-                setError(
-                  `Dato må være etter ${dayjs(props.minDate)
-                    .subtract(1, 'day')
-                    .format('DD/MM/YYYY')}`,
-                );
-              }
-              break;
-
-            default:
-              setError(undefined);
-          }
+        minDate={minDate}
+        maxDate={maxDate}
+        onError={(reason, invalidValue) => {
+          setError(reason);
+          onError?.(reason, invalidValue);
         }}
         value={date}
         onChange={setDate}
         slotProps={{
           field: {
+            fieldRef,
             clearable: !!clearable,
             onClear: () => setDate(null),
           },
           textField: {
+            onKeyDownCapture: handleDeleteKeyDownCapture,
+            onKeyUp: handleDeleteKeyUp,
             id: id,
             label: label,
             variant: variant,
