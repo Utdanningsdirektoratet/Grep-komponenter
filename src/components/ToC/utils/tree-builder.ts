@@ -1,4 +1,4 @@
-import { normalize, Normalizer, ContextElement } from './normalize';
+import { normalize, type Normalizer, type ContextElement } from './normalize';
 
 export interface ContextTreeElement extends ContextElement {
   children: ContextTree;

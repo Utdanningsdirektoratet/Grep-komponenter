@@ -3,7 +3,7 @@ import ContainedLinkList from '..';
 import Inbox from '@mui/icons-material/Inbox';
 import Settings from '@mui/icons-material/Settings';
 import Description from '@mui/icons-material/Description';
-import { NavigationProps } from '../../AppBarNavList';
+import { type NavigationProps } from '../../AppBarNavList';
 
 export const myPages: NavigationProps[] = [
   {

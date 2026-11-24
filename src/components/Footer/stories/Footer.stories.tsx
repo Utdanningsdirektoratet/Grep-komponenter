@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MainLayout, Footer } from '../..';
 import { Switch } from '@mui/material';
-import { FooterItem } from '..';
+import { type FooterItem } from '..';
 
 export const footerItems: FooterItem[] = [
   {

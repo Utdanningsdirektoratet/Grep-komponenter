@@ -1,11 +1,11 @@
 import React from 'react';
 import TablePagination, {
-  TablePaginationProps,
+  type TablePaginationProps,
 } from '@mui/material/TablePagination';
 
 import {
   PaginationActions,
-  PaginationActionsProps,
+  type PaginationActionsProps,
 } from './GrepPaginationActions';
 import classes from '../styles/table.module.css';
 

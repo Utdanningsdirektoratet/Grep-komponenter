@@ -1,4 +1,4 @@
-import React, { JSX, ReactNode } from 'react';
+import React, { type JSX, type ReactNode } from 'react';
 import { GrepDialogServiceProvider, useGrepDialog } from '..';
 import { Button, DialogContentText } from '@mui/material';
 

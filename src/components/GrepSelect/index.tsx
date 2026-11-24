@@ -2,7 +2,7 @@ import * as React from 'react';
 import {
   Input,
   Select,
-  SelectProps,
+  type SelectProps,
   MenuItem,
   InputLabel,
   OutlinedInput,
@@ -10,8 +10,8 @@ import {
   FormHelperText,
   ListItemText,
   Checkbox,
-  InputBaseComponentProps,
-  InputLabelProps,
+  type InputBaseComponentProps,
+  type InputLabelProps,
 } from '@mui/material';
 
 export interface SelectItem {

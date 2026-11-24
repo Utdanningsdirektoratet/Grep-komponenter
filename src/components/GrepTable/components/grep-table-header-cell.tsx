@@ -1,10 +1,10 @@
 import React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel, {
-  TableSortLabelProps,
+  type TableSortLabelProps,
 } from '@mui/material/TableSortLabel';
 
-import { TableColumn } from '..';
+import type { TableColumn } from '..';
 
 interface Properties<T> extends Omit<TableSortLabelProps, 'component'> {
   column: TableColumn<T>;

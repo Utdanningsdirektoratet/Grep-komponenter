@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import InfoContainer, { InfoFieldType } from '..';
+import InfoContainer, { type InfoFieldType } from '..';
 
 const infoFields: InfoFieldType[] = [
   {

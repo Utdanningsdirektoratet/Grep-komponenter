@@ -1,7 +1,7 @@
 import React, { use } from 'react';
 import Context from '../context';
 import NavTreeNode from './nav-tree-node';
-import { ContextTree } from '../utils/tree-builder';
+import type { ContextTree } from '../utils/tree-builder';
 import Box from '@mui/material/Box';
 import { convertToRgba } from '../../../styling/hex2rgb';
 import styles from '../styles/nav-tree.style.module.css';

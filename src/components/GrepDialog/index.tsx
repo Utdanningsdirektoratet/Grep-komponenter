@@ -1,5 +1,5 @@
-import React, { ReactNode, use } from 'react';
-import { GrepDialog, GrepDialogOptions } from './dialog';
+import React, { type ReactNode, use } from 'react';
+import { GrepDialog, type GrepDialogOptions } from './dialog';
 
 const GrepDialogServiceContext = React.createContext<
   (options: GrepDialogOptions) => void

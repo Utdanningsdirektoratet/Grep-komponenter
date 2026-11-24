@@ -1,5 +1,5 @@
-import React, { ReactNode, useState, useEffect } from 'react';
-import { Box, CircularProgress, SxProps } from '@mui/material';
+import React, { type ReactNode, useState, useEffect } from 'react';
+import { Box, CircularProgress, type SxProps } from '@mui/material';
 
 export interface LoadingOverlayProps {
   show: boolean;

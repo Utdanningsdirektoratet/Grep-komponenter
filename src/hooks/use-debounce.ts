@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import _debounce from 'lodash.debounce';
-import _ from 'lodash';
+import type _ from 'lodash';
 
 interface Options extends _.DebounceSettings {
   wait: number;
