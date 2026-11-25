@@ -2,7 +2,7 @@ import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext
 import {
   $createHeadingNode,
   HeadingNode,
-  HeadingTagType,
+  type HeadingTagType,
 } from '@lexical/rich-text';
 import { $createParagraphNode, ParagraphNode } from 'lexical';
 import { useEffect } from 'react';

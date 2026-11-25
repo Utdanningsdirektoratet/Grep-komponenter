@@ -1,6 +1,6 @@
 import * as React from 'react';
 import LinkList from '..';
-import { NavigationProps } from '../../AppBarNavList';
+import type { NavigationProps } from '../../AppBarNavList';
 
 export const adminPages: NavigationProps[] = [
   {

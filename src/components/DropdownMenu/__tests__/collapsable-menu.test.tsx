@@ -7,7 +7,7 @@ import {
 import UserEvent from '@testing-library/user-event';
 import Button from '@mui/material/Button';
 
-import DropdownMenu, { DropdownMenuItem } from '..';
+import DropdownMenu, { type DropdownMenuItem } from '..';
 
 const items = [
   {

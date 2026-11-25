@@ -1,9 +1,9 @@
-import React, { ReactElement, useCallback } from 'react';
+import React, { type ReactElement } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { UniqueIdentifier } from '@dnd-kit/core';
+import type { UniqueIdentifier } from '@dnd-kit/core';
 import TableRow from '@mui/material/TableRow';
-import { TableColumn } from '../../GrepTable';
+import type { TableColumn } from '../../GrepTable';
 import TableCell from '@mui/material/TableCell';
 import DragIndicator from '@mui/icons-material/DragIndicator';
 import { hex2rgba } from '../../../styling/hex2rgb';
@@ -27,13 +27,10 @@ export function SortableTableRow2<T>({
     transition,
   };
 
-  const renderRow = useCallback(
-    () =>
-      columns.map(({ getCell }, index) => {
-        return <TableCell key={index}>{getCell(item)}</TableCell>;
-      }),
-    [columns, item],
-  );
+  const renderRow = () =>
+    columns.map(({ getCell }, index) => {
+      return <TableCell key={index}>{getCell(item)}</TableCell>;
+    });
 
   return (
     <TableRow

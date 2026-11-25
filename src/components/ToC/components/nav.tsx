@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useCallback, use } from 'react';
+import React, { useRef, use } from 'react';
 import Context from '../context';
 import NavTree from './nav-tree';
 import style from '../styles/nav.style.module.css';
@@ -17,9 +17,9 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
 ) => {
   const ref = useRef<HTMLElement>(null);
   const { elements, classes, selected, setSelected } = use(Context);
-  const tree = useMemo(() => buildTree(Object.values(elements)), [elements]);
+  const tree = buildTree(Object.values(elements));
 
-  const focusSelected = useCallback(() => {
+  const focusSelected = () =>
     requestAnimationFrame(() => {
       if (!(ref.current instanceof HTMLElement)) return;
       const active = ref.current.querySelector('[tabindex="0"]');
@@ -29,7 +29,6 @@ export const GrepTableOfContentNav: React.FC<GrepTableOfContentNavProps> = (
         ref.current.focus();
       }
     });
-  }, [ref]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === Key.ArrowUp || e.key === Key.ArrowDown) {

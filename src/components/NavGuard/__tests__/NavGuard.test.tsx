@@ -8,7 +8,7 @@ import userEvent from '@testing-library/user-event';
 import { v0colors } from '../stories/NavGuard.stories';
 import { Box } from '@mui/material';
 import { createRoutesStub, useLocation } from 'react-router';
-import NavGuard, { NavGuardProperties } from '..';
+import NavGuard, { type NavGuardProperties } from '..';
 import { navbarPages } from '../../AppBar/stories/AppBarStory.stories';
 import AppBar from '../../AppBar/AppBar';
 

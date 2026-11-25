@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import GrepTable, { GrepTableProps, TableColumn } from '..';
-import { DropdownMenuItem } from '../../DropdownMenu';
+import GrepTable, { type GrepTableProps, type TableColumn } from '..';
+import type { DropdownMenuItem } from '../../DropdownMenu';
 import userEvent from '@testing-library/user-event';
 
 const columns: TableColumn<string>[] = [
@@ -81,6 +81,42 @@ describe('GrepTable', () => {
 
     expect(getAllByRole('row').length).toBe(12);
     expect(queryByRole('cell', { name: 'row1' })).toBeVisible();
+  });
+
+  it('should preserve the current page when rerendered with the same number of rows', async () => {
+    const { getByRole, queryByRole, rerender } = render(
+      <Component pagination rowsPerPage={rowsPerPage} />,
+    );
+    const user = userEvent.setup();
+
+    await user.click(getByRole('button', { name: /next/i }));
+
+    rerender(<Component pagination rowsPerPage={rowsPerPage} />);
+
+    expect(queryByRole('cell', { name: 'row1' })).not.toBeInTheDocument();
+    expect(getByRole('cell', { name: 'row6' })).toBeVisible();
+  });
+
+  it.each([
+    ['the number of rows changes', { data: data().slice(0, 10) }],
+    ['pagination is disabled', { pagination: false }],
+  ])('should reset the page and selection when %s', async (_, props) => {
+    const { getByRole, getAllByRole, rerender } = render(
+      <Component pagination rowsPerPage={rowsPerPage} />,
+    );
+    const user = userEvent.setup();
+
+    await user.click(getByRole('button', { name: /next/i }));
+    await user.click(getByRole('row', { name: 'row6' }));
+
+    expect(getByRole('row', { name: 'row6' })).toHaveClass('Mui-selected');
+
+    rerender(<Component pagination rowsPerPage={rowsPerPage} {...props} />);
+
+    expect(getByRole('cell', { name: 'row1' })).toBeVisible();
+    getAllByRole('row').forEach((row) => {
+      expect(row).not.toHaveClass('Mui-selected');
+    });
   });
 
   it('should render with dropdown-menus', async () => {

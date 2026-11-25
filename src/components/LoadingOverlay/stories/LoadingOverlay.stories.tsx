@@ -1,7 +1,7 @@
 import React from 'react';
-import LoadingOverlay, { LoadingOverlayProps } from '..';
+import LoadingOverlay, { type LoadingOverlayProps } from '..';
 import { Button } from '@mui/material';
-import { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 const TestLoadingOverlay = (args: Omit<LoadingOverlayProps, 'show'>) => {
   const [show, setShow] = React.useState(false);

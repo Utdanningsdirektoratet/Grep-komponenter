@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 
 import { Colors } from '../../styling';
-import { NavigationProps } from '../AppBarNavList';
+import type { NavigationProps } from '../AppBarNavList';
 import { ListItemButton } from '@mui/material';
 
 interface Props {
